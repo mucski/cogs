@@ -14,7 +14,7 @@ from redbot.core.utils.predicates import MessagePredicate
 class Mucski2(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
-        self.conf = Config.get_conf(self, 282828485, forceRegistration=True)
+        #self.conf = Config.get_conf(self, 282828485, forceRegistration=True)
         self.locations = {
             "sewer" : ["You search the sewers for cookies. Imagine finding any.. "],
             "pantry" : ["You search the pantry. Natural birth place of cookies. "],
