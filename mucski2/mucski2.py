@@ -25,6 +25,7 @@ class Mucski2(commands.Cog):
             return
         poop = f"you said {m.content}"
         await msg.edit(content=poop)
+        await msg.add_reaction('\U0001F39F')
     
 
         
