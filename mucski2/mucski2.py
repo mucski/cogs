@@ -27,6 +27,7 @@ class Mucski2(commands.Cog):
         poop = f"you said {m.content}"
         await msg.edit(content=poop)
         await msg.add_reaction('\U0001F39F')
+        await msg.add_reaction('❤️')
         return
     
     @commands.command()
@@ -57,4 +58,5 @@ class Mucski2(commands.Cog):
     @commands.command()
     async def search(self, ctx):
         pass
+    
     
