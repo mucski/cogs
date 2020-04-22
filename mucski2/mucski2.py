@@ -20,8 +20,7 @@ class Mucski2(commands.Cog):
         msg = await ctx.send("Hi, what do you want?!")
         def predicate(m):
             if m.channel == ctx.channel and m.author == ctx.author:
-                return
-
+                
         resp = await ctx.bot.wait_for('message', timeout=60, check=predicate)
         msg = f"you said {resp}"
         await msg.edit(content=msg)
