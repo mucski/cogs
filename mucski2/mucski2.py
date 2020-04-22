@@ -23,6 +23,6 @@ class Mucski2(commands.Cog):
     async def oof(self, ctx):
         msg = "https://media2.giphy.com/media/S3Qafn57JDnsfRfbFc/giphy.gif"
         e = discord.Embed(
-            e.set_image(msg)
+            .set_image(msg)
         )
         await ctx.send(embed=e)
