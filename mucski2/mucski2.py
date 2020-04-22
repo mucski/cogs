@@ -24,7 +24,7 @@ class Mucski2(commands.Cog):
             m = await ctx.bot.wait_for('message', timeout=60, check=predicate)
         except asyncio.TimeoutError:
             return
-        poop = f"you said {m}"
+        poop = f"you said {message}"
         await msg.edit(content=poop)
     
 
