@@ -19,7 +19,7 @@ class Mucski2(commands.Cog):
     async def hello(self, ctx):
         msg = await ctx.send("Hi, what do you want?!")
         def predicate(m):
-            return m.channel == ctx.channel and m.author == ctx.author:
+            return m.channel == ctx.channel and m.author == ctx.author
         try:        
             m = await ctx.bot.wait_for('message', timeout=60, check=predicate)
         except asyncio.TimeoutError:
