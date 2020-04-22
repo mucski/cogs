@@ -17,7 +17,13 @@ class Mucski2(commands.Cog):
     @commands.command()
     async def hello(self, ctx):
         msg = await ctx.send("Hi, what do you want?!")
+        check = MessagePredicate.same_context(ctx))
         try:
-            msg = 
-        await asyncio.sleep(5)
-        await msg.edit(content="Nothing? Then why the fuck are you bothering me.")
+            msg = await ctx.bot.wait_for("message", check=check, timeout=60)
+        except asyncio.TimeoutError:
+            #time expired end command
+            return
+        edited = check.result
+        await msg.edit(content=edited)
+        
+        
