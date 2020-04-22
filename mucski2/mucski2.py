@@ -18,12 +18,13 @@ class Mucski2(commands.Cog):
     async def hello(self, ctx):
         msg = await ctx.send("Hi, what do you want?!")
         try:
-            check = msg.same_context(ctx)
+        def check(msg):
+            return msg.author == ctx.author and msg.channel == ctx.channel
             msg = await ctx.bot.wait_for("message", check=check, timeout=60)
         except asyncio.TimeoutError:
             #time expired end command
             return
-        edited = check.result
+        edited = f"You said {check.return}"
         await msg.edit(content=edited)
         
         
