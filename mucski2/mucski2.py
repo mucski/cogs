@@ -21,10 +21,10 @@ class Mucski2(commands.Cog):
         def predicate(m):
             if m.channel == ctx.channel and m.author == ctx.author
         try:        
-            msg = await ctx.bot.wait_for('message', timeout=60, check=predicate)
+            m = await ctx.bot.wait_for('message', timeout=60, check=predicate)
         except asyncio.TimeoutError:
             return
-        msg = f"you said {message}"
+        msg = f"you said {m}"
         await msg.edit(content=msg)
     
 
