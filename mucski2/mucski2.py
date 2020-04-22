@@ -18,7 +18,6 @@ class Mucski2(commands.Cog):
     @commands.command()
     async def hello(self, ctx):
         msg = await ctx.send("Hi, what do you want?!")
-        pass
         def predicate(m):
             if m.channel == ctx.channel and m.author == ctx.author:
                 return int(m.content) in range(1, 11)
