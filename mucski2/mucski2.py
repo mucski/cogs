@@ -14,6 +14,15 @@ from redbot.core.utils.predicates import MessagePredicate
 class Mucski2(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
+        self.conf = Config.get_conf(self, 282828485, forceRegistration=True)
+        self.locations = [
+            "sewer" : "You search the sewers for cookies. Imagine finding any.. ",
+            "pantry" : "You search the pantry. Natural birth place of cookies. ",
+            "garage" : "You search the garage for cookies. Look under the car too. ",
+            "closet" : "You search the closet for cookies. Maybe in the pockets of your old clothes. ",
+            "cellar" : "You search the cellar. Odd place to search, but okay, you do you. ",
+            "bin" : "Really? Well you know it. "
+       ]
         
     @commands.command()
     async def hello(self, ctx):
@@ -52,3 +61,8 @@ class Mucski2(commands.Cog):
         e = discord.Embed()
         e.set_image(url=msg)
         await ctx.send(embed=e)
+        
+    @commands.command()
+    async def search(self, ctx):
+        
+    
