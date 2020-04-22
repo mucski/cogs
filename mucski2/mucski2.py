@@ -22,5 +22,4 @@ class Mucski2(commands.Cog):
     @commands.command()
     async def oof(self, ctx):
         msg = "https://media2.giphy.com/media/S3Qafn57JDnsfRfbFc/giphy.gif"
-        img = discord.File(msg, 'oof.gif')
-        await ctx.send(files=img)
+        await ctx.maybe_send_embed(simple_msg)
