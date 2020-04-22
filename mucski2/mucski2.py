@@ -30,7 +30,7 @@ class Mucski2(commands.Cog):
     
     @commands.command()
     async def who(self, guild, channel, msg):
-        reaction = next(filter(lambda x: x.emoji == '\U0001F39F', msg.reactions) None)
+        reaction = next(filter(lambda x: x.emoji == '\U0001F39F', msg.reactions), None)
         if reaction is None:
             return await channel.send("no one")
         users = [user for user in await reaction.users().flatten() if guild.get_member(user.id)]
