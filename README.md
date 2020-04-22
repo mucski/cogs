@@ -1,2 +1,2 @@
 # mucski
-Mucski cookie clicker game redbot
+Mucski cookie clicker game
