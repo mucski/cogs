@@ -18,7 +18,7 @@ class Mucski2(commands.Cog):
     async def hello(self, ctx):
         msg = await ctx.send("Hi, what do you want?!")
         try:
-            check = MessagePredicate.same_context(ctx)
+            check = msg.same_context(ctx)
             msg = await ctx.bot.wait_for("message", check=check, timeout=60)
         except asyncio.TimeoutError:
             #time expired end command
