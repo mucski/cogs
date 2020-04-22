@@ -19,6 +19,16 @@ class Mucski2(commands.Cog):
     async def hello(self, ctx):
         msg = await ctx.send("Hi, what do you want?!")
         pass
+        def predicate(m):
+            if m.channel == ctx.channel and m.author == ctx.author:
+                return int(m.content) in range(1, 11)
+
+        resp = await ctx.bot.wait_for('message', timeout=60, check=predicate)
+        msg = f"you said {resp}"
+        await msg.edit(content=msg)
+        return message_id
+    
+
         
     @commands.command()
     async def oof(self, ctx):
