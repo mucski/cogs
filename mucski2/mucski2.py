@@ -34,7 +34,7 @@ class Mucski2(commands.Cog):
         if reaction is None:
             return await channel.send("no one")
         users = [user for user in await reaction.users().flatten() if guild.get_member(user.id)]
-        await ctx.send(users)
+        await channel.send(users)
         
     @commands.command()
     async def oof(self, ctx):
