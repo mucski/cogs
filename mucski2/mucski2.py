@@ -43,7 +43,7 @@ class Mucski2(commands.Cog):
             reaction = next(filter(lambda x: x.emoji == '\U0001F39F', msg.reactions), None)
             if reaction is None:
                 return await channel.send("no one")
-            users = [user for user in await reaction.users().flatten() if guild.get_member(user.id)]
+            users = [user for user in await reaction.users().flatten() if ctx.guild.get_member(user.id)]
             await ctx.send(users)
         
     @commands.command()
