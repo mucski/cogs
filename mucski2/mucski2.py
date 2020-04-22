@@ -65,5 +65,5 @@ class Mucski2(commands.Cog):
     @commands.command()
     async def search(self, ctx):
         location = random.choice(self.locations[0])
-        await ctx.send(f'{location}')
+        await ctx.send(location[1])
     
