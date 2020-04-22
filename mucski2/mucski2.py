@@ -24,7 +24,6 @@ class Mucski2(commands.Cog):
         await ctx.bot.wait_for('message', timeout=60, check=predicate)
         msg = f"you said {message}"
         await msg.edit(content=msg)
-        return message_id
     
 
         
