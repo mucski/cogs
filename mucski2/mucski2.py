@@ -29,7 +29,7 @@ class Mucski2(commands.Cog):
         return
     
     @commands.command()
-    async def who(self, ctx, discord.TextChannel, messageid: int):
+    async def who(self, ctx, channel: discord.TextChannel, messageid: int):
         msg = await channel.get_message(messageid)
         reaction = next(filter(lambda x: x.emoji == '\U0001F39F', msg.reactions), None)
         if reaction is None:
