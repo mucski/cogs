@@ -116,18 +116,31 @@ class Mucski(commands.Cog):
     async def give(self, ctx, amount: int, *, member: discord.Member):
         """ Give a member cookies """
         sender = await self.conf.user(ctx.author).cookies()
-        sender -= amount
-        if sender <= 0:
-            await ctx.send("Nope.")
-            return
-        await self.conf.user(ctx.author).cookies.set(sender)
-        receiver = await self.conf.user(member).cookies()
-        receiver += amount
-        if receiver <= 0:
-            await ctx.send("Nope hahaha")
-            return
-        await self.conf.user(member).cookies.set(receiver)
-        await ctx.send(f"{ctx.author.name} sent {amount} cookies to {member.name}")
+        try:
+            amount = int(amount)
+        except ValueError:
+            if amount == "all":
+                amount = sender
+            else:
+                amount = None
+                await ctx.send("Thats an invalid input!")
+        finally:
+            if amount is not None:
+                if amount >= 0:
+                    if sender <= 0:
+                        await ctx.send("Nope.")
+                        return
+                    sender -= amount
+                    await self.conf.user(ctx.author).cookies.set(sender)
+                    receiver = await self.conf.user(member).cookies()
+                    receiver += amount
+                    if receiver <= 0:
+                        await ctx.send("Nope hahaha")
+                        return
+                    await self.conf.user(member).cookies.set(receiver)
+                    await ctx.send(f"{ctx.author.name} sent {amount} cookies to {member.name}")
+                else:
+                    await ctx.send("Trick someone else!")
     
     @_cookie.command()
     @commands.cooldown(rate=1, per=600, type=commands.BucketType.user)
