@@ -23,7 +23,7 @@ class Mucski2(commands.Cog):
         except asyncio.TimeoutError:
             #time expired end command
             return
-        edited = check.result
-        await msg.edit(content=edited)
+            edited = check.result
+            await msg.edit(content=edited)
         
         
