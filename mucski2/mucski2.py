@@ -20,8 +20,10 @@ class Mucski2(commands.Cog):
         msg = await ctx.send("Hi, what do you want?!")
         def predicate(m):
             if m.channel == ctx.channel and m.author == ctx.author
-                
-        await ctx.bot.wait_for('message', timeout=60, check=predicate)
+        try:        
+            msg = await ctx.bot.wait_for('message', timeout=60, check=predicate)
+        except asyncio.TimeoutError:
+            return
         msg = f"you said {message}"
         await msg.edit(content=msg)
     
