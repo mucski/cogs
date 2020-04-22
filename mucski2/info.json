@@ -1,1 +1,9 @@
-Something
+{
+	"author": "mucski",
+	"description": "Various test commands.",
+	"install_msg": "Test commands.",
+	"short": "Test commands. ",
+	"tags": ["cliker", "cookie", "game"],
+	"type": "COG"
+}
+
