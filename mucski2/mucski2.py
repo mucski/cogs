@@ -39,7 +39,7 @@ class Mucski2(commands.Cog):
                 return await ctx.send("Invalid message id.")
         except discord.HTTPException:
             return await ctx.send("Invalid message id.")
-        try:
+        finally:
             reaction = next(filter(lambda x: x.emoji == '\U0001F39F', msg.reactions), None)
             if reaction is None:
                 return await channel.send("no one")
