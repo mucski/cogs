@@ -17,5 +17,7 @@ class Mucski2(commands.Cog):
     @commands.command()
     async def hello(self, ctx):
         msg = await ctx.send("Hi, what do you want?!")
+        try:
+            msg = 
         await asyncio.sleep(5)
         await msg.edit(content="Nothing? Then why the fuck are you bothering me.")
