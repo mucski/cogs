@@ -113,7 +113,7 @@ class Mucski(commands.Cog):
                         await ctx.send(f"Oops, you lost {amount} cookies.")
       
     @_cookie.command()
-    async def give(self, ctx, amount: int, *, member: discord.Member):
+    async def give(self, ctx, amount, *, member: discord.Member):
         """ Give a member cookies """
         sender = await self.conf.user(ctx.author).cookies()
         try:
