@@ -17,14 +17,10 @@ class Mucski2(commands.Cog):
     @commands.command()
     async def hello(self, ctx):
         msg = await ctx.send("Hi, what do you want?!")
-        try:
-        def check(msg):
-            return msg.author == ctx.author and msg.channel == ctx.channel
-            msg = await ctx.bot.wait_for("message", check=check, timeout=60)
-        except asyncio.TimeoutError:
-            #time expired end command
-            return
-        edited = f"You said {check.return}"
-        await msg.edit(content=edited)
+        pass
         
-        
+    @commands.command()
+    async def oof(self, ctx):
+        msg = "https://media2.giphy.com/media/S3Qafn57JDnsfRfbFc/giphy.gif"
+        img = discord.File(msg, 'oof.gif')
+        await ctx.send(files=img)
