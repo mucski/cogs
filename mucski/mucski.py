@@ -243,5 +243,5 @@ class Mucski(commands.Cog):
         amt = int(random.triangular(100,200))
         cookie = amt + cookie
         await self.conf.user(ctx.author).cookies.set(cookie)
-        return await ctx.send(self.loc[msg.content].format(amt))
+        return await ctx.send(self.loc[msg.content.lower()].format(amt))
     
