@@ -29,7 +29,7 @@ class Mucski(commands.Cog):
         self.conf.register_guild(**default_guild)
     
     def cookie_retrieve(self, member):
-        await self.conf.user(member).cookies()
+        self.conf.user(member).cookies()
     
     #test
     @commands.command()
