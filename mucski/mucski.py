@@ -53,6 +53,7 @@ class Mucski(commands.Cog):
         Cookie clicker game by Mucski
     
         Commands:
+        `search` - search for cookies in random locations
         `balance` - checks user balance
         `work` - earn random ammount of cookies between 100,500
         `daily` - earns 1000 cookies every 12 hours (subject to change)
