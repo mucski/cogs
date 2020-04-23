@@ -82,7 +82,7 @@ class Mucski2(commands.Cog):
         def check(m):
             return m.content == r or m.content == r2 and m.channel == ctx.channel and m.author == ctx.author
         try:
-            msg = await ctx.bot.wait_for('message', timeout=60, check=check)
+            msg = await ctx.bot.wait_for('message', timeout=10, check=check)
         except asyncio.TimeoutError:
             return await ctx.send("Timed out.")
         if msg.content == r:
