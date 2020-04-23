@@ -247,5 +247,5 @@ class Mucski(commands.Cog):
             return await ctx.send("{self.loc[r[1]]}".format(cookie))
         elif msg.content == r[2]:
             await self.conf.user(ctx.author).cookies.set(cookie)
-            return await ctx.send(f"{self.loc[r[2]]}")
+            return await ctx.send(f"{self.loc[r[2]]}".format(cookie))
     
