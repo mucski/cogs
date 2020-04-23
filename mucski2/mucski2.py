@@ -31,7 +31,8 @@ class Mucski2(commands.Cog):
         return
     
     @commands.command()
-    async def gw(self, ctx, *, msg):
+    async def gw(self, ctx, *, message):
+        msg = await ctx.send(message)
         pred = MessagePredicate.same_context(ctx)
         try:
             m = await ctx.bot.wait_for('message', timeout=60, check=pred)
