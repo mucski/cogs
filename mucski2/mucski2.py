@@ -31,10 +31,11 @@ class Mucski2(commands.Cog):
         return
     
     @commands.command()
-    async def gw(self, ctx, *, msg):
+    async def gw(self, ctx, messageid: int, *, msg):
         if msg is None:
             await ctx.send('error')
         else:
+            messageid = await channel.fetch_message(messageid)
             await ctx.send(msg)
             await asyncio.sleep(2)
             await msg.add_reaction('❤️')
