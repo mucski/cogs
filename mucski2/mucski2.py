@@ -74,7 +74,7 @@ class Mucski2(commands.Cog):
         await ctx.send(embed=e)
         
     @commands.command()
-    async def search(self, ctx):
+    async def poopoo(self, ctx):
         r = random.sample(list(self.loc.keys()), 3)
         await ctx.send("Chose a location to search from bellow")
         await ctx.send(f"``{r[0]}``, ``{r[1]}``, ``{r[2]}``")
