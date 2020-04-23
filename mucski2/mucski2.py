@@ -37,7 +37,7 @@ class Mucski2(commands.Cog):
             m = await ctx.bot.wait_for('message', timeout=60, check=pred)
         except asyncio.TimeoutError:
             return await ctx.send("timed out")
-        await ctx.send(msg)
+        await ctx.send(m.content)
         await msg.add_reaction('❤️')
         
     @commands.command()
