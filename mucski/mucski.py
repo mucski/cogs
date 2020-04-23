@@ -226,4 +226,26 @@ class Mucski(commands.Cog):
             await self.conf.user(member).cookies.set(hiscookie)
             await self.conf.user(ctx.author).cookies.set(yourcookie)
             await ctx.send(f"You got caught! You paid {value} for apologies to {member.name}")
+            
+    @commands.command()
+    async def search(self, ctx):
+        r = random.sample(list(self.loc.keys()), 3)
+        await ctx.send("Chose a location to search from bellow")
+        await ctx.send(f"``{r[0]}``, ``{r[1]}``, ``{r[2]}``")
+        def check(m):
+            return m.content == r[0] or m.content == r[1] or m.content == r[2] and m.channel == ctx.channel and m.author == ctx.author
+        try:
+            msg = await ctx.bot.wait_for('message', timeout=10, check=check)
+        except asyncio.TimeoutError:
+            return await ctx.send("Timed out.")
+            cookie = random.triangular(10,90)
+        if msg.content == r[0]:
+            await self.conf.user(ctx.author).cookies.set(cookie)
+            return await ctx.send(f"{self.loc[r[0]]}")
+        elif msg.content == r[1]:
+            await self.conf.user(ctx.author).cookies.set(cookie)
+            return await ctx.send(f"{self.loc[r[1]]}")
+        elif msg.content == r[2]:
+            await self.conf.user(ctx.author).cookies.set(cookie)
+            return await ctx.send(f"{self.loc[r[2]]}")
     
