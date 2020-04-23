@@ -45,7 +45,7 @@ class Mucski2(commands.Cog):
     async def who(self, ctx, channel: discord.TextChannel, messageid: int):
         if messageid is None:
             return await ctx.send("Invalid channel id")
-        reaction = discord.utils.get(messageid.reactions, emoji='❤️')
+        reaction = discord.utils.get(messageid.reaction, emoji='❤️')
         if reaction is None:
             return await channel.send("There were no reactions. ")
         async for users in reaction.users():
