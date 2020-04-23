@@ -230,7 +230,7 @@ class Mucski(commands.Cog):
             
     @_cookie.command()
     async def search(self, ctx):
-        """ Sesrch for cookies in random places """
+        """ Search for cookies in random places """
         r = random.sample(list(self.loc.keys()), 3)
         await ctx.send("Chose a location to search from bellow")
         await ctx.send(f"``{r[0]}``, ``{r[1]}``, ``{r[2]}``")
