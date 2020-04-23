@@ -43,7 +43,7 @@ class Mucski2(commands.Cog):
         
     @commands.command()
     async def who(self, ctx, channel: discord.TextChannel, messageid: int):
-        msg = await channel.fetch_message(messageid)
+        msg = await channel.get_message(messageid)
         if messageid is None:
             return await ctx.send("Invalid channel id")
         reaction = discord.utils.get(msg.reactions, emoji='❤️')
