@@ -31,7 +31,7 @@ class Mucski2(commands.Cog):
         return
     
     @commands.command()
-    async def ugay(self, ctx, *, message):
+    async def ugay(self, ctx):
         await ctx.send("Say, I'm gay!")
         def check(m):
             return m.content == "I'm gay!" and m.channel == channel and author == ctx.author
