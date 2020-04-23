@@ -84,6 +84,5 @@ class Mucski2(commands.Cog):
             msg = await ctx.bot.wait_for('message', timeout=10, check=check)
         except asyncio.TimeoutError:
             return await ctx.send("Timed out.")
-        if msg.content == r:
-            return await ctx.send(f"{self.loc[msg.content]}")
+        return await ctx.send(f"{self.loc[msg.content]}")
     
