@@ -39,7 +39,7 @@ class Mucski2(commands.Cog):
             msg = await ctx.bot.wait_for('message', timeout=60, check=check)
         except asyncio.TimeoutError:
             return await ctx.send("You can't even do what I ask of you properly")
-        await ctx.send(f"Congrats {m.author.mention} you're now gay. ")
+        await ctx.send(f"Congrats {msg.author.mention} you're now gay. ")
         
     @commands.command()
     async def who(self, ctx, channel: discord.TextChannel, messageid: int):
