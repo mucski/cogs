@@ -229,6 +229,7 @@ class Mucski(commands.Cog):
             
     @_cookie.command()
     async def search(self, ctx):
+        """ Sesrch for cookies in random places """
         r = random.sample(list(self.loc.keys()), 3)
         await ctx.send("Chose a location to search from bellow")
         await ctx.send(f"``{r[0]}``, ``{r[1]}``, ``{r[2]}``")
@@ -239,7 +240,7 @@ class Mucski(commands.Cog):
         except asyncio.TimeoutError:
             return await ctx.send("Timed out.")
         cookie = await self.conf.user(ctx.author).cookies()
-        amt = int(random.triangular(10,90))
+        amt = int(random.triangular(100,200))
         cookie = amt + cookie
         await self.conf.user(ctx.author).cookies.set(cookie)
         return await ctx.send(self.loc[msg.content].format(amt))
