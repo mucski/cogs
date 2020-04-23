@@ -238,7 +238,7 @@ class Mucski(commands.Cog):
         try:
             msg = await ctx.bot.wait_for('message', timeout=10, check=check)
         except asyncio.TimeoutError:
-            return await ctx.send("Timed out.")
+            return await ctx.send("Can't search if I don't know where.")
         cookie = await self.conf.user(ctx.author).cookies()
         amt = int(random.triangular(100,200))
         cookie = amt + cookie
