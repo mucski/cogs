@@ -32,21 +32,17 @@ class Mucski2(commands.Cog):
     
     @commands.command()
     async def who(self, ctx, channel: discord.TextChannel, messageid: int):
-        try:
-            msg = await channel.get_message(messageid)
-        except AttributeError:
-            try:
-                msg = await channel.fetch_message(messageid)
-            except discord.HTTPException:
-                return await ctx.send("Invalid message id.")
-        except discord.HTTPException:
-            return await ctx.send("Invalid message id.")
-        finally:
-            reaction = next(filter(lambda x: x.emoji == '\U0001F39F', msg.reactions), None)
-            if reaction is None:
-                return await channel.send("no one")
-            users = [user for user in await reaction.users().flatten() if ctx.guild.get_member(user.id)]
-            await ctx.send(users)
+        msg = await channel.fetch_message(messageid)
+        if messageid is None:
+            return await ctx.send("Invalid channel id")
+        reaction = discord.utils.get(msg.reactions, emoji='❤️')
+        if reaction is None:
+            return await channel.send("no one")
+        for users in reaction.users():
+            member = ctx.guild.get_member(user.id)
+            if member:
+                users.append(user)
+        await ctx.send(users)
         
     @commands.command()
     async def oof(self, ctx):
