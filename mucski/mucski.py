@@ -18,7 +18,7 @@ class Mucski(commands.Cog):
             "cellar": "You went into the cellar looking for a fine wine, got scared by a rat and found {cookie} cookies instead.",
             "moon": "A giant leap to man kind, Armstrong left some {cookie} cookies here though.",
             "forest": "You went trekking into the forest, found {cookie} cookies laying around in an abandoned camp.",
-            "fridge": "Nothing beats frozen cookies, Right? Wrong. "
+            "fridge": "Nothing beats frozen cookies, Right? Wrong. ",
             "sewer": "You descended into the sewers hoping to find a dancing clown, found {cookie} cookies instead. ",
             "dog": "Found {cookie} cookies in dog.... Shit. Why would you do that.. ",
             "toilet": "As disgusting as it sounds, you found {cookie} cookies in the toilet bowl. Lucky no one used the toilet before you. ", 
