@@ -33,7 +33,7 @@ class Mucski2(commands.Cog):
     @commands.command()
     async def gw(self, ctx, *, msg):
         if msg is None:
-            await.ctx.send('error')
+            await ctx.send('error')
         else:
             await ctx.send(msg)
             await asyncio.sleep(2)
