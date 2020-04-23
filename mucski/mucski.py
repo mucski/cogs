@@ -239,7 +239,8 @@ class Mucski(commands.Cog):
         except asyncio.TimeoutError:
             return await ctx.send("Timed out.")
         cookie = await self.conf.user(ctx.author).cookies()
-        cookie += int(random.triangular(10,90))
+        amt = int(random.triangular(10,90))
+        cookie = amt + cookie
         await self.conf.user(ctx.author).cookies.set(cookie)
-        return await ctx.send(self.loc[msg.content].format(cookie))
+        return await ctx.send(self.loc[msg.content].format(amt))
     
