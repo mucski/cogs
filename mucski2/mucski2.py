@@ -71,7 +71,7 @@ class Mucski2(commands.Cog):
         
     @commands.command()
     async def search(self, ctx):
-        rand_loc = random.choice(list(loc.key()))
+        rand_loc = random.choice(list(self.loc.key()))
         await ctx.send("Chose a location to search from bellow")
         await ctx.send(f"{rand_loc}")
         def check(m):
@@ -81,5 +81,5 @@ class Mucski2(commands.Cog):
         except asyncio.TimeoutError:
             return await ctx.send("Timed out.")
         if msg.content == rand_loc:
-            return await ctx.send(f"{loc[rand_loc]}")
+            return await ctx.send(f"{self.loc[rand_loc]}")
     
