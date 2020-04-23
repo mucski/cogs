@@ -15,6 +15,11 @@ class Mucski2(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
         self.conf = Config.get_conf(self, 282828485)
+        loc = {
+            "sewer": "You went to look for cookies in the sewer.",
+            "dog": "I am not sure how you gonna search a dog for cookies but i won't judge",
+            "toilet": "You must be joking right now..."
+        }
         
     @commands.command()
     async def hello(self, ctx):
@@ -66,6 +71,15 @@ class Mucski2(commands.Cog):
         
     @commands.command()
     async def search(self, ctx):
-        pass
-    
+        rand_loc = random.choice(list(loc.key()))
+        await ctx.send("Chose a location to search from bellow")
+        await ctx.send(f"{rand_loc}")
+        def check(m):
+            return m.content == {rand_loc} and m.channel == ctx.channel and m.author == ctx.author
+        try:
+            msg = await ctx.bot.wait_for('message', timeout=60, check=check)
+        except asyncio.TimeoutError:
+            return await ctx.send("Timed out.")
+        if msg.content == rand_loc:
+            return await ctx.send(f"{loc[rand_loc]}")
     
