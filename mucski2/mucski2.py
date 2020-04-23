@@ -32,12 +32,12 @@ class Mucski2(commands.Cog):
     
     @commands.command()
     async def gw(self, ctx, *, msg):
-        if msg not None:
+        if msg is None:
+            await.ctx.send('error')
+        else:
             await ctx.send(msg)
             await asyncio.sleep(2)
             await msg.add_reaction('❤️')
-        else:
-            await ctx.send('First say something.')
         
     @commands.command()
     async def who(self, ctx, channel: discord.TextChannel, messageid: int):
