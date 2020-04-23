@@ -75,7 +75,7 @@ class Mucski2(commands.Cog):
         await ctx.send("Chose a location to search from bellow")
         await ctx.send(f"{rand_loc}")
         def check(m):
-            return m.content == {rand_loc} and m.channel == ctx.channel and m.author == ctx.author
+            return m.content == rand_loc and m.channel == ctx.channel and m.author == ctx.author
         try:
             msg = await ctx.bot.wait_for('message', timeout=60, check=check)
         except asyncio.TimeoutError:
