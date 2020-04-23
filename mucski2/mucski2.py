@@ -34,18 +34,21 @@ class Mucski2(commands.Cog):
     async def ugay(self, ctx):
         await ctx.send("Say, I'm gay!")
         def check(m):
-            return m.content == "I'm gay!" and m.channel == ctx.channel
+            return m.content == "I'm gay!" or m.content == "No u" and m.channel == ctx.channel
         try:    
             msg = await ctx.bot.wait_for('message', timeout=60, check=check)
         except asyncio.TimeoutError:
             return await ctx.send("You can't even do what I ask of you properly")
-        await ctx.send(f"Congrats {msg.author.mention} you're now gay. ")
+        if msg.content == "I'm gay!":
+            await ctx.send(f"Congrats {msg.author.mention} you're now gay. ")
+        else:
+            return await ctx.send("No, your mom!")
         
     @commands.command()
     async def who(self, ctx, channel: discord.TextChannel, messageid: int):
         if messageid is None:
             return await ctx.send("Invalid channel id")
-        reaction = discord.utils.get(messageid.reaction, emoji='❤️')
+        reaction = discord.utils.get(messageid.reactions, emoji='❤️')
         if reaction is None:
             return await channel.send("There were no reactions. ")
         async for users in reaction.users():
