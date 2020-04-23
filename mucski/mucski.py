@@ -15,17 +15,17 @@ class Mucski(commands.Cog):
         self.bot = bot
         self.conf = Config.get_conf(self, 82838559382, force_registration=True)
         self.loc = {
-            "cellar": "You went into the cellar looking for a fine wine, got scared by a rat and found {cookie} cookies instead.",
-            "moon": "A giant leap to man kind, Armstrong left some {cookie} cookies here though.",
-            "forest": "You went trekking into the forest, found {cookie} cookies laying around in an abandoned camp.",
+            "cellar": "You went into the cellar looking for a fine wine, got scared by a rat and found {} cookies instead.",
+            "moon": "A giant leap to man kind, Armstrong left some {} cookies here though.",
+            "forest": "You went trekking into the forest, found {} cookies laying around in an abandoned camp.",
             "fridge": "Nothing beats frozen cookies, Right? Wrong. ",
-            "sewer": "You descended into the sewers hoping to find a dancing clown, found {cookie} cookies instead. ",
-            "dog": "Found {cookie} cookies in dog.... Shit. Why would you do that.. ",
-            "toilet": "As disgusting as it sounds, you found {cookie} cookies in the toilet bowl. Lucky no one used the toilet before you. ", 
-            "box": "You rummaged through a box of forgotten items, found {cookie} cookies. Lucky you. ", 
-            "drawer": "After going through many panties, a dildo, and a hand gun, you found {cookie} cookies wrapped in socks", 
-            "story-book": "You were looking for Little Red Riding Hood, instead you found {cookie} cookies hidden in a tree bark. ", 
-            "set": "You are the next star for Ironing Man. While equipping his armor you found {cookie} cookies in one of the hidden compartments. "
+            "sewer": "You descended into the sewers hoping to find a dancing clown, found {} cookies instead. ",
+            "dog": "Found {} cookies in dog.... Shit. Why would you do that.. ",
+            "toilet": "As disgusting as it sounds, you found {} cookies in the toilet bowl. Lucky no one used the toilet before you. ", 
+            "box": "You rummaged through a box of forgotten items, found {} cookies. Lucky you. ", 
+            "drawer": "After going through many panties, a dildo, and a hand gun, you found {} cookies wrapped in socks", 
+            "story-book": "You were looking for Little Red Riding Hood, instead you found {} cookies hidden in a tree bark. ", 
+            "set": "You are the next star for Ironing Man. While equipping his armor you found {} cookies in one of the hidden compartments. "
         }
         defaults = {
             "cookies": 0
@@ -241,10 +241,10 @@ class Mucski(commands.Cog):
             cookie = random.triangular(10,90)
         if msg.content == r[0]:
             await self.conf.user(ctx.author).cookies.set(cookie)
-            return await ctx.send(f"{self.loc[r[0]]}")
+            return await ctx.send("{self.loc[r[0]]}".format(cookie))
         elif msg.content == r[1]:
             await self.conf.user(ctx.author).cookies.set(cookie)
-            return await ctx.send(f"{self.loc[r[1]]}")
+            return await ctx.send("{self.loc[r[1]]}".format(cookie))
         elif msg.content == r[2]:
             await self.conf.user(ctx.author).cookies.set(cookie)
             return await ctx.send(f"{self.loc[r[2]]}")
