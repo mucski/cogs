@@ -15,7 +15,7 @@ class Mucski2(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
         self.conf = Config.get_conf(self, 282828485)
-        loc = {
+        self.loc = {
             "sewer": "You went to look for cookies in the sewer.",
             "dog": "I am not sure how you gonna search a dog for cookies but i won't judge",
             "toilet": "You must be joking right now..."
