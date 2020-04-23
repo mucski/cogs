@@ -227,7 +227,7 @@ class Mucski(commands.Cog):
             await self.conf.user(ctx.author).cookies.set(yourcookie)
             await ctx.send(f"You got caught! You paid {value} for apologies to {member.name}")
             
-    @commands.command()
+    @_cookie.command()
     async def search(self, ctx):
         r = random.sample(list(self.loc.keys()), 3)
         await ctx.send("Chose a location to search from bellow")
