@@ -79,15 +79,11 @@ class Mucski2(commands.Cog):
         await ctx.send("Chose a location to search from bellow")
         await ctx.send(f"``{r[0]}``, ``{r[1]}``, ``{r[2]}``")
         def check(m):
-            return m.content == r[0] or m.content == r[1] or m.content == r[2] and m.channel == ctx.channel and m.author == ctx.author
+            return m.content == r and m.channel == ctx.channel and m.author == ctx.author
         try:
             msg = await ctx.bot.wait_for('message', timeout=10, check=check)
         except asyncio.TimeoutError:
             return await ctx.send("Timed out.")
-        if msg.content == r[0]:
-            return await ctx.send(f"{self.loc[r[0]]}")
-        elif msg.content == r[1]:
-            return await ctx.send(f"{self.loc[r[1]]}")
-        elif msg.content == r[2]:
-            return await ctx.send(f"{self.loc[r[2]]}")
+        if msg.content == r:
+            return await ctx.send(f"{self.loc.r}
     
