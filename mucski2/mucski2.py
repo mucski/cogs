@@ -31,14 +31,14 @@ class Mucski2(commands.Cog):
         return
     
     @commands.command()
-    async def gw(self, ctx, messageid: int, *, msg):
-        if msg is None:
-            await ctx.send('error')
-        else:
-            messageid = await channel.fetch_message(messageid)
-            await ctx.send(msg)
-            await asyncio.sleep(2)
-            await msg.add_reaction('❤️')
+    async def gw(self, ctx, *, msg):
+        pred = MessagePredicate.same_context(ctx)
+        try:
+            m = await ctx.bot.wait_for('message', timeout=60, check=pred)
+        except asyncio.TimeoutError:
+            return await ctx.send("timed out")
+        await ctx.send(msg)
+        await msg.add_reaction('❤️')
         
     @commands.command()
     async def who(self, ctx, channel: discord.TextChannel, messageid: int):
