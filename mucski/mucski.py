@@ -241,11 +241,11 @@ class Mucski(commands.Cog):
         cookie = random.triangular(10,90)
         if msg.content == r[0]:
             await self.conf.user(ctx.author).cookies.set(cookie)
-            return await ctx.send("{self.loc[r[0]]}".format(cookie))
+            return await ctx.send(self.loc[r[0]].format(cookie))
         elif msg.content == r[1]:
             await self.conf.user(ctx.author).cookies.set(cookie)
-            return await ctx.send("{self.loc[r[1]]}".format(cookie))
+            return await ctx.send(self.loc[r[1]].format(cookie))
         elif msg.content == r[2]:
             await self.conf.user(ctx.author).cookies.set(cookie)
-            return await ctx.send(f"{self.loc[r[2]]}".format(cookie))
+            return await ctx.send(self.loc[r[2]].format(cookie))
     
