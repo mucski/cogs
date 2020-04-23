@@ -31,15 +31,15 @@ class Mucski2(commands.Cog):
         return
     
     @commands.command()
-    async def gw(self, ctx, *, message):
-        msg = await ctx.send(message)
-        pred = MessagePredicate.same_context(ctx)
-        try:
-            m = await ctx.bot.wait_for('message', timeout=60, check=pred)
+    async def gay(self, ctx, *, message):
+        await ctx.send("Say, I'm gay!")
+        def check(m):
+            return m.content == "I'm gay!" and m.channel == channel and author == ctx.author
+        try:    
+            msg = await ctx.bot.wait_for('message', timeout=60, check=check)
         except asyncio.TimeoutError:
-            return await ctx.send("timed out")
-        await ctx.send(m.content)
-        await msg.add_reaction('❤️')
+            return await ctx.send("You can't even do what I ask of you properly")
+        await ctx.send("Lol, you actually did it.")
         
     @commands.command()
     async def who(self, ctx, channel: discord.TextChannel, messageid: int):
