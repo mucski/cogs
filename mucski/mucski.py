@@ -27,11 +27,15 @@ class Mucski(commands.Cog):
         }
         self.conf.register_user(**defaults)
         self.conf.register_guild(**default_guild)
-  
+    
+    async def cookie_retrieve(self, member):
+        await self.conf.user(member).cookies()
+    
     #test
     @commands.command()
-    async def test(self, ctx):
-        pass
+    async def test(self, ctx, member):
+        cookies = self.cookie_retrieve(member)
+        await ctx.send(f"User has {cookies} cookies")
 
     @commands.group(name="cookie", aliases=['c', 'ce'])
     @commands.guild_only()
