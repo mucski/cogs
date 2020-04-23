@@ -17,7 +17,7 @@ class Mucski2(commands.Cog):
         self.conf = Config.get_conf(self, 282828485)
         self.loc = {
             "sewer": "You descended into the sewers hoping to find a dancing clown, found {cookie} cookies instead. ",
-            "sew": "Found {cookie} cookies in dog.... Shit. Why would you do that.. ",
+            "dog": "Found {cookie} cookies in dog.... Shit. Why would you do that.. ",
             "toilet": "As disgusting as it sounds, you found {cookie} cookies in the toilet bowl. Lucky no one used the toilet before you. ", 
             "box": "You rummaged through a box of forgotten items, found {cookie} cookies. Lucky you. ", 
             "drawer": "After going through many panties, a dildo, and a hand gun, you found {cookie} cookies wrapped in socks", 
