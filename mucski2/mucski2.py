@@ -34,7 +34,7 @@ class Mucski2(commands.Cog):
     async def ugay(self, ctx):
         await ctx.send("Say, I'm gay!")
         def check(m):
-            return m.content == "I'm gay!" and m.channel == ctx.channel and m.author == ctx.author
+            return m.content == "I'm gay!" and m.channel == ctx.channel and m.author == ctx.guild.get_member(user.id)
         try:    
             msg = await ctx.bot.wait_for('message', timeout=60, check=check)
         except asyncio.TimeoutError:
