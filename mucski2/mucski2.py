@@ -16,13 +16,13 @@ class Mucski2(commands.Cog):
         self.bot = bot
         self.conf = Config.get_conf(self, 282828485)
         self.loc = {
-            "``sewer``": "You descended into the sewers hoping to find a dancing clown, found {cookie} cookies instead. ",
-            "``sew``": "Found {cookie} cookies in dog.... Shit. Why would you do that.. ",
-            "``toilet``": "As disgusting as it sounds, you found {cookie} cookies in the toilet bowl. Lucky no one used the toilet before you. ", 
-            "``box``": "You rummaged through a box of forgotten items, found {cookie} cookies. Lucky you. ", 
-            "``drawer``": "After going through many panties, a dildo, and a hand gun, you found {cookie} cookies wrapped in socks", 
-            "``forest``": "You were looking for Little Red Riding Hood, instead you found {cookie} cookies hidden in a tree bark. ", 
-            "``set``": "You are the next star for Ironing Man. While equipping his armor you found {cookie} cookies in one of the hidden compartments. "
+            "sewer": "You descended into the sewers hoping to find a dancing clown, found {cookie} cookies instead. ",
+            "sew": "Found {cookie} cookies in dog.... Shit. Why would you do that.. ",
+            "toilet": "As disgusting as it sounds, you found {cookie} cookies in the toilet bowl. Lucky no one used the toilet before you. ", 
+            "box": "You rummaged through a box of forgotten items, found {cookie} cookies. Lucky you. ", 
+            "drawer": "After going through many panties, a dildo, and a hand gun, you found {cookie} cookies wrapped in socks", 
+            "forest": "You were looking for Little Red Riding Hood, instead you found {cookie} cookies hidden in a tree bark. ", 
+            "set": "You are the next star for Ironing Man. While equipping his armor you found {cookie} cookies in one of the hidden compartments. "
         }
         
     @commands.command()
@@ -78,7 +78,7 @@ class Mucski2(commands.Cog):
         r = random.choice(list(self.loc.keys()))
         r2 = random.choice(list(self.loc.keys()))
         await ctx.send("Chose a location to search from bellow")
-        await ctx.send(f"{r}, {r2}")
+        await ctx.send(f"``{r}``, ``{r2}``")
         def check(m):
             return m.content == r or m.content == r2 and m.channel == ctx.channel and m.author == ctx.author
         try:
