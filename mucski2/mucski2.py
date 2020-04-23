@@ -31,6 +31,15 @@ class Mucski2(commands.Cog):
         return
     
     @commands.command()
+    async def gw(self, ctx, *, msg):
+        if msg not None:
+            await ctx.send(msg)
+            await asyncio.sleep(2)
+            await msg.add_reaction('❤️')
+        else:
+            await ctx.send('First say something.')
+        
+    @commands.command()
     async def who(self, ctx, channel: discord.TextChannel, messageid: int):
         msg = await channel.fetch_message(messageid)
         if messageid is None:
