@@ -48,7 +48,7 @@ class Mucski2(commands.Cog):
         reaction = discord.utils.get(messageid.reactions, emoji='❤️')
         if reaction is None:
             return await channel.send("There were no reactions. ")
-        for users in reaction.users():
+        async for users in reaction.users():
             member = ctx.guild.get_member(user.id)
             if member:
                 users.append(user)
