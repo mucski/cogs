@@ -165,7 +165,7 @@ class Mucski(commands.Cog):
     @commands.cooldown(rate=1, per=600, type=commands.BucketType.user)
     async def work(self, ctx):
         """ Work to earn some cookies """
-        r = random.choice(list(work.keys()))
+        r = random.choice(list(self.work.keys()))
         await ctx.send(self.work[r])
         def check(m):
             return m.message in r and m.guild == ctx.guild and m.author == ctx.author
