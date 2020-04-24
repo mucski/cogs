@@ -108,6 +108,7 @@ class Mucski(commands.Cog):
         e = discord.Embed(description=f"Profile for {member.name}")
         e.set_thumbnail(url=member.avatar_url)
         e.add_field(name="Cookies owned", value=f"{cookie}")
+        e.set_image(url="")
         e.set_footer(text="More to come.")
         await ctx.send(embed=e)
         
