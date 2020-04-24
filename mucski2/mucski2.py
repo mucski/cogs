@@ -56,7 +56,7 @@ class Mucski2(commands.Cog):
     @commands.command()
     async def who(self, ctx, channel: discord.TextChannel, messageid: int):
         try:
-            msg = await channel.fetch_message(messageid)
+            msg = ctx.channel.fetch_message(messageid)
         except HTTPException:
             return await ctx.send("couldn't find that message")
         reaction = discord.utils.get(ctx.msg.reactions, emoji='❤️')
