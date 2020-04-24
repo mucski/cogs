@@ -61,11 +61,13 @@ class Mucski2(commands.Cog):
         
     @commands.command()
     async def loopnext(self, ctx):
-        await ctx.send(self.ugay.next_iteration())
+        next = self.ugay.next_iteration()
+        await ctx.send(next)
     
     @commands.command()
     async def loopcur(self, ctx):
-        await ctx.send(self.ugay.current_loop())
+        current = self.ugay.current_loop()
+        await ctx.send(current)
         
     @tasks.loop(seconds=340)
     async def ugay(self):
