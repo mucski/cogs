@@ -51,10 +51,10 @@ class Mucski2(commands.Cog):
         self.ugay.stop()
         await ctx.send("loop cancelled")
         
-    @tasks.loop(seconds=30)
+    @tasks.loop(seconds=300)
     async def ugay(self):
         channel = self.bot.get_channel(self.channel)
-        await channel.send("Say, I'm gay!")
+        await channel.send("Random event: Say, I'm gay!")
         def check(m):
             return m.content.lower() == "I'm gay!" or m.content.lower() == "No u" and m.channel == channel
         try:    
