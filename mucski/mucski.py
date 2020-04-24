@@ -98,13 +98,18 @@ class Mucski(commands.Cog):
         await ctx.send("Database cleared.")
     
     @_cookie.command()
-    async def balance(self, ctx, *, member: discord.Member=None):
+    async def profile(self, ctx, *, member: discord.Member=None):
         """ Checks your balance or some ones """
         if member is None:
             member = ctx.author
         cookie = await self.conf.user(member).cookies()
-        await ctx.send(f"{member.name} has {cookie} cookies.")
-    
+        #build embed
+        e = discord.Embed(description=f"Profile for {member.name}")
+        e.set_thumbnail(url=member.avatar_url)
+        e.add_field(name="Cookies owned", value=f"{cookie}")
+        e.set_footer(text="More to come.")
+        await ctx.send(embed=e)
+        
     @_cookie.command()
     async def gamble(self, ctx, amount):
         """ Gamble amount of cookies with a chance to win double """
