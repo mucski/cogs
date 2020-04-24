@@ -51,7 +51,7 @@ class Mucski2(commands.Cog):
         await self.ugay.cancel()
         await ctx.send("loop cancelled")
         
-    @tasks.loop(seconds=60)
+    @tasks.loop(seconds=30)
     async def ugay(self):
         channel = self.bot.get_channel(self.channel)
         await channel.send("Say, I'm gay!")
