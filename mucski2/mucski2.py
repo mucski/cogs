@@ -4,7 +4,8 @@ import datetime
 import itertools
 import math
 import random
-import time 
+import time
+from discord.ext import tasks, commands
 
 from redbot.core import bank, checks, commands, Config
 from redbot.core.utils.chat_formatting import bold, box, humanize_list, humanize_number, pagify
@@ -39,7 +40,7 @@ class Mucski2(commands.Cog):
         await msg.add_reaction('❤️')
         return
     
-    @commands.command()
+    @tasks.loop(seconds=30)
     async def ugay(self, ctx):
         await ctx.send("Say, I'm gay!")
         def check(m):
