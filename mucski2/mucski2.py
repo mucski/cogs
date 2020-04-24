@@ -56,12 +56,12 @@ class Mucski2(commands.Cog):
         channel = self.bot.get_channel(self.channel)
         await channel.send("Say, I'm gay!")
         def check(m):
-            return m.content == "I'm gay!" or m.content.lower() == "No u" and m.channel == channel
+            return m.content.lower() == "I'm gay!" or m.content.lower() == "No u" and m.channel == channel
         try:    
             msg = await self.bot.wait_for('message', timeout=10, check=check)
         except asyncio.TimeoutError:
             return await channel.send("You can't even do what I ask of you properly")
-        if msg.content == "I'm gay!":
+        if msg.content.lower() == "I'm gay!":
             await channel.send(f"Congrats {msg.author.mention} you're now gay. ")
         else:
             await channel.send("No, your mom!")
