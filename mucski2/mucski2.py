@@ -42,12 +42,12 @@ class Mucski2(commands.Cog):
         return
     
     @commands.command()
-    async def loopstart(self, ctx):
+    async def loopstart(self):
         await self.ugay.start()
         await ctx.send("loop started")
         
     @commands.command()
-    async def loopend(self, ctx):
+    async def loopend(self):
         await self.ugay.cancel()
         await ctx.send("loop cancelled")
         
