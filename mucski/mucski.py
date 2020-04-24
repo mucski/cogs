@@ -30,7 +30,7 @@ class Mucski(commands.Cog):
         self.work = {
             "hot dog":"You are working outside with a cart. Un scramble the following word ``dot goh``", 
             "cauterize": "You're a pro Paladins player. What do you buy first at match start? ", 
-            "covid19": "You can't work cause of Quarantine. Kill the virus ``c______``",
+            "covid19": "You can't work cause of Quarantine. Kill the virus ``c _ _ _ _ _ _``",
             "jack sparrow": "You're a famous Pirate. Who are you?"
         }
         defaults = {
@@ -247,7 +247,7 @@ class Mucski(commands.Cog):
         """ Search for cookies in random places """
         r = random.sample(list(self.loc.keys()), 3)
         await ctx.send("Chose a location to search from bellow")
-        await ctx.send(f"``{r[0]}`` , ``{r[1]}`` , ``{r[2]}``")
+        await ctx.send(f"``{r[0]}`` , ``{r[1]}``, ``{r[2]}``")
         def check(m):
             return m.content.lower() in r and m.channel == ctx.channel and m.author == ctx.author
         try:
