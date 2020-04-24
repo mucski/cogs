@@ -173,12 +173,12 @@ class Mucski(commands.Cog):
         try:
             await ctx.bot.wait_for('message', timeout=5, check=check)
         except asyncio.TimeoutError:
-            await ctx.send("Have to work harder than that ...")
+            return await ctx.send("Have to work harder than that ...")
         value = int(random.triangular(100,500))
         cookie = await self.conf.user(ctx.author).cookies()
         cookie += value
         await self.conf.user(ctx.author).cookies.set(cookie)
-        await ctx.send(f"Well done, you earned {value} cookies for todays work.")
+        return await ctx.send(f"Well done, you earned {value} cookies for todays work.")
     
     @_cookie.command()
     @commands.cooldown(rate=1, per=43200, type=commands.BucketType.user)
