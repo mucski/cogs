@@ -53,7 +53,7 @@ class Mucski2(commands.Cog):
             await ctx.send(f"Congrats {msg.author.mention} you're now gay. ")
         else:
             await ctx.send("No, your mom!")
-        await ugay.start()
+        ugay.start()
         
     @commands.command()
     async def who(self, ctx, channel: discord.TextChannel, messageid: int):
