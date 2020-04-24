@@ -25,8 +25,8 @@ class Mucski(commands.Cog):
             "box": "You rummaged through a box of forgotten items, found {} cookies. Lucky you. ", 
             "drawer": "After going through many panties, a dildo, and a hand gun, you found {} cookies wrapped in socks", 
             "story book": "You were looking for Little Red Riding Hood, instead you found {} cookies hidden in a tree bark. ", 
-            "set": "You are the next star for Ironing Man. While equipping his armor you found {} cookies in one of the hidden compartments. "
-            "hospital": "You searched the hospital and found {} cookies. Don't eat them though, may be infected with covid19."
+            "set": "You are the next star for Ironing Man. While equipping his armor you found {} cookies in one of the hidden compartments. ",
+            "hospital": "You searched the hospital and found {} cookies. Don't eat them though, may be infected with covid19.",
         }
         self.work = {
             "hot dog":"You are working outside with a cart. Un scramble the following word ``dot goh``", 
