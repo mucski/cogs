@@ -55,7 +55,7 @@ class Mucski2(commands.Cog):
         await ctx.send("loop stopped")
     
     @commands.command()
-    async def loopcancel(self, ctx, msg):
+    async def loopcancel(self, ctx, msg=None):
         self.ugay.cancel(msg)
         await ctx.send("loop cancelled")
         
