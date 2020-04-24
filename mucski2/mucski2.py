@@ -61,7 +61,7 @@ class Mucski2(commands.Cog):
             return await ctx.send("couldn't find that message")
         reaction = discord.utils.get(msg.reactions, emoji='❤️')
         if reaction is None:
-            return await channel.send("There were no reactions. ")
+            return await ctx.send("There were no reactions. ")
         for users in reaction.users():
             member = ctx.guild.get_member(user.id)
             if member:
