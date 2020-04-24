@@ -51,14 +51,14 @@ class Mucski2(commands.Cog):
         await self.ugay.cancel()
         await ctx.send("loop cancelled")
         
-    @tasks.loop(seconds=30)
+    @tasks.loop(seconds=60)
     async def ugay(self):
         channel = self.bot.get_channel(self.channel)
         await channel.send("Say, I'm gay!")
         def check(m):
             return m.content == "I'm gay!" or m.content == "No u" and m.channel == channel
         try:    
-            msg = await self.bot.wait_for('message', timeout=60, check=check)
+            msg = await self.bot.wait_for('message', timeout=7, check=check)
         except asyncio.TimeoutError:
             return await channel.send("You can't even do what I ask of you properly")
         if msg.content == "I'm gay!":
