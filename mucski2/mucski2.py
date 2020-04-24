@@ -44,19 +44,19 @@ class Mucski2(commands.Cog):
     @commands.command()
     async def loopstart(self, ctx):
         try:
-            async self.ugay.start()
+            self.ugay.start()
         except RuntimeError:
             return await ctx.send("Already running")
         await ctx.send("loop started")
         
     @commands.command()
     async def loopstop(self, ctx):
-        async self.ugay.stop()
+        async with self.ugay.stop()
         await ctx.send("loop stopped")
     
     @commands.command()
     async def loopcancel(self, ctx):
-        async self.ugay.cancel()
+        async with self.ugay.cancel()
         await ctx.send("loop cancelled")
         
     @commands.command()
