@@ -227,7 +227,7 @@ class Mucski(commands.Cog):
         if hiscookie < 10000:
             await ctx.send("He or she is too poor. Can't steal from peasants. (Need at least 10000 cookies)")
             return
-        value = round(random.triangular(5000,10000))
+        value = int(random.triangular(5000,10000))
         if random.random() < 0.6:
             hiscookie -= value
             yourcookie += value
