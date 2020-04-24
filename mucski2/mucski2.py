@@ -41,6 +41,16 @@ class Mucski2(commands.Cog):
         await msg.add_reaction('❤️')
         return
     
+    @commands.command()
+    async def loopstart(self, ctx):
+        await self.ugay.start()
+        await ctx.send("loop started")
+        
+    @commands.commabd()
+    async def loopend(self, ctx):
+        await self.ugay.cancel()
+        await ctx.send("loop cancelled")
+        
     @tasks.loop(seconds=30)
     async def ugay(self, ctx):
         channel = self.channel
