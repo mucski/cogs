@@ -40,7 +40,7 @@ class Mucski2(commands.Cog):
         await msg.add_reaction('❤️')
         return
     
-    @tasks.loop(seconds=30)
+    @commands.loop(seconds=30)
     async def ugay(self, ctx):
         await ctx.send("Say, I'm gay!")
         def check(m):
@@ -53,7 +53,6 @@ class Mucski2(commands.Cog):
             await ctx.send(f"Congrats {msg.author.mention} you're now gay. ")
         else:
             await ctx.send("No, your mom!")
-        ugay.start()
         
     @commands.command()
     async def who(self, ctx, channel: discord.TextChannel, messageid: int):
