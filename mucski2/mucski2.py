@@ -73,6 +73,20 @@ class Mucski2(commands.Cog):
         e.set_image(url=msg)
         await ctx.send(embed=e)
         
+    @commands.comand()
+    async def emtest(self, ctx):
+        e = discord.Embed("Profile for {} ".format(ctx.author.name))
+        e.thumbnail(url=ctx.author.avatar_url)
+        e.add_field(name="Cookies in your jar {cookies}")
+        e.add_field(name="Daily claimed: Yes")
+        e.add_field(name="Items owned: 0")
+        e.add_field(name="Daily cooldown: 0s")
+        e.add_field(name="Locks picked: 0")
+        e.add_field(name="Field ready to farm: No")
+        e.set_footer(text="Powered by your mom")
+        await ctx.send(embed=e)
+        
+
     @commands.command()
     async def poopoo(self, ctx):
         r = random.sample(list(self.loc.keys()), 3)
