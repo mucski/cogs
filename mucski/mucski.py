@@ -162,7 +162,7 @@ class Mucski(commands.Cog):
                     await ctx.send("Trick someone else!")
     
     @_cookie.command()
-    @commands.cooldown(rate=1, per=600, type=commands.BucketType.user)
+    @commands.cooldown(rate=1, per=300, type=commands.BucketType.user)
     async def work(self, ctx):
         """ Work to earn some cookies """
         r = random.choice(list(self.work.keys()))
