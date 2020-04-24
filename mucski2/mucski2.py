@@ -25,7 +25,7 @@ class Mucski2(commands.Cog):
             "forest": "You were looking for Little Red Riding Hood, instead you found {cookie} cookies hidden in a tree bark. ", 
             "set": "You are the next star for Ironing Man. While equipping his armor you found {cookie} cookies in one of the hidden compartments. "
         }
-        self.channel = "508738163787956229"
+        self.channel = 508738163787956229
         
     @commands.command()
     async def hello(self, ctx):
