@@ -26,7 +26,6 @@ class Mucski2(commands.Cog):
             "set": "You are the next star for Ironing Man. While equipping his armor you found {cookie} cookies in one of the hidden compartments. "
         }
         self.channel = "508738163787956229"
-        self.ugay.start()
         
     @commands.command()
     async def hello(self, ctx):
