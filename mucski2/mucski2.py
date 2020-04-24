@@ -77,13 +77,13 @@ class Mucski2(commands.Cog):
     async def emtest(self, ctx):
         e = discord.Embed(description="Profile ")
         e.set_thumbnail(url=ctx.author.avatar_url)
-        e.add_field(value="Cookies in your jar {cookies}")
-        e.add_field(value="Daily claimed: Yes")
-        e.add_field(value="Items owned: 0")
-        e.add_field(value="Daily cooldown: 0s")
-        e.add_field(value="Locks picked: 0")
-        e.add_field(value="Field ready to farm: No")
-        e.set_footer(text="Powered by your mom")
+        e.add_field(name="Cookies in your jar {cookies}", value="")
+        e.add_field(name="Daily claimed: Yes", value="")
+        e.add_field(name="Items owned: 0", value="")
+        e.add_field(name="Daily cooldown: 0s", value="")
+        e.add_field(name="Locks picked: 0", value="")
+        e.add_field(name="Field ready to farm: No", value="")
+        e.set_footer(text="Powered by your mom", value="")
         await ctx.send(embed=e)
         
 
