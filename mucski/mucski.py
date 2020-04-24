@@ -27,6 +27,11 @@ class Mucski(commands.Cog):
             "story-book": "You were looking for Little Red Riding Hood, instead you found {} cookies hidden in a tree bark. ", 
             "set": "You are the next star for Ironing Man. While equipping his armor you found {} cookies in one of the hidden compartments. "
         }
+        self.work = {
+            "hot dog":"You are working outside with a cart. Un scramble the following word ``dot goh``", 
+            "cauterize": "You're a pro Paladins player. What do you buy first at match start? ", 
+            "covid19": "You can't work cause of Quarantine. Kill the virus ``c______``"
+        }
         defaults = {
             "cookies": 0
         }
@@ -160,11 +165,19 @@ class Mucski(commands.Cog):
     @commands.cooldown(rate=1, per=600, type=commands.BucketType.user)
     async def work(self, ctx):
         """ Work to earn some cookies """
-        value = round(random.triangular(100,500))
+        r = random.choice(list(work.keys()))
+        await ctx.send(self.work[r])
+        def check(m):
+            return m.message in r and m.guild == ctx.guild and m.author == ctx.author
+        try:
+            await bot.wait_for('message', timeour=10, check=check)
+        except asyncio.TimeoutError:
+            await ctx.send("Timed out.")
+        value = int(random.triangular(100,500))
         cookie = await self.conf.user(ctx.author).cookies()
         cookie += value
         await self.conf.user(ctx.author).cookies.set(cookie)
-        await ctx.send(f"You went to work, after a long and sweaty day you earned {value} cookies. Phew, time to relax.")
+        await ctx.send(f"Well done, you earned {value} cookies for todays work.")
     
     @_cookie.command()
     @commands.cooldown(rate=1, per=43200, type=commands.BucketType.user)
