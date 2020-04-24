@@ -42,7 +42,7 @@ class Mucski2(commands.Cog):
         return
     
     @tasks.loop(seconds=30)
-    async def ugay(self, ctx)
+    async def ugay(self, ctx):
         await ctx.send("Say, I'm gay!")
         def check(m):
             return m.content == "I'm gay!" or m.content == "No u" and m.channel == ctx.channel
