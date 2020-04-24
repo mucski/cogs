@@ -171,7 +171,7 @@ class Mucski(commands.Cog):
         def check(m):
             return m.content.lower() in r and m.guild == ctx.guild and m.author == ctx.author
         try:
-            await ctx.bot.wait_for('message', timeout=5, check=check)
+            await ctx.bot.wait_for('message', timeout=7, check=check)
         except asyncio.TimeoutError:
             return await ctx.send("Have to work harder than that ...")
         value = int(random.triangular(100,500))
@@ -247,11 +247,11 @@ class Mucski(commands.Cog):
         """ Search for cookies in random places """
         r = random.sample(list(self.loc.keys()), 3)
         await ctx.send("Chose a location to search from bellow")
-        await ctx.send(f"``{r[0]}``, ``{r[1]}``, ``{r[2]}``")
+        await ctx.send(f"``{r[0]}`` , ``{r[1]}`` , ``{r[2]}``")
         def check(m):
             return m.content.lower() in r and m.channel == ctx.channel and m.author == ctx.author
         try:
-            msg = await ctx.bot.wait_for('message', timeout=5, check=check)
+            msg = await ctx.bot.wait_for('message', timeout=7, check=check)
         except asyncio.TimeoutError:
             return await ctx.send("Can't search if I don't know where.")
         cookie = await self.conf.user(ctx.author).cookies()
