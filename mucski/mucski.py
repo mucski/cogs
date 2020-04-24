@@ -250,7 +250,7 @@ class Mucski(commands.Cog):
         def check(m):
             return m.content.lower() in r and m.channel == ctx.channel and m.author == ctx.author
         try:
-            msg = await ctx.bot.wait_for('message', timeout=10, check=check)
+            msg = await ctx.bot.wait_for('message', timeout=5, check=check)
         except asyncio.TimeoutError:
             return await ctx.send("Can't search if I don't know where.")
         cookie = await self.conf.user(ctx.author).cookies()
