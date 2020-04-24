@@ -170,7 +170,7 @@ class Mucski(commands.Cog):
         def check(m):
             return m.message in r and m.guild == ctx.guild and m.author == ctx.author
         try:
-            await ctx.bot.wait_for('message', timeour=10, check=check)
+            await ctx.bot.wait_for('message', timeout=10, check=check)
         except asyncio.TimeoutError:
             await ctx.send("Timed out.")
         value = int(random.triangular(100,500))
