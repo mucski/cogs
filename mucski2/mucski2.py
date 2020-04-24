@@ -83,7 +83,7 @@ class Mucski2(commands.Cog):
         e.add_field(name="Daily cooldown: 0s", value="")
         e.add_field(name="Locks picked: 0", value="")
         e.add_field(name="Field ready to farm: No", value="")
-        e.set_footer(text="Powered by your mom", value="")
+        e.set_footer(text="Powered by your mom")
         await ctx.send(embed=e)
         
 
