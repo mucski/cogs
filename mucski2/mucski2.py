@@ -25,6 +25,7 @@ class Mucski2(commands.Cog):
             "forest": "You were looking for Little Red Riding Hood, instead you found {cookie} cookies hidden in a tree bark. ", 
             "set": "You are the next star for Ironing Man. While equipping his armor you found {cookie} cookies in one of the hidden compartments. "
         }
+        self.channel = "508738163787956229"
         self.ugay.start()
         
     @commands.command()
@@ -43,17 +44,18 @@ class Mucski2(commands.Cog):
     
     @tasks.loop(seconds=30)
     async def ugay(self, ctx):
-        await ctx.send("Say, I'm gay!")
+        channel = self.channel
+        await channel.send("Say, I'm gay!")
         def check(m):
             return m.content == "I'm gay!" or m.content == "No u" and m.channel == ctx.channel
         try:    
             msg = await ctx.bot.wait_for('message', timeout=60, check=check)
         except asyncio.TimeoutError:
-            return await ctx.send("You can't even do what I ask of you properly")
+            return await channel.send("You can't even do what I ask of you properly")
         if msg.content == "I'm gay!":
-            await ctx.send(f"Congrats {msg.author.mention} you're now gay. ")
+            await channel.send(f"Congrats {msg.author.mention} you're now gay. ")
         else:
-            await ctx.send("No, your mom!")
+            await channel.send("No, your mom!")
         
     @commands.command()
     async def who(self, ctx, channel: discord.TextChannel, messageid: int):
