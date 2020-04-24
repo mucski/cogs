@@ -24,7 +24,7 @@ class Mucski(commands.Cog):
             "toilet": "As disgusting as it sounds, you found {} cookies in the toilet bowl. Lucky no one used the toilet before you. ", 
             "box": "You rummaged through a box of forgotten items, found {} cookies. Lucky you. ", 
             "drawer": "After going through many panties, a dildo, and a hand gun, you found {} cookies wrapped in socks", 
-            "story-book": "You were looking for Little Red Riding Hood, instead you found {} cookies hidden in a tree bark. ", 
+            "story book": "You were looking for Little Red Riding Hood, instead you found {} cookies hidden in a tree bark. ", 
             "set": "You are the next star for Ironing Man. While equipping his armor you found {} cookies in one of the hidden compartments. "
         }
         self.work = {
