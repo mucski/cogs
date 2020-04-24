@@ -61,8 +61,10 @@ class Mucski2(commands.Cog):
         
     @commands.command()
     async def loopnext(self, ctx):
-        next = self.ugay.next_iteration
-        await ctx.send(next)
+        try:
+            await ctx.send(self.ugay.next_iteration)
+        except HTTPException:
+            await ctx.send("None running atm")
     
     @commands.command()
     async def loopcur(self, ctx):
