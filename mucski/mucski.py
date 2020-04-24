@@ -168,7 +168,7 @@ class Mucski(commands.Cog):
         r = random.choice(list(self.work.keys()))
         await ctx.send(self.work[r])
         def check(m):
-            return m.message in r and m.guild == ctx.guild and m.author == ctx.author
+            return m.content in r and m.guild == ctx.guild and m.author == ctx.author
         try:
             await ctx.bot.wait_for('message', timeout=10, check=check)
         except asyncio.TimeoutError:
