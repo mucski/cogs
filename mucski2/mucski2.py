@@ -73,7 +73,7 @@ class Mucski2(commands.Cog):
         e.set_image(url=msg)
         await ctx.send(embed=e)
         
-    @commands.comand()
+    @commands.command()
     async def emtest(self, ctx):
         e = discord.Embed("Profile for {} ".format(ctx.author.name))
         e.thumbnail(url=ctx.author.avatar_url)
