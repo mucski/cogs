@@ -75,7 +75,7 @@ class Mucski2(commands.Cog):
         
     @commands.command()
     async def emtest(self, ctx):
-        e = discord.Embed("Profile for {} ".format(ctx.author.name))
+        e = discord.Embed("Profile ")
         e.thumbnail(url=ctx.author.avatar_url)
         e.add_field(name="Cookies in your jar {cookies}")
         e.add_field(name="Daily claimed: Yes")
