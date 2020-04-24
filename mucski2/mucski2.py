@@ -83,6 +83,7 @@ class Mucski2(commands.Cog):
         e.add_field(name="Daily cooldown: 0s", value="dddfh")
         e.add_field(name="Locks picked: 0", value="fdssh")
         e.add_field(name="Field ready to farm: No", value="sssfhh")
+        e.set_image(url="https://comicvine1.cbsistatic.com/uploads/scale_medium/11125/111253436/6733777-4.jpg")
         e.set_footer(text="Powered by your mom")
         await ctx.send(embed=e)
         
