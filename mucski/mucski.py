@@ -18,7 +18,7 @@ class Mucski(commands.Cog):
             "cellar": "You went into the cellar looking for a fine wine, got scared by a rat and found {} cookies instead.",
             "moon": "A giant leap to man kind, Armstrong left some {} cookies here though.",
             "forest": "You went trekking into the forest, found {} cookies laying around in an abandoned camp.",
-            "fridge": "Nothing beats frozen cookies, Right? Wrong. ",
+            "fridge": "Nothing beats frozen cookies, Right? Wrong. Found {} cookies behind some meat loaf leftowers though.",
             "sewer": "You descended into the sewers hoping to find a dancing clown, found {} cookies instead. ",
             "dog": "Found {} cookies in dog.... Shit. Why would you do that.. ",
             "toilet": "As disgusting as it sounds, you found {} cookies in the toilet bowl. Lucky no one used the toilet before you. ", 
@@ -30,7 +30,8 @@ class Mucski(commands.Cog):
         self.work = {
             "hot dog":"You are working outside with a cart. Un scramble the following word ``dot goh``", 
             "cauterize": "You're a pro Paladins player. What do you buy first at match start? ", 
-            "covid19": "You can't work cause of Quarantine. Kill the virus ``c______``"
+            "covid19": "You can't work cause of Quarantine. Kill the virus ``c______``",
+            "jack sparrow": "You're a famous Pirate. Who are you?"
         }
         defaults = {
             "cookies": 0
