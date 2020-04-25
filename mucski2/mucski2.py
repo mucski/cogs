@@ -12,6 +12,7 @@ from redbot.core.utils.chat_formatting import bold, box, humanize_list, humanize
 from redbot.core.utils.menus import menu, DEFAULT_CONTROLS
 from redbot.core.utils.predicates import MessagePredicate
 from redbot.core.utils.predicates import ReactionPredicate
+from redbot.core.utils.menus import start_adding_reactions
 
 class Mucski2(commands.Cog):
     def __init__(self, bot):
@@ -29,64 +30,16 @@ class Mucski2(commands.Cog):
         self.channel = 626835540628602880
         
     @commands.command()
-    async def hello(self, ctx):
-        msg = await ctx.send("Hi, Say puspus")
-        predicate = MessagePredicate.equal_to("puspus", ctx)
-        try:        
-            m = await ctx.bot.wait_for('message', timeout=60, check=predicate)
-        except asyncio.TimeoutError:
-            return
-        poop = f"you said {m.content}"
-        await msg.edit(content=poop)
-        await msg.add_reaction('\U0001F39F')
-        await msg.add_reaction('❤️')
-        return
-    
-    @commands.command()
-    async def loopstart(self, ctx):
+    async def hello(self, ctx, channel: discord.TextChannel=None):
+        msg = await ctx.send("Input bellow what you want to say in another channel")
+        pred = MessagePredicate.same_context(ctx)
         try:
-            self.ugay.start()
-        except RuntimeError:
-            return await ctx.send("Already running")
-        await ctx.send("loop started")
-        
-    @commands.command()
-    async def loopstop(self, ctx):
-        self.bot.loop.stop(ugay)
-        await ctx.send("loop stopped")
-    
-    @commands.command()
-    async def loopcancel(self, ctx):
-        self.ugay.loop.cancel()
-        await ctx.send("loop cancelled")
-        
-    @commands.command()
-    async def loopnext(self, ctx):
-        try:
-            await ctx.send(self.ugay.next_iteration)
-        except HTTPException:
-            await ctx.send("None running atm")
-    
-    @commands.command()
-    async def loopcur(self, ctx):
-        current = self.ugay.current_loop
-        await ctx.send(current)
-        
-    @tasks.loop(seconds=5)
-    async def ugay(self):
-        channel = self.bot.get_channel(self.channel)
-        await channel.send("Random event: Say, I'm gay!")
-        def check(m):
-            return m.content.lower() == "I'm gay!" or m.content.lower() == "No u" and m.channel == channel
-        try:    
-            msg = await self.bot.wait_for('message', timeout=1, check=check)
+            msg = await self.bot.wait_for('message', timeout=30, check=pred)
         except asyncio.TimeoutError:
-            return await channel.send("You can't even do what I ask of you properly")
-        if msg.content.lower() == "I'm gay!":
-            await channel.send(f"Congrats {msg.author.mention} you're now gay. ")
-        else:
-            await channel.send("No, your mom!")
-        
+            return await ctx.send("Timedout")
+        await channel.send(msg.content)
+        await ctx.send("Successfully sent yiur messave")
+    
     @commands.command()
     async def who(self, ctx, channel: discord.TextChannel, messageid: int):
         try:
@@ -122,18 +75,3 @@ class Mucski2(commands.Cog):
         e.set_image(url="https://comicvine1.cbsistatic.com/uploads/scale_medium/11125/111253436/6733777-4.jpg")
         e.set_footer(text="Powered by your mom")
         await ctx.send(embed=e)
-        
-
-    @commands.command()
-    async def poopoo(self, ctx):
-        r = random.sample(list(self.loc.keys()), 3)
-        await ctx.send("Chose a location to search from bellow")
-        await ctx.send(f"``{r[0]}``, ``{r[1]}``, ``{r[2]}``")
-        def check(m):
-            return m.content in r and m.channel == ctx.channel and m.author == ctx.author
-        try:
-            msg = await ctx.bot.wait_for('message', timeout=10, check=check)
-        except asyncio.TimeoutError:
-            return await ctx.send("Timed out.")
-        return await ctx.send(f"{self.loc[msg.content]}")
-    
