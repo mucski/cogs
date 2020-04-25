@@ -39,7 +39,7 @@ class Mucski2(commands.Cog):
         except asyncio.TimeoutError:
             return await ctx.send("Timedout")
         await channel.send(msg.content)
-        start_adding_reactions(self.emoji, msg)
+        start_adding_reactions(msg, self.emoji)
         await ctx.send("Successfully sent your message")
     
     @commands.command()
