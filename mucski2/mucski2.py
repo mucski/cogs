@@ -28,6 +28,7 @@ class Mucski2(commands.Cog):
             "set": "You are the next star for Ironing Man. While equipping his armor you found {cookie} cookies in one of the hidden compartments. "
         }
         self.channel = 626835540628602880
+        self.emoji = ☢️
         
     @commands.command()
     async def hello(self, ctx, channel: discord.TextChannel=None):
@@ -38,6 +39,7 @@ class Mucski2(commands.Cog):
         except asyncio.TimeoutError:
             return await ctx.send("Timedout")
         await channel.send(msg.content)
+        start_adding_reactions(self.emoji, msg)
         await ctx.send("Successfully sent yiur messave")
     
     @commands.command()
