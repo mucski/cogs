@@ -40,7 +40,7 @@ class Mucski2(commands.Cog):
             return await ctx.send("Timedout")
         await channel.send(msg.content)
         start_adding_reactions(self.emoji, msg)
-        await ctx.send("Successfully sent yiur messave")
+        await ctx.send("Successfully sent your message")
     
     @commands.command()
     async def who(self, ctx, channel: discord.TextChannel, messageid: int):
