@@ -69,7 +69,7 @@ class Mucski2(commands.Cog):
         if member is None:
             member = ctx.author
         e = discord.Embed()
-        e.set_image(url=member.get_avatar)
+        e.set_image(url=member.avatar_url)
         await ctx.send(embed=e)
     
         
