@@ -31,7 +31,7 @@ class Mucski2(commands.Cog):
     @commands.command()
     async def hello(self, ctx):
         msg = await ctx.send("Hi, Say puspus")
-        predicate = MessagePredicate.equal_to(ctx, "puspus")
+        predicate = MessagePredicate.equal_to("puspus", ctx)
         try:        
             m = await ctx.bot.wait_for('message', timeout=60, check=predicate)
         except asyncio.TimeoutError:
