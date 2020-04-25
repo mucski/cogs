@@ -250,7 +250,7 @@ class Mucski(commands.Cog):
                 return await ctx.send("You dont have enough cookies.")
             await self.conf.user(member).cookies.set(hiscookie)
             await self.conf.user(ctx.author).cookies.set(yourcookie)
-            await ctx.send(f"You got caught! You paid {percent:.0%} cookies for apologies to {member.name}")
+            await ctx.send(f"You got caught! You paid {percent:.0%} of your cookies for apologies to {member.name}")
             
     @_cookie.command()
     async def search(self, ctx):
