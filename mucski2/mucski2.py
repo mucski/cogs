@@ -44,8 +44,10 @@ class Mucski2(commands.Cog):
         
     @commands.command()
     async def game(self, ctx):
-        emoji = ['\U25C0','\U25B6']
+        emojis = ['\U25C0','\U25B6']
         msg = await ctx.send("Kill me")
+        for emoji in emojis:
+            msg add_reaction(emoji)
         pred = ReactionPredicate.with_emojis(emoji, message=msg, ctx.author)
         try:
             msg = await self.bot.wait_for('message', timeout=300, check=pred)
