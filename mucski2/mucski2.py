@@ -51,7 +51,7 @@ class Mucski2(commands.Cog):
         
     @commands.command()
     async def loopstop(self, ctx):
-        ugay.stop()
+        self.bot.loop.stop(ugay)
         await ctx.send("loop stopped")
     
     @commands.command()
