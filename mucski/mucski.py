@@ -229,25 +229,25 @@ class Mucski(commands.Cog):
             return
         yourcookie = await self.conf.user(ctx.author).cookies()
         hiscookie = await self.conf.user(member).cookies()
-        if yourcookie < 10000:
+        if yourcookie < 0:
             await ctx.send("You're too poor to steal from others. Try again when you have at least 10000 cookies")
             return
-        if hiscookie < 10000:
+        if hiscookie < 0:
             await ctx.send("He or she is too poor. Can't steal from peasants. (Need at least 10000 cookies)")
             return
-        value = int(random.triangular(5000,10000))
+        percent = random.uniform(0.05,0.3)
         if random.random() < 0.6:
-            hiscookie -= value
-            yourcookie += value
+            hiscookie -= round(percent * yourcookie)
+            yourcookie += round(percent * hiscookie)
             await self.conf.user(member).cookies.set(hiscookie)
             await self.conf.user(ctx.author).cookies.set(yourcookie)
-            await ctx.send(f"You've succesfully stolen {value} cookies from {member.name}.")
+            await ctx.send(f"You've succesfully stolen {percent:.0%} cookies from {member.name}.")
         else:
-            hiscookie += value
-            yourcookie -= value
+            hiscookie += round(percent * yourcookie)
+            yourcookie -= round(percrnt * hiscookie)
             await self.conf.user(member).cookies.set(hiscookie)
             await self.conf.user(ctx.author).cookies.set(yourcookie)
-            await ctx.send(f"You got caught! You paid {value} for apologies to {member.name}")
+            await ctx.send(f"You got caught! You paid {percent:.0%} for apologies to {member.name}")
             
     @_cookie.command()
     async def search(self, ctx):
