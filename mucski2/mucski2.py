@@ -11,7 +11,7 @@ from redbot.core import bank, checks, commands, Config
 from redbot.core.utils.chat_formatting import bold, box, humanize_list, humanize_number, pagify
 from redbot.core.utils.menus import menu, DEFAULT_CONTROLS
 from redbot.core.utils.predicates import MessagePredicate
-from redbor.core.utils.predicates import ReactionPredicate
+from redbot.core.utils.predicates import ReactionPredicate
 
 class Mucski2(commands.Cog):
     def __init__(self, bot):
