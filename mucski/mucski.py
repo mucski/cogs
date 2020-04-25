@@ -221,7 +221,6 @@ class Mucski(commands.Cog):
         return await menu(ctx, page_list, DEFAULT_CONTROLS)
 
     @_cookie.command()
-    @commands.cooldown(rate=1, per=43200, type=commands.BucketType.user)
     async def steal(self, ctx, *, member: discord.Member=None):
         """Steal others cookies"""
         if member is None or member == ctx.author:
