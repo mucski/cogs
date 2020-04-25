@@ -28,7 +28,7 @@ class Mucski2(commands.Cog):
             "set": "You are the next star for Ironing Man. While equipping his armor you found {cookie} cookies in one of the hidden compartments. "
         }
         self.channel = 626835540628602880
-        self.emoji = ☢️
+        self.emoji = '☢️'
         
     @commands.command()
     async def hello(self, ctx, channel: discord.TextChannel=None):
