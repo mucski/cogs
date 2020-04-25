@@ -41,6 +41,17 @@ class Mucski2(commands.Cog):
         await channel.send(msg.content)
         start_adding_reactions(msg.content, ReactionPredicate.self.emoji)
         await ctx.send("Successfully sent your message")
+        
+    @commands.command()
+    async def game(self, ctx):
+        emoji = ['\U25C0','\U25B6']
+        msg = await ctx.send("Kill me")
+        pred = ReactionPredicate.with_emojis(emoji, message=msg, ctx.author)
+        try:
+            msg = await self.bot.wait_for('message', timeout=300, check=pred)
+        except asyncio.TimeoutError:
+            return
+        
     
     @commands.command()
     async def who(self, ctx, channel: discord.TextChannel, messageid: int):
