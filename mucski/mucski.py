@@ -236,10 +236,10 @@ class Mucski(commands.Cog):
             return
         percent = random.uniform(0.05,0.3)
         if random.random() < 0.6:
-            hiscookie -= round(percent * yourcookie)
+            hiscookie -= round(percent * hiscookie)
             if hiscookie <= 0:
                 return await ctx.send("User doesn't have enough cookies.")
-            yourcookie += round(percent * hiscookie)
+            yourcookie += round(percent * yourcookie)
             await self.conf.user(member).cookies.set(hiscookie)
             await self.conf.user(ctx.author).cookies.set(yourcookie)
             await ctx.send(f"You've succesfully stolen {percent:.0%} cookies from {member.name}.")
