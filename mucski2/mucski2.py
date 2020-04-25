@@ -66,7 +66,7 @@ class Mucski2(commands.Cog):
         
     @commands.command()
     async def avatar(self, ctx, member: discord.Member=None):
-        if member = None:
+        if member is None:
             member = ctx.author
         e = discord.Embed()
         e.set_image(url=member.get_avatar)
