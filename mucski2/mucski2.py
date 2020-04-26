@@ -64,10 +64,10 @@ class Mucski2(commands.Cog):
             if y[i] == rand_x[i]:
                 await msg.edit(c.append(rand_x[i]))
             else:
-                await msg.esit(c.append(x))
+                await msg.edit(c.append(x))
         if emoji == '❌':
             await msg.clear_reactions()
-            await ctx.edit("Finished")
+            await msg.edit("Finished")
             return
         elif emoji == '◀️':
             await msg.edit(y.append('<'))
