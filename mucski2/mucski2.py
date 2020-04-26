@@ -44,7 +44,7 @@ class Mucski2(commands.Cog):
         
     @commands.command()
     async def game(self, ctx):
-        emojis = ['▶','◀','❌'']
+        emoji = ['◀️','▶️','❌']
         msg = await ctx.send("Use the controls bellow to pick the lock. ")
         for emoji in emojis:
             msg.add_reaction(emoji)
