@@ -212,7 +212,7 @@ class Mucski(commands.Cog):
             if len(user_obj.display_name) < 13:
                 li.append(f"#{i:2}. {user_obj.display_name:<13} {account['cookies']:>15} 🍪")
             else:
-                li.append(f"#{i:2}. {user_obj.display_name[:13]:<13}... {account['cookies']:>15} 🍪")
+                li.append(f"#{i:2}. {user_obj.display_name[:10]:<13}... {account['cookies']:>15} 🍪")
         text = "\n".join(li)
         page_list=[]
         for page_num, page in enumerate(pagify(text, delims=['\n'], page_length=1000), start=1):
