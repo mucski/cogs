@@ -44,16 +44,28 @@ class Mucski2(commands.Cog):
         
     @commands.command()
     async def game(self, ctx):
-        emojis = ['\U25C0','\U25B6']
-        msg = await ctx.send("Kill me")
+        emojis = ['\U274C','\U25C0','\U25B6']
+        msg = await ctx.send("Use the controls bellow to pick the lock. ")
         for emoji in emojis:
             msg add_reaction(emoji)
         pred = ReactionPredicate.with_emojis(emoji, message=msg, ctx.author)
         try:
-            msg = await self.bot.wait_for('message', timeout=300, check=pred)
+            msg = await self.bot.wait_for('reaction_add', timeout=300, check=pred)
         except asyncio.TimeoutError:
+            return await ctx.send("Timed out. ")
+            msg.clear_reactions()
             return
-        
+        if emoji == '\U274C':
+            msg.clear_reactions()
+            await ctx.send("Finished")
+            return
+        if emoji == '\U25C0':
+            #stuff
+            pass
+        if emoji == '\U25B6':
+            #more stuff
+            pass
+        await msg.remove_reactions(emoji, ctx.author)
     
     @commands.command()
     async def who(self, ctx, channel: discord.TextChannel, messageid: int):
