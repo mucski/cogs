@@ -55,14 +55,14 @@ class Mucski2(commands.Cog):
             return await ctx.send("Timed out. ")
             msg.clear_reactions()
             return
-        if emoji == '\U274C':
+        if emoji == '\000U274C':
             msg.clear_reactions()
             await ctx.send("Finished")
             return
-        if emoji == '\U25C0':
+        if emoji == '\000U25C0':
             #stuff
             pass
-        if emoji == '\U25B6':
+        if emoji == '\000U25B6':
             #more stuff
             pass
         await msg.remove_reactions(emoji, ctx.author)
