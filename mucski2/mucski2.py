@@ -68,7 +68,7 @@ class Mucski2(commands.Cog):
             if emoji == '❌':
                 await msg.clear_reactions()
                 await msg.edit(content="Finished")
-            return
+                return
             elif emoji == '◀️':
                 await msg.edit(content=y.append('<'))
             elif emoji == '▶️':
