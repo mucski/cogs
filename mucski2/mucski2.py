@@ -48,7 +48,7 @@ class Mucski2(commands.Cog):
         msg = await ctx.send("Use the controls bellow to pick the lock. ")
         for emoji in emojis:
             msg.add_reaction(emoji)
-        pred = ReactionPredicate.with_emojis(emoji, message=msg, ctx.author)
+        pred = ReactionPredicate.with_emojis(emoji, message=msg, user=ctx.author)
         try:
             msg = await self.bot.wait_for('reaction_add', timeout=300, check=pred)
         except asyncio.TimeoutError:
