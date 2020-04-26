@@ -62,7 +62,7 @@ class Mucski2(commands.Cog):
         rand_x = random.choices(x,k=4)
         for i in range(4):
             if y[i] == rand_x[i]:
-                c.append(rand_x[i])
+                await msg.edit(c.append(rand_x[i]))
             else:
                 await msg.esit(c.append(x))
         if emoji == '❌':
