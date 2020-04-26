@@ -44,7 +44,7 @@ class Mucski2(commands.Cog):
         
     @commands.command()
     async def game(self, ctx):
-        emojis = ['\000U274C','\000U25C0','\000U25B6']
+        emojis = ['\U000274C','\U00025C0','\U00025B6']
         msg = await ctx.send("Use the controls bellow to pick the lock. ")
         for emoji in emojis:
             msg.add_reaction(emoji)
@@ -55,14 +55,14 @@ class Mucski2(commands.Cog):
             return await ctx.send("Timed out. ")
             msg.clear_reactions()
             return
-        if emoji == '\000U274C':
+        if emoji == '\U000274C':
             msg.clear_reactions()
             await ctx.send("Finished")
             return
-        if emoji == '\000U25C0':
+        if emoji == '\U00025C0':
             #stuff
             pass
-        if emoji == '\000U25B6':
+        if emoji == '\U00025B6':
             #more stuff
             pass
         await msg.remove_reactions(emoji, ctx.author)
