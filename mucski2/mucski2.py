@@ -55,7 +55,6 @@ class Mucski2(commands.Cog):
         except asyncio.TimeoutError:
             return await ctx.send("Timed out. ")
             return msg.clear_reactions()
-        await msg.edit(content="Start reacting bitch")
         emoji = emojis[pred.result]
         if emoji == '❌': 
             await msg.clear_reactions()
