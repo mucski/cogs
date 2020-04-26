@@ -51,7 +51,7 @@ class Mucski2(commands.Cog):
             await msg.add_reaction(emoji)
         pred = ReactionPredicate.with_emojis(emoji, message=msg, user=ctx.author)
         try:
-            m = await self.bot.wait_for('reaction_add', timeout=60, check=pred)
+            msg = await self.bot.wait_for('reaction_add', timeout=60, check=pred)
         except asyncio.TimeoutError:
             return await ctx.send("Timed out. ")
             return msg.clear_reactions()
