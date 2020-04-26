@@ -61,9 +61,10 @@ class Mucski2(commands.Cog):
             return await msg.edit(content="okay shutting down")
         elif emoji == '◀️':
             await msg.edit(content=f"you reacted with <")
+            await msg.remove_reaction(emoji, ctx.author)
         elif emoji == '▶️':
             await msg.edit(content=f"you reacted with >")
-        await msg.remove_reaction(emoji, ctx.author)
+            await msg.remove_reaction(emoji, ctx.author)
     
     @commands.command()
     async def who(self, ctx, channel: discord.TextChannel, messageid: int):
