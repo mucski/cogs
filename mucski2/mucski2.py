@@ -14,7 +14,7 @@ from redbot.core.utils.predicates import MessagePredicate
 from redbot.core.utils.predicates import ReactionPredicate
 from redbot.core.utils.menus import start_adding_reactions
 
-emojis = ['\U00025B6','\U00025C0','\U000274C']
+emojis = ['\\U00025B6','\\U00025C0','\\U000274C']
 
 class Mucski2(commands.Cog):
     def __init__(self, bot):
