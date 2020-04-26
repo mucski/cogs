@@ -14,7 +14,7 @@ from redbot.core.utils.predicates import MessagePredicate
 from redbot.core.utils.predicates import ReactionPredicate
 from redbot.core.utils.menus import start_adding_reactions
 
-emojis = ['◀️','▶️','❌']
+emojis = ('◀️','▶️','❌')
 
 class Mucski2(commands.Cog):
     def __init__(self, bot):
