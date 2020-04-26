@@ -14,6 +14,7 @@ from redbot.core.utils.predicates import MessagePredicate
 from redbot.core.utils.predicates import ReactionPredicate
 from redbot.core.utils.menus import start_adding_reactions
 
+emojis = ['◀️','▶️','❌']
 class Mucski2(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
@@ -44,7 +45,6 @@ class Mucski2(commands.Cog):
         
     @commands.command()
     async def game(self, ctx):
-        emojis = ['◀️','▶️','❌']
         msg = await ctx.send("Use the controls bellow to pick the lock. ")
         for emoji in emojis:
             msg.add_reaction(emoji)
