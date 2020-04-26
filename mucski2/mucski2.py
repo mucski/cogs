@@ -62,18 +62,18 @@ class Mucski2(commands.Cog):
         rand_x = random.choices(x,k=4)
         for i in range(4):
             if y[i] == rand_x[i]:
-                await msg.edit(c.append(rand_x[i]))
+                await msg.edit(content=c.append(rand_x[i]))
             else:
-                await msg.edit(c.append(x))
+                await msg.edit(content=c.append(x))
         if emoji == '❌':
             await msg.clear_reactions()
-            await msg.edit("Finished")
+            await msg.edit(content="Finished")
             return
         elif emoji == '◀️':
-            await msg.edit(y.append('<'))
+            await msg.edit(content=y.append('<'))
         elif emoji == '▶️':
-            await msg.edit(y.append('>'))
-        await msg.remove_reactions(emoji, ctx.author)
+            await msg.edit(content=y.append('>'))
+        await msg.remove_reaction(emoji, ctx.author)
     
     @commands.command()
     async def who(self, ctx, channel: discord.TextChannel, messageid: int):
