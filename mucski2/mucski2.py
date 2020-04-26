@@ -44,13 +44,13 @@ class Mucski2(commands.Cog):
         
     @commands.command()
     async def game(self, ctx):
-        emojis = ['\U0000274C','\U000025C0','\U000025B6']
+        emojis = ['x','<','>']
         msg = await ctx.send("Use the controls bellow to pick the lock. ")
         for emoji in emojis:
             msg.add_reaction(emoji)
         pred = ReactionPredicate.with_emojis(emoji, message=msg, user=ctx.author)
         try:
-            msg = await self.bot.wait_for('reaction_add', timeout=300, check=pred)
+            m = await self.bot.wait_for('reaction_add', timeout=60, check=pred)
         except asyncio.TimeoutError:
             return await ctx.send("Timed out. ")
             msg.clear_reactions()
