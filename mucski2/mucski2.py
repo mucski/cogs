@@ -62,7 +62,7 @@ class Mucski2(commands.Cog):
         for i in range(4):
             if y[i] == rand_x[i]:
                 c.append(rand_x[i])
-            else l:
+            else:
                 c.append(x)
         if emoji == '❌':
             msg.clear_reactions()
