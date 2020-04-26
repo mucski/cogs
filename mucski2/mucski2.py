@@ -54,25 +54,14 @@ class Mucski2(commands.Cog):
             m = await self.bot.wait_for('reaction_add', timeout=60, check=pred)
         except asyncio.TimeoutError:
             return await ctx.send("Timed out. ")
-            msg.clear_reactions()
-            return
-        x = ['<','>']
-        y = []
-        c = []
-        rand_x = random.choices(x,k=4)
-        for i in range(4):
-            if y[i] == rand_x[i]:
-                await msg.edit(content=c.append(rand_x[i]))
-            else:
-                await msg.edit(content=c.append(x))
-            if emoji == '❌':
-                await msg.clear_reactions()
-                await msg.edit(content="Finished")
-                return
-            elif emoji == '◀️':
-                await msg.edit(content=y.append('<'))
-            elif emoji == '▶️':
-                await msg.edit(content=y.append('>'))
+            return msg.clear_reactions()
+        await msg.edit(content="Start reacting bitch")
+        if emoji == '❌': 
+            return await msg.edit(content="okay shutting down")
+        elif emoj == '◀️':
+            await msg.edit(content=f"you reacted with {m.reaction}")
+        elif emoji == '▶️':
+            await msg.edit(content=f"you reacted with {m.reaction}")
         await msg.remove_reaction(emoji, ctx.author)
     
     @commands.command()
