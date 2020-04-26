@@ -68,10 +68,10 @@ class Mucski2(commands.Cog):
             msg.clear_reactions()
             await ctx.edit("Finished")
             return
-        elif emoji == '\U000025C0':
+        elif emoji == '️:'
             msg.edit(y.append('<'))
             msg.edit(c)
-        elif emoji == '\U000025B6':
+        elif emoji == '▶':
             msg.edit(y.append('>'))
             msg.edit(c)
         await msg.remove_reactions(emoji, ctx.author)
