@@ -209,7 +209,10 @@ class Mucski(commands.Cog):
         li = []
         for i, (user_id, account) in enumerate(sorted_acc, start=1):
             user_obj = ctx.guild.get_member(user_id)
-            li.append(f"{i:2}. {user_obj.display_name:<15} {account['cookies']:>15} 🍪")
+            if len(user_obj.display_name) < 13:
+                li.append(f"#{i:2}. {user_obj.display_name:<15} {account['cookies']:>15} 🍪")
+            else:
+                li.append(f"#{i:2}. {user_obj.display_name[:13]:<15}... {account['cookies']:>15} 🍪")
         text = "\n".join(li)
         page_list=[]
         for page_num, page in enumerate(pagify(text, delims=['\n'], page_length=1000), start=1):
