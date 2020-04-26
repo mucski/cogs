@@ -14,7 +14,8 @@ from redbot.core.utils.predicates import MessagePredicate
 from redbot.core.utils.predicates import ReactionPredicate
 from redbot.core.utils.menus import start_adding_reactions
 
-emojis = ['◀️','▶️','❌']
+emojis = ['\U00025B6','\U00025C0','\U000274C']
+
 class Mucski2(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
@@ -64,14 +65,14 @@ class Mucski2(commands.Cog):
                 c.append(rand_x[i])
             else:
                 c.append(x)
-        if emoji == '❌':
+        if emoji == '\U000274C':
             msg.clear_reactions()
             await ctx.edit("Finished")
             return
-        elif emoji == '️:'
+        elif emoji == '\U00025B6':
             msg.edit(y.append('<'))
             msg.edit(c)
-        elif emoji == '▶':
+        elif emoji == '\U00025C0':
             msg.edit(y.append('>'))
             msg.edit(c)
         await msg.remove_reactions(emoji, ctx.author)
