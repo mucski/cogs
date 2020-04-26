@@ -47,7 +47,7 @@ class Mucski2(commands.Cog):
         emojis = ['\U274C','\U25C0','\U25B6']
         msg = await ctx.send("Use the controls bellow to pick the lock. ")
         for emoji in emojis:
-            msg add_reaction(emoji)
+            msg.add_reaction(emoji)
         pred = ReactionPredicate.with_emojis(emoji, message=msg, ctx.author)
         try:
             msg = await self.bot.wait_for('reaction_add', timeout=300, check=pred)
