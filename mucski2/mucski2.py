@@ -59,12 +59,12 @@ class Mucski2(commands.Cog):
         if emoji == '❌': 
             await msg.clear_reactions()
             return await msg.edit(content="okay shutting down")
-        if emoji == '◀️':
-            await msg.edit(content=f"you reacted with <")
-            await msg.remove_reaction(emoji, ctx.author)
-        if emoji == '▶️':
-            await msg.edit(content=f"you reacted with >")
-            await msg.remove_reaction(emoji, ctx.author)
+        elif emoji == '◀️':
+            dir = '<'
+        elif emoji == '▶️':
+            dir = '>'
+        await msg.remove_reaction(emoji, ctx.author)
+        await msg.edit(dir)
     
     @commands.command()
     async def who(self, ctx, channel: discord.TextChannel, messageid: int):
