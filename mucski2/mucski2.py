@@ -55,16 +55,25 @@ class Mucski2(commands.Cog):
             return await ctx.send("Timed out. ")
             msg.clear_reactions()
             return
+        x = ['<','>']
+        y = []
+        c = []
+        rand_x = random.choices(x,k=4)
+        for i in range(4):
+            if y[i] == rand_x[i]:
+                c.append(rand_x[i])
+            else l:
+                c.append(x)
         if emoji == '❌':
             msg.clear_reactions()
-            await ctx.send("Finished")
+            await ctx.edit("Finished")
             return
-        if emoji == '\U000025C0':
-            #stuff
-            pass
-        if emoji == '\U000025B6':
-            #more stuff
-            pass
+        elif emoji == '\U000025C0':
+            msg.edit(y.append('<'))
+            msg.edit(c)
+        elif emoji == '\U000025B6':
+            msg.edit(y.append('>'))
+            msg.edit(c)
         await msg.remove_reactions(emoji, ctx.author)
     
     @commands.command()
