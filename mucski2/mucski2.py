@@ -81,7 +81,7 @@ class Mucski2(commands.Cog):
         await ctx.send(embed=e)
         
     @commands.command()
-    async def startevent(self, ctx):
+    async def test(self, ctx):
         msg="this is a test done on {}".format(gettime(ctx.channel))
         await ctx.send(msg)
         
