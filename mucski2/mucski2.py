@@ -51,13 +51,8 @@ class Mucski2(commands.Cog):
     
     @commands.command()
     async def emote(self, ctx, emoji: discord.Emoji):
-        id = emoji.id
-        if emoji.animated is False:
-            ext = ".png"
-        else:
-            ext = ".gif"
         e = discord.Embed()
-        e.set_image(url=f"https://cdn.discordapp.com/emojis/{id}.{ext}")
+        e.set_image(url=emoji.url)
         await ctx.send(embed=e)
     
     @commands.command()
