@@ -43,7 +43,7 @@ class Mucski2(commands.Cog):
         await ctx.send("Successfully sent your message")
         
     @commands.command()
-    async def emote(self, ctx):
+    async def emote(self, ctx, msg):
         matches = re.findall(r'<(a)?:.*?:(\d+)>', msg)
         if matches:
         	animated = matches.index(matches,0,1)
