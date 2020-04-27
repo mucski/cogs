@@ -44,7 +44,7 @@ class Mucski2(commands.Cog):
         await ctx.send("Successfully sent your message")
     
     @commands.command()
-    async ded tst(self, ctx, emoji: discord.PartialEmoji):
+    async ded tst(self, ctx, emoji):
         emojis = await discord.PartialEmoji(emoji)
         await ctx.send(emojis)
     
