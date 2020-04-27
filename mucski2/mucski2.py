@@ -61,7 +61,7 @@ class Mucski2(commands.Cog):
             return await ctx.send("couldn't find that message")
         users = await msg.reactions[0].users().flatten()
         losers = []
-        for user in users:
+        async for user in msg.reactions[0].users():
             losers.append(user.name)
         randomized = random.choice(losers)
         await ctx.send(randomized)
