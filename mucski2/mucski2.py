@@ -27,7 +27,7 @@ class Mucski2(commands.Cog):
         }
     
     def gettime(self):
-        async for message in channel.history(limit=5):
+        for message in channel.history(limit=5):
             delta = datetime.datetime.utcnow() - message.created_at
         return delta
     
@@ -82,7 +82,7 @@ class Mucski2(commands.Cog):
         
     @commands.command()
     async def startevent(self, ctx):
-        gettime = gettime()
+        gettime = async gettime()
         msg="this is a test done on {}".format(gettime)
         await ctx.send(msg)
         
