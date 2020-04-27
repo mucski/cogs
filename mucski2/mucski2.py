@@ -48,7 +48,7 @@ class Mucski2(commands.Cog):
         matches = re.findall(r'<(a)?:.*?:(\d+)>', msg)
         if matches:
             li.append(matches)
-        	animated = li.index(matches,0,1)
+            animated = li.index(matches,0,1)
         	id = li.index(matches,0,2)
         	ext = ".png"
         	if animated:
