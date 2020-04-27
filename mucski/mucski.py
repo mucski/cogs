@@ -48,7 +48,7 @@ class Mucski(commands.Cog):
         self.conf.register_user(**defaults)
         self.conf.register_guild(**default_guild)
     
-    await def _cr(self, member):
+    async def _cr(self, member):
         await self.conf.user(member).cookies()
     
     #test
