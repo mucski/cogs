@@ -48,12 +48,17 @@ class Mucski(commands.Cog):
         self.conf.register_user(**defaults)
         self.conf.register_guild(**default_guild)
     
-    async def cr(self, member):
-         return await self.conf.user(member).cookies()
+    #View cookies
+    async def cv(self, member):
+        return await self.conf.user(member).cookies()
+    
+    #Add or remove cookies
+    async def cd(self, member, amt):
+        return await self.conf.user(member).cookies.set(amt)
     
     #test
     @commands.command()
-    async def test(self, ctx, member: discord.Member=None):
+    async def bal(self, ctx, member: discord.Member=None):
         if member is None:
             member = ctx.author
         cookies = await self.cr(member)
@@ -83,9 +88,9 @@ class Mucski(commands.Cog):
     async def add(self, ctx, amount: int, *, member: discord.Member=None):
         if member is None:
             member = ctx.author
-        cookie = await self.conf.user(member).cookies()
+        cookie = await self.cv(member)
         cookie = cookie + amount
-        await self.conf.user(member).cookies.set(cookie)
+        await self.cd(member,cookie)
         await ctx.send(f"{member.name} now has {cookie} cookies.")
     
     @_cookie.command()
