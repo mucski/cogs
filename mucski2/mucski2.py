@@ -51,8 +51,9 @@ class Mucski2(commands.Cog):
             li.append(matches)
             animated = li.index(matches,0,1)
             id = li.index(matches,0,2)
-            ext = ".png"
-            if animated:
+            if animated is None:
+                ext = ".png"
+            else:
                 ext = ".gif"
             e = discord.Embed()
             e.set_image(url=f"https://cdn.discordapp.com/emojis/{id}.{ext}")
