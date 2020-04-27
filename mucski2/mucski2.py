@@ -49,25 +49,15 @@ class Mucski2(commands.Cog):
         await ctx.send(emoji.animated)
     
     @commands.command()
-    async def emote(self, ctx, emoji: discord.PartialEmoji):
-        custom_emojis = re.findall(r'<:\w*:\d*>', emoji)
-        custom_emojis = [int(e.split(':')[1].replace('>', '')) for e in custom_emojis]
-        #matches = re.findall(r'<(a)?:.*?:(\d+)>', emoji)
-        li = []
-        if custom_emojis:
-            li.append(custom_emojis)
-            animated = li.index(custom_emojis,0,1)
-            id = li.index(custom_emojis,0,2)
-            if animated is None:
-                ext = ".png"
-            else:
-                ext = ".gif"
-            e = discord.Embed()
-            e.set_image(url=f"https://cdn.discordapp.com/emojis/{id}.{ext}")
-            await ctx.send(embed=e)
-            await ctx.send(animated)
-            await ctx.send(id)
-            await ctx.send(ext)
+    async def emote(self, ctx, emoji: discord.Emoji):
+        id = emoji.id
+        if emoji.animated is False:
+            ext = ".png"
+        else:
+            ext = ".gif"
+        e = discord.Embed()
+        e.set_image(url=f"https://cdn.discordapp.com/emojis/{id}.{ext}")
+        await ctx.send(embed=e)
     
     @commands.command()
     async def who(self, ctx, channel: discord.TextChannel, messageid: int):
