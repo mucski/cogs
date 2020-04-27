@@ -67,6 +67,8 @@ class Mucski2(commands.Cog):
                     y.append('<')
                 elif emoji == '▶️':
                     y.append('>')
+            else:
+                y.append('x')
         await msg.remove_reaction(emoji, ctx.author)
         await msg.edit(content=y)
     
