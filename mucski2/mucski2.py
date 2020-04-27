@@ -44,8 +44,8 @@ class Mucski2(commands.Cog):
         await ctx.send("Successfully sent your message")
         
     @commands.command()
-    async def emote(self, ctx, emoji: discord.Emoji):
-        custom_emojis = re.findall(r'<:\w*:\d*>', emoji.content)
+    async def emote(self, ctx, msg):
+        custom_emojis = re.findall(r'<:\w*:\d*>', msg.content)
         custom_emojis = [int(e.split(':')[1].replace('>', '')) for e in custom_emojis]
         #matches = re.findall(r'<(a)?:.*?:(\d+)>', emoji)
         li = []
