@@ -126,7 +126,7 @@ class Mucski(commands.Cog):
     @_cookie.command()
     async def gamble(self, ctx, amount):
         """ Gamble amount of cookies with a chance to win double """
-        cookie = await self.cv(member)
+        cookie = await self.cv(ctx.author)
         try:
             amount = int(amount)
         except ValueError:
