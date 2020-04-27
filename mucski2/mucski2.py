@@ -62,9 +62,9 @@ class Mucski2(commands.Cog):
         #users = await msg.reactions[0].users().flatten()
         users = []
         async for user in msg.reactions[0].users():
-            users.append(user.name)
-        randomized = random.choice(losers)
-        await ctx.send(randomized)
+            users.append(user)
+        randomized = random.choice(users)
+        await ctx.send(randomized.name)
         
     @commands.command()
     async def oof(self, ctx):
