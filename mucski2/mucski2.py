@@ -78,7 +78,7 @@ class Mucski2(commands.Cog):
     @commands.command()
     async def startevent(self, ctx):
         await ctx.send("this is a random event")
-        await ctx.send(gettime)
+        await ctx.send(delta)
         
     async def gettime(self):
         async for message in channel.history(limit=5):
