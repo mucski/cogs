@@ -21,6 +21,10 @@ class Mucski2(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
         self.conf = Config.get_conf(self, 282828485)
+        defaults = {
+            "gold": 0,
+            "datetime": []
+        }
     
     @commands.command()
     async def emote(self, ctx, emoji: discord.PartialEmoji):
@@ -70,3 +74,13 @@ class Mucski2(commands.Cog):
         e.set_image(url="https://comicvine1.cbsistatic.com/uploads/scale_medium/11125/111253436/6733777-4.jpg")
         e.set_footer(text="Powered by your mom")
         await ctx.send(embed=e)
+        
+    @commands.command()
+    async def startevent(self, ctx):
+        await ctx.send("this is a random event")
+        await ctx.send(gettime)
+        
+    def gettime(self):
+        async for message in channel.history(limit=5):
+            delta = datetime.datetime.utcnow() - message.created_at
+        return delta
