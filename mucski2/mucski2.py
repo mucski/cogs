@@ -26,7 +26,7 @@ class Mucski2(commands.Cog):
             "datetime": []
         }
     
-    await def gettime(self, channel):
+    async def gettime(self, channel):
         async for message in channel.history(limit=5):
             delta = datetime.datetime.utcnow() - message.created_at
         return delta
