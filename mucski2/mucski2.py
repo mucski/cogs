@@ -82,7 +82,7 @@ class Mucski2(commands.Cog):
         
     @commands.command()
     async def startevent(self, ctx):
-        gettime = gettime()
+        gettime = _gettime()
         msg="this is a test done on {}".format(gettime)
         await ctx.send(msg)
         
