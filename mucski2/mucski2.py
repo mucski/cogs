@@ -45,12 +45,14 @@ class Mucski2(commands.Cog):
         
     @commands.command()
     async def emote(self, ctx, emoji: discord.Emoji):
-        matches = re.findall(r'<(a)?:.*?:(\d+)>', emoji.emoji)
+        custom_emojis = re.findall(r'<:\w*:\d*>', msg.content)
+        custom_emojis = [int(e.split(':')[1].replace('>', '')) for e in custom_emojis]
+        #matches = re.findall(r'<(a)?:.*?:(\d+)>', emoji)
         li = []
-        if matches:
-            li.append(matches)
-            animated = li.index(matches,0,1)
-            id = li.index(matches,0,2)
+        if custom_emojis:
+            li.append(custom_emojis)
+            animated = li.index(custom_emojis,0,1)
+            id = li.index(custom_emojis,0,2)
             if animated is None:
                 ext = ".png"
             else:
