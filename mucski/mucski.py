@@ -48,13 +48,15 @@ class Mucski(commands.Cog):
         self.conf.register_user(**defaults)
         self.conf.register_guild(**default_guild)
     
-    def cr(self, member):
-        self.conf.user(member).cookies()
+    await def _cr(self, member):
+        await self.conf.user(member).cookies()
     
     #test
     @commands.command()
-    async def test(self, ctx, member: discord.Member):
-        cookies = await self.cr(member)
+    async def test(self, ctx, member: discord.Member=None):
+        if member is None:
+            member = ctx.author
+        cookies = self.cr(member)
         await ctx.send(f"User has {cookies} cookies")
 
     @commands.group(name="cookie", aliases=['c', 'ce'])
