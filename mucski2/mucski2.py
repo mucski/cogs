@@ -45,7 +45,7 @@ class Mucski2(commands.Cog):
         
     @commands.command()
     async def emote(self, ctx, msg):
-        custom_emojis = re.findall(r'<:\w*:\d*>', message.content)
+        custom_emojis = re.findall(r'<:\w*:\d*>', msg.content)
         custom_emojis = [int(e.split(':')[1].replace('>', '')) for e in custom_emojis]
         #matches = re.findall(r'<(a)?:.*?:(\d+)>', emoji)
         li = []
