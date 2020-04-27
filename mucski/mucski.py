@@ -56,7 +56,7 @@ class Mucski(commands.Cog):
     async def test(self, ctx, member: discord.Member=None):
         if member is None:
             member = ctx.author
-        cookies = self.cr(member)
+        cookies = await self.cr(member)
         await ctx.send(f"User has {cookies} cookies")
 
     @commands.group(name="cookie", aliases=['c', 'ce'])
