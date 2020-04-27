@@ -43,34 +43,18 @@ class Mucski2(commands.Cog):
         await ctx.send("Successfully sent your message")
         
     @commands.command()
-    async def game(self, ctx):
-        msg = await ctx.send("Use the controls bellow to pick the lock. ")
-        for emoji in emojis:
-            await msg.add_reaction(emoji)
-        pred = ReactionPredicate.with_emojis(emojis, message=msg, user=ctx.author)
-        try:
-            await self.bot.wait_for('reaction_add', timeout=60, check=pred)
-        except asyncio.TimeoutError:
-            return await ctx.send("Timed out. ")
-            return msg.clear_reactions()
-        x = ('<','>')
-        y = ()
-        rand_x = random.choices(x,k=4)
-        while len(y) < 4:
-            emoji = emojis[pred.result]
-            if emoji == '❌': 
-                await msg.clear_reactions()
-                return await msg.edit(content="okay shutting down")
-            elif y[0] == rand_x[0]:
-                    
-                if emoji == '◀️':
-                    y.append('<')
-                elif emoji == '▶️':
-                    y.append('>')
-            else:
-                y.append('x')
-        await msg.remove_reaction(emoji, ctx.author)
-        await msg.edit(content=y)
+    async def emote(self, ctx):
+        matches = re.findall(r'<(a)?:.*?:(\d+)>', msg)
+        if matches:
+        	animated = matches.index(matches,0,1)
+        	id = matches.index(matches,0,2)
+        	ext = ".png"
+        	if animated:
+        	    ext = ".gif"
+        	url = f"https://cdn.discordapp.com/emojis/{id}.{ext}"
+        	e = discord.Embed()
+        	e.set_image(url=url)
+        	await ctx.send(embed=e)
     
     @commands.command()
     async def who(self, ctx, channel: discord.TextChannel, messageid: int):
