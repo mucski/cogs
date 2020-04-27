@@ -26,10 +26,6 @@ class Mucski2(commands.Cog):
             "datetime": []
         }
     
-    async def gettime(self, channel):
-        async for message in channel.history(limit=5):
-            delta = datetime.datetime.utcnow() - message.created_at
-        return delta
     
     @commands.command()
     async def emote(self, ctx, emoji: discord.PartialEmoji):
@@ -82,6 +78,8 @@ class Mucski2(commands.Cog):
         
     @commands.command()
     async def test(self, ctx):
-        msg="this is a test done on {}".format(gettime(ctx.channel))
+        async for message in message.history(limit=5):
+            delta = datetime.datetime.utcnow() - message.created_at
+        msg="this is a test done on {}".format(delta)
         await ctx.send(msg)
         
