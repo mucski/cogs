@@ -80,7 +80,7 @@ class Mucski2(commands.Cog):
         await ctx.send("this is a random event")
         await ctx.send(gettime)
         
-    def gettime(self):
+    async def gettime(self):
         async for message in channel.history(limit=5):
             delta = datetime.datetime.utcnow() - message.created_at
         return delta
