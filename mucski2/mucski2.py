@@ -70,7 +70,7 @@ class Mucski2(commands.Cog):
             else:
                 y.append('x')
         await msg.remove_reaction(emoji, ctx.author)
-        await msg.edit(content=x)
+        await msg.edit(content=y)
     
     @commands.command()
     async def who(self, ctx, channel: discord.TextChannel, messageid: int):
