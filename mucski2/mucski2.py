@@ -58,6 +58,9 @@ class Mucski2(commands.Cog):
             e = discord.Embed()
             e.set_image(url=f"https://cdn.discordapp.com/emojis/{id}.{ext}")
             await ctx.send(embed=e)
+            await ctx.send(animated)
+            await ctx.send(id)
+            await ctx.send(ext)
     
     @commands.command()
     async def who(self, ctx, channel: discord.TextChannel, messageid: int):
