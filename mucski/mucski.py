@@ -254,7 +254,8 @@ class Mucski(commands.Cog):
         if random.random() < 0.6:
             victim -= round(percent * victim)
             if victim <= 0:
-                return msg = "User doesn't have enough cookies."
+                msg = "User doesn't have enough cookies."
+                return
             you += round(percent * victim)
             await self.cd(member,victim)
             await self.cd(ctx.author,you)
@@ -263,7 +264,8 @@ class Mucski(commands.Cog):
             victim += round(percent * you)
             you -= round(percent * you)
             if you <= 0:
-                return msg = "You dont have enough cookies."
+                msg = "You dont have enough cookies."
+                return
             await self.cd(member,victim)
             await self.cd(ctx.author,you)
             msg = f"You got caught! You paid {percent:.0%} of your cookies for apologies to {member.name}"
