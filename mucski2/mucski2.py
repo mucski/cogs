@@ -49,11 +49,11 @@ class Mucski2(commands.Cog):
         if matches:
             li.append(matches)
             animated = li.index(matches,0,1)
-        	id = li.index(matches,0,2)
-        	ext = ".png"
-        	if animated:
-        	    ext = ".gif"
-        	url = f"https://cdn.discordapp.com/emojis/{id}.{ext}"
+            id = li.index(matches,0,2)
+            ext = ".png"
+            if animated:
+                ext = ".gif"
+                url = f"https://cdn.discordapp.com/emojis/{id}.{ext}"
         	e = discord.Embed()
         	e.set_image(url=url)
         	await ctx.send(embed=e)
