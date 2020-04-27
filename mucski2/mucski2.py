@@ -59,7 +59,7 @@ class Mucski2(commands.Cog):
             msg = await channel.fetch_message(messageid)
         except HTTPException:
             return await ctx.send("couldn't find that message")
-        r = await discord.utils.get(msg.reactions, emoji='❤️')
+        r = discord.utils.get(msg.reactions, emoji='❤️')
         if r is None:
             return await ctx.send("There were no reactions. ")
         for users in r.users():
