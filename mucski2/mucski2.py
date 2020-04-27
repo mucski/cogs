@@ -42,7 +42,12 @@ class Mucski2(commands.Cog):
         await channel.send(msg.content)
         start_adding_reactions(msg.content, ReactionPredicate.self.emoji)
         await ctx.send("Successfully sent your message")
-        
+    
+    @commands.command()
+    async ded tst(self, ctx, emoji: discord.PartialEmoji):
+        emojis = await discord.PartialEmoji(emoji)
+        await ctx.send(emojis)
+    
     @commands.command()
     async def emote(self, ctx, emoji: discord.PartialEmoji):
         custom_emojis = re.findall(r'<:\w*:\d*>', emoji)
