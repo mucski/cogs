@@ -53,16 +53,17 @@ class Mucski2(commands.Cog):
         except asyncio.TimeoutError:
             return await ctx.send("Timed out. ")
             return msg.clear_reactions()
-        emoji = emojis[pred.result]
-        if emoji == '❌': 
-            await msg.clear_reactions()
-            return await msg.edit(content="okay shutting down")
-        elif emoji == '◀️':
-            dir = '<'
-        elif emoji == '▶️':
-            dir = '>'
+        y = []
+        for i in range(4):
+            emoji = emojis[pred.result]
+            if emoji == '❌': 
+                await msg.clear_reactions()
+                return await msg.edit(content="okay shutting down")
+            elif emoji == '◀️':
+                await msg.edit(y.append[i]('<'))
+            elif emoji == '▶️':
+                await msg.edit(y.append[i]('>'))
         await msg.remove_reaction(emoji, ctx.author)
-        await msg.edit(dir)
     
     @commands.command()
     async def who(self, ctx, channel: discord.TextChannel, messageid: int):
