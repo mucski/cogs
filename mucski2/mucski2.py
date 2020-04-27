@@ -5,6 +5,7 @@ import itertools
 import math
 import random
 import time
+import re
 from discord.ext import tasks, commands
 
 from redbot.core import bank, checks, commands, Config
