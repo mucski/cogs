@@ -63,7 +63,8 @@ class Mucski2(commands.Cog):
         losers = []
         for user in users:
             losers.append(user.name)
-        await ctx.send(losers)
+        randomized = random.choice(losers)
+        await ctx.send(randomized)
         
     @commands.command()
     async def oof(self, ctx):
