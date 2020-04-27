@@ -64,7 +64,7 @@ class Mucski2(commands.Cog):
             elif emoji == '▶️':
                 dir = '>'
         await msg.remove_reaction(emoji, ctx.author)
-        await msg.edit(y.append(dir))
+        await msg.edit(content=y.append(dir))
     
     @commands.command()
     async def who(self, ctx, channel: discord.TextChannel, messageid: int):
