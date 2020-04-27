@@ -60,8 +60,8 @@ class Mucski2(commands.Cog):
         except HTTPException:
             return await ctx.send("couldn't find that message")
         users = await msg.reactions[0].users().flatten()
-        for i in users:
-            losers = users[i].name
+        for user in users:
+            losers = user.name
         await ctx.send(losers)
         
     @commands.command()
