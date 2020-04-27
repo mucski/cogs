@@ -56,7 +56,7 @@ class Mucski2(commands.Cog):
         x = ['<','>']
         y = []
         rand_x = random.choices(x,k=4)
-        for i in range(4):
+        while len(y) < 4:
             emoji = emojis[pred.result]
             if emoji == '❌': 
                 await msg.clear_reactions()
