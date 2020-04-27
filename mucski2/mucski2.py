@@ -48,7 +48,7 @@ class Mucski2(commands.Cog):
         await ctx.send(emoji.url)
     
     @commands.command()
-    async def emote(self, ctx, emoji: discord.Emoji):
+    async def emote(self, ctx, emoji: discord.PartialEmoji):
         e = discord.Embed()
         e.set_image(url=emoji.url)
         await ctx.send(embed=e)
