@@ -61,7 +61,7 @@ class Mucski2(commands.Cog):
             return await ctx.send("couldn't find that message")
         users = await msg.reactions[0].users().flatten()
         for i in users:
-            losers = users[0].name
+            losers = users[i].name
         await ctx.send(losers)
         
     @commands.command()
