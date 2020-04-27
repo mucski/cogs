@@ -59,8 +59,8 @@ class Mucski2(commands.Cog):
             msg = await channel.fetch_message(messageid)
         except HTTPException:
             return await ctx.send("couldn't find that message")
-        users = await msg.reactions[0].users()
-        await ctx.send(users.name)
+        users = await msg.reactions[0].users().flatten()
+        await ctx.send(users[0].name)
         
     @commands.command()
     async def oof(self, ctx):
