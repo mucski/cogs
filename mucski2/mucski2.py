@@ -21,31 +21,6 @@ class Mucski2(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
         self.conf = Config.get_conf(self, 282828485)
-        self.loc = {
-            "sewer": "You descended into the sewers hoping to find a dancing clown, found {cookie} cookies instead. ",
-            "dog": "Found {cookie} cookies in dog.... Shit. Why would you do that.. ",
-            "toilet": "As disgusting as it sounds, you found {cookie} cookies in the toilet bowl. Lucky no one used the toilet before you. ", 
-            "box": "You rummaged through a box of forgotten items, found {cookie} cookies. Lucky you. ", 
-            "drawer": "After going through many panties, a dildo, and a hand gun, you found {cookie} cookies wrapped in socks", 
-            "forest": "You were looking for Little Red Riding Hood, instead you found {cookie} cookies hidden in a tree bark. ", 
-            "set": "You are the next star for Ironing Man. While equipping his armor you found {cookie} cookies in one of the hidden compartments. "
-        }
-        
-    @commands.command()
-    async def hello(self, ctx, channel: discord.TextChannel=None):
-        msg = await ctx.send("Input bellow what you want to say in another channel")
-        pred = MessagePredicate.same_context(ctx)
-        try:
-            msg = await self.bot.wait_for('message', timeout=30, check=pred)
-        except asyncio.TimeoutError:
-            return await ctx.send("Timedout")
-        await channel.send(msg.content)
-        start_adding_reactions(msg.content, ReactionPredicate.self.emoji)
-        await ctx.send("Successfully sent your message")
-    
-    @commands.command()
-    async def tst(self, ctx, emoji: discord.PartialEmoji):
-        await ctx.send(emoji.url)
     
     @commands.command()
     async def emote(self, ctx, emoji: discord.PartialEmoji):
