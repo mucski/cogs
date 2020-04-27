@@ -286,6 +286,6 @@ class Mucski(commands.Cog):
         cookie = await self.cv(ctx.author)
         amt = int(random.triangular(100,200))
         cookie = amt + cookie
-        await self.cd(ctx,author,cookie)
+        await self.cd(ctx.author,cookie)
         return await ctx.send(self.loc[msg.content.lower()].format(amt))
     
