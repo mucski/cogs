@@ -53,8 +53,8 @@ class Mucski2(commands.Cog):
         except asyncio.TimeoutError:
             return await ctx.send("Timed out. ")
             return msg.clear_reactions()
-        x = ['<','>']
-        y = []
+        x = ('<','>')
+        y = ()
         rand_x = random.choices(x,k=4)
         while len(y) < 4:
             emoji = emojis[pred.result]
