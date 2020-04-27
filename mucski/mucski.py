@@ -61,7 +61,7 @@ class Mucski(commands.Cog):
     async def bal(self, ctx, member: discord.Member=None):
         if member is None:
             member = ctx.author
-        cookies = await self.cr(member)
+        cookies = await self.cv(member)
         await ctx.send(f"User has {cookies} cookies")
 
     @commands.group(name="cookie", aliases=['c', 'ce'])
@@ -98,9 +98,9 @@ class Mucski(commands.Cog):
     async def remove(self, ctx, amount: int, *, member: discord.Member=None):
         if member is None:
             member = ctx.author
-        cookie = await self.conf.user(member).cookies()
+        cookie = await self.cv(member)
         cookie = cookie - amount
-        await self.conf.user(member).cookies.set(cookie)
+        await self.cd(member,cookie)
         await ctx.send(f"{member.name} now has {cookie} cookies.")
   
     @_cookie.command()
@@ -114,7 +114,7 @@ class Mucski(commands.Cog):
         """ Checks your balance or some ones """
         if member is None:
             member = ctx.author
-        cookie = await self.conf.user(member).cookies()
+        cookie = await self.cv(member)
         #build embed
         e = discord.Embed(description=f"Profile for {member.name}")
         e.set_thumbnail(url=member.avatar_url)
@@ -126,7 +126,7 @@ class Mucski(commands.Cog):
     @_cookie.command()
     async def gamble(self, ctx, amount):
         """ Gamble amount of cookies with a chance to win double """
-        cookie = await self.conf.user(ctx.author).cookies()
+        cookie = await self.cv(member)
         try:
             amount = int(amount)
         except ValueError:
@@ -134,26 +134,27 @@ class Mucski(commands.Cog):
                 amount = cookie
             else:
                 amount = None
-                await ctx.send("Can't gamble what you don't have.")
+                msg= "Can't gamble what you don't have."
         finally:
             if amount is not None:
                 if cookie - abs(amount) < 0:
-                    await ctx.send("Go get yourself some cookies then try again.")
+                    msg = "Go get yourself some cookies then try again."
                 else:
                     if random.random() < 0.3:
                         winning = amount*2
                         cookie += winning
-                        await self.conf.user(ctx.author).cookies.set(cookie)
-                        await ctx.send(f"Congratulations {ctx.author.name} you won {winning} cookies")
+                        await self.cd(member,cookie)
+                        msg = f"Congratulations {ctx.author.name} you won {winning} cookies"
                     else:
                         cookie -= amount
-                        await self.conf.user(ctx.author).cookies.set(cookie)
-                        await ctx.send(f"Oops, you lost {amount} cookies.")
+                        await self.cd(member,cookie)
+                        msg = f"Oops, you lost {amount} cookies."
+        await ctx.send(msg)
       
     @_cookie.command()
     async def give(self, ctx, amount, *, member: discord.Member):
         """ Give a member cookies """
-        sender = await self.conf.user(ctx.author).cookies()
+        sender = await self.cv(ctx.author)
         try:
             amount = int(amount)
         except ValueError:
@@ -161,24 +162,25 @@ class Mucski(commands.Cog):
                 amount = sender
             else:
                 amount = None
-                await ctx.send("Thats an invalid input!")
+                msg = "Thats an invalid input!"
         finally:
             if amount is not None:
                 if amount >= 0:
                     if sender <= 0:
-                        await ctx.send("Nope.")
+                        msg = "Nope."
                         return
                     sender -= amount
-                    await self.conf.user(ctx.author).cookies.set(sender)
-                    receiver = await self.conf.user(member).cookies()
+                    await self.cd(ctx.author,sender)
+                    receiver = await self.cv(member)
                     receiver += amount
                     if receiver <= 0:
-                        await ctx.send("Nope hahaha")
+                        msg = "Nope hahaha"
                         return
-                    await self.conf.user(member).cookies.set(receiver)
-                    await ctx.send(f"{ctx.author.name} sent {amount} cookies to {member.name}")
+                    await self.cd(member,receiver)
+                    msg = f"{ctx.author.name} sent {amount} cookies to {member.name}"
                 else:
-                    await ctx.send("Trick someone else!")
+                    msg = "Trick someone else!"
+        await ctx.send(msg)
     
     @_cookie.command()
     @commands.cooldown(rate=1, per=300, type=commands.BucketType.user)
