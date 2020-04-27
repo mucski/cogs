@@ -143,11 +143,11 @@ class Mucski(commands.Cog):
                     if random.random() < 0.3:
                         winning = amount*2
                         cookie += winning
-                        await self.cd(member,cookie)
+                        await self.cd(ctx.author,cookie)
                         msg = f"Congratulations {ctx.author.name} you won {winning} cookies"
                     else:
                         cookie -= amount
-                        await self.cd(member,cookie)
+                        await self.cd(ctx.author,cookie)
                         msg = f"Oops, you lost {amount} cookies."
         await ctx.send(msg)
       
