@@ -61,14 +61,12 @@ class Mucski2(commands.Cog):
             if emoji == '❌': 
                 await msg.clear_reactions()
                 return await msg.edit(content="okay shutting down")
-            elif emoji == '◀️':
-                dir = '<'
-            elif emoji == '▶️':
-                dir = '>'
             elif y[i] == rand_x[i]:
-                y.append(dir)
-            else:
-                y.append('x')
+                    
+                if emoji == '◀️':
+                    y.append('<')
+                elif emoji == '▶️':
+                    y.append('>')
         await msg.remove_reaction(emoji, ctx.author)
         await msg.edit(content=y)
     
