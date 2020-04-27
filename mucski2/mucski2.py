@@ -45,7 +45,7 @@ class Mucski2(commands.Cog):
         
     @commands.command()
     async def emote(self, ctx, msg):
-        matches = re.findall(r'<(a)?:.*?:(\d+)>', msg)
+        matches = re.findall(r'<(a)?:.*?:(\d+)>', msg.content)
         li = []
         if matches:
             li.append(matches)
