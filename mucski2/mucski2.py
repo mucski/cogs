@@ -62,7 +62,7 @@ class Mucski2(commands.Cog):
         users = await msg.reactions[0].users().flatten()
         losers = []
         for user in users:
-            losers += user.name
+            losers.append(user.name)
         await ctx.send(losers)
         
     @commands.command()
