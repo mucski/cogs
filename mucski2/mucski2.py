@@ -88,6 +88,6 @@ class Mucski2(commands.Cog):
         e.add_field(name="You rolled", value=f"{you}")
         e.add_field(name="Dealer rolled", value=f"{him}")
         e.add_field(name="Dealer says:", value=f"{msg}")
-        e.set_footer(text=datetime.now())
+        e.set_footer(text=datetime.utcnow())
         await ctx.send(embed=e)
         
