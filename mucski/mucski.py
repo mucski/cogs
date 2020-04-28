@@ -205,7 +205,7 @@ class Mucski(commands.Cog):
         embed.add_field(name="Dealer rolled", value=dealer)
         embed.add_field(name="You rolled", value=member)
         embed.set_footer(text=datetime.datetime.utcnow())
-        await ctx.send(embed)
+        await ctx.send(embed=embed)
             
     @_cookie.command()
     async def give(self, ctx, amount, *, member: discord.Member):
