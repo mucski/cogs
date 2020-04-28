@@ -98,4 +98,6 @@ class Mucski2(commands.Cog):
         elif him < 6 and you > him:
             msg = "Yay you won."
         await ctx.send(msg)
+        await ctx.send(f"You rolled {you}")
+        await ctx.send(f"Dealer rolled {him}")
         
