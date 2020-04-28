@@ -199,12 +199,11 @@ class Mucski(commands.Cog):
                         msg = f"Dealer rolled ``{dealer}`` and you rolled ``{member}``. Dealer busted. You won ``{amount}`` cookies."
                         cookie += amount
                         await self.cd(ctx.author,cookie)
-        embed = discord.Embed(color=await self.color(ctx))
+        embed = discord.Embed(color=await self.color(ctx), description=f"{msg}")
         embed.set_author(name=f"{ctx.author.name} rolls the dice.", icon_url=ctx.author.avatar_url)
         embed.set_thumbnail(url=ctx.bot.user.avatar_url)
         embed.add_field(name="Dealer rolled", value=dealer)
         embed.add_field(name="You rolled", value=member)
-        embed.description(f"{msg}")
         embed.set_footer(text=datetime.datetime.utcnow())
         await ctx.send(embed)
             
