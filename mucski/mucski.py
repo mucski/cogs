@@ -184,14 +184,14 @@ class Mucski(commands.Cog):
                     msg = "Get yourself some cookies first"
                 else:
                     #Game logic
-                    if you < 6 and dealer > you:
-                        msg = f"Dealer rolled ``{dealer}`` and you rolled ``{you}``. Busted. You lost ``{amount}`` amount of cookies."
+                    if member < 6 and dealer > member:
+                        msg = f"Dealer rolled ``{dealer}`` and you rolled ``{member}``. Busted. You lost ``{amount}`` amount of cookies."
                         cookie - amount
                         await self.cd(ctx.author,cookie)
-                    elif you == dealer:
-                        msg = f"Dealer rolled ``{dealer}`` and you rolled ``{you}``. Looks like its a tie."
-                    elif dealer < 6 and dealer < you:
-                        msg = f"Dealer rolled ``{dealer}`` and you rolles ``{you}``. Dealer busted. You won ``{amount}`` of cookies."
+                    elif member == dealer:
+                        msg = f"Dealer rolled ``{dealer}`` and you rolled ``{member}``. Looks like its a tie."
+                    elif dealer < 6 and dealer < member:
+                        msg = f"Dealer rolled ``{dealer}`` and you rolles ``{member}``. Dealer busted. You won ``{amount}`` of cookies."
                         cookie + amount
                         await self.cd(ctx.author,cookie)
         await ctx.send(msg)
