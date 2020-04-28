@@ -87,3 +87,16 @@ class Mucski2(commands.Cog):
         msg="this is a test done on {}".format(delta)
         await ctx.send(msg)
         
+    @commands.command()
+    async def rol(self, ctx):
+        dice = random.randint(1,6)
+        him = dice
+        you = dice
+        if you < 6 and him > you:
+            msg = "Oops, dealer won."
+        elif you == him:
+            msg = "Looks like its a tie."
+        elif: him < 6 and you > him:
+            msg = "Yay you won."
+        await ctx.send(msg)
+        
