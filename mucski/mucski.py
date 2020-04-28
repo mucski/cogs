@@ -68,11 +68,8 @@ class Mucski(commands.Cog):
     
     #test
     @commands.command()
-    async def bal(self, ctx, member: discord.Member=None):
-        if member is None:
-            member = ctx.author
-        cookies = await self.cv(member)
-        await ctx.send(f"User has ``{cookies}`` cookies")
+    async def bal(self):
+        await ctx.send(self.colour())
 
     @commands.group(name="cookie", aliases=['c', 'ce'])
     @commands.guild_only()
