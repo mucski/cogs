@@ -99,8 +99,8 @@ class Mucski2(commands.Cog):
             msg = "Yay you won."
         e = discord.Embed(description="Roll the dice.", color=await self.color(ctx))
         e.set_thumbnail(url=ctx.bot.user.avatar_url)
-        e.add_field(name="Dealer rolled", value=f"{you}")
-        e.add_field(name="You rolled", value=f"{him}")
+        e.add_field(name="You rolled", value=f"{you}")
+        e.add_field(name="Dealer rolled", value=f"{him}")
         e.add_field(name="Dealer says:", value=f"{msg}")
         await ctx.send(embed=e)
         
