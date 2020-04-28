@@ -36,7 +36,7 @@ class Mucski(commands.Cog):
             "bulbbulb": "Type the following word in reverse ``blubblub``", 
             "dick": "You are working as a professional hunter. Shot the u out of a duck.",
             "redbot": "I'm a bot, but do you know my name?",
-            "mucski": f"Had to include it here ... just in case you forget. ``{random.shuffle('mucski')}``",
+            "mucski": f"Had to include it here ... just in case you forget. ``{self.shuffle_word('mucski')}``",
         }
         defaults = {
             "cookies": 0
@@ -55,6 +55,11 @@ class Mucski(commands.Cog):
     #Add or remove cookies
     async def cd(self, member, amt):
         return await self.conf.user(member).cookies.set(amt)
+        
+    def shuffle_word(self, word):
+        word = list(word)
+        random.shuffle(word)
+        return ''.join(word)
     
     #test
     @commands.command()
