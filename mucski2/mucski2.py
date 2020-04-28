@@ -86,9 +86,9 @@ class Mucski2(commands.Cog):
             title = "Roll the dice",
             color = await self.color(ctx),
             description=box(
-                f"You rolled: {you}",
-                f"Dealer rolled: {him}",
-                f"{msg}",
+                f"You rolled: {you}\n",
+                f"Dealer rolled: {himn}\n",
+                f"{msg}\n",
             ),
         )
         e.set_thumbnail(url=ctx.bot.user.avatar_url)
