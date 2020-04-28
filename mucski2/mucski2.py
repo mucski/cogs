@@ -82,7 +82,7 @@ class Mucski2(commands.Cog):
             msg = "Looks like its a tie."
         elif him < 6 and you > him:
             msg = "Yay you won."
-        e = discord.Embed(description="Roll the dice.", color=await self.color(ctx), type='rich')
+        e = discord.Embed(title="Roll the dice.", color=await self.color(ctx), type='rich')
         e.set_thumbnail(url=ctx.bot.user.avatar_url)
         e.add_field(name="You rolled", value=f"{you}")
         e.add_field(name="Dealer rolled", value=f"{him}")
