@@ -82,7 +82,7 @@ class Mucski(commands.Cog):
         Commands:
         `search` - search for cookies in random locations
         `profile` - view your stats and profile
-        `work` - earn random ammount of cookies between 100,500
+        `work` - earn random ammount of cookies
         `daily` - earns 1000 cookies every 12 hours (subject to change)
         `gamble` - gambling is bad for your health
         `steal` - steal someones cookies
@@ -244,7 +244,7 @@ class Mucski(commands.Cog):
             await ctx.bot.wait_for('message', timeout=7, check=check)
         except asyncio.TimeoutError:
             return await ctx.send("Have to work harder than that ...😞")
-        value = int(random.triangular(100,500))
+        value = random.randint(50,500)
         cookie = await self.cv(ctx.author)
         cookie += value
         await self.cd(ctx.author,cookie)
@@ -337,7 +337,7 @@ class Mucski(commands.Cog):
         if msg.content.lower() in self.badloc:
             return await ctx.send(self.loc[msg.content.lower()])
         else:
-            amt = int(random.triangular(100,200))
+            amt = random.randint(50,200)
             cookie = amt + cookie
             await self.cd(ctx.author,cookie)
             return await ctx.send(self.loc[msg.content.lower()].format(amt))
