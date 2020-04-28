@@ -87,7 +87,6 @@ class Mucski2(commands.Cog):
             color = await self.color(ctx),
             description=
                 f"```You rolled - {you}"
-                
                 f"Dealer rolled - {him}"
                 
                 f"{msg}```"
