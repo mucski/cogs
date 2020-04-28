@@ -15,18 +15,18 @@ class Mucski(commands.Cog):
         self.bot = bot
         self.conf = Config.get_conf(self, 82838559382, force_registration=True)
         self.loc = {
-            "cellar": "You went into the cellar looking for a fine wine, got scared by a rat and found {} cookies instead.",
-            "moon": "A giant leap to man kind, Armstrong left some {} cookies here though.",
-            "forest": "You went trekking into the forest, found {} cookies laying around in an abandoned camp.",
-            "fridge": "Nothing beats frozen cookies, Right? Wrong. Found {} cookies behind some meat loaf leftowers though.",
-            "sewer": "You descended into the sewers hoping to find a dancing clown, found {} cookies instead. ",
-            "dog": "Found {} cookies in dog.... Shit. Why would you do that.. ",
-            "toilet": "As disgusting as it sounds, you found {} cookies in the toilet bowl. Lucky no one used the toilet before you. ", 
-            "box": "You rummaged through a box of forgotten items, found {} cookies. Lucky you. ", 
-            "drawer": "After going through many panties, a dildo, and a hand gun, you found {} cookies wrapped in socks", 
-            "story book": "You were looking for Little Red Riding Hood, instead you found {} cookies hidden in a tree bark. ", 
-            "set": "You are the next star for Ironing Man. While equipping his armor you found {} cookies in one of the hidden compartments. ",
-            "hospital": "You searched the hospital and found {} cookies. Don't eat them though, may be infected with covid19.",
+            "cellar": "You went into the cellar looking for a fine wine, got scared by a rat and found ``{}`` cookies instead.",
+            "moon": "A giant leap to man kind, Armstrong left some ````{}```` cookies here though.",
+            "forest": "You went trekking into the forest, found ````{}```` cookies laying around in an abandoned camp.",
+            "fridge": "Nothing beats frozen cookies, Right? Wrong. Found ``{}`` cookies behind some meat loaf leftowers though.",
+            "sewer": "You descended into the sewers hoping to find a dancing clown, found ``{}`` cookies instead. ",
+            "dog": "Found ``{}`` cookies in dog.... Shit. Why would you do that.. ",
+            "toilet": "As disgusting as it sounds, you found ``{}`` cookies in the toilet bowl. Lucky no one used the toilet before you. ", 
+            "box": "You rummaged through a box of forgotten items, found ``{}`` cookies. Lucky you. ", 
+            "drawer": "After going through many panties, a dildo, and a hand gun, you found ``{}`` cookies wrapped in socks", 
+            "story book": "You were looking for Little Red Riding Hood, instead you found ``{}`` cookies hidden in a tree bark. ", 
+            "set": "You are the next star for Ironing Man. While equipping his armor you found ``{}`` cookies in one of the hidden compartments. ",
+            "hospital": "You searched the hospital and found ``{}`` cookies. Don't eat them though, may be infected with covid19.",
         }
         self.work = {
             "hot dog":"You are working outside with a cart. Un scramble the following word ``dot goh``", 
@@ -62,7 +62,7 @@ class Mucski(commands.Cog):
         if member is None:
             member = ctx.author
         cookies = await self.cv(member)
-        await ctx.send(f"User has {cookies} cookies")
+        await ctx.send(f"User has ``{cookies}`` cookies")
 
     @commands.group(name="cookie", aliases=['c', 'ce'])
     @commands.guild_only()
@@ -91,7 +91,7 @@ class Mucski(commands.Cog):
         cookie = await self.cv(member)
         cookie = cookie + amount
         await self.cd(member,cookie)
-        await ctx.send(f"{member.name} now has {cookie} cookies.")
+        await ctx.send(f"``{member.name}`` now has ``{cookie}`` cookies.")
     
     @_cookie.command()
     @checks.is_owner()
@@ -101,7 +101,7 @@ class Mucski(commands.Cog):
         cookie = await self.cv(member)
         cookie = cookie - amount
         await self.cd(member,cookie)
-        await ctx.send(f"{member.name} now has {cookie} cookies.")
+        await ctx.send(f"``{member.name}`` now has ``{cookie}`` cookies.")
   
     @_cookie.command()
     @checks.is_owner()
@@ -118,7 +118,7 @@ class Mucski(commands.Cog):
         #build embed
         e = discord.Embed(description=f"Profile for {member.name}")
         e.set_thumbnail(url=member.avatar_url)
-        e.add_field(name="Cookies owned", value=f"{cookie}")
+        e.add_field(name="Cookies owned", value=f"``{cookie}``")
         e.set_image(url="")
         e.set_footer(text="More to come.")
         await ctx.send(embed=e)
@@ -144,11 +144,11 @@ class Mucski(commands.Cog):
                         winning = amount*2
                         cookie += winning
                         await self.cd(ctx.author,cookie)
-                        msg = f"Congratulations {ctx.author.name} you won {winning} cookies"
+                        msg = f"Congratulations ``{ctx.author.name}`` you won ``{winning}`` cookies 🍪🎉"
                     else:
                         cookie -= amount
                         await self.cd(ctx.author,cookie)
-                        msg = f"Oops, you lost {amount} cookies."
+                        msg = f"Oops, you lost ``{amount}`` cookies. 😞"
         await ctx.send(msg)
       
     @_cookie.command()
@@ -177,7 +177,7 @@ class Mucski(commands.Cog):
                         msg = "Nope hahaha"
                         return
                     await self.cd(member,receiver)
-                    msg = f"{ctx.author.name} sent {amount} cookies to {member.name}"
+                    msg = f"``{ctx.author.name}`` sent ``{amount}`` cookies to ``{member.name}`` 🍪🎉"
                 else:
                     msg = "Trick someone else!"
         await ctx.send(msg)
@@ -193,12 +193,12 @@ class Mucski(commands.Cog):
         try:
             await ctx.bot.wait_for('message', timeout=7, check=check)
         except asyncio.TimeoutError:
-            return await ctx.send("Have to work harder than that ...")
+            return await ctx.send("Have to work harder than that ...😞")
         value = int(random.triangular(100,500))
         cookie = await self.cv(ctx.author)
         cookie += value
         await self.cd(ctx.author,cookie)
-        return await ctx.send(f"Well done, you earned {value} cookies for todays work.")
+        return await ctx.send(f"Well done, you earned ``{value}`` cookies for todays work.😴")
     
     @_cookie.command()
     @commands.cooldown(rate=1, per=43200, type=commands.BucketType.user)
@@ -207,7 +207,7 @@ class Mucski(commands.Cog):
         cookie = await self.cv(ctx.author)
         cookie += 1000
         await self.cd(ctx.author,cookie)
-        await ctx.send(f"Claimed your daily cookies. You have {cookie} cookies now. Come back in 12 hours.")
+        await ctx.send(f"Claimed your daily cookies. You have ``{cookie}`` cookies now. Come back in 12 hours.🙄")
   
     @_cookie.command()
     async def lb(self, ctx):
@@ -259,7 +259,7 @@ class Mucski(commands.Cog):
             you += round(percent * victim)
             await self.cd(member,victim)
             await self.cd(ctx.author,you)
-            msg = f"You've succesfully stolen {percent:.0%} cookies from {member.name}."
+            msg = f"You've succesfully stolen ``{percent:.0%}`` cookies from ``{member.name}``.😱"
         else:
             victim += round(percent * you)
             you -= round(percent * you)
@@ -268,14 +268,14 @@ class Mucski(commands.Cog):
                 return
             await self.cd(member,victim)
             await self.cd(ctx.author,you)
-            msg = f"You got caught! You paid {percent:.0%} of your cookies for apologies to {member.name}"
+            msg = f"You got caught! You paid ``{percent:.0%}`` of your cookies for apologies to ``{member.name}``😭"
         await ctx.send(msg)
             
     @_cookie.command()
     async def search(self, ctx):
         """ Search for cookies in random places """
         r = random.sample(list(self.loc.keys()), 3)
-        await ctx.send("Chose a location to search from bellow")
+        await ctx.send("🔍Chose a location to search from bellow🔎")
         await ctx.send(f"``{r[0]}`` , ``{r[1]}``, ``{r[2]}``")
         def check(m):
             return m.content.lower() in r and m.channel == ctx.channel and m.author == ctx.author
