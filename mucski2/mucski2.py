@@ -90,7 +90,7 @@ class Mucski2(commands.Cog):
     @commands.command()
     async def rol(self, ctx):
         him = random.randint(1,6)
-        you = random.rsndint(1,6)
+        you = random.randint(1,6)
         if you < 6 and him > you:
             msg = "Oops, dealer won."
         elif you == him:
