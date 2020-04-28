@@ -295,13 +295,11 @@ class Mucski(commands.Cog):
         except asyncio.TimeoutError:
             return await ctx.send("Can't search if I don't know where.")
         cookie = await self.cv(ctx.author)
-        amt = int(random.triangular(100,200))
-        cookie = amt + cookie
-        if r[0] in self.badloc.keys():
-            await ctx.send(self.loc[msg.content.lower()])
-            return
+        if msg.content.lower() in self.badloc:
+            return await ctx.send(self.loc[msg.content.lower()])
         else:
+            amt = int(random.triangular(100,200))
+            cookie = amt + cookie
             await self.cd(ctx.author,cookie)
-            await ctx.send(self.loc[msg.content.lower()].format(amt))
-            return
+            return await ctx.send(self.loc[msg.content.lower()].format(amt))
     
