@@ -69,7 +69,7 @@ class Mucski(commands.Cog):
     #test
     @commands.command()
     async def bal(self):
-        await ctx.send(self.colour())
+        await ctx.send(self.color())
 
     @commands.group(name="cookie", aliases=['c', 'ce'])
     @commands.guild_only()
