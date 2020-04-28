@@ -85,11 +85,10 @@ class Mucski2(commands.Cog):
         e = discord.Embed(
             title = "Roll the dice",
             color = await self.color(ctx),
-            description=box(
-                f"You rolled: {you}\n",
-                f"Dealer rolled: {him}\n",
-                f"{msg}\n",
-            ),
+            description=
+                f"```You rolled: {you}\n"
+                f"Dealer rolled: {him}\n"
+                f"{msg}\n```"
         )
         e.set_thumbnail(url=ctx.bot.user.avatar_url)
         e.set_author(name=ctx.author, icon_url=ctx.author.avatar_url)
