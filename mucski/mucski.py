@@ -36,7 +36,7 @@ class Mucski(commands.Cog):
             "bulbbulb": "Type the following word in reverse ``blubblub``", 
             "dick": "You are working as a professional hunter. Shot the u out of a duck.",
             "redbot": "I'm a bot, but do you know my name?",
-            "mucski": f"Had to include it here ... just in case you forget. ``{self.shuffle_word('mucski')}``",
+            "mucski": f"Had to include it here ... Unscramble me. ``{self.shuffle_word('mucski')}``",
         }
         defaults = {
             "cookies": 0
@@ -188,7 +188,7 @@ class Mucski(commands.Cog):
         await ctx.send(msg)
     
     @_cookie.command()
-    @commands.cooldown(rate=1, per=0, type=commands.BucketType.user)
+    @commands.cooldown(rate=1, per=100, type=commands.BucketType.user)
     async def work(self, ctx):
         """ Work to earn some cookies """
         r = random.choice(list(self.work.keys()))
@@ -196,7 +196,7 @@ class Mucski(commands.Cog):
         def check(m):
             return m.content.lower() in r and m.guild == ctx.guild and m.author == ctx.author
         try:
-            await ctx.bot.wait_for('message', timeout=1, check=check)
+            await ctx.bot.wait_for('message', timeout=7, check=check)
         except asyncio.TimeoutError:
             return await ctx.send("Have to work harder than that ...😞")
         value = int(random.triangular(100,500))
