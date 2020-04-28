@@ -164,7 +164,38 @@ class Mucski(commands.Cog):
                         await self.cd(ctx.author,cookie)
                         msg = f"Oops, you lost ``{amount}`` cookies. 😞"
         await ctx.send(msg)
-      
+        
+    @_cookie.command()
+    async def roll(self, ctx, amount):
+        member = random.randint(1,6)
+        dealer = random.randint(1,6)
+        cookie = await self.cv(ctx.author)
+        try:
+            amount = int(amount)
+        except ValueError:
+            if amount == all:
+                amount = cookie
+            else:
+                amount = None
+                msg = "Need more cookies to play."
+        finally:
+            if amount is not None:
+                if cookies - abs(amount) < 0:
+                    msg = "Get yourself some cookies first"
+                else:
+                    #Game logic
+                    if you < 6 and dealer > you:
+                        msg = f"Dealer rolled ``{dealer}`` and you rolled ``{you}``. Busted. You lost ``{amount}`` amount of cookies."
+                        cookie - amount
+                        await self.cd(ctx.author,cookie)
+                    elif you == dealer:
+                        msg = f"Dealer rolled ``{dealer}`` and you rolled ``{you}``. Looks like its a tie."
+                    elif dealer < 6 and dealer < you:
+                        msg = f"Dealer rolled ``{dealer}`` and you rolles ``{you}``. Dealer busted. You won ``{amount}`` of cookies."
+                        cookie + amount
+                        await self.cd(ctx.author,cookie)
+        await ctx.send(msg)
+            
     @_cookie.command()
     async def give(self, ctx, amount, *, member: discord.Member):
         """ Give a member cookies """
