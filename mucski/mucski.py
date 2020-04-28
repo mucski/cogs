@@ -187,7 +187,7 @@ class Mucski(commands.Cog):
     async def work(self, ctx):
         """ Work to earn some cookies """
         r = random.choice(list(self.work.keys()))
-        await ctx.send(self.work[r])
+        await ctx.send(self.work[r].format())
         def check(m):
             return m.content.lower() in r and m.guild == ctx.guild and m.author == ctx.author
         try:
