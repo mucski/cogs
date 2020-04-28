@@ -16,8 +16,8 @@ class Mucski(commands.Cog):
         self.conf = Config.get_conf(self, 82838559382, force_registration=True)
         self.loc = {
             "cellar": "You went into the cellar looking for a fine wine, got scared by a rat and found ``{}`` cookies instead.",
-            "moon": "A giant leap to man kind, Armstrong left some ````{}```` cookies here though.",
-            "forest": "You went trekking into the forest, found ````{}```` cookies laying around in an abandoned camp.",
+            "moon": "A giant leap to man kind, Armstrong left some ``{}`` cookies here though.",
+            "forest": "You went trekking into the forest, found ``{}`` cookies laying around in an abandoned camp.",
             "fridge": "Nothing beats frozen cookies, Right? Wrong.",
             "sewer": "You descended into the sewers hoping to find a dancing clown, found ``{}`` cookies instead. ",
             "dog": "Why would you do that.. that's animal abuse.",
