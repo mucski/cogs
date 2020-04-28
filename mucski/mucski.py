@@ -63,7 +63,7 @@ class Mucski(commands.Cog):
         return ''.join(word)
         
     async def color(self, channel):
-        return await ctx.bot.get_embed_color(location=channel)
+        return await bot.get_embed_color(location=channel)
     
     #test
     @commands.command()
