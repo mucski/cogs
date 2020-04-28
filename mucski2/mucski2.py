@@ -64,20 +64,6 @@ class Mucski2(commands.Cog):
         e = discord.Embed(color=await self.color(ctx))
         e.set_image(url=member.avatar_url)
         await ctx.send(embed=e)
-    
-        
-    @commands.command()
-    async def emtest(self, ctx):
-        e = discord.Embed({embed: {
-            color: await self.color(ctx),
-            author: {
-                name: ctx.author,
-                icon_url: ctx.bot.user.avatar_url(),
-            },
-            title: "Your mum",
-            description: "Test",
-        }})
-        await ctx.send(e)
         
     @commands.command()
     async def test(self, ctx):
