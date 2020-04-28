@@ -68,7 +68,7 @@ class Mucski(commands.Cog):
     
     #test
     @commands.command()
-    async def bal(self):
+    async def bal(self, ctx):
         color = await self.color
         await ctx.send(color)
 
