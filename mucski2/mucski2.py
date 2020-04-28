@@ -68,7 +68,7 @@ class Mucski2(commands.Cog):
         
     @commands.command()
     async def emtest(self, ctx):
-        e = {embed: {
+        e = discord.Embed({embed: {
             color: await self.color(ctx),
             author: {
                 name: ctx.author,
@@ -76,7 +76,7 @@ class Mucski2(commands.Cog):
             },
             title: "Your mum",
             description: "Test",
-        }}
+        }})
         await ctx.send(e)
         
     @commands.command()
