@@ -96,7 +96,7 @@ class Mucski2(commands.Cog):
             msg = "Oops, dealer won."
         elif you == him:
             msg = "Looks like its a tie."
-        elif: him < 6 and you > him:
+        elif him < 6 and you > him:
             msg = "Yay you won."
         await ctx.send(msg)
         
