@@ -18,16 +18,17 @@ class Mucski(commands.Cog):
             "cellar": "You went into the cellar looking for a fine wine, got scared by a rat and found ``{}`` cookies instead.",
             "moon": "A giant leap to man kind, Armstrong left some ````{}```` cookies here though.",
             "forest": "You went trekking into the forest, found ````{}```` cookies laying around in an abandoned camp.",
-            "fridge": "Nothing beats frozen cookies, Right? Wrong. Found ``{}`` cookies behind some meat loaf leftowers though.",
+            "fridge": "Nothing beats frozen cookies, Right? Wrong.",
             "sewer": "You descended into the sewers hoping to find a dancing clown, found ``{}`` cookies instead. ",
-            "dog": "Found ``{}`` cookies in dog.... Shit. Why would you do that.. ",
-            "toilet": "As disgusting as it sounds, you found ``{}`` cookies in the toilet bowl. Lucky no one used the toilet before you. ", 
+            "dog": "Why would you do that.. that's animal abuse.",
+            "toilet": "Why would you search a toilet... That's disgusting and so are you. ", 
             "box": "You rummaged through a box of forgotten items, found ``{}`` cookies. Lucky you. ", 
             "drawer": "After going through many panties, a dildo, and a hand gun, you found ``{}`` cookies wrapped in socks", 
             "story book": "You were looking for Little Red Riding Hood, instead you found ``{}`` cookies hidden in a tree bark. ", 
             "set": "You are the next star for Ironing Man. While equipping his armor you found ``{}`` cookies in one of the hidden compartments. ",
             "hospital": "You searched the hospital and found ``{}`` cookies. Don't eat them though, may be infected with covid19.",
         }
+        self.badloc = ['fridge','dog','toilet']
         self.work = {
             "hot dog":"You are working outside with a cart. Un scramble the following word ``dot goh``", 
             "cauterize": "You're a pro Paladins player. What do you buy first at match start? ", 
@@ -296,6 +297,12 @@ class Mucski(commands.Cog):
         cookie = await self.cv(ctx.author)
         amt = int(random.triangular(100,200))
         cookie = amt + cookie
-        await self.cd(ctx.author,cookie)
-        return await ctx.send(self.loc[msg.content.lower()].format(amt))
+        if r in self.badloc:
+            msg = self.loc[msg.content.lower()]
+            return
+        else:
+            await self.cd(ctx.author,cookie)
+            msg = self.loc[msg.content.lower()].format(amt)
+            return
+        await ctx.send(msg)
     
