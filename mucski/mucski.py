@@ -57,11 +57,13 @@ class Mucski(commands.Cog):
     async def cd(self, member, amt):
         return await self.conf.user(member).cookies.set(amt)
         
+    #Shuffle only works on lists, so converting word to list then word
     def shuffle_word(self, word):
         word = list(word)
         random.shuffle(word)
         return ''.join(word)
-        
+    
+    #Get thet bot color for embeds 'await self.color(ctx)'
     async def color(self, ctx):
         return await ctx.bot.get_embed_color(location=ctx.channel)
     
@@ -239,7 +241,7 @@ class Mucski(commands.Cog):
         page_list=[]
         for page_num, page in enumerate(pagify(text, delims=['\n'], page_length=1000), start=1):
             embed=discord.Embed(
-                color=await ctx.bot.get_embed_color(location=ctx.channel),
+                color=await self.color(ctx),
                 description=box(f"Cookieboards", lang="prolog") + (box(page, lang="md")),
             )
             embed.set_footer (
