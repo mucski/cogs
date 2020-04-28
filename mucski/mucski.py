@@ -180,7 +180,7 @@ class Mucski(commands.Cog):
                 msg = "Need more cookies to play."
         finally:
             if amount is not None:
-                if cookies - abs(amount) < 0:
+                if cookie - abs(amount) < 0:
                     msg = "Get yourself some cookies first"
                 else:
                     #Game logic
