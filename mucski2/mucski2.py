@@ -27,9 +27,13 @@ class Mucski2(commands.Cog):
         }
     
     
+    #Get thet bot color for embeds 'await self.color(ctx)'
+    async def color(self, ctx):
+        return await ctx.bot.get_embed_color(location=ctx.channel)
+    
     @commands.command(name="emote", aliases=['emoji'])
     async def emote(self, ctx, emoji: discord.PartialEmoji):
-        e = discord.Embed()
+        e = discord.Embed(color=await self.color(ctx))
         e.set_image(url=emoji.url)
         await ctx.send(embed=e)
     
@@ -49,7 +53,7 @@ class Mucski2(commands.Cog):
     @commands.command()
     async def oof(self, ctx):
         msg = "https://media2.giphy.com/media/S3Qafn57JDnsfRfbFc/giphy.gif"
-        e = discord.Embed()
+        e = discord.Embed(color=await self.color(ctx))
         e.set_image(url=msg)
         await ctx.send(embed=e)
         
@@ -57,7 +61,7 @@ class Mucski2(commands.Cog):
     async def avatar(self, ctx, member: discord.Member=None):
         if member is None:
             member = ctx.author
-        e = discord.Embed()
+        e = discord.Embed(color=await self.color(ctx))
         e.set_image(url=member.avatar_url)
         await ctx.send(embed=e)
     
