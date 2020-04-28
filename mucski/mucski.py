@@ -174,7 +174,7 @@ class Mucski(commands.Cog):
             amount = int(amount)
         except ValueError:
             if amount == all:
-                cookie = amount
+                amount = cookie
             else:
                 amount = None
                 msg = "Need more cookies to play."
@@ -185,13 +185,13 @@ class Mucski(commands.Cog):
                 else:
                     #Game logic
                     if member < 6 and dealer > member:
-                        msg = f"Dealer rolled ``{dealer}`` and you rolled ``{member}``. Busted. You lost ``{amount}`` amount of cookies."
+                        msg = f"Dealer rolled ``{dealer}`` and you rolled ``{member}``. Busted. You lost ``{amount}`` cookies."
                         cookie -= amount
                         await self.cd(ctx.author,cookie)
                     elif member == dealer:
                         msg = f"Dealer rolled ``{dealer}`` and you rolled ``{member}``. Looks like its a tie."
                     elif dealer < 6 and dealer < member:
-                        msg = f"Dealer rolled ``{dealer}`` and you rolled ``{member}``. Dealer busted. You won ``{amount}`` of cookies."
+                        msg = f"Dealer rolled ``{dealer}`` and you rolled ``{member}``. Dealer busted. You won ``{amount}`` cookies."
                         cookie += amount
                         await self.cd(ctx.author,cookie)
         await ctx.send(msg)
