@@ -174,7 +174,7 @@ class Mucski(commands.Cog):
             amount = int(amount)
         except ValueError:
             if amount == all:
-                amount = cookie
+                cookie = amount
             else:
                 amount = None
                 msg = "Need more cookies to play."
