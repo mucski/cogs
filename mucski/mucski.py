@@ -297,7 +297,7 @@ class Mucski(commands.Cog):
         cookie = await self.cv(ctx.author)
         amt = int(random.triangular(100,200))
         cookie = amt + cookie
-        if r in self.badloc:
+        if r[0] in self.badloc:
             await ctx.send(self.loc[msg.content.lower()])
             return
         else:
