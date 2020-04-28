@@ -191,7 +191,7 @@ class Mucski(commands.Cog):
                     elif member == dealer:
                         msg = f"Dealer rolled ``{dealer}`` and you rolled ``{member}``. Looks like its a tie."
                     elif dealer < 6 and dealer < member:
-                        msg = f"Dealer rolled ``{dealer}`` and you rolles ``{member}``. Dealer busted. You won ``{amount}`` of cookies."
+                        msg = f"Dealer rolled ``{dealer}`` and you rolled ``{member}``. Dealer busted. You won ``{amount}`` of cookies."
                         cookie + amount
                         await self.cd(ctx.author,cookie)
         await ctx.send(msg)
