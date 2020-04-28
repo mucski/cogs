@@ -62,13 +62,13 @@ class Mucski(commands.Cog):
         random.shuffle(word)
         return ''.join(word)
         
-    async def color(self, channel):
-        return await bot.get_embed_color(location=channel)
+    async def color(self, ctx):
+        return await ctx.bot.get_embed_color(location=ctx.channel)
     
     #test
     @commands.command()
     async def bal(self, ctx):
-        color = await self.color(ctx.channel)
+        color = await self.color()
         await ctx.send(color)
 
     @commands.group(name="cookie", aliases=['c', 'ce'])
