@@ -209,8 +209,8 @@ class Mucski(commands.Cog):
         await self.cd(ctx.author,cookie)
         await ctx.send(f"Claimed your daily cookies. You have ``{cookie}`` cookies now. Come back in 12 hours.🙄")
   
-    @_cookie.command()
-    async def lb(self, ctx):
+    @_cookie.command(name="leaderboard", aliases=['lb', 'cb', 'cookieboard'])
+    async def leaderboard(self, ctx):
         """Cookieboards UwU"""
         userinfo = await self.conf.all_users()
         if not userinfo:
