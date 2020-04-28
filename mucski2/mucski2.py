@@ -68,17 +68,16 @@ class Mucski2(commands.Cog):
         
     @commands.command()
     async def emtest(self, ctx):
-        e = discord.Embed(description="Profile ")
-        e.set_thumbnail(url=ctx.author.avatar_url)
-        e.add_field(name="Cookies in your jar {cookies}", value="dsdg")
-        e.add_field(name="Daily claimed: Yes", value="dddg")
-        e.add_field(name="Items owned: 0", value="ddfh")
-        e.add_field(name="Daily cooldown: 0s", value="dddfh")
-        e.add_field(name="Locks picked: 0", value="fdssh")
-        e.add_field(name="Field ready to farm: No", value="sssfhh")
-        e.set_image(url="https://comicvine1.cbsistatic.com/uploads/scale_medium/11125/111253436/6733777-4.jpg")
-        e.set_footer(text="Powered by your mom")
-        await ctx.send(embed=e)
+        e = {embed: {
+            color: await self.color(ctx),
+            author: {
+                name: ctx.author,
+                icon_url: ctx.bot.user.avatar_url(),
+            },
+            title: "Your mum",
+            description: "Test",
+        }}
+        await ctx.send(e)
         
     @commands.command()
     async def test(self, ctx):
