@@ -97,7 +97,10 @@ class Mucski2(commands.Cog):
             msg = "Looks like its a tie."
         elif him < 6 and you > him:
             msg = "Yay you won."
-        await ctx.send(msg)
-        await ctx.send(f"You rolled {you}")
-        await ctx.send(f"Dealer rolled {him}")
+        e = discord.Embed(description="Roll the dice.", color=await self.color(ctx))
+        e.set_thumbnail(url=ctx.bot.avatar_url)
+        e.add_field(name="Dealer rolled", value=f"{you}")
+        e.add_field(name="You rolled", value=f"{him}")
+        e.add_field(name="Dealer says:", value=f"{msg}")
+        await ctx.send(embed=e)
         
