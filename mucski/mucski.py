@@ -36,7 +36,7 @@ class Mucski(commands.Cog):
             "bulbbulb": "Type the following word in reverse ``blubblub``", 
             "dick": "You are working as a professional hunter. Shot the u out of a duck.",
             "redbot": "I'm a bot, but do you know my name?",
-            "mucski": f"Had to include it here ... just in case you forget. ``{await reversed('mucski')}``",
+            "mucski": f"Had to include it here ... just in case you forget. ``{async with reversed('mucski')}``",
         }
         defaults = {
             "cookies": 0
