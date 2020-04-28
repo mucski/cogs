@@ -133,12 +133,13 @@ class Mucski(commands.Cog):
         else:
             cooling = "No"
         #build embed
-        e = discord.Embed(description=f"Profile for {member.name}", color=await self.color(ctx))
+        e = discord.Embed(color=await self.color(ctx))
+        e.set_author(name=f"Profile for {member.name}", icon_url=member.avatar_url)
         e.set_thumbnail(url=member.avatar_url)
         e.add_field(name="Cookies owned", value=f"``{cookie}``")
         e.add_field(name="Daily on cooldown", value=f"``{cooling}``")
         e.set_image(url="")
-        e.set_footer(text="More to come.")
+        e.set_footer(text=datetime.datetime.utcnow())
         await ctx.send(embed=e)
         
     @_cookie.command()
