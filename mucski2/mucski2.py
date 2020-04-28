@@ -86,8 +86,8 @@ class Mucski2(commands.Cog):
             title = "Roll the dice",
             color = await self.color(ctx),
             description=box(
-                f"You rolled: {you}",\n
-                f"Dealer rolled: {him}",\n
+                f"You rolled: {you}",
+                f"Dealer rolled: {him}",
                 f"{msg}",
             ),
         )
