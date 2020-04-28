@@ -114,7 +114,7 @@ class Mucski(commands.Cog):
         await self.conf.clear_all()
         await ctx.send("Database cleared.")
     
-    @_cookie.command(name="profile" aliases=['balance'])
+    @_cookie.command(name="profile", aliases=['balance'])
     async def profile(self, ctx, *, member: discord.Member=None):
         """ Checks your balance or some ones """
         if member is None:
