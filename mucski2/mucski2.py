@@ -85,7 +85,7 @@ class Mucski2(commands.Cog):
         description = (
             f'You rolled: - **{you}**\n'
             f'Dealer rolled: - **{him}**\n\n'
-            f'{msg}'
+            f'{msg}\a'
         )
         e = discord.Embed(color = await self.color(ctx), description=description)
         e.set_thumbnail(url=ctx.bot.user.avatar_url)
