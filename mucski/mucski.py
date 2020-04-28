@@ -205,7 +205,7 @@ class Mucski(commands.Cog):
         await self.cd(ctx.author,cookie)
         return await ctx.send(f"Well done, you earned ``{value}`` cookies for todays work.😴")
     
-    @_cookie.command()
+    @_cookie.command(cooldown_after_parsing=True)
     @commands.cooldown(rate=1, per=43200, type=commands.BucketType.user)
     async def daily(self, ctx):
         """Daily cookies"""
