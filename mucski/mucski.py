@@ -62,7 +62,7 @@ class Mucski(commands.Cog):
         random.shuffle(word)
         return ''.join(word)
         
-    def color(self):
+    async def color(self):
         return await ctx.bot.get_embed_color(location=ctx.channel)
     
     #test
