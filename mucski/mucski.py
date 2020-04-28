@@ -81,12 +81,13 @@ class Mucski(commands.Cog):
     
         Commands:
         `search` - search for cookies in random locations
-        `balance` - checks user balance
+        `profile` - view your stats and profile
         `work` - earn random ammount of cookies between 100,500
         `daily` - earns 1000 cookies every 12 hours (subject to change)
         `gamble` - gambling is bad for your health
-        `steal` - 60% chance of stealing someones cookie, otherwise pay them
-        `lb` - leaderboards
+        `steal` - steal someones cookies
+        `leaderboard or lb` - leaderboards
+        `roll` - another form of gambling (roll the dice)
     
         More to come.
         """
@@ -95,6 +96,7 @@ class Mucski(commands.Cog):
     @_cookie.command()
     @checks.is_owner()
     async def add(self, ctx, amount: int, *, member: discord.Member=None):
+        """ Only shown to owner, adds cookies to test"""
         if member is None:
             member = ctx.author
         cookie = await self.cv(member)
@@ -105,6 +107,7 @@ class Mucski(commands.Cog):
     @_cookie.command()
     @checks.is_owner()
     async def remove(self, ctx, amount: int, *, member: discord.Member=None):
+        """Test cookie removal"""
         if member is None:
             member = ctx.author
         cookie = await self.cv(member)
@@ -115,6 +118,7 @@ class Mucski(commands.Cog):
     @_cookie.command()
     @checks.is_owner()
     async def clear(self, ctx):
+        """Clears the entire db"""
         await self.conf.clear_all()
         await ctx.send("Database cleared.")
     
@@ -167,6 +171,7 @@ class Mucski(commands.Cog):
         
     @_cookie.command()
     async def roll(self, ctx, amount):
+        """Roll the dice see if you win"""
         member = random.randint(1,6)
         dealer = random.randint(1,6)
         cookie = await self.cv(ctx.author)
