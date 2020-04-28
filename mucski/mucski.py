@@ -173,7 +173,7 @@ class Mucski(commands.Cog):
         try:
             amount = int(amount)
         except ValueError:
-            if amount == all:
+            if amount == 'all':
                 amount = cookie
             else:
                 amount = None
