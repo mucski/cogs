@@ -27,7 +27,7 @@ class Mucski2(commands.Cog):
         }
     
     
-    @commands.command()
+    @commands.command(name="emote", aliases=['emoji'])
     async def emote(self, ctx, emoji: discord.PartialEmoji):
         e = discord.Embed()
         e.set_image(url=emoji.url)
@@ -53,7 +53,7 @@ class Mucski2(commands.Cog):
         e.set_image(url=msg)
         await ctx.send(embed=e)
         
-    @commands.command()
+    @commands.command(name="avatar", aliases=['pfp'])
     async def avatar(self, ctx, member: discord.Member=None):
         if member is None:
             member = ctx.author
