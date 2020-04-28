@@ -120,10 +120,15 @@ class Mucski(commands.Cog):
         if member is None:
             member = ctx.author
         cookie = await self.cv(member)
+        if self.bot.get_command('cookie daily').is_on_cooldown(ctx) == True:
+            cooling = "Yes"
+        else:
+            cooling = "No"
         #build embed
         e = discord.Embed(description=f"Profile for {member.name}")
         e.set_thumbnail(url=member.avatar_url)
         e.add_field(name="Cookies owned", value=f"``{cookie}``")
+        e.add_field(name="Daily on cooldown", value=f"``{cooling}``")
         e.set_image(url="")
         e.set_footer(text="More to come.")
         await ctx.send(embed=e)
