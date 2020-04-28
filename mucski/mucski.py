@@ -36,7 +36,7 @@ class Mucski(commands.Cog):
             "bulbbulb": "Type the following word in reverse ``blubblub``", 
             "dick": "You are working as a professional hunter. Shot the u out of a duck.",
             "redbot": "I'm a bot, but do you know my name?",
-            "mucski": f"Had to include it here ... just in case you forget. {mucski[::-1]}",
+            "mucski": "Had to include it here ... just in case you forget. mucski[::-1]",
         }
         defaults = {
             "cookies": 0
