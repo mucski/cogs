@@ -187,11 +187,11 @@ class Mucski(commands.Cog):
     async def work(self, ctx):
         """ Work to earn some cookies """
         r = random.choice(list(self.work.keys()))
-        await ctx.send(f"{self.work[r]}")
+        await ctx.send(self.work[r])
         def check(m):
             return m.content.lower() in r and m.guild == ctx.guild and m.author == ctx.author
         try:
-            await ctx.bot.wait_for('message', timeout=7, check=check)
+            await ctx.bot.wait_for('message', timeout=1, check=check)
         except asyncio.TimeoutError:
             return await ctx.send("Have to work harder than that ...😞")
         value = int(random.triangular(100,500))
