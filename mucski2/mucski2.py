@@ -33,9 +33,7 @@ class Mucski2(commands.Cog):
     
     @commands.command(name="emote", aliases=['emoji'])
     async def emote(self, ctx, emoji: discord.PartialEmoji):
-        e = discord.Embed(color=await self.color(ctx))
-        e.set_image(url=emoji.url)
-        await ctx.send(embed=e)
+        await ctx.send(emoji.url)
     
     @commands.command()
     async def who(self, ctx, channel: discord.TextChannel, messageid: int):
@@ -61,9 +59,7 @@ class Mucski2(commands.Cog):
     async def avatar(self, ctx, member: discord.Member=None):
         if member is None:
             member = ctx.author
-        e = discord.Embed(color=await self.color(ctx))
-        e.set_image(url=member.avatar_url)
-        await ctx.send(embed=e)
+        await ctx.send(member.avatar_url)
         
     @commands.command()
     async def test(self, ctx):
