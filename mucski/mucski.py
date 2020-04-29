@@ -44,10 +44,14 @@ class Mucski(commands.Cog):
             "depression": f"Unscramble the following word ``{self.shuffle_word('depression')}``",
         }
         defaults = {
-            "cookies": 0
+            "cookies": 0,
+            "daily_stamp": 0,
+            "steal_stamp": 0,
         }
         default_guild = {
             "event_timer": 120,
+            "daily_timer": 0, #hours
+            "steal_timer": 0, #hours
             "channels": []
         }
         self.conf.register_user(**defaults)
@@ -234,15 +238,28 @@ class Mucski(commands.Cog):
         cookie += value
         await self.cd(ctx.author,cookie)
         return await ctx.send(f"Well done, you earned ``{value}`` cookies for todays work.😴")
+        
+    @commands.command()
+    async def settimer(self, ctx, amt: int):
+        await self.conf.guild(ctx.guild).daily_timer.set(amt)
+        await ctx.set(f"successfully set {amt} hours")
     
-    @_cookie.command(cooldown_after_parsing=True)
-    @commands.cooldown(rate=1, per=43200, type=commands.BucketType.user)
+    @_cookie.command()
     async def daily(self, ctx):
         """Daily cookies"""
-        cookie = await self.cv(ctx.author)
-        cookie += 1000
-        await self.cd(ctx.author,cookie)
-        await ctx.send(f"Claimed your daily cookies. You have ``{cookie}`` cookies now. Come back in 12 hours.🙄")
+        now = datetime.utcnow().replace(milisecond=0)
+        daily_stamp = await self.conf.user(member).daily_stamp()
+        if now.timestamp() < daily_stamp():
+            await ctx.send(f"on cooldown{datetime.fromtimestamp(daily_stamp)}")
+        else:
+            await ctx.send(f"Claimed your daily cookies. You have ``{cookie}`` cookies now. Come back in 12 hours.🙄")
+            cookie = await self.cv(ctx.author)
+            cookie += 1000
+            timer = timedelta(hours=daily_timer)
+            daily_timer = await self.conf.guild(ctx.guild).daily_timer()
+            next_cd = timer + now
+            await self.cd(ctx.author,cookie)
+            await self.conf.user(member).daily_stamp.set(next_cd.timestamp())
   
     @_cookie.command(name="leaderboard", aliases=['lb', 'cb', 'cookieboard'])
     async def leaderboard(self, ctx):
