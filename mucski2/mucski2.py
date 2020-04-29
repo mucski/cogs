@@ -75,20 +75,23 @@ class Mucski2(commands.Cog):
 
     @commands.command()
     async def timeop(self, ctx, msg):
-        date_format = "%d/%m/%Y %H%M%S" #Used for a and b
+        #date_format = "%d/%m/%Y %H%M%S" #Used for a and b
+        date_format = "%d%m %H%S"
         time = datetime.now()
+        the_time = time.strftime(date_format)
         othertime = ctx.message.created_at
-        a = datetime.strptime(time, date_format)
-        b = datetime.strptime(othertime, date_format)
-        c = datetime.now()
-        d= datetime.strptime('093000', '%H%M%S')        #Only for time comparison if someone need it.
-        e= datetime.strptime('093000', '%H%M%S')
-        delta = c - b  # Difference between time(s); you can play with a,b and c here since they are in same format
-        gr=d==e # Comparison operator on time if needed can use (>, <, >=, <= and == etc.); time only
-        fr=c>=b # Comparison operator on time if needed can use (>, <, >=, <= and == etc.); date and time                  
-        days = delta.days
-        del_sec = delta.seconds
-        await ctx.send(f"{delta},{gr},{fr}")
+        other_time = othertime.strftime(date_time)
+        #a = datetime.strptime(time, date_format)
+        #b = datetime.strptime(othertime, date_format)
+        #c = datetime.now()
+        #d= datetime.strptime('093000', '%H%M%S')        #Only for time comparison if someone need it.
+        #e= datetime.strptime('093000', '%H%M%S')
+        #delta = c - b  # Difference between time(s); you can play with a,b and c here since they are in same format
+        #gr=d==e # Comparison operator on time if needed can use (>, <, >=, <= and == etc.); time only
+        #fr=c>=b # Comparison operator on time if needed can use (>, <, >=, <= and == etc.); date and time                  
+        #days = delta.days
+        #del_sec = delta.seconds
+        await ctx.send(f"time now {now},message created at {othertime}")
         
     @commands.command()
     async def rol(self, ctx):
