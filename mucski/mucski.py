@@ -138,7 +138,9 @@ class Mucski(commands.Cog):
         if member is None:
             member = ctx.author
         cookie = await self.cv(member)
-        if self.bot.get_command('cookie daily').is_on_cooldown(ctx) == True:
+        now = datetime.utcnow().replace(microsecond=0)
+        daily_stamp = await self.conf.user(member).daily_stamp()
+        if now.timestamp() < daily_stamp:
             cooling = "Yes"
         else:
             cooling = "No"
@@ -148,7 +150,7 @@ class Mucski(commands.Cog):
         e.set_thumbnail(url=member.avatar_url)
         e.add_field(name="Cookies owned", value=f"``{cookie}``")
         e.add_field(name="Daily on cooldown", value=f"``{cooling}``")
-        e.set_image(url="")
+        e.add_field(name="Cooldown until", value=f"{datetime.fromtimestamp(daily_stamp)}")
         e.set_footer(text=datetime.datetime.utcnow())
         await ctx.send(embed=e)
         
