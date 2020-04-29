@@ -107,7 +107,7 @@ class Mucski2(commands.Cog):
         now = calendar.timegm(datetime.utcnow().utctimetuple())
         raff = await self.db.guild(guild).Raffle.all()
         remaining = raff["Timestamp"] - now
-        if remaining <= 0:
+        #if remaining <= 0:
             #do something
             
         timer = self.time_converter(timer)
