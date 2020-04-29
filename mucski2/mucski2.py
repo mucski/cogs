@@ -26,6 +26,7 @@ class Mucski2(commands.Cog):
             "gold": 0,
             "datetime": "",
             "daily_stamp": 0,
+            "daily_timer": 0,
         }
         self.conf.register_user(**defaults)
     
@@ -71,6 +72,7 @@ class Mucski2(commands.Cog):
         now = datetime.utcnow().replace(microsecond=0)
         future = now + timer
         await self.conf.user(member).daily_stamp.set(future.timestamp())
+        await self.conf.user(member).daily_timer.set(amt)
         await ctx.send(f"successfully set {future}")
         
     @commands.command()
@@ -88,7 +90,8 @@ class Mucski2(commands.Cog):
             await ctx.send(f"command on cooldown until {datetime.fromtimestamp(daily_stamp)}")
         else:
             await ctx.send("yay it works")
-            timer = datetime.fromtimestamp(daily_stamp)
+            await self.conf.user(member).daily_timer()
+            timer = timestamp(minutes=daily_timer)
             next_cd = now + timer
             await self.conf.user(member).daily_stamp.set(next_cd.timestamp())
 
