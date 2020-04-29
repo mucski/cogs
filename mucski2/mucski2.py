@@ -5,6 +5,7 @@ import math
 import random
 import time
 import re
+import calendar
 from discord.ext import tasks, commands
 from datetime import datetime
 
@@ -24,6 +25,7 @@ class Mucski2(commands.Cog):
         defaults = {
             "gold": 0,
             "datetime": "",
+            "daily_cd": 12:00
         }
         self.conf.register_user(**defaults)
         
@@ -69,10 +71,21 @@ class Mucski2(commands.Cog):
         
     @commands.command()
     async def test(self, ctx):
-        async for message in ctx.channel.history(limit=5):
-            #delta = datetime.datetime.utcnow() - message.created_at
-            await ctx.send(msg)
-
+        timer = await self.conf.user(member).daily_cd()
+        timer = self.time_converter(timer)
+        now = calendar.timegm(datetime.utcnow().utctimetuple())
+        now = await self.set_time(now)
+        now2 = await self.get_time()
+        if timer + now2 != now:
+            await ctx.send("on cooldown until f"{timer + now2}")
+    
+    @staticmethod
+    def time_converter(units):
+        try:
+            return sum(int(x) * 60 ** i for i, x in enumerate(reversed(units.split(":"))))
+        except ValueError:
+            return None
+            
     @commands.command()
     async def timeop(self, ctx):
         #date_format = "%d/%m/%Y %H%M%S" #Used for a and b
@@ -91,6 +104,15 @@ class Mucski2(commands.Cog):
         #fr=c>=b # Comparison operator on time if needed can use (>, <, >=, <= and == etc.); date and time                  
         #days = delta.days
         #del_sec = delta.seconds
+        now = calendar.timegm(datetime.utcnow().utctimetuple())
+        raff = await self.db.guild(guild).Raffle.all()
+        remaining = raff["Timestamp"] - now
+        if remaining <= 0:
+            #do something
+            
+        timer = self.time_converter(timer)
+        end = calendar.timegm(ctx.message.created_at.utctimetuple()) + timer
+        fmt_end = time.strftime("%a %d %b %Y %H:%M:%S", time.gmtime(end))
         await ctx.send(f"time now {the_time},message created at {other_time}, and this is the future{furure}")
         
     @commands.command()
