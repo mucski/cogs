@@ -247,6 +247,7 @@ class Mucski(commands.Cog):
     @_cookie.command()
     async def daily(self, ctx):
         """Daily cookies"""
+        member = ctx.author
         now = datetime.utcnow().replace(microsecond=0)
         daily_stamp = await self.conf.user(member).daily_stamp()
         if now.timestamp() < daily_stamp():
