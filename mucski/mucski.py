@@ -228,7 +228,7 @@ class Mucski(commands.Cog):
     @_cookie.command()
     async def work(self, ctx):
         now = datetime.utcnow().replace(microsecond=0)
-        work_stamp = await self.conf.guild(ctx.guild).work_stamp()
+        work_stamp = await self.conf.user.(member).work_stamp()
         if now.timestamp() < work_stamp:
             #await ctx.send(f"Try again in {}") todo change its
             await ctx.send("on cd")
@@ -265,7 +265,7 @@ class Mucski(commands.Cog):
     @commands.command()
     async def worktimer(self, ctx, amt: int):
         await self.conf.guild(ctx.guild).work_timer.set(amt)
-        await ctx.send(f" sufcesfully set {amt} hours")
+        await ctx.send(f" sufcesfully set {amt} minutes")
     
     @_cookie.command()
     async def daily(self, ctx):
