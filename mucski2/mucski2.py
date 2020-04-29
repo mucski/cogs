@@ -74,7 +74,7 @@ class Mucski2(commands.Cog):
         await ctx.send(msg)
 
     @commands.command()
-    async def timeop(self, ctx, msg)
+    async def timeop(self, ctx, msg):
         date_format = "%d/%m/%Y %H%M%S" #Used for a and b
         a = datetime.strptime(datetime.utcnow(), date_format)
         b = datetime.strptime(ctx.message.created_at, date_format)
