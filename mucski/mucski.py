@@ -228,7 +228,7 @@ class Mucski(commands.Cog):
     @_cookie.command()
     async def work(self, ctx):
         now = datetime.utcnow().replace(microsecond=0)
-        work_stamp = await self.conf.user.(member).work_stamp()
+        work_stamp = await self.conf.user(member).work_stamp()
         if now.timestamp() < work_stamp:
             #await ctx.send(f"Try again in {}") todo change its
             await ctx.send("on cd")
