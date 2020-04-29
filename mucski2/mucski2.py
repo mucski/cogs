@@ -71,7 +71,7 @@ class Mucski2(commands.Cog):
     async def test(self, ctx):
         async for message in ctx.channel.history(limit=5):
             #delta = datetime.datetime.utcnow() - message.created_at
-        await ctx.send(msg)
+            await ctx.send(msg)
 
     @commands.command()
     async def timeop(self, ctx, msg):
