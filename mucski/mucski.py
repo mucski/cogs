@@ -324,7 +324,7 @@ class Mucski(commands.Cog):
             you += round(percent * victim)
             await self.cd(member,victim)
             await self.cd(ctx.author,you)
-            msg = f"You've succesfully stolen ``{percent:.0%}`` cookies from ``{member.name}``.😱"
+            msg = f"💎 You've succesfully stolen ``{percent:.0%}`` cookies from ``{member.name}``.😱"
         else:
             victim += round(percent * you)
             you -= round(percent * you)
@@ -333,7 +333,7 @@ class Mucski(commands.Cog):
                 return
             await self.cd(member,victim)
             await self.cd(ctx.author,you)
-            msg = f"You got caught! You paid ``{percent:.0%}`` of your cookies for apologies to ``{member.name}``😭"
+            msg = f"👮‍♂️ You got caught! You paid ``{percent:.0%}`` of your cookies for apologies to ``{member.name}``😭"
         await ctx.send(msg)
             
     @_cookie.command()
