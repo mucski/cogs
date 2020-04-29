@@ -76,7 +76,7 @@ class Mucski2(commands.Cog):
     @commands.command()
     async def timeop(self, ctx):
         #date_format = "%d/%m/%Y %H%M%S" #Used for a and b
-        date_format = "%d%m %H%S"
+        date_format = "%d/%m %H:%S"
         time = datetime.now()
         the_time = time.strftime(date_format)
         othertime = ctx.message.created_at
@@ -91,7 +91,7 @@ class Mucski2(commands.Cog):
         #fr=c>=b # Comparison operator on time if needed can use (>, <, >=, <= and == etc.); date and time                  
         #days = delta.days
         #del_sec = delta.seconds
-        await ctx.send(f"time now {the_time},message created at {othertime}")
+        await ctx.send(f"time now {the_time},message created at {other_time}")
         
     @commands.command()
     async def rol(self, ctx):
