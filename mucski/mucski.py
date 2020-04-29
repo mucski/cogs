@@ -158,6 +158,8 @@ class Mucski(commands.Cog):
             if amount is not None:
                 if cookie - abs(amount) < 0:
                     msg = "Go get yourself some cookies then try again."
+                elif amount <= 0:
+                    msg = "Invalid number of cookies."
                 else:
                     if random.random() < 0.3:
                         winning = amount*2
@@ -188,6 +190,8 @@ class Mucski(commands.Cog):
             if amount is not None:
                 if cookie - abs(amount) < 0:
                     msg = "Get yourself some cookies first"
+                elif amount <= 0:
+                    msg = "Invalid amount of cookies!"
                 else:
                     #Game logic
                     if member < 6 and dealer > member:
