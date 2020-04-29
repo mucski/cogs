@@ -76,8 +76,10 @@ class Mucski2(commands.Cog):
     @commands.command()
     async def timeop(self, ctx, msg):
         date_format = "%d/%m/%Y %H%M%S" #Used for a and b
-        a = datetime.strptime(datetime.utcnow(), date_format)
-        b = datetime.strptime(ctx.message.created_at, date_format)
+        time = datetime.now()
+        othertime = ctx.message.created_at
+        a = datetime.strptime(time, date_format)
+        b = datetime.strptime(othertime, date_format)
         c = datetime.now()
         d= datetime.strptime('093000', '%H%M%S')        #Only for time comparison if someone need it.
         e= datetime.strptime('093000', '%H%M%S')
