@@ -71,8 +71,22 @@ class Mucski2(commands.Cog):
     async def test(self, ctx):
         async for message in ctx.channel.history(limit=5):
             #delta = datetime.datetime.utcnow() - message.created_at
-        if 
         await ctx.send(msg)
+
+    @commands.command()
+    async def timeop(self, ctx, msg)
+        date_format = "%d/%m/%Y %H%M%S" #Used for a and b
+        a = datetime.strptime(datetime.utcnow(), date_format)
+        b = datetime.strptime(ctx.message.created_at, date_format)
+        c = datetime.now()
+        d= datetime.strptime('093000', '%H%M%S')        #Only for time comparison if someone need it.
+        e= datetime.strptime('093000', '%H%M%S')
+        delta = c - b  # Difference between time(s); you can play with a,b and c here since they are in same format
+        gr=d==e # Comparison operator on time if needed can use (>, <, >=, <= and == etc.); time only
+        fr=c>=b # Comparison operator on time if needed can use (>, <, >=, <= and == etc.); date and time                  
+        days = delta.days
+        del_sec = delta.seconds
+        await ctx.send(f"{delta},{gr},{fr}")
         
     @commands.command()
     async def rol(self, ctx):
