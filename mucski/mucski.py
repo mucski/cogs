@@ -148,36 +148,6 @@ class Mucski(commands.Cog):
         
     @_cookie.command()
     async def gamble(self, ctx, amount):
-        """ Gamble amount of cookies with a chance to win double """
-        cookie = await self.cv(ctx.author)
-        try:
-            amount = int(amount)
-        except ValueError:
-            if amount == 'all':
-                amount = cookie
-            else:
-                amount = None
-                msg= "Can't gamble what you don't have."
-        finally:
-            if amount is not None:
-                if amount <= 0:
-                    msg = "Invalid amount of cookies!"
-                elif cookie - amount < 0:
-                    msg = "Get yourself some cookies first"
-                else:
-                    if random.random() < 0.3:
-                        winning = amount*2
-                        cookie += winning
-                        await self.cd(ctx.author,cookie)
-                        msg = f"Congratulations ``{ctx.author.name}`` you won ``{winning}`` cookies 🍪🎉"
-                    else:
-                        cookie -= amount
-                        await self.cd(ctx.author,cookie)
-                        msg = f"Oops, you lost ``{amount}`` cookies. 😞"
-        await ctx.send(msg)
-        
-    @_cookie.command()
-    async def roll(self, ctx, amount):
         """Roll the dice see if you win"""
         member = random.randint(1,6)
         dealer = random.randint(1,6)
