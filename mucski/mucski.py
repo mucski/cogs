@@ -230,6 +230,7 @@ class Mucski(commands.Cog):
         member = ctx.author
         now = datetime.utcnow().replace(microsecond=0)
         work_stamp = await self.conf.user(member).work_stamp()
+        timer = await self.conf.guild(ctx.guild).work_timer()
         timer = timedelta(minutes=timer)
         next_cd = now + timer
         if now.timestamp() < work_stamp:
@@ -251,8 +252,6 @@ class Mucski(commands.Cog):
             cookie += value
             await self.cd(ctx.author,cookie)
             await ctx.send(f"Well done, you earned ``{value}`` cookies for todays work.😴")
-            timer = await self.conf.guild(ctx.guild).work_timer()
-            timer = timedelta(minutes=timer)
             next_cd = now + timer
             await self.conf.user(member).work_stamp.set(next_cd.timestamp())
         
