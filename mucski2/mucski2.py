@@ -91,7 +91,7 @@ class Mucski2(commands.Cog):
         #fr=c>=b # Comparison operator on time if needed can use (>, <, >=, <= and == etc.); date and time                  
         #days = delta.days
         #del_sec = delta.seconds
-        await ctx.send(f"time now {now},message created at {othertime}")
+        await ctx.send(f"time now {the_time},message created at {othertime}")
         
     @commands.command()
     async def rol(self, ctx):
