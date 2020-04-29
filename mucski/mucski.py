@@ -247,7 +247,7 @@ class Mucski(commands.Cog):
     @_cookie.command()
     async def daily(self, ctx):
         """Daily cookies"""
-        now = datetime.utcnow().replace(milisecond=0)
+        now = datetime.utcnow().replace(microsecond=0)
         daily_stamp = await self.conf.user(member).daily_stamp()
         if now.timestamp() < daily_stamp():
             await ctx.send(f"on cooldown{datetime.fromtimestamp(daily_stamp)}")
