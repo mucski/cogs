@@ -89,7 +89,7 @@ class Mucski2(commands.Cog):
         else:
             await ctx.send("yay it works")
             timer = datetime.fromtimestamp(daily_stamp)
-            timer = timedelta(timer)
+            timer = timedelta(minutes=timer)
             next_cd = now + timer
             await self.conf.user(member).daily_stamp.set(next_cd.timestamp())
 
