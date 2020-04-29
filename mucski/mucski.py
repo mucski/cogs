@@ -256,8 +256,8 @@ class Mucski(commands.Cog):
             cookie = await self.cv(ctx.author)
             cookie += 1000
             await ctx.send(f"Claimed your daily cookies. You have ``{cookie}`` cookies now. Come back in 12 hours.🙄")
-            timer = timedelta(hours=daily_timer)
             daily_timer = await self.conf.guild(ctx.guild).daily_timer()
+            timer = timedelta(hours=daily_timer)
             next_cd = timer + now
             await self.cd(ctx.author,cookie)
             await self.conf.user(member).daily_stamp.set(next_cd.timestamp())
