@@ -280,7 +280,7 @@ class Mucski(commands.Cog):
         timer = timedelta(hours=daily_timer)
         next_cd = timer + now
         if now.timestamp() < daily_stamp:
-            await ctx.send(f"On cooldown until: {datetime.fromtimestamp(daily_stamp) - now}")
+            await ctx.send(f"On cooldown. Remaining: {datetime.fromtimestamp(daily_stamp) - now}")
         else:
             cookie = await self.cv(ctx.author)
             cookie += 1000
