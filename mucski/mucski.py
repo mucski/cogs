@@ -151,7 +151,7 @@ class Mucski(commands.Cog):
         e.add_field(name="Cookies owned", value=f"``{cookie}``")
         e.add_field(name="Daily on cooldown", value=f"``{cooling}``")
         e.add_field(name="Cooldown until", value=f"{datetime.fromtimestamp(daily_stamp)}")
-        e.set_footer(text=datetime.datetime.utcnow())
+        e.set_footer(text=datetime.utcnow())
         await ctx.send(embed=e)
         
     @_cookie.command()
