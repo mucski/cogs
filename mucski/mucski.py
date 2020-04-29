@@ -45,7 +45,7 @@ class Mucski(commands.Cog):
         }
         defaults = {
             "cookies": 0,
-            "daily_stamp": 0,
+            "daily_stamp": 0, #these reset in a loop
             "steal_stamp": 0,
             "work_stamp": 0,
         }
