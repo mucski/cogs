@@ -68,6 +68,7 @@ class Mucski2(commands.Cog):
         now = datetime.utcnow().replace(microsecond=0)
         future = now + timedelta(hours=12)
         await ctx.send(future.timestamp())
+        await ctx.send(datetime.fromtimestamp(future.timestamp()))
         
         
     @commands.command()
