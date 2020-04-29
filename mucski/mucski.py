@@ -235,7 +235,7 @@ class Mucski(commands.Cog):
         next_cd = now + timer
         if now.timestamp() < work_stamp:
             #await ctx.send(f"Try again in {}") todo change its
-            await ctx.send(f"On cooldown until: {next_cd}")
+            await ctx.send(f"On cooldown until: {next_cd.minutes() - timer}")
             return
         else:
             """ Work to earn some cookies """
