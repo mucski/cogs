@@ -232,10 +232,11 @@ class Mucski(commands.Cog):
         work_stamp = await self.conf.user(member).work_stamp()
         work_timer = await self.conf.guild(ctx.guild).work_timer()
         timer = timedelta(minutes=work_timer)
+        compare = datetime.fromtimestamp(work_stamp)
         next_cd = now + timer
         if now.timestamp() < work_stamp:
             #await ctx.send(f"Try again in {}") todo change its
-            await ctx.send(f"On cooldown until: {next_cd.hour.minute - work_timer}")
+            await ctx.send(f"On cooldown until: {compare - now}")
             return
         else:
             """ Work to earn some cookies """
