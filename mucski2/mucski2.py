@@ -74,6 +74,11 @@ class Mucski2(commands.Cog):
         await ctx.send(f"successfully set {future}")
         
     @commands.command()
+    async def resetcd(self, ctx)
+        await self.conf.user(ctx.author).daily_stamp.clear()
+        await ctx.send("Done")
+        
+    @commands.command()
     async def test(self, ctx):
         member = ctx.author
         daily_stamp = await self.conf.user(member).daily_stamp()
@@ -83,7 +88,7 @@ class Mucski2(commands.Cog):
             await ctx.send(f"command on cooldown until {datetime.fromtimestamp(daily_stamp)}")
         else:
             await ctx.send("yay it works")
-            next_cd = now.timestamp() + daily_stamp
+            next_cd = now.timestamp() += daily_stamp
             await self.conf.user(member).daily_stamp.set(next_cd)
 
     @commands.command()
