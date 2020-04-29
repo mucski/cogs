@@ -90,7 +90,7 @@ class Mucski2(commands.Cog):
             await ctx.send(f"command on cooldown until {datetime.fromtimestamp(daily_stamp)}")
         else:
             await ctx.send("yay it works")
-            await self.conf.user(member).daily_timer()
+            daily_timer = await self.conf.user(member).daily_timer()
             timer = timedelta(minutes=daily_timer)
             next_cd = now + timer
             await self.conf.user(member).daily_stamp.set(next_cd.timestamp())
