@@ -248,7 +248,7 @@ class Mucski(commands.Cog):
             cookie = await self.cv(ctx.author)
             cookie += value
             await self.cd(ctx.author,cookie)
-            return await ctx.send(f"Well done, you earned ``{value}`` cookies for todays work.😴")
+            await ctx.send(f"Well done, you earned ``{value}`` cookies for todays work.😴")
             timer = await self.conf.guild(ctx.guild).work_timer()
             timer = timedelta(minutes=timer)
             next_cd = now + timer
