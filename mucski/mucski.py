@@ -253,9 +253,9 @@ class Mucski(commands.Cog):
         if now.timestamp() < daily_stamp:
             await ctx.send(f"on cooldown{datetime.fromtimestamp(daily_stamp)}")
         else:
-            await ctx.send(f"Claimed your daily cookies. You have ``{cookie}`` cookies now. Come back in 12 hours.🙄")
             cookie = await self.cv(ctx.author)
             cookie += 1000
+            await ctx.send(f"Claimed your daily cookies. You have ``{cookie}`` cookies now. Come back in 12 hours.🙄")
             timer = timedelta(hours=daily_timer)
             daily_timer = await self.conf.guild(ctx.guild).daily_timer()
             next_cd = timer + now
