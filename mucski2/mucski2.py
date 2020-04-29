@@ -79,7 +79,6 @@ class Mucski2(commands.Cog):
         date_format = "%d/%m %H:%M"
         time = datetime.now()
         the_time = time.strftime(date_format)
-        future = the_time + 300
         othertime = ctx.message.created_at
         other_time = othertime.strftime(date_format)
         #a = datetime.strptime(time, date_format)
