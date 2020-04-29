@@ -150,7 +150,7 @@ class Mucski(commands.Cog):
         e.set_thumbnail(url=member.avatar_url)
         e.add_field(name="Cookies owned", value=f"``{cookie}``")
         e.add_field(name="Daily on cooldown", value=f"``{cooling}``")
-        e.add_field(name="Cooldown until", value=f"``{datetime.fromtimestamp(daily_stamp)}``")
+        e.add_field(name="Cooldown remaining", value=f"``{datetime.fromtimestamp(daily_stamp) - now}``")
         e.set_footer(text=datetime.utcnow().replace(microsecond=0))
         await ctx.send(embed=e)
         
@@ -232,11 +232,10 @@ class Mucski(commands.Cog):
         work_stamp = await self.conf.user(member).work_stamp()
         work_timer = await self.conf.guild(ctx.guild).work_timer()
         timer = timedelta(minutes=work_timer)
-        compare = datetime.fromtimestamp(work_stamp)
         next_cd = now + timer
         if now.timestamp() < work_stamp:
             #await ctx.send(f"Try again in {}") todo change its
-            await ctx.send(f"On cooldown for {compare - now} minutes")
+            await ctx.send(f"On cooldown. Remaining: {datetime.fromtimestamp(work_stamp) - now} minutes")
             return
         else:
             """ Work to earn some cookies """
@@ -322,7 +321,7 @@ class Mucski(commands.Cog):
         steal_stamp = await self.conf.user(ctx.author).steal_stamp()
         next_cd = timedelta(hours=steal_timer) + now
         if now.timestamp() < steal_stamp:
-            await ctx.send(f"Cooldown until: {next_cd}")
+            await ctx.send(f"On cooldown. Remaining: {datetime.fromtimestamp(steal_stamp) - now}")
         else:
             """Steal others cookies"""
             if member is None or member == ctx.author:
