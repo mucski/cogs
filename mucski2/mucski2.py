@@ -72,7 +72,7 @@ class Mucski2(commands.Cog):
         
     @commands.command()
     async def test(self, ctx):
-        
+        pass
 
     @commands.command()
     async def rol(self, ctx):
