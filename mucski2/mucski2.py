@@ -78,7 +78,11 @@ class Mucski2(commands.Cog):
         now = await self.set_time(member,now)
         now2 = await self.get_time(member)
         if timer + now2 != now:
-            await ctx.send(f"on cooldown until {timer + now2}")
+            cock = time + now2
+            cock = datetime.fromtimestamp(cock)
+            date_format = "%d/%m %H:%M"
+            cock = cock.strftime(date_format)
+            await ctx.send(f"on cooldown until {cock}")
     
     @staticmethod
     def time_converter(units):
