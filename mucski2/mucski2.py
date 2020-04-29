@@ -25,7 +25,7 @@ class Mucski2(commands.Cog):
         defaults = {
             "gold": 0,
             "datetime": "",
-            "daily_cd": 12:00
+            "daily_cd": 1200
         }
         self.conf.register_user(**defaults)
         
