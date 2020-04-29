@@ -317,7 +317,7 @@ class Mucski(commands.Cog):
 
     @_cookie.command()
     async def steal(self, ctx, *, member: discord.Member=None):
-        now = datetime.urcnow().replace(microsecond=0)
+        now = datetime.utcnow().replace(microsecond=0)
         steal_timer = await self.conf.guild(ctx.guild).steal_timer()
         steal_stamp = await self.conf.user(ctx.author).steal_stamp()
         next_cd = timedelta(hours=steal_timer) + now
