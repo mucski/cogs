@@ -71,6 +71,7 @@ class Mucski2(commands.Cog):
         
     @commands.command()
     async def test(self, ctx):
+        member = ctx.author
         timer = await self.conf.user(member).daily_cd()
         timer = self.time_converter(timer)
         now = calendar.timegm(datetime.utcnow().utctimetuple())
