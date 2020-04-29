@@ -150,7 +150,7 @@ class Mucski(commands.Cog):
         e.set_thumbnail(url=member.avatar_url)
         e.add_field(name="Cookies owned", value=f"``{cookie}``")
         e.add_field(name="Daily on cooldown", value=f"``{cooling}``")
-        e.add_field(name="Cooldown until", value=f"{datetime.fromtimestamp(daily_stamp)}")
+        e.add_field(name="Cooldown until", value=f"``{datetime.fromtimestamp(daily_stamp)}``")
         e.set_footer(text=datetime.utcnow())
         await ctx.send(embed=e)
         
@@ -226,22 +226,30 @@ class Mucski(commands.Cog):
         await ctx.send(msg)
     
     @_cookie.command()
-    @commands.cooldown(rate=1, per=100, type=commands.BucketType.user)
     async def work(self, ctx):
-        """ Work to earn some cookies """
-        r = random.choice(list(self.work.keys()))
-        await ctx.send(self.work[r])
-        def check(m):
-            return m.content.lower() in r and m.guild == ctx.guild and m.author == ctx.author
-        try:
-            await ctx.bot.wait_for('message', timeout=7, check=check)
-        except asyncio.TimeoutError:
-            return await ctx.send("Have to work harder than that ...😞")
-        value = random.randint(50,500)
-        cookie = await self.cv(ctx.author)
-        cookie += value
-        await self.cd(ctx.author,cookie)
-        return await ctx.send(f"Well done, you earned ``{value}`` cookies for todays work.😴")
+        now = datetime.utcnow().replace(microsecond=0)
+        work_stamp = await self.conf.guild(ctx.guild).work_stamp()
+        if now.timestamp() < work_stamp:
+            await ctx.send(f"Try again in {}")
+        else:
+            """ Work to earn some cookies """
+            r = random.choice(list(self.work.keys()))
+            await ctx.send(self.work[r])
+            def check(m):
+                return m.content.lower() in r and m.guild == ctx.guild and m.author == ctx.author
+            try:
+                await ctx.bot.wait_for('message', timeout=7, check=check)
+            except asyncio.TimeoutError:
+                return await ctx.send("Have to work harder than that ...😞")
+            value = random.randint(50,500)
+            cookie = await self.cv(ctx.author)
+            cookie += value
+            await self.cd(ctx.author,cookie)
+            return await ctx.send(f"Well done, you earned ``{value}`` cookies for todays work.😴")
+            timer = await self.conf.user(member).work_timer()
+            timer = timedelta(minutes=timer)
+            next_cd = now + timer
+            await self.conf.user(member).work_stamp.set(next_cd.timestamp())
         
     @commands.command()
     async def dailytimer(self, ctx, amt: int):
