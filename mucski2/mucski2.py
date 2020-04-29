@@ -83,13 +83,6 @@ class Mucski2(commands.Cog):
             date_format = "%d/%m %H:%M"
             cock = cock.strftime(date_format)
             await ctx.send(f"on cooldown until {cock}")
-    
-    @staticmethod
-    def time_converter(units):
-        try:
-            return sum(int(x) * 60 ** i for i, x in enumerate(reversed(units.split(":"))))
-        except ValueError:
-            return None
             
     @commands.command()
     async def timeop(self, ctx):
