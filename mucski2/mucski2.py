@@ -74,7 +74,7 @@ class Mucski2(commands.Cog):
         await ctx.send(f"successfully set {future}")
         
     @commands.command()
-    async def resetcd(self, ctx)
+    async def resetcd(self, ctx):
         await self.conf.user(ctx.author).daily_stamp.clear()
         await ctx.send("Done")
         
