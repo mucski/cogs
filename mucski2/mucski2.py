@@ -77,8 +77,8 @@ class Mucski2(commands.Cog):
         now = calendar.timegm(datetime.utcnow().utctimetuple())
         now = await self.set_time(member,now)
         now2 = await self.get_time(member)
-        if timer + now2 != now:
-            cock = timer + now2
+        if timer - now2 != now:
+            cock = timer - now2
             cock = datetime.fromtimestamp(cock)
             date_format = "%d/%m %H:%M"
             cock = cock.strftime(date_format)
