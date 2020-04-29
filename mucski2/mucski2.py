@@ -10,7 +10,7 @@ from discord.ext import tasks, commands
 from datetime import datetime, timedelta
 
 from redbot.core import bank, checks, commands, Config
-from redbot.core.utils.chat_formatting import bold, box, humanize_list, humanize_number, pagify
+from redbot.core.utils.chat_formatting import bold, box, humanize_list, humanize_number, pagify, humanize_timedelta
 from redbot.core.utils.menus import menu, DEFAULT_CONTROLS
 from redbot.core.utils.predicates import MessagePredicate
 from redbot.core.utils.predicates import ReactionPredicate
@@ -64,16 +64,25 @@ class Mucski2(commands.Cog):
         await ctx.send(member.avatar_url)
         
     @commands.command()
-    async def setcd(self, ctx):
+    async def setcd(self, ctx, amt: int):
+        #try with minutes first until better solution
+        member = ctx.author
+        timer = timedelta(minutes=amt)
         now = datetime.utcnow().replace(microsecond=0)
-        future = now + timedelta(hours=12)
-        await ctx.send(future.timestamp())
-        await ctx.send(datetime.fromtimestamp(future.timestamp()))
-        
+        future = now + timer
+        await self.conf.user(member).daily_stamp.set(daily_stamp.timestamp())
+        await ctx.send(f"successfully set {future}")
         
     @commands.command()
     async def test(self, ctx):
-        pass
+        member = ctx.author
+        daily_stamp = await self.conf.user(member).daily_stamp()
+        #convert stamp to time
+        now = datetime.utcnow().replace(microsecond=0)
+        if now.timestamp() != datetime.fromtimestamp(daily_stamp):
+            await ctx.send(f"command on cooldown until {humanize_timedelta(datetime.fromtimestamp(daily_stamp))}")
+        else:
+            await ctx.send("yay it works")
 
     @commands.command()
     async def rol(self, ctx):
