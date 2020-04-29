@@ -23,9 +23,15 @@ class Mucski2(commands.Cog):
         self.conf = Config.get_conf(self, 282828485)
         defaults = {
             "gold": 0,
-            "datetime": []
+            "datetime": "",
         }
+        self.conf.register_user(**defaults)
+        
+    async def get_time(self, member):
+        return await self.conf.user(member).datetime()
     
+    async def set_time(self, member, time):
+        return await self.conf.user(member).datetime.set()
     
     #Get thet bot color for embeds 'await self.color(ctx)'
     async def color(self, ctx):
@@ -64,8 +70,8 @@ class Mucski2(commands.Cog):
     @commands.command()
     async def test(self, ctx):
         async for message in ctx.channel.history(limit=5):
-            delta = datetime.datetime.utcnow() - message.created_at
-            msg="this is a test done on {}, but the real time is {} ".format(delta, message.created_at)
+            #delta = datetime.datetime.utcnow() - message.created_at
+        if 
         await ctx.send(msg)
         
     @commands.command()
