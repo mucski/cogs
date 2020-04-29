@@ -70,7 +70,7 @@ class Mucski2(commands.Cog):
         timer = timedelta(minutes=amt)
         now = datetime.utcnow().replace(microsecond=0)
         future = now + timer
-        await self.conf.user(member).daily_stamp.set(daily_stamp.timestamp())
+        await self.conf.user(member).daily_stamp.set(future.timestamp())
         await ctx.send(f"successfully set {future}")
         
     @commands.command()
