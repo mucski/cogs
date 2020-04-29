@@ -235,7 +235,7 @@ class Mucski(commands.Cog):
         next_cd = now + timer
         if now.timestamp() < work_stamp:
             #await ctx.send(f"Try again in {}") todo change its
-            await ctx.send(f"On cooldown until {humanize_timedelta(timedelta=timer)}")
+            await ctx.send(f"On cooldown until: {next_cd}")
             return
         else:
             """ Work to earn some cookies """
@@ -252,7 +252,6 @@ class Mucski(commands.Cog):
             cookie += value
             await self.cd(ctx.author,cookie)
             await ctx.send(f"Well done, you earned ``{value}`` cookies for todays work.😴")
-            next_cd = now + timer
             await self.conf.user(member).work_stamp.set(next_cd.timestamp())
         
     @commands.command()
