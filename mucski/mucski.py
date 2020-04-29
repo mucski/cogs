@@ -47,11 +47,13 @@ class Mucski(commands.Cog):
             "cookies": 0,
             "daily_stamp": 0,
             "steal_stamp": 0,
+            "work_stamp": 0,
         }
         default_guild = {
             "event_timer": 120,
             "daily_timer": 0, #hours
             "steal_timer": 0, #hours
+            "work_timer": 0, #minutes
             "channels": []
         }
         self.conf.register_user(**defaults)
@@ -240,9 +242,19 @@ class Mucski(commands.Cog):
         return await ctx.send(f"Well done, you earned ``{value}`` cookies for todays work.😴")
         
     @commands.command()
-    async def settimer(self, ctx, amt: int):
+    async def dailytimer(self, ctx, amt: int):
         await self.conf.guild(ctx.guild).daily_timer.set(amt)
         await ctx.send(f"successfully set {amt} hours")
+        
+    @commands.command()
+    async def stealtimer(self, ctx, amt: int):
+        await self.conf.guild(ctx.guild).steal_timer.set(amt)
+        await ctx.send(f"successfully set {amt} houre")
+    
+    @commands.command()
+    async def worktimer(self, ctx, amt: int):
+        await self.conf.guild(ctx.guild).work_timer.set(amt)
+        await ctx.send(f" sufcesfully set {amt} hours")
     
     @_cookie.command()
     async def daily(self, ctx):
@@ -251,7 +263,7 @@ class Mucski(commands.Cog):
         now = datetime.utcnow().replace(microsecond=0)
         daily_stamp = await self.conf.user(member).daily_stamp()
         if now.timestamp() < daily_stamp:
-            await ctx.send(f"on cooldown{datetime.fromtimestamp(daily_stamp)}")
+            await ctx.send(f"On cooldown until: {datetime.fromtimestamp(daily_stamp)}")
         else:
             cookie = await self.cv(ctx.author)
             cookie += 1000
