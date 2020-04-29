@@ -227,6 +227,7 @@ class Mucski(commands.Cog):
     
     @_cookie.command()
     async def work(self, ctx):
+        member = ctx.author
         now = datetime.utcnow().replace(microsecond=0)
         work_stamp = await self.conf.user(member).work_stamp()
         if now.timestamp() < work_stamp:
