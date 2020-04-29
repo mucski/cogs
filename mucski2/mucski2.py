@@ -33,7 +33,7 @@ class Mucski2(commands.Cog):
         return await self.conf.user(member).datetime()
     
     async def set_time(self, member, time):
-        return await self.conf.user(member).datetime.set()
+        return await self.conf.user(member).datetime.set(time)
     
     #Get thet bot color for embeds 'await self.color(ctx)'
     async def color(self, ctx):
