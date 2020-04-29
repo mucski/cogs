@@ -1,6 +1,6 @@
 import asyncio
 import discord
-import datetime
+from datetime import datetime
 import itertools
 import math
 import random
