@@ -230,7 +230,8 @@ class Mucski(commands.Cog):
         now = datetime.utcnow().replace(microsecond=0)
         work_stamp = await self.conf.guild(ctx.guild).work_stamp()
         if now.timestamp() < work_stamp:
-            await ctx.send(f"Try again in {}")
+            #await ctx.send(f"Try again in {}") todo change its
+            await ctx.send("on cd")
         else:
             """ Work to earn some cookies """
             r = random.choice(list(self.work.keys()))
