@@ -64,7 +64,7 @@ class Mucski2(commands.Cog):
         await ctx.send(member.avatar_url)
         
     @commands.command()
-    async def setcd(self, ctx)
+    async def setcd(self, ctx):
         now = datetime.utcnow().replace(microsecond=0)
         future = now + timedelta(hours=12)
         await ctx.send(future.timestamp())
