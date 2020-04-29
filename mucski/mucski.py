@@ -27,8 +27,10 @@ class Mucski(commands.Cog):
             "story book": "You were looking for Little Red Riding Hood, instead you found ``{}`` cookies hidden in a tree bark. ", 
             "set": "You are the next star for Ironing Man. While equipping his armor you found ``{}`` cookies in one of the hidden compartments. ",
             "hospital": "You searched the hospital and found ``{}`` cookies. Don't eat them though, may be infected with covid19.",
+            "school": "You went looking for cookies in your school locker, got a wedgy out of it instead. Bullies.",
+            "trash": "Found nothing. Must've picked the wrong trash.",
         }
-        self.badloc = ['fridge','dog','toilet']
+        self.badloc = ['fridge','dog','toilet','trash','school']
         self.work = {
             "hot dog":"You are working outside with a cart. Un scramble the following word ``dot goh``", 
             "cauterize": "You're a pro Paladins player. What do you buy first at match start? ", 
@@ -38,6 +40,8 @@ class Mucski(commands.Cog):
             "dick": "You are working as a professional hunter. Shot the u out of a duck.",
             "redbot": "I'm a bot, but do you know my name?",
             "mucski": f"Had to include it here ... Unscramble me. ``{self.shuffle_word('mucski')}``",
+            "paladins": f"Unscramble the following word ``{self.shuffle_word('paladins')}``",
+            "depression": f"Unscramble the following word ``{self.shuffle_word('depression')}``",
         }
         defaults = {
             "cookies": 0
@@ -207,8 +211,8 @@ class Mucski(commands.Cog):
         embed = discord.Embed(color=await self.color(ctx), description=f"{msg}")
         embed.set_author(name=f"{ctx.author.name} rolls the dice.", icon_url=ctx.author.avatar_url)
         embed.set_thumbnail(url=ctx.bot.user.avatar_url)
-        embed.add_field(name="Dealer rolled", value=dealer)
-        embed.add_field(name="You rolled", value=member)
+        embed.add_field(name="Dealer rolled", value=f"🎲 {dealer}")
+        embed.add_field(name="You rolled", value=f"🎲 {member}")
         embed.set_footer(text=datetime.datetime.utcnow())
         await ctx.send(embed=embed)
             
