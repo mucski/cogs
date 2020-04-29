@@ -242,7 +242,7 @@ class Mucski(commands.Cog):
     @commands.command()
     async def settimer(self, ctx, amt: int):
         await self.conf.guild(ctx.guild).daily_timer.set(amt)
-        await ctx.set(f"successfully set {amt} hours")
+        await ctx.send(f"successfully set {amt} hours")
     
     @_cookie.command()
     async def daily(self, ctx):
