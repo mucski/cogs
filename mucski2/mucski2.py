@@ -75,8 +75,8 @@ class Mucski2(commands.Cog):
         timer = await self.conf.user(member).daily_cd()
         timer = self.time_converter(timer)
         now = calendar.timegm(datetime.utcnow().utctimetuple())
-        now = await self.set_time(now)
-        now2 = await self.get_time()
+        now = await self.set_time(member,now)
+        now2 = await self.get_time(member)
         if timer + now2 != now:
             await ctx.send(f"on cooldown until {timer + now2}")
     
