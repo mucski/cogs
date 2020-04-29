@@ -322,7 +322,7 @@ class Mucski(commands.Cog):
         steal_stamp = await self.conf.user(ctx.author).steal_stamp()
         next_cd = timedelta(hours=steal_timer) + now
         if now.timestamp() < steal_stamp:
-            await ctx.send(f"Cooldown until: {humanize_timedelta(timedelta=steal_timer)}")
+            await ctx.send(f"Cooldown until: {humanize_timedelta(timedelta=next_cd)}")
         else:
             """Steal others cookies"""
             if member is None or member == ctx.author:
