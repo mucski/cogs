@@ -235,7 +235,7 @@ class Mucski(commands.Cog):
         remaining = work_stamp - now
         if now < work_stamp:
             #await ctx.send(f"Try again in {}") todo change its
-            await ctx.send(f"On cooldown. Remaining: {humanize_timedelta(timedelta=remaining)} minutes")
+            await ctx.send(f"On cooldown. Remaining: {humanize_timedelta(timedelta=remaining)}")
             return
         """ Work to earn some cookies """
         r = random.choice(list(self.work.keys()))
