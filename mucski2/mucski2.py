@@ -111,5 +111,6 @@ class Mucski2(commands.Cog):
         e = discord.Embed(title="Casino", description=f"{description}", timestamp=datetime.utcnow().replace(microsecond=0))
         e.set_author(name=f"{ctx.author.name}'s dice roll game.", icon_url=f"{ctx.author.avatar_url}")
         e.set_thumbnail(url=f"{ctx.bot.user.avatar_url}")
+        e.set_image(url="", width="100%")
         await ctx.send(embed=e)
        
