@@ -103,13 +103,15 @@ class Mucski2(commands.Cog):
             msg = "Looks like its a tie."
         elif him < 6 and you > him:
             msg = "Yay you won."
-        description = (
+        e.description = (
             f'You rolled: - **{you}**\n'
             f'Dealer rolled: - **{him}**\n\n'
             f'{msg}'
         )
-        e = discord.Embed(title="Casino", description=f"{description}")
+        e = discord.Embed()
+        e.title = "Casino Royale"
         e.description = "is this working"
+        e.thumbnail = (url=ctx.author.avatar_url)
         e.set_author(name=f"{ctx.author.name}'s dice roll game.", icon_url=f"{ctx.author.avatar_url}")
         e.set_thumbnail(url=f"{ctx.bot.user.avatar_url}")
         e.add_field(name="Testing", value="Testing", inline=False)
