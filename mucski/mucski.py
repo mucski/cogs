@@ -255,21 +255,32 @@ class Mucski(commands.Cog):
             await ctx.send(f"Well done, you earned ``{value}`` cookies for todays work.😴")
             await self.conf.user(member).work_stamp.set(next_cd.timestamp())
         
-    @commands.command()
+    @_cookie.command()
+    @checks.is_owner()
     async def dailytimer(self, ctx, amt: int):
         await self.conf.guild(ctx.guild).daily_timer.set(amt)
         await ctx.send(f"Successfully set {amt} hours for daily timer.")
         
-    @commands.command()
+    @_cookie.command()
+    @checks.is_owner()
     async def stealtimer(self, ctx, amt: int):
         await self.conf.guild(ctx.guild).steal_timer.set(amt)
         await ctx.send(f"Successfully set {amt} hours for steal timer.")
     
-    @commands.command()
+    @_cookie.command()
+    @checks.is_owner()
     async def worktimer(self, ctx, amt: int):
         await self.conf.guild(ctx.guild).work_timer.set(amt)
         await ctx.send(f"Successfully set {amt} minutes for work timer.")
-    
+        
+    @_cookie.command()
+    @checks.is_owner()
+    async def resetallcd(self, ctx)
+        await self.conf.user.all_users.work_stamp.clear()
+        await self.conf.user.all_users.daily_stamp.clear()
+        await self.conf.user.all_users.steal_stamp.clear()
+        awaiy ctx.send("Successfully reset all cooldowns.")
+        
     @_cookie.command()
     async def daily(self, ctx):
         """Daily cookies"""
