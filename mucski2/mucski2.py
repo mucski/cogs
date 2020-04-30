@@ -109,6 +109,7 @@ class Mucski2(commands.Cog):
             f'{msg}'
         )
         e = discord.Embed(title="Casino", description=f"{description}")
+        e.description("penis")
         e.set_author(name=f"{ctx.author.name}'s dice roll game.", icon_url=f"{ctx.author.avatar_url}")
         e.set_thumbnail(url=f"{ctx.bot.user.avatar_url}")
         e.add_field(name="Testing", value="Testing", inline=False)
