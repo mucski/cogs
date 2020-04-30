@@ -108,7 +108,7 @@ class Mucski2(commands.Cog):
             f'Dealer rolled: - **{him}**\n\n'
             f'{msg}'
         )
-        e = discord.Embed(title="Casino", description=f"{description}", timestamp)
+        e = discord.Embed(title="Casino", description=f"{description}", timestamp=timestamp)
         e.set_author(name=f"{ctx.author.name}'s dice roll game.", icon_url=f"{ctx.author.avatar_url}")
         e.set_thumbnail(url=f"{ctx.bot.user.avatar_url}")
         await ctx.send(embed=e)
