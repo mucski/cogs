@@ -292,7 +292,7 @@ class Mucski(commands.Cog):
         next_cd = daily_timer + now
         remaining = daily_stamp - now
         if now < daily_stamp:
-            await ctx.send(f"On cooldown. Remaining: {humanize_timedelta(timedelta=remainimg)}")
+            await ctx.send(f"On cooldown. Remaining: {humanize_timedelta(timedelta=remaining)}")
             return
         cookie = await self.cv(ctx.author)
         cookie += 1000
