@@ -332,6 +332,7 @@ class Mucski(commands.Cog):
 
     @_cookie.command()
     async def steal(self, ctx, *, member: discord.Member=None):
+        """Steal others cookie"""
         now = datetime.utcnow().replace(microsecond=0)
         steal_timer = await self.conf.guild(ctx.guild).steal_timer()
         steal_stamp = await self.conf.user(ctx.author).steal_stamp()
@@ -342,7 +343,6 @@ class Mucski(commands.Cog):
         if now < steal_stamp:
             await ctx.send(f"On cooldown. Remaining: {humanize_timedelta(timedelta=remaining)}")
             return
-        """Steal others cookies"""
         if member is None or member == ctx.author:
             msg = "Really, you gonna attempt to steal from yourself?"
             return
