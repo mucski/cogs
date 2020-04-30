@@ -76,12 +76,6 @@ class Mucski(commands.Cog):
     #Get thet bot color for embeds 'await self.color(ctx)'
     async def color(self, ctx):
         return await ctx.bot.get_embed_color(location=ctx.channel)
-    
-    #test
-    @commands.command()
-    async def bal(self, ctx):
-        color = await self.color(ctx)
-        await ctx.send(color)
 
     @commands.group(name="cookie", aliases=['c', 'ce'])
     @commands.guild_only()
