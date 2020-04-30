@@ -258,17 +258,17 @@ class Mucski(commands.Cog):
     @commands.command()
     async def dailytimer(self, ctx, amt: int):
         await self.conf.guild(ctx.guild).daily_timer.set(amt)
-        await ctx.send(f"successfully set {amt} hours")
+        await ctx.send(f"Successfully set {amt} hours for daily timer.")
         
     @commands.command()
     async def stealtimer(self, ctx, amt: int):
         await self.conf.guild(ctx.guild).steal_timer.set(amt)
-        await ctx.send(f"successfully set {amt} houre")
+        await ctx.send(f"Successfully set {amt} hours for steal timer.")
     
     @commands.command()
     async def worktimer(self, ctx, amt: int):
         await self.conf.guild(ctx.guild).work_timer.set(amt)
-        await ctx.send(f" sufcesfully set {amt} minutes")
+        await ctx.send(f"Successfully set {amt} minutes for work timer.")
     
     @_cookie.command()
     async def daily(self, ctx):
