@@ -389,7 +389,7 @@ class Mucski(commands.Cog):
             return await ctx.send("Can't search if I don't know where.")
         cookie = await self.cv(ctx.author)
         if msg.content.lower() in self.badloc:
-            return awastealit ctx.send(self.loc[msg.content.lower()])
+            return await ctx.send(self.loc[msg.content.lower()])
         else:
             amt = random.randint(50,200)
             cookie = amt + cookie
