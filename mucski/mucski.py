@@ -287,16 +287,18 @@ class Mucski(commands.Cog):
         now = datetime.utcnow().replace(microsecond=0)
         daily_stamp = await self.conf.user(member).daily_stamp()
         daily_timer = await self.conf.guild(ctx.guild).daily_timer()
-        timer = timedelta(hours=daily_timer)
-        next_cd = timer + now
-        if now.timestamp() < daily_stamp:
-            await ctx.send(f"On cooldown. Remaining: {datetime.fromtimestamp(daily_stamp) - now}")
-        else:
-            cookie = await self.cv(ctx.author)
-            cookie += 1000
-            await ctx.send(f"Claimed your daily cookies. You have ``{cookie}`` cookies now. Come back in 12 hours.🙄")
-            await self.cd(ctx.author,cookie)
-            await self.conf.user(member).daily_stamp.set(next_cd.timestamp())
+        daily_stamp = datetime.fromtimestamp(daily_stamp)
+        daily_timer = timedelta(hours=daily_timer)
+        next_cd = daily_timer + now
+        remaining = daily_stamp - now
+        if now < daily_stamp:
+            await ctx.send(f"On cooldown. Remaining: {humanize_timedelta(timedelta=remainimg)}")
+            return
+        cookie = await self.cv(ctx.author)
+        cookie += 1000
+        await ctx.send(f"Claimed your daily cookies. You have ``{cookie}`` cookies now. Come back in 12 hours.🙄")
+        await self.cd(ctx.author,cookie)
+        await self.conf.user(member).daily_stamp.set(next_cd.timestamp())
   
     @_cookie.command(name="leaderboard", aliases=['lb', 'cb', 'cookieboard'])
     async def leaderboard(self, ctx):
