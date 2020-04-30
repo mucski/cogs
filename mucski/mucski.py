@@ -230,22 +230,22 @@ class Mucski(commands.Cog):
         now = datetime.utcnow().replace(microsecond=0)
         work_stamp = await self.conf.user(member).work_stamp()
         work_timer = await self.conf.guild(ctx.guild).work_timer()
-        timer = timedelta(minutes=work_timer)
-        next_cd = now + timer
-        if now.timestamp() < work_stamp:
+        work_stamp = datetime.fromtimestamp(work_stamp)
+        next_cd = now + work_stamp
+        remaining = now - work_timer
+        if now < work_stamp:
             #await ctx.send(f"Try again in {}") todo change its
-            await ctx.send(f"On cooldown. Remaining: {datetime.fromtimestamp(work_stamp) - now} minutes")
+            await ctx.send(f"On cooldown. Remaining: {humanize_timedelta(timedelta=remaining)} minutes")
             return
-        else:
-            """ Work to earn some cookies """
-            r = random.choice(list(self.work.keys()))
-            await ctx.send(self.work[r])
-            def check(m):
-                return m.content.lower() in r and m.guild == ctx.guild and m.author == ctx.author
-            try:
-                await ctx.bot.wait_for('message', timeout=7, check=check)
-            except asyncio.TimeoutError:
-                return await ctx.send("Have to work harder than that ...😞")
+        """ Work to earn some cookies """
+        r = random.choice(list(self.work.keys()))
+        await ctx.send(self.work[r])
+        def check(m):
+            return m.content.lower() in r and m.guild == ctx.guild and m.author == ctx.author
+        try:
+            await ctx.bot.wait_for('message', timeout=7, check=check)
+        except asyncio.TimeoutError:
+            return await ctx.send("Have to work harder than that ...😞")
             value = random.randint(50,500)
             cookie = await self.cv(ctx.author)
             cookie += value
@@ -334,43 +334,45 @@ class Mucski(commands.Cog):
         now = datetime.utcnow().replace(microsecond=0)
         steal_timer = await self.conf.guild(ctx.guild).steal_timer()
         steal_stamp = await self.conf.user(ctx.author).steal_stamp()
-        next_cd = timedelta(hours=steal_timer) + now
-        if now.timestamp() < steal_stamp:
-            await ctx.send(f"On cooldown. Remaining: {datetime.fromtimestamp(steal_stamp) - now}")
+        steal_stamp = datetime.fromtimestamp(steal_stamp)
+        next_cd = steal_timer + now
+        remaining = steal_stamp - now
+        if now < steal_stamp:
+            await ctx.send(f"On cooldown. Remaining: {humanize_timedelta(timedelta=remaining)}")
+            return
+        """Steal others cookies"""
+        if member is None or member == ctx.author:
+            msg = "Really, you gonna attempt to steal from yourself?"
+            return
+        you = await self.cv(ctx.author)
+        victim = await self.cv(member)
+        if you < 0:
+            msg = "You're too poor to steal from others."
+            return
+        if victim < 0:
+            msg = "He or she is too poor. Can't steal from peasants."
+            return
+        percent = random.uniform(0.05,0.3)
+        if random.random() < 0.6:
+            victim -= round(percent * victim)
+            if victim <= 0:
+                msg = "User doesn't have enough cookies."
+                return
+            you += round(percent * victim)
+            await self.cd(member,victim)
+            await self.cd(ctx.author,you)
+            msg = f"💎 You've succesfully stolen ``{percent:.0%}`` cookies from ``{member.name}``. 😱"
         else:
-            """Steal others cookies"""
-            if member is None or member == ctx.author:
-                msg = "Really, you gonna attempt to steal from yourself?"
+            victim += round(percent * you)
+            you -= round(percent * you)
+            if you <= 0:
+                msg = "You dont have enough cookies."
                 return
-            you = await self.cv(ctx.author)
-            victim = await self.cv(member)
-            if you < 0:
-                msg = "You're too poor to steal from others."
-                return
-            if victim < 0:
-                msg = "He or she is too poor. Can't steal from peasants."
-                return
-            percent = random.uniform(0.05,0.3)
-            if random.random() < 0.6:
-                victim -= round(percent * victim)
-                if victim <= 0:
-                    msg = "User doesn't have enough cookies."
-                    return
-                you += round(percent * victim)
-                await self.cd(member,victim)
-                await self.cd(ctx.author,you)
-                msg = f"💎 You've succesfully stolen ``{percent:.0%}`` cookies from ``{member.name}``. 😱"
-            else:
-                victim += round(percent * you)
-                you -= round(percent * you)
-                if you <= 0:
-                    msg = "You dont have enough cookies."
-                    return
-                await self.cd(member,victim)
-                await self.cd(ctx.author,you)
-                msg = f"👮‍♂️ You got caught! You paid ``{percent:.0%}`` of your cookies for apologies to ``{member.name}`` 😭"
-            await ctx.send(msg)
-            await self.conf.user(ctx.author).steal_stamp.set(next_cd.timestamp())
+            await self.cd(member,victim)
+            await self.cd(ctx.author,you)
+            msg = f"👮‍♂️ You got caught! You paid ``{percent:.0%}`` of your cookies for apologies to ``{member.name}`` 😭"
+        await ctx.send(msg)
+        await self.conf.user(ctx.author).steal_stamp.set(next_cd.timestamp())
             
     @_cookie.command()
     async def search(self, ctx):
