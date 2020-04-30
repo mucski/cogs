@@ -344,7 +344,7 @@ class Mucski(commands.Cog):
             await ctx.send(f"On cooldown. Remaining: {humanize_timedelta(timedelta=remaining)}")
             return
         if member is None or member == ctx.author:
-            msg = "Really, you gonna attempt to steal from yourself?"
+            await ctx.send("Really, you gonna attempt to steal from yourself?")
             return
         you = await self.cv(ctx.author)
         victim = await self.cv(member)
@@ -390,7 +390,7 @@ class Mucski(commands.Cog):
             return await ctx.send("Can't search if I don't know where.")
         cookie = await self.cv(ctx.author)
         if msg.content.lower() in self.badloc:
-            return await ctx.send(self.loc[msg.content.lower()])
+            return awastealit ctx.send(self.loc[msg.content.lower()])
         else:
             amt = random.randint(50,200)
             cookie = amt + cookie
