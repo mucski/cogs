@@ -192,7 +192,7 @@ class Mucski(commands.Cog):
         embed.set_thumbnail(url=ctx.bot.user.avatar_url)
         embed.add_field(name="Dealer rolled", value=f"🎲 {dealer}")
         embed.add_field(name="You rolled", value=f"🎲 {member}")
-        embed.set_footer(text=datetime.datetime.utcnow())
+        embed.set_footer(text=datetime.utcnow().replace(microsecond=0))
         await ctx.send(embed=embed)
             
     @_cookie.command()
