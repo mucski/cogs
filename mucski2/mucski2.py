@@ -112,5 +112,6 @@ class Mucski2(commands.Cog):
         e.set_thumbnail(url=ctx.bot.user.avatar_url)
         e.set_author(name=f"{ctx.author}'s dice roll game.", icon_url=f"{ctx.author.avatar_url}")
         e.set_footer(text=datetime.datetime.utcnow())
-        await ctx.send(embed=e)
-        
+        test = e.to_dict()
+        await ctx.send(f"```{test}```")
+       
