@@ -231,8 +231,8 @@ class Mucski(commands.Cog):
         work_stamp = await self.conf.user(member).work_stamp()
         work_timer = await self.conf.guild(ctx.guild).work_timer()
         work_stamp = datetime.fromtimestamp(work_stamp)
-        next_cd = now + work_stamp
-        remaining = now - work_timer
+        next_cd = now + work_timer
+        remaining = now - work_stamp
         if now < work_stamp:
             #await ctx.send(f"Try again in {}") todo change its
             await ctx.send(f"On cooldown. Remaining: {humanize_timedelta(timedelta=remaining)} minutes")
