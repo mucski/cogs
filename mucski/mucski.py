@@ -133,15 +133,17 @@ class Mucski(commands.Cog):
         cookie = await self.cv(member)
         now = datetime.utcnow().replace(microsecond=0)
         daily_stamp = await self.conf.user(member).daily_stamp()
+        daily_stamp = datetime.fromtimestamp(daily_stamp)
+        remaining = daily_stamp - now
         #build embed
         e = discord.Embed(color=await self.color(ctx))
         e.set_author(name=f"Profile for {member.name}", icon_url=member.avatar_url)
         e.set_thumbnail(url=member.avatar_url)
         e.add_field(name="Cookies owned", value=f"``{cookie}``")
-        if now.timestamp() < daily_stamp:
+        if now < daily_stamp:
             cooling = "Yes"
             e.add_field(name="Daily on cooldown", value=f"``{cooling}``")
-            e.add_field(name="Cooldown remaining", value=f"``{datetime.fromtimestamp(daily_stamp) - now}``")
+            e.add_field(name="Cooldown remaining", value=f"``{humanize_timedelta(timedelta=remaining)}``")
         else:
             cooling = "No"
             e.add_field(name="Daily on cooldown", value=f"``{cooling}``")
