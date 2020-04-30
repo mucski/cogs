@@ -111,7 +111,7 @@ class Mucski2(commands.Cog):
         e = discord.Embed(color = await self.color(ctx), description=description)
         e.set_thumbnail(url=ctx.bot.user.avatar_url)
         e.set_author(name=f"{ctx.author}'s dice roll game.", icon_url=f"{ctx.author.avatar_url}")
-        e.set_footer(text=datetime.datetime.utcnow())
+        e.set_footer(text=datetime.utcnow())
         test = e.to_dict()
         await ctx.send(f"```{test}```")
        
