@@ -88,7 +88,6 @@ class Mucski(commands.Cog):
         `profile` - view your stats and profile
         `work` - earn random ammount of cookies
         `daily` - earns 1000 cookies every 12 hours (subject to change)
-        `gamble` - gambling is bad for your health
         `steal` - steal someones cookies
         `leaderboard or lb` - leaderboards
         `roll` - another form of gambling (roll the dice)
@@ -150,7 +149,7 @@ class Mucski(commands.Cog):
         await ctx.send(embed=e)
         
     @_cookie.command()
-    async def gamble(self, ctx, amount):
+    async def roll(self, ctx, amount):
         """Roll the dice see if you win"""
         member = random.randint(1,6)
         dealer = random.randint(1,6)
@@ -171,6 +170,9 @@ class Mucski(commands.Cog):
                     msg = "Get yourself some cookies first"
                 else:
                     #Game logic
+                    embed = discord.Embed(color=await self.color(ctx), description=f"{msg}")
+                    embed.set_author(name=f"{ctx.author.name} rolls the dice.", icon_url=ctx.author.avatar_url)
+                    embed.set_thumbnail(url=ctx.bot.user.avatar_url)
                     if member < 6 and dealer > member:
                         msg = f"Busted. You lost ``{amount}`` cookies."
                         cookie -= amount
@@ -178,16 +180,16 @@ class Mucski(commands.Cog):
                     elif member == dealer:
                         msg = f"Looks like its a tie."
                     elif dealer < 6 and dealer < member:
-                        msg = f"Dealer busted. You won ``{amount}`` cookies."
+                        msg = f"{ctx.bot.user.name} busted. You won ``{amount}`` cookies."
                         cookie += amount
                         await self.cd(ctx.author,cookie)
-        embed = discord.Embed(color=await self.color(ctx), description=f"{msg}")
-        embed.set_author(name=f"{ctx.author.name} rolls the dice.", icon_url=ctx.author.avatar_url)
-        embed.set_thumbnail(url=ctx.bot.user.avatar_url)
-        embed.add_field(name="Dealer rolled", value=f"🎲 {dealer}")
-        embed.add_field(name="You rolled", value=f"🎲 {member}")
-        embed.set_footer(text=datetime.utcnow().replace(microsecond=0))
-        await ctx.send(embed=embed)
+                    embed.description = msg
+                    embed.add_field(name="Dealer rolled", value=f"🎲 {dealer}")
+                    embed.add_field(name="You rolled", value=f"🎲 {member}")
+        if embed is None:
+            await ctx.send(msg)
+        else:
+            await ctx.send(embed)
             
     @_cookie.command()
     async def give(self, ctx, amount, *, member: discord.Member):
