@@ -189,7 +189,7 @@ class Mucski(commands.Cog):
         if embed is None:
             await ctx.send(msg)
         else:
-            await ctx.send(embed)
+            await ctx.send(embed=embed)
             
     @_cookie.command()
     async def give(self, ctx, amount, *, member: discord.Member):
