@@ -279,7 +279,7 @@ class Mucski(commands.Cog):
         await self.conf.user.all_users.work_stamp.clear()
         await self.conf.user.all_users.daily_stamp.clear()
         await self.conf.user.all_users.steal_stamp.clear()
-        awaiy ctx.send("Successfully reset all cooldowns.")
+        await ctx.send("Successfully reset all cooldowns.")
         
     @_cookie.command()
     async def daily(self, ctx):
