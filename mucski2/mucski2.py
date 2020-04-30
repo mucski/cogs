@@ -103,12 +103,12 @@ class Mucski2(commands.Cog):
             msg = "Looks like its a tie."
         elif him < 6 and you > him:
             msg = "Yay you won."
+        e = discord.Embed()
         e.description = (
             f'You rolled: - **{you}**\n'
             f'Dealer rolled: - **{him}**\n\n'
             f'{msg}'
         )
-        e = discord.Embed()
         e.title = "Casino Royale"
         e.description = "is this working"
         e.thumbnail = url=ctx.author.avatar_url
