@@ -231,6 +231,7 @@ class Mucski(commands.Cog):
         work_stamp = await self.conf.user(member).work_stamp()
         work_timer = await self.conf.guild(ctx.guild).work_timer()
         work_stamp = datetime.fromtimestamp(work_stamp)
+        work_timer = timedelta(minutes=work_timer)
         next_cd = now + work_timer
         remaining = now - work_stamp
         if now < work_stamp:
@@ -335,6 +336,7 @@ class Mucski(commands.Cog):
         steal_timer = await self.conf.guild(ctx.guild).steal_timer()
         steal_stamp = await self.conf.user(ctx.author).steal_stamp()
         steal_stamp = datetime.fromtimestamp(steal_stamp)
+        steal_timer = timedelta(hours=steal_timer)
         next_cd = steal_timer + now
         remaining = steal_stamp - now
         if now < steal_stamp:
