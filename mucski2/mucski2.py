@@ -5,7 +5,6 @@ import math
 import random
 import time
 import re
-import calendar
 from discord.ext import tasks, commands
 from datetime import datetime, timedelta
 
@@ -16,7 +15,6 @@ from redbot.core.utils.predicates import MessagePredicate
 from redbot.core.utils.predicates import ReactionPredicate
 from redbot.core.utils.menus import start_adding_reactions
 
-emojis = ('◀️','▶️','❌')
 
 class Mucski2(commands.Cog):
     def __init__(self, bot):
