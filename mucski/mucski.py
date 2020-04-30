@@ -170,7 +170,7 @@ class Mucski(commands.Cog):
                     msg = "Get yourself some cookies first"
                 else:
                     #Game logic
-                    embed = discord.Embed(color=await self.color(ctx))
+                    embed = discord.Embed(color=await self.color(ctx), timestamp=datetime.utcnow())
                     embed.set_author(name=f"{ctx.author.name} rolls the dice.", icon_url=ctx.author.avatar_url)
                     embed.set_thumbnail(url=ctx.bot.user.avatar_url)
                     if member < 6 and dealer > member:
