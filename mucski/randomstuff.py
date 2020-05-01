@@ -24,3 +24,5 @@ searchlist = {
     "school": "You went looking for cookies in your school locker, got a wedgy out of it instead. Bullies.",
     "trash": "Found nothing. Must've picked the wrong trash.",
 }
+
+bad_location = ['fridge','dog','toilet','trash','school']
