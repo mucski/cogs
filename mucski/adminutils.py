@@ -19,8 +19,8 @@ class AdminUtils(commands.Cog):
         if member is None:
             member = ctx.author
         cookie = await self.conf.user(member).cookies()
-        amt += cookie
-        await self.conf.user(member).cookies.set(amt)
+        final = cookie + amt
+        await self.conf.user(member).cookies.set(final)
         await ctx.send(f"Added {amt} to {member.name} now has {cookie} cookies.")
     
     async def del_cookie(self, ctx, member: discord.Member=None):
