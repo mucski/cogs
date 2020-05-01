@@ -9,6 +9,9 @@ from redbot.core.utils.menus import menu, DEFAULT_CONTROLS
 from datetime import datetime, timedelta
 from redbot.core.utils.predicates import MessagePredicate
 
+#randomstuff
+from .randomstuff import worklist
+
 class Mucski(AdminUtils, commands.Cog):
     def __init__(self, bot):
         self.conf = Config.get_conf(self, 82838559382)
