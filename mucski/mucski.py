@@ -27,7 +27,7 @@ class Mucski(AdminUtils, commands.Cog):
 
     @commands.group(name="cookie", aliases=["c"])
     @commands.guilds_only()
-    async def cookie():
+    async def cookie(self, ctx):
         pass
 
     @cookie.command()
