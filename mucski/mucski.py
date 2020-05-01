@@ -7,6 +7,7 @@ from redbot.core import checks, commands, Config
 from redbot.core.utils.chat_formatting import box, humanize_timedelta, pagify
 from redbot.core.utils.menus import menu, DEFAULT_CONTROLS
 from datetime import datetime, timedelta
+from redbot.core.utils.predicates import MessagePredicate
 
 class Mucski(AdminUtils, commands.Cog):
     def __init__(self, bot):
@@ -65,9 +66,19 @@ class Mucski(AdminUtils, commands.Cog):
         next_stamp = work_timer + now
         remaining = work_stamp - now
         if now < work_stamp:
-            return
+            return await ctx.send("On cooldown.")
         r = random.choice(list(worklist.keys()))
         await ctx.send(worklist[r])
+        pred = MessagePredicate.lower_equal_to(message.content, ctx.author)
+        try:
+            await ctx.bot.wait_for('message', timeout=7, check=pred)
+        except asyncio.TimeoutError:
+            await ctx.send("Timed out.")
+        cookie = await self.conf.user(member).cookies()
+        cookie += random.randint(50,500)
+        await self.conf.user(member).cookies.set(cookie)
+        await ctx.send("Well doje you earned {} cookies".format(cookie))
+        await self.conf.user(member).work_stamp.set(next_stamp)
     
     @cookie.command()
     async def search(self, ctx):
