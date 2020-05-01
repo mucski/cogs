@@ -93,14 +93,14 @@ class Mucski(AdminUtils, commands.Cog):
         await ctx.send(f"{r[0]} {r[1]} {r[2]}")
         pred = MessagePredicate.contained_in(r, ctx)
         try:
-            await ctx.bot.wait_for("message", timeout=7, check=pred)
+            msg = await ctx.bot.wait_for("message", timeout=7, check=pred)
         except asyncio.TimeoutError:
             return await ctx.send("Timed out.")
         cookie = await self.conf.user(ctx.author).cookies()
         earned = random.randint(20,200)
         cookie += earned
         await self.conf.user(ctx.author).cookies.set(cookie)
-        await ctx.send(searchlist[message.content].format(earned))
+        await ctx.send(searchlist[msg.content].format(earned))
             
     @cookie.command()
     async def scout(self, ctx):
