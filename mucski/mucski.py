@@ -72,7 +72,7 @@ class Mucski(AdminUtils, commands.Cog):
             return await ctx.send("On cooldown.")
         r = random.choice(list(worklist.keys()))
         await ctx.send(worklist[r])
-        pred = MessagePredicate.lower_equal_to(message.content, ctx.author)
+        pred = MessagePredicate.lower_equal_to(worklist[0], ctx.author)
         try:
             await ctx.bot.wait_for('message', timeout=7, check=pred)
         except asyncio.TimeoutError:
