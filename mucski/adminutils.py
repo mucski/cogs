@@ -7,8 +7,13 @@ class AdminUtils(commands.Cog):
         word = list(word)
         random.shuffle(word)
         return ''.join(word)
+        
+    @commands.group(name="cookie", aliases=['c'])
+    @commands.guild_only()
+    async def cookie(self, ctx):
+        pass
      
-    @commands.command()
+    @cookie.command()
     @checks.is_owner()
     async def add_cookie(self, ctx, amt: int, member: discord.Member=None):
         if member is None:
