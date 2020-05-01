@@ -65,9 +65,9 @@ class Mucski(AdminUtils, Games, commands.Cog):
         for i, (user_id, account) in enumerate(sorted_acc, start=1):
             user_id = ctx.guild.get_member(user_id)
             if len(user_id.display_name) < 15:
-                text_list.append(f"#{i:2}. {user_id.display_name:<15} {account['cookies']:>12} 🍪")
+                text_list.append(f"#{i:2}. {user_id.display_name:<15} {account['cookies']:>14} 🍪")
             else:
-                text_list.append(f"#{i:2}. {user_id.display_name[:15]:<15}.. {account['cookies']:>12} 🍪")
+                text_list.append(f"#{i:2}. {user_id.display_name[:13]:<15}.. {account['cookies']:>14} 🍪")
         text = '\n'.join(text_list)
         page_list = []
         for page_num, page in enumerate(pagify(text, delims=["\n"], page_length=1500), start=1):
