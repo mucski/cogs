@@ -11,6 +11,7 @@ from redbot.core.utils.predicates import MessagePredicate
 
 #randomstuff
 from .randomstuff import worklist
+from .randomstuff import searchlist
 
 class Mucski(AdminUtils, commands.Cog):
     def __init__(self, bot):
@@ -74,19 +75,32 @@ class Mucski(AdminUtils, commands.Cog):
         await ctx.send(worklist[r])
         pred = MessagePredicate.lower_equal_to(r, ctx)
         try:
-            await ctx.bot.wait_for('message', timeout=7, check=pred)
+            await ctx.bot.wait_for("message", timeout=7, check=pred)
         except asyncio.TimeoutError:
-            await ctx.send("Timed out.")
+            return await ctx.send("Timed out.")
         cookie = await self.conf.user(ctx.author).cookies()
-        cookie += random.randint(50,500)
+        earned = random.randint(50,500)
+        cookie += earned
         await self.conf.user(ctx.author).cookies.set(cookie)
-        await ctx.send("Well done. You earned ``{}`` cookies for your hard work".format(cookie))
+        await ctx.send(f"Well done. You earned ``{earned}`` cookies for your hard work")
         await self.conf.user(ctx.author).work_stamp.set(next_stamp.timestamp())
     
     @cookie.command()
     async def search(self, ctx):
-        pass
-    
+        r = random.sample(list(searchlist.keys()), 3)
+        await ctx.send("Choose a location bellow")
+        await ctx.send(f"{r[0]} {r[1]} {r[2]}")
+        pred = MessagePredicate.lower_equal_to(r, ctx)
+        try:
+            await ctx.bot.wait_for("message", timeout=7, check=pred)
+        except asyncio.TimeoutError:
+            return await ctx.send("Timed out.")
+        cookie = await self.conf.user(ctx.author).cookies()
+        earned = random.randint(20,200)
+        cookie += earned
+        await self.conf.user(ctx.author).cookies.set(cookie)
+        await ctx.send(searchlist[pred.content].format(earned))
+            
     @cookie.command()
     async def scout(self, ctx):
         pass
