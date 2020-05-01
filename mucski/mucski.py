@@ -18,13 +18,7 @@ class Mucski(AdminUtils, commands.Cog):
             "work_stamp": 0,
         }
         self.conf.register_user(**defaults)
-        
-    async def gettime(self, timer, stamp):
-        now = datetime.utcnow().replace(microsecond=0)
-        stamp = await self.conf.user(member).f"{stamp}"()
-        stamp = datetime.fromtimestamp(stamp)
-        timer = timedelta(f"{timer}")
-        
+
     @commands.group(name="cookie", aliases=['c'])
     @commands.guild_only()
     async def cookie(self, ctx):
