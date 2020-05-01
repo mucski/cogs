@@ -13,7 +13,7 @@ class AdminUtils(commands.Cog):
     async def add_cookie(self, ctx, amt: int, member: discord.Member=None):
         if member is None:
             member = ctx.author
-        cookie = self.conf.user(member).cookies()
+        cookie = await self.conf.user(member).cookies()
         amt = amt + cookie
         await self.conf.user(member).cookies.set(amt)
         await ctx.send("Added {} to {}".format(amt, member.name))
