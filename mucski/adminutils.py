@@ -1,4 +1,4 @@
-class AdminUtils:
+class AdminUtils(Mucski, commands.Cog):
     def __init__(self, ctx):
         self.ctx = ctx
     
