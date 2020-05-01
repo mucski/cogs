@@ -1,6 +1,6 @@
 import discord
 import random
-import datetime
+from datetime import datetime
 from redbot.core import commands, checks
 from .adminutils import AdminUtils
 
