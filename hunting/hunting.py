@@ -27,7 +27,7 @@ class Hunting(commands.Cog):
             "penguin": ":penguin: **_Noot!_**",
             "chicken": ":chicken: **_Bah-gawk!_**",
             "duck": ":duck: **_Quack!_**",
-            "samuel": f"{ctx.bot.get_emoji(705366615302340642)} **_Motherfuckers!_**",
+            "samuel": f"{self.bot.get_emoji(705366615302340642)} **_Motherfuckers!_**",
         }
         self.in_game = []
         self.paused_games = []
