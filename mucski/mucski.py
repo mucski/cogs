@@ -41,6 +41,7 @@ class Mucski(AdminUtils, commands.Cog):
     async def profile(self, ctx, member: discord.Member=None):
         if member is None:
             member = ctx.author
+        now = datetime.utcnow().replace(microsecond=0)
         cookie = await self.conf.user(member).cookies()
         daily_stamp = await self.conf.user(member).daily_stamp()
         daily_stamp = datetime.fromtimestamp(daily_stamp)
