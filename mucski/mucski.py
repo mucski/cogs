@@ -1,12 +1,12 @@
 import discord
 import random
 import math
+import importlib
 
 from redbot.core import checks, commands, Config
 from redbot.core.utils.chat_formatting import box, humanize_timedelta, pagify
 from redbot.core.utils.menus import menu, DEFAULT_CONTROLS
 from datetime import datetime, timedelta
-from .adminutils import AdminUtils
 
 class Mucski(commands.Cog):
     def __init__(self, bot):
@@ -18,6 +18,8 @@ class Mucski(commands.Cog):
             "work_stamp": 0,
         }
         self.conf.register_user(**defaults)
+        self.importlib.import_module(adminutils)
+        
         
         
     @commands.group(name="cookie", aliases=['c'])
