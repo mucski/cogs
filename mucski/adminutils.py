@@ -1,3 +1,6 @@
+from .mucski import Mucski
+
+
 class AdminUtils(Mucski, commands.Cog):
     def __init__(self, ctx):
         self.ctx = ctx
