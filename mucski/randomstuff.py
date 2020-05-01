@@ -7,3 +7,20 @@ worklist = {
     "dick": "You are working as a professional hunter. Shot the u out of a duck.",
     "redbot": "I'm a bot, but do you know my name?",
 }
+
+searchlist = {
+    "cellar": "You went into the cellar looking for a fine wine, got scared by a rat and found ``{}`` cookies instead.",
+    "moon": "A giant leap to man kind, Armstrong left some ``{}`` cookies here though.",
+    "forest": "You went trekking into the forest, found ``{}`` cookies laying around in an abandoned camp.",
+    "fridge": "Nothing beats frozen cookies, Right? Wrong.",
+    "sewer": "You descended into the sewers hoping to find a dancing clown, found ``{}`` cookies instead. ",
+    "dog": "Why would you do that.. that's animal abuse.",
+    "toilet": "Why would you search a toilet... That's disgusting and so are you. ", 
+    "box": "You rummaged through a box of forgotten items, found ``{}`` cookies. Lucky you. ", 
+    "drawer": "After going through many panties, a dildo, and a hand gun, you found ``{}`` cookies wrapped in socks", 
+    "story book": "You were looking for Little Red Riding Hood, instead you found ``{}`` cookies hidden in a tree bark. ", 
+    "set": "You are the next star for Ironing Man. While equipping his armor you found ``{}`` cookies in one of the hidden compartments. ",
+    "hospital": "You searched the hospital and found ``{}`` cookies. Don't eat them though, may be infected with covid19.",
+    "school": "You went looking for cookies in your school locker, got a wedgy out of it instead. Bullies.",
+    "trash": "Found nothing. Must've picked the wrong trash.",
+}
