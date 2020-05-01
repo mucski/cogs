@@ -81,7 +81,7 @@ class Mucski(AdminUtils, commands.Cog):
         cookie += random.randint(50,500)
         await self.conf.user(ctx.author).cookies.set(cookie)
         await ctx.send("Well doje you earned {} cookies".format(cookie))
-        await self.conf.user(ctx.author).work_stamp.set(next_stamp)
+        await self.conf.user(ctx.author).work_stamp.set(next_stamp.timestamp())
     
     @cookie.command()
     async def search(self, ctx):
