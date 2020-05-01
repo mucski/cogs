@@ -62,7 +62,7 @@ class Mucski(AdminUtils, commands.Cog):
     
     @cookie.command()
     async def work(self, ctx):
-        work_stamp = await self.conf.user(member).work_stamp()
+        work_stamp = await self.conf.user(ctx.author).work_stamp()
         work_stamp = datetime.fromtimestamp(work_stamp)
         work_timer = timedelta(minutes=5)
         now = datetime.utcnow().replace(microsecond=0)
@@ -77,11 +77,11 @@ class Mucski(AdminUtils, commands.Cog):
             await ctx.bot.wait_for('message', timeout=7, check=pred)
         except asyncio.TimeoutError:
             await ctx.send("Timed out.")
-        cookie = await self.conf.user(member).cookies()
+        cookie = await self.conf.user(ctx.author).cookies()
         cookie += random.randint(50,500)
-        await self.conf.user(member).cookies.set(cookie)
+        await self.conf.user(ctx.author).cookies.set(cookie)
         await ctx.send("Well doje you earned {} cookies".format(cookie))
-        await self.conf.user(member).work_stamp.set(next_stamp)
+        await self.conf.user(ctx.author).work_stamp.set(next_stamp)
     
     @cookie.command()
     async def search(self, ctx):
