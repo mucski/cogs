@@ -100,7 +100,7 @@ class Mucski(AdminUtils, commands.Cog):
         earned = random.randint(20,200)
         cookie += earned
         await self.conf.user(ctx.author).cookies.set(cookie)
-        await ctx.send(searchlist[pred.content].format(earned))
+        await ctx.send(searchlist[message.content].format(earned))
             
     @cookie.command()
     async def scout(self, ctx):
