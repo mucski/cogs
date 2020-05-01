@@ -25,7 +25,7 @@ class Mucski(commands.Cog):
     
     @cookie.command()
     async def balance(self, ctx, member: discord.Member=None):
-        if member None:
+        if member is None:
             member = ctx.author
         cookie = await self.conf.user(member).cookies()
         await ctx.send(f"{member.name} has {cookie} cookies")
