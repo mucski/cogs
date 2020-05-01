@@ -89,7 +89,7 @@ class Games(commands.Cog):
                     e.description = msg
                     e.add_field(name="Dealer rolled", value=f"🎲 {dealer}")
                     e.add_field(name="You rolled", value=f"🎲 {member}")
-        if embed is None:
+        if e is None:
             await ctx.send(msg)
         else:
             await ctx.send(embed=e)
