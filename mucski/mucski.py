@@ -19,7 +19,7 @@ class Mucski(commands.Cog):
         }
         self.conf.register_user(**defaults)
         
-    AdminUtils(ctx)
+    AdminUtils()
         
     @commands.group(name="cookie", aliases=['c'])
     @commands.guild_only()
