@@ -43,16 +43,24 @@ class Mucski(AdminUtils, Games, commands.Cog):
         cookie = await self.conf.user(member).cookies()
         daily_stamp = await self.conf.user(member).daily_stamp()
         daily_stamp = datetime.fromtimestamp(daily_stamp)
-        remaining = daily_stamp - now
+        daily = daily_stamp - now
+        steal_stamp = await self.conf.user(member).steal_stamp()
+        steal_stamp = datetime.fromtimestamp(steal_stamp)
+        steal = steal_stamp - now
         e = discord.Embed(timestamp=datetime.utcnow())
         e.set_author(name=f"{member.name}'s profile", icon_url=member.avatar_url)
         e.set_thumbnail(url=member.avatar_url)
         e.add_field(name="Cookies owned", value=cookie)
         if now < daily_stamp:
-            e.add_field(name="On cooldown", value="YES")
-            e.add_field(name="Cooldown remaining", value=humanize_timedelta(timedelta=remaining))
+            e.add_field(name="Daily on cooldown", value="YES")
+            e.add_field(name="Cooldown remaining", value=humanize_timedelta(timedelta=daily))
         else:
-            e.add_field(name="On cooldown", value="NO")
+            e.add_field(name="Daily on cooldown", value="NO")
+        if now < steal_stamp:
+            e.add_field(name="Steal on cooldown", value="YES")
+            e.add_field(name="Cooldown remaining", value=humanize_timedelta(timedelta=steal))
+        else:
+            e.add_field(name="Steal on cooldown", value="NO")
         await ctx.send(embed=e)
     
     @AdminUtils.cookie.command(name="cookieboards", aliases=['lb', 'cb'])
