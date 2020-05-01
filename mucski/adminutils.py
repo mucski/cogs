@@ -3,8 +3,6 @@ import discord
 from redbot.core import checks, commands
 
 class AdminUtils:
-    def __init__(self, ctx):
-        self.ctx = ctx
     
     def shuffle(self, word):
         word = list(word)
