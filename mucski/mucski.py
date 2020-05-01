@@ -39,7 +39,22 @@ class Mucski(AdminUtils, commands.Cog):
     
     @cookie.command()
     async def profile(self, ctx, member: discord.Member=None):
-        pass
+        if member is None:
+            member = ctx.author
+        cookie = await self.conf.user(member).cookies()
+        daily_stamp = await self.conf.user(member).daily_stamp()
+        daily_stamp = datetime.fromtimestamp(daily_stamp)
+        remaining = daily_stamp - now
+        e = discord.Embed(timestamp=datetime.utcnow())
+        e.set_author(name=f"{member.name}'s profile", icon_url=member.avatar_url)
+        e.set_thumbnail(url=member.avatar_url)
+        e.add_field(name="Cookies owned", value=cookie)
+        if now < daily_stamp:
+            e.add_field(name="On cooldown", value="YES")
+            e.add_field(name="Cooldown remaining", value=humanize_timedelta(timedelta=remaining))
+        else:
+            e.add_field(name="On cooldown", value="NO")
+        await ctx.send(embed=e)
     
     @cookie.command(name="cookieboards", aliases=['lb', 'cb'])
     async def cookieboards(self, ctx):
@@ -108,6 +123,17 @@ class Mucski(AdminUtils, commands.Cog):
       
     @cookie.command()
     async def daily(self, ctx):
-        pass
-    
+        now = datetime.utcnow().replace(microsecond=0)
+        daily_stamp = await self.conf.user(ctx.author).daily_stamp()
+        daily_stamp = datetime.fromtimestamp(daily_stamp)
+        daily_timer = timedelta(hours=12)
+        next_stamp = daily_timer + now
+        remaining = daily_stamp - now
+        if now < daily_stamp:
+            return await ctx.send(f"On cooldown {humanize_timedelta(timedelta=remaining)}")
+        cookie = await seld.conf.user(ctx.author).cookies()
+        cookie += 1000
+        await self.conf.user(ctx.author).cookies.set(cookie)
+        await ctx.send("Claimed your daily cookies (1000)")
+        await self.conf.user(ctx.author).daily_stamp.set(next_stamp.timestamp())
     
