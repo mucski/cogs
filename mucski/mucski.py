@@ -30,14 +30,14 @@ class Mucski(AdminUtils, commands.Cog):
     #async def cookie(self, ctx):
         #pass
 
-    @cookie.command()
+    @AdminUtils.cookie.command()
     async def balance(self, ctx, member: discord.Member=None):
         if member is None:
             member = ctx.author
         cookie = await self.conf.user(member).cookies()
         await ctx.send(f"{member.name} has {cookie} cookies")
     
-    @cookie.command()
+    @AdminUtils.cookie.command()
     async def profile(self, ctx, member: discord.Member=None):
         if member is None:
             member = ctx.author
@@ -57,7 +57,7 @@ class Mucski(AdminUtils, commands.Cog):
             e.add_field(name="On cooldown", value="NO")
         await ctx.send(embed=e)
     
-    @cookie.command(name="cookieboards", aliases=['lb', 'cb'])
+    @AdminUtils.cookie.command(name="cookieboards", aliases=['lb', 'cb'])
     async def cookieboards(self, ctx):
         userinfo = await self.conf.all_users()
         if not userinfo:
@@ -78,7 +78,7 @@ class Mucski(AdminUtils, commands.Cog):
         page_list.append(e)
         return await menu(ctx, page_list, DEFAULT_CONTROLS)
     
-    @cookie.command()
+    @AdminUtils.cookie.command()
     async def work(self, ctx):
         work_stamp = await self.conf.user(ctx.author).work_stamp()
         work_stamp = datetime.fromtimestamp(work_stamp)
@@ -102,7 +102,7 @@ class Mucski(AdminUtils, commands.Cog):
         await ctx.send(f"Well done. You earned ``{earned}`` cookies for your hard work")
         await self.conf.user(ctx.author).work_stamp.set(next_stamp.timestamp())
     
-    @cookie.command()
+    @AdminUtils.cookie.command()
     async def search(self, ctx):
         r = random.sample(list(searchlist.keys()), 3)
         await ctx.send("Choose a location bellow")
@@ -118,11 +118,11 @@ class Mucski(AdminUtils, commands.Cog):
         await self.conf.user(ctx.author).cookies.set(cookie)
         await ctx.send(searchlist[msg.content].format(earned))
             
-    @cookie.command()
+    @AdminUtils.cookie.command()
     async def scout(self, ctx):
         pass
       
-    @cookie.command()
+    @AdminUtils.cookie.command()
     async def daily(self, ctx):
         now = datetime.utcnow().replace(microsecond=0)
         daily_stamp = await self.conf.user(ctx.author).daily_stamp()
