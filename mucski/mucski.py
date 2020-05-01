@@ -18,7 +18,7 @@ class Mucski(commands.Cog):
             "work_stamp": 0,
         }
         self.conf.register_user(**defaults)
-        self.importlib.import_module(adminutils)
+        importlib.import_module(adminutils)
         
         
         
