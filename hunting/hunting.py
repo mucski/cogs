@@ -27,7 +27,7 @@ class Hunting(commands.Cog):
             "penguin": ":penguin: **_Noot!_**",
             "chicken": ":chicken: **_Bah-gawk!_**",
             "duck": ":duck: **_Quack!_**",
-            "samuel": "<:samuel:705366615302340642> **_Motherfuckers!_**",
+            "samuel": f"{ctx.bot.get_emoji(705366615302340642)} **_Motherfuckers!_**",
         }
         self.in_game = []
         self.paused_games = []
@@ -42,10 +42,6 @@ class Hunting(commands.Cog):
         default_user = {"author_name": None, "score": {}, "total": 0}
         self.config.register_user(**default_user)
         self.config.register_guild(**default_guild)
-
-    def getemoji(self, ctx, emoji):
-        emojis = get(ctx.message.server.emoji, name="emoji")
-        return emojis
 
     @commands.guild_only()
     @commands.group()
