@@ -63,10 +63,10 @@ class Mucski(AdminUtils, Games, commands.Cog):
         text_list = []
         for i, (user_id, account) in enumerate(sorted_acc, start=1):
             user_id = ctx.guild.get_member(user_id)
-            if len(user_id.name) <13:
-                text_list.append(f"{i:2}, {user_id.display_name}, {account['cookies']}")
+            if len(user_id.name) <15:
+                text_list.append(f"#{i:2}. {user_id.display_name:<15}: {account['cookies']:>15}")
             else:
-                text_list.append(f"{i:2}, {user_id.display_name}, {account['cookies']}")
+                text_list.append(f"#{i:2}. {user_id.display_name:[15]:<15}: {account['cookies']:>15}")
         text = '\n'.join(text_list)
         page_list = []
         for page_num, page in enumerate(pagify(text, delims=["\n"], page_length=1500), start=1):
@@ -109,6 +109,8 @@ class Mucski(AdminUtils, Games, commands.Cog):
             msg = await ctx.bot.wait_for("message", timeout=7, check=pred)
         except asyncio.TimeoutError:
             return await ctx.send("Timed out.")
+        if msg.content.lower() in bad_location:
+            return await.ctx.send(searchlist[msg.content])
         cookie = await self.conf.user(ctx.author).cookies()
         earned = random.randint(20,200)
         cookie += earned
