@@ -19,6 +19,11 @@ class Mucski(AdminUtils, commands.Cog):
         }
         self.conf.register_user(**defaults)
         
+    async def gettime(self, timer, stamp):
+        now = datetime.utcnow().replace(microsecond=0)
+        stamp = await self.conf.user(member).f"{stamp}"()
+        stamp = datetime.fromtimestamp(stamp)
+        timer = timedelta(f"{timer}")
         
     @commands.group(name="cookie", aliases=['c'])
     @commands.guild_only()
@@ -59,7 +64,16 @@ class Mucski(AdminUtils, commands.Cog):
     
     @cookie.command()
     async def work(self, ctx):
-        pass
+        work_stamp = await self.conf.user(member).work_stamp()
+        work_stamp = datetime.fromtimestamp(work_stamp)
+        work_timer = timedelta(minutes=5)
+        now = datetime.utcnow().replace(microsecond=0)
+        next_stamp = work_timer + now
+        remaining = work_stamp - now
+        if now < work_stamp:
+            return
+        r = random.choice(list(worklist.keys()))
+        await ctx.send(worklist[r])
     
     @cookie.command()
     async def search(self, ctx):
