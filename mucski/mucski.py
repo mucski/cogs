@@ -91,7 +91,7 @@ class Mucski(AdminUtils, commands.Cog):
         r = random.sample(list(searchlist.keys()), 3)
         await ctx.send("Choose a location bellow")
         await ctx.send(f"{r[0]} {r[1]} {r[2]}")
-        pred = MessagePredicate.lower_equal_to(r, ctx)
+        pred = MessagePredicate.contained_in(r, ctx)
         try:
             await ctx.bot.wait_for("message", timeout=7, check=pred)
         except asyncio.TimeoutError:
