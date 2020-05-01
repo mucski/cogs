@@ -113,7 +113,7 @@ class Mucski(AdminUtils, Games, commands.Cog):
         r = random.sample(list(searchlist.keys()), 3)
         await ctx.send("🔎Choose a location to search for cookies from bellow🔎")
         await ctx.send(f"``{r[0]}``  ``{r[1]}``  ``{r[2]}``")
-        pred = MessagePredicate.contained_in(r, ctx)
+        pred = MessagePredicate.lower_contained_in(r, ctx)
         try:
             msg = await ctx.bot.wait_for("message", timeout=7, check=pred)
         except asyncio.TimeoutError:
