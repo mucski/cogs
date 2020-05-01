@@ -69,7 +69,7 @@ class Mucski(AdminUtils, commands.Cog):
         next_stamp = work_timer + now
         remaining = work_stamp - now
         if now < work_stamp:
-            return await ctx.send("On cooldown.")
+            return await ctx.send(f"On cooldown. Remaining: {humanize_timedelta(timedelta=remaining)}")
         r = random.choice(list(worklist.keys()))
         await ctx.send(worklist[r])
         pred = MessagePredicate.lower_equal_to(r, ctx)
@@ -80,7 +80,7 @@ class Mucski(AdminUtils, commands.Cog):
         cookie = await self.conf.user(ctx.author).cookies()
         cookie += random.randint(50,500)
         await self.conf.user(ctx.author).cookies.set(cookie)
-        await ctx.send("Well doje you earned {} cookies".format(cookie))
+        await ctx.send("Well done. You earned ``{}`` cookies for your hard work".format(cookie))
         await self.conf.user(ctx.author).work_stamp.set(next_stamp.timestamp())
     
     @cookie.command()
