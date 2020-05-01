@@ -8,7 +8,7 @@ from redbot.core.utils.chat_formatting import box, humanize_timedelta, pagify
 from redbot.core.utils.menus import menu, DEFAULT_CONTROLS
 from datetime import datetime, timedelta
 
-class Mucski(commands.Cog):
+class Mucski(AdminUtils,commands.Cog):
     def __init__(self, bot):
         self.conf = Config.get_conf(self, 82838559382)
         defaults = {
@@ -73,7 +73,4 @@ class Mucski(commands.Cog):
     async def daily(self, ctx):
         pass
     
-    @cookie.command()
-    async def add_cookie(self, ctx, amt: int, member: member.Discord=None):
-        await ctx.send(cookie_add(ctx, amt, member))
     
