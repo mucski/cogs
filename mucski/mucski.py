@@ -14,6 +14,7 @@ from redbot.core.utils.predicates import MessagePredicate
 #randomstuff
 from .randomstuff import worklist
 from .randomstuff import searchlist
+from .randomstuff import bad_location
 
 class Mucski(AdminUtils, Games, commands.Cog):
     def __init__(self, bot):
