@@ -67,7 +67,7 @@ class Mucski(AdminUtils, Games, commands.Cog):
             if len(user_id.display_name) < 15:
                 text_list.append(f"#{i:2}. {user_id.display_name:<15} {account['cookies']:>14} 🍪")
             else:
-                text_list.append(f"#{i:2}. {user_id.display_name[:13]:<15}.. {account['cookies']:>14} 🍪")
+                text_list.append(f"#{i:2}. {user_id.display_name[:12]:<15}.. {account['cookies']:>14} 🍪")
         text = '\n'.join(text_list)
         page_list = []
         for page_num, page in enumerate(pagify(text, delims=["\n"], page_length=1500), start=1):
