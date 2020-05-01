@@ -132,7 +132,7 @@ class Mucski(AdminUtils, commands.Cog):
         remaining = daily_stamp - now
         if now < daily_stamp:
             return await ctx.send(f"On cooldown {humanize_timedelta(timedelta=remaining)}")
-        cookie = await seld.conf.user(ctx.author).cookies()
+        cookie = await self.conf.user(ctx.author).cookies()
         cookie += 1000
         await self.conf.user(ctx.author).cookies.set(cookie)
         await ctx.send("Claimed your daily cookies (1000)")
