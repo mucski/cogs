@@ -1,7 +1,7 @@
 import discord
 import random
 import math
-from adminutils import AdminUtils
+from .adminutils import AdminUtils
 
 from redbot.core import checks, commands, Config
 from redbot.core.utils.chat_formatting import box, humanize_timedelta, pagify
