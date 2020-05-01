@@ -18,7 +18,6 @@ class Mucski(commands.Cog):
             "work_stamp": 0,
         }
         self.conf.register_user(**defaults)
-        self.bot.add_commands(commands.AdminUtils)
         
         
     @commands.group(name="cookie", aliases=['c'])
