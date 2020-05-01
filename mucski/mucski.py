@@ -39,7 +39,7 @@ class Mucski(commands.Cog):
         userinfo = await self.conf.all_users()
         if not userinfo:
             await ctx.send("Start playig by working, searching, scouting, or claiming your first daily.")
-        sorted_acc = sorted(userinfo.items(), key = lambda x:[1]['cookies'], reverse=True)[:50]
+        sorted_acc = sorted(userinfo.items(), key = lambda x: x[1]['cookies'], reverse=True)[:50]
         text_list = []
         for i, (user_id, account) in enumerate(sorted_acc, start=1):
             user_id = ctx.guils.get_member(user_id)
