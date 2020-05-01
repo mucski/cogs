@@ -25,6 +25,10 @@ class Mucski(AdminUtils, commands.Cog):
         }
         self.conf.register_user(**defaults)
 
+    @commands.group(name="cookie", aliases=["c"])
+    @commands.guilds_only()
+    async def cookie():
+        pass
 
     @cookie.command()
     async def balance(self, ctx, member: discord.Member=None):
