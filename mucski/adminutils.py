@@ -2,7 +2,7 @@ import random
 import discord
 from redbot.core import checks, commands
 
-class AdminUtils:
+class AdminUtils(commands.Cog):
     
     def shuffle(self, word):
         word = list(word)
