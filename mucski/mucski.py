@@ -8,7 +8,7 @@ from redbot.core.utils.chat_formatting import box, humanize_timedelta, pagify
 from redbot.core.utils.menus import menu, DEFAULT_CONTROLS
 from datetime import datetime, timedelta
 
-class Mucski(AdminUtils,commands.Cog):
+class Mucski(AdminUtils, commands.Cog):
     def __init__(self, bot):
         self.conf = Config.get_conf(self, 82838559382)
         defaults = {
