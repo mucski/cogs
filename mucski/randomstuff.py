@@ -6,7 +6,4 @@ worklist = {
     "bulbbulb": "Type the following word in reverse ``blubblub``", 
     "dick": "You are working as a professional hunter. Shot the u out of a duck.",
     "redbot": "I'm a bot, but do you know my name?",
-    "mucski": f"Had to include it here ... Unscramble me. ``{self.shuffle_word('mucski')}``",
-    "paladins": f"Unscramble the following word ``{self.shuffle_word('paladins')}``",
-    "depression": f"Unscramble the following word ``{self.shuffle_word('depression')}``",
 }
