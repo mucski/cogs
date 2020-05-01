@@ -14,8 +14,11 @@ class AdminUtils(commands.Cog):
      
     @commands.command()    
     @checks.is_owner()
-    async def add_cookie(self, ctx, member: discord.Member=None):
-        pass
+    async def add_cookie(self, ctx, member: discord.Member=None, amt: int):
+        if member is None:
+            member = ctx.author
+        await self.conf.user(member).cookies.set(amt)
+        await ctx.send("Added {} to {}".format(member, amt))
     
     
     @commands.command()
