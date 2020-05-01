@@ -49,7 +49,7 @@ class Mucski(commands.Cog):
                 text_list.append(f"{i:2}, {user_id.display_name}, {account['cookies']}")
         text = '\n'.join(text_list)
         page_list = []
-        for page_num, page in enumerate(pagify(text, delims=["\n"], page_lenght=1500), start=1):
+        for page_num, page in enumerate(pagify(text, delims=["\n"], page_length=1500), start=1):
             e = discord.Embed(color = await ctx.bot.get_embed_color(location=ctx.channel), description = box(f"Cookieboards", lang="prolog") + (box(page, lang="md")))
             e.set_footer(text = f"Page {page_num}/{math.ceil(len(text) / 1500)}")
         page_list.append(e)
