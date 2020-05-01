@@ -111,8 +111,7 @@ class Mucski(AdminUtils, Games, commands.Cog):
         except asyncio.TimeoutError:
             return await ctx.send("Timed out.")
         if msg.content.lower() in bad_location:
-            await.ctx.send(searchlist[msg.content])
-            return
+            return await ctx.send(searchlist[msg.content])
         cookie = await self.conf.user(ctx.author).cookies()
         earned = random.randint(20,200)
         cookie += earned
