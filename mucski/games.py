@@ -3,6 +3,8 @@ import random
 from datetime import datetime, timedelta
 from redbot.core import commands, checks
 from .adminutils import AdminUtils
+from redbot.core.utils.chat_formatting import humanize_timedelta
+
 
 class Games(commands.Cog):
     
