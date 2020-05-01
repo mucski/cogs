@@ -12,13 +12,13 @@ class AdminUtils:
      
     @commands.command()    
     @checks.is_owner()
-    async def add_cookie(self, ctx, member: discord.Member=None)
+    async def add_cookie(self, ctx, member: discord.Member=None):
         pass
     
     
     @commands.command()
     @checks.is_owner()
-    async def del_cookie(self, ctx, member: discord.Member=None)
+    async def del_cookie(self, ctx, member: discord.Member=None):
         pass
     
     
@@ -30,7 +30,7 @@ class AdminUtils:
     
     @commands.command()
     @checks.is_owner()
-    async def reset_cd(self, ctx, member: discord.Member=None)
+    async def reset_cd(self, ctx, member: discord.Member=None):
         pass
         
     
