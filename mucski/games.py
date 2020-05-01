@@ -17,7 +17,7 @@ class Games(commands.Cog):
         next_cd = steal_timer + now
         remaining = steal_stamp - now
         if now < steal_stamp:
-            await ctx.send(f"On cooldown. Remaining: {humanize_timedelta(timedelta=remaining)}")
+            await ctx.send(f"FBI gonna be looking for you. Try again in {humanize_timedelta(timedelta=remaining)}")
             return
         if member is None or member == ctx.author:
             await ctx.send("Really, you gonna attempt to steal from yourself?")
@@ -28,13 +28,13 @@ class Games(commands.Cog):
             msg = "You're too poor to steal from others."
             return
         if victim < 0:
-            msg = "He or she is too poor. Can't steal from peasants."
+            msg = "Taking other peoples last cookie .. really?."
             return
         percent = random.uniform(0.05,0.3)
         if random.random() < 0.6:
             victim -= round(percent * victim)
             if victim <= 0:
-                msg = "User doesn't have enough cookies."
+                msg = "Yeah ... no. Not worth it."
                 return
             you += round(percent * victim)
             await self.conf.user(member).cookies.set(victim)
@@ -44,7 +44,7 @@ class Games(commands.Cog):
             victim += round(percent * you)
             you -= round(percent * you)
             if you <= 0:
-                msg = "You dont have enough cookies."
+                msg = "Yeah, you can't go negative buster."
                 return
             await self.conf.user(member).cookies.set(victim)
             await self.conf.user(ctx.author).cookies.set(you)
@@ -65,30 +65,30 @@ class Games(commands.Cog):
                 amount = cookie
             else:
                 amount = None
-                msg = "Need more cookies to play."
+                msg = "It's called gambling, not UNICEF"
         finally:
             if amount is not None:
                 if amount <= 0:
-                    msg = "Invalid amount of cookies!"
+                    msg = "You hit rock bottom. Can't go any further."
                 elif cookie - amount < 0:
-                    msg = "Get yourself some cookies first"
+                    msg = "Need some cookies? Then go get yourself some, and stop bugging me."
                 else:
                     #Game logic
                     e = discord.Embed(timestamp=datetime.utcnow())
-                    e.set_author(name=f"{ctx.author.name} rolls the dice.", icon_url=ctx.author.avatar_url)
+                    e.set_author(name=f"{ctx.author.name} rolls the cookie.", icon_url=ctx.author.avatar_url)
                     e.set_thumbnail(url=ctx.bot.user.avatar_url)
                     if member < 6 and dealer > member:
-                        msg = f"Busted. You lost ``{amount}`` cookies. 😞"
+                        msg = f"Haha! Got ya! You lost ``{amount}`` cookies. 😞"
                         cookie -= amount
                         await self.conf.user(ctx.author).cookies.set(cookie)
                     elif member == dealer:
-                        msg = f"Looks like its a tie."
+                        msg = f"What a pitty, looks like its a tie."
                     elif dealer < 6 and dealer < member:
-                        msg = f"{ctx.bot.user.name} busted. You won ``{amount}`` cookies. 😱"
+                        msg = f"{ctx.bot.user.name} got rekt. You won ``{amount}`` cookies. 😱"
                         cookie += amount
                         await self.conf.user(ctx.author).cookies.set(cookie)
                     e.description = msg
-                    e.add_field(name="Dealer rolled", value=f"🍪 {dealer}")
+                    e.add_field(name=f"{ctx.bot.user.name} rolled", value=f"🍪 {dealer}")
                     e.add_field(name="You rolled", value=f"🍪 {member}")
         if e is None:
             await ctx.send(msg)
