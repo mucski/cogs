@@ -33,7 +33,7 @@ class Mucski(AdminUtils, Games, commands.Cog):
         if member is None:
             member = ctx.author
         cookie = await self.conf.user(member).cookies()
-        await ctx.send(f"{member.name} has {cookie} cookies")
+        await ctx.send(f"{member.name} has {cookie} cookies.")
     
     @AdminUtils.cookie.command()
     async def profile(self, ctx, member: discord.Member=None):
@@ -67,7 +67,7 @@ class Mucski(AdminUtils, Games, commands.Cog):
     async def cookieboards(self, ctx):
         userinfo = await self.conf.all_users()
         if not userinfo:
-            await ctx.send("Start playig by working, searching, scouting, or claiming your first daily.")
+            await ctx.send("Start playig by working, searching, scouting, or claiming your first daily, before you brag.")
         sorted_acc = sorted(userinfo.items(), key = lambda x: x[1]['cookies'], reverse=True)[:50]
         text_list = []
         for i, (user_id, account) in enumerate(sorted_acc, start=1):
@@ -93,7 +93,7 @@ class Mucski(AdminUtils, Games, commands.Cog):
         next_stamp = work_timer + now
         remaining = work_stamp - now
         if now < work_stamp:
-            return await ctx.send(f"On cooldown. Remaining: {humanize_timedelta(timedelta=remaining)}")
+            return await ctx.send(f"Yo, I'm not made out of money, wait {humanize_timedelta(timedelta=remaining)}")
         r = random.choice(list(worklist.keys()))
         await ctx.send(worklist[r])
         pred = MessagePredicate.lower_equal_to(r, ctx)
@@ -111,13 +111,13 @@ class Mucski(AdminUtils, Games, commands.Cog):
     @AdminUtils.cookie.command()
     async def search(self, ctx):
         r = random.sample(list(searchlist.keys()), 3)
-        await ctx.send("🔎Choose a location to search for cookies from bellow🔎")
+        await ctx.send("🔎 Choose a location to search for cookies 🔎")
         await ctx.send(f"``{r[0]}``  ``{r[1]}``  ``{r[2]}``")
         pred = MessagePredicate.lower_contained_in(r, ctx)
         try:
             msg = await ctx.bot.wait_for("message", timeout=7, check=pred)
         except asyncio.TimeoutError:
-            return await ctx.send("Timed out.")
+            return await ctx.send("Yeah.. Maybe try picking a location next time?")
         if msg.content.lower() in bad_location:
             return await ctx.send(searchlist[msg.content.lower()])
         cookie = await self.conf.user(ctx.author).cookies()
@@ -139,11 +139,11 @@ class Mucski(AdminUtils, Games, commands.Cog):
         next_stamp = daily_timer + now
         remaining = daily_stamp - now
         if now < daily_stamp:
-            return await ctx.send(f"On cooldown {humanize_timedelta(timedelta=remaining)}")
+            return await ctx.send(f"Yeah .. which part of daily you didn't understand? Wait {humanize_timedelta(timedelta=remaining)}")
         cookie = await self.conf.user(ctx.author).cookies()
         cookie += 1000
         await self.conf.user(ctx.author).cookies.set(cookie)
-        await ctx.send("Claimed your daily cookies (1000)")
+        await ctx.send("Claimed your 1000 daily cookies, woo!")
         await self.conf.user(ctx.author).daily_stamp.set(next_stamp.timestamp())
         
     @AdminUtils.cookie.command()
@@ -156,7 +156,7 @@ class Mucski(AdminUtils, Games, commands.Cog):
                 amount = sender
             else:
                 amount = None
-                msg = "Thats an invalid input!"
+                msg = "Try it with an actual amount this time."
         finally:
             if amount is not None:
                 if amount >= 0:
@@ -168,10 +168,10 @@ class Mucski(AdminUtils, Games, commands.Cog):
                     receiver = await self.conf.user(member).cookies()
                     receiver += amount
                     if receiver <= 0:
-                        msg = "Nope hahaha"
+                        msg = "Excuse you, are you trying to steal from me?!"
                         return
                     await self.conf.user(member).cookies.set(receiver)
                     msg = f"``{ctx.author.name}`` sent ``{amount}`` cookies to ``{member.name}`` 🍪🎉"
                 else:
-                    msg = "Trick someone else!"
+                    msg = "Yeah .. go trick someone else!"
         await ctx.send(msg)
