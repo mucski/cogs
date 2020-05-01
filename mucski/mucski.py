@@ -1,7 +1,7 @@
 import discord
 import random
 import math
-from . import adminutils
+from adminutils import AdminUtils
 
 from redbot.core import checks, commands, Config
 from redbot.core.utils.chat_formatting import box, humanize_timedelta, pagify
@@ -20,8 +20,6 @@ class Mucski(commands.Cog):
         self.conf.register_user(**defaults)
         
         
-    AdminUtils()
-    
     @commands.group(name="cookie", aliases=['c'])
     @commands.guild_only()
     async def cookie(self, ctx):
@@ -74,4 +72,8 @@ class Mucski(commands.Cog):
     @cookie.command()
     async def daily(self, ctx):
         pass
+    
+    @cookie.command()
+    async def add_cookie(self, ctx, amt: int, member: member.Discord=None):
+        await ctx.send(cookie_add(ctx, amt, member))
     
