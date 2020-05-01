@@ -137,7 +137,7 @@ class Mucski(AdminUtils, Games, commands.Cog):
         
                     
     @AdminUtils.cookie.command()
-    async def give(self, ctx, amount, *, member: discord.Member):
+    async def give(self, ctx, amount, member: discord.Member):
         """ Give a member cookies """
         sender = await self.conf.user(ctx.author).cookies()
         try:
