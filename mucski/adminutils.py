@@ -2,7 +2,7 @@ import random
 import discord
 from redbot.core import checks, commands
 
-class AdminUtils(commands.Cog):
+class AdminUtils:
     
     def shuffle(self, word):
         word = list(word)
@@ -10,7 +10,7 @@ class AdminUtils(commands.Cog):
         return ''.join(word)
      
      
-    @commands.command()    
+    @cookie.command()    
     @checks.is_owner()
     async def add_cookie(self, ctx, amt: int, member: discord.Member=None):
         if member is None:
@@ -19,19 +19,19 @@ class AdminUtils(commands.Cog):
         await ctx.send("Added {} to {}".format(member, amt))
     
     
-    @commands.command()
+    @cookie.command()
     @checks.is_owner()
     async def del_cookie(self, ctx, member: discord.Member=None):
         pass
     
     
-    @commands.command()
+    @cookie.command()
     @checks.is_owner()
     async def reset_db(self, ctx):
         pass
     
     
-    @commands.command()
+    @cookie.command()
     @checks.is_owner()
     async def reset_cd(self, ctx, member: discord.Member=None):
         pass
