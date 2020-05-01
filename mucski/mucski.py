@@ -103,8 +103,8 @@ class Mucski(AdminUtils, Games, commands.Cog):
     @AdminUtils.cookie.command()
     async def search(self, ctx):
         r = random.sample(list(searchlist.keys()), 3)
-        await ctx.send("Choose a location bellow")
-        await ctx.send(f"{r[0]} {r[1]} {r[2]}")
+        await ctx.send("🔎Choose a location to search for cookies from bellow🔎")
+        await ctx.send(f"``**{r[0]}**`` ``**{r[1]}**`` ``**{r[2]}**``")
         pred = MessagePredicate.contained_in(r, ctx)
         try:
             msg = await ctx.bot.wait_for("message", timeout=7, check=pred)
