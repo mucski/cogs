@@ -64,7 +64,7 @@ class Mucski(AdminUtils, Games, commands.Cog):
         text_list = []
         for i, (user_id, account) in enumerate(sorted_acc, start=1):
             user_id = ctx.guild.get_member(user_id)
-            if len(user_id.name) <15:
+            if len(user_id.display_name) < 15:
                 text_list.append(f"#{i:2}. {user_id.display_name:<15}: {account['cookies']:>15}")
             else:
                 text_list.append(f"#{i:2}. {user_id.display_name:[13]:<15}: {account['cookies']:>15}")
