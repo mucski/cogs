@@ -20,7 +20,8 @@ class Mucski(commands.Cog):
         self.conf.register_user(**defaults)
         
         
-        
+    class AdminUtils()
+    
     @commands.group(name="cookie", aliases=['c'])
     @commands.guild_only()
     async def cookie(self, ctx):
