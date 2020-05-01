@@ -1,7 +1,6 @@
-from .mucski import Mucski
 
 
-class AdminUtils(Mucski, commands.Cog):
+class AdminUtils(commands.Cog):
     def __init__(self, ctx):
         self.ctx = ctx
     
@@ -10,7 +9,7 @@ class AdminUtils(Mucski, commands.Cog):
         random.shuffle(word)
         return ''.join(word)
      
-    @cookie.command()
+    @commands.command()
     @checks.is_owner()
     async def add_cookie(self, ctx, amt: int, member):
         if member is None:
