@@ -8,7 +8,7 @@ class AdminUtils(commands.Cog):
         random.shuffle(word)
         return ''.join(word)
      
-    @commands.command()
+    @cookie.command()
     @checks.is_owner()
     async def add_cookie(self, ctx, amt: int, member: discord.Member=None):
         if member is None:
