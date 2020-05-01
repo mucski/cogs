@@ -9,10 +9,9 @@ class Games(commands.Cog):
     @AdminUtils.cookie.command()
     async def steal(self, ctx, member: discord.Member):
         now = datetime.utcnow().replace(microsecond=0)
-        steal_timer = await self.conf.guild(ctx.guild).steal_timer()
         steal_stamp = await self.conf.user(ctx.author).steal_stamp()
         steal_stamp = datetime.fromtimestamp(steal_stamp)
-        steal_timer = timedelta(hours=steal_timer)
+        steal_timer = timedelta(hours=6)
         next_cd = steal_timer + now
         remaining = steal_stamp - now
         if now < steal_stamp:
@@ -21,8 +20,8 @@ class Games(commands.Cog):
         if member is None or member == ctx.author:
             await ctx.send("Really, you gonna attempt to steal from yourself?")
             return
-        you = await self.cv(ctx.author)
-        victim = await self.cv(member)
+        you = await self.conf.user(ctx.author).cookies()
+        victim = await self.conf.user(member).cookies()
         if you < 0:
             msg = "You're too poor to steal from others."
             return
@@ -36,8 +35,8 @@ class Games(commands.Cog):
                 msg = "User doesn't have enough cookies."
                 return
             you += round(percent * victim)
-            await self.cd(member,victim)
-            await self.cd(ctx.author,you)
+            await self.conf.user(member).cookies.set(victim)
+            await self.conf.user(ctx.author).cookies.set(you)
             msg = f"💎 You've succesfully stolen ``{percent:.0%}`` cookies from ``{member.name}``. 😱"
         else:
             victim += round(percent * you)
@@ -45,8 +44,8 @@ class Games(commands.Cog):
             if you <= 0:
                 msg = "You dont have enough cookies."
                 return
-            await self.cd(member,victim)
-            await self.cd(ctx.author,you)
+            await self.conf.user(member).cookies.set(victim)
+            await self.conf.user(ctx.author).cookies.set(you)
             msg = f"👮‍♂️ You got caught! You paid ``{percent:.0%}`` of your cookies for apologies to ``{member.name}`` 😭"
         await ctx.send(msg)
         await self.conf.user(ctx.author).steal_stamp.set(next_cd.timestamp())
@@ -57,7 +56,7 @@ class Games(commands.Cog):
         """Roll the dice see if you win"""
         member = random.randint(1,6)
         dealer = random.randint(1,6)
-        cookie = await self.cv(ctx.author)
+        cookie = await self.conf.user(ctx.author).cookies()
         try:
             amount = int(amount)
         except ValueError:
@@ -80,13 +79,13 @@ class Games(commands.Cog):
                     if member < 6 and dealer > member:
                         msg = f"Busted. You lost ``{amount}`` cookies."
                         cookie -= amount
-                        await self.cd(ctx.author,cookie)
+                        await self.conf.user(ctx.author).cookies.set(cookie)
                     elif member == dealer:
                         msg = f"Looks like its a tie."
                     elif dealer < 6 and dealer < member:
                         msg = f"{ctx.bot.user.name} busted. You won ``{amount}`` cookies."
                         cookie += amount
-                        await self.cd(ctx.author,cookie)
+                        await self.conf.user(ctx.author).cookies.set(cookie)
                     e.description = msg
                     e.add_field(name="Dealer rolled", value=f"🎲 {dealer}")
                     e.add_field(name="You rolled", value=f"🎲 {member}")
