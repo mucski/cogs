@@ -31,7 +31,7 @@ class AdminUtils(commands.Cog):
         cookie = await self.conf.user(member).cookies()
         final = cookie - amt
         await self.conf.user(member).cookies.set(final)
-        await ctx.send(f"Removed {amt} from {membee.name} now has {cookie}")
+        await ctx.send(f"Removed {amt} from {member.name} now has {cookie}")
     
     @cookie.command()
     @checks.is_owner()
