@@ -76,18 +76,18 @@ class Games(commands.Cog):
                     e.set_author(name=f"{ctx.author.name} rolls the dice.", icon_url=ctx.author.avatar_url)
                     e.set_thumbnail(url=ctx.bot.user.avatar_url)
                     if member < 6 and dealer > member:
-                        msg = f"Busted. You lost ``{amount}`` cookies."
+                        msg = f"Busted. You lost ``{amount}`` cookies. 😞"
                         cookie -= amount
                         await self.conf.user(ctx.author).cookies.set(cookie)
                     elif member == dealer:
                         msg = f"Looks like its a tie."
                     elif dealer < 6 and dealer < member:
-                        msg = f"{ctx.bot.user.name} busted. You won ``{amount}`` cookies."
+                        msg = f"{ctx.bot.user.name} busted. You won ``{amount}`` cookies. 😱"
                         cookie += amount
                         await self.conf.user(ctx.author).cookies.set(cookie)
                     e.description = msg
-                    e.add_field(name="Dealer rolled", value=f"🎲 {dealer}")
-                    e.add_field(name="You rolled", value=f"🎲 {member}")
+                    e.add_field(name="Dealer rolled", value=f"🍪 {dealer}")
+                    e.add_field(name="You rolled", value=f"🍪 {member}")
         if e is None:
             await ctx.send(msg)
         else:
