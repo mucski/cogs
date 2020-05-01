@@ -43,6 +43,10 @@ class Hunting(commands.Cog):
         self.config.register_user(**default_user)
         self.config.register_guild(**default_guild)
 
+    def getemoji(self, ctx, emoji):
+        emojis = get(ctx.message.server.emoji, name="emoji")
+        return emojis
+
     @commands.guild_only()
     @commands.group()
     async def hunting(self, ctx):
