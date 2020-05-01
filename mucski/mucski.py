@@ -42,7 +42,7 @@ class Mucski(commands.Cog):
         sorted_acc = sorted(userinfo.items(), key = lambda x: x[1]['cookies'], reverse=True)[:50]
         text_list = []
         for i, (user_id, account) in enumerate(sorted_acc, start=1):
-            user_id = ctx.guils.get_member(user_id)
+            user_id = ctx.guild.get_member(user_id)
             if len(user_id.name) <13:
                 text_list.append(f"{i:2}, {user_id.display_name}, {account['cookies']}")
             else:
