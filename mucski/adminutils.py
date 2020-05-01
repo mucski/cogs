@@ -8,10 +8,10 @@ class AdminUtils(commands.Cog):
         random.shuffle(word)
         return ''.join(word)
         
-    @commands.group(name="cookie", aliases=['c'])
-    @commands.guild_only()
-    async def cookie(self, ctx):
-        pass
+    #@commands.group(name="cookie", aliases=['c'])
+    #@commands.guild_only()
+    #async def cookie(self, ctx):
+        #pass
      
     @cookie.command()
     @checks.is_owner()
