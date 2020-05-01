@@ -135,7 +135,6 @@ class Mucski(AdminUtils, Games, commands.Cog):
         await ctx.send("Claimed your daily cookies (1000)")
         await self.conf.user(ctx.author).daily_stamp.set(next_stamp.timestamp())
         
-                    
     @AdminUtils.cookie.command()
     async def give(self, ctx, amount, member: discord.Member):
         """ Give a member cookies """
