@@ -134,4 +134,35 @@ class Mucski(AdminUtils, Games, commands.Cog):
         await self.conf.user(ctx.author).cookies.set(cookie)
         await ctx.send("Claimed your daily cookies (1000)")
         await self.conf.user(ctx.author).daily_stamp.set(next_stamp.timestamp())
-    
+        
+                    
+    @AdminUtils.cookie.command()
+    async def give(self, ctx, amount, *, member: discord.Member):
+        """ Give a member cookies """
+        sender = await self.conf.user(ctx.author).cookies()
+        try:
+            amount = int(amount)
+        except ValueError:
+            if amount == "all":
+                amount = sender
+            else:
+                amount = None
+                msg = "Thats an invalid input!"
+        finally:
+            if amount is not None:
+                if amount >= 0:
+                    if sender <= 0:
+                        msg = "Nope."
+                        return
+                    sender -= amount
+                    await self.conf.user(ctx.author).cookies.set(sender)
+                    receiver = await self.conf.user(member).cookies()
+                    receiver += amount
+                    if receiver <= 0:
+                        msg = "Nope hahaha"
+                        return
+                    await self.conf.user(member).cookies.set(receiver)
+                    msg = f"``{ctx.author.name}`` sent ``{amount}`` cookies to ``{member.name}`` 🍪🎉"
+                else:
+                    msg = "Trick someone else!"
+        await ctx.send(msg)
