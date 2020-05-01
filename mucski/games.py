@@ -53,7 +53,7 @@ class Games(commands.Cog):
             
     
     @AdminUtils.cookie.command()
-    async def gamble(self, ctx):
+    async def gamble(self, ctx, amount):
         """Roll the dice see if you win"""
         member = random.randint(1,6)
         dealer = random.randint(1,6)
