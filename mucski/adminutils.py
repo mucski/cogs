@@ -2,8 +2,8 @@ import random
 import discord
 from redbot.core import checks, commands
 
-class AdminUtils:
-    def __init__(self, ctx):
+class AdminUtils(commands.Cog):
+    def __init__(self, bot):
         self.ctx = ctx
     
     def shuffle(self, word):
