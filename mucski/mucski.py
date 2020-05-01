@@ -1,7 +1,6 @@
 import discord
 import random
 import math
-import importlib
 
 from redbot.core import checks, commands, Config
 from redbot.core.utils.chat_formatting import box, humanize_timedelta, pagify
@@ -18,7 +17,6 @@ class Mucski(commands.Cog):
             "work_stamp": 0,
         }
         self.conf.register_user(**defaults)
-        importlib.import_module(.adminutils)
         
         
         
