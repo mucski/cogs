@@ -4,6 +4,7 @@ from redbot.core import checks, commands
 
 class AdminUtils:
     def __init__(self):
+        self.bot = bot
     
     def shuffle(self, word):
         word = list(word)
