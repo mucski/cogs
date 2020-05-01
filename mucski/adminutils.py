@@ -1,7 +1,3 @@
-import random
-import discord
-from redbot.core import checks, commands
-
 class AdminUtils:
     def __init__(self, ctx):
         self.ctx = ctx
@@ -11,6 +7,8 @@ class AdminUtils:
         random.shuffle(word)
         return ''.join(word)
      
+    @cookie.command()
+    @checks.is_owner()
     async def add_cookie(self, ctx, amt: int, member):
         if member is None:
             member = ctx.author
