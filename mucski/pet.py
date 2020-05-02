@@ -29,4 +29,5 @@ class Pet(commands.Cog):
             name = await self.conf.user(ctx.author).pet.name()
             happiness = await self.conf.user(ctx.author).pet.happiness()
             pettype = await self.conf.user(ctx.author).pet.type()
+            e = discord.Embed()
     
