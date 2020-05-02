@@ -30,7 +30,7 @@ class Pet(commands.Cog):
             happiness = await self.conf.user(ctx.author).pets.happiness()
             pettype = await self.conf.user(ctx.author).pets.type()
             e = discord.Embed()
-            e.set_author(name=ctx.author.name, icon_url=ctx.author.avatar_url)
+            e.set_author(name=f"{ctx.author.name}'s {pettype}", icon_url=ctx.author.avatar_url)
             e.add_field(name="Pet health", value=health)
             e.add_field(name="Pet name", value=name)
             e.add_field(name="Pet happynes", value=happiness)
