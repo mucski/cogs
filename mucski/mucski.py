@@ -4,6 +4,8 @@ import math
 import asyncio
 from .adminutils import AdminUtils
 from .games import Games
+from .pet import Pet
+from .shop import Shop
 
 from redbot.core import checks, commands, Config
 from redbot.core.utils.chat_formatting import box, humanize_timedelta, pagify
@@ -16,7 +18,7 @@ from .randomstuff import worklist
 from .randomstuff import searchlist
 from .randomstuff import bad_location
 
-class Mucski(AdminUtils, Games, commands.Cog):
+class Mucski(AdminUtils, Pet, Shop, Games, commands.Cog):
     def __init__(self, bot):
         self.conf = Config.get_conf(self, 82838559382)
         defaults = {
