@@ -20,14 +20,14 @@ from .randomstuff import bad_location
 
 class Mucski(AdminUtils, Pet, Shop, Games, commands.Cog):
     def __init__(self, bot):
-        self.conf = Config.get_conf(self, 82838559382)
+        self.conf = Config.get_conf(self, 82838559382, force_registration=True)
         defaults = {
             "cookies": 0,
             "daily_stamp": 0,
             "steal_stamp": 0,
             "work_stamp": 0,
             "pet_stamp": 0,
-            "pets": {
+            "pet": {
                 "name": "None",
                 "hunger": 0,
                 "happiness": 0,
