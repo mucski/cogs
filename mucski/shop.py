@@ -19,8 +19,8 @@ class Shop(commands.Cog):
     async def buy(self, ctx, item):
         if item in petlist.keys():
             value = petlist[item]['price']
-            cookie = await self.conf.user(ctx.author).cookies()
-            cookie -= value
+        cookie = await self.conf.user(ctx.author).cookies()
+        cookie -= value
         if cookie < 0:
             await ctx.send("Error")
         else:
