@@ -89,7 +89,8 @@ class Games(commands.Cog):
                         await self.conf.user(ctx.author).cookies.set(cookie)
                     e.description = msg
                     e.add_field(name=f"{ctx.bot.user.name} rolled", value=f"🍪 {dealer}")
-                    e.add_field(name="You rolled", value=f"🍪 {member}")
-            await ctx.send(embed=e)
+        try:            e.add_field(name="You rolled", value=f"🍪 {member}")
             await ctx.send(error)
+        except UnboundLocalError:
+            await ctx.send(embed=e)
             
