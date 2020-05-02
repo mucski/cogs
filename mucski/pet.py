@@ -1,6 +1,8 @@
 import discord
+import random
 
 from redbot.core import commands, checks
+from .randomstuff import doggo_responses
 
 class Pet(commands.Cog):
     
@@ -10,8 +12,13 @@ class Pet(commands.Cog):
     
     @pet.command()
     async def send(self, ctx):
-        pass
-    
+        time = random.randint(200,300)
+        await asyncio.sleep(time)
+        await ctx.send(doggo_responses)
+    loop = asyncio.get_event_loop()
+    loop.run_until_complete(await ctx.send(doggo_responses))
+    loop.close()
+        
     @pet.command()
     async def feed(self, ctx):
         pass
