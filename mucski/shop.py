@@ -8,15 +8,15 @@ class Shop(commands.Cog):
     async def shop(self, ctx):
         pass
 
-    @shop.commands()
+    @shop.command()
     async def buy(self, ctx, item):
         pass
     
-    @shop.commands()
+    @shop.command()
     async def sell(self, ctx, item):
         pass
     
-    @shop.commands()
+    @shop.command()
     async def info(self, ctx, item):
         pass
     
