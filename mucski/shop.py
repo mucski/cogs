@@ -9,7 +9,7 @@ class Shop(commands.Cog):
     @commands.group(name="shop")
     async def shop(self, ctx):
         for pet in petlist:
-            shop = petlist.keys()
+            shop = petlist
         await ctx.send(shop)
 
     @shop.command()
