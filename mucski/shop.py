@@ -9,8 +9,8 @@ class Shop(commands.Cog):
     @commands.group(name="shop")
     async def shop(self, ctx):
         shop = []
-        for pet in petlist:
-            shop.append(petlist.keys())
+        for i, pet in petlist:
+            shop.append(petlist.keys(i))
         await ctx.send(shop)
 
     @shop.command()
