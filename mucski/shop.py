@@ -8,9 +8,11 @@ class Shop(commands.Cog):
     
     @commands.group(name="shop")
     async def shop(self, ctx):
+        e = discord.Embed()
         for pet in petlist:
-            shop = petlist
-        await ctx.send(shop)
+            e.add_field(name=petlist[1], value=petlist[1]['description'])
+            e.add_field(name="price", value=petlist[1]['price'])
+        await ctx.send(embed=e)
 
     @shop.command()
     async def buy(self, ctx, item):
