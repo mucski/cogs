@@ -15,12 +15,13 @@ class Pet(commands.Cog):
     async def send(self, ctx):
         time = random.randint(10,50)
         await ctx.send(f"sent your dumb pet on an adventure for {time} seconds")
+        if asyncio.sleep is True:
+            await ctx.send("pet already on an adventure")
+            return
         await asyncio.sleep(time)
         #await ctx.send(doggo_responses)
         responses = random.choice(doggo_responses)
         await ctx.send(responses)
-        loop = asyncio.get_event_loop()
-        loop.run_until_complete(send())
         
     @pet.command()
     async def feed(self, ctx):
