@@ -15,9 +15,8 @@ class Pet(commands.Cog):
     async def send(self, ctx):
         time = random.randint(10,50)
         await ctx.send(f"sent your dumb pet on an adventure for {time} seconds")
-        if asyncio.sleep != 0:
-            await ctx.send("pet already on an adventure")
-            return
+        if asyncio.curent_task != None:
+            return await ctx.send("pet already on an adventure")
         await asyncio.sleep(time)
         #await ctx.send(doggo_responses)
         responses = random.choice(doggo_responses)
