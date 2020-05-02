@@ -19,6 +19,8 @@ class Pet(commands.Cog):
         #await ctx.send(doggo_responses)
         responses = random.choice(doggo_responses)
         await ctx.send(responses)
+        loop = asyncio.get_event_loop()
+        loop.run_until_complete(send)
         
     @pet.command()
     async def feed(self, ctx):
