@@ -70,7 +70,7 @@ class Mucski(AdminUtils, Pet, Shop, Games, commands.Cog):
         if pet is None:
             e.add_field(name="Pet", value="None")
         else:
-            e.add_field(name="Pet", value=f"{pet}\200b")
+            e.add_field(name="Pet", value=f"{pet}")
         await ctx.send(embed=e)
     
     @AdminUtils.cookie.command(name="cookieboards", aliases=['lb', 'cb'])
