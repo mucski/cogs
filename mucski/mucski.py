@@ -32,7 +32,7 @@ class Mucski(AdminUtils, Pet, Shop, Games, commands.Cog):
                 "hunger": 0,
                 "happiness": 0,
             },
-            "items": [],
+            #"items": [],
         }
         self.conf.register_user(**defaults)
 
