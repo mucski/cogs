@@ -23,7 +23,7 @@ class AdminUtils(commands.Cog):
     async def remove_pet(self, ctx, member: discord.Member=None):
         if member is None:
             member = ctx.author
-        await self.conf.user(member).pet.clear()
+        await self.conf.user(member).pets.clear()
         await ctx.send(f"Removed pet from {member.name}")
         
     @commands.group(name="cookie", aliases=['c'])
