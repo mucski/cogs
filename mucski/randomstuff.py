@@ -42,7 +42,7 @@ petlist = {
         "price": 20000,
     },
     "🐱 Cat": {
-        "description": "Lazy ans fat, but cute none the less.",
+        "description": "Lazy and fat, but cute none the less.",
         "price": 20000,
     },
 }
