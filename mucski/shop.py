@@ -20,14 +20,16 @@ class Shop(commands.Cog):
         if item in petlist.keys():
             value = petlist[item]['price']
         cookie = await self.conf.user(ctx.author).cookies()
-        cookie -= value
         if cookie < 0:
             await ctx.send("Error")
         else:
+            cookie -= value
+            await self.conf.user(ctx.author).cookies.set(cookie)
             await self.conf.user(ctx.author).pets.owned.set("True")
             await self.conf.user(ctx.author).pets.name.set(item)
             await self.conf.user(ctx.author).pets.hunger.set(100)
             await self.conf.user(ctx.author).pets.happiness.set(100)
+            await self.conf.user(ctx.author).pets.type(petlist[item])
             await ctx.send(f" congrats you own {item} now, take good care of it ")
         
             
