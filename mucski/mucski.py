@@ -29,8 +29,8 @@ class Mucski(AdminUtils, Pet, Shop, Games, commands.Cog):
             "pet_stamp": 0,
             "pet": {
                 "name": "None",
-                "hungry": 0,
-                "happiness": 0,
+                #"hungry": 0,
+                #"happiness": 0,
             },
             "items": [],
         }
