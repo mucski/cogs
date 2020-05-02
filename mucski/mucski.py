@@ -36,7 +36,6 @@ class Mucski(AdminUtils, Pet, Shop, Games, commands.Cog):
         }
         self.conf.register_user(**defaults)
 
-
     @AdminUtils.cookie.command()
     async def balance(self, ctx, member: discord.Member=None):
         if member is None:
