@@ -32,19 +32,19 @@ petlist = {
     "rock": {
         "description": "coming soon",
         "price": 5000,
-    }
+    },
     "turtle": {
         "description": "coming soon",
         "price": 10000,
-    }
+    },
     "doggo": {
         "description": "coming soon",
         "price": 20000,
-    }
+    },
     "cat": {
         "description": "coming soon",
         "price": 20000,
-    }
+    },
 }
 
 shoplist = {
