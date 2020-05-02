@@ -1,5 +1,6 @@
 import discord
 import random
+import asyncio
 
 from redbot.core import commands, checks
 from .randomstuff import doggo_responses
