@@ -12,11 +12,12 @@ class Pet(commands.Cog):
     
     @pet.command()
     async def send(self, ctx):
-        time = random.randint(200,300)
+        time = random.randint(10,50)
         await asyncio.sleep(time)
-        await ctx.send(doggo_responses)
+        #await ctx.send(doggo_responses)
+        random = random.choice(doggo_responses)
     loop = asyncio.get_event_loop()
-    loop.run_until_complete(await ctx.send(doggo_responses))
+    loop.run_until_complete(await ctx.send(random))
     loop.close()
         
     @pet.command()
