@@ -32,7 +32,7 @@ class Pet(commands.Cog):
             e = discord.Embed()
             e.set_author(name=f"{ctx.author.name}'s {pettype}", icon_url=ctx.author.avatar_url)
             e.add_field(name="Pet health", value=health)
-            e.add_field(name="Pet name", value=name)
+            e.add_field(name="Pet name", value=name.capitalize())
             e.add_field(name="Pet happynes", value=happiness)
             e.add_field(name="Pet type", value=pettype)
             await ctx.send(embed=e)
