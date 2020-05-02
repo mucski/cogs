@@ -92,7 +92,7 @@ class Games(commands.Cog):
                     e.add_field(name="You rolled", value=f"🍪 {member}")
         try:
             if error is None:
-        except UnboundLocalError:
+            except UnboundLocalError:
                 await ctx.send(embed=e)
             else:
                 await ctx.send(error)
