@@ -27,7 +27,7 @@ class Mucski(AdminUtils, Pet, Shop, Games, commands.Cog):
             "steal_stamp": 0,
             "work_stamp": 0,
             "pet_stamp": 0,
-            "pet": {
+            "petsu": {
                 "name": "None",
                 "hunger": 0,
                 "happiness": 0,
