@@ -18,6 +18,14 @@ class AdminUtils(commands.Cog):
         await self.conf.user(member).pet.set(pet)
         await ctx.send(f"Gave {pet} pet to {member.name}")
         
+    @Pet.pet.command()
+    @checks.is_owner()
+    async def remove_pet(self, ctx, member: discord.Member=None):
+        if member is None:
+            member = ctx.author
+        await self.conf.user(member).pet.clear()
+        await ctx.send(f"Removed pet from {member.name}")
+        
     @commands.group(name="cookie", aliases=['c'])
     @commands.guild_only()
     async def cookie(self, ctx):
