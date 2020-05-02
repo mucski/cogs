@@ -90,7 +90,9 @@ class Games(commands.Cog):
                     e.description = msg
                     e.add_field(name=f"{ctx.bot.user.name} rolled", value=f"🍪 {dealer}")
                     e.add_field(name="You rolled", value=f"🍪 {member}")
-        if error is None:
+        try:
+            if error is None:
+        except UnboundLocalError:
             await ctx.send(embed=e)
         else:
             await ctx.send(error)
