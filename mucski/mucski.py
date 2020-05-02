@@ -26,6 +26,9 @@ class Mucski(AdminUtils, Pet, Shop, Games, commands.Cog):
             "daily_stamp": 0,
             "steal_stamp": 0,
             "work_stamp": 0,
+            "pet_stamp": 0,
+            "pet": "",
+            "items": [],
         }
         self.conf.register_user(**defaults)
 
