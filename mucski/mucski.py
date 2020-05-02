@@ -100,7 +100,7 @@ class Mucski(AdminUtils, Games, commands.Cog):
         try:
             await ctx.bot.wait_for("message", timeout=7, check=pred)
         except asyncio.TimeoutError:
-            return await ctx.send("Timed out.")
+            return await ctx.send("Too lazy to put in any effort eh? No cookies for you!")
         cookie = await self.conf.user(ctx.author).cookies()
         earned = random.randint(50,500)
         cookie += earned
