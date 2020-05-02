@@ -32,22 +32,22 @@ petlist = {
     "rock": {
         "description": "Your very own pet rock.",
         "price": 5000,
-        "emoji": :moyai:,
+        "emoji": ":moyai:",
     },
     "turtle": {
         "description": "Throwing it in a sewer is not advised.",
         "price": 10000,
-        "emoji": :turtle:,
+        "emoji": ":turtle:",
     },
     "doggo": {
         "description": "Loyal, friendly, and full of fleas",
         "price": 20000,
-        "emoji": :dog:,
+        "emoji": ":dog:",
     },
     "cat": {
         "description": "Lazy and fat, but cute none the less.",
         "price": 20000,
-        "emoji": :cat:,
+        "emoji": ":cat:",
     },
 }
 
