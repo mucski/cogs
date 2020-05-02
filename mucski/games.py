@@ -17,7 +17,7 @@ class Games(commands.Cog):
         next_cd = steal_timer + now
         remaining = steal_stamp - now
         if now < steal_stamp:
-            await ctx.send(f"FBI gonna be looking for you. Try again in {humanize_timedelta(timedelta=remaining)}")
+            await ctx.send(f"FCI gonna be looking for you. Try again in {humanize_timedelta(timedelta=remaining)}")
             return
         if member is None or member == ctx.author:
             await ctx.send("Really, you gonna attempt to steal from yourself?")
@@ -25,7 +25,7 @@ class Games(commands.Cog):
         you = await self.conf.user(ctx.author).cookies()
         victim = await self.conf.user(member).cookies()
         if you < 0:
-            msg = "You're too poor to steal from others."
+            msg = "That would be yer last cookie mate. Can't allow that now can I."
             return
         if victim < 0:
             msg = "Taking other peoples last cookie .. really?."
@@ -44,7 +44,7 @@ class Games(commands.Cog):
             victim += round(percent * you)
             you -= round(percent * you)
             if you <= 0:
-                msg = "Yeah, you can't go negative buster."
+                msg = "Yeah, you can't go negative, buster."
                 return
             await self.conf.user(member).cookies.set(victim)
             await self.conf.user(ctx.author).cookies.set(you)
