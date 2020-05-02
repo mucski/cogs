@@ -22,5 +22,11 @@ class Pet(commands.Cog):
     
     @pet.command()
     async def info(self, ctx):
-        pass
+        if await self.conf.user(ctx.author).pet.owned() == "None":
+            await ctx.send("Get yourself a pet first.")
+        else:
+            health = await self.conf.user(ctx.author).pet.health()
+            name = await self.conf.user(ctx.author).pet.name()
+            happiness = await self.conf.user(ctx.author).pet.happiness()
+            pettype = await self.conf.user(ctx.author).pet.type()
     
