@@ -4,6 +4,6 @@ from redbot.core import commands, checks
 
 class Pet(commands.Cog):
     
-    @commands.group()
+    @commands.group(name="pet")
     async def pet(self, ctx):
         pass
