@@ -8,6 +8,15 @@ class AdminUtils(commands.Cog):
         random.shuffle(word)
         return ''.join(word)
         
+    @Pet.pet.command()
+    @check.is_owner()
+    async def add_pet(self, ctx, member: discord.Member=None, pet):
+        if member is None:
+            member = ctx.author
+        #todo: get pet name drom list asap
+        await self.conf.user(member).pet.set(pet)
+        await ctx.send(f"Gave {pet} pet to {member.name}")
+        
     @commands.group(name="cookie", aliases=['c'])
     @commands.guild_only()
     async def cookie(self, ctx):
