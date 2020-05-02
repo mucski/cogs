@@ -93,7 +93,7 @@ class Games(commands.Cog):
         try:
             if error is None:
         except UnboundLocalError:
-            await ctx.send(embed=e)
-        else:
-            await ctx.send(error)
+                await ctx.send(embed=e)
+            else:
+                await ctx.send(error)
             
