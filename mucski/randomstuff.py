@@ -30,19 +30,19 @@ bad_location = ['fridge','dog','toilet','trash','school']
 
 petlist = {
     "🗿 Rock": {
-        "description": "coming soon",
+        "description": "Your very own pet rock.",
         "price": 5000,
     },
     "🐢 Turtle": {
-        "description": "coming soon",
+        "description": "Throwing it in a sewer is not advised.",
         "price": 10000,
     },
     "🐶 Doggo": {
-        "description": "coming soon",
+        "description": "Loyal, friendly, and full of fleas",
         "price": 20000,
     },
     "🐱 Cat": {
-        "description": "coming soon",
+        "description": "Lazy ans fat, but cute none the less.",
         "price": 20000,
     },
 }
