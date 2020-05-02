@@ -1,5 +1,6 @@
 import discord
 from redbot.core import commands, checks
+from .pet import Pet
 
 class AdminUtils(commands.Cog):
     
