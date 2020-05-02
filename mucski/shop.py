@@ -29,7 +29,7 @@ class Shop(commands.Cog):
             await self.conf.user(ctx.author).pets.name.set(item)
             await self.conf.user(ctx.author).pets.hunger.set(100)
             await self.conf.user(ctx.author).pets.happiness.set(100)
-            await self.conf.user(ctx.author).pets.type(petlist)
+            await self.conf.user(ctx.author).pets.type(petlist.keys(item))
             await ctx.send(f" congrats you own {item} now, take good care of it ")
         
             
