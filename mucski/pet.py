@@ -19,7 +19,7 @@ class Pet(commands.Cog):
         random = random.choice(doggo_responses)
         #random = await ctx.send(random)
     loop = asyncio.get_event_loop()
-    loop.run_until_complete(await ctx.send(random))
+    loop.run_until_complete(ctx.send(random))
     loop.close()
         
     @pet.command()
