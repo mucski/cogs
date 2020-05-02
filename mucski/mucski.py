@@ -29,10 +29,10 @@ class Mucski(AdminUtils, Pet, Shop, Games, commands.Cog):
             "pet_stamp": 0,
             "pet": {
                 "name": "None",
-                "hunger": 0,
+                "hungry": 0,
                 "happiness": 0,
             },
-            #"items": [],
+            "items": [],
         }
         self.conf.register_user(**defaults)
 
