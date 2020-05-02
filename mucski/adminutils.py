@@ -11,7 +11,7 @@ class AdminUtils(commands.Cog):
         
     @Pet.pet.command()
     @check.is_owner()
-    async def add_pet(self, ctx, member: discord.Member=None, pet):
+    async def add_pet(self, ctx, pet, member: discord.Member=None):
         if member is None:
             member = ctx.author
         #todo: get pet name drom list asap
