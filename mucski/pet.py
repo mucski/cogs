@@ -16,8 +16,8 @@ class Pet(commands.Cog):
         time = random.randint(10,50)
         await asyncio.sleep(time)
         #await ctx.send(doggo_responses)
-        random = random.choice(doggo_responses)
-        await ctx.send(random)
+        responses = random.choice(doggo_responses)
+        await ctx.send(responses)
         
     @pet.command()
     async def feed(self, ctx):
