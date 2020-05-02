@@ -14,6 +14,7 @@ class Pet(commands.Cog):
     @pet.command()
     async def send(self, ctx):
         time = random.randint(10,50)
+        await ctx.send(f"sent your dumb pet on an adventure for {time} seconds")
         await asyncio.sleep(time)
         #await ctx.send(doggo_responses)
         responses = random.choice(doggo_responses)
