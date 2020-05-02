@@ -27,3 +27,15 @@ searchlist = {
 }
 
 bad_location = ['fridge','dog','toilet','trash','school']
+
+petlist = {
+    "rock": "Your very own pet rock.",
+    "turtle": "Drop it in a sewer, maybe it'll become a ninja",
+    "doggo": "A cute doggo",
+    "cat": "Lazy, but cute, like all cats",
+}
+
+shoplist = {
+    "gold cookie": "For the richest of cookie hoarders out there",
+    "toy": "Useful to play with your pet",
+}
