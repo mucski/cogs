@@ -65,13 +65,13 @@ class Games(commands.Cog):
                 amount = cookie
             else:
                 amount = None
-                msg = "It's called gambling, not UNICEF"
+                error = "It's called gambling, not UNICEF"
         finally:
             if amount is not None:
                 if amount <= 0:
-                    msg = "You hit rock bottom. Can't go any further."
+                    error = "You hit rock bottom. Can't go any further."
                 elif cookie - amount < 0:
-                    msg = "Need some cookies? Then go get yourself some, and stop bugging me."
+                    error = "Need some cookies? Then go get yourself some, and stop bugging me."
                 else:
                     #Game logic
                     e = discord.Embed(timestamp=datetime.utcnow())
@@ -90,8 +90,8 @@ class Games(commands.Cog):
                     e.description = msg
                     e.add_field(name=f"{ctx.bot.user.name} rolled", value=f"🍪 {dealer}")
                     e.add_field(name="You rolled", value=f"🍪 {member}")
-        if e is None:
-            await ctx.send(msg)
-        else:
+        if error is None:
             await ctx.send(embed=e)
+        else:
+            await ctx.send(error)
             
