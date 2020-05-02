@@ -9,7 +9,8 @@ class Shop(commands.Cog):
     @commands.group(name="shop")
     async def shop(self, ctx):
         e = discord.Embed()
-        e.set_author(name=f"{ctx.author.name}'s shop list $$$$$$$$$$$$$$$$$$$$", icon_url=ctx.author.avatar_url)
+        e.set_author(name=f"{ctx.author.name}'s shop list", icon_url=ctx.author.avatar_url)
+        e.set_thumbnail(url=ctx.bot.user.avatar_url)
         for k, v in petlist.items():
             e.add_field(name=f"{k}", value=f"{v['description']}\nPrice: {v['price']}")
         await ctx.send(embed=e)
