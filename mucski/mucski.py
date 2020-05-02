@@ -31,6 +31,7 @@ class Mucski(AdminUtils, Pet, Shop, Games, commands.Cog):
                 "name": "None",
                 "hunger": 0,
                 "happiness": 0,
+                "owned": "None",
             },
             "items": [],
         }
