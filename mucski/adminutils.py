@@ -10,7 +10,7 @@ class AdminUtils(commands.Cog):
         return ''.join(word)
         
     @Pet.pet.command()
-    @check.is_owner()
+    @checks.is_owner()
     async def add_pet(self, ctx, pet, member: discord.Member=None):
         if member is None:
             member = ctx.author
