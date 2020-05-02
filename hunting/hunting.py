@@ -104,8 +104,8 @@ class Hunting(commands.Cog):
                 user_obj = account[0]
             try:
                 user_name = f"{user_obj.display_name}#{user_obj.discriminator}"
-                if len(user_name) > 28:
-                    user_name = f"{user_obj.display_name[:19]}...#{user_obj.discriminator}"
+                if len(user_name) > 15:
+                    user_name = f"{user_obj.display_name[:14]}...#{user_obj.discriminator}"
             except AttributeError:
                 user_name = str(user_obj)
             if user_obj == ctx.author:
