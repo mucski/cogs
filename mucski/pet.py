@@ -8,19 +8,19 @@ class Pet(commands.Cog):
     async def pet(self, ctx):
         pass
     
-    @pet.commands()
+    @pet.command()
     async def send(self, ctx):
         pass
     
-    @pet.commands()
+    @pet.command()
     async def feed(self, ctx):
         pass
     
-    @pet.commands()
+    @pet.command()
     async def play(self, ctx):
         pass
     
-    @pet.commands()
+    @pet.command()
     async def info(self, ctx):
         pass
     
