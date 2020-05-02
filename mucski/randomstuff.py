@@ -55,3 +55,5 @@ shoplist = {
     "gold cookie": "For the richest of cookie hoarders out there",
     "toy": "Useful to play with your pet",
 }
+
+doggo_responses = ['Your dog found a cig and smoked it.', 'These are just place holders', 'Suka blyat']
