@@ -31,13 +31,13 @@ class Main:
 
     async def profile(self, ctx, member):
         """ Checks your balance or some ones """
-        cookie = await self.cv(member)
+        cookie = await self.conf.user(member).cookies()
         now = datetime.utcnow().replace(microsecond=0)
         daily_stamp = await self.conf.user(member).daily_stamp()
         daily_stamp = datetime.fromtimestamp(daily_stamp)
         remaining = daily_stamp - now
         #build embed
-        e = discord.Embed(color=await self.color(ctx), timestamp=datetime.utcnow())
+        e = discord.Embed(timestamp=datetime.utcnow())
         e.set_author(name=f"Profile for {member.name}", icon_url=member.avatar_url)
         e.set_thumbnail(url=member.avatar_url)
         e.add_field(name="Cookies owned", value=f"``{cookie}``")
