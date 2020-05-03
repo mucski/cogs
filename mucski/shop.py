@@ -13,6 +13,8 @@ class Shop(commands.Cog):
         e.set_thumbnail(url=ctx.bot.user.avatar_url)
         for k, v in petlist.items():
             e.add_field(name=f"{v['emoji']} {k.capitalize()}", value=f"{v['description']}\nPrice: {v['price']}")
+        for k, v in shoplist.items():
+            e.add_field(name=f"{k.capitalize()}", value=f"{v['description']}, this is a {v['type']}\n Price {v['price']}")
         await ctx.send(embed=e)
 
     @shop.command()
