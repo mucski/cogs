@@ -35,6 +35,7 @@ class Pet:
             await self.conf.user(ctx.author).pet.hunger.set(health)
             await self.conf.user(ctx.author).pet.happy.set(happiness)
             await ctx.send(dog_responses + f"Your pet lost {health} hunger and {happiness}")
+            await self.conf.user(ctx.author).pet.mission.set(False)
         
     async def feed(self, ctx):
         pass
