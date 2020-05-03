@@ -102,7 +102,7 @@ class Main:
             
     async def daily(self, ctx):
         now = datetime.utcnow().replace(microsecond=0)
-        daily_stamp = await self.conf.user(member).daily_stamp()
+        daily_stamp = await self.conf.user(ctx.author).daily_stamp()
         daily_stamp = datetime.fromtimestamp(daily_stamp)
         daily_timer = timedelta(hours=12)
         next_cd = daily_timer + now
