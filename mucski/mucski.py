@@ -71,6 +71,10 @@ class Mucski(commands.Cog):
     async def gamble(self, ctx, amt):
         await Games.gamble(self, ctx, amt)
     
+    @cookie.command()
+    async def daily(self, ctx):
+        await Main.daily(self, ctx)
+    
     @cookie.group(name="set")
     @checks.is_owner()
     async def set(self, ctx):
