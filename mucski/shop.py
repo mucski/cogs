@@ -19,10 +19,6 @@ class Shop(commands.Cog):
     
     @commands.group(name="buy")
     @shop.command()
-    async def buy(self, ctx):
-        pass
-    
-    @shop.command()
     @buy.command()
     async def pet(self, ctx, item: str):
         if item.lower() in petlist.keys():
