@@ -61,7 +61,7 @@ class Mucski(commands.Cog):
     
     @cookie.command()
     async def search(self, ctx):
-        pass
+        await Main.search(self, ctx)
     
     @cookie.command(name="leaderboard", aliases=['lb'])
     async def leaderboard(self, ctx):
