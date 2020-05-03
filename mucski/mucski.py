@@ -126,11 +126,11 @@ class Mucski(commands.Cog):
     
     @pet.command()
     async def info(self, ctx):
-        pass
+        await Pet.info(self, ctx)
     
     @pet.command()
     async def adventure(self, ctx):
-        pass
+        await Pet.adventure(self, ctx)
     
     @pet.command()
     async def feed(self, ctx):
