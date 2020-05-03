@@ -30,14 +30,14 @@ class Pet:
             dog_responses = random.choice(doggo_responses)
             health = await self.conf.user(ctx.author).pet.hunger()
             happiness = await self.conf.user(ctx.author).pet.happy()
-            health -= random.randint(10,100)
-            happiness -= random.randint(10,50)
+            health - random.randint(10,100)
+            happiness - random.randint(10,50)
             if health <= 0 or happiness <= 0:
                 await ctx.send(dog_responses + "Your pet died, rip.\n")
                 return await self.conf.user(ctx.author).pet.clear()
             await self.conf.user(ctx.author).pet.hunger.set(health)
             await self.conf.user(ctx.author).pet.happy.set(happiness)
-            await ctx.send(dog_responses + f"Your pet lost {health} hunger and {happiness}")
+            await ctx.send(dog_responses + f"Your pet lost {health} hunger and {happiness} happyness")
             await self.conf.user(ctx.author).pet.mission.set(False)
         
     async def feed(self, ctx):
