@@ -32,11 +32,11 @@ class Shop:
             return await ctx.send("Error")
         else:
             await self.conf.user(ctx.author).cookies.set(cookie)
-            await self.conf.user(ctx.author).pets.owned.set(True)
-            await self.conf.user(ctx.author).pets.name.set(item)
-            await self.conf.user(ctx.author).pets.hunger.set(100)
-            await self.conf.user(ctx.author).pets.happy.set(100)
-            await self.conf.user(ctx.author).pets.type.set(item.lower())
+            await self.conf.user(ctx.author).pet.owned.set(True)
+            await self.conf.user(ctx.author).pet.name.set(item)
+            await self.conf.user(ctx.author).pet.hunger.set(100)
+            await self.conf.user(ctx.author).pet.happy.set(100)
+            await self.conf.user(ctx.author).pet.type.set(item.lower())
             await ctx.send(f" congrats you own {item} now, take good care of it ")
             
     async def item(self, ctx, item: str, quantity: int):
