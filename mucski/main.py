@@ -99,4 +99,20 @@ class Main:
             cookie = amt + cookie
             await self.conf.user(ctx.author).cookies.set(cookie)
             return await ctx.send(searchlist[msg.content.lower()].format(amt))
-    
+            
+    async def daily(self, ctx):
+        now = datetime.utcnow().replace(microsecond=0)
+        daily_stamp = await self.conf.user(member).daily_stamp()
+        daily_stamp = datetime.fromtimestamp(daily_stamp)
+        daily_timer = timedelta(hours=12)
+        next_cd = daily_timer + now
+        remaining = daily_stamp - now
+        if now < daily_stamp:
+            await ctx.send(f"On cooldown. Remaining: {humanize_timedelta(timedelta=remaining)}")
+            return
+        cookie = await self.conf.user(ctx.author).cookies()
+        cookie += 1000
+        await ctx.send(f"Claimed your daily cookies. You have ``{cookie}`` cookies now. Come back in 12 hours.🙄")
+        await self.conf.user(ctx.authot).cookies.set(cookie)
+        await self.conf.user(ctx.author).daily_stamp.set(next_cd.timestamp())
+  
