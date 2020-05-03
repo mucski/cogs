@@ -85,3 +85,7 @@ class Mucski2(commands.Cog):
         e.add_field(name="Testing", value="Testing", inline=False)
         await ctx.send(embed=e)
        
+    @commands.command()
+    async def test(self, ctx):
+        await ctx.send("Testing.")
+        await ctx.send("some ...... stuff")
