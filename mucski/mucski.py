@@ -77,3 +77,28 @@ class Mucski(commands.Cog):
     async def delcookie(self, ctx):
         pass
     
+    @cookie.group(name="shop")
+    async def shop(self, ctx):
+        pass
+    
+    @shop.command()
+    async def items(self, ctx):
+        pass
+    
+    @shop.command()
+    async def pets(self, ctx):
+        pass
+    
+    @shop.group(name="buy")
+    async def buy(self, ctx):
+        pass
+    
+    @buy.command()
+    async def pet(self, ctx):
+        pass
+    
+    @buy.command()
+    async def item(self, ctx):
+        pass
+    
+    
