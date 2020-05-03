@@ -18,7 +18,7 @@ class Shop:
         e.set_author(name=f"{ctx.author.name} pet shop", icon_url=ctx.author.avatar_url)
         e.set_thumbnail(url=ctx.bot.user.avatar_url)
         for k, v in shoplist.items():
-            e.add_field(name=f"{k.capitalize()} - {v['food']}", value=f"{v['description']} - Price {v['price']}")
+            e.add_field(name=f"{k.capitalize()} - {v['type']}", value=f"{v['description']} - Price {v['price']}")
         await ctx.send(embed=e)
     
     async def pet(self, ctx, item: str):
