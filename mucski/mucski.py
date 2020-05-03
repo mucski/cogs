@@ -112,11 +112,11 @@ class Mucski(commands.Cog):
         pass
     
     @buy.command()
-    async def pet(self, ctx):
-        pass
+    async def pet(self, ctx, pet: str):
+        await Shop.pet(self, ctx, pet)
     
     @buy.command()
-    async def item(self, ctx):
-        pass
+    async def item(self, ctx, item: str):
+        await Shop.item(self, ctx, item)
     
     
