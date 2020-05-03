@@ -2,7 +2,6 @@ import discord
 
 class Main:
     async def leaderboard(self, ctx):
-        """Cookieboards UwU"""
         userinfo = await self.conf.all_users()
         if not userinfo:
             return await ctx.send(bold("Start playing first, then check boards."))
