@@ -13,7 +13,7 @@ class Shop:
             e.add_field(name=f"{v['emoji']} {k.capitalize()}", value=f"{v['description']} - Price: {v['price']}")
         for k, v in shoplist.items():
             e.add_field(name=f"{k.capitalize()}", value=f"{v['description']}, this is a {v['type']} - Price {v['price']}")
-        return await ctx.send(embed=e)
+        return ctx.send(embed=e)
     
     async def buy(self, ctx):
         pass
