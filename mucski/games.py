@@ -1,14 +1,11 @@
 import discord
 import random
 from datetime import datetime, timedelta
-from redbot.core import commands, checks
-from .adminutils import AdminUtils
 from redbot.core.utils.chat_formatting import humanize_timedelta
 
 
-class Games(commands.Cog):
+class Games:
     
-    @AdminUtils.cookie.command()
     async def steal(self, ctx, member: discord.Member):
         now = datetime.utcnow().replace(microsecond=0)
         steal_stamp = await self.conf.user(ctx.author).steal_stamp()
@@ -52,8 +49,6 @@ class Games(commands.Cog):
         await ctx.send(msg)
         await self.conf.user(ctx.author).steal_stamp.set(next_cd.timestamp())
             
-    
-    @AdminUtils.cookie.command()
     async def gamble(self, ctx, amount):
         member = random.randint(1,6)
         dealer = random.randint(1,6)
