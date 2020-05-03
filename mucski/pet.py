@@ -58,4 +58,14 @@ class Pet(commands.Cog):
             e.add_field(name="Pet happynes", value=happiness)
             e.add_field(name="Pet type", value=pettype)
             await ctx.send(embed=e)
+            
+    @pet.command()
+    async def name(self, ctx, name: str):
+        name = name.capitalize()
+        if len(name) > 15:
+            return await ctx.send("Name too long. Keep it bellow 15 chars")
+        pet_owned = await self.conf.user(ctx.author).pets.owned()
+        if pet_owned is True:
+            await self.conf.user(ctx.author).pets.name.set(name)
+            await ctx.send(f"your pet is called {name} now")
     
