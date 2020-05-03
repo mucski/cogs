@@ -72,10 +72,10 @@ class Main:
             await ctx.bot.wait_for('message', timeout=7, check=check)
         except asyncio.TimeoutError:
             return await ctx.send("Have to work harder than that ...😞")
-        value = random.randint(50,500)
         cookie = await self.conf.user(ctx.author).cookies()
+        value = random.randint(50,500)
         cookie += value
-        await self.conf.user(ctx.author).cookies().set(cookie)
+        await self.conf.user(ctx.author).cookies.set(cookie)
         await ctx.send(f"Well done, you earned ``{value}`` cookies for todays work.😴")
         await self.conf.user(ctx.author).work_stamp.set(next_cd.timestamp())
         
