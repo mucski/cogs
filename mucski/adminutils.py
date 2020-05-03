@@ -65,6 +65,7 @@ class AdminUtils(commands.Cog):
         await self.conf.user(member).daily_stamp.clear()
         await self.conf.user(member).steal_stamp.clear()
         await self.conf.user(member).work_stamp.clear()
+        await self.conf.user(member).pets.mission.clear()
         await ctx.send(f"All cooldowns have been reset for 1 turn for {member.name}")
         
     
