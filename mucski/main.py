@@ -6,6 +6,8 @@ from datetime import datetime, timedelta
 from redbot.core.utils.chat_formatting import bold, box, humanize_list, humanize_number, pagify, humanize_timedelta
 from redbot.core.utils.menus import menu, DEFAULT_CONTROLS
 from .randomstuff import worklist
+from .randomstuff import searchlist
+from .randomstuff import bad_location
 
 class Main:
     async def leaderboard(self, ctx):
@@ -79,3 +81,22 @@ class Main:
         await ctx.send(f"Well done, you earned ``{value}`` cookies for todays work.😴")
         await self.conf.user(ctx.author).work_stamp.set(next_cd.timestamp())
         
+    async def search(self, ctx):
+        r = random.sample(list(searchlist.keys()), 3)
+        await ctx.send("🔍Chose a location to search from bellow🔎")
+        await ctx.send(f"``{r[0]}`` , ``{r[1]}``, ``{r[2]}``")
+        def check(m):
+            return m.content.lower() in r and m.channel == ctx.channel and m.author == ctx.author
+        try:
+            msg = await ctx.bot.wait_for('message', timeout=7, check=check)
+        except asyncio.TimeoutError:
+            return await ctx.send("Can't search if I don't know where.")
+        cookie = await self.conf.user(ctx.author).cookies()
+        if msg.content.lower() in bad_location:
+            return await ctx.send(searchlist[msg.content.lower()])
+        else:
+            amt = random.randint(50,200)
+            cookie = amt + cookie
+            await self.conf.user(ctx.author).cookies.set(cookie)
+            return await ctx.send(searchlist[msg.content.lower()].format(amt))
+    
