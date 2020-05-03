@@ -25,6 +25,8 @@ class Pet:
             await ctx.send(f"Still on a mission {humanize_timedelta(timedelta=remaining)}")
         elif now > pet_stamp and on_mission is True:
             dog_responses = random.choice(doggo_responses)
+            health = await self.conf.user(ctx.author).pet.hunger()
+            happiness = await self.conf.user(ctx.author).pet.happy()
             health -= random.randint(10,100)
             happiness -= random.randint(10,50)
             if health == 0:
