@@ -27,7 +27,7 @@ class Shop(commands.Cog):
             return await ctx.send("Error")
         else:
             await self.conf.user(ctx.author).cookies.set(cookie)
-            await self.conf.user(ctx.author).pets.owned.set("True")
+            await self.conf.user(ctx.author).pets.owned.set(True)
             await self.conf.user(ctx.author).pets.name.set(item)
             await self.conf.user(ctx.author).pets.hunger.set(100)
             await self.conf.user(ctx.author).pets.happiness.set(100)
