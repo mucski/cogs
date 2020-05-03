@@ -53,8 +53,8 @@ class Mucski(commands.Cog):
         pass
     
     @cookie.command()
-    async def steal(self, ctx):
-        pass
+    async def steal(self, ctx, member: discord.Member):
+        await Games.steal(self, ctx, member)
     
     @cookie.command()
     async def search(self, ctx):
