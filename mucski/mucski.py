@@ -1,5 +1,5 @@
 import discord
-from datetime import timedate
+from datetime import datetime, timedate
 from redbot.core import commands, checks
 
 class Mucski1(commands.Cog):
