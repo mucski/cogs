@@ -52,8 +52,27 @@ petlist = {
 }
 
 shoplist = {
-    "gold cookie": "For the richest of cookie hoarders out there",
-    "toy": "Useful to play with your pet",
+    "bone" {
+        "description": "Perfect for them doggos",
+        "price": 200,
+        "quantity": 1,
+        "emoji": "soon",
+        "type": "food",
+    },
+    "fish" {
+        "description": "Perfect for a cat",
+        "price": 200,
+        "quantity": 1,
+        "emoji": "soon",
+        "type": "food",
+    },
+    "ball" {
+        "description": "Have some fun with your pet",
+        "price": 500,
+        "quantity": 1,
+        "emoji": "soon",
+        "type": "toy",
+    },
 }
 
 doggo_responses = ['Your dog found a cig and smoked it.', 'These are just place holders', 'Suka blyat']
