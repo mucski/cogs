@@ -39,6 +39,27 @@ class Shop(commands.Cog):
             await self.conf.user(ctx.author).pets.happiness.set(100)
             await self.conf.user(ctx.author).pets.type.set(item.lower())
             await ctx.send(f" congrats you own {item} now, take good care of it ")
+            
+    @buy.command()
+    async def item(self, ctx, item: str, quantity: int):
+        if item.lower() in shoplist.keys():
+            value = shoplist[item]['price']
+        else:
+            return await ctx.send("no such item")
+        cookie = self.conf.user(ctx.author).cookies()
+        cookie -= value
+        if cookie < value:
+            return await ctx.send("Need more cookies")
+        elif shoplist[item]['type'] == "food":
+            type = food
+            await self.conf.user(ctx.author).items.pet_food.item.set(item.lower())
+            await self.conf.user(ctx.author).items.pet_food.quantity.set(quantity)
+            await ctx.send(f"You just bought {quantity} of {item.lower()}")
+        else:
+            type = toy
+            await self.conf.user(ctx.author).items.toys.item.set(item.lower())
+            await self.conf.user(ctx.author).items.toys.quantity.set(quantity)
+            await ctx.send(f"You just bought {quantity} of {item.lower()}")
         
     @shop.command()
     async def sell(self, ctx, item):
