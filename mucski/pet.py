@@ -22,13 +22,13 @@ class Pet(commands.Cog):
         pet_stamp = datetime.fromtimestamp()
         wait = pet_stamp - now
         on_mission = await self.conf.user(ctx.author).pets.mission()
-        pet_stamp = time + now
+        next_stamp = time + now
         if on_mission is True:
             return await ctx.send(f"already in a mission {humanize_timedelta(timedelta=wait)}")
         else:
             await ctx.send(f"sent your dumb pet on an adventure for {time} seconds")
             await self.conf.user(ctx.author).pets.mission.set(True)
-            await self.conf.user(ctz.author).pet_stamp.set(pet_stamp.timestamp())
+            await self.conf.user(ctx.author).pet_stamp.set(next_stamp.timestamp())
             await asyncio.sleep(time)
             responses = random.choice(doggo_responses)
             await ctx.send(responses)
