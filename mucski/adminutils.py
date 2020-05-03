@@ -15,8 +15,6 @@ class AdminUtils:
         await ctx.send(f"Gave {pet} pet to {member.name}")
         
     async def remove_pet(self, ctx, member):
-        if member is None:
-            member = ctx.author
         await self.conf.user(member).pets.clear()
         await ctx.send(f"Removed pet from {member.name}")
         
@@ -27,8 +25,6 @@ class AdminUtils:
         await ctx.send(f"Added {amt} to {member.name} now has {cookie} cookies."
     
     async def del_cookie(self, ctx, amt: int, member):
-        if member is None:
-            member = ctx.author
         cookie = await self.conf.user(member).cookies()
         final = cookie - amt
         await self.conf.user(member).cookies.set(final)
