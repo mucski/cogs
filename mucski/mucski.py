@@ -58,6 +58,7 @@ class Mucski(AdminUtils, Pet, Shop, Games, commands.Cog):
         steal_stamp = await self.conf.user(member).steal_stamp()
         steal_stamp = datetime.fromtimestamp(steal_stamp)
         steal = steal_stamp - now
+        on_mission = await self.conf.user(member).pets.mission()
         pet = await self.conf.user(member).pets.name()
         e = discord.Embed(timestamp=datetime.utcnow())
         e.set_author(name=f"{member.name}'s profile", icon_url=member.avatar_url)
@@ -77,6 +78,10 @@ class Mucski(AdminUtils, Pet, Shop, Games, commands.Cog):
             e.add_field(name="Pet", value="None")
         else:
             e.add_field(name="Pet", value=f"{pet}")
+        if on_mission is True:
+            e.add_field(name="Pet mission", value="Yes")
+        else:
+            e.add_field(name="Pet mission", value="No")
         await ctx.send(embed=e)
     
     @AdminUtils.cookie.command(name="cookieboards", aliases=['lb', 'cb'])
