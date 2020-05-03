@@ -39,7 +39,7 @@ class Pet:
         else:
             hunger = await self.conf.user(ctx.author).pet.hunger()
             name = await self.conf.user(ctx.author).pet.name()
-            happiness = await self.conf.user(ctx.author).pet.happiness()
+            happiness = await self.conf.user(ctx.author).pet.happy()
             pettype = await self.conf.user(ctx.author).pet.type()
             e = discord.Embed()
             e.set_author(name=f"{ctx.author.name}'s {pettype}", icon_url=ctx.author.avatar_url)
