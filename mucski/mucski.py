@@ -116,7 +116,32 @@ class Mucski(commands.Cog):
         await Shop.pet(self, ctx, pet)
     
     @buy.command()
-    async def item(self, ctx, item: str):
-        await Shop.item(self, ctx, item)
+    async def item(self, ctx, item: str, quantity: int):
+        await Shop.item(self, ctx, item, quantity)
+        
     
+    @cookie.group(name="pet")
+    async def pet(self, ctx):
+        pass
+    
+    @pet.command()
+    async def info(self, ctx):
+        pass
+    
+    @pet.command()
+    async def adventure(self, ctx):
+        pass
+    
+    @pet.command()
+    async def feed(self, ctx):
+        pass
+    
+    @pet.command()
+    async def play(self, ctx):
+        pass
+    
+    @pet.command()
+    async def abandon(self, ctx):
+        pass
+        
     
