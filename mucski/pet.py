@@ -14,11 +14,16 @@ class Pet(commands.Cog):
     @pet.command()
     async def send(self, ctx):
         time = random.randint(10,50)
-        await ctx.send(f"sent your dumb pet on an adventure for {time} seconds")
-        await asyncio.sleep(time)
-        #await ctx.send(doggo_responses)
-        responses = random.choice(doggo_responses)
-        await ctx.send(responses)
+        on_mission = await self.conf.user(ctx.author).pets.mission()
+        if on_mission is True:
+            return await ctx.send("already in a mission")
+        else:
+            await ctx.send(f"sent your dumb pet on an adventure for {time} seconds")
+            await self.conf.user(ctx.author).user.pets.mission(True)
+            await asyncio.sleep(time)
+            responses = random.choice(doggo_responses)
+            await ctx.send(responses)
+            await self.conf.user(ctx.author).user.pets.mission(False)
         
     @pet.command()
     async def feed(self, ctx):
