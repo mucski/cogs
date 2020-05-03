@@ -3,6 +3,7 @@ from datetime import datetime, timedelta
 from redbot.core import commands, checks, Config
 
 from .shop import Shop
+from .adminutils import AdminUtils
 
 class Mucski(commands.Cog):
     def __init__(self, bot):
@@ -72,8 +73,8 @@ class Mucski(commands.Cog):
         pass
     
     @set.command()
-    async def addcookie(self, ctx):
-        pass
+    async def addcookie(self, ctx, amt, member):
+        await AdminUtils.add_cookie(self, ctx, amt, member)
     
     @set.command()
     async def delcookie(self, ctx):
