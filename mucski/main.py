@@ -31,8 +31,6 @@ class Main:
 
     async def profile(self, ctx, member):
         """ Checks your balance or some ones """
-        if member is None:
-            member = ctx.author
         cookie = await self.cv(member)
         now = datetime.utcnow().replace(microsecond=0)
         daily_stamp = await self.conf.user(member).daily_stamp()
