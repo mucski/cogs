@@ -17,7 +17,7 @@ class Pet:
         wait = pet_stamp - now
         next_stamp = timer + now
         on_mission = await self.conf.user(ctx.author).pet.mission()
-        if on_mission is True:
+        if on_mission:
             return await ctx.send(f"already in a mission {humanize_timedelta(timedelta=wait)}")
         else:
             await ctx.send(f"sent your dumb pet on an adventure for {time} seconds")
