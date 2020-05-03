@@ -15,15 +15,15 @@ class Pet(commands.Cog):
     async def send(self, ctx):
         time = random.randint(10,50)
         on_mission = await self.conf.user(ctx.author).pets.mission()
-        if on_mission:
+        if on_mission is True:
             return await ctx.send("already in a mission")
         else:
             await ctx.send(f"sent your dumb pet on an adventure for {time} seconds")
-            await self.conf.user(ctx.author).pets.mission(True)
+            await self.conf.user(ctx.author).pets.mission.set(True)
             await asyncio.sleep(time)
             responses = random.choice(doggo_responses)
             await ctx.send(responses)
-            await self.conf.user(ctx.author).pets.mission(False)
+            await self.conf.user(ctx.author).pets.mission.set(False)
         
     @pet.command()
     async def feed(self, ctx):
