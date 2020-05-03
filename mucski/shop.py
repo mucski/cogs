@@ -21,7 +21,7 @@ class Shop:
             e.add_field(name=f"{k.capitalize()} - {v['type']}", value=f"{v['description']} - Price {v['price']}")
         return await ctx.send(embed=e)
     
-    async def pet(self, ctx, pet: str):
+    async def pet(self, ctx, pet):
         if pet.lower() in petlist.keys():
             value = petlist[pet]['price']
         else:
@@ -39,7 +39,7 @@ class Shop:
             await self.conf.user(ctx.author).pet.type.set(pet.lower())
             return await ctx.send(f" congrats you own {pet} now, take good care of it ")
             
-    async def item(self, ctx, item: str, quantity: int):
+    async def item(self, ctx, item, quantity):
         if item.lower() in shoplist.keys():
             value = shoplist[item]['price']
         else:
