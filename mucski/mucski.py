@@ -2,6 +2,8 @@ import discord
 from datetime import datetime, timedelta
 from redbot.core import commands, checks, Config
 
+from .shop import Shop
+
 class Mucski(commands.Cog):
     def __init__(self, bot):
         self.conf = Config.get_conf(self, 7393748858272738586)
@@ -83,7 +85,7 @@ class Mucski(commands.Cog):
     
     @shop.command()
     async def items(self, ctx):
-        pass
+        await ctx.send(shop)
     
     @shop.command()
     async def pets(self, ctx):
