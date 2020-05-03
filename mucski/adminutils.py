@@ -7,28 +7,26 @@ class AdminUtils:
         random.shuffle(word)
         return ''.join(word)
         
-    async def add_pet(self, ctx, pet, member: discord.Member=None):
+    async def add_pet(self, ctx, pet, member):
         if member is None:
             member = ctx.author
         #todo: get pet name drom list asap
         await self.conf.user(member).pet.set(pet)
         await ctx.send(f"Gave {pet} pet to {member.name}")
         
-    async def remove_pet(self, ctx, member: discord.Member=None):
+    async def remove_pet(self, ctx, member):
         if member is None:
             member = ctx.author
         await self.conf.user(member).pets.clear()
         await ctx.send(f"Removed pet from {member.name}")
         
-    async def add_cookie(self, ctx, amt: int, member: discord.Member=None):
-        if member is None:
-            member = ctx.author
+    async def add_cookie(self, ctx, amt: int, member):
         cookie = await self.conf.user(member).cookies()
         final = cookie + amt
         await self.conf.user(member).cookies.set(final)
         await ctx.send(f"Added {amt} to {member.name} now has {cookie} cookies."
     
-    async def del_cookie(self, ctx, amt: int, member: discord.Member=None):
+    async def del_cookie(self, ctx, amt: int, member):
         if member is None:
             member = ctx.author
         cookie = await self.conf.user(member).cookies()
@@ -46,7 +44,7 @@ class AdminUtils:
         await self.conf.clear_raw(stuff)
         await ctx.send("done")
     
-    async def reset_cd(self, ctx, member: discord.Member=None):
+    async def reset_cd(self, ctx, member):
         if member is None:
             member = ctx.author
         await self.conf.user(member).daily_stamp.clear()
