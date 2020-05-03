@@ -9,6 +9,9 @@ from redbot.core.utils.chat_formatting import humanize_timedelta
 
 class Pet:
     async def adventure(self, ctx):
+        owned = await self.conf.user(ctx.author).pet.owned()
+        if owned is False:
+            return await ctx.send("No pet no gain")
         now = datetime.utcnow().replace(microsecond=0)
         time = random.randint(100,500)
         pet_timer = timedelta(seconds=time)
