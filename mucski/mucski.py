@@ -36,7 +36,10 @@ class Mucski(AdminUtils, Pet, Shop, Games, commands.Cog):
                 "type": "None",
                 "mission": False,
             },
-            "items": [],
+            "items": {
+                "food": 0,
+                "boost": 0,
+            },
         }
         self.conf.register_user(**defaults)
 
