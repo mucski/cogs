@@ -3,7 +3,7 @@ import math
 from datetime import datetime, timedelta
 from redbot.core.utils.chat_formatting import bold, box, humanize_list, humanize_number, pagify, humanize_timedelta
 from redbot.core.utils.menus import menu, DEFAULT_CONTROLS
-
+from .randomstuff import worklist
 
 class Main:
     async def leaderboard(self, ctx):
@@ -50,4 +50,30 @@ class Main:
             cooling = "No"
             e.add_field(name="Daily on cooldown", value=f"``{cooling}``")
         await ctx.send(embed=e)
+        
+    async def work(self, ctx):
+        now = datetime.utcnow().replace(microsecond=0)
+        work_stamp = await self.conf.user(ctx.author).work_stamp()
+        work_stamp = datetime.fromtimestamp(work_stamp)
+        work_timer = timedelta(minutes=5)
+        next_cd = work_timer + now
+        remaining = work_stamp - now
+        if now < work_stamp:
+            await ctx.send(f"On cooldown. Remaining: {humanize_timedelta(timedelta=remaining)}")
+            return
+        """ Work to earn some cookies """
+        r = random.choice(list(worklist.keys()))
+        await ctx.send(worklist[r])
+        def check(m):
+            return m.content.lower() in r and m.guild == ctx.guild and m.author == ctx.author
+        try:
+            await ctx.bot.wait_for('message', timeout=7, check=check)
+        except asyncio.TimeoutError:
+            return await ctx.send("Have to work harder than that ...😞")
+        value = random.randint(50,500)
+        cookie = await self.conf.user(ctx.author).cookies()
+        cookie += value
+        await self.conf.user(ctx.author).cookies().set(cookie)
+        await ctx.send(f"Well done, you earned ``{value}`` cookies for todays work.😴")
+        await self.conf.user(ctx.author).work_stamp.set(next_cd.timestamp())
         
