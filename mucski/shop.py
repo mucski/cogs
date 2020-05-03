@@ -17,8 +17,10 @@ class Shop(commands.Cog):
             e.add_field(name=f"{k.capitalize()}", value=f"{v['description']}, this is a {v['type']} - Price {v['price']}")
         await ctx.send(embed=e)
     
-    @commands.group(name="buy")
-    @shop.command()
+    @shop.group(name="buy")
+    async def buy(self, ctx):
+        pass
+    
     @buy.command()
     async def pet(self, ctx, item: str):
         if item.lower() in petlist.keys():
