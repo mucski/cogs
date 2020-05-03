@@ -58,7 +58,7 @@ class AdminUtils(commands.Cog):
         await self.conf.clear_all_globals()
         await ctx.send("Thanos snapped the database.")
         
-    @cookie.command
+    @cookie.command()
     @checks.is_owner()
     async def cleardb(self, ctx, *, stuff):
         await self.conf.clear_raw(stuff)
