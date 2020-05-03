@@ -147,6 +147,6 @@ class Mucski(commands.Cog):
     
     @pet.command()
     async def rename(self, ctx, name):
-        await Pet.name(self, ctx, name)
+        await Pet.rename(self, ctx, name)
         
     
