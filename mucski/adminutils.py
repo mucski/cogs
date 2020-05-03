@@ -22,32 +22,4 @@ class AdminUtils:
         cookie = await self.conf.user(member).cookies()
         final = cookie + amt
         await self.conf.user(member).cookies.set(final)
-        return await ctx.send(f"Added {amt} to {member.name} now has {cookie} cookies."
-    
-    async def del_cookie(self, ctx, amt, member):
-        cookie = await self.conf.user(member).cookies()
-        final = cookie - amt
-        await self.conf.user(member).cookies.set(final)
-        return await ctx.send(f"Removed {amt} from {member.name} now has {cookie}")
-
-    async def reset_db(self, ctx):
-        await self.conf.clear_all()
-        await self.conf.clear_all_globals()
-        await self.conf.clear_all_users()
-        return await ctx.send("Thanos snapped the database.")
-        
-    async def cleardb(self, ctx, *, stuff):
-        await self.conf.clear_raw(stuff)
-        await ctx.send("done")
-    
-    async def reset_cd(self, ctx, member):
-        if member is None:
-            member = ctx.author
-        await self.conf.user(member).daily_stamp.clear()
-        await self.conf.user(member).steal_stamp.clear()
-        await self.conf.user(member).work_stamp.clear()
-        await self.conf.user(member).pet_stamp.clear()
-        await self.conf.user(member).pets.mission.clear()
-        await ctx.send(f"All cooldowns have been reset for 1 turn for {member.name}")
-        
-    
+        return await ctx.send(f"Added {amt} to {member.name} now has {cookie} cookies.")
