@@ -15,14 +15,14 @@ class Pet(commands.Cog):
     
     @pet.command()
     async def send(self, ctx):
-        time = random.randint(900,3600)
         now = datetime.utcnow().replace(microsecond=0)
+        time = random.randint(900,3600)
         timer = timedelta(seconds=time)
         pet_stamp = await self.conf.user(ctx.author).pet_stamp()
         pet_stamp = datetime.fromtimestamp(pet_stamp)
         wait = pet_stamp - now
-        on_mission = await self.conf.user(ctx.author).pets.mission()
         next_stamp = timer + now
+        on_mission = await self.conf.user(ctx.author).pets.mission()
         if on_mission is True:
             return await ctx.send(f"already in a mission {humanize_timedelta(timedelta=wait)}")
         else:
