@@ -49,7 +49,7 @@ class Pet:
             e.add_field(name="Pet type", value=pettype)
             await ctx.send(embed=e)
             
-    async def rename(self, ctx, *, name: str):
+    async def rename(self, ctx, name: str):
         if len(name) > 15:
             return await ctx.send("Name too long. Keep it bellow 15 chars")
         pet_owned = await self.conf.user(ctx.author).pet.owned()
