@@ -12,29 +12,29 @@ class AdminUtils:
             member = ctx.author
         #todo: get pet name drom list asap
         await self.conf.user(member).pet.set(pet)
-        await ctx.send(f"Gave {pet} pet to {member.name}")
+        return await ctx.send(f"Gave {pet} pet to {member.name}")
         
     async def remove_pet(self, ctx, member):
         await self.conf.user(member).pets.clear()
-        await ctx.send(f"Removed pet from {member.name}")
+        return await ctx.send(f"Removed pet from {member.name}")
         
     async def add_cookie(self, ctx, amt: int, member):
         cookie = await self.conf.user(member).cookies()
         final = cookie + amt
         await self.conf.user(member).cookies.set(final)
-        await ctx.send(f"Added {amt} to {member.name} now has {cookie} cookies."
+        return await ctx.send(f"Added {amt} to {member.name} now has {cookie} cookies."
     
     async def del_cookie(self, ctx, amt, member):
         cookie = await self.conf.user(member).cookies()
         final = cookie - amt
         await self.conf.user(member).cookies.set(final)
-        await ctx.send(f"Removed {amt} from {member.name} now has {cookie}")
+        return await ctx.send(f"Removed {amt} from {member.name} now has {cookie}")
 
     async def reset_db(self, ctx):
         await self.conf.clear_all()
         await self.conf.clear_all_globals()
         await self.conf.clear_all_users()
-        await ctx.send("Thanos snapped the database.")
+        return await ctx.send("Thanos snapped the database.")
         
     async def cleardb(self, ctx, *, stuff):
         await self.conf.clear_raw(stuff)
