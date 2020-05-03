@@ -5,7 +5,7 @@ from .randomstuff import petlist
 
 class Shop:
     
-    async def pet(self, ctx):
+    async def pets(self, ctx):
         e = discord.Embed()
         e.set_author(name=f"{ctx.author.name}'s shop list", icon_url=ctx.author.avatar_url)
         e.set_thumbnail(url=ctx.bot.user.avatar_url)
@@ -13,7 +13,7 @@ class Shop:
             e.add_field(name=f"{v['emoji']} {k.capitalize()}", value=f"{v['description']} - Price: {v['price']}")
         return await ctx.send(embed=e)
     
-    async def item(self, ctx):
+    async def items(self, ctx):
         e = discord.Embed()
         e.set_author(name=f"{ctx.author.name} pet shop", icon_url=ctx.author.avatar_url)
         e.set_thumbnail(url=ctx.bot.user.avatar_url)
