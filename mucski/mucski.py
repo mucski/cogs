@@ -22,6 +22,7 @@ class Mucski(commands.Cog):
                 "hunger": 0,
                 "happy": 0,
                 "mission": False,
+                "owned": False,
             },
             "item": {
                 "food": {
