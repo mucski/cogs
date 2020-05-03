@@ -34,7 +34,7 @@ class Pet:
             happy = random.randint(10,50)
             final_hunger = hunger - pet_hunger
             final_happy = happy - pet_happy
-            if health <= 0 or happiness <= 0:
+            if final_hunger <= 0 or final_happy <= 0:
                 await ctx.send(dog_responses + "\nYour pet died, rip.")
                 return await self.conf.user(ctx.author).pet.clear()
             await self.conf.user(ctx.author).pet.hunger.set(final_hungry)

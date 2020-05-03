@@ -41,8 +41,7 @@ class Mucski2(commands.Cog):
         try:
             msg = await channel.fetch_message(messageid)
         except HTTPException:
-            return await ctx.send("couldn't find that message")
-        #users = await msg.reactions[0].users().flatten()
+            return await ctx.send("Couldn't find that message")
         users = []
         async for user in msg.reactions[0].users():
             users.append(user)
