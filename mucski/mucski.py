@@ -85,8 +85,7 @@ class Mucski(commands.Cog):
     
     @shop.command()
     async def items(self, ctx):
-        shop = await Shop.shop(self, ctx)
-        await ctx.send(shop)
+        await Shop.shop(self, ctx)
     
     @shop.command()
     async def pets(self, ctx):
