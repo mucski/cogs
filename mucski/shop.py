@@ -16,9 +16,15 @@ class Shop(commands.Cog):
         for k, v in shoplist.items():
             e.add_field(name=f"{k.capitalize()}", value=f"{v['description']}, this is a {v['type']} - Price {v['price']}")
         await ctx.send(embed=e)
-
+    
+    @commands.group(name="buy")
     @shop.command()
-    async def buy(self, ctx, item: str):
+    async def buy(self, ctx):
+        pass
+    
+    @shop.command()
+    @buy.command()
+    async def pet(self, ctx, item: str):
         if item.lower() in petlist.keys():
             value = petlist[item]['price']
         else:
@@ -36,8 +42,6 @@ class Shop(commands.Cog):
             await self.conf.user(ctx.author).pets.type.set(item.lower())
             await ctx.send(f" congrats you own {item} now, take good care of it ")
         
-            
-    
     @shop.command()
     async def sell(self, ctx, item):
         pass
