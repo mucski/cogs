@@ -43,7 +43,7 @@ class Mucski(AdminUtils, Pet, Shop, Games, commands.Cog):
                 },
                 "toys": {
                     "item": "",
-                    "quantitiy": 0,
+                    "quantity": 0,
                 },
             },
         }
