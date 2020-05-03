@@ -113,6 +113,6 @@ class Main:
         cookie = await self.conf.user(ctx.author).cookies()
         cookie += 1000
         await ctx.send(f"Claimed your daily cookies. You have ``{cookie}`` cookies now. Come back in 12 hours.🙄")
-        await self.conf.user(ctx.authot).cookies.set(cookie)
+        await self.conf.user(ctx.author).cookies.set(cookie)
         await self.conf.user(ctx.author).daily_stamp.set(next_cd.timestamp())
   
