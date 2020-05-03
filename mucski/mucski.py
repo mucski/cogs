@@ -1,6 +1,6 @@
 import discord
 from datetime import datetime, timedelta
-from redbot.core import commands, checks
+from redbot.core import commands, checks, Config
 
 class Mucski(commands.Cog):
     def __init__(self, bot):
