@@ -60,12 +60,13 @@ class Pet(commands.Cog):
             await ctx.send(embed=e)
             
     @pet.command()
-    async def name(self, ctx, name: str):
-        name = name.capitalize()
+    async def name(self, ctx, *, name: str):
         if len(name) > 15:
             return await ctx.send("Name too long. Keep it bellow 15 chars")
         pet_owned = await self.conf.user(ctx.author).pets.owned()
         if pet_owned is True:
             await self.conf.user(ctx.author).pets.name.set(name)
             await ctx.send(f"your pet is called {name} now")
+        else:
+            await ctx.send("You dont have a pet")
     
