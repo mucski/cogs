@@ -73,7 +73,9 @@ class Mucski(commands.Cog):
         pass
     
     @set.command()
-    async def addcookie(self, ctx, amt, member):
+    async def addcookie(self, ctx, amt: int, member: discord.Member=None):
+        if member is None:
+            member = ctx.author
         await AdminUtils.add_cookie(self, ctx, amt, member)
     
     @set.command()
