@@ -46,7 +46,7 @@ class Shop(commands.Cog):
             value = shoplist[item]['price']
         else:
             return await ctx.send("no such item")
-        cookie = self.conf.user(ctx.author).cookies()
+        cookie = await self.conf.user(ctx.author).cookies()
         cookie -= value
         if cookie < value:
             return await ctx.send("Need more cookies")
