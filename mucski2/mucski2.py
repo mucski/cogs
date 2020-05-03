@@ -63,37 +63,6 @@ class Mucski2(commands.Cog):
         await ctx.send(member.avatar_url)
         
     @commands.command()
-    async def setcd(self, ctx, amt: int):
-        #try with minutes first until better solution
-        member = ctx.author
-        timer = timedelta(minutes=amt)
-        now = datetime.utcnow().replace(microsecond=0)
-        future = now + timer
-        await self.conf.user(member).daily_stamp.set(future.timestamp())
-        await self.conf.user(member).daily_timer.set(amt)
-        await ctx.send(f"successfully set {future}")
-        
-    @commands.command()
-    async def resetcd(self, ctx):
-        await self.conf.user(ctx.author).daily_stamp.clear()
-        await ctx.send("Done")
-        
-    @commands.command()
-    async def test(self, ctx):
-        member = ctx.author
-        daily_stamp = await self.conf.user(member).daily_stamp()
-        #convert stamp to time
-        now = datetime.utcnow().replace(microsecond=0)
-        if now.timestamp() < daily_stamp:
-            await ctx.send(f"command on cooldown until {datetime.fromtimestamp(daily_stamp)}")
-        else:
-            await ctx.send("yay it works")
-            daily_timer = await self.conf.user(member).daily_timer()
-            timer = timedelta(minutes=daily_timer)
-            next_cd = now + timer
-            await self.conf.user(member).daily_stamp.set(next_cd.timestamp())
-
-    @commands.command()
     async def rol(self, ctx):
         him = random.randint(1,6)
         you = random.randint(1,6)
