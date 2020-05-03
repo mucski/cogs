@@ -17,6 +17,7 @@ class Pet(commands.Cog):
     async def send(self, ctx):
         time = random.randint(900,3600)
         now = datetime.utcnow().replace(microsecond=0)
+        time = timedelta(seconds=time)
         wait = time - now
         on_mission = await self.conf.user(ctx.author).pets.mission()
         pet_stamp = time + now
