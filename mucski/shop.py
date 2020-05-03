@@ -5,18 +5,21 @@ from .randomstuff import petlist
 
 class Shop:
     
-    async def shop(self, ctx):
+    async def pet(self, ctx):
         e = discord.Embed()
         e.set_author(name=f"{ctx.author.name}'s shop list", icon_url=ctx.author.avatar_url)
         e.set_thumbnail(url=ctx.bot.user.avatar_url)
         for k, v in petlist.items():
             e.add_field(name=f"{v['emoji']} {k.capitalize()}", value=f"{v['description']} - Price: {v['price']}")
-        for k, v in shoplist.items():
-            e.add_field(name=f"{k.capitalize()}", value=f"{v['description']}, this is a {v['type']} - Price {v['price']}")
         return await ctx.send(embed=e)
     
-    async def buy(self, ctx):
-        pass
+    async def item(self, ctx):
+        e = discord.Embed()
+        e.set_author(name=f"{ctx.author.name} pet shop", icon_url=ctx.author.avatar_url)
+        e.set_thumbnail(url=ctx.bot.user.avatar_url)
+        for k, v in shoplist.items():
+            e.add_field(name=f"{k.capitalize()} - {v['food']}", value=f"{v['description']} - Price {v['price']}")
+        await ctx.send(embed=e)
     
     async def pet(self, ctx, item: str):
         if item.lower() in petlist.keys():
