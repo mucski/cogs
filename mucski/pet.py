@@ -28,16 +28,18 @@ class Pet:
             await ctx.send(f"Still on a mission, wait {humanize_timedelta(timedelta=remaining)}")
         elif now > pet_stamp and on_mission is True:
             dog_responses = random.choice(doggo_responses)
-            health = await self.conf.user(ctx.author).pet.hunger()
-            happiness = await self.conf.user(ctx.author).pet.happy()
-            health - random.randint(10,100)
-            happiness - random.randint(10,50)
+            pet_hunger = await self.conf.user(ctx.author).pet.hunger()
+            pet_happy = await self.conf.user(ctx.author).pet.happy()
+            hunger = random.randint(10,100)
+            happy = random.randint(10,50)
+            final_hunger = hunger - pet_hunger
+            final_happy = happy - pet_happy
             if health <= 0 or happiness <= 0:
-                await ctx.send(dog_responses + "Your pet died, rip.\n")
+                await ctx.send(dog_responses + "\nYour pet died, rip.")
                 return await self.conf.user(ctx.author).pet.clear()
-            await self.conf.user(ctx.author).pet.hunger.set(health)
-            await self.conf.user(ctx.author).pet.happy.set(happiness)
-            await ctx.send(dog_responses + f"Your pet lost {health} hunger and {happiness} happyness")
+            await self.conf.user(ctx.author).pet.hunger.set(final_hungry)
+            await self.conf.user(ctx.author).pet.happy.set(final_happy)
+            await ctx.send(dog_responses + f"\nYour pet lost {hunger} hunger and {happy} happyness")
             await self.conf.user(ctx.author).pet.mission.set(False)
         
     async def feed(self, ctx):
