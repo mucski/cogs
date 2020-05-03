@@ -21,7 +21,7 @@ from .randomstuff import petlist
 
 class Mucski(AdminUtils, Pet, Shop, Games, commands.Cog):
     def __init__(self, bot):
-        self.conf = Config.get_conf(self, 828385593824, force_registration=True)
+        self.conf = Config.get_conf(self, 828385593824)
         defaults = {
             "cookies": 0,
             "daily_stamp": 0,
