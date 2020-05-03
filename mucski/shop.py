@@ -51,12 +51,10 @@ class Shop(commands.Cog):
         if cookie < value:
             return await ctx.send("Need more cookies")
         elif shoplist[item]['type'] == "food":
-            type = food
             await self.conf.user(ctx.author).items.pet_food.item.set(item.lower())
             await self.conf.user(ctx.author).items.pet_food.quantity.set(quantity)
             await ctx.send(f"You just bought {quantity} of {item.lower()}")
         else:
-            type = toy
             await self.conf.user(ctx.author).items.toys.item.set(item.lower())
             await self.conf.user(ctx.author).items.toys.quantity.set(quantity)
             await ctx.send(f"You just bought {quantity} of {item.lower()}")
