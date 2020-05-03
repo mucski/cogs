@@ -80,7 +80,7 @@ class Mucski(AdminUtils, Pet, Shop, Games, commands.Cog):
         if pet is None:
             e.add_field(name="Pet", value="None")
         else:
-            e.add_field(name=f"{emoji} Pet", value=f"{pet}")
+            e.add_field(name=f"Pet", value=f"{emoji} {pet}")
         if on_mission is True:
             e.add_field(name="Pet mission", value="Yes")
         else:
