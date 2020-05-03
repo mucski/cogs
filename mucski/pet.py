@@ -19,7 +19,7 @@ class Pet(commands.Cog):
         now = datetime.utcnow().replace(microsecond=0)
         time = timedelta(seconds=time)
         pet_stamp = await self.conf.user(ctx.author).pet_stamp()
-        pet_stamp = datetime.fromtimestamp()
+        pet_stamp = datetime.fromtimestamp(pet_stamp)
         wait = pet_stamp - now
         on_mission = await self.conf.user(ctx.author).pets.mission()
         next_stamp = time + now
