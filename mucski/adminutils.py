@@ -60,7 +60,7 @@ class AdminUtils(commands.Cog):
         
     @cookie.command
     @checks.is_owner()
-    async def clesrdb(self, ctx, *, stuff):
+    async def cleardb(self, ctx, *, stuff):
         await self.conf.clear_raw(stuff)
         await ctx.send("done")
     
