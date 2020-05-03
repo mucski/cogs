@@ -1,5 +1,6 @@
 import discord
 import math
+import random
 from datetime import datetime, timedelta
 from redbot.core.utils.chat_formatting import bold, box, humanize_list, humanize_number, pagify, humanize_timedelta
 from redbot.core.utils.menus import menu, DEFAULT_CONTROLS
