@@ -7,7 +7,7 @@ class Shop:
     
     async def pets(self, ctx):
         e = discord.Embed()
-        e.set_author(name=f"{ctx.author.name}'s shop list", icon_url=ctx.author.avatar_url)
+        e.set_author(name=f"{ctx.author.name} pet list", icon_url=ctx.author.avatar_url)
         e.set_thumbnail(url=ctx.bot.user.avatar_url)
         for k, v in petlist.items():
             e.add_field(name=f"{v['emoji']} {k.capitalize()}", value=f"{v['description']} - Price: {v['price']}")
@@ -15,7 +15,7 @@ class Shop:
     
     async def items(self, ctx):
         e = discord.Embed()
-        e.set_author(name=f"{ctx.author.name} pet shop", icon_url=ctx.author.avatar_url)
+        e.set_author(name=f"{ctx.author.name} item shop", icon_url=ctx.author.avatar_url)
         e.set_thumbnail(url=ctx.bot.user.avatar_url)
         for k, v in shoplist.items():
             e.add_field(name=f"{k.capitalize()} - {v['type']}", value=f"{v['description']} - Price {v['price']}")
@@ -35,7 +35,7 @@ class Shop:
             await self.conf.user(ctx.author).pets.owned.set(True)
             await self.conf.user(ctx.author).pets.name.set(item)
             await self.conf.user(ctx.author).pets.hunger.set(100)
-            await self.conf.user(ctx.author).pets.happiness.set(100)
+            await self.conf.user(ctx.author).pets.happy.set(100)
             await self.conf.user(ctx.author).pets.type.set(item.lower())
             await ctx.send(f" congrats you own {item} now, take good care of it ")
             
