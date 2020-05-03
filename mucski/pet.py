@@ -8,7 +8,6 @@ from .randomstuff import doggo_responses
 from redbot.core.utils.chat_formatting import humanize_timedelta
 
 class Pet:
-    
     async def adventure(self, ctx):
         now = datetime.utcnow().replace(microsecond=0)
         time = random.randint(900,3600)
