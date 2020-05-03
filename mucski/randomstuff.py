@@ -52,21 +52,21 @@ petlist = {
 }
 
 shoplist = {
-    "bone" {
+    "bone": {
         "description": "Perfect for them doggos",
         "price": 200,
         "quantity": 1,
         "emoji": "soon",
         "type": "food",
     },
-    "fish" {
+    "fish": {
         "description": "Perfect for a cat",
         "price": 200,
         "quantity": 1,
         "emoji": "soon",
         "type": "food",
     },
-    "ball" {
+    "ball": {
         "description": "Have some fun with your pet",
         "price": 500,
         "quantity": 1,
