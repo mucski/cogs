@@ -6,6 +6,7 @@ from .shop import Shop
 from .adminutils import AdminUtils
 from .games import Games
 from .main import Main
+from .pet import Pet
 
 class Mucski(commands.Cog):
     def __init__(self, bot):
