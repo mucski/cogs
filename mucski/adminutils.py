@@ -24,7 +24,7 @@ class AdminUtils:
         await self.conf.user(member).cookies.set(final)
         await ctx.send(f"Added {amt} to {member.name} now has {cookie} cookies."
     
-    async def del_cookie(self, ctx, amt: int, member):
+    async def del_cookie(self, ctx, amt, member):
         cookie = await self.conf.user(member).cookies()
         final = cookie - amt
         await self.conf.user(member).cookies.set(final)
