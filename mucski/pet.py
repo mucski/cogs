@@ -15,7 +15,7 @@ class Pet(commands.Cog):
     async def send(self, ctx):
         time = random.randint(10,50)
         on_mission = await self.conf.user(ctx.author).pets.mission()
-        if on_mission is True:
+        if on_mission:
             return await ctx.send("already in a mission")
         else:
             await ctx.send(f"sent your dumb pet on an adventure for {time} seconds")
