@@ -6,7 +6,7 @@ from redbot.core.utils.chat_formatting import humanize_timedelta
 
 class Games:
     
-    async def steal(self, ctx, member: discord.Member):
+    async def steal(self, ctx, member):
         now = datetime.utcnow().replace(microsecond=0)
         steal_stamp = await self.conf.user(ctx.author).steal_stamp()
         steal_stamp = datetime.fromtimestamp(steal_stamp)
