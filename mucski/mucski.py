@@ -100,11 +100,11 @@ class Mucski(commands.Cog):
     
     @shop.command()
     async def items(self, ctx):
-        await Shop.item(self, ctx)
+        await Shop.items(self, ctx)
     
     @shop.command()
     async def pets(self, ctx):
-        await Shop.pet(self, ctx)
+        await Shop.pets(self, ctx)
     
     @shop.group(name="buy")
     async def buy(self, ctx):
