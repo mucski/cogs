@@ -21,7 +21,7 @@ class AdminUtils:
         await self.conf.user(member).pets.clear()
         await ctx.send(f"Removed pet from {member.name}")
         
-    async def add_cookie(self, ctx, amt: int, member: discord.Member=None):
+    async def add_cookie(self, ctx, amt: int, member):
         cookie = await self.conf.user(member).cookies()
         final = cookie + amt
         await self.conf.user(member).cookies.set(final)
