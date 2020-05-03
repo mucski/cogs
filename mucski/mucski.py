@@ -61,6 +61,7 @@ class Mucski(AdminUtils, Pet, Shop, Games, commands.Cog):
         steal = steal_stamp - now
         on_mission = await self.conf.user(member).pets.mission()
         pet = await self.conf.user(member).pets.name()
+        pettype = await self.conf.user(member).pets.type()
         e = discord.Embed(timestamp=datetime.utcnow())
         e.set_author(name=f"{member.name}'s profile", icon_url=member.avatar_url)
         e.set_thumbnail(url=member.avatar_url)
