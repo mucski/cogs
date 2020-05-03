@@ -56,6 +56,7 @@ class AdminUtils(commands.Cog):
     async def reset_db(self, ctx):
         await self.conf.clear_all()
         await self.conf.clear_all_globals()
+        await self.conf.clear_all_users()
         await ctx.send("Thanos snapped the database.")
         
     @cookie.command()
