@@ -95,6 +95,12 @@ class Mucski(AdminUtils, Pet, Shop, Games, commands.Cog):
         else:
             e.add_field(name="Pet mission", value="No")
         await ctx.send(embed=e)
+        
+    @AdminUtils.cookie.command()
+    async def inv(self, ctx):
+        items = await self.conf.user(ctx.author).items()
+        await ctx.send(items)
+            
     
     @AdminUtils.cookie.command(name="cookieboards", aliases=['lb', 'cb'])
     async def cookieboards(self, ctx):
