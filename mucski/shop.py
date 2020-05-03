@@ -19,7 +19,7 @@ class Shop:
         e.set_thumbnail(url=ctx.bot.user.avatar_url)
         for k, v in shoplist.items():
             e.add_field(name=f"{k.capitalize()} - {v['type']}", value=f"{v['description']} - Price {v['price']}")
-        await ctx.send(embed=e)
+        return await ctx.send(embed=e)
     
     async def pet(self, ctx, pet: str):
         if pet.lower() in petlist.keys():
@@ -37,7 +37,7 @@ class Shop:
             await self.conf.user(ctx.author).pet.hunger.set(100)
             await self.conf.user(ctx.author).pet.happy.set(100)
             await self.conf.user(ctx.author).pet.type.set(pet.lower())
-            await ctx.send(f" congrats you own {pet} now, take good care of it ")
+            return await ctx.send(f" congrats you own {pet} now, take good care of it ")
             
     async def item(self, ctx, item: str, quantity: int):
         if item.lower() in shoplist.keys():
