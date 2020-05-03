@@ -44,7 +44,7 @@ class Pet(commands.Cog):
     
     @pet.command()
     async def info(self, ctx):
-        if await self.conf.user(ctx.author).pets.owned() == "None":
+        if await self.conf.user(ctx.author).pets.owned() is False:
             await ctx.send("Get yourself a pet first.")
         else:
             health = await self.conf.user(ctx.author).pets.hunger()
@@ -54,8 +54,8 @@ class Pet(commands.Cog):
             e = discord.Embed()
             e.set_author(name=f"{ctx.author.name}'s {pettype}", icon_url=ctx.author.avatar_url)
             e.add_field(name="Pet health", value=health)
-            e.add_field(name="Pet name", value=name.capitalize())
-            e.add_field(name="Pet happynes", value=happiness)
+            e.add_field(name="Pet name", value=name)
+            e.add_field(name="Pet happyness", value=happiness)
             e.add_field(name="Pet type", value=pettype)
             await ctx.send(embed=e)
             
