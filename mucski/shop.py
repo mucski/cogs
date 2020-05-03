@@ -1,3 +1,5 @@
+import discord
+
 from .randomstuff import shoplist
 from .randomstuff import petlist
 
