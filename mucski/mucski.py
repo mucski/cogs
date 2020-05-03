@@ -5,6 +5,7 @@ from redbot.core import commands, checks, Config
 from .shop import Shop
 from .adminutils import AdminUtils
 from .games import Games
+from .main import Main
 
 class Mucski(commands.Cog):
     def __init__(self, bot):
