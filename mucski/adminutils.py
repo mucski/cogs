@@ -22,12 +22,10 @@ class AdminUtils:
         await ctx.send(f"Removed pet from {member.name}")
         
     async def add_cookie(self, ctx, amt: int, member: discord.Member=None):
-        if member is None:
-            member = ctx.author
         cookie = await self.conf.user(member).cookies()
         final = cookie + amt
         await self.conf.user(member).cookies.set(final)
-        await ctx.send(f"Added {amt} to {member.name} now has {cookie} cookies."
+        await ctx.send(f"Added {amt} to {member.name} now has {cookie} cookies.")
     
     async def del_cookie(self, ctx, amt: int, member: discord.Member=None):
         if member is None:
