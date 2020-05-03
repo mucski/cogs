@@ -1,9 +1,11 @@
 import discord
 import random
 import asyncio
+from datetime import datetime
 
 from redbot.core import commands, checks
 from .randomstuff import doggo_responses
+from redbot.core.utils.chat_formatting import humanize_timedelta
 
 class Pet(commands.Cog):
     
@@ -13,13 +15,17 @@ class Pet(commands.Cog):
     
     @pet.command()
     async def send(self, ctx):
-        time = random.randint(10,50)
+        time = random.randint(900,3600)
+        now = datetime.utcnow().replace(microsecond=0)
+        wait = time - now
         on_mission = await self.conf.user(ctx.author).pets.mission()
+        pet_stamp = time + now
         if on_mission is True:
-            return await ctx.send("already in a mission")
+            return await ctx.send(f"already in a mission {humanize_timedelta(timedelta=wait)}")
         else:
             await ctx.send(f"sent your dumb pet on an adventure for {time} seconds")
             await self.conf.user(ctx.author).pets.mission.set(True)
+            await self.conf.user(ctz.author).pet_stamp.set(pet_stamp.timestamp())
             await asyncio.sleep(time)
             responses = random.choice(doggo_responses)
             await ctx.send(responses)
