@@ -17,6 +17,7 @@ from redbot.core.utils.predicates import MessagePredicate
 from .randomstuff import worklist
 from .randomstuff import searchlist
 from .randomstuff import bad_location
+from .randomstuff import petlist
 
 class Mucski(AdminUtils, Pet, Shop, Games, commands.Cog):
     def __init__(self, bot):
@@ -74,10 +75,11 @@ class Mucski(AdminUtils, Pet, Shop, Games, commands.Cog):
             e.add_field(name="Cooldown remaining", value=humanize_timedelta(timedelta=steal))
         else:
             e.add_field(name="Steal on cooldown", value="NO")
+        emoji = petlist[pettype]['emoji']
         if pet is None:
             e.add_field(name="Pet", value="None")
         else:
-            e.add_field(name="Pet", value=f"{pet}")
+            e.add_field(name=f"{emoji} Pet", value=f"{pet}")
         if on_mission is True:
             e.add_field(name="Pet mission", value="Yes")
         else:
