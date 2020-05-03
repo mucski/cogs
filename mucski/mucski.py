@@ -4,6 +4,7 @@ from redbot.core import commands, checks, Config
 
 from .shop import Shop
 from .adminutils import AdminUtils
+from .games import Games
 
 class Mucski(commands.Cog):
     def __init__(self, bot):
@@ -62,6 +63,10 @@ class Mucski(commands.Cog):
     @cookie.command()
     async def leaderboard(self, ctx):
         pass
+    
+    @cookie.command()
+    async def gamble(self, ctx, amt):
+        await Games.gamble(self, ctx, amt)
     
     @cookie.group(name="set")
     @checks.is_owner()
