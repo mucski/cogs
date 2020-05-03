@@ -2,7 +2,7 @@ import discord
 from datetime import datetime, timedelta
 from redbot.core import commands, checks
 
-class Mucski1(commands.Cog):
+class Mucski(commands.Cog):
     def _init_(self, bot):
         self.conf = Config.get_conf(self, 7393748858272738586)
         defaults  = {
