@@ -49,8 +49,10 @@ class Mucski(commands.Cog):
         pass
     
     @cookie.command()
-    async def profile(self, ctx):
-        pass
+    async def profile(self, ctx, member: discord.Member=None):
+        if member is None:
+            member = ctx.author
+        await Main.profile(self, ctx, member)
     
     @cookie.command()
     async def work(self, ctx):
