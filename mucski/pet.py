@@ -32,8 +32,8 @@ class Pet:
             pet_happy = await self.conf.user(ctx.author).pet.happy()
             hunger = random.randint(1,10)
             happy = random.randint(1,10)
-            final_hunger = hunger - pet_hunger
-            final_happy = happy - pet_happy
+            final_hunger -= hunger
+            final_happy -= happy
             cookie = await self.conf.user(ctx.author).cookies()
             value = random.randint(300,700)
             earned = cookie + value
@@ -45,8 +45,11 @@ class Pet:
             await ctx.send(dog_responses.format(value) + f"\nYour pet lost {hunger} hunger and {happy} happyness")
             await self.conf.user(ctx.author).pet.mission.set(False)
         
-    async def feed(self, ctx):
-        pass
+    async def feed(self, ctx, item:str, amt:int):
+        if amt <= 0:
+            amt = 1
+        inventory = await self.conf.user(ctx.author).pet.item.food()
+        quantity = await self.conf.user(ctx.author).pet.item.food.quantity()
     
     async def play(self, ctx):
         pass
