@@ -34,12 +34,15 @@ class Pet:
             happy = random.randint(10,50)
             final_hunger = hunger - pet_hunger
             final_happy = happy - pet_happy
+            cookie = await self.conf.user(ctx.author).cookies()
+            value = random.randint(300,700)
+            earned = cookie + value
             if final_hunger <= 0 or final_happy <= 0:
-                await ctx.send(dog_responses + "\nYour pet died, rip.")
+                await ctx.send(dog_responses.format(earned) + "\nYour pet died, rip.")
                 return await self.conf.user(ctx.author).pet.clear()
             await self.conf.user(ctx.author).pet.hunger.set(final_hungry)
             await self.conf.user(ctx.author).pet.happy.set(final_happy)
-            await ctx.send(dog_responses + f"\nYour pet lost {hunger} hunger and {happy} happyness")
+            await ctx.send(dog_responses.format(earned) + f"\nYour pet lost {hunger} hunger and {happy} happyness")
             await self.conf.user(ctx.author).pet.mission.set(False)
         
     async def feed(self, ctx):

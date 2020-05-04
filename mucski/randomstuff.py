@@ -45,7 +45,7 @@ petlist = {
         "emoji": ":dog:",
     },
     "cat": {
-        "description": "Lazy and fat, but cute none the less.",
+        "description": "Lazy and fat, but cute nonetheless.",
         "price": 20000,
         "emoji": ":cat:",
     },
@@ -75,4 +75,8 @@ shoplist = {
     },
 }
 
-doggo_responses = ['Your dog found a cig and smoked it.', 'These are just place holders', 'Suka blyat']
+doggo_responses = [
+    'Your dog ran into the forest, found a cabin and touched a spaghett, and took {} cookes that were in a cupboard.', 
+    'Your dog dressed up as a pirate and venture outwards on the sea, found {} cookies in a pirate chest on an abandoned island.',
+    'Your dog was learning russian so he can say Suka Blyat, Putin awarded him with {} cookies.',
+]
