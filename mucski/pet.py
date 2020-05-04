@@ -70,12 +70,12 @@ class Pet:
                 await ctx.send("Get yourself a pet first")
                 
     async def rename(self, ctx, name: str):
-        if len(name) > 15:
-            return await ctx.send("Name too long. Keep it bellow 15 chars")
-        pet_owned = await self.conf.user(ctx.author).pet.owned()
-        if pet_owned is True:
-            await self.conf.user(ctx.author).pet.name.set(name)
-            await ctx.send(f"your pet is called {name} now")
-        else:
-            await ctx.send("You dont have a pet")
+        async with self.conf.user(ctx.author).pet() as pet:
+            if pet:
+                if len(name) > 15:
+                    await ctx.send("15 chars max plz")
+                pet['name'] = name
+                await ctx.send(f"Your pet is called {name} from now on.")
+            else:
+                await ctz.send("Get yourself a pet first")
     
