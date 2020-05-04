@@ -21,9 +21,9 @@ class Pet:
                 if pet['mission'] == False:
                     await ctx.send("Sending your pet on a mission")
                     pet['mission'] = True
-                if pet_stamp < now and pet['mission'] == True:
+                if pet_stamp > now and pet['mission'] == True:
                     await ctx.send(f"On mission {humanize_timedelta(timedelta=remaining)}")
-                elif pet_stamp > now and pet['mission'] == True:
+                elif pet_stamp < now and pet['mission'] == True:
                     responses = random.choice(doggo_responses)
                     pet['hunger'] - random.randint(1,10)
                     pet['happy'] - random.randint(1,10)
