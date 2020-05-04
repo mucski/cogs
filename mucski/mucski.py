@@ -17,23 +17,10 @@ class Mucski(commands.Cog):
             "steal_stamp": 0,
             "work_stamp": 0,
             "pet_stamp": 0,
-            "pet": {
-                "name": None,
-                "type": None,
-                "hunger": 0,
-                "happy": 0,
-                "mission": False,
-                "owned": False,
-            },
+            "pet": {},
             "item": {
-                "food": {
-                    "items": None,
-                    "quantity": 0,
-                },
-                "toy": {
-                    "items": None,
-                    "quantity": 0,
-                },
+                "food": {},
+                "toy": {},
             },
         }
         self.conf.register_user(**defaults)
