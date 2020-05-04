@@ -66,7 +66,7 @@ class Pet:
             e.set_author(name=f"{ctx.author.name}'s", icon_url=ctx.author.avatar_url)
             e.add_field(name="Pet name", value=petstats['name'])
             e.add_field(name="Pet hunger", value=petstats['hunger'])
-            e.add_field(name="Pet happyness", value=petstats['hungry']
+            e.add_field(name="Pet happyness", value=petstats['hungry'])
             e.add_field(name="Pet type", value=petstats['type'])
             await ctx.send(embed=e)
             
