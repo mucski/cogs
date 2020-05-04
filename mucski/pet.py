@@ -9,38 +9,31 @@ from redbot.core.utils.chat_formatting import humanize_timedelta
 
 class Pet:
     async def adventure(self, ctx):
-        owned = await self.conf.user(ctx.author).pet()
-        if owned is None:
-            return await ctx.send("No pet no gain")
-        now = datetime.utcnow().replace(microsecond=0)
-        time = random.randint(100,500)
-        pet_timer = timedelta(seconds=time)
-        pet_stamp = await self.conf.user(ctx.author).pet_stamp()
-        pet_stamp = datetime.fromtimestamp(pet_stamp)
-        next_stamp = pet_timer + now
-        remaining = pet_stamp - now
-        dog_responses = random.choice(doggo_responses)
         async with self.conf.user(ctx.author).pet() as pet:
-            if pet['mission'] == False:
-                await ctx.send("Sent pet on adventure")
-                pet['mission'] = True
-                await self.conf.user(ctx.author).pet_stamp.set(next_stamp.timestamp())
-            if now < pet_stamp:
-                await ctx.send(f"Still on a mission, wait {humanize_timedelta(timedelta=remaining)}")
-            elif now > pet_stamp and pet['mission'] == True:
-                hunger = pet['hunger']
-                hunger -= max(random.randint(1,10),0)
-                happy = pet['happy']
-                happy -= max(random.randint(1,10),0)
-                cookie = await self.conf.user(ctx.author).cookies()
-                value = random.randint(300,700)
-                earned = cookie + value
-                pet['mission'] = False
-                if hunger == 0 or happy == 0:
-                    await ctx.send(dog_responses.format(value) + "\nYour pet died, rip.")
-                    return await self.conf.user(ctx.author).pet.clear()
-            await ctx.send(dog_responses.format(value) + f"\nYour pet lost {hunger} hunger and {happy} happyness")
-        
+            if pet:
+                now = datetime.utcnow()
+                timer = random.randint(20,30)
+                timer = timedelta(seconds=timer)
+                pet_stamp = await self.conf.user(ctx.author).pet_stamp()
+                pet_stamp = datetime.fromtimestamp(pet_stamp)
+                remaining = pet_stamp - now
+                future = timer + now
+                if pet_stamp < now and pet['mission'] == True:
+                    await ctx.send(f"On mission {humanize_timedelta(timedelta=timer)}")
+                elif pet_stamp > now and pet['mission'] == True:
+                    responses = random.choice(doggo_responses)
+                    pet['hunger'] - random.randint(1,10)
+                    pet['happy'] - random.randint(1,10)
+                    cookie = await self.conf.user(ctx.author).cookies()
+                    cookie - random.randint(100,800)
+                    await self.conf.user(ctx.author).cookie.set(cookie)
+                    await ctx.send(responses)
+                    await ctx.send(f"Your pet has {pet['happy']} happynes and {pet['hunger']} hunger remaining from this adventure and gained {cookie} cookies.")
+                    pet[mission] = False
+            else:
+                await ctx.send("You dont own any pets")
+                
+            
     async def feed(self, ctx, item:str, amt:int):
         if amt <= 0:
             amt = 1
