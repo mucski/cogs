@@ -31,12 +31,16 @@ class Shop:
         if cookie < 0:
             return await ctx.send("Error")
         else:
+            pet_type = animal.lower()
+            await self.conf.user(ctx.author).pet.set_raw(
+                pet_type, value = {'owned': true, 'name': animal.capitalize(), 'hunger': 100, 'happy': 100, 'mission': False}
+            )
             await self.conf.user(ctx.author).cookies.set(cookie)
-            await self.conf.user(ctx.author).pet.owned.set(True)
-            await self.conf.user(ctx.author).pet.name.set(animal.capitalize())
-            await self.conf.user(ctx.author).pet.hunger.set(100)
-            await self.conf.user(ctx.author).pet.happy.set(100)
-            await self.conf.user(ctx.author).pet.type.set(animal.lower())
+            #await self.conf.user(ctx.author).pet.owned.set(True)
+            #await self.conf.user(ctx.author).pet.name.set(animal.capitalize())
+            #await self.conf.user(ctx.author).pet.hunger.set(100)
+            #await self.conf.user(ctx.author).pet.happy.set(100)
+            #await self.conf.user(ctx.author).pet.type.set(animal.lower())
             return await ctx.send(f" congrats you own {animal} now, take good care of it ")
             
     async def item(self, ctx, item, quantity):
