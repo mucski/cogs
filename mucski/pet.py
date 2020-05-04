@@ -24,11 +24,10 @@ class Pet:
                 await ctx.send("Sent pet on adventure")
                 pet['mission'] = True
                 await self.conf.user(ctx.author).pet_stamp.set(next_stamp.timestamp())
-        if now < pet_stamp:
-            await ctx.send(f"Still on a mission, wait {humanize_timedelta(timedelta=remaining)}")
-        elif now > pet_stamp:
-            dog_responses = random.choice(doggo_responses)
-            async with self.conf.user(ctx.author).pet() as pet:
+            if now < pet_stamp:
+                await ctx.send(f"Still on a mission, wait {humanize_timedelta(timedelta=remaining)}")
+            elif now > pet_stamp and pet['mission'] == True:
+                dog_responses = random.choice(doggo_responses)
                 hunger = pet['hunger']
                 hunger -= max(random.randint(1,10),0)
                 happy = pet['happy']
