@@ -68,6 +68,7 @@ class Pet:
                 await ctx.send(embed=e)
             else:
                 await ctx.send("Get yourself a pet first")
+                
     async def rename(self, ctx, name: str):
         if len(name) > 15:
             return await ctx.send("Name too long. Keep it bellow 15 chars")
