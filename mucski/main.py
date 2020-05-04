@@ -118,5 +118,5 @@ class Main:
   
     async def inv(self, ctx):
         async with self.conf.user(ctx.author).item() as item:
-            for k, v in item:
-                await ctx.send(f"You own {k:v}")
+            for key in item:
+                await ctx.send(f"You own {key:item[key]}")
