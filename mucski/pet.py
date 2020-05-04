@@ -27,7 +27,6 @@ class Pet:
             if now < pet_stamp:
                 await ctx.send(f"Still on a mission, wait {humanize_timedelta(timedelta=remaining)}")
             elif now > pet_stamp and pet['mission'] == True:
-                dog_responses = random.choice(doggo_responses)
                 hunger = pet['hunger']
                 hunger -= max(random.randint(1,10),0)
                 happy = pet['happy']
@@ -37,6 +36,7 @@ class Pet:
                 earned = cookie + value
                 pet['mission'] = False
                 if hunger == 0 or happy == 0:
+                    dog_responses = random.choice(doggo_responses)
                     await ctx.send(dog_responses.format(value) + "\nYour pet died, rip.")
                     return await self.conf.user(ctx.author).pet.clear()
             await ctx.send(dog_responses.format(value) + f"\nYour pet lost {hunger} hunger and {happy} happyness")
