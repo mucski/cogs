@@ -31,7 +31,7 @@ class Pet:
             dog_responses = random.choice(doggo_responses)
             async with self.conf.user(ctx.author).pet() as pet:
                 hunger = pet['hunger']
-                hunger -= max(random.randint(1,10)0)
+                hunger -= max(random.randint(1,10),0)
                 happy = pet['happy']
                 happy -= max(random.randint(1,10),0)
                 cookie = await self.conf.user(ctx.author).cookies()
