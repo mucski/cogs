@@ -42,10 +42,28 @@ class Pet:
                 await ctx.send("You dont own any pets")
                 
     async def feed(self, ctx, item:str, amt:int):
-        if amt <= 0:
-            amt = 1
-        inventory = await self.conf.user(ctx.author).pet.item.food()
-        quantity = await self.conf.user(ctx.author).pet.item.food.quantity()
+        async with self.conf.user(ctx.author).pet() as pet:
+            if pet:
+                if amt == 0:
+                    amt = 1
+                hunger = pet['hunger']
+                happy = pet['happy']
+                async with self.conf.user(ctx.author).item() as item:
+                    for key in item:
+                        if item['type'] == 'food':
+                            pet['hunger'] =+ 20
+                            if amt:
+                                item[key] - amt
+                            else:
+                                item[key] - 1
+                        elif item['type'] == 'toy':
+                            pet['happy'] =+ 20
+                            if amt:
+                                item[key] - amt
+                            else:
+                                item[key] - 1
+                    await ctx.send(f"hunger {hunger} happyness {happy} consumed {item} {amt}")
+                    
     
     async def play(self, ctx):
         pass
