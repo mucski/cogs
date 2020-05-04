@@ -71,7 +71,7 @@ class Mucski(commands.Cog):
     
     @set.command()
     async def cleardb(self, ctx):
-        pass
+        await AdminUtils.reset_db(self, ctx)
     
     @set.command()
     async def addcookie(self, ctx, amt: int, member: discord.Member=None):
