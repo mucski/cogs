@@ -18,6 +18,9 @@ class Pet:
                 pet_stamp = datetime.fromtimestamp(pet_stamp)
                 remaining = pet_stamp - now
                 future = timer + now
+                if pet['mission'] == False:
+                    await ctx.send("Sending your pet on a mission").
+                    pet['mission'] = True
                 if pet_stamp < now and pet['mission'] == True:
                     await ctx.send(f"On mission {humanize_timedelta(timedelta=remaining)}")
                 elif pet_stamp > now and pet['mission'] == True:
