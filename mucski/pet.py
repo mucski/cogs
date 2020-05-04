@@ -59,7 +59,7 @@ class Pet:
             await ctx.send("Get yourself a pet first.")
         else:
             try:
-                petstats = await self.conf.user(ctx.author).get_raw(pet)
+                petstats = await self.conf.user(ctx.author).pet()
             except KeyError:
                 await ctx.send("no such pet")
             e = discord.Embed()
