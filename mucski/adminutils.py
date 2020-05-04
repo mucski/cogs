@@ -41,7 +41,7 @@ class AdminUtils:
         await self.conf.clear_all_users()
         await ctx.send("Thanos snapped the database.")
         
-    async def cleardb(self, ctx, *, stuff):
+    async def cleardb(self, ctx, stuff):
         await self.conf.all_users.clear_raw(stuff)
         await ctx.send("done")
     
