@@ -10,7 +10,7 @@ from .pet import Pet
 
 class Mucski(commands.Cog):
     def __init__(self, bot):
-        self.conf = Config.get_conf(self, 7393748858272738586)
+        self.conf = Config.get_conf(self, 7393748858272738586, force_registration=True)
         defaults  = {
             "cookies": 0,
             "daily_stamp": 0,
