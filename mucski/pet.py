@@ -19,6 +19,7 @@ class Pet:
         pet_stamp = datetime.fromtimestamp(pet_stamp)
         next_stamp = pet_timer + now
         remaining = pet_stamp - now
+        dog_responses = random.choice(doggo_responses)
         async with self.conf.user(ctx.author).pet() as pet:
             if pet['mission'] == False:
                 await ctx.send("Sent pet on adventure")
@@ -36,7 +37,6 @@ class Pet:
                 earned = cookie + value
                 pet['mission'] = False
                 if hunger == 0 or happy == 0:
-                    dog_responses = random.choice(doggo_responses)
                     await ctx.send(dog_responses.format(value) + "\nYour pet died, rip.")
                     return await self.conf.user(ctx.author).pet.clear()
             await ctx.send(dog_responses.format(value) + f"\nYour pet lost {hunger} hunger and {happy} happyness")
