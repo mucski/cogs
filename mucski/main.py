@@ -116,3 +116,7 @@ class Main:
         await self.conf.user(ctx.author).cookies.set(cookie)
         await self.conf.user(ctx.author).daily_stamp.set(next_cd.timestamp())
   
+    async def inv(self, ctx):
+        async with self.conf.user(ctx.author).item() as item:
+            for k, v in item:
+                await ctx.send(f"You own {k:v}")

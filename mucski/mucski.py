@@ -18,10 +18,7 @@ class Mucski(commands.Cog):
             "work_stamp": 0,
             "pet_stamp": 0,
             "pet": {},
-            "item": {
-                "food": {},
-                "toy": {},
-            },
+            "item": {},
         }
         self.conf.register_user(**defaults)
         
@@ -33,6 +30,10 @@ class Mucski(commands.Cog):
     @cookie.command()
     async def balance(self, ctx, member: discord.Member=None):
         pass
+    
+    @cookie.command()
+    async def inv(self, ctx):
+        await Main.inv(self, ctx)
     
     @cookie.command()
     async def profile(self, ctx, member: discord.Member=None):

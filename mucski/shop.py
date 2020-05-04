@@ -28,7 +28,7 @@ class Shop:
             return await ctx.send("pet doesnt exist")
         cookie = await self.conf.user(ctx.author).cookies()
         cookie -= value
-        if cookie < 0:
+        if cookie <= 0:
             return await ctx.send("Error")
         else:
             pet_type = animal.lower()
@@ -36,11 +36,6 @@ class Shop:
                 value = {'type': pet_type, 'name': animal.capitalize(), 'hunger': 100, 'happy': 100, 'mission': False}
             )
             await self.conf.user(ctx.author).cookies.set(cookie)
-            #await self.conf.user(ctx.author).pet.owned.set(True)
-            #await self.conf.user(ctx.author).pet.name.set(animal.capitalize())
-            #await self.conf.user(ctx.author).pet.hunger.set(100)
-            #await self.conf.user(ctx.author).pet.happy.set(100)
-            #await self.conf.user(ctx.author).pet.type.set(animal.lower())
             return await ctx.send(f" congrats you own {animal} now, take good care of it ")
             
     async def item(self, ctx, item, quantity):
@@ -52,14 +47,15 @@ class Shop:
         cookie -= value
         if cookie < value:
             return await ctx.send("Need more cookies")
-        elif shoplist[item]['type'] == "food":
-            await self.conf.user(ctx.author).item.food.items.set(item.lower())
-            await self.conf.user(ctx.author).item.food.quantity.set(quantity)
-            await ctx.send(f"You just bought {quantity} of {item.lower()}")
-        else:
-            await self.conf.user(ctx.author).item.toys.items.set(item.lower())
-            await self.conf.user(ctx.author).item.toys.quantity.set(quantity)
-            await ctx.send(f"You just bought {quantity} of {item.lower()}")
+        type = shoplist[item]['type']
+        item = item.lower()
+        if quantity == 0:
+            quantity = 1
+        await self.conf.user(ctx.author).item.food.set_raw(
+            value = {item: quantity, "type": type}
+        )
+        await self.conf.user(ctx.author).cookies.set(cookie)
+        await ctx.send(f"You just bought {quantity} of {item}")
         
     async def sell(self, ctx, item):
         pass
