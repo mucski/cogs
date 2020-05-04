@@ -33,7 +33,7 @@ class Shop:
         else:
             pet_type = animal.lower()
             await self.conf.user(ctx.author).pet.set_raw(
-                pet_type, value = {'owned': True, 'name': animal.capitalize(), 'hunger': 100, 'happy': 100, 'mission': False}
+                value = {'type': pet_type, 'name': animal.capitalize(), 'hunger': 100, 'happy': 100, 'mission': False}
             )
             await self.conf.user(ctx.author).cookies.set(cookie)
             #await self.conf.user(ctx.author).pet.owned.set(True)
