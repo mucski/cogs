@@ -42,7 +42,7 @@ class AdminUtils:
         await ctx.send("Thanos snapped the database.")
         
     async def cleardb(self, ctx, *, stuff):
-        await self.conf.clear_raw(stuff)
+        await self.conf.all_users.clear_raw(stuff)
         await ctx.send("done")
     
     async def reset_cd(self, ctx, member: discord.Member=None):
