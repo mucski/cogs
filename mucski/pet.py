@@ -32,13 +32,12 @@ class Pet:
                     cookie += earned
                     await self.conf.user(ctx.author).cookie.set(cookie)
                     await ctx.send(responses.format(earned))
-                    await ctx.send(f"Your pet has {pet['happy']} happynes and {pet['hunger']} hunger remaining from this adventure and gained {cookie} cookies.")
+                    await ctx.send(f"Your pet has {pet['happy']} happynes and {pet['hunger']} hunger remaining from this adventure and gained {earned} cookies.")
                     pet['mission'] = False
                     await self.conf.user(ctx.author).pet_stamp.set(future.timestamp())
             else:
                 await ctx.send("You dont own any pets")
                 
-            
     async def feed(self, ctx, item:str, amt:int):
         if amt <= 0:
             amt = 1
