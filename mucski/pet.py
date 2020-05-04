@@ -61,7 +61,7 @@ class Pet:
             e.add_field(name="Pet name", value=petname)
             e.add_field(name="Pet", value=pettype)
             e.add_field(name="On mission", value=mission)
-            e.add_field(namd="Hunger", value=hunger)
+            e.add_field(name="Hunger", value=hunger)
             e.add_field(name="Happynes", value=happy)
             await ctx.send(embed=e)
             
