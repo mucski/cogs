@@ -63,6 +63,7 @@ class Pet:
             except KeyError:
                 await ctx.send("no such pet")
             await ctx.send(petstats)
+            await ctx.send(petstats['name'])
             
     async def rename(self, ctx, name: str):
         if len(name) > 15:
