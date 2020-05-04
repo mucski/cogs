@@ -25,14 +25,14 @@ class Pet:
                     await ctx.send(f"On mission {humanize_timedelta(timedelta=remaining)}")
                 elif pet_stamp < now and pet['mission'] == True:
                     responses = random.choice(doggo_responses)
-                    pet['hunger'] - random.randint(1,10)
-                    pet['happy'] - random.randint(1,10)
+                    pet['hunger'] -= random.randint(1,10)
+                    pet['happy'] -= random.randint(1,10)
                     cookie = await self.conf.user(ctx.author).cookies()
-                    cookie - random.randint(100,800)
+                    cookie -= random.randint(100,800)
                     await self.conf.user(ctx.author).cookie.set(cookie)
                     await ctx.send(responses)
                     await ctx.send(f"Your pet has {pet['happy']} happynes and {pet['hunger']} hunger remaining from this adventure and gained {cookie} cookies.")
-                    pet[mission] = False
+                    pet['mission'] = False
                     await self.conf.user(ctx.author).pet_stamp.set(future.timestamp())
             else:
                 await ctx.send("You dont own any pets")
