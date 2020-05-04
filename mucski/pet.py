@@ -51,15 +51,19 @@ class Pet:
         pass
     
     async def info(self, ctx):
-        if await self.conf.user(ctx.author).pet.owned() is False:
-            await ctx.send("Get yourself a pet first.")
-        else:
-            try:
-                petstats = await self.conf.user(ctx.author).pet()
-            except KeyError:
-                await ctx.send("no such pet")
-            await ctx.send(petstats)
-            await ctx.send(petstats['name'])
+        async with self.conf.user(ctx.author).pet() as pet:
+            hunger = pet['hunger']
+            happy = pet['happy']
+            pettype = pet['type']
+            petname = pet['name']
+            mission = pet['mission']
+            e = discord.Embed()
+            e.add_field(name="Pet name", value=petname)
+            e.add_field(name="Pet", value=pettype)
+            e.add_field(name="On mission", value=mission)
+            e.add_field(namd="Hunger", value=hunger)
+            e.add_field(name="Happynes", value=happy)
+            await ctx.send(embed=e)
             
     async def rename(self, ctx, name: str):
         if len(name) > 15:
