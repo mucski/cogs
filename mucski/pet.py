@@ -19,7 +19,7 @@ class Pet:
                 remaining = pet_stamp - now
                 future = timer + now
                 if pet_stamp < now and pet['mission'] == True:
-                    await ctx.send(f"On mission {humanize_timedelta(timedelta=timer)}")
+                    await ctx.send(f"On mission {humanize_timedelta(timedelta=remaining)}")
                 elif pet_stamp > now and pet['mission'] == True:
                     responses = random.choice(doggo_responses)
                     pet['hunger'] - random.randint(1,10)
@@ -30,6 +30,7 @@ class Pet:
                     await ctx.send(responses)
                     await ctx.send(f"Your pet has {pet['happy']} happynes and {pet['hunger']} hunger remaining from this adventure and gained {cookie} cookies.")
                     pet[mission] = False
+                    await self.conf.user(ctx.author).pet_stamp.set(future.timestamp())
             else:
                 await ctx.send("You dont own any pets")
                 
