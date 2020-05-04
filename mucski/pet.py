@@ -28,9 +28,10 @@ class Pet:
                     pet['hunger'] -= random.randint(1,10)
                     pet['happy'] -= random.randint(1,10)
                     cookie = await self.conf.user(ctx.author).cookies()
-                    cookie -= random.randint(100,800)
+                    earned = random.randint(100,800)
+                    cookie += earned
                     await self.conf.user(ctx.author).cookie.set(cookie)
-                    await ctx.send(responses)
+                    await ctx.send(responses.format(earned))
                     await ctx.send(f"Your pet has {pet['happy']} happynes and {pet['hunger']} hunger remaining from this adventure and gained {cookie} cookies.")
                     pet['mission'] = False
                     await self.conf.user(ctx.author).pet_stamp.set(future.timestamp())
