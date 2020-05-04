@@ -19,12 +19,11 @@ class Pet:
         pet_stamp = datetime.fromtimestamp(pet_stamp)
         next_stamp = pet_timer + now
         remaining = pet_stamp - now
-        on_mission = await self.conf.user(ctx.author).pet.mission()
-        if on_mission is False:
-            await ctx.send("Sent your pet on an adventure.")
-            async with self.conf.user(ctx.author).pet() as pet:
+        async with self.conf.user(ctx.author).pet() as pet:
+            if pet['mission'] == False:
+                await ctx.send("Sent pet on adventure")
                 pet['mission'] = True
-            await self.conf.user(ctx.author).pet_stamp.set(next_stamp.timestamp())
+                await self.conf.user(ctx.author).pet_stamp.set(next_stamp.timestamp())
         elif now < pet_stamp and on_mission is True:
             await ctx.send(f"Still on a mission, wait {humanize_timedelta(timedelta=remaining)}")
         elif now > pet_stamp and on_mission is True:
