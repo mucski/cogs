@@ -55,7 +55,7 @@ class Mucski(Pet, AdminUtils, Games, Shop, commands.Cog):
         await ctx.send(f"Well done, you earned {earned} coins for todays work.😴")
         
     @commands.command(name="leaderboard", aliases=['lb', 'cb'])
-    async def leaderboard(self, ctx)
+    async def leaderboard(self, ctx):
         userinfo = await self.conf.all_users()
         if not userinfo:
             return await ctx.send(bold("Start playing first, then check boards."))
