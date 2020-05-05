@@ -125,7 +125,7 @@ class Mucski(Pet, AdminUtils, Games, Shop, commands.Cog):
             await ctx.send(searchlist[msg.content.lower()])
             return
         else:
-            amt = random.randint(50,200)
+            amt = random.randint(1,10)
             coin += amt
             await self.conf.user(ctx.author).coins.set(coin)
             await ctx.send(searchlist[msg.content.lower()].format(amt))
