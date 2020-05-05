@@ -73,7 +73,7 @@ class Mucski(Pet, AdminUtils, Games, Shop, commands.Cog):
                 li.append(f"#{i}{user_obj.display_name[:10]}...{account['coins']}")
         text = "".join(li)
         page_list=[]
-        table = tabulate(text, headers=['#', 'Name', 'Coins'])
+        table = tabulate(li, headers=['#', 'Name', 'Coins'])
         await ctx.send(table)
         
     @commands.command()
