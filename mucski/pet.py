@@ -68,15 +68,14 @@ class Pet:
                     # ran out of it
                     del food[item]
                     await ctx.send(f"Youre out of {item}")
-                else:
-                    # still some left, write it back
-                    #it increases stats by 5 for every item
-                    hunger = pet['hunger']
-                    #pet health stays 100 even if addition overflows
-                    hunger = min(100, hunger + 5)
-                    pet['hunger'] = hunger
-                    food[item] = quantity
-                    await ctx.send(f"Fed your pet and it increased its hunger by  and consumed {item} {amt}")
+                # still some left, write it back
+                #it increases stats by 5 for every item
+                hunger = pet['hunger']
+                #pet health stays 100 even if addition overflows
+                hunger = min(100, hunger + 5)
+                pet['hunger'] = hunger
+                food[item] = quantity
+                await ctx.send(f"Fed your pet and it increased its hunger by {hunger} and consumed {amt} of {item}'s")
      
     async def play(self, ctx):
         pass
