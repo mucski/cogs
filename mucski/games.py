@@ -3,6 +3,8 @@ import random
 
 from redbot.core import commands, checks
 
+from .mucski import Mucski
+
 class Games(commands.Cog):
     
     @Mucski.coin.command()
