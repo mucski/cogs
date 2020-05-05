@@ -113,6 +113,6 @@ class Mucski(Pet, AdminUtils, Games, Shop, commands.Cog):
             coin += amt
             desc = (f"Dealer rolled {dealer} - You rolled {user}. You win!")
         e = discord.Embed(description = desc)
-        e.footer(text="You and the dealer rolls the dice. The one that has more than the other wins. You can also gamble all of your coins by typing <all> instesd of a number.")
+        e.set_footer(text="You and the dealer rolls the dice. The one that has more than the other wins. You can also gamble all of your coins by typing <all> instead of a number.")
         await ctx.send(embed=e)
         
