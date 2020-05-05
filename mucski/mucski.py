@@ -22,15 +22,17 @@ class Mucski(Pet, AdminUtils, Games, Shop, commands.Cog):
         self.conf = Config.get_conf(self, 28484827, force_registration=True)
         defaults = {
             "coins": 0,
-            "w_stamp": 0,
-            "d_stamp": 0,
-            "s_stamp": 0,
-            "pets": {},
+            "w_stamp": 0, #work timestamp
+            "d_stamp": 0, #daily timestamp
+            "s_stamp": 0, #steal timestamp
+            "p_stamp": 0, #pet timestamp
+            "pets": {}, #pet format {hunger:100,happy:100,clean:100,type:type,mission:False,name:whatever}
         }
         self.conf.register_user(**defaults)
         
     @commands.command(name="balance", aliases=['bal'])
     async def balance(self, ctx, member: discord.Member=None):
+        """View the ammount of coins owned by self or someone else"""
         if not member:
             member = ctx.author
         amt = await self.conf.user(member).coins()
@@ -41,6 +43,7 @@ class Mucski(Pet, AdminUtils, Games, Shop, commands.Cog):
         
     @commands.command()
     async def work(self, ctx):
+        """Work for some coins"""
         r = random.choice(list(worklist.keys()))
         await ctx.send(worklist[r])
         check = MessagePredicate.lower_equal_to(r, ctx)
@@ -57,6 +60,7 @@ class Mucski(Pet, AdminUtils, Games, Shop, commands.Cog):
         
     @commands.command(name="leaderboard", aliases=['lb', 'cb'])
     async def leaderboard(self, ctx):
+        """View the leaderboards"""
         userinfo = await self.conf.all_users()
         if not userinfo:
             return await ctx.send(bold("Start playing first, then check boards."))
@@ -83,6 +87,7 @@ class Mucski(Pet, AdminUtils, Games, Shop, commands.Cog):
         
     @commands.command()
     async def daily(self, ctx):
+        """Claim your daily coins"""
         coin = await self.conf.user(ctx.author).coins()
         #time mumbo jumbo
         now = datetime.utcnow()
@@ -100,3 +105,5 @@ class Mucski(Pet, AdminUtils, Games, Shop, commands.Cog):
         await ctx.send("Claimed your daily 200 coins. Come back in 12 hours")
         #set the next daily stamp
         await self.conf.user(ctx.author).d_stamp.set(future.timestamp())
+        
+        
