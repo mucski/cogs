@@ -74,16 +74,7 @@ class Mucski(Pet, AdminUtils, Games, Shop, commands.Cog):
         text = "".join(li)
         page_list=[]
         table = tabulate(text, headers=['#', 'Name', 'Coins'])
-        for page_num, page in enumerate(pagify(table, page_length=1000), start=1):
-            embed=discord.Embed(
-                color=await ctx.bot.get_embed_color(location=ctx.channel),
-                description=box(table) + (box(page, lang="md")),
-            )
-            embed.set_footer (
-                text=f"Page {page_num}/{math.ceil(len(text) / 1000)}",
-            )
-        page_list.append(embed)
-        await menu(ctx, page_list, DEFAULT_CONTROLS)
+        await ctx.send(table)
         
     @commands.command()
     async def daily(self, ctx):
