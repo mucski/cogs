@@ -1,5 +1,5 @@
 import discord
-from redbot.core import commands, checks
+from redbot.core import commands, checks, Config
 
 #self imports
 from .pet import Pet
@@ -29,19 +29,4 @@ class Mucski(Pet, AdminUtils, Games, Shop, commands.Cog):
             await ctx.send("User have not started playing yet")
             return
         await ctx.send(f"User has {amt} of coins")
-        
-    @commands.command()
-    @checks.is_owner()
-    async def givecoin(self, ctx, amt: int, member: discord.Member=None):
-        if not member:
-            member = ctx.author
-        if not amt:
-            await ctx.send("Need a value")
-            return
-        if amt <= 0:
-            await ctx.send("Cant set bellow or equal to 0 coins")
-            return
-        amt += await self.conf.user(member).coins()
-        await self.conf.user(member).coins.set(amt)
-        await ctx.send(f"User now has {amt} coins")
         
