@@ -69,7 +69,7 @@ class Mucski(Pet, AdminUtils, Games, Shop, commands.Cog):
             user_obj = ctx.guild.get_member(user_id)
             li.append(f"{user_obj.display_name}{account['coins']}\n")
         text = "\n".join(li)
-        table = tabulate(sorted_acc, headers=['#', 'Name', 'Coins'])
+        table = tabulate(text, headers=['#', 'Name', 'Coins'])
         await ctx.send(table)
         
     @commands.command()
