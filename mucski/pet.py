@@ -75,7 +75,7 @@ class Pet:
                     await ctx.send(f"Ran out of {item}")
                 else:
                     food[item] = quantity
-                await ctx.send(f"Fed your pet and it increased its hunger by {hunger} and consumed {amt} of {item}'s")
+                await ctx.send(f"Fed your pet and it increased its hunger to {hunger} and consumed {amt} {item}")
      
     async def play(self, ctx):
         pass

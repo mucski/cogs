@@ -11,7 +11,7 @@ class Shop:
         e.set_thumbnail(url=ctx.bot.user.avatar_url)
         for k, v in petlist.items():
             e.add_field(name=f"{v['emoji']} {k.capitalize()}", value=f"{v['description']} - Price: {v['price']}")
-        return await ctx.send(embed=e)
+        await ctx.send(embed=e)
     
     async def items(self, ctx):
         e = discord.Embed()
@@ -19,34 +19,41 @@ class Shop:
         e.set_thumbnail(url=ctx.bot.user.avatar_url)
         for k, v in shoplist.items():
             e.add_field(name=f"{k.capitalize()} - {v['type']}", value=f"{v['description']} - Price {v['price']}")
-        return await ctx.send(embed=e)
+        await ctx.send(embed=e)
     
     async def animal(self, ctx, animal):
         if animal.lower() in petlist.keys():
             value = petlist[animal]['price']
         else:
-            return await ctx.send("pet doesnt exist")
+            await ctx.send("pet doesnt exist")
+            return
         cookie = await self.conf.user(ctx.author).cookies()
         cookie -= value
         if cookie <= 0:
-            return await ctx.send("Error")
+            await ctx.send("Error")
+            return
         else:
             pet_type = animal.lower()
             await self.conf.user(ctx.author).pet.set_raw(
                 value = {'type': pet_type, 'name': animal.capitalize(), 'hunger': 100, 'happy': 100, 'mission': False}
             )
             await self.conf.user(ctx.author).cookies.set(cookie)
-            return await ctx.send(f" congrats you own {animal} now, take good care of it ")
+            await ctx.send(f" congrats you own {animal} now, take good care of it ")
             
     async def item(self, ctx, item, quantity):
         if item.lower() in shoplist.keys():
             value = shoplist[item]['price']
         else:
-            return await ctx.send("no such item")
+            await ctx.send("no such item")
+            return
         cookie = await self.conf.user(ctx.author).cookies()
-        cookie -= value
+        cookie -* value
+        if cookie <= 0:
+            await ctx.send("Need more cookies")
+            return
         if cookie < value:
-            return await ctx.send("Need more cookies")
+            await ctx.send("Need more cookies")
+            return
         type = shoplist[item]['type']
         item = item.lower()
         if quantity == 0:
