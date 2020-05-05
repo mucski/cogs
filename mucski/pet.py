@@ -44,7 +44,7 @@ class Pet:
     async def feed(self, ctx, item: str, amt: int):
         async with self.conf.user(ctx.author).pet() as pet:
             if pet:
-                async with self.conf.user(ctx.author).item.food() as item:
+                async with self.conf.user(ctx.author).item.food() as food:
                     if item:
                         item - amt
                         pet['hunger'] + 20
