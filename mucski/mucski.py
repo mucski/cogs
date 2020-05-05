@@ -68,10 +68,10 @@ class Mucski(Pet, AdminUtils, Games, Shop, commands.Cog):
         for i, (user_id, account) in enumerate(sorted_acc, start=1):
             user_obj = ctx.guild.get_member(user_id)
             if len(user_obj.display_name) < 13:
-                li.append(f"#{i:2}. {user_obj.display_name:<13} {account['coins']:>15}")
+                li.append(f"#{i}{user_obj.display_name}{account['coins']}")
             else:
-                li.append(f"#{i:2}. {user_obj.display_name[:10]:<10}... {account['coins']:>15}")
-        text = "".join(li)
+                li.append(f"#{i}{user_obj.display_name[:10]}...{account['coins']}")
+        text = "\n".join(li)
         page_list=[]
         table = tabulate(li, headers=['#', 'Name', 'Coins'])
         for page_num, page in enumerate(pagify(table, page_length=1000), start=1):
