@@ -2,6 +2,7 @@ import discord
 import random
 import asyncio
 import math
+from datetime import datetime, timedelta
 
 from redbot.core import commands, checks, Config
 from redbot.core.utils.chat_formatting import bold, box, humanize_list, humanize_number, pagify
@@ -81,4 +82,22 @@ class Mucski(Pet, AdminUtils, Games, Shop, commands.Cog):
         page_list.append(embed)
         await menu(ctx, page_list, DEFAULT_CONTROLS)
         
-    
+    @commands.command()
+    async def daily(self, ctx):
+        coin = await self.conf.user(ctx.author).coins()
+        #time mumbo jumbo
+        now = datetime.utcnow()
+        d_stamp = await self.conf.user(ctx.author).d_stamp()
+        d_stamp = datetime.fromtimestamp(d_stamp)
+        timer = timedelta(hours=12) #change this to desired interval
+        future = timer + now
+        remaining = d_stamp - now
+        if d_stamp > now:
+            await ctx.send(f"On cooldown for {humanize_timedelta(timedelta=remaining)}")
+            return
+        coin += 200
+        await self.conf.user(ctx.author).coins.set(coin)
+        #todo: format it properly
+        await ctx.send("Claimed your daily 200 coins. Come back in 12 hours")
+        #set the next daily stamp
+        await self.conf.user(ctx.author).d_stamp.set(future.timestamp())
