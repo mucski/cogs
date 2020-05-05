@@ -71,9 +71,9 @@ class Mucski(Pet, AdminUtils, Games, Shop, commands.Cog):
                 li.append(f"#{i}{user_obj.display_name}{account['coins']}")
             else:
                 li.append(f"#{i}{user_obj.display_name[:10]}...{account['coins']}")
-        text = "\n".join(li)
+        text = "".join(li)
         page_list=[]
-        table = tabulate(li, headers=['#', 'Name', 'Coins'])
+        table = tabulate(text, headers=['#', 'Name', 'Coins'])
         for page_num, page in enumerate(pagify(table, page_length=1000), start=1):
             embed=discord.Embed(
                 color=await ctx.bot.get_embed_color(location=ctx.channel),
