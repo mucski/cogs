@@ -64,7 +64,7 @@ class Mucski(Pet, AdminUtils, Games, Shop, commands.Cog):
         await self.conf.user(ctx.author).coins.set(coin)
         await ctx.send(f"Well done, you earned {earned} coins for todays work.😴")
         
-    @commands.command(name="leaderboard", aliases=['lb', 'cb'])
+    @coin.command(name="leaderboard", aliases=['lb', 'cb'])
     async def leaderboard(self, ctx):
         """View the leaderboards"""
         userinfo = await self.conf.all_users()
@@ -91,7 +91,7 @@ class Mucski(Pet, AdminUtils, Games, Shop, commands.Cog):
         page_list.append(embed)
         return await menu(ctx, page_list, DEFAULT_CONTROLS)
         
-    @commands.command()
+    @coin.command()
     async def daily(self, ctx):
         """Claim your daily coins"""
         coin = await self.conf.user(ctx.author).coins()
@@ -112,7 +112,7 @@ class Mucski(Pet, AdminUtils, Games, Shop, commands.Cog):
         #set the next daily stamp
         await self.conf.user(ctx.author).d_stamp.set(future.timestamp())
         
-    @commands.command()
+    @coin.command()
     async def search(self, ctx):
         """ Search for coins in random places """
         r = random.sample(list(searchlist.keys()), 3)
