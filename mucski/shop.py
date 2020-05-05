@@ -47,7 +47,7 @@ class Shop:
             await ctx.send("no such item")
             return
         cookie = await self.conf.user(ctx.author).cookies()
-        cookie -= (*value)
+        cookie -= value * quantity
         if cookie <= 0:
             await ctx.send("Need more cookies")
             return
