@@ -32,7 +32,7 @@ class Mucski(Pet, AdminUtils, Games, Shop, commands.Cog):
         }
         self.conf.register_user(**defaults)
         
-    @coin.group(name="coin", aliases=['c'], pass_context=True)
+    @coin.group(aliases=['c'], pass_context=True)
     @coin.command(name="balance", aliases=['bal'])
     async def balance(self, ctx, member: discord.Member=None):
         """View the ammount of coins owned by self or someone else"""
