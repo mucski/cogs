@@ -26,7 +26,8 @@ class Pet:
                 elif pet_stamp < now and pet['mission'] == True:
                     if pet['hunger'] <= 0 or pet['happy'] <= 0:
                         await ctx.send("Your pet died. You should take more care of it.")
-                        return pet.clear()
+                        pet.clear()
+                        return
                     responses = random.choice(doggo_responses)
                     pet['hunger'] -= random.randint(1,10)
                     pet['happy'] -= random.randint(1,10)
@@ -77,8 +78,42 @@ class Pet:
                     food[item] = quantity
                 await ctx.send(f"Fed your pet and it increased its hunger to {hunger} and consumed {amt} {item}")
      
-    async def play(self, ctx):
-        pass
+    async def play(self, ctx, item, amt):
+        # do this here cos no config operations need to be made to return this error
+        if amt <= 0:
+            await ctx.send("Try with an actual positive number")
+            return
+        async with self.conf.user(ctx.author).pet() as pet:
+            if not pet:
+                await ctx.send("You don't have pets")
+                return
+            async with self.conf.user(ctx.author).item.toy() as toy:
+                quantity = toy.get(item)
+                #check first if pet is hungry
+                if pet['happy'] == 100:
+                    await ctx.send("Pet doesnt want to play right now")
+                    return
+                if not quantity:
+                    # none of that item left
+                    await ctx.send("You have none of this item")
+                    return
+                if amt > quantity:
+                    await ctx.send("Can't use more than you have")
+                    return
+                quantity -= amt
+                # still some left, write it back
+                #it increases stats by 5 for every item
+                happy = pet['happy']
+                #pet health stays 100 even if addition overflows
+                happy = min(100, (happy + 10) * amt)
+                pet['happy'] = happy
+                if quantity == 0:
+                    del toy[item]
+                    await ctx.send(f"Ran out of {item}")
+                else:
+                    toy[item] = quantity
+                await ctx.send(f"Played with your pet and it increased its happyness to {happy} and used up {amt} {item}")
+             
     
     async def info(self, ctx):
         async with self.conf.user(ctx.author).pet() as pet:
