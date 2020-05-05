@@ -2,11 +2,10 @@ import discord
 import random
 
 from redbot.core import commands, checks
-from .mucski import Mucski
 
-class Games(Mucski, commands.Cog):
+class Games(commands.Cog):
 
-    @Mucski.coin.command()
+    @commands.command()
     async def gamble(self, ctx, amt):
         """Classic roll the dice game 1-12"""
         coin = await self.conf.user(ctx.author).coins()
