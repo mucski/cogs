@@ -4,7 +4,7 @@ from redbot.core import commands, checks
 class AdminUtils(commands.Cog):
     @commands.command()
     @checks.is_owner()
-    async def add_coin(self, ctx, amt: int, member: discord.Member=None):
+    async def addcoin(self, ctx, amt: int, member: discord.Member=None):
         if not member:
             member = ctx.author
         if not amt:
@@ -16,4 +16,9 @@ class AdminUtils(commands.Cog):
         amt += await self.conf.user(member).coins()
         await self.conf.user(member).coins.set(amt)
         await ctx.send(f"{member} now has {amt} coins")
-            
+        
+    @commands.command()
+    @checks.is_owner()
+    async def resetcd(self, ctx):
+        await self.conf.user(ctx.author).d_stamp.clear()
+        await ctx.send("Cooldowns reset for 1 usage")
