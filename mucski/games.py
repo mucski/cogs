@@ -5,7 +5,7 @@ from redbot.core import commands, checks
 
 class Games(commands.Cog):
     
-    @coin.command()
+    @Mucski.coin.command()
     async def gamble(self, ctx, amt):
         """Classic roll the dice game 1-12"""
         coin = await self.conf.user(ctx.author).coins()
