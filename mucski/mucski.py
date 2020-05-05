@@ -7,7 +7,6 @@ from redbot.core import commands, checks, Config
 from redbot.core.utils.chat_formatting import bold, box, humanize_list, humanize_number, pagify
 from redbot.core.utils.menus import menu, DEFAULT_CONTROLS
 from redbot.core.utils.predicates import MessagePredicate
-from redbot.core.utils.embed import randomize_color
 
 #self imports
 from .pet import Pet
@@ -80,5 +79,37 @@ class Mucski(Pet, AdminUtils, Games, Shop, commands.Cog):
                 text=f"Page {page_num}/{math.ceil(len(text) / 1000)}",
             )
         page_list.append(embed)
-        await menu(ctx, page_list, DEFAULT_CONTROLS) 
+        await menu(ctx, page_list, DEFAULT_CONTROLS)
+        
+    @commands.command()
+    async def gamble(self, ctx, amt):
+        coin = await ctx.self.conf.user(ctx.author).coins()
+        user = random.randint(1,6)
+        dealer = random.randint(1,6)
+        if not amt:
+            await ctx.send("Need a bet amount")
+            return
+        if amt <= 0:
+            await ctx.send("Need more coins to play.")
+            return
+        if amt > coin:
+            await ctx.send("Not enough coins to play")
+            return
+        if amt == 'all':
+            amt = coin
+        e = discord.Embed()
+        #Game logic
+        if user < 6 and dealer > user:
+            #you lost
+            coin -= amt
+            e.description(f"Dealer rolled {dealer} - You rolled {user}. You lose!")
+        elif user == dealer:
+            #its a tie
+            e.description(f"Dealer rolled {dealer} - You rolled {user}. It is a tie.")
+        elif dealer < 6 and user > dealer:
+            #you won
+            coin += amt
+            e.description(f"Dealer rolled {dealer} - You rolled {user}. You win!")
+        e.footer(text="You and the dealer rolls the dice. The one that has more than the other wins. You can also gamble all of your coins by typing <all> instesd of a number.")
+        await ctx.send(embed=e)
         
