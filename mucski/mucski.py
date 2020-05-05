@@ -106,4 +106,26 @@ class Mucski(Pet, AdminUtils, Games, Shop, commands.Cog):
         #set the next daily stamp
         await self.conf.user(ctx.author).d_stamp.set(future.timestamp())
         
+    @_cookie.command()
+    async def search(self, ctx):
+        """ Search for coins in random places """
+        r = random.sample(list(searchlist.keys()), 3)
+        await ctx.send("🔍Chose a location to search from bellow🔎"
+                      f"``{r[0]}`` , ``{r[1]}``, ``{r[2]}``")
+        check = MessagePredicate.lower_contained_in(r, ctx)
+        try:
+            msg = await ctx.bot.wait_for('message', timeout=7, check=check)
+        except asyncio.TimeoutError:
+            await ctx.send("Can't search if I don't know where.")
+            return
+        coin = await self.conf.user(ctx.author).coins()
+        if msg.content.lower() in bad_location:
+            await ctx.send(searchlist[msg.content.lower()])
+            return
+        else:
+            amt = random.randint(50,200)
+            coin += amt
+            await self.conf.user(ctx.author).coins.set(coin)
+            await ctx.send(searchlist[msg.content.lower()].format(amt))
+    
         
