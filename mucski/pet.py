@@ -42,27 +42,42 @@ class Pet:
                 await ctx.send("You dont own any pets")
                 
     async def feed(self, ctx, item, amt):
+        # do this here cos no config operations need to be made to return this error
+        if amt <= 0:
+            await ctx.send("Try with an actual positive number")
+            return
         async with self.conf.user(ctx.author).pet() as pet:
-            if pet:
-                async with self.conf.user(ctx.author).item.food() as food:
-                    if food:
-                        if amt <= 0:
-                            return await ctx.send("try with an actual positive number")
-                        quantity = food.get(item)
-                        max(quantity - amt, 0)
-                        food[item] = quantity
-                        if food[item] == 0:
-                            del food[item]
-                            return await ctx.send(f"Youre out of {item}")
-                        hunger = pet['hunger']
-                        max(hunger + 20, 100)
-                        pet['hunger'] = hunger
-                        await ctx.send(f"fes your pet and it increased its hunger by  and consumed {item} {amt}")
-                    else:
-                        await ctx.send("you dont have any items")
-            else:
-                await ctx.send("you dojt have pets")
-    
+            if not pet:
+                await ctx.send("You don't have pets")
+                return
+            async with self.conf.user(ctx.author).item.food() as food:
+                quantity = food.get(item)
+                #check first if pet is hungry
+                if pet['hunger'] == 100:
+                    await ctx.send("Pet not hungry")
+                    return
+                if not quantity:
+                    # none of that item left
+                    await ctx.send("You have none of this item")
+                    return
+                if amt > quantity:
+                    await ctx.send("Can't use more than you have")
+                    return
+                quantity -= amt
+                if quantity == 0:
+                    # ran out of it
+                    del food[item]
+                    await ctx.send(f"Youre out of {item}")
+                else:
+                    # still some left, write it back
+                    #it increases stats by 5 for every item
+                    hunger = pet['hunger']
+                    #pet health stays 100 even if addition overflows
+                    hunger = min(100, hunger + 5)
+                    pet['hunger'] = hunger
+                    food[item] = quantity
+                    await ctx.send(f"Fed your pet and it increased its hunger by  and consumed {item} {amt}")
+     
     async def play(self, ctx):
         pass
     
