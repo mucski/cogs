@@ -1,5 +1,6 @@
 import discord
 import random
+import asyncio
 
 from redbot.core import commands, checks, Config
 from redbot.core.utils.chat_formatting import bold, box, humanize_list, humanize_number, pagify
