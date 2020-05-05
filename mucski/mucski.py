@@ -77,6 +77,6 @@ class Mucski(Pet, AdminUtils, Games, Shop, commands.Cog):
             embed.set_footer (
                 text=f"Page {page_num}/{math.ceil(len(text) / 1000)}",
             )
-        page_list.append(embed)
-        return await menu(ctx, randomize_color(page_list), DEFAULT_CONTROLS) 
+        page_list.append(randomize_color(embed))
+        return await menu(ctx, page_list, DEFAULT_CONTROLS) 
         
