@@ -28,5 +28,5 @@ class Mucski(Pet, AdminUtils, Games, Shop, commands.Cog):
         if not amt:
             await ctx.send("User have not started playing yet")
             return
-        await ctx.send(f"User has {amt} of coins")
+        await ctx.send(f"{member.name} has {amt} coins")
         

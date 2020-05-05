@@ -4,7 +4,7 @@ from redbot.core import commands, checks
 class AdminUtils(commands.Cog):
     @commands.command()
     @checks.is_owner()
-    async def givecoin(self, ctx, amt: int, member: discord.Member=None):
+    async def add_coin(self, ctx, amt: int, member: discord.Member=None):
         if not member:
             member = ctx.author
         if not amt:
@@ -15,5 +15,5 @@ class AdminUtils(commands.Cog):
             return
         amt += await self.conf.user(member).coins()
         await self.conf.user(member).coins.set(amt)
-        await ctx.send(f"User now has {amt} coins")
+        await ctx.send(f"{member} now has {amt} coins")
             
