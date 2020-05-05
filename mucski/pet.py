@@ -26,7 +26,7 @@ class Pet:
                 elif pet_stamp < now and pet['mission'] == True:
                     if pet['hunger'] <= 0 or pet['happy'] <= 0:
                         await ctx.send("Your pet died. You should take more care of it.")
-                        return await self.conf.user(ctx.author).pet.clear()
+                        return pet.clear()
                     responses = random.choice(doggo_responses)
                     pet['hunger'] -= random.randint(1,10)
                     pet['happy'] -= random.randint(1,10)
@@ -52,7 +52,9 @@ class Pet:
                     if item:
                         if amt == 0:
                             amt = 1
-                        item - amt
+                        value = item
+                        value - amt
+                        item = value
                         pet['hunger'] + 20
                         await ctx.send(f"fes your pet and it increased its hunger by  {hunger} and consumed {item} {amt}")
                     else:
