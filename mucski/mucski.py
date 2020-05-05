@@ -65,7 +65,7 @@ class Mucski(Pet, AdminUtils, Games, Shop, commands.Cog):
             return
         sorted_acc = sorted(userinfo.items(), key=lambda x: x[1]['coins'], reverse=True)[:50]
         li = []
-        for i, (user_id, account) in sorted_acc:
+        for user_id, account in sorted_acc:
             user_obj = ctx.guild.get_member(user_id)
             li.append(f"{user_obj.display_name}{account['coins']}\n")
         text = "\n".join(li)
