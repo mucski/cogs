@@ -9,8 +9,6 @@ from redbot.core.utils.chat_formatting import bold, box, humanize_timedelta, pag
 from redbot.core.utils.menus import menu, DEFAULT_CONTROLS
 from redbot.core.utils.predicates import MessagePredicate
 
-from tabulate import tabulate
-
 #self imports
 from .pet import Pet
 from .adminutils import AdminUtils
@@ -61,16 +59,27 @@ class Mucski(Pet, AdminUtils, Games, Shop, commands.Cog):
     async def leaderboard(self, ctx):
         userinfo = await self.conf.all_users()
         if not userinfo:
-            await ctx.send(bold("Start playing first, then check boards."))
-            return
+            return await ctx.send(bold("Start playing first, then check boards."))
         sorted_acc = sorted(userinfo.items(), key=lambda x: x[1]['coins'], reverse=True)[:50]
         li = []
-        for user_id, account in sorted_acc:
+        for i, (user_id, account) in enumerate(sorted_acc, start=1):
             user_obj = ctx.guild.get_member(user_id)
-            li.append(f"{user_obj.display_name}{account['coins']}\n")
+            if len(user_obj.display_name) < 20:
+                li.append(f"#{i:2}. {user_obj.display_name:<20} {account['coins']:>}")
+            else:
+                li.append(f"#{i:2}. {user_obj.display_name[:17]:<17}... {account['coins']:>}")
         text = "\n".join(li)
-        table = tabulate(text, headers=['#', 'Name', 'Coins'])
-        await ctx.send(table)
+        page_list=[]
+        for page_num, page in enumerate(pagify(text, delims=['\n'], page_length=1000), start=1):
+            embed=discord.Embed(
+                color=await ctx.bot.get_embed_color(location=ctx.channel),
+                description=box(f"Leaderboard", lang="prolog") + (box(page, lang="md")),
+            )
+            embed.set_footer (
+                text=f"Page {page_num}/{math.ceil(len(text) / 1000)}",
+            )
+        page_list.append(embed)
+        return await menu(ctx, page_list, DEFAULT_CONTROLS)
         
     @commands.command()
     async def daily(self, ctx):
