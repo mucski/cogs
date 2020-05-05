@@ -46,7 +46,11 @@ class Pet:
             if pet:
                 async with self.conf.user(ctx.author).item.food() as food:
                     if item:
-                        item - amt
+                        if amt <= 0:
+                            return await ctx.send("try with an actual positive number")
+                        quantity = food[item]
+                        quantity -= amt
+                        food[item] = quantity
                         pet['hunger'] + 20
                         await ctx.send(f"fes your pet and it increased its hunger by  {hunger} and consumed {item} {amt}")
                     else:
