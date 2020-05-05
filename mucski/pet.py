@@ -54,7 +54,7 @@ class Pet:
                         if food[item] == 0:
                             del food[item]
                             return await ctx.send(f"Youre out of {item}")
-                        max(pet['hunger'] =+ 20, 100)
+                        max(pet['hunger'] = 20, 100)
                         await ctx.send(f"fes your pet and it increased its hunger by  and consumed {item} {amt}")
                     else:
                         await ctx.send("you dont have any items")
