@@ -112,7 +112,7 @@ class Mucski(Pet, AdminUtils, Games, Shop, commands.Cog):
     async def search(self, ctx):
         """ Search for coins in random places """
         r = random.sample(list(searchlist.keys()), 3)
-        await ctx.send("🔍Chose a location to search from bellow🔎"
+        await ctx.send("🔍Chose a location to search from bellow🔎\n"
                       f"``{r[0]}`` , ``{r[1]}``, ``{r[2]}``")
         check = MessagePredicate.lower_contained_in(r, ctx)
         try:
