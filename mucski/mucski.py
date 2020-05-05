@@ -65,14 +65,10 @@ class Mucski(Pet, AdminUtils, Games, Shop, commands.Cog):
             return
         sorted_acc = sorted(userinfo.items(), key=lambda x: x[1]['coins'], reverse=True)[:50]
         li = []
-        for i, (user_id, account) in enumerate(sorted_acc, start=1):
+        for i, (user_id, account) in sorted_acc:
             user_obj = ctx.guild.get_member(user_id)
-            if len(user_obj.display_name) < 13:
-                li.append(f"#{i}{user_obj.display_name}{account['coins']}")
-            else:
-                li.append(f"#{i}{user_obj.display_name[:10]}...{account['coins']}")
-        text = "".join(li)
-        page_list=[]
+            li.append(f"{user_obj.display_name}{account['coins']}\n")
+        text = "\n".join(li)
         table = tabulate(sorted_acc, headers=['#', 'Name', 'Coins'])
         await ctx.send(table)
         
