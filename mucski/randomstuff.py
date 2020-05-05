@@ -13,7 +13,8 @@ worklist = {
     "bulbbulb": "Type the following word in reverse ``blubblub``", 
     "dick": "You are working as a professional hunter. Shot the u out of a duck.",
     "redbot": "I'm a bot, but do you know my name? Hint .info",
-    "android": "You found a little green man inside your phone. He says he forgot his name. Help him"
+    "android": "You found a little green man inside your phone. He says he forgot his name. Help him",
+    "shuffle": f"This is a test. Unscramble the word {shuffle_word('shuffle')}"
 }
 
 searchlist = {
