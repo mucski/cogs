@@ -83,7 +83,7 @@ class Mucski(Pet, AdminUtils, Games, Shop, commands.Cog):
         
     @commands.command()
     async def gamble(self, ctx, amt):
-        coin = await ctx.self.conf.user(ctx.author).coins()
+        coin = await self.self.conf.user(ctx.author).coins()
         user = random.randint(1,6)
         dealer = random.randint(1,6)
         if not amt:
