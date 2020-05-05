@@ -51,8 +51,10 @@ class Pet:
                         quantity = food[item]
                         quantity -= int(amt)
                         food[item] = quantity
-                        pet['hunger'] + 20
-                        await ctx.send(f"fes your pet and it increased its hunger by  {hunger} and consumed {item} {amt}")
+                        hunger = pet['hunger']
+                        hunger + 20
+                        pet['hunger'] = hunger
+                        await ctx.send(f"fes your pet and it increased its hunger by {hunger} and consumed {item} {amt}")
                     else:
                         await ctx.send("you dont have any items")
             else:
