@@ -71,7 +71,7 @@ class Mucski(Pet, AdminUtils, Games, Shop, commands.Cog):
         page_list=[]
         for page_num, page in enumerate(pagify(text, delims=['\n'], page_length=1000), start=1):
             embed=discord.Embed(
-                color=random_color(),
+                color=randomize_color(),
                 description=box(f"Leaderboards", lang="prolog") + (box(page, lang="md")),
             )
             embed.set_footer (
