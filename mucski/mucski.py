@@ -15,6 +15,8 @@ from .adminutils import AdminUtils
 from .games import Games
 from .shop import Shop
 from .randomstuff import worklist
+from .randomstuff import searchlist
+from .randomstuff import bad_location
 
 class Mucski(Pet, AdminUtils, Games, Shop, commands.Cog):
     def __init__(self, bot):
