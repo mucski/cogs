@@ -125,7 +125,9 @@ class Mucski(commands.Cog):
         await Pet.adventure(self, ctx)
     
     @pet.command()
-    async def feed(self, ctx, item, amt):
+    async def feed(self, ctx, item: str, amt: int):
+        assert insistance (item, str)
+        assert insistance (item, str)
         await Pet.feed(self, ctx, item, amt)
     
     @pet.command()

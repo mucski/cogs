@@ -41,12 +41,12 @@ class Pet:
             else:
                 await ctx.send("You dont own any pets")
                 
-    async def feed(self, ctx, item: str, amt: int):
+    async def feed(self, ctx, item, amt):
         async with self.conf.user(ctx.author).pet() as pet:
             if pet:
                 async with self.conf.user(ctx.author).item.food() as food:
-                    if item:
-                        if int(amt) <= 0:
+                    if food:
+                        if amt <= 0:
                             return await ctx.send("try with an actual positive number")
                         quantity = food[item]
                         max(quantity - int(amt), 0)
@@ -54,9 +54,6 @@ class Pet:
                         if food[item] == 0:
                             del food[item]
                             return await ctx.send(f"Youre out of {item}")
-                        hunger = pet['hunger']
-                        hunger + 20
-                        pet['hunger'] = hunger
                         await ctx.send(f"fes your pet and it increased its hunger by  and consumed {item} {amt}")
                     else:
                         await ctx.send("you dont have any items")
