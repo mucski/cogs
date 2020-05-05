@@ -52,9 +52,9 @@ class Pet:
                     if item['type'] == 'food':
                         pet['hunger'] =+ 20
                         if amt:
-                            item[f"{item}"] -= amt
+                            item -= amt
                         else:
-                            item[f"{item}"] -= 1
+                            item -= 1
                     elif item['type'] == 'toy':
                         pet['happy'] =+ 20
                         if amt:
