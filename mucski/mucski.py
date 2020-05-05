@@ -100,19 +100,19 @@ class Mucski(Pet, AdminUtils, Games, Shop, commands.Cog):
         if amt > coin:
             await ctx.send("Not enough coins to play")
             return
-        e = discord.Embed()
+        e = discord.Embed(description = desc)
         #Game logic
         if user < 6 and dealer > user:
             #you lost
             coin -= amt
-            e.description(f"Dealer rolled {dealer} - You rolled {user}. You lose!")
+            desc = (f"Dealer rolled {dealer} - You rolled {user}. You lose!")
         elif user == dealer:
             #its a tie
-            e.description(f"Dealer rolled {dealer} - You rolled {user}. It is a tie.")
+            desc = (f"Dealer rolled {dealer} - You rolled {user}. It is a tie.")
         elif dealer < 6 and user > dealer:
             #you won
             coin += amt
-            e.description(f"Dealer rolled {dealer} - You rolled {user}. You win!")
+            desc = (f"Dealer rolled {dealer} - You rolled {user}. You win!")
         e.footer(text="You and the dealer rolls the dice. The one that has more than the other wins. You can also gamble all of your coins by typing <all> instesd of a number.")
         await ctx.send(embed=e)
         
