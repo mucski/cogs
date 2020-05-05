@@ -1,3 +1,10 @@
+import random
+
+def shuffle_word(word):
+    word = list(word)
+    random.shuffle(word)
+    return ''.join(word)
+    
 worklist = {
     "hot dog":"You are working outside with a cart. Un scramble the following word ``dot goh``", 
     "caut": "You're a pro Paladins player. What do you buy first at match start? ", 
