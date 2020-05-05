@@ -49,15 +49,14 @@ class Pet:
                 hunger = pet['hunger']
                 happy = pet['happy']
                 async with self.conf.user(ctx.author).item() as item:
-                    for key in item:
-                        if item['type'] == 'food':
-                            pet['hunger'] =+ 20
-                            if amt:
-                                item[item] -= amt
-                            else:
-                                item[item] -= 1
-                        elif item['type'] == 'toy':
-                            pet['happy'] =+ 20
+                    if item['type'] == 'food':
+                        pet['hunger'] =+ 20
+                        if amt:
+                            item[f"{item}"] -= amt
+                        else:
+                            item[f"{item}"] -= 1
+                    elif item['type'] == 'toy':
+                        pet['happy'] =+ 20
                             if amt:
                                 item - amt
                             else:
