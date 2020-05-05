@@ -49,10 +49,10 @@ class Pet:
                         if int(amt) <= 0:
                             return await ctx.send("try with an actual positive number")
                         quantity = food[item]
-                        quantity -= int(amt)
+                        max(quantity -= int(amt), 0)
                         food[item] = quantity
                         hunger = pet['hunger']
-                        hunger + 20
+                        max(hunger += 20, 100)
                         pet['hunger'] = hunger
                         await ctx.send(f"fes your pet and it increased its hunger by {hunger} and consumed {item} {amt}")
                     else:
