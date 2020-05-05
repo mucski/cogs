@@ -29,7 +29,7 @@ class Games(commands.Cog):
         if user < 12 and dealer > user:
             #you lost
             coin -= amt
-            desc = (f"Dealer rolld {dealer} - You rolled {user}. You lose!")
+            desc = (f"Dealer rolled {dealer} - You rolled {user}. You lose!")
         elif user == dealer:
             #its a tie
             desc = (f"Dealer rolled {dealer} - You rolled {user}. It is a tie.")
