@@ -41,24 +41,16 @@ class Pet:
             else:
                 await ctx.send("You dont own any pets")
                 
-    async def feed(self, ctx, item:str, amt:int):
+    async def feed(self, ctx, item: str, amt: int):
         async with self.conf.user(ctx.author).pet() as pet:
             if pet:
-                if amt == 0:
-                    amt = 1
-                hunger = pet['hunger']
-                happy = pet['happy']
                 async with self.conf.user(ctx.author).item.food() as item:
                     if item:
-                        if amt == 0:
-                            amt = 1
-                        value = item
-                        value - amt
-                        item = value
+                        item - amt
                         pet['hunger'] + 20
                         await ctx.send(f"fes your pet and it increased its hunger by  {hunger} and consumed {item} {amt}")
                     else:
-                        await ctx.send("you dont have items")
+                        await ctx.send("you dont have any items")
             else:
                 await ctx.send("you dojt have pets")
     
