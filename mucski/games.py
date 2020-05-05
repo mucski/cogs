@@ -8,8 +8,8 @@ class Games(commands.Cog):
     @commands.command()
     async def gamble(self, ctx, amt):
         coin = await self.conf.user(ctx.author).coins()
-        user = random.randint(1,6)
-        dealer = random.randint(1,6)
+        user = random.randint(1,12)
+        dealer = random.randint(1,12)
         try:
             amt = int(amt)
         except ValueError:
