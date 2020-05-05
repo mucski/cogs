@@ -39,8 +39,8 @@ class Mucski(Pet, AdminUtils, Games, Shop, commands.Cog):
         
     @commands.command()
     async def work(self, ctx):
-        r = random.choice(list(self.work.keys()))
-        await ctx.send(self.work[r])
+        r = random.choice(list(worklist.keys()))
+        await ctx.send(worklist[r])
         check = MessagePredicate.lower_equal_to(r, ctx)
         try:
             msg = await ctx.bot.wait_for('message', timeout=10, check=check)
