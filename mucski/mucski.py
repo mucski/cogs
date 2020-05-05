@@ -80,7 +80,7 @@ class Mucski(Pet, AdminUtils, Games, Shop, commands.Cog):
                 text=f"Page {page_num}/{math.ceil(len(text) / 1000)}",
             )
         page_list.append(embed)
-        await menu(ctx, page_list, DEFAULT_CONTROLS)
+        await menu(ctx, page_list)
         
     @commands.command()
     async def daily(self, ctx):
