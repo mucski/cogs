@@ -65,9 +65,9 @@ class Mucski(Pet, AdminUtils, Games, Shop, commands.Cog):
         for i, (user_id, account) in enumerate(sorted_acc, start=1):
             user_obj = ctx.guild.get_member(user_id)
             if len(user_obj.display_name) < 20:
-                li.append(f"#{i:2}. {user_obj.display_name:<20} {account['coins']:>13}")
+                li.append(f"#{i:2}. {user_obj.display_name:<20} {account['coins']:>12}")
             else:
-                li.append(f"#{i:2}. {user_obj.display_name[:17]:<17}... {account['coins']:>13}")
+                li.append(f"#{i:2}. {user_obj.display_name[:17]:<17}... {account['coins']:>12}")
         text = "\n".join(li)
         page_list=[]
         for page_num, page in enumerate(pagify(text, delims=['\n'], page_length=1000), start=1):
@@ -76,7 +76,7 @@ class Mucski(Pet, AdminUtils, Games, Shop, commands.Cog):
                 description=box(f"Leaderboard", lang="prolog") + (box(page, lang="md")),
             )
             embed.set_footer (
-                text=f"Page {page_num}/{math.ceil(len(text) / 1000)}, top 50 users, this leaderboard is global. Earn coins by claiming daily, working, and much more. Do .help Mucski to see all the available commands.",
+                text=f"Page {page_num}/{math.ceil(len(text) / 1000)}, Earn coins by claiming daily, working, and much more. Do .help Mucski to see all the available commands.",
             )
         page_list.append(embed)
         return await menu(ctx, page_list, DEFAULT_CONTROLS)
