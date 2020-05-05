@@ -76,7 +76,7 @@ class Mucski(Pet, AdminUtils, Games, Shop, commands.Cog):
                 description=box(f"Leaderboard", lang="prolog") + (box(page, lang="md")),
             )
             embed.set_footer (
-                text=f"Page {page_num}/{math.ceil(len(text) / 1000)}",
+                text=f"Page {page_num}/{math.ceil(len(text) / 1000)}, top 50 users, this leaderboard is global. Earn coins by claiming daily, working, and much more. Do .help Mucski to see all the available commands.",
             )
         page_list.append(embed)
         return await menu(ctx, page_list, DEFAULT_CONTROLS)
