@@ -59,7 +59,8 @@ class Mucski(Pet, AdminUtils, Games, Shop, commands.Cog):
     async def leaderboard(self, ctx):
         userinfo = await self.conf.all_users()
         if not userinfo:
-            return await ctx.send(bold("Start playing first, then check boards."))
+            await ctx.send(bold("Start playing first, then check boards."))
+            return
         sorted_acc = sorted(userinfo.items(), key=lambda x: x[1]['coins'], reverse=True)[:50]
         li = []
         for i, (user_id, account) in enumerate(sorted_acc, start=1):
@@ -72,11 +73,12 @@ class Mucski(Pet, AdminUtils, Games, Shop, commands.Cog):
         page_list=[]
         for page_num, page in enumerate(pagify(text, delims=['\n'], page_length=1000), start=1):
             embed=discord.Embed(
+                color=await ctx.bot.get_embed_color(location=ctx.channel),
                 description=box(f"Leaderboards", lang="prolog") + (box(page, lang="md")),
             )
             embed.set_footer (
                 text=f"Page {page_num}/{math.ceil(len(text) / 1000)}",
             )
-        page_list.append(randomize_color(embed))
-        return await menu(ctx, page_list, DEFAULT_CONTROLS) 
+        page_list.append(embed)
+        await menu(ctx, page_list, DEFAULT_CONTROLS) 
         
