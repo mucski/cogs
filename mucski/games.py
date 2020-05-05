@@ -7,6 +7,7 @@ class Games(commands.Cog):
     
     @commands.command()
     async def gamble(self, ctx, amt):
+        """Classic roll the dice game 1-12"""
         coin = await self.conf.user(ctx.author).coins()
         user = random.randint(1,12)
         dealer = random.randint(1,12)
