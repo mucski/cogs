@@ -57,10 +57,10 @@ class Pet:
                             item[f"{item}"] -= 1
                     elif item['type'] == 'toy':
                         pet['happy'] =+ 20
-                            if amt:
-                                item - amt
-                            else:
-                                item - 1
+                        if amt:
+                            item - amt
+                        else:
+                            item - 1
                     await ctx.send(f"hunger {hunger} happyness {happy} consumed {item} {amt}")
                     
     
