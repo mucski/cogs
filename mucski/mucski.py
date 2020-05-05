@@ -1,6 +1,12 @@
 import discord
 from redbot.core import commands, checks
 
+#self imports
+from .pet import Pet
+from .adminutils import AdminUtils
+from .games import Games
+from .shop import Shop
+
 class Mucski(Pet, AdminUtils, Games, Shop, commands.Cog):
     def __init__(self, bot):
         self.bot = bot
