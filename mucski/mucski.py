@@ -106,7 +106,7 @@ class Mucski(Pet, AdminUtils, Games, Shop, commands.Cog):
         #set the next daily stamp
         await self.conf.user(ctx.author).d_stamp.set(future.timestamp())
         
-    @_cookie.command()
+    @commands.command()
     async def search(self, ctx):
         """ Search for coins in random places """
         r = random.sample(list(searchlist.keys()), 3)
