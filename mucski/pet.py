@@ -51,6 +51,9 @@ class Pet:
                         quantity = food[item]
                         max(quantity -= int(amt), 0)
                         food[item] = quantity
+                        if food[item] == 0:
+                            del food[item]
+                            return await ctx.send(f"Youre out of {item}")
                         hunger = pet['hunger']
                         max(hunger += 20, 100)
                         pet['hunger'] = hunger
