@@ -1,6 +1,6 @@
 import discord
 from redbot.core import commands, checks, Config
-from redbot.core.utils.chat_formatting import bold, box, humanize_list, humanize_number, pagify, randomize_color
+from redbot.core.utils.chat_formatting import bold, box, humanize_list, humanize_number, pagify, randomize_colour
 from redbot.core.utils.menus import menu, DEFAULT_CONTROLS
 from redbot.core.utils.predicates import MessagePredicate
 
