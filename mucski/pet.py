@@ -68,7 +68,7 @@ class Pet:
                 #it increases stats by 5 for every item
                 hunger = pet['hunger']
                 #pet health stays 100 even if addition overflows
-                hunger = min(100, hunger + 5)
+                hunger = min(100, (hunger + 5) * amt)
                 pet['hunger'] = hunger
                 if quantity == 0:
                     del food[item]
