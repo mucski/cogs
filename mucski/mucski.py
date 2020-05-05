@@ -86,6 +86,11 @@ class Mucski(Pet, AdminUtils, Games, Shop, commands.Cog):
         coin = await self.conf.user(ctx.author).coins()
         user = random.randint(1,6)
         dealer = random.randint(1,6)
+        try:
+            amt = int(amt)
+        except ValueError:
+            if amt == 'all':
+                amt = coin
         if not amt:
             await ctx.send("Need a bet amount")
             return
@@ -95,8 +100,6 @@ class Mucski(Pet, AdminUtils, Games, Shop, commands.Cog):
         if amt > coin:
             await ctx.send("Not enough coins to play")
             return
-        if amt == 'all':
-            amt = coin
         e = discord.Embed()
         #Game logic
         if user < 6 and dealer > user:
