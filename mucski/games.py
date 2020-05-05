@@ -25,14 +25,14 @@ class Games(commands.Cog):
             await ctx.send("Not enough coins to play")
             return
         #Game logic
-        if user < 6 and dealer > user:
+        if user < 12 and dealer > user:
             #you lost
             coin -= amt
-            desc = (f"Dealer rolled {dealer} - You rolled {user}. You lose!")
+            desc = (f"Dealer rolld {dealer} - You rolled {user}. You lose!")
         elif user == dealer:
             #its a tie
             desc = (f"Dealer rolled {dealer} - You rolled {user}. It is a tie.")
-        elif dealer < 6 and user > dealer:
+        elif dealer < 12 and user > dealer:
             #you won
             coin += amt
             desc = (f"Dealer rolled {dealer} - You rolled {user}. You win!")
