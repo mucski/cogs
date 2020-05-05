@@ -18,7 +18,10 @@ class Mucski(commands.Cog):
             "work_stamp": 0,
             "pet_stamp": 0,
             "pet": {},
-            "item": {},
+            "item": {
+                "food": {},
+                "toy": {},
+            },
         }
         self.conf.register_user(**defaults)
         

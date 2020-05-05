@@ -51,9 +51,14 @@ class Shop:
         item = item.lower()
         if quantity == 0:
             quantity = 1
-        await self.conf.user(ctx.author).item.set_raw(
-            value = {item: quantity, "type": type}
-        )
+        if type == 'food':
+            await self.conf.user(ctx.author).item.food.set_raw(
+                value = {item: quantity}
+            )
+        else:
+            await self.conf.user(ctx.author).item.toy.set_raw(
+                value = {item: quantity}
+            )
         await self.conf.user(ctx.author).cookies.set(cookie)
         await ctx.send(f"You just bought {quantity} of {item}")
         

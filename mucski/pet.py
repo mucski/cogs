@@ -48,21 +48,17 @@ class Pet:
                     amt = 1
                 hunger = pet['hunger']
                 happy = pet['happy']
-                async with self.conf.user(ctx.author).item() as item:
-                    if item['type'] == 'food':
-                        pet['hunger'] =+ 20
-                        if amt:
-                            item[item] -= amt
-                        else:
-                            item[item] -= 1
-                    elif item['type'] == 'toy':
-                        pet['happy'] =+ 20
-                        if amt:
-                            item - amt
-                        else:
-                            item - 1
-                    await ctx.send(f"hunger {hunger} happyness {happy} consumed {item} {amt}")
-                    
+                async with self.conf.user(ctx.author).item.food() as item:
+                    if item:
+                        if amt <= 0:
+                            amt = 1
+                        item - amt
+                        pet['hunger'] + 20
+                        await ctx.send(f"fes your pet and it increased its hunger by  {hunger} and consumed {item} {amt}")
+                    else:
+                        await ctx.send("you dont have items")
+            else:
+                await ctx.send("you dojt have pets")
     
     async def play(self, ctx):
         pass
