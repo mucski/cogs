@@ -71,12 +71,11 @@ class Mucski(Pet, AdminUtils, Games, Shop, commands.Cog):
         page_list=[]
         for page_num, page in enumerate(pagify(text, delims=['\n'], page_length=1000), start=1):
             embed=discord.Embed(
-                color=randomize_color(embed),
                 description=box(f"Leaderboards", lang="prolog") + (box(page, lang="md")),
             )
             embed.set_footer (
                 text=f"Page {page_num}/{math.ceil(len(text) / 1000)}",
             )
         page_list.append(embed)
-        return await menu(ctx, page_list, DEFAULT_CONTROLS) 
+        return await menu(ctx, randomize_color(page_list), DEFAULT_CONTROLS) 
         
