@@ -50,7 +50,7 @@ class Pet:
                 happy = pet['happy']
                 async with self.conf.user(ctx.author).item.food() as item:
                     if item:
-                        if amt <= 0:
+                        if amt == 0:
                             amt = 1
                         item - amt
                         pet['hunger'] + 20
