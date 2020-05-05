@@ -64,17 +64,17 @@ class Pet:
                     await ctx.send("Can't use more than you have")
                     return
                 quantity -= amt
-                if quantity == 0:
-                    # ran out of it
-                    del food[item]
-                    await ctx.send(f"Youre out of {item}")
                 # still some left, write it back
                 #it increases stats by 5 for every item
                 hunger = pet['hunger']
                 #pet health stays 100 even if addition overflows
                 hunger = min(100, hunger + 5)
                 pet['hunger'] = hunger
-                food[item] = quantity
+                if quantity == 0:
+                    del food[item]
+                    await ctx.send(f"Ran out of {item}")
+                else:
+                    food[item] = quantity
                 await ctx.send(f"Fed your pet and it increased its hunger by {hunger} and consumed {amt} of {item}'s")
      
     async def play(self, ctx):
