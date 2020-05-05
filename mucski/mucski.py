@@ -32,7 +32,8 @@ class Mucski(Pet, AdminUtils, Games, Shop, commands.Cog):
         }
         self.conf.register_user(**defaults)
         
-    @commands.command(name="balance", aliases=['bal'])
+    @coin.group(name="coin", aliases=['c'], pass_context=True)
+    @coin.command(name="balance", aliases=['bal'])
     async def balance(self, ctx, member: discord.Member=None):
         """View the ammount of coins owned by self or someone else"""
         if not member:
@@ -43,7 +44,7 @@ class Mucski(Pet, AdminUtils, Games, Shop, commands.Cog):
             return
         await ctx.send(f"{member.name} has {amt} coins")
         
-    @commands.command()
+    @coin.command()
     async def work(self, ctx):
         """Work for some coins"""
         r = random.choice(list(worklist.keys()))
