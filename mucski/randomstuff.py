@@ -18,19 +18,19 @@ worklist = {
 }
 
 searchlist = {
-    "cellar": "You went into the cellar looking for a fine wine, got scared by a rat and found ``{}`` cookies instead.",
-    "moon": "A giant leap to man kind, Armstrong left some ``{}`` cookies here though.",
-    "forest": "You went trekking into the forest, found ``{}`` cookies laying around in an abandoned camp.",
-    "fridge": "Nothing beats frozen cookies, Right? Wrong.",
-    "sewer": "You descended into the sewers hoping to find a dancing clown, found ``{}`` cookies instead. ",
+    "cellar": "You went into the cellar looking for a fine wine, got scared by a rat and found ``{}`` coins instead.",
+    "moon": "A giant leap to man kind, Armstrong left some ``{}`` coins here though.",
+    "forest": "You went trekking into the forest, found ``{}`` coins laying around in an abandoned camp.",
+    "fridge": "Nothing beats frozen coins, Right? Wrong.",
+    "sewer": "You descended into the sewers hoping to find a dancing clown, found ``{}`` coins instead. ",
     "dog": "Why would you do that.. that's animal abuse.",
     "toilet": "Why would you search a toilet... That's disgusting and so are you. ", 
-    "box": "You rummaged through a box of forgotten items, found ``{}`` cookies. Lucky you. ", 
-    "drawer": "After going through many panties, a dildo, and a hand gun, you found ``{}`` cookies wrapped in socks", 
-    "story book": "You were looking for Little Red Riding Hood, instead you found ``{}`` cookies hidden in a tree bark. ", 
-    "set": "You are the next star for Ironing Man. While equipping his armor you found ``{}`` cookies in one of the hidden compartments. ",
-    "hospital": "You searched the hospital and found ``{}`` cookies. Don't eat them though, may be infected with covid19.",
-    "school": "You went looking for cookies in your school locker, got a wedgy out of it instead. Bullies.",
+    "box": "You rummaged through a box of forgotten items, found ``{}`` coins. Lucky you. ", 
+    "drawer": "After going through many panties, a dildo, and a hand gun, you found ``{}`` coins wrapped in socks", 
+    "story book": "You were looking for Little Red Riding Hood, instead you found ``{}`` coins hidden in a tree bark. ", 
+    "set": "You are the next star for Ironing Man. While equipping his armor you found ``{}`` coins in one of the hidden compartments. ",
+    "hospital": "You searched the hospital and found ``{}`` coins. Don't eat them though, may be infected with covid19.",
+    "school": "You went looking for coins in your school locker, got a wedgy out of it instead. Bullies.",
     "trash": "Found nothing. Must've picked the wrong trash.",
 }
 
@@ -85,6 +85,6 @@ shoplist = {
 
 doggo_responses = [
     'Your dog ran into the forest, found a cabin and touched a spaghett, and took {} cookes that were in a cupboard.', 
-    'Your dog dressed up as a pirate and venture outwards on the sea, found {} cookies in a pirate chest on an abandoned island.',
-    'Your dog was learning russian so he can say Suka Blyat, Putin awarded him with {} cookies.',
+    'Your dog dressed up as a pirate and venture outwards on the sea, found {} coins in a pirate chest on an abandoned island.',
+    'Your dog was learning russian so he can say Suka Blyat, Putin awarded him with {} coins.',
 ]
