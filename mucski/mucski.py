@@ -39,12 +39,14 @@ class Mucski(Pet, AdminUtils, Games, Shop, commands.Cog):
         r = random.choice(list(self.work.keys()))
         await ctx.send(self.work[r])
         check = MessagePredicate.lower_equal_to(r, ctx)
+        try:
             msg = await ctx.bot.wait_for('message', timeout=10, check=check)
         except asyncio.TimeoutError:
-            return await ctx.send("Have to work harder than that ...😞")
-            earned = random.randint(1, 10)
-            coin = await self.conf.user(ctx.author).coins()
-            coin += earned
-            await self.conf.user(ctx.author).coins.set(coin)
-            await ctx.send(f"Well done, you earned ``{earned}`` cookies for todays work.😴")
+            await ctx.send("Have to work harder than that ...😞")
+            return
+        earned = random.randint(1, 10)
+        coin = await self.conf.user(ctx.author).coins()
+        coin += earned
+        await self.conf.user(ctx.author).coins.set(coin)
+        await ctx.send(f"Well done, you earned {earned} coins for todays work.😴")
         
