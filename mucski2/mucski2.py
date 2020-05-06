@@ -27,7 +27,16 @@ class Mucski2(commands.Cog):
             "daily_timer": 0,
             "vip_stamp": 0,
         }
-        self.conf.register_user(**defaults)
+        default_guild = {
+            "vip_timer": 900,
+            #"hunt_interval_maximum": 3600,
+            #"wait_for_bang_timeout": 20,
+            "channel": 0,
+        }
+        default_user = {"author_name": None, "score": {}, "total": 0}
+        self.config.register_user(**defaults)
+        self.config.register_guild(**default_guild)
+
     
     #Get thet bot color for embeds 'await self.color(ctx)'
     async def color(self, ctx):
@@ -38,6 +47,7 @@ class Mucski2(commands.Cog):
         await ctx.send(emoji.url)
         
     @commands.group(name="vip")
+    @checks.is_owner()
     async def vip(self, ctx):
         pass
     
@@ -46,8 +56,18 @@ class Mucski2(commands.Cog):
         pass
     
     @vip.command()
-    async def set(self, ctx):
+    async def stop(self, ctx):
         pass
+    
+    @vip.command()
+    async def set(self, ctx, channel: discord.TextChannel):
+        saved = await self.conf.guild(ctx.guild).channel()
+        if channel != saved:
+            await self.conf.guild(ctx.guild).channel.set(channel)
+            await ctx.send(f"Setup new channel to {channel.mention}")
+        else:
+            await ctx.send(f"{channel.mention} is already saved")
+            
     
     @commands.command()
     async def who(self, ctx, channel: discord.TextChannel, messageid: int):
@@ -96,4 +116,30 @@ class Mucski2(commands.Cog):
         e.set_thumbnail(url=f"{ctx.bot.user.avatar_url}")
         e.add_field(name="Testing", value="Testing", inline=False)
         await ctx.send(embed=e)
-    
+        
+    async def on_message(self, message):
+        if not message.guild:
+            return
+        if message.author.bot:
+            return
+        if not message.channel.permissions_for(message.guild.me).send_messages:
+            return
+        if message.channel.id in self.in_game:
+            return
+        channel_list = await self.config.guild(message.guild).channel()
+        if not channel_list:
+            return
+        if message.channel.id != channel_list:
+            return
+
+        if await self._latest_message_check(message.channel):
+            self.in_game.append(message.channel.id)
+
+        guild_data = await self.config.guild(message.guild).all()
+        wait_time = vip_timer
+        self.next_bang[message.guild.id] = datetime.datetime.fromtimestamp(
+            int(time.mktime(datetime.datetime.utcnow().timetuple())) + wait_time
+        )
+        await asyncio.sleep(wait_time)
+        self.bot.loop.create_task(self._wait_for_bang(message.guild, message.channel))
+        del self.next_bang[message.guild.id]
