@@ -72,7 +72,7 @@ class Mucski(Pet, AdminUtils, Games, Shop, commands.Cog):
         if not userinfo:
             return await ctx.send(bold("Start playing first, then check boards."))
         sorted_acc = sorted(userinfo.items(), key=lambda x: x[1]['coins'], reverse=True)[:50]
-        li = []
+        li = [[]]
         for i, (user_id, account) in enumerate(sorted_acc, start=1):
             user_obj = ctx.guild.get_member(user_id)
             li.append(f"{i}")
