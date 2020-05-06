@@ -171,3 +171,37 @@ class Mucski(Pet, AdminUtils, Games, Shop, commands.Cog):
         e.set_footer(text="You and the dealer rolls the dice. The one that has more than the other wins. You can also gamble all of your coins by typing <all> instead of a number.")
         await ctx.send(embed=e)
         
+    @coin.command()
+    async def steal(self, ctx, member: discord: Member):
+        #TODO: Make this command interactive
+        if member == ctx.author:
+            await ctx.send("You gonna attempt to steal from yourself?")
+        #self coin
+        sc = await self.conf.user(ctx.author).coins()
+        #victim coin
+        vc = await self.conf.user(member).coins()
+        #percentage in python is weird
+        perc = random.uniform(0.05, 0.3) #you can steal 30 percent max and 5 min
+        #percent is value = perc * othervalue
+        #60% chance to succeed
+        if random.random() < 0.6:
+            vc -= (perc * vc) #he lost
+            if vc <= 0:
+                await self.ctx.send("That would leave your victim broke.")
+                return
+            sc += (perc * vc) #get his percentage of coins
+            #finally store them
+            await self.conf.user(ctx.author).coins.set(sc)
+            await self.conf.user(member).coins.set(vc)
+            await ctx.send("Success. You stolen {} coins from {}".format(perc:.0%, member))
+        else:
+            sc -= (perc * sc) #you lost
+            if sc <= 0:
+                await self.ctx.send("That would leave you broke.")
+                return
+            vc += (perc * sc) #get your percentage of coins
+            #finally store them
+            await self.conf.user(ctx.author).coins.set(sc)
+            await self.conf.user(member).coins.set(vc)
+            await ctx.send("Failed. You paid {} coins to {} as an apology.".format(perc:.0%, member))
+            
