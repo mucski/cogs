@@ -75,9 +75,9 @@ class Mucski(Pet, AdminUtils, Games, Shop, commands.Cog):
         li = []
         for i, (user_id, account) in enumerate(sorted_acc, start=1):
             user_obj = ctx.guild.get_member(user_id)
-            li.append(f"{i:2}")
-            li.append(f"{account['coins']:20}") 
-            li.append(f"{user_obj.display_name:>20}")
+            li.append(f"{i}")
+            li.append(f"{account['coins']}") 
+            li.append(f"{user_obj.display_name}")
         text = "\n".join(li)
         page_list=[]
         table = box(tabulate(li, headers=['#', 'Coins', 'User'],
