@@ -22,3 +22,9 @@ class AdminUtils(commands.Cog):
     async def resetcd(self, ctx):
         await self.conf.user(ctx.author).d_stamp.clear()
         await ctx.send("Cooldowns reset for 1 usage")
+        
+    @commands.command()
+    @checks.is_owner()
+    async def clearall(self, ctx):
+        await self.conf.clear_all()
+        await ctx.send("Thanos snapped the db")
