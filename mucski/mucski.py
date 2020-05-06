@@ -74,10 +74,14 @@ class Mucski(Pet, AdminUtils, Games, Shop, commands.Cog):
         li = []
         for i, (user_id, account) in enumerate(sorted_acc, start=1):
             user_obj = ctx.guild.get_member(user_id)
-            li.append(f"#{i:2}: {account['coins']:20} {user_obj.display_name:>20}")
+            li.append(f"#{i:2}")
+            li.append(f"{account['coins']:20}") 
+            li.append(f"{user_obj.display_name:>20}")
         text = "\n".join(li)
         page_list=[]
-        for page_num, page in enumerate(pagify(text, delims=['\n'], page_length=1000), start=1):
+        table = box(tabulate(li, headers=['#', 'Coins', 'User'],
+                             numalign='right'), lang='ml')
+        for page_num, page in enumerate(pagify(table, delims=['\n'], page_length=1000), start=1):
             embed=discord.Embed(
                 color=await ctx.bot.get_embed_color(location=ctx.channel),
                 description=f"**Leaderboard**\n" + page,
