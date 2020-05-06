@@ -15,7 +15,7 @@ class AdminUtils(commands.Cog):
             return
         amt += await self.conf.user(member).coins()
         await self.conf.user(member).coins.set(amt)
-        await ctx.send(f"{member} now has {amt} coins")
+        await ctx.send(f"{member.name} got {amt} now.")
         
     @commands.command()
     @checks.is_owner()
