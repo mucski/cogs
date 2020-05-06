@@ -34,8 +34,8 @@ class Mucski2(commands.Cog):
             "channel": 0,
         }
         default_user = {"author_name": None, "score": {}, "total": 0}
-        self.config.register_user(**defaults)
-        self.config.register_guild(**default_guild)
+        self.conf.register_user(**defaults)
+        self.conf.register_guild(**default_guild)
 
     
     #Get thet bot color for embeds 'await self.color(ctx)'
