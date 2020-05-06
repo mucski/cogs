@@ -91,7 +91,7 @@ class Mucski(Pet, AdminUtils, Games, Shop, commands.Cog):
             )
             embed.set_author(name=f"Leaderboards for {ctx.guild.name}", icon_url=ctx.guild.icon_url)
             embed.set_footer (
-                text=f"Page {page_num}/{math.ceil(len(table) / 1500)}, Earn coins by claiming daily, working, and much more. Do .help Mucski to see all the available commands.",
+                text=f"Page {page_num}/{math.ceil(len(table) / 1500)}",
             )
         page_list.append(embed)
         await menu(ctx, page_list, DEFAULT_CONTROLS)
