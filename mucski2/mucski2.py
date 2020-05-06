@@ -25,6 +25,7 @@ class Mucski2(commands.Cog):
             "datetime": "",
             "daily_stamp": 0,
             "daily_timer": 0,
+            "vip_stamp": 0,
         }
         self.conf.register_user(**defaults)
     
@@ -35,6 +36,18 @@ class Mucski2(commands.Cog):
     @commands.command(name="emote", aliases=['emoji'])
     async def emote(self, ctx, emoji: discord.PartialEmoji):
         await ctx.send(emoji.url)
+        
+    @commands.group(name="vip")
+    async def vip(self, ctx):
+        pass
+    
+    @vip.command()
+    async def start(self, ctx):
+        pass
+    
+    @vip.command()
+    async def set(self, ctx):
+        pass
     
     @commands.command()
     async def who(self, ctx, channel: discord.TextChannel, messageid: int):
