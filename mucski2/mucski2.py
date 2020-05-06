@@ -117,29 +117,3 @@ class Mucski2(commands.Cog):
         e.add_field(name="Testing", value="Testing", inline=False)
         await ctx.send(embed=e)
         
-    async def on_message(self, message):
-        if not message.guild:
-            return
-        if message.author.bot:
-            return
-        if not message.channel.permissions_for(message.guild.me).send_messages:
-            return
-        if message.channel.id in self.in_game:
-            return
-        channel_list = await self.config.guild(message.guild).channel()
-        if not channel_list:
-            return
-        if message.channel.id != channel_list:
-            return
-
-        if await self._latest_message_check(message.channel):
-            self.in_game.append(message.channel.id)
-
-        guild_data = await self.config.guild(message.guild).all()
-        wait_time = vip_timer
-        self.next_bang[message.guild.id] = datetime.datetime.fromtimestamp(
-            int(time.mktime(datetime.datetime.utcnow().timetuple())) + wait_time
-        )
-        await asyncio.sleep(wait_time)
-        self.bot.loop.create_task(self._wait_for_bang(message.guild, message.channel))
-        del self.next_bang[message.guild.id]
