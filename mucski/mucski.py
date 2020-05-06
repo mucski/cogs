@@ -172,7 +172,7 @@ class Mucski(Pet, AdminUtils, Games, Shop, commands.Cog):
         await ctx.send(embed=e)
         
     @coin.command()
-    async def steal(self, ctx, member: discord: Member):
+    async def steal(self, ctx, member: discord.Member):
         #TODO: Make this command interactive
         if member == ctx.author:
             await ctx.send("You gonna attempt to steal from yourself?")
