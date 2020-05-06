@@ -193,7 +193,7 @@ class Mucski(Pet, AdminUtils, Games, Shop, commands.Cog):
             #finally store them
             await self.conf.user(ctx.author).coins.set(sc)
             await self.conf.user(member).coins.set(vc)
-            await ctx.send("Success. You stolen {} coins from {}".format(perc:.0%, member))
+            await ctx.send(f"Success. You stolen {perc:.0%} coins from {member.name}")
         else:
             sc -= (perc * sc) #you lost
             if sc <= 0:
@@ -203,5 +203,5 @@ class Mucski(Pet, AdminUtils, Games, Shop, commands.Cog):
             #finally store them
             await self.conf.user(ctx.author).coins.set(sc)
             await self.conf.user(member).coins.set(vc)
-            await ctx.send("Failed. You paid {} coins to {} as an apology.".format(perc:.0%, member))
+            await ctx.send(f"Failed. You paid {perc:.0%} coins to {member.name} as an apology.")
             
