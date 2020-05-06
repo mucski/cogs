@@ -89,7 +89,7 @@ class Mucski(Pet, AdminUtils, Games, Shop, commands.Cog):
                 color=await ctx.bot.get_embed_color(location=ctx.channel),
             )
             embed.set_author(name=f"Leaderboards for {ctx.guild.name}", icon_url=ctx.guild.icon_url)
-            embed.add_field(name="\u200b", value=page, inline=False)
+            embed.description(description=page)
             embed.set_footer (
                 text=f"Page {page_num}/{math.ceil(len(table) / 1500)}, Earn coins by claiming daily, working, and much more. Do .help Mucski to see all the available commands.",
             )
