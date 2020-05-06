@@ -62,8 +62,8 @@ class Mucski2(commands.Cog):
     @vip.command()
     async def set(self, ctx, channel: discord.TextChannel):
         saved = await self.conf.guild(ctx.guild).channel()
-        if channel != saved:
-            await self.conf.guild(ctx.guild).channel.set(channel)
+        if channel.id != saved:
+            await self.conf.guild(ctx.guild).channel.set(channel.id)
             await ctx.send(f"Setup new channel to {channel.mention}")
         else:
             await ctx.send(f"{channel.mention} is already saved")
