@@ -80,7 +80,7 @@ class Mucski(Pet, AdminUtils, Games, Shop, commands.Cog):
             li.append(f"{user_obj.display_name}")
         text = "\n".join(li)
         page_list=[]
-        table = box(tabulate(text, headers=['#', 'Coins', 'User'],
+        table = box(tabulate(li, headers=['#', 'Coins', 'User'],
                              numalign='right'), lang='ml')
         #for page_num, page in enumerate(pagify(table, delims=['\n'], page_length=1000), start=1):
         #    embed=discord.Embed(
@@ -93,6 +93,7 @@ class Mucski(Pet, AdminUtils, Games, Shop, commands.Cog):
         #page_list.append(embed)
         #await menu(ctx, page_list, DEFAULT_CONTROLS)
         await ctx.send(li)
+        await ctx.send(table)
         
     @coin.command()
     async def daily(self, ctx):
