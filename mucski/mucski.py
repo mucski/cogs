@@ -76,7 +76,7 @@ class Mucski(Pet, AdminUtils, Games, Shop, commands.Cog):
         for i, (user_id, account) in enumerate(sorted_acc, start=1):
             user_obj = ctx.guild.get_member(user_id)
             row = []
-            row.append(f"{i}")
+            row.append(f"#{i}")
             row.append(f"{user_obj.display_name}#{user_obj.discriminator}")
             row.append(f"{account['coins']}") 
             li.append(row)
