@@ -84,13 +84,13 @@ class Mucski(Pet, AdminUtils, Games, Shop, commands.Cog):
         page_list=[]
         table = box(tabulate(li, headers=['#', 'Member', 'Coins'],
                              numalign='right'), lang='ml')
-        for page_num, page in enumerate(pagify(table, delims=['\n'], page_length=1000), start=1):
+        for page_num, page in enumerate(pagify(table, delims=['\n'], page_length=1500), start=1):
             embed=discord.Embed(
                 color=await ctx.bot.get_embed_color(location=ctx.channel),
                 description=f"**Leaderboard**\n" + page,
             )
             embed.set_footer (
-                text=f"Page {page_num}/{math.ceil(len(text) / 1000)}, Earn coins by claiming daily, working, and much more. Do .help Mucski to see all the available commands.",
+                text=f"Page {page_num}/{math.ceil(len(table) / 1500)}, Earn coins by claiming daily, working, and much more. Do .help Mucski to see all the available commands.",
             )
         page_list.append(embed)
         await menu(ctx, page_list, DEFAULT_CONTROLS)
