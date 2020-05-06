@@ -87,9 +87,9 @@ class Mucski(Pet, AdminUtils, Games, Shop, commands.Cog):
         for page_num, page in enumerate(pagify(table, delims=['\n'], page_length=1500), start=1):
             embed=discord.Embed(
                 color=await ctx.bot.get_embed_color(location=ctx.channel),
+                description=page
             )
             embed.set_author(name=f"Leaderboards for {ctx.guild.name}", icon_url=ctx.guild.icon_url)
-            embed.description(f"{page}")
             embed.set_footer (
                 text=f"Page {page_num}/{math.ceil(len(table) / 1500)}, Earn coins by claiming daily, working, and much more. Do .help Mucski to see all the available commands.",
             )
