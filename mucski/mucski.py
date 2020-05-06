@@ -59,7 +59,7 @@ class Mucski(Pet, AdminUtils, Games, Shop, commands.Cog):
         except asyncio.TimeoutError:
             await ctx.send("Have to work harder than that ...😞")
             return
-        earned = random.randint(1, 10)
+        earned = random.randint(5, 30)
         coin = await self.conf.user(ctx.author).coins()
         coin += earned
         await self.conf.user(ctx.author).coins.set(coin)
@@ -110,10 +110,10 @@ class Mucski(Pet, AdminUtils, Games, Shop, commands.Cog):
         if d_stamp > now:
             await ctx.send(f"On cooldown for {humanize_timedelta(timedelta=remaining)}")
             return
-        coin += 200
+        coin += 300
         await self.conf.user(ctx.author).coins.set(coin)
         #todo: format it properly
-        await ctx.send("Claimed your daily 200 coins. Come back in 12 hours")
+        await ctx.send("Claimed your daily 300 coins. Come back in 12 hours")
         #set the next daily stamp
         await self.conf.user(ctx.author).d_stamp.set(future.timestamp())
         
@@ -134,7 +134,7 @@ class Mucski(Pet, AdminUtils, Games, Shop, commands.Cog):
             await ctx.send(searchlist[msg.content.lower()])
             return
         else:
-            amt = random.randint(1,10)
+            amt = random.randint(5,30)
             coin += amt
             await self.conf.user(ctx.author).coins.set(coin)
             await ctx.send(searchlist[msg.content.lower()].format(amt))
