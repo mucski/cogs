@@ -80,7 +80,7 @@ class Mucski(Pet, AdminUtils, Games, Shop, commands.Cog):
             row.append(f"{account['coins']}") 
             row.append(f"{user_obj.display_name}")
         li.append(row)
-        text = "\n".join(li)
+        #text = "\n".join(li)
         page_list=[]
         table = box(tabulate(li, headers=['#', 'Coins', 'User'],
                              numalign='right'), lang='ml')
