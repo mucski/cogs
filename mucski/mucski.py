@@ -74,16 +74,13 @@ class Mucski(Pet, AdminUtils, Games, Shop, commands.Cog):
         li = []
         for i, (user_id, account) in enumerate(sorted_acc, start=1):
             user_obj = ctx.guild.get_member(user_id)
-            if len(user_obj.display_name) < 28:
-                li.append(f"#{i:2}. {user_obj.display_name:28} {account['coins']:>15}")
-            else:
-                li.append(f"#{i:2}. {user_obj.display_name[:27]:27}... {account['coins']:>15}")
+            li.append(f"#{i:2}: {account['coins']:15} - {user_obj.display_name}")
         text = "\n".join(li)
         page_list=[]
         for page_num, page in enumerate(pagify(text, delims=['\n'], page_length=1000), start=1):
             embed=discord.Embed(
                 color=await ctx.bot.get_embed_color(location=ctx.channel),
-                description=f"Leaderboard\n" + page,
+                description=f"**Leaderboard**\n" + page,
             )
             embed.set_footer (
                 text=f"Page {page_num}/{math.ceil(len(text) / 1000)}, Earn coins by claiming daily, working, and much more. Do .help Mucski to see all the available commands.",
