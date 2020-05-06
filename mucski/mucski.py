@@ -185,21 +185,21 @@ class Mucski(Pet, AdminUtils, Games, Shop, commands.Cog):
         #percent is value = perc * othervalue
         #60% chance to succeed
         if random.random() < 0.6:
-            vc -= (perc * vc) #he lost
+            vc -= round(perc * vc) #he lost
             if vc <= 0:
                 await self.ctx.send("That would leave your victim broke.")
                 return
-            sc += (perc * vc) #get his percentage of coins
+            sc += round(perc * vc) #get his percentage of coins
             #finally store them
             await self.conf.user(ctx.author).coins.set(sc)
             await self.conf.user(member).coins.set(vc)
             await ctx.send(f"Success. You stolen {perc:.0%} coins from {member.name}")
         else:
-            sc -= (perc * sc) #you lost
+            sc -= round(perc * sc) #you lost
             if sc <= 0:
                 await self.ctx.send("That would leave you broke.")
                 return
-            vc += (perc * sc) #get your percentage of coins
+            vc += round(perc * sc) #get your percentage of coins
             #finally store them
             await self.conf.user(ctx.author).coins.set(sc)
             await self.conf.user(member).coins.set(vc)
