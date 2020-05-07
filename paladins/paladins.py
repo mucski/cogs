@@ -1,6 +1,7 @@
 import aiohttp
 import discord
 import asyncio
+import re
 from redbot.core import commands, Config
 from redbot.core.utils.predicates import MessagePredicate
 
