@@ -25,3 +25,19 @@ class Paladins(commands.Cog):
             text = await r.text()
             text = text.split('|')
             await ctx.send(text)
+            
+    # shit rewrite
+    @commands.command()
+    async def champkda(self, ctx):
+        await ctx.send("Enter your paladins username")
+        msg = await self.bot.wait_for("message", check=MessagePredicate.same_context(ctx))
+        await ctx.send("Now enter the champion you wish to see the stats of")
+        msg1 = await self.bot.wait_for("message", check=MessagePredicate.same_context(ctx))
+        await ctx.send("Now enter your platform e.g pc, switch, xbox, ps4")
+        msg2 = await self.bot.wait_for("message", check=MessagePredicate.same_context(ctx))
+        player = msg.content
+        platform = msg2.content
+        champion = mmsg1.content
+        async with self.session.get(f"https://nonsocial.herokuapp.com/api/kda?player={player}&champion={champion}&platform={platform}")
+            text = text.split('|')
+            await ctx.send(text)
