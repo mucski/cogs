@@ -25,7 +25,7 @@ class Paladins(commands.Cog):
             text = await r.text()
             text = text.split('|')
             for key in text:
-                await ctx.send(text.key())
+                await ctx.send(text.item())
             
     # shit rewrite
     @commands.command()
