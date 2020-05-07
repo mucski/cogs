@@ -22,7 +22,7 @@ class Paladins(commands.Cog):
         player = msg.content
         platform = msg1.content
         async with self.session.get(f"https://nonsocial.herokuapp.com/api/lastmatch?query={player}&platform={platform}") as r:
-            text = await r.json()
+            text = await r.text()
             text = text.replace("\s+|@|&|'|\(|\)|<|>|#", "");
             for i in text:
                 await ctx.send(text)
