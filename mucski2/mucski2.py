@@ -68,9 +68,9 @@ class Mucski2(commands.Cog):
     async def stop(self, ctx):
         msg = await self.conf.guild(ctx.guild).message()
         channel = await self.conf.guild(ctx.guild).channel()
-        try:
+        if msg:
             message = await channel.get_message(msg)
-        except:
+        else:
             await ctx.send("message deleted or none exists")
             return
         users = []
