@@ -70,7 +70,7 @@ class Mucski2(commands.Cog):
         channel = await self.conf.guild(ctx.guild).channel()
         channel = self.bot.get_channel(channel)
         if msg:
-            message = await channel.get_message(msg)
+            message = await channel.fetch_message(msg)
         else:
             await ctx.send("message deleted or none exists")
             return
