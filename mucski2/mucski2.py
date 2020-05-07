@@ -89,7 +89,7 @@ class Mucski2(commands.Cog):
             await message.edit(embed="No winners")
             return
         randomize = random.choice(users)
-        await message.edit(embed="Giveaway concluded...see bellow.")
+        await message.edit(embed=description="Giveaway concluded...see bellow.")
         await ctx.send(f"All praise our winner {randomize.mention}")
     
     @commands.command()
