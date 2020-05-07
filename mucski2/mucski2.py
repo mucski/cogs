@@ -84,7 +84,7 @@ class Mucski2(commands.Cog):
             if user == self.bot.user:
                 continue
             users.append(user)
-        a = discord.Embed(color=await self.bot.get_embed_color(ctx), description="Give away finished, come back later for more!")
+        a = discord.Embed(color=await self.bot.get_embed_color(ctx), description="Give away finished, come back later for more!\n See bellow for winner.")
         a.set_author(name=self.bot.user.name, icon_url=self.bot.user.avatar_url)
         a.set_footer(text="Giveaway code by Mucski")
         await self.conf.guild(ctx.guild).channel.clear()
