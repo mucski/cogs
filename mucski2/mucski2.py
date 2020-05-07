@@ -55,7 +55,7 @@ class Mucski2(commands.Cog):
     @vip.command()
     async def start(self, ctx, channel: discord.TextChannel, *, text):
         if channel:
-            msg = channel.send(text)
+            msg = await channel.send(text)
             await bot.add_reaction(msg, "💎")
         else:
             await ctx.send("invalid channel")
