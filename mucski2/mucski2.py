@@ -53,7 +53,7 @@ class Mucski2(commands.Cog):
         pass
     
     @vip.command()
-    async def start(self, ctx, channel: discord.TextChannel=None, text="Daily ☢️V.I.P Supreme☢️ gievaway.\nReact bellow to enter 💎"):
+    async def start(self, ctx, channel: discord.TextChannel=None, *, text="Daily ☢️V.I.P Supreme☢️ gievaway.\nReact bellow to enter 💎"):
         if channel == None:
             channel = ctx.channel
         e = discord.Embed(color=await self.bot.get_embed_color(ctx), description=text)
@@ -85,13 +85,13 @@ class Mucski2(commands.Cog):
         await self.conf.guild(ctx.guild).channel.clear()
         await self.conf.guild(ctx.guild).message.clear()
         a = discord.Embed(color=await self.bot.get_embed_color(ctx), description="Give away finished, and the winner is:\nSee bellow for winner.")
+        a.set_author(name=f"{self.bot.user.name}'s giveaway", icon_url=self.bot.user.avatar_url)
+        a.set_footer(text="Giveaway code by Mucski")
         if not users:
             await message.edit(embed=a)
             await channel.send("There were either no entries or an error occured.")
             return
         randomize = random.choice(users)
-        a.set_author(name=f"{self.bot.user.name}'s giveaway", icon_url=self.bot.user.avatar_url)
-        a.set_footer(text="Giveaway code by Mucski")
         await message.edit(embed=a)
         await channel.send(f"The winner is {randomize.mention}, congratulations.")
     
