@@ -68,7 +68,7 @@ class Mucski2(commands.Cog):
     async def stop(self, ctx):
         msg = await self.conf.guild(ctx.guild).message()
         channel = await self.conf.guild(ctx.guild).channel()
-        channel = discord.get_channel(channel)
+        channel = bot.get_channel(channel)
         if msg:
             message = await channel.get_message(msg)
         else:
