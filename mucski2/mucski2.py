@@ -82,7 +82,7 @@ class Mucski2(commands.Cog):
     @commands.command()
     async def who(self, ctx, channel: discord.TextChannel, messageid: int):
         try:
-            msg = await channel.fetch_message(messageid)
+            msg = await channel.get_message(messageid)
         except HTTPException:
             return await ctx.send("Couldn't find that message")
         users = []
