@@ -56,7 +56,7 @@ class Mucski2(commands.Cog):
     async def start(self, ctx, channel: discord.TextChannel, *, text):
         if channel:
             e = discord.Embed(color=await self.bot.get_embed_color(ctx), description=text)
-            e.set_author(name=self.bot.user.name, icon_url=self.bot.avatar_url)
+            e.set_author(name=self.bot.user.name, icon_url=self.bot.user.avatar_url)
             e.set_footer(text="Giveaway code by Mucski")
             msg = await channel.send(embed=e)
             await msg.add_reaction("💎")
