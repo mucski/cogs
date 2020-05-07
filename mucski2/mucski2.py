@@ -69,8 +69,8 @@ class Mucski2(commands.Cog):
         msg = await self.conf.guild(ctx.guild).message()
         channel = await self.conf.guild(ctx.guild).channel()
         try:
-            message = await channel.fetch_message(msg)
-        except HTTPException:
+            message = await channel.get_message(msg)
+        except:
             await ctx.send("message deleted or none exists")
             return
         users = []
@@ -82,7 +82,7 @@ class Mucski2(commands.Cog):
     @commands.command()
     async def who(self, ctx, channel: discord.TextChannel, messageid: int):
         try:
-            msg = await channel.get_message(messageid)
+            msg = await channel.fetch_message(messageid)
         except HTTPException:
             return await ctx.send("Couldn't find that message")
         users = []
