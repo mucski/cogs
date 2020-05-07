@@ -144,7 +144,7 @@ class Mucski2(commands.Cog):
         await ctx.send(embed=e)
         
         
-    champions = ['Ash', 'Evie', 'Sha Lin', 'Corvus', 'Mal Damba', 'Maeve', 'Androxus', 'Lex', 'Fernando', 'Jenos', 'Furia', 'Viktor', 'Tyra', 'Khan', 'Atlas', 'Makoa', 'Raum', 'Tigron', 'Bomb King', 'Drogoz', 'Moji', 'Seris', 'Grover', 'Io', 'Dredge', 'Imani', 'Vivian']
+    champions = ['Ash', 'Evie', 'Sha Lin', 'Corvus', 'Mal Damba', 'Maeve', 'Androxus', 'Lex', 'Fernando', 'Jenos', 'Furia', 'Viktor', 'Skye', 'Ruckus', 'Zhin', 'Tyra', 'Khan', 'Atlas', 'Makoa', 'Raum', 'Tigron', 'Bomb King', 'Drogoz', 'Moji', 'Seris', 'Grover', 'Io', 'Dredge', 'Imani', 'Vivian']
     
     @commands.command()
     async def randomchamp(self, ctx):
