@@ -1,0 +1,8 @@
+{
+    "author": "mucski",
+    "description": "Paladins stats cog",
+    "install_msg": "Paladins",
+    "short": "Paladins. ",
+    "tags": ["stats", "paladins", "smite"],
+    "type": "COG"
+}
