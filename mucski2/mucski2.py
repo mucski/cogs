@@ -62,6 +62,7 @@ class Mucski2(commands.Cog):
             await msg.add_reaction("💎")
         else:
             await ctx.send("Invalid channel specified")
+            return
         await self.conf.guild(ctx.guild).channel.set(channel.id)
         await self.conf.guild(ctx.guild).message.set(msg.id)
             
