@@ -75,7 +75,7 @@ class Mucski2(commands.Cog):
             await ctx.send("message deleted or none exists")
             return
         users = []
-        async for user in msg.reactions[0].users():
+        async for user in message.reactions[0].users():
             users.append(user)
         randomize = random.choice(users)
         await ctx.send(randomize.name)
