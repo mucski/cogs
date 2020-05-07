@@ -24,7 +24,9 @@ class Paladins(commands.Cog):
         platform = msg1.content
         async with self.session.get(f"https://nonsocial.herokuapp.com/api/lastmatch?query={player}&platform={platform}") as r:
             text = await r.text()
-            text = text.split("|").split(")").slit("(")
+            text = text.split("|")
+            text = text.split(")")
+            text = text.slit("(")
             await ctx.send(text)
             
                 
