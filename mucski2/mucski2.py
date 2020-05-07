@@ -53,16 +53,14 @@ class Mucski2(commands.Cog):
         pass
     
     @vip.command()
-    async def start(self, ctx, channel: discord.TextChannel, *, text):
-        if channel:
-            e = discord.Embed(color=await self.bot.get_embed_color(ctx), description=text)
-            e.set_author(name=f"{self.bot.user.name}' giveaway", icon_url=self.bot.user.avatar_url)
-            e.set_footer(text="Giveaway code by Mucski")
-            msg = await channel.send(embed=e)
-            await msg.add_reaction("💎")
-        else:
-            await ctx.send("Invalid channel specified")
-            return
+    async def start(self, ctx, channel: discord.TextChannel=None, text="Daily ☢️V.I.P Supreme☢️ gievaway.\nReact bellow to enter 💎"):
+        if channel == None:
+            channel = ctx.channel
+        e = discord.Embed(color=await self.bot.get_embed_color(ctx), description=text)
+        e.set_author(name=f"{self.bot.user.name}' giveaway", icon_url=self.bot.user.avatar_url)
+        e.set_footer(text="Giveaway code by Mucski")
+        msg = await channel.send(embed=e)
+        await msg.add_reaction("💎")
         await self.conf.guild(ctx.guild).channel.set(channel.id)
         await self.conf.guild(ctx.guild).message.set(msg.id)
             
@@ -91,10 +89,11 @@ class Mucski2(commands.Cog):
             await ctx.send("There were either no entries or an error occured.")
             return
         randomize = random.choice(users)
-        a = discord.Embed(color=await self.bot.get_embed_color(ctx), description=f"Give away finished, and the winner is:\n Drumroll! {randomize.mention} Congratulations!.")
+        a = discord.Embed(color=await self.bot.get_embed_color(ctx), description="Give away finished, and the winner is:\n See bellow for winner.")
         a.set_author(name=f"{self.bot.user.name}'s giveaway", icon_url=self.bot.user.avatar_url)
         a.set_footer(text="Giveaway code by Mucski")
         await message.edit(embed=a)
+        await channel.send(f"The winner is {randomize.mention}, congratulations.")
     
     @commands.command()
     async def who(self, ctx, channel: discord.TextChannel, messageid: int):
