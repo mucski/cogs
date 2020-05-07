@@ -25,10 +25,11 @@ class Paladins(commands.Cog):
         async with self.session.get(f"https://nonsocial.herokuapp.com/api/lastmatch?query={player}&platform={platform}") as r:
             text = await r.text()
             text = text.split("|")
-            for i in text:
-                i.replace(")", "").replace("(", "")
-                await ctx.send(i)
+            joey = map(lambda x: str.replace(x, "()", " "), text)
+            await ctx.send(joey)
             
+                
+                
     # shit rewrite
     @commands.command()
     async def champkda(self, ctx):
