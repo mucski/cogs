@@ -26,7 +26,8 @@ class Paladins(commands.Cog):
             text = await r.text()
             text = text.replace("(", "").replace(")", "")
             text = text.split("|")
-            await ctx.send(text)
+            for i in text:
+                await ctx.send(i)
             
                 
                 
