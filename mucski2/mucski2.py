@@ -56,7 +56,7 @@ class Mucski2(commands.Cog):
     async def start(self, ctx, channel: discord.TextChannel, *, text):
         if channel:
             e = discord.Embed(color=await self.bot.get_embed_color(ctx), description=text)
-            e.set_author(name=self.bot.user.name, icon_url=self.bot.user.avatar_url)
+            e.set_author(name=f"{self.bot.user.name}' giveaway", icon_url=self.bot.user.avatar_url)
             e.set_footer(text="Giveaway code by Mucski")
             msg = await channel.send(embed=e)
             await msg.add_reaction("💎")
@@ -85,7 +85,7 @@ class Mucski2(commands.Cog):
                 continue
             users.append(user)
         a = discord.Embed(color=await self.bot.get_embed_color(ctx), description="Give away finished, come back later for more!\n See bellow for winner.")
-        a.set_author(name=self.bot.user.name, icon_url=self.bot.user.avatar_url)
+        a.set_author(name=f"{self.bot.user.name}'s giveaway", icon_url=self.bot.user.avatar_url)
         a.set_footer(text="Giveaway code by Mucski")
         await self.conf.guild(ctx.guild).channel.clear()
         await self.conf.guild(ctx.guild).message.clear()
