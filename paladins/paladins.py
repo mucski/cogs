@@ -25,7 +25,7 @@ class Paladins(commands.Cog):
         async with self.session.get(f"https://nonsocial.herokuapp.com/api/lastmatch?query={player}&platform={platform}") as r:
             text = await r.text()
             text = text.split("|")
-            text = re.sub("\(\)", "None", text)
+            text = re.sub("\(\)", text)
             await ctx.send(text)
             
     # shit rewrite
