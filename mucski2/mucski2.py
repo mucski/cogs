@@ -149,5 +149,5 @@ class Mucski2(commands.Cog):
     @commands.command()
     async def randomchamp(self, ctx):
         champ = random.choice(self.champions)
-        await ctx.send(f"You should play with {champ} now, hehe.")
+        await ctx.send(f"You should play with **{champ}** now, hehe.")
         
