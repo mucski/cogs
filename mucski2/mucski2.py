@@ -84,9 +84,6 @@ class Mucski2(commands.Cog):
             if user == self.bot.user:
                 continue
             users.append(user)
-        a = discord.Embed(color=await self.bot.get_embed_color(ctx), description="Give away finished, come back later for more!\n See bellow for winner.")
-        a.set_author(name=f"{self.bot.user.name}'s giveaway", icon_url=self.bot.user.avatar_url)
-        a.set_footer(text="Giveaway code by Mucski")
         await self.conf.guild(ctx.guild).channel.clear()
         await self.conf.guild(ctx.guild).message.clear()
         if not users:
@@ -94,8 +91,10 @@ class Mucski2(commands.Cog):
             await ctx.send("There were either no entries or an error occured.")
             return
         randomize = random.choice(users)
+        a = discord.Embed(color=await self.bot.get_embed_color(ctx), description="Give away finished, and the winner is:\n Drumroll! {randomize.mention} Congratulations!.")
+        a.set_author(name=f"{self.bot.user.name}'s giveaway", icon_url=self.bot.user.avatar_url)
+        a.set_footer(text="Giveaway code by Mucski")
         await message.edit(embed=a)
-        await ctx.send(f"All praise our winner {randomize.mention}")
     
     @commands.command()
     async def who(self, ctx, channel: discord.TextChannel, messageid: int):
