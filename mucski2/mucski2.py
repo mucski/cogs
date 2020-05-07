@@ -32,6 +32,7 @@ class Mucski2(commands.Cog):
             #"hunt_interval_maximum": 3600,
             #"wait_for_bang_timeout": 20,
             "channel": 0,
+            "message":0,
         }
         default_user = {"author_name": None, "score": {}, "total": 0}
         self.conf.register_user(**defaults)
@@ -52,22 +53,20 @@ class Mucski2(commands.Cog):
         pass
     
     @vip.command()
-    async def start(self, ctx):
-        pass
-    
+    async def start(self, ctx, channel: discord.TextChannel, *, text):
+        if channel:
+            msg = channel.send(text)
+            await bot.add_reaction(msg, "💎")
+        else:
+            await ctx.send("invalid channel")
+        await ctx.send("Saving message and channel id...")
+        await self.conf.guild(ctx.guild).channel(channel.id)
+        await self.conf.guild(ctx.guild).message(msg.id)
+        await ctx.send("Done")
+            
     @vip.command()
     async def stop(self, ctx):
         pass
-    
-    @vip.command()
-    async def set(self, ctx, channel: discord.TextChannel):
-        saved = await self.conf.guild(ctx.guild).channel()
-        if channel.id != saved:
-            await self.conf.guild(ctx.guild).channel.set(channel.id)
-            await ctx.send(f"Setup new channel to {channel.mention}")
-        else:
-            await ctx.send(f"{channel.mention} is already saved")
-            
     
     @commands.command()
     async def who(self, ctx, channel: discord.TextChannel, messageid: int):
