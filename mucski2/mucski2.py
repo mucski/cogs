@@ -82,14 +82,14 @@ class Mucski2(commands.Cog):
         async for user in message.reactions[0].users():
             if user == self.bot.user:
                 continue
-                users.append(user)
+            users.append(user)
         await self.conf.guild(ctx.guild).channel.clear()
         await self.conf.guild(ctx.guild).message.clear()
         if not users:
-            await message.edit(content="No winners")
+            await message.edit(embed="No winners")
             return
         randomize = random.choice(users)
-        await message.edit(content="Giveaway concluded...see bellow.")
+        await message.edit(embed="Giveaway concluded...see bellow.")
         await ctx.send(f"All praise our winner {randomize.mention}")
     
     @commands.command()
