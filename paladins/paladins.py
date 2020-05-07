@@ -16,9 +16,9 @@ class Paladins(commands.Cog):
     @commands.command()
     async def last(self, ctx):
         msg1 = await ctx.send("Enter your paladins username")
-        await bot.wait_for("msg1", check=MessagePredicate.same_context(ctx))
+        await self.bot.wait_for("msg1", check=MessagePredicate.same_context(ctx))
         msg2 = await ctx.send("Now enter your platform e.g pc, xbox, switch, ps4")
-        await bot.wait_for("msg2", check=MessagePredicate.same_context(ctx))
+        await self.bot.wait_for("msg2", check=MessagePredicate.same_context(ctx))
         player = msg1.content
         platform = msg2.content
         async with self.session.get(f"https://nonsocial.herokuapp.com/api/lastmatch?query={player}&platform={platform}") as r:
