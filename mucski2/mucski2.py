@@ -55,30 +55,37 @@ class Mucski2(commands.Cog):
     @vip.command()
     async def start(self, ctx, channel: discord.TextChannel, *, text):
         if channel:
-            msg = await channel.send(text)
+            e = discord.Embed(color=await self.bot.get_embed_color(ctx), description=text)
+            e.set_author(name=self.bot.name, icon_url=self.bot.avatar_url)
+            e.set_footer(text="Giveaway code by Mucski")
+            msg = await channel.send(embed=e)
             await msg.add_reaction("💎")
         else:
-            await ctx.send("invalid channel")
-        await ctx.send("Saving message and channel id...")
+            await ctx.send("Invalid channel specified")
         await self.conf.guild(ctx.guild).channel.set(channel.id)
         await self.conf.guild(ctx.guild).message.set(msg.id)
-        await ctx.send("Done")
             
     @vip.command()
     async def stop(self, ctx):
         msg = await self.conf.guild(ctx.guild).message()
         channel = await self.conf.guild(ctx.guild).channel()
+        if not channel:
+            await ctx.send("Start a new giveaway")
+            return
         channel = self.bot.get_channel(channel)
         if msg:
             message = await channel.fetch_message(msg)
         else:
-            await ctx.send("message deleted or none exists")
+            await ctx.send("Message deleted or doesnt exist")
             return
         users = []
         async for user in message.reactions[0].users():
             users.append(user)
+        await self.conf.guild(ctx.guild).channel.clear()
+        await self.conf.guild(ctx.guild).message.clear()
         randomize = random.choice(users)
-        await ctx.send(randomize.name)
+        await message.edit("Giveaway concluded...see bellow.")
+        await ctx.send(f"All praise our winner {randomize.mention}")
     
     @commands.command()
     async def who(self, ctx, channel: discord.TextChannel, messageid: int):
