@@ -143,3 +143,11 @@ class Mucski2(commands.Cog):
         e.add_field(name="Testing", value="Testing", inline=False)
         await ctx.send(embed=e)
         
+        
+    champions = ['Ash', 'Evie', 'Sha Lin', 'Corvus', 'Mal Damba', 'Maeve', 'Androxus', 'Lex', 'Fernando', 'Jenos', 'Furia', 'Dredge', 'Viktor', 'Tyra', 'Khan', 'Atlas', 'Makoa', 'Raum', 'Tigron', 'Bomb King', 'Drogoz', 'Moji', 'Seris', 'Grover', 'Io', 'Dredge', 'Imani', 'Vivian']
+    
+    @commands.command()
+    async def randomchamp(self, ctx):
+        champ = random.choice(champions)
+        await ctx.send(f"You should play with {champ} now, hehe.")
+        
