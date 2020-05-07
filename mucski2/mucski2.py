@@ -60,13 +60,24 @@ class Mucski2(commands.Cog):
         else:
             await ctx.send("invalid channel")
         await ctx.send("Saving message and channel id...")
-        await self.conf.guild(ctx.guild).channel(channel.id)
-        await self.conf.guild(ctx.guild).message(msg.id)
+        await self.conf.guild(ctx.guild).channel.set(channel.id)
+        await self.conf.guild(ctx.guild).message.set(msg.id)
         await ctx.send("Done")
             
     @vip.command()
     async def stop(self, ctx):
-        pass
+        msg = await self.conf.guild(ctx.guild).message()
+        channel = await self.conf.guild(ctx.guild).channel()
+        try:
+            message = await channel.fetch_message(msg)
+        except HTTPException:
+            await ctx.send("message deleted or none exists")
+            return
+        users = []
+        async for user in msg.reactions[0].users():
+            users.append(user)
+        randomize = random.choice(users)
+        await ctx.send(randomize.name)
     
     @commands.command()
     async def who(self, ctx, channel: discord.TextChannel, messageid: int):
