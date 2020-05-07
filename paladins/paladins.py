@@ -38,6 +38,6 @@ class Paladins(commands.Cog):
         player = msg.content
         platform = msg2.content
         champion = mmsg1.content
-        async with self.session.get(f"https://nonsocial.herokuapp.com/api/kda?player={player}&champion={champion}&platform={platform}")
+        async with self.session.get(f"https://nonsocial.herokuapp.com/api/kda?player={player}&champion={champion}&platform={platform}") as r:
             text = text.split('|')
             await ctx.send(text)
