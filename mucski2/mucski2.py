@@ -89,7 +89,7 @@ class Mucski2(commands.Cog):
             await ctx.send("There were either no entries or an error occured.")
             return
         randomize = random.choice(users)
-        a = discord.Embed(color=await self.bot.get_embed_color(ctx), description="Give away finished, and the winner is:\n See bellow for winner.")
+        a = discord.Embed(color=await self.bot.get_embed_color(ctx), description="Give away finished, and the winner is:\nSee bellow for winner.")
         a.set_author(name=f"{self.bot.user.name}'s giveaway", icon_url=self.bot.user.avatar_url)
         a.set_footer(text="Giveaway code by Mucski")
         await message.edit(embed=a)
