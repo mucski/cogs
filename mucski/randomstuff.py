@@ -36,7 +36,7 @@ searchlist = {
     "trash": "Found nothing. Must've picked the wrong trash.",
     'club': 'You barged into a club, found ``{}`` coins laying around on the dance floor',
     'bank': 'They though you gonna rob them. You got arrested',
-    'beach': 'You went to the beach, found ``{}`` coins in a sand castle.,
+    'beach': 'You went to the beach, found ``{}`` coins in a sand castle.',
 }
 
 bad_location = ['fridge','dog','toilet','trash','school', 'bank']
