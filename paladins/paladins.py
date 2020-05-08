@@ -22,7 +22,7 @@ class Paladins(commands.Cog):
             text = text.replace("(", "").replace(")", "")
             text = text.split("|")
             for i in text:
-                desc = "\n".join(map(str, text))
+                desc = "".join(map(str, text))
             #build embed
             e = discord.Embed(
                 color=await self.bot.get_embed_color(ctx),
