@@ -25,8 +25,9 @@ class Paladins(commands.Cog):
             #build embed
             e = discord.Embed(
                 color=await self.bot.get_embed_color(ctx),
-                description=desc,
+                description=f"```{desc}```",
             )
+            e.set_author(name="Paladins stats", icon_url="https://steamuserimages-a.akamaihd.net/ugc/891008249769279245/B2C197F69DE23CD80388E92A9D57E76CC3738281/")
             e.set_footer(text="Data provided by nonsocial.herokuapp.com")
             await ctx.send(embed=e)
                 
