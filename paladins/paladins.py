@@ -15,20 +15,21 @@ class Paladins(commands.Cog):
           
     # shit rewrite
     @commands.command()
-    async def last(self, ctx):
-        await ctx.send("Enter your paladins username")
-        msg = await self.bot.wait_for("message", check=MessagePredicate.same_context(ctx))
-        await ctx.send("Now enter your platform e.g pc, xbox, switch, ps4")
-        msg1 = await self.bot.wait_for("message", check=MessagePredicate.same_context(ctx))
-        player = msg.content
-        platform = msg1.content
+    async def last(self, ctx, player, platform="pc"):
+        """If you have a name with space in it please use a double quote like so "john doe" """
         async with self.session.get(f"https://nonsocial.herokuapp.com/api/lastmatch?query={player}&platform={platform}") as r:
             text = await r.text()
             text = text.replace("(", "").replace(")", "")
             text = text.split("|")
             for i in text:
-                await ctx.send(i)
-            
+                i = stuff
+            #build embed
+            e = discord.Embed(
+                color=await self.bot.get_embed_color(ctx),
+                description=i,
+            )
+            e.set_footer(text="Data provided by nonsocial.herokuapp.com")
+            await ctx.send(embed=e)
                 
                 
     # shit rewrite
