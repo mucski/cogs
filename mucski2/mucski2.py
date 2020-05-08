@@ -53,7 +53,7 @@ class Mucski2(commands.Cog):
         pass
     
     @vip.command()
-    async def start(self, ctx, channel: discord.TextChannel=None, *, text="Daily ☢️V.I.P Supreme☢️ gievaway.\nReact bellow to enter 💎"):
+    async def start(self, ctx, channel: discord.TextChannel=None, *, text="Daily ☢️V.I.P Supreme☢️ giveaway.\nReact bellow to enter 💎"):
         if channel == None:
             channel = ctx.channel
         e = discord.Embed(color=await self.bot.get_embed_color(ctx), description=text)
