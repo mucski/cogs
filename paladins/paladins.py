@@ -21,11 +21,10 @@ class Paladins(commands.Cog):
             text = await r.text()
             text = text.replace("(", "").replace(")", "")
             text = text.split("|")
-            for i in text:
-                i = stuff
             #build embed
             e = discord.Embed(
                 color=await self.bot.get_embed_color(ctx),
+            for i in text:
                 description=i,
             )
             e.set_footer(text="Data provided by nonsocial.herokuapp.com")
