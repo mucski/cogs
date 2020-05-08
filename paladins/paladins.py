@@ -21,7 +21,7 @@ class Paladins(commands.Cog):
             text = await r.text()
             text = re.sub('[():]', '', text)
             text = text.split("|")
-            desc = ', '.join.(text)
+            desc = ', '.join(str(text)[1:-1])
             #build embed
             e = discord.Embed(
                 color=await self.bot.get_embed_color(ctx),
