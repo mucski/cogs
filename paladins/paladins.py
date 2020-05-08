@@ -21,10 +21,12 @@ class Paladins(commands.Cog):
             text = await r.text()
             text = text.replace("(", "").replace(")", "")
             text = text.split("|")
+            for i in text:
+                desc = "\n".join(i)
             #build embed
             e = discord.Embed(
                 color=await self.bot.get_embed_color(ctx),
-                description=text,
+                description=desc,
             )
             e.set_footer(text="Data provided by nonsocial.herokuapp.com")
             await ctx.send(embed=e)
