@@ -14,7 +14,9 @@ worklist = {
     "dick": "You are working as a professional hunter. Shot the u out of a duck.",
     "redbot": "I'm a bot, but do you know my name? Hint .info",
     "android": "You found a little green man inside your phone. He says he forgot his name. Help him",
-    "shuffle": f"This is a test. Unscramble the word {shuffle_word('shuffle')}"
+    "shuffle": f"This is a test. Unscramble the word {shuffle_word('shuffle')}",
+    "mucski": f"Creator of this piece of shit game {shuffle_word('mucski')}",
+    "thanos": "He snaps people out of existence, who is he?",
 }
 
 searchlist = {
@@ -32,9 +34,12 @@ searchlist = {
     "hospital": "You searched the hospital and found ``{}`` coins. Don't eat them though, may be infected with covid19.",
     "school": "You went looking for coins in your school locker, got a wedgy out of it instead. Bullies.",
     "trash": "Found nothing. Must've picked the wrong trash.",
+    'club': 'You barged into a club, found ``{}`` coins laying around on the dance floor',
+    'bank': 'They though you gonna rob them. You got arrested',
+    'beach': 'You went to the beach, found ``{}`` coins in a sand castle.,
 }
 
-bad_location = ['fridge','dog','toilet','trash','school']
+bad_location = ['fridge','dog','toilet','trash','school', 'bank']
 
 petlist = {
     "rock": {
