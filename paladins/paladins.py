@@ -21,7 +21,7 @@ class Paladins(commands.Cog):
         """Shows last played match by ``player``"""
         async with self.session.get(f"https://nonsocial.herokuapp.com/api/lastmatch?player={player}&platform={platform}") as r:
             text = await r.text()
-            text = text.replace('-', '|').replace('Match', '|')
+            text = text.replace('-', '|').replace('Match', '|').replace('Id', 'Match Id:')
             text = re.sub('[()]', '', text)
             text = text.split('| ')
             test = len(text)
