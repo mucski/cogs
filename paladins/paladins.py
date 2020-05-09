@@ -21,6 +21,7 @@ class Paladins(commands.Cog):
             text = await r.text()
             text = text.replace('-', '|')
             text = text.replace('Match', '|')
+            text = text.replace(':', '|', 4)
             text = re.sub('[()]', '', text)
             text = text.split('| ')
             test = len(text)
