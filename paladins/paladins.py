@@ -6,17 +6,15 @@ from redbot.core import commands, Config
 from redbot.core.utils.predicates import MessagePredicate
 
 class Paladins(commands.Cog):
-    """ If you have a name with spaces in it please wrap it in double quotes like so
-    .last "my long name"
-    Champion names with space can be typed as so instead .kda myname bombking or shalin
-    """
+    """ If you have a name with spaces in it please wrap it in double quotes like so .last "my long name"
+    Champion names with space can be typed as so instead .kda myname bombking or shalin"""
     def __init__(self, bot):
         self.bot = bot
     #thanks DevilXD
         self.session = aiohttp.ClientSession()
     def cog_unload(self):
         asyncio.create_task(self.session.close())
-          
+           
     # shit rewrite
     @commands.command()
     async def last(self, ctx, player, platform="pc"):
