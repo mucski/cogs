@@ -61,7 +61,7 @@ class Paladins(commands.Cog):
     async def current(self, ctx, player, platform="pc"):
         async with self.session.get(f"https://nonsocial.herokuapp.com/api/live_match?player={player}&platform={platform}") as r:
             text = await r.text()
-            text = text.replace('-', '|')
+            text = text.replace('-', '|').replace(',', '|')
             text = re.sub('[()]', '', text)
             text = text.split('| ')
             test = len(text)
