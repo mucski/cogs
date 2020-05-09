@@ -22,7 +22,7 @@ class Paladins(commands.Cog):
             text = re.sub('[():]', '', text)
             text = text.split('|')
             test = len(text)
-            newlist[]
+            newlist = []
             for i in range(test):
                 newlist.append(text[i])
             #build embed
