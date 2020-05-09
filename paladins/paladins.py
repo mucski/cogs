@@ -24,15 +24,20 @@ class Paladins(commands.Cog):
             #pain im the ass regex, domt touch
             text = re.findall(r"([\w]+)([\w?\s]+).*Id:\s(\d+).*tion:\s(\d+)m.*ion:\s([\w\s🇺🇸]+)\W+([\w?:|\w\s?]+)\W+([\d/]+)\s-\s([\d.]+).*ee:\s(\d+).*ge:\s([\d,]+).*ts:\s([\d,]+).*ore:\s([\d/]+)", text)
             if not text:
-                await ctx.send(f':x: wrong player name or platform. If your name contains spaces please use double quortes ``.last "{player}"``')
+                await ctx.send(f':x: Wrong player name or platform. If your name contains spaces please use double quotes like so: ``.last "{player}"``')
+                return
             avatar = text[0][5].replace(' ', '')
             region = text[0][4].replace('🇺🇸', 'North America')
             if avatar == "bombking" or avatar == "shalin":
                 avatar = avatar.replace("bombking", "bomb-king").replace("shalin", "sha-lin")
             avatarurl = f"https://web2.hirez.com/paladins/champion-icons/{avatar.lower()}.jpg"
+            if text[0][0] == "Ranked":
+                matchType = "Ranked"
+            else:
+                matchType = "Casual"
             e = discord.Embed(color=await self.bot.get_embed_color(ctx))
             e.set_thumbnail(url=avatarurl)
-            e.add_field(name="Map", value=text[0][1])
+            e.add_field(name="Map", value=f"{matchType} - {text[0][1]}")
             e.add_field(name="Match Id:", value=text[0][2])
             e.add_field(name="Duration", value=f"{text[0][3]} minutes")
             e.add_field(name="Region", value=region)
