@@ -20,13 +20,13 @@ class Paladins(commands.Cog):
         async with self.session.get(f"https://nonsocial.herokuapp.com/api/lastmatch?player={player}&platform={platform}") as r:
             text = await r.text()
             text = re.sub('[():]', '', text)
-            text = text.split('|\n')
+            text = text.split('| ')
             test = len(text)
             newlist = []
             for i in range(test):
                 newlist.append(text[i])
             #build embed
-            desc = ''.join(newlist)
+            desc = '\n'.join(newlist)
             e = discord.Embed(
                 color=await self.bot.get_embed_color(ctx),
                 description=f"{desc}",
