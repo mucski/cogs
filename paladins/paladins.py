@@ -20,7 +20,7 @@ class Paladins(commands.Cog):
         async with self.session.get(f"https://nonsocial.herokuapp.com/api/lastmatch?player={player}&platform={platform}") as r:
             text = await r.text()
             text = re.sub('[():]', '', text)
-            text = text.split('\n')
+            text = text.split('|\n')
             test = len(text)
             newlist = []
             for i in range(test):
