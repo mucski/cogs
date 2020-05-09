@@ -28,7 +28,7 @@ class Paladins(commands.Cog):
             e.add_field(name="Duration", value=text[3])
             e.add_field(name="Region", value=text[4])
             e.add_field(name="Champion", value=text[5])
-            e.add_field(name="KDA", value=f"{text[6]} ({text[7]})"
+            e.add_field(name="KDA", value=f"{text[6]} ({text[7]})")
             e.add_field(name="Kill Spree", value=text[8])
             e.add_field(name="Damage", value=text[9])
             e.add_field(name="Credits", value=text[10])
