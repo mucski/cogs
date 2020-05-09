@@ -22,9 +22,11 @@ class Paladins(commands.Cog):
             text = re.sub('[():]', '', text)
             text = text.split('|')
             test = len(text)
+            newlist[]
             for i in range(test):
-                desc = "\n".join(text[i])
+                newlist.append(text[i])
             #build embed
+            desc = "\n".join(newlist)
             e = discord.Embed(
                 color=await self.bot.get_embed_color(ctx),
                 description=f"{desc}",
