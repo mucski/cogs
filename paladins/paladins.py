@@ -23,7 +23,8 @@ class Paladins(commands.Cog):
             text = text.split('|')
             test = len(text)
             for i in range(test):
-                await ctx.send(text[i])
+                desc = text[i]
+            desc = "\n".join(desc)
             #build embed
             e = discord.Embed(
                 color=await self.bot.get_embed_color(ctx),
