@@ -20,6 +20,7 @@ class Paladins(commands.Cog):
     # shit rewrite
     @commands.command()
     async def last(self, ctx, player, platform="pc"):
+        """Shows last played match by ``player``"""
         async with self.session.get(f"https://nonsocial.herokuapp.com/api/lastmatch?player={player}&platform={platform}") as r:
             text = await r.text()
             text = text.replace('-', '|').replace('Match', '|')
@@ -41,6 +42,7 @@ class Paladins(commands.Cog):
             
     @commands.command()
     async def stalk(self, ctx, player, platform="pc"):
+        """Shows online/offline status of ``player``"""
         async with self.session.get(f"https://nonsocial.herokuapp.com/api/stalk?player={player}&platform={platform}") as r:
             text = await r.text()
             text = text.replace('-', '|')
@@ -62,6 +64,7 @@ class Paladins(commands.Cog):
             
     @commands.command()
     async def current(self, ctx, player, platform="pc"):
+        """Shows player in current match and their rank"""
         async with self.session.get(f"https://nonsocial.herokuapp.com/api/live_match?player={player}&platform={platform}") as r:
             text = await r.text()
             text = text.replace('-', '|').replace(',', '|')
@@ -83,6 +86,7 @@ class Paladins(commands.Cog):
             
     @commands.command()
     async def rank(self, ctx, player, platform="pc"):
+        """Shows ``player`` rank and ranked k/d/a"""
         async with self.session.get(f"https://nonsocial.herokuapp.com/api/rank?player={player}&platform={platform}") as r:
             text = await r.text()
             text = text.replace('-', '|')
@@ -104,6 +108,7 @@ class Paladins(commands.Cog):
             
     @commands.command()
     async def kda(self, ctx, player, champion="", platform="pc"):
+        """Shows ``player`` casual k/d/a"""
         async with self.session.get(f"https://nonsocial.herokuapp.com/api/kda?player={player}&champion={champion}&platform={platform}") as r:
             text = await r.text()
             text = text.replace('-', '|')
