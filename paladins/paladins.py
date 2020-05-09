@@ -100,7 +100,7 @@ class Paladins(commands.Cog):
             await ctx.send(embed=e)
             
     @commands.command()
-    async def kda(self, ctx, player, platform="pc", champion=None):
+    async def kda(self, ctx, player, champion="", platform="pc"):
         async with self.session.get(f"https://nonsocial.herokuapp.com/api/kda?player={player}&champion={champion}&platform={platform}") as r:
             text = await r.text()
             text = text.replace('-', '|')
