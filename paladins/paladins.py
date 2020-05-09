@@ -26,7 +26,7 @@ class Paladins(commands.Cog):
             for i in range(test):
                 newlist.append(text[i])
             #build embed
-            desc = "".join(newlist)
+            desc = " ".join(newlist)
             e = discord.Embed(
                 color=await self.bot.get_embed_color(ctx),
                 description=f"{desc}",
