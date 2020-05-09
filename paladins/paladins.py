@@ -39,7 +39,9 @@ class Paladins(commands.Cog):
             e.add_field(name="Score", value=text[0][10])
             e.set_author(name=f"Paladins: showing last match", icon_url="https://vignette.wikia.nocookie.net/steamtradingcards/images/7/7d/Paladins_Badge_1.png/revision/latest/top-crop/width/300/height/300?cb=20161215201250")
             e.set_footer(text="Data provided by nonsocial.herokuapp.com")
-            await ctx.send(embed=e)
+            #await ctx.send(embed=e)
+            await ctx.send(avatar)
+            awqit ctx.send(avatarurl)
             
     @commands.command()
     async def stalk(self, ctx, player, platform="pc"):
