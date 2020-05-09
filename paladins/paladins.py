@@ -19,14 +19,14 @@ class Paladins(commands.Cog):
         """If you have a name with space in it please use a double quote like so "john doe" """
         async with self.session.get(f"https://nonsocial.herokuapp.com/api/lastmatch?player={player}&platform={platform}") as r:
             text = await r.text()
-            text = re.sub('[():]', '', text)
+            #text = re.sub('[():]', '', text)
             text = text.split('|')
             test = len(text)
             newlist = []
             for i in range(test):
                 newlist.append(text[i])
             #build embed
-            desc = " ".join(newlist)
+            desc = '\n'.join(newlist)
             e = discord.Embed(
                 color=await self.bot.get_embed_color(ctx),
                 description=f"{desc}",
