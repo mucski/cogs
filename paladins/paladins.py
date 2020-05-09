@@ -34,7 +34,7 @@ class Paladins(commands.Cog):
             e.set_thumbnail(url=avatarurl)
             e.add_field(name="Map", value=text[0][1])
             e.add_field(name="Match Id:", value=text[0][2])
-            e.add_field(name="Duration", value=text[0][3])
+            e.add_field(name="Duration", value=f"{text[0][3]} minutes")
             e.add_field(name="Region", value=region)
             e.add_field(name="Champion", value=text[0][5])
             e.add_field(name="KDA", value=f"{text[0][6]} ({text[0][7]})")
