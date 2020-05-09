@@ -23,7 +23,9 @@ class Paladins(commands.Cog):
             text = await r.text()
             #pain im the ass regex, domt touch
             text = re.findall(r"([\w]+)([\w?\s]+).*Id:\s(\d+).*tion:\s(\d+)m.*ion:\s([\w\s🇺🇸]+)\W+([\w?:|\w\s?]+)\W+([\d/]+)\s-\s([\d.]+).*ee:\s(\d+).*ge:\s([\d,]+).*ts:\s([\d,]+).*ore:\s([\d/]+)", text)
-            avatar = text[0][5].replace(' ', '-')
+            avatar = text[0][5].replace(' ', '')
+            if avatar == "bombking" or avatar == "shalin":
+                avatar = avatar.replace("bombking", "bomb-king").replace("shalin", "sha-lin")
             avatarurl = f"https://web2.hirez.com/paladins/champion-icons/{avatar.lower()}.jpg"
             e = discord.Embed(color=await self.bot.get_embed_color(ctx))
             e.set_thumbnail(url=avatarurl)
