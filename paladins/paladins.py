@@ -21,7 +21,7 @@ class Paladins(commands.Cog):
         """Shows last played match by ``player``"""
         async with self.session.get(f"https://nonsocial.herokuapp.com/api/lastmatch?player={player}&platform={platform}") as r:
             text = await r.text()
-            text = re.findall(r"([\w ]+)\s.Match Id:\s(\d+)\s\|.Duration:\s(\d+)\w+\s\|.Region:\s([\w]+)\):\s([\w\s]+)\((\d+/\d+/\d+)\s-\s(\d+).KDA\)\s.illing\sspree:\s(\d+)\s\|\sDamage:\s([\d,]+)\s\|\sCredits:\s([\d,]+)\s-\ \w+\s\(\w+:\s([\d/]+)", text)
+            text = re.findall(r"([\w\s]+)\W\w+\W+\w+\W+(\d+)\W+\w+\W+(\d+)\w+\W+\w+\W+([\w\s]+)\W+([\w\s]+)\W+([\d/]+)\W+([\d.]+)\W+\w+\W+\w*\W+\w*\W*(\d+)\W*\w*\W*([\d,]*)\W*\w*\W*([\d,]+)\W*\w*\W*\w*\W*([\d/]+)", text)
             e = discord.Embed(color=await self.bot.get_embed_color(ctx))
             e.add_field(name="Map", value=text[0][0])
             e.add_field(name="Match Id:", value=text[0][1])
