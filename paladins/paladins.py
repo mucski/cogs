@@ -41,7 +41,7 @@ class Paladins(commands.Cog):
             e.set_footer(text="Data provided by nonsocial.herokuapp.com")
             #await ctx.send(embed=e)
             await ctx.send(avatar)
-            awqit ctx.send(avatarurl)
+            await ctx.send(avatarurl)
             
     @commands.command()
     async def stalk(self, ctx, player, platform="pc"):
