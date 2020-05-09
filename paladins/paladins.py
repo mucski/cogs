@@ -24,6 +24,7 @@ class Paladins(commands.Cog):
             #pain im the ass regex, domt touch
             text = re.findall(r"([\w]+)([\w?\s]+).*Id:\s(\d+).*tion:\s(\d+)m.*ion:\s([\w\s🇺🇸]+)\W+([\w?:|\w\s?]+)\W+([\d/]+)\s-\s([\d.]+).*ee:\s(\d+).*ge:\s([\d,]+).*ts:\s([\d,]+).*ore:\s([\d/]+)", text)
             avatar = text[0][5].replace(' ', '')
+            region = text[0][4].replace('🇺🇸', 'North America')
             if avatar == "bombking" or avatar == "shalin":
                 avatar = avatar.replace("bombking", "bomb-king").replace("shalin", "sha-lin")
             avatarurl = f"https://web2.hirez.com/paladins/champion-icons/{avatar.lower()}.jpg"
@@ -32,7 +33,7 @@ class Paladins(commands.Cog):
             e.add_field(name="Map", value=text[0][1])
             e.add_field(name="Match Id:", value=text[0][2])
             e.add_field(name="Duration", value=text[0][3])
-            e.add_field(name="Region", value=text[0][4])
+            e.add_field(name="Region", value=region)
             e.add_field(name="Champion", value=text[0][5])
             e.add_field(name="KDA", value=f"{text[0][6]} ({text[0][7]})")
             e.add_field(name="Kill Spree", value=text[0][8])
@@ -41,9 +42,7 @@ class Paladins(commands.Cog):
             e.add_field(name="Score", value=text[0][11])
             e.set_author(name=f"Paladins: showing last match", icon_url="https://vignette.wikia.nocookie.net/steamtradingcards/images/7/7d/Paladins_Badge_1.png/revision/latest/top-crop/width/300/height/300?cb=20161215201250")
             e.set_footer(text="Data provided by nonsocial.herokuapp.com")
-            #await ctx.send(embed=e)
-            await ctx.send(avatar)
-            await ctx.send(avatarurl)
+            await ctx.send(embed=e)
             
     @commands.command()
     async def stalk(self, ctx, player, platform="pc"):
