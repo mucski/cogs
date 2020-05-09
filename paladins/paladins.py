@@ -23,7 +23,7 @@ class Paladins(commands.Cog):
             text = await r.text()
             text = text.replace('-', '|').replace('Match', '|').replace('Id', 'Match Id')
             text = re.sub('[()]', '', text)
-            text = text.split('| ')
+            text = text.split('| ').split('Region:')
             test = len(text)
             newlist = []
             for i in range(test):
