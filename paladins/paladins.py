@@ -6,17 +6,16 @@ from redbot.core import commands, Config
 from redbot.core.utils.predicates import MessagePredicate
 
 class Paladins(commands.Cog):
+    """ If you have a name with spaces in it please wrap it in double quotes like so
+    .last "my long name"
+    Champion names with space can be typed as so instead .kda myname bombking or shalin
+    """
     def __init__(self, bot):
         self.bot = bot
     #thanks DevilXD
         self.session = aiohttp.ClientSession()
     def cog_unload(self):
         asyncio.create_task(self.session.close())
-          
-    """ If you have a name with spaces in it please wrap it in double quotes like so
-    .last "my long name"
-    Champion names with space can be typed as so instead .kda myname bombking or shalin
-    """
           
     # shit rewrite
     @commands.command()
@@ -99,7 +98,7 @@ class Paladins(commands.Cog):
                 color=await self.bot.get_embed_color(ctx),
                 description=f"{desc}",
             )
-            e.set_author(name=f"Paladins: showing rank for {player}", icon_url="https://vignette.wikia.nocookie.net/steamtradingcards/images/7/7d/Paladins_Badge_1.png/revision/latest/top-crop/width/300/height/300?cb=20161215201250")
+            e.set_author(name=f"Paladins: showing ranked k/d/a for {player}", icon_url="https://vignette.wikia.nocookie.net/steamtradingcards/images/7/7d/Paladins_Badge_1.png/revision/latest/top-crop/width/300/height/300?cb=20161215201250")
             e.set_footer(text="Data provided by nonsocial.herokuapp.com")
             await ctx.send(embed=e)
             
@@ -120,7 +119,7 @@ class Paladins(commands.Cog):
                 color=await self.bot.get_embed_color(ctx),
                 description=f"{desc}",
             )
-            e.set_author(name=f"Paladins: showing kill/death/assist ratio for {player}", icon_url="https://vignette.wikia.nocookie.net/steamtradingcards/images/7/7d/Paladins_Badge_1.png/revision/latest/top-crop/width/300/height/300?cb=20161215201250")
+            e.set_author(name=f"Paladins: showing casual k/d/a for {player}", icon_url="https://vignette.wikia.nocookie.net/steamtradingcards/images/7/7d/Paladins_Badge_1.png/revision/latest/top-crop/width/300/height/300?cb=20161215201250")
             e.set_footer(text="Data provided by nonsocial.herokuapp.com")
             await ctx.send(embed=e)
             
