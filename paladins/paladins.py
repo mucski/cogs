@@ -22,11 +22,11 @@ class Paladins(commands.Cog):
             text = re.sub('[():]', '', text)
             text = text.split('|')
             for i in text:
-                text = i
+                desc = i
             #build embed
             e = discord.Embed(
                 color=await self.bot.get_embed_color(ctx),
-                description=f"{text}",
+                description=f"{desc}",
             )
             e.set_author(name="Paladins stats", icon_url="https://vignette.wikia.nocookie.net/steamtradingcards/images/7/7d/Paladins_Badge_1.png/revision/latest/top-crop/width/300/height/300?cb=20161215201250")
             e.set_footer(text="Data provided by nonsocial.herokuapp.com")
