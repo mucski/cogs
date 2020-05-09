@@ -22,7 +22,7 @@ class Paladins(commands.Cog):
         async with self.session.get(f"https://nonsocial.herokuapp.com/api/lastmatch?player={player}&platform={platform}") as r:
             text = await r.text()
             text = re.findall(r"([\w\s]+)\W\w+\W+\w+\W+(\d+)\W+\w+\W+(\d+)\w+\W+\w+\W+([\w\s]+)\W+([\w\s]+)\W+([\d/]+)\W+([\d.]+)\W+\w+\W+\w*\W+\w*\W*(\d+)\W*\w*\W*([\d,]*)\W*\w*\W*([\d,]+)\W*\w*\W*\w*\W*([\d/]+)", text)
-            avatar = text[0][4].replace(' ', '-')
+            avatar = text[0][4].replace('  ', '-')
             avatarurl = f"https://web2.hirez.com/paladins/champion-icons/{avatar.lower()}.jpg"
             e = discord.Embed(color=await self.bot.get_embed_color(ctx))
             e.set_thumbnail(url=avatarurl)
