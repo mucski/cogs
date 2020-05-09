@@ -23,6 +23,8 @@ class Paladins(commands.Cog):
             text = await r.text()
             #pain im the ass regex, domt touch
             text = re.findall(r"([\w]+)([\w?\s]+).*Id:\s(\d+).*tion:\s(\d+)m.*ion:\s([\w\s🇺🇸]+)\W+([\w?:|\w\s?]+)\W+([\d/]+)\s-\s([\d.]+).*ee:\s(\d+).*ge:\s([\d,]+).*ts:\s([\d,]+).*ore:\s([\d/]+)", text)
+            if not text:
+                await ctx.send(f':x: wrong player name or platform. If your name contains spaces please use double quortes ``.last "{player}"``')
             avatar = text[0][5].replace(' ', '')
             region = text[0][4].replace('🇺🇸', 'North America')
             if avatar == "bombking" or avatar == "shalin":
