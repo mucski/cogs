@@ -37,7 +37,7 @@ class Paladins(commands.Cog):
             
     @commands.command()
     async def stalk(self, ctx, player, platform="pc"):
-        async with self.session.get(f"https://nonsocial.herokuapp.com/api/stalk?player={player}&platform={platform}")
+        async with self.session.get(f"https://nonsocial.herokuapp.com/api/stalk?player={player}&platform={platform}") as r:
             text = await r.text()
             text = re.sub('[()]', '', text)
             text = text.split('| ')
