@@ -103,8 +103,8 @@ class Paladins(commands.Cog):
             text = re.findall(r"([\w]+).*vel\s(\d+).*is\s([\w\s\d]+)\W(\d+).*,\s(\d+).*th\s(\d+).*and\s(\d+).*al:\s([\d.]+).*ed:\s([\d.]+)", text)
             #winrateRanked = text[0][9]
             #winrateGlobal = text[0][8]
-            wins = text[0][6]
-            losses = text[0][7]
+            wins = text[0][5]
+            losses = text[0][6]
             e = discord.Embed(color=await self.bot.get_embed_color(ctx))
             e.set_author(name=f"Paladins: showing ranked k/d/a", icon_url="https://vignette.wikia.nocookie.net/steamtradingcards/images/7/7d/Paladins_Badge_1.png/revision/latest/top-crop/width/300/height/300?cb=20161215201250")
             e.add_field(name="Name", value=text[0][0])
