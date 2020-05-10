@@ -100,7 +100,7 @@ class Paladins(commands.Cog):
         """Shows ``player`` rank and ranked k/d/a"""
         async with self.session.get(f"https://nonsocial.herokuapp.com/api/rank?player={player}&platform={platform}") as r:
             text = await r.text()
-            text = re.findall(r"([\w]+).*vel\s(\d+).*is\s([\w\s\d]+)\W(\d+).*,\s(\d+).*th\s(\d+).*and\s(\d+).*al:\s([\d.]+).*ed:\s([\d.]+)")
+            text = re.findall(r"([\w]+).*vel\s(\d+).*is\s([\w\s\d]+)\W(\d+).*,\s(\d+).*th\s(\d+).*and\s(\d+).*al:\s([\d.]+).*ed:\s([\d.]+)", text)
             winrateRanked = text[0][9]
             winrateGlobal = text[0][8]
             wins = text[0][6]
