@@ -37,6 +37,7 @@ class Mucski2(commands.Cog):
         default_user = {"author_name": None, "score": {}, "total": 0}
         self.conf.register_user(**defaults)
         self.conf.register_guild(**default_guild)
+        self.load_check = self.boot.loop.create_task(self._worker(ctx))
 
     
     #Get thet bot color for embeds 'await self.color(ctx)'
@@ -58,15 +59,17 @@ class Mucski2(commands.Cog):
             channel = ctx.channel
         e = discord.Embed(color=await self.bot.get_embed_color(ctx), description=text)
         e.set_author(name=f"{self.bot.user.name}' giveaway", icon_url=self.bot.user.avatar_url)
-        e.set_footer(text=f"Giveaway code by Mucski | giveaway will run for {time}")
+        e.set_footer(text=f"Giveaway code by Mucski | giveaway will run for {time} minutes")
         msg = await channel.send(embed=e)
         await msg.add_reaction("💎")
+        now = datetime.utcnow()
+        timer = timedelta(minutes=time)
+        future = timer + now
         await self.conf.guild(ctx.guild).channel.set(channel.id)
         await self.conf.guild(ctx.guild).message.set(msg.id)
-        await self.conf.guild(ctx.guild).vip_timer.set(int(time))
-        #automation
-        await asyncio.sleep(int(time))
-        await self._stop(ctx)
+        await self.conf.guild(ctx.guild).vip_stamp.set(future.timestamp())
+        remaining = future - now
+        await self._timer(ctx, remaining)
             
     #@vip.command()
     async def _stop(self, ctx):
@@ -98,6 +101,34 @@ class Mucski2(commands.Cog):
         randomize = random.choice(users)
         await message.edit(embed=a)
         await channel.send(f"The winner is {randomize.mention}, congratulations.")
+        
+    async def _worker(self, ctx):
+        try:
+            await self.bot.wait_until_ready()
+            guilds = [self.bot.get_guild(guild) for guild in await self.conf.all_guilds()]
+            for guild in guilds:
+                now = datetime.utcnow()
+                stamp = await self.conf.guild(guild).vip_stamp()
+                stamp = datetime.fromtimestamp(stamp)
+                remaining = stamp - now
+                if stamp < now:
+                    await self._stop(ctx)
+                else:
+                    await asyncio.gather(self._timer(ctx, remaining))
+        except Exception as e:
+            print(e)
+    
+    async def _timer(self, ctx, remaining):
+        await asyncio.sleep(remaining)
+        message = await self.conf.guild(ctx.guild).message()
+        if message:
+            await self._stop(ctx)
+            
+    def cog_unload(self):
+        self.__unload()
+        
+    def __unload(self):
+        self.load_check.cancel()
     
     @commands.command()
     async def who(self, ctx, channel: discord.TextChannel, messageid: int):
