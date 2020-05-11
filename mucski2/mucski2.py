@@ -37,7 +37,7 @@ class Mucski2(commands.Cog):
         default_user = {"author_name": None, "score": {}, "total": 0}
         self.conf.register_user(**defaults)
         self.conf.register_guild(**default_guild)
-        self.load_check = self.bot.loop.create_task(self._worker(ctx))
+        self.load_check = self.bot.loop.create_task(self._worker())
 
     
     #Get thet bot color for embeds 'await self.color(ctx)'
@@ -102,7 +102,7 @@ class Mucski2(commands.Cog):
         await message.edit(embed=a)
         await channel.send(f"The winner is {randomize.mention}, congratulations.")
         
-    async def _worker(self, ctx):
+    async def _worker(self):
         try:
             await self.bot.wait_until_ready()
             guilds = [self.bot.get_guild(guild) for guild in await self.conf.all_guilds()]
