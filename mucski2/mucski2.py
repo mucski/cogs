@@ -28,7 +28,7 @@ class Mucski2(commands.Cog):
             "vip_stamp": 0,
         }
         default_guild = {
-            "vip_timer": 900,
+            "vip_timer": 0,
             #"hunt_interval_maximum": 3600,
             #"wait_for_bang_timeout": 20,
             "channel": 0,
@@ -53,19 +53,23 @@ class Mucski2(commands.Cog):
         pass
     
     @vip.command()
-    async def start(self, ctx, channel: discord.TextChannel=None, *, text="Daily ☢️V.I.P Supreme☢️ giveaway.\nReact bellow to enter 💎"):
+    async def start(self, ctx, channel: discord.TextChannel=None, *, text="Daily ☢️V.I.P Supreme☢️ giveaway.\nReact bellow to enter 💎", time=5):
         if channel == None:
             channel = ctx.channel
         e = discord.Embed(color=await self.bot.get_embed_color(ctx), description=text)
         e.set_author(name=f"{self.bot.user.name}' giveaway", icon_url=self.bot.user.avatar_url)
-        e.set_footer(text="Giveaway code by Mucski")
+        e.set_footer(text=f"Giveaway code by Mucski | giveaway will run for {time}")
         msg = await channel.send(embed=e)
         await msg.add_reaction("💎")
         await self.conf.guild(ctx.guild).channel.set(channel.id)
         await self.conf.guild(ctx.guild).message.set(msg.id)
+        await self.conf.guild(ctx.guild).vip_timer.set(time)
+        #automation
+        asyncio.sleep(time)
+        await _stop(self, ctx)
             
-    @vip.command()
-    async def stop(self, ctx):
+    #@vip.command()
+    async def _stop(self, ctx):
         msg = await self.conf.guild(ctx.guild).message()
         channel = await self.conf.guild(ctx.guild).channel()
         if not channel:
