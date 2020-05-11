@@ -37,7 +37,7 @@ class Mucski2(commands.Cog):
         default_user = {"author_name": None, "score": {}, "total": 0}
         self.conf.register_user(**defaults)
         self.conf.register_guild(**default_guild)
-        self.load_check = self.boot.loop.create_task(self._worker(ctx))
+        self.load_check = self.bot.loop.create_task(self._worker(ctx))
 
     
     #Get thet bot color for embeds 'await self.color(ctx)'
