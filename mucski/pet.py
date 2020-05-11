@@ -58,3 +58,16 @@ class Pet(commands.Cog):
                 e.add_field(name="On Mission", value="Nope")
             e.set_footer(text="Dont forget to feed your pet often especially after a mission.")
             await ctx.send(embed=e)
+            
+    @pet.command()
+    async def rename(self, ctx, name):
+        if not await self.conf.user(ctx.author).pets():
+            await ctx.send("You dont own any pets")
+            return
+        if len(name) > 23:
+            await ctx.send("Lets not, okay? Try a shorter name (23 chars max)")
+            return
+        async with self.conf.user(ctx.author).pets() as pet:
+            pet['name'] = name
+            await ctx.send(f"Your pet is now called {pet}")
+        
