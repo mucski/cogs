@@ -60,7 +60,7 @@ class Pet(commands.Cog):
             await ctx.send(embed=e)
             
     @pet.command()
-    async def rename(self, ctx, name):
+    async def rename(self, ctx, *, name):
         if not await self.conf.user(ctx.author).pets():
             await ctx.send("You dont own any pets")
             return
@@ -69,5 +69,5 @@ class Pet(commands.Cog):
             return
         async with self.conf.user(ctx.author).pets() as pet:
             pet['name'] = name
-            await ctx.send(f"Your pet is now called {pet}")
+            await ctx.send(f"Your pet is now called {name}")
         
