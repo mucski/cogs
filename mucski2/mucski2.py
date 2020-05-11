@@ -119,7 +119,7 @@ class Mucski2(commands.Cog):
             print(e)
     
     async def _timer(self, ctx, remaining):
-        await asyncio.sleep(remaining)
+        await asyncio.sleep(timedelta(minutes=remaining))
         message = await self.conf.guild(ctx.guild).message()
         if message:
             await self._stop(ctx)
