@@ -10,7 +10,7 @@ class Shop(commands.Cog):
     
     @shop.command()
     async def pets(self, ctx):
-        e = discord.Embed()
+        e = discord.Embed(color=await self.bot.get_embed_color(ctx))
         e.set_author(name="Pet shop", icon_url=ctx.guild.icon_url)
         e.set_thumbnail(url="https://previews.123rf.com/images/aleksandrax/aleksandrax1704/aleksandrax170400024/76191652-logo-for-pet-shop-veterinary-clinic-animal-shelter-designed-in-a-modern-style-vector-lines-.jpg")
         e.set_footer(text="Buy and own a pet from the above list with .pet buy petname")
