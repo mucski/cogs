@@ -25,5 +25,26 @@ class Pet(commands.Cog):
             pet["clean"] = 100
             pet["type"] = name.lower()
         coins -= price
+        if coins <= 0:
+            await ctx.send("Not enough coins to buy a pet, sorry.")
+            return
         await self.conf.user(ctx.author).coins.set(coins)
         await ctx.send(f"You bought {pet}")
+        
+    @pet.command()
+    async def info(self, ctx):
+        if not self.conf.user(ctx.author).pets():
+            await ctx.send("You dont own any pets.")
+            return
+        async with self.conf.user(ctx.author).pets() as pet:
+            e = discord.Embed()
+            e.add_field(name="Name", value=pet["name"])
+            e.add_field(name="Type", value=pet["type"])
+            e.add_field(name="Hunger", value=pet["hunger"])
+            e.add_field(name="Happy", value=pet["happy"])
+            e.add_field(name="Clean", value=pet["clean"])
+            if pet["mission"] == True:
+                e.add_field(name="On Mission", value="Yes, remaining:")
+            else:
+                e.add_field(name="On Mission", value="Nope")
+            await ctx.send(embed=e)
