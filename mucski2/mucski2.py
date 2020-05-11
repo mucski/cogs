@@ -71,6 +71,7 @@ class Mucski2(commands.Cog):
         await self.conf.guild(ctx.guild).vip_stamp.set(future)
         tempStamp = datetime.fromtimestamp(future)
         remaining = tempStamp - now
+        remaining = int(remaining.seconds)
         await self._timer(ctx, remaining)
             
     #@vip.command()
