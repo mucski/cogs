@@ -3,7 +3,7 @@ import random
 import asyncio
 import math
 from datetime import datetime, timedelta
-from tabulate import tabulate
+import tabulate
 
 from redbot.core import commands, checks, Config
 from redbot.core.utils.chat_formatting import bold, box, humanize_timedelta, pagify
