@@ -68,7 +68,7 @@ class Mucski2(commands.Cog):
         await self.conf.guild(ctx.guild).channel.set(channel.id)
         await self.conf.guild(ctx.guild).message.set(msg.id)
         await self.conf.guild(ctx.guild).vip_stamp.set(future.timestamp())
-        remaining = future - now
+        remaining = future.timestamp() - now
         await self._timer(ctx, remaining)
             
     #@vip.command()
