@@ -21,7 +21,6 @@ class Pet(commands.Cog):
             await ctx.send("Not enough coins to buy that pet.")
             return
         async with self.conf.user(ctx.author).pets() as pet:
-            pet["owned"] = True
             pet["name"] = name.capitalize()
             pet["mission"] = False
             pet["hunger"] = 100
