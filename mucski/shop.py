@@ -12,11 +12,11 @@ class Shop(commands.Cog):
     async def pets(self, ctx):
         for k, v in petlist.items():
             #build embed
-            e = discord.Embed()
+        e = discord.Embed()
             e.add_field(name="Pet", value=k)
             e.add_field(name="Description", value=v['description'])
             e.add_field(name="Price", value=v['price'])
             e.add_field(name="Emoji", value=v['emoji'])
-            await ctx.send(embed=e)
+        await ctx.send(embed=e)
             
         
