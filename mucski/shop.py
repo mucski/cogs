@@ -13,10 +13,10 @@ class Shop(commands.Cog):
         for k, v in petlist.items():
             #build embed
             e = discord.Embed()
-            e.add_field("Pet", value=k)
-            e.add_field("Description", value=v['description'])
-            e.add_field("Price", value=v['price'])
-            e.add_field("Price", value=v['emoji'])
+            e.add_field(name="Pet", value=k)
+            e.add_field(name="Description", value=v['description'])
+            e.add_field(name="Price", value=v['price'])
+            e.add_field(name="Emoji", value=v['emoji'])
             await ctx.send(embed=e)
             
         
