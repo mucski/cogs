@@ -11,7 +11,7 @@ class Shop(commands.Cog):
     @shop.command()
     async def pets(self, ctx):
         for k, v in petlist.items():
-            test = petlist[k][v]
+            test = k
             await ctx.send(test)
             
         
