@@ -53,7 +53,7 @@ class Mucski2(commands.Cog):
         pass
     
     @vip.command()
-    async def start(self, ctx, channel: discord.TextChannel=None, *, text="Daily ☢️V.I.P Supreme☢️ giveaway.\nReact bellow to enter 💎", time=5):
+    async def start(self, ctx, channel: discord.TextChannel=None, *, text="Daily ☢️V.I.P Supreme☢️ giveaway.\nReact bellow to enter 💎", time="5"):
         if channel == None:
             channel = ctx.channel
         e = discord.Embed(color=await self.bot.get_embed_color(ctx), description=text)
@@ -65,7 +65,7 @@ class Mucski2(commands.Cog):
         await self.conf.guild(ctx.guild).message.set(msg.id)
         await self.conf.guild(ctx.guild).vip_timer.set(time)
         #automation
-        asyncio.sleep(time)
+        asyncio.sleep(int(time))
         await self._stop(ctx)
             
     #@vip.command()
