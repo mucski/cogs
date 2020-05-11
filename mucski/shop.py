@@ -10,9 +10,9 @@ class Shop(commands.Cog):
     
     @shop.command()
     async def pets(self, ctx):
+        e = discord.Embed()
         for k, v in petlist.items():
             #build embed
-        e = discord.Embed()
             e.add_field(name="Pet", value=k)
             e.add_field(name="Description", value=v['description'])
             e.add_field(name="Price", value=v['price'])
