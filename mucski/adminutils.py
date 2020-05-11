@@ -22,7 +22,7 @@ class AdminUtils(commands.Cog):
         await ctx.send(f"{member.name} got {amt} now.")
         
     @adm.command()
-    async def removecoin(self, ctx, amt: int, member = discord.Member=None):
+    async def removecoin(self, ctx, amt: int, member: discord.Member=None):
         if not member:
             member = ctx.author
         if not amt:
