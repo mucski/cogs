@@ -65,7 +65,7 @@ class Mucski2(commands.Cog):
         await self.conf.guild(ctx.guild).message.set(msg.id)
         await self.conf.guild(ctx.guild).vip_timer.set(time)
         #automation
-        asyncio.sleep(int(time))
+        await asyncio.sleep(int(time))
         await self._stop(ctx)
             
     #@vip.command()
