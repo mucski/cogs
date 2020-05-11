@@ -45,7 +45,7 @@ class Pet(commands.Cog):
                 imgurl = "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcT_w1ALeih26Wp894rn7xPiJBHfRQHlei6FFenhgshqHUAIXQ0G&usqp=CAU"
             if pet["type"] == "dog":
                 imgurl = "https://content3.jdmagicbox.com/comp/hyderabad/b6/040pxx40.xx40.170814152340.z1b6/catalogue/k-s-pets-services-ecil-hyderabad-dog-boardings-1knoqwn9vh.jpg?clr=4a4a1c"
-            e = discord.Embed()
+            e = discord.Embed(color=await self.bot.get_embed_color(ctx))
             e.set_author(name=f"{ctx.author.name}'s {pet['type']}", icon_url=imgurl)
             e.set_thumbnail(url=imgurl)
             e.add_field(name="Name", value=pet["name"])
