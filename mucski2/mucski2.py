@@ -63,7 +63,7 @@ class Mucski2(commands.Cog):
         await msg.add_reaction("💎")
         await self.conf.guild(ctx.guild).channel.set(channel.id)
         await self.conf.guild(ctx.guild).message.set(msg.id)
-        await self.conf.guild(ctx.guild).vip_timer.set(time)
+        await self.conf.guild(ctx.guild).vip_timer.set(int(time))
         #automation
         await asyncio.sleep(int(time))
         await self._stop(ctx)
