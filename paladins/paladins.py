@@ -16,6 +16,7 @@ class Paladins(commands.Cog):
         asyncio.create_task(self.session.close())
            
     # shit rewrite
+    # regex is hard plz help
     @commands.command()
     async def last(self, ctx, player, platform="pc"):
         """Shows last played match by ``player``"""
@@ -48,97 +49,6 @@ class Paladins(commands.Cog):
             e.add_field(name="Credits", value=text[0][10])
             e.add_field(name="Score", value=text[0][11])
             e.set_author(name=f"Paladins: showing last match", icon_url="https://vignette.wikia.nocookie.net/steamtradingcards/images/7/7d/Paladins_Badge_1.png/revision/latest/top-crop/width/300/height/300?cb=20161215201250")
-            e.set_footer(text="Data provided by nonsocial.herokuapp.com")
-            await ctx.send(embed=e)
-            
-    @commands.command()
-    async def stalk(self, ctx, player, platform="pc"):
-        """Shows online/offline status of ``player``"""
-        async with self.session.get(f"https://nonsocial.herokuapp.com/api/stalk?player={player}&platform={platform}") as r:
-            text = await r.text()
-            text = text.replace('-', '|')
-            text = re.sub('[()]', '', text)
-            text = text.split('| ')
-            test = len(text)
-            newlist = []
-            for i in range(test):
-                newlist.append(text[i])
-            #build embed
-            desc = '\n'.join(newlist)
-            e = discord.Embed(
-                color=await self.bot.get_embed_color(ctx),
-                description=f"{desc}",
-            )
-            e.set_author(name=f"Paladins: showing online/offline status", icon_url="https://vignette.wikia.nocookie.net/steamtradingcards/images/7/7d/Paladins_Badge_1.png/revision/latest/top-crop/width/300/height/300?cb=20161215201250")
-            e.set_footer(text="Data provided by nonsocial.herokuapp.com")
-            await ctx.send(embed=e)
-            
-    @commands.command()
-    async def current(self, ctx, player, platform="pc"):
-        """Shows players in current match and their rank"""
-        async with self.session.get(f"https://nonsocial.herokuapp.com/api/live_match?player={player}&platform={platform}") as r:
-            text = await r.text()
-            text = text.replace('-', '|').replace(',', '|')
-            text = re.sub('[()]', '', text)
-            text = text.split('| ')
-            test = len(text)
-            newlist = []
-            for i in range(test):
-                newlist.append(text[i])
-            #build embed
-            desc = '\n'.join(newlist)
-            e = discord.Embed(
-                color=await self.bot.get_embed_color(ctx),
-                description=f"{desc}",
-            )
-            e.set_author(name=f"Paladins: showing current match", icon_url="https://vignette.wikia.nocookie.net/steamtradingcards/images/7/7d/Paladins_Badge_1.png/revision/latest/top-crop/width/300/height/300?cb=20161215201250")
-            e.set_footer(text="Data provided by nonsocial.herokuapp.com")
-            await ctx.send(embed=e)
-            
-    @commands.command()
-    async def rank(self, ctx, player, platform="pc"):
-        """Shows ``player`` rank and ranked k/d/a"""
-        async with self.session.get(f"https://nonsocial.herokuapp.com/api/rank?player={player}&platform={platform}") as r:
-            text = await r.text()
-            text = re.findall(r"([\w]+).*vel\s(\d+).*is\s([\w\s\d]+)\W(\d+).*,\s(\d+).*th\s(\d+).*and\s(\d+).*al:\s([\d.]+).*ed:\s([\d.]+)", text)
-            #winrateRanked = text[0][9]
-            #winrateGlobal = text[0][8]
-            wins = text[0][5]
-            losses = text[0][6]
-            e = discord.Embed(color=await self.bot.get_embed_color(ctx))
-            e.set_author(name=f"Paladins: showing ranked k/d/a", icon_url="https://vignette.wikia.nocookie.net/steamtradingcards/images/7/7d/Paladins_Badge_1.png/revision/latest/top-crop/width/300/height/300?cb=20161215201250")
-            e.add_field(name="Name", value=text[0][0])
-            e.add_field(name="Level", value=text[0][1])
-            e.add_field(name="Rank", value=text[0][2])
-            #e.add_field(name="Winrate Ranked")
-            #e.add_field(name="Winrate Global")
-            #e.add_field(name="Wins and losses")
-            #e.set_footer(text="Data provided by nonsocial.herokuapp.com")
-            #await ctx.send(embed=e)
-            await ctx.send(text[0][0])
-            await ctx.send(text[0][1])
-            await ctx.send(wins)
-            await ctx.send(losses)
-            
-    @commands.command()
-    async def kda(self, ctx, player, champion="", platform="pc"):
-        """Shows ``player`` casual k/d/a"""
-        async with self.session.get(f"https://nonsocial.herokuapp.com/api/kda?player={player}&champion={champion}&platform={platform}") as r:
-            text = await r.text()
-            text = text.replace('-', '|')
-            text = re.sub('[()]', '', text)
-            text = text.split('| ')
-            test = len(text)
-            newlist = []
-            for i in range(test):
-                newlist.append(text[i])
-            #build embed
-            desc = '\n'.join(newlist)
-            e = discord.Embed(
-                color=await self.bot.get_embed_color(ctx),
-                description=f"{desc}",
-            )
-            e.set_author(name=f"Paladins: showing casual k/d/a", icon_url="https://vignette.wikia.nocookie.net/steamtradingcards/images/7/7d/Paladins_Badge_1.png/revision/latest/top-crop/width/300/height/300?cb=20161215201250")
             e.set_footer(text="Data provided by nonsocial.herokuapp.com")
             await ctx.send(embed=e)
             
