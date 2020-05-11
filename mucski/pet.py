@@ -33,7 +33,7 @@ class Pet(commands.Cog):
         
     @pet.command()
     async def info(self, ctx):
-        if not self.conf.user(ctx.author).pets():
+        if not await self.conf.user(ctx.author).pets():
             await ctx.send("You dont own any pets.")
             return
         async with self.conf.user(ctx.author).pets() as pet:
