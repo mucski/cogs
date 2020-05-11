@@ -16,10 +16,9 @@ class Shop(commands.Cog):
         e.set_footer(text="Buy and own a pet from the above list with .pet buy petname")
         for k, v in petlist.items():
             #build embed
-            e.add_field(name="Pet", value=v['emoji'])
+            e.add_field(name=k.capitalize(), value=v['emoji'])
             e.add_field(name="Description", value=v['description'])
             e.add_field(name="Price", value=v['price'])
-            e.add_field(name="Type", value=k)
         await ctx.send(embed=e)
             
         
