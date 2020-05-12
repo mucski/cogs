@@ -105,7 +105,7 @@ class Pet(TaskHelper, commands.Cog):
         remaining = remaining_timedelta.total_seconds()
         async with self.conf.user(ctx.author).pets() as pet:
             pet["mission"] = True
-            pet["remaining"] = remaining
+            pet["remaining"] = remaining_timedelta
         user = ctx.author
         await ctx.send(f"Sent pet on a mission for {humanize_timedelta(timedelta=remaining_timedelta)}")
         await self._timer(remaining, channel, user)
