@@ -6,6 +6,8 @@ from .randomstuff import petlist
 from .taskhelper import TaskHelper
 
 class Pet(TaskHelper, commands.Cog):
+    def __init__(self):
+        pass
     
     @commands.group()
     async def pet(self, ctx):
