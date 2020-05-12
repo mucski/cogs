@@ -45,6 +45,9 @@ class Pet(TaskHelper, commands.Cog):
         if not await self.conf.user(ctx.author).pets():
             await ctx.send("You dont own any pets.")
             return
+        now = datetime.utcnow()
+        stamp = await self.conf.user(ctx.author).p_stamp()
+        remaining = stamp - now
         async with self.conf.user(ctx.author).pets() as pet:
             if pet["type"] == "rock":
                 imgurl = "https://lh3.googleusercontent.com/proxy/ZRgffBPfbnAXUD6Pm3ui_SzB3l8Wk27O1BFr3xXCz2YXNIDXmJcWGW0mVOomB3og9y_mS7cm0o0yIbC5v5urLtfuV89jEK1GOEFCR566-uLb1oGprVo8sHI"
@@ -63,7 +66,7 @@ class Pet(TaskHelper, commands.Cog):
             e.add_field(name="Happy", value=pet["happy"])
             e.add_field(name="Clean", value=pet["clean"])
             if pet["mission"] == True:
-                e.add_field(name="On Mission", value=f"Yes, remaining: {humanize_timedelta(timedelta=pet['remaining'])}")
+                e.add_field(name="On Mission", value=f"Yes, remaining: {humanize_timedelta(timedelta=remaining)}")
             else:
                 e.add_field(name="On Mission", value="Nope")
             e.set_footer(text="Dont forget to feed your pet often "
@@ -105,7 +108,6 @@ class Pet(TaskHelper, commands.Cog):
         remaining = remaining_timedelta.total_seconds()
         async with self.conf.user(ctx.author).pets() as pet:
             pet["mission"] = True
-            pet["remaining"] = remaining_timedelta
         user = ctx.author
         await ctx.send(f"Sent pet on a mission for {humanize_timedelta(timedelta=remaining_timedelta)}")
         await self._timer(remaining, channel, user)
