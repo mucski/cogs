@@ -19,8 +19,6 @@ from .randomstuff import worklist
 from .randomstuff import searchlist
 from .randomstuff import bad_location
 
-Pet.__init__(self)
-
 class Mucski(Pet, AdminUtils, Games, Shop, commands.Cog):
     def __init__(self, bot):
         self.bot = bot
