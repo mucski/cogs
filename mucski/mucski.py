@@ -15,7 +15,7 @@ from .pet import Pet
 from .adminutils import AdminUtils
 from .games import Games
 from .shop import Shop
-from .tashelper import TaskHelper
+from .taskhelper import TaskHelper
 from .randomstuff import worklist
 from .randomstuff import searchlist
 from .randomstuff import bad_location
