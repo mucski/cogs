@@ -89,7 +89,7 @@ shoplist = {
 }
 
 pet_resp = [
-    f'Your {type} ran into the forest, found a cabin and touched a spaghett, and took {amt} coins that were in a cupboard.', 
-    f'Your {type} dressed up as a pirate and venture outwards on the sea, found {amt} coins in a pirate chest on an abandoned island.',
-    f'Your {type} was learning russian so he can say Suka Blyat, Putin awarded him with {amg} coins.',
+    'Your {} ran into the forest, found a cabin and touched a spaghett, and took {} coins that were in a cupboard.', 
+    'Your {} dressed up as a pirate and venture outwards on the sea, found {} coins in a pirate chest on an abandoned island.',
+    'Your {} was learning russian so he can say Suka Blyat, Putin awarded him with {} coins.',
 ]
