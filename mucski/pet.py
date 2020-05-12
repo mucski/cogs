@@ -131,7 +131,7 @@ class Pet(TaskHelper, commands.Cog):
             stamp = datetime.fromtimestamp(user_data['p_stamp'])
             if not stamp:
                 return
-            if stamp > now:
+            if stamp < now:
                 await self._stop(channel, user)
             else:
                 remaining = stamp - now
