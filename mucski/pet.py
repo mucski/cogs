@@ -94,10 +94,10 @@ class Pet(commands.Cog):
         await self._timer(ctx, remaining, member)
         
     async def _timer(self, ctx, remaining, member):
+        await asyncio.sleep(remaining)
         async with self.conf.user(member).pets() as pet:
-            if pet["mission"] == True:
-                await asyncio.sleep(remaining)
-            await self._stop(ctx, member)
+            if pet["mission"] is True:
+                await self._stop(ctx, member)
             
     async def _worker(self):
         try:
@@ -119,6 +119,7 @@ class Pet(commands.Cog):
     async def _stop(self, ctx, member):
         await self.conf.user(member).p_stamp.clear()
         async with self.conf.user(member).pets() as pet:
+            pet["mission"] = False
             await ctx.send(f"{member.mention} your {pet['name']} came back, and brought you joy.")
             
     def cog_unload(self):
