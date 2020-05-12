@@ -86,18 +86,18 @@ class Pet(commands.Cog):
         await self.conf.user(ctx.author).p_stamp.set(future)
         async with self.conf.user(ctx.author).pets() as pet:
             pet["mission"] = True
-            tempStamp = datetime.fromtimestamp(future)
-            remaining = tempStamp - now
-            remaining = int(remaining.seconds)
-            await self._timer(ctx, remaining)
-            await ctx.send("Sent pet on mission")
+        tempStamp = datetime.fromtimestamp(future)
+        remaining = tempStamp - now
+        remaining = int(remaining.seconds)
+        member = ctx.author
+        await self._timer(ctx, remaining, member)
+        await ctx.send("Sent pet on mission")
         
-    async def _timer(self, ctx, remaining):
-        async with self.conf.user(ctx.author).pets() as pet:
+    async def _timer(self, ctx, remaining, member):
+        async with self.conf.user(member).pets() as pet:
             if pet["mission"] == True:
                 await asyncio.sleep(remaining)
-                user = ctx.author
-                await self._stop(ctx, user)
+                await self._stop(ctx, member)
             
     async def _worker(self):
         try:
@@ -108,17 +108,18 @@ class Pet(commands.Cog):
                 stamp = await self.conf.user(user).p_stamp()
                 stamp = datetime.fromtimestamp(stamp)
                 remaining = stamp - now
+                user = member
                 if stamp < now:
-                    await self._stop(ctx, user)
+                    await self._stop(ctx, member)
                 else:
-                    await asyncio.gather(self._timer(ctx, remaining))
+                    await asyncio.gather(self._timer(ctx, remaining, member))
         except Exception as e:
             print(e)
             
-    async def _stop(self, ctx, user):
-        await self.conf.user(user).p_stamp.clear()
-        async with self.conf.user(user).pets() as pet:
-            await ctx.send(f"{user.mention} your {pet['name']} came back, and brought you joy.")
+    async def _stop(self, ctx, member):
+        await self.conf.user(member).p_stamp.clear()
+        async with self.conf.user(member).pets() as pet:
+            await ctx.send(f"{member.mention} your {pet['name']} came back, and brought you joy.")
             
     def cog_unload(self):
         self.__unload()
