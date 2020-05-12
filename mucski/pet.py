@@ -104,8 +104,8 @@ class Pet(TaskHelper, commands.Cog):
         self.load_check.cancel()
         
     async def _timer(self, remaining, channel, user):
-        async with self.conf.user(user).pets() as pet:
-            if pet['mission'] is True:
+        mission = self.conf.user(user).pets.get_raw("mission")
+        if mission:
                 await asyncio.sleep(remaining)
                 await self._stop(channel, user)
             else:
