@@ -95,8 +95,7 @@ class Pet(TaskHelper, commands.Cog):
         await self.conf.user(ctx.author).channel.set(channel.id)
         petStamp = await self.conf.user(ctx.author).p_stamp()
         if petStamp:
-            await ctx.send("Your pet is already in a mission,"
-                            "wait for it to finish.")
+            await ctx.send("Your pet is already in a mission, wait for it to finish.")
             return
         now = datetime.utcnow()
         time = random.randint(5, 15)
@@ -140,7 +139,7 @@ class Pet(TaskHelper, commands.Cog):
     
     async def _stop(self, channel, user):
         await self.conf.user(user).pets.set_raw("mission", value=False)
-        await self.conf.user(user).p_stamp.clear()
+        #await self.conf.user(user).p_stamp.clear()
         type = await self.conf.user(user).pets.get_raw("type")
         await channel.send(f"Yo {user.mention} your {type} returned")
         random_pet_resp = random.choice(pet_resp)
