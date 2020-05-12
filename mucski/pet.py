@@ -125,7 +125,7 @@ class Pet(TaskHelper, commands.Cog):
                 await self._stop(channel, user)
             else:
                 remaining = stamp - now
-                self.schedule_task(self._time(remaining, channel, user))
+                self.schedule_task(self._timer(remaining, channel, user))
     
     async def _stop(self, channel, user):
         await self.conf.user(user).pets.set_raw("mission", value=False)
