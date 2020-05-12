@@ -84,8 +84,6 @@ class Pet(commands.Cog):
         future = timer + now
         future = future.timestamp()
         await self.conf.user(ctx.author).p_stamp.set(future)
-        async with self.conf.user(ctx.author).pets() as pet:
-            pet["mission"] = True
         tempStamp = datetime.fromtimestamp(future)
         remaining = tempStamp - now
         remaining = int(remaining.seconds)
