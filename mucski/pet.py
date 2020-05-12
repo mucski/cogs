@@ -128,9 +128,7 @@ class Pet(TaskHelper, commands.Cog):
             if not channel:
                 return
             stamp = datetime.fromtimestamp(user_data['p_stamp'])
-            if stamp is None:
-                return
-            if stamp < now:
+            if stamp > now:
                 await self._stop(channel, user)
             else:
                 remaining = stamp - now
@@ -139,7 +137,7 @@ class Pet(TaskHelper, commands.Cog):
     
     async def _stop(self, channel, user):
         await self.conf.user(user).pets.set_raw("mission", value=False)
-        #await self.conf.user(user).p_stamp.clear()
+        await self.conf.user(user).p_stamp.clear()
         type = await self.conf.user(user).pets.get_raw("type")
         await channel.send(f"Yo {user.mention} your {type} returned")
         random_pet_resp = random.choice(pet_resp)
@@ -154,3 +152,4 @@ class Pet(TaskHelper, commands.Cog):
         
     def __unload(self):
         self.load_check.cancel()
+        
