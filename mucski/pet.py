@@ -102,10 +102,8 @@ class Pet(TaskHelper, commands.Cog):
         await self._timer(remaining, channel, user)
         
     async def _timer(self, remaining, channel, user):
-        mission = await self.conf.user(user).pets.get_raw("mission")
-        if mission:
-            await asyncio.sleep(remaining)
-            await self._stop(channel, user)
+        await asyncio.sleep(remaining)
+        await self._stop(channel, user)
         
     async def _worker(self):
         await self.bot.wait_until_ready()
@@ -121,12 +119,10 @@ class Pet(TaskHelper, commands.Cog):
             stamp = datetime.fromtimestamp(user_data['p_stamp'])
             if stamp < now:
                 await self._stop(channel, user)
-                return
             else:
                 remaining = stamp - now
                 remaining = remaining.seconds
                 self.schedule_task(self._timer(remaining, channel, user))
-                return
     
     async def _stop(self, channel, user):
         await self.conf.user(user).pets.set_raw("mission", value=False)
