@@ -132,3 +132,8 @@ class Pet(TaskHelper, commands.Cog):
         type = await self.conf.user(user).pets.get_raw("type")
         await channel.send(f"Yo {user.mention} your {type} returned")
         
+    def cog_unload(self):
+        self.__unload()
+        
+    def __unload(self):
+        self.load_check.cancel()
