@@ -133,7 +133,7 @@ class Pet(TaskHelper, commands.Cog):
                 return
             stamp = datetime.fromtimestamp(user_data['p_stamp'])
             if stamp < now:
-                await self._stop(channel, user)
+                #await self._stop(channel, user)
             else:
                 remaining = stamp - now
                 remaining = remaining.total_seconds()
