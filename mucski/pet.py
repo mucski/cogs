@@ -139,4 +139,4 @@ class Pet(TaskHelper, commands.Cog):
         amt = random.randint(30, 60)
         coins += amt
         await self.conf.user(user).coins.set(amt)
-        await channsl.send(random_pet_resp)
+        await channel.send(random_pet_resp.format(type, amt))
