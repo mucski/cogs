@@ -97,12 +97,6 @@ class Pet(commands.Cog):
         await ctx.send("Sent pet on a mission.")
         await self._timer(remaining, channel, user)
         
-    def cog_unload(self):
-        self.__unload()
-        
-    def __unload(self):
-        self.load_check.cancel()
-        
     async def _timer(self, remaining, channel, user):
         mission = self.conf.user(user).pets.get_raw("mission")
         if mission:
