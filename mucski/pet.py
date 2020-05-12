@@ -19,7 +19,11 @@ class Pet(TaskHelper, commands.Cog):
     
     @pet.command()
     async def buy(self, ctx, pet: str):
-        price = petlist[pet]["price"]
+        try:
+            price = petlist[pet]["price"]
+        except KeyError:
+            await ctx.send("There is no such pet.")
+            return
         name = pet
         coins = await self.conf.user(ctx.author).coins()
         if await self.conf.user(ctx.author).pets():
