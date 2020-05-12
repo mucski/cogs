@@ -92,38 +92,3 @@ class Pet(commands.Cog):
         member = ctx.author
         await ctx.send("Sent pet on a mission.")
         await self._timer(ctx, remaining, member)
-        
-    async def _timer(self, ctx, remaining, member):
-        await asyncio.sleep(remaining)
-        async with self.conf.user(member).pets() as pet:
-            if pet["mission"] is True:
-                await self._stop(ctx, member)
-            
-    async def _worker(self):
-        try:
-            await self.bot.wait_until_ready()
-            guilds = [self.bot.get_user(user) for user in await self.conf.all_users()]
-            for user in users:
-                now = datetime.utcnow()
-                stamp = await self.conf.user(user).p_stamp()
-                stamp = datetime.fromtimestamp(stamp)
-                remaining = stamp - now
-                user = member
-                if stamp < now:
-                    await self._stop(ctx, member)
-                else:
-                    await asyncio.gather(self._timer(ctx, remaining, member))
-        except Exception as e:
-            print(e)
-            
-    async def _stop(self, ctx, member):
-        await self.conf.user(member).p_stamp.clear()
-        async with self.conf.user(member).pets() as pet:
-            pet["mission"] = False
-            await ctx.send(f"{member.mention} your {pet['name']} came back, and brought you joy.")
-            
-    def cog_unload(self):
-        self.__unload()
-        
-    def __unload(self):
-        self.load_check.cancel()
