@@ -19,6 +19,8 @@ from .randomstuff import worklist
 from .randomstuff import searchlist
 from .randomstuff import bad_location
 
+Pet.__init__(self)
+
 class Mucski(Pet, AdminUtils, Games, Shop, commands.Cog):
     def __init__(self, bot):
         self.bot = bot
@@ -34,8 +36,6 @@ class Mucski(Pet, AdminUtils, Games, Shop, commands.Cog):
         }
         self.conf.register_user(**defaults)
         self.load_check = self.bot.loop.create_task(self._worker())
-        
-    Pet.__init__(self)
         
     @commands.group(name="coin", aliases=['c'], pass_context=True)
     async def coin(self, ctx):
