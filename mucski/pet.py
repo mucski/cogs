@@ -5,7 +5,7 @@ from datetime import datetime, timedelta
 from .randomstuff import petlist
 from .taskhelper import TaskHelper
 
-class Pet(commands.Cog):
+class Pet(TaskHelper, commands.Cog):
     @commands.group()
     async def pet(self, ctx):
         pass
