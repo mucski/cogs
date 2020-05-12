@@ -2,6 +2,7 @@ import discord
 import asyncio
 import random
 from redbot.core import commands, checks
+from redbot.core.utils.chat_formatting import humanize_timedelta
 from datetime import datetime, timedelta
 from .randomstuff import petlist
 from .randomstuff import pet_resp
