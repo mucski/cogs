@@ -89,7 +89,7 @@ class Pet(commands.Cog):
             pet['mission'] = True
         tempStamp = datetime.fromtimestamp(future)
         remaining = tempStamp - now
-        remaining = remaining.seconds
+        remaining = int(remaining.seconds)
         await self._timer(ctx, remaining)
         
     async def _timer(self, ctx, remaining):
