@@ -20,7 +20,7 @@ from .randomstuff import worklist
 from .randomstuff import searchlist
 from .randomstuff import bad_location
 
-class Mucski(TaskHelper, Pet, AdminUtils, Games, Shop, commands.Cog):
+class Mucski(Pet, TaskHelper, AdminUtils, Games, Shop, commands.Cog):
     def __init__(self, bot):
         self.bot = bot
         self.conf = Config.get_conf(self, 28484827, force_registration=True)
