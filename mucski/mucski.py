@@ -35,7 +35,7 @@ class Mucski(Pet, TaskHelper, AdminUtils, Games, Shop, commands.Cog):
         }
         self.conf.register_user(**defaults)
         Pet.__init__(self)
-        self.load_check = self.bot.loop.create_task(self._worker())
+        #self.load_check = self.bot.loop.create_task(self._worker())
         
     @commands.group(name="coin", aliases=['c'], pass_context=True)
     async def coin(self, ctx):
@@ -215,8 +215,8 @@ class Mucski(Pet, TaskHelper, AdminUtils, Games, Shop, commands.Cog):
             await self.conf.user(member).coins.set(vc)
             await ctx.send(f"Failed. You paid {perc:.0%} coins to {member.name} as an apology.")
             
-    def cog_unload(self):
-        self.__unload()
+    #def cog_unload(self):
+        #self.__unload()
         
-    def __unload(self):
-        self.load_check.cancel()
+    #def __unload(self):
+        #self.load_check.cancel()
