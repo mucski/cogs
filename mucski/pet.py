@@ -61,7 +61,7 @@ class Pet(TaskHelper, commands.Cog):
             e.add_field(name="Happy", value=pet["happy"])
             e.add_field(name="Clean", value=pet["clean"])
             if pet["mission"] == True:
-                e.add_field(name="On Mission", value="Yes, remaining:")
+                e.add_field(name="On Mission", value=f"Yes, remaining: {humanize_timedelta(timedelta=pet['remaining'])}")
             else:
                 e.add_field(name="On Mission", value="Nope")
             e.set_footer(text="Dont forget to feed your pet often "
@@ -93,18 +93,19 @@ class Pet(TaskHelper, commands.Cog):
                             "wait for it to finish.")
             return
         now = datetime.utcnow()
-        time = random.randint(30, 60)
+        time = random.randint(5, 15)
         timer = timedelta(seconds=time)
         future = timer + now
         future = future.timestamp()
         await self.conf.user(ctx.author).p_stamp.set(future)
-        async with self.conf.user(ctx.author).pets() as pet:
-            pet["mission"] = True
         tempStamp = datetime.fromtimestamp(future)
         remaining = tempStamp - now
-        remaining = remaining.seconds
+        remaining = remaining.total_seconds()
+        async with self.conf.user(ctx.author).pets() as pet:
+            pet["mission"] = True
+            pet["remaining"] = remaining
         user = ctx.author
-        await ctx.send("Sent pet on a mission.")
+        await ctx.send(f"Sent pet on a mission for {humanize_timedelta(timedelta=remaining)}")
         await self._timer(remaining, channel, user)
         
     async def _timer(self, remaining, channel, user):
@@ -127,7 +128,7 @@ class Pet(TaskHelper, commands.Cog):
                 await self._stop(channel, user)
             else:
                 remaining = stamp - now
-                remaining = remaining.seconds
+                remaining = remaining.total_seconds()
                 self.schedule_task(self._timer(remaining, channel, user))
     
     async def _stop(self, channel, user):
