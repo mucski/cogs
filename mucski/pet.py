@@ -106,8 +106,6 @@ class Pet(TaskHelper, commands.Cog):
         if mission:
             await asyncio.sleep(remaining)
             await self._stop(channel, user)
-        else:
-            await self._stop(channel, user)
         
     async def _worker(self):
         await self.bot.wait_until_ready()
