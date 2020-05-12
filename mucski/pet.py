@@ -70,4 +70,52 @@ class Pet(commands.Cog):
         async with self.conf.user(ctx.author).pets() as pet:
             pet['name'] = name
             await ctx.send(f"Your pet is now called {name}")
+            
+    @pet.command()
+    async def send(self, ctx):
+        petStamp = await self.conf.user(ctx.author).p_stamp()
+        if petStamp:
+            await ctx.send("Your pet is already in a mission, wait for it to finish.")
+            return
+        now = datetime.utcnow()
+        timer = timedelta(seconds=30)
+        future = timer + now
+        future = future.timestamp()
+        await self.conf.user(ctx.author).p_stamp.set(future)
+        await ctx.send("Sent your pet on a mission. Your pet will return on its own and bring you goodies.")
+        tempStamp = datetime.fromtimestamp(future)
+        remaining = tempStamp - now
+        remaining = remaining.seconds
+        await self._timer(ctx, remaining)
         
+    async def _timer(self, ctx, remaining):
+        async with self.conf.user(ctx.author).pets() as pet:
+            if pet['mission'] = True
+            await asyncio.sleep(remaining)
+            await self._stop(ctx)
+            
+    async def _worker(self):
+        try:
+            await self.bot.wait_until_ready()
+            guilds = [self.bot.get_user(user) for user in await self.conf.all_users()]
+            for user in users:
+                now = datetime.utcnow()
+                stamp = await self.conf.user(user).p_stamp()
+                stamp = datetime.fromtimestamp(stamp)
+                remaining = stamp - now
+                if stamp < now:
+                    await self._stop(ctx, user)
+                else:
+                    await asyncio.gather(self._timer(ctx, remaining))
+        except Exception as e:
+            print(e)
+            
+    async def _stop(self, ctx):
+        async with self.conf.user(user).pets() as pet:
+            await ctx.send(f"{user.mention} your {pet['name']} came back, and brought you joy.")
+            
+    def cog_unload(self):
+        self.__unload()
+        
+    def __unload(self):
+        self.load_check.cancel()
