@@ -130,9 +130,8 @@ class Pet(TaskHelper, commands.Cog):
                 self.schedule_task(self._time(remaining, channel, user))
     
     async def _stop(self, channel, user):
-        await self.conf.user(user).pets.set_raw(
-            "mission", value=False
-        )
+        await self.conf.user(user).pets.set_raw("mission", value=False)
+        await self.conf.user(user).p_stamp.clear()
         type = await self.conf.user(user).pets.get_raw("type")
         await channel.send(f"Yo {user.mention} your {type} returned")
         
