@@ -35,6 +35,7 @@ class Pet(TaskHelper, commands.Cog):
             pet["happy"] = 100
             pet["clean"] = 100
             pet["type"] = name.lower()
+            pet["remaining"] = 0
             await self.conf.user(ctx.author).coins.set(coins)
             await ctx.send(f"You bought a {pet['type']} and spent {price} coins, take good care of it. See [p]pet info for stats and other stuff.")
         
