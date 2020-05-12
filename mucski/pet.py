@@ -86,11 +86,11 @@ class Pet(commands.Cog):
         await self.conf.user(ctx.author).p_stamp.set(future)
         async with self.conf.user(ctx.author).pets() as pet:
             pet['mission'] = True
-        tempStamp = datetime.fromtimestamp(future)
-        remaining = tempStamp - now
-        remaining = int(remaining.seconds)
-        await self._timer(ctx, remaining)
-        await ctx.send("Sent pet on mission")
+            tempStamp = datetime.fromtimestamp(future)
+            remaining = tempStamp - now
+            remaining = int(remaining.seconds)
+            await self._timer(ctx, remaining)
+            await ctx.send("Sent pet on mission")
         
     async def _timer(self, ctx, remaining):
         async with self.conf.user(ctx.author).pets() as pet:
