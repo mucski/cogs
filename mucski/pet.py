@@ -8,7 +8,7 @@ from .taskhelper import TaskHelper
 class Pet(TaskHelper, commands.Cog):
     def __init__(self):
         TaskHelper.__init__(self)
-        self.load_check = self.bot.loop.create_task(self._worker())
+        self.bot.loop.create_task(self._worker())
         
     @commands.group()
     async def pet(self, ctx):
@@ -131,9 +131,3 @@ class Pet(TaskHelper, commands.Cog):
         await self.conf.user(user).p_stamp.clear()
         type = await self.conf.user(user).pets.get_raw("type")
         await channel.send(f"Yo {user.mention} your {type} returned")
-        
-    def cog_unload(self):
-        self.__unload()
-        
-    def __unload(self):
-        self.load_check.cancel()
