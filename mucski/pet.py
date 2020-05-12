@@ -101,13 +101,13 @@ class Pet(TaskHelper, commands.Cog):
         future = future.timestamp()
         await self.conf.user(ctx.author).p_stamp.set(future)
         tempStamp = datetime.fromtimestamp(future)
-        remaining = tempStamp - now
+        remaining_timedelta = tempStamp - now
         remaining = remaining.total_seconds()
         async with self.conf.user(ctx.author).pets() as pet:
             pet["mission"] = True
             pet["remaining"] = remaining
         user = ctx.author
-        await ctx.send(f"Sent pet on a mission for {humanize_timedelta(timedelta=int(remaining))}")
+        await ctx.send(f"Sent pet on a mission for {humanize_timedelta(timedelta=remaining_timedelta)}")
         await self._timer(remaining, channel, user)
         
     async def _timer(self, remaining, channel, user):
