@@ -1,5 +1,6 @@
 import discord
 from redbot.core import commands, checks
+from datetime import datetime, timedelta
 from .randomstuff import petlist
 
 class Pet(commands.Cog):
