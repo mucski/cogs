@@ -121,27 +121,24 @@ class Pet(TaskHelper, commands.Cog):
         await self._stop(channel, user)
         
     async def _worker(self):
-        try:
-            await self.bot.wait_until_ready()
-            now = datetime.utcnow()
-            users = await self.conf.all_users()
-            for user_id, user_data in users.items():
-                user = self.bot.get_user(user_id)
-                if not user:
-                    return
-                channel = self.bot.get_channel(user_data['channel'])
-                if not channel:
-                    return
-                stamp = datetime.fromtimestamp(user_data['p_stamp'])
-                if stamp > now:
-                    await self._stop(channel, user)
-                else:
-                    remaining = stamp - now
-                    remaining = remaining.total_seconds()
-                    self.schedule_task(self._timer(remaining, channel, user))
-        except Exception as e:
-            print(e)
-            
+        await self.bot.wait_until_ready()
+        now = datetime.utcnow()
+        users = await self.conf.all_users()
+        for user_id, user_data in users.items():
+            user = self.bot.get_user(user_id)
+            if not user:
+                return
+            channel = self.bot.get_channel(user_data['channel'])
+            if not channel:
+                return
+            stamp = datetime.fromtimestamp(user_data['p_stamp'])
+            if stamp > now:
+                await self._stop(channel, user)
+            else:
+                remaining = stamp - now
+                remaining = remaining.total_seconds()
+                self.schedule_task(self._timer(remaining, channel, user))
+        
     async def _stop(self, channel, user):
         await self.conf.user(user).pets.set_raw("mission", value=False)
         await self.conf.user(user).p_stamp.clear()
