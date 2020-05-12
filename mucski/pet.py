@@ -11,7 +11,7 @@ from .taskhelper import TaskHelper
 class Pet(TaskHelper, commands.Cog):
     def __init__(self):
         TaskHelper.__init__(self)
-        #self.load_check = self.bot.loop.create_task(self._worker())
+        self.load_check = self.bot.loop.create_task(self._worker())
         
     @commands.group()
     async def pet(self, ctx):
@@ -124,12 +124,12 @@ class Pet(TaskHelper, commands.Cog):
         for user_id, user_data in users.items():
             user = self.bot.get_user(user_id)
             if not user:
-                continue
+                return
             channel = self.bot.get_channel(user_data['channel'])
             if not channel:
-                continue
+                return
             stamp = datetime.fromtimestamp(user_data['p_stamp'])
-            if stamp < now:
+            if stamp > now:
                 await self._stop(channel, user)
             else:
                 remaining = stamp - now
@@ -148,8 +148,8 @@ class Pet(TaskHelper, commands.Cog):
         await self.conf.user(user).coins.set(coins)
         await channel.send(random_pet_resp.format(type, amt))
         
-    #def cog_unload(self):
-        #self.__unload()
+    def cog_unload(self):
+        self.__unload()
         
-    #def __unload(self):
-        #self.load_check.cancel()
+    def __unload(self):
+        self.load_check.cancel()
