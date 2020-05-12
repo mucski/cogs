@@ -106,10 +106,10 @@ class Pet(TaskHelper, commands.Cog):
     async def _timer(self, remaining, channel, user):
         mission = self.conf.user(user).pets.get_raw("mission")
         if mission:
-                await asyncio.sleep(remaining)
-                await self._stop(channel, user)
-            else:
-                await self._stop(channel, user)
+            await asyncio.sleep(remaining)
+            await self._stop(channel, user)
+        else:
+            await self._stop(channel, user)
         
     async def _worker(self):
         await self.bot.wait_until_ready()
