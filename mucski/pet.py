@@ -113,7 +113,7 @@ class Pet(TaskHelper, commands.Cog):
         await self.bot.wait_until_ready()
         now = datetime.utcnow()
         users = await self.conf.all_users()
-        for user_id, user_data in users:
+        for user_id, user_data in users.items():
             user = self.bot.get_user(user_id)
             if not user:
                 continue
