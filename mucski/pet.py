@@ -102,7 +102,7 @@ class Pet(TaskHelper, commands.Cog):
         await self.conf.user(ctx.author).p_stamp.set(future)
         tempStamp = datetime.fromtimestamp(future)
         remaining_timedelta = tempStamp - now
-        remaining = remaining.total_seconds()
+        remaining = remaining_timedelta.total_seconds()
         async with self.conf.user(ctx.author).pets() as pet:
             pet["mission"] = True
             pet["remaining"] = remaining
