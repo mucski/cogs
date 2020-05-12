@@ -213,9 +213,4 @@ class Mucski(TaskHelper, Pet, AdminUtils, Games, Shop, commands.Cog):
             await self.conf.user(ctx.author).coins.set(sc)
             await self.conf.user(member).coins.set(vc)
             await ctx.send(f"Failed. You paid {perc:.0%} coins to {member.name} as an apology.")
-            
-    def cog_unload(self):
-        self.__unload()
-        
-    def __unload(self):
-        self.load_check.cancel()
+    
