@@ -85,7 +85,7 @@ class Pet(commands.Cog):
         future = future.timestamp()
         await self.conf.user(ctx.author).p_stamp.set(future)
         async with self.conf.user(ctx.author).pets() as pet:
-            pet['mission'] = True
+            pet["mission"] = True
             tempStamp = datetime.fromtimestamp(future)
             remaining = tempStamp - now
             remaining = int(remaining.seconds)
@@ -94,7 +94,7 @@ class Pet(commands.Cog):
         
     async def _timer(self, ctx, remaining):
         async with self.conf.user(ctx.author).pets() as pet:
-            if pet['mission'] == True:
+            if pet["mission"] == True:
                 await asyncio.sleep(remaining)
                 user = ctx.author
                 await self._stop(ctx, user)
