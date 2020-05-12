@@ -39,6 +39,7 @@ class AdminUtils(commands.Cog):
     @adm.command()
     async def resetcd(self, ctx):
         await self.conf.user(ctx.author).d_stamp.clear()
+        await self.conf.user(ctx.author).p_stamp.clear()
         await ctx.send("Cooldowns reset for 1 usage")
         
     @adm.command()
