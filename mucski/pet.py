@@ -92,7 +92,8 @@ class Pet(commands.Cog):
         async with self.conf.user(ctx.author).pets() as pet:
             if pet['mission'] = True
             await asyncio.sleep(remaining)
-            await self._stop(ctx)
+            user = ctx.author
+            await self._stop(ctx, user)
             
     async def _worker(self):
         try:
@@ -110,7 +111,7 @@ class Pet(commands.Cog):
         except Exception as e:
             print(e)
             
-    async def _stop(self, ctx):
+    async def _stop(self, ctx, user):
         async with self.conf.user(user).pets() as pet:
             await ctx.send(f"{user.mention} your {pet['name']} came back, and brought you joy.")
             
