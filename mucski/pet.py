@@ -80,7 +80,7 @@ class Pet(TaskHelper, commands.Cog):
             
     @pet.command()
     async def send(self, ctx):
-        if not await self.conf.user(ctx.author).pets()
+        if not await self.conf.user(ctx.author).pets():
             await ctx.send("You dont have any pets")
             return
         channel = ctx.channel
