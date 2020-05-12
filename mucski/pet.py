@@ -80,7 +80,7 @@ class Pet(commands.Cog):
             await ctx.send("Your pet is already in a mission, wait for it to finish.")
             return
         now = datetime.utcnow()
-        timer = timedelta(seconds=30)
+        timer = timedelta(seconds=1)
         future = timer + now
         future = future.timestamp()
         await self.conf.user(ctx.author).p_stamp.set(future)
@@ -97,7 +97,7 @@ class Pet(commands.Cog):
         async with self.conf.user(member).pets() as pet:
             if pet["mission"] == True:
                 await asyncio.sleep(remaining)
-                await self._stop(ctx, member)
+            await self._stop(ctx, member)
             
     async def _worker(self):
         try:
