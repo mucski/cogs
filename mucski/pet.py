@@ -1,4 +1,5 @@
 import discord
+import asyncio
 from redbot.core import commands, checks
 from datetime import datetime, timedelta
 from .randomstuff import petlist
