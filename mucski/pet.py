@@ -58,7 +58,8 @@ class Pet(TaskHelper, commands.Cog):
                 e.add_field(name="On Mission", value="Yes, remaining:")
             else:
                 e.add_field(name="On Mission", value="Nope")
-            e.set_footer(text="Dont forget to feed your pet often especially after a mission.")
+            e.set_footer(text="Dont forget to feed your pet often "
+                                "especially after a mission.")
             await ctx.send(embed=e)
             
     @pet.command()
@@ -79,10 +80,11 @@ class Pet(TaskHelper, commands.Cog):
         await self.conf.user(ctx.author).channel.set(channel.id)
         petStamp = await self.conf.user(ctx.author).p_stamp()
         if petStamp:
-            await ctx.send("Your pet is already in a mission, wait for it to finish.")
+            await ctx.send("Your pet is already in a mission,"
+                            "wait for it to finish.")
             return
         now = datetime.utcnow()
-        timer = timedelta(seconds=1)
+        timer = timedelta(seconds=30)
         future = timer + now
         future = future.timestamp()
         await self.conf.user(ctx.author).p_stamp.set(future)
