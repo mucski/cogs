@@ -11,7 +11,7 @@ from .taskhelper import TaskHelper
 class Pet(TaskHelper, commands.Cog):
     def __init__(self):
         TaskHelper.__init__(self)
-        self.bot.loop.create_task(self._worker())
+        self.load_check = self.bot.loop.create_task(self._worker())
         
     @commands.group()
     async def pet(self, ctx):
@@ -147,3 +147,9 @@ class Pet(TaskHelper, commands.Cog):
         coins += amt
         await self.conf.user(user).coins.set(coins)
         await channel.send(random_pet_resp.format(type, amt))
+        
+    def cog_unload(self):
+        self.__unload()
+        
+    def __unload(self):
+        self.load_check.cancel()
