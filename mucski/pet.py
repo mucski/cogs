@@ -83,6 +83,7 @@ class Pet(TaskHelper, commands.Cog):
         pet = await self.conf.user(ctx.author).pets()
         if not pet:
             await ctx.send("You dont have any pets")
+            return
         channel = ctx.channel
         await self.conf.user(ctx.author).channel.set(channel.id)
         petStamp = await self.conf.user(ctx.author).p_stamp()
