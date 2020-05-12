@@ -117,7 +117,7 @@ class Pet(TaskHelper, commands.Cog):
             user = self.bot.get_user(user_id)
             if not user:
                 continue
-            channel = self.bot.get_channel(userdata['channel'])
+            channel = self.bot.get_channel(user_data['channel'])
             if not channel:
                 continue
             stamp = datetime.fromtimestamp(user_data['p_stamp'])
