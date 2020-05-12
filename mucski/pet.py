@@ -115,6 +115,7 @@ class Pet(commands.Cog):
             print(e)
             
     async def _stop(self, ctx, user):
+        await self.conf.user(user).p_stamp.clear()
         async with self.conf.user(user).pets() as pet:
             await ctx.send(f"{user.mention} your {pet['name']} came back, and brought you joy.")
             
