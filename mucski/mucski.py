@@ -30,6 +30,7 @@ class Mucski(Pet, AdminUtils, Games, Shop, commands.Cog):
             "s_stamp": 0, #steal timestamp
             "p_stamp": 0, #pet timestamp
             "pets": {}, #pet format {hunger:100,happy:100,clean:100,type:type,mission:False,name:whatever}
+            "channel": None,
         }
         self.conf.register_user(**defaults)
         self.load_check = self.bot.loop.create_task(self._worker())

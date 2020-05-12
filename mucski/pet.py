@@ -3,8 +3,9 @@ import asyncio
 from redbot.core import commands, checks
 from datetime import datetime, timedelta
 from .randomstuff import petlist
+from .taskhelper import TaskHelper
 
-class Pet(commands.Cog):
+class Pet(TaskHelper, commands.Cog):
     
     @commands.group()
     async def pet(self, ctx):
@@ -75,6 +76,8 @@ class Pet(commands.Cog):
             
     @pet.command()
     async def send(self, ctx):
+        channel = ctx.channel
+        await self.conf.user(ctx.author).channel.set(channel.id)
         petStamp = await self.conf.user(ctx.author).p_stamp()
         if petStamp:
             await ctx.send("Your pet is already in a mission, wait for it to finish.")
@@ -88,7 +91,27 @@ class Pet(commands.Cog):
             pet["mission"] = True
         tempStamp = datetime.fromtimestamp(future)
         remaining = tempStamp - now
-        remaining = int(remaining.seconds)
-        member = ctx.author
+        remaining = remaining.seconds
         await ctx.send("Sent pet on a mission.")
-        await self._timer(ctx, remaining, member)
+        await self._timer(ctx, remaining)
+        
+    def cog_unload(self):
+        self.__unload()
+        
+    def __unload(self):
+        self.load_check.cancel()
+        
+    async def _timer(self, remaining):
+        await asyncio.sleep(remaining)
+        await self._stop()
+        
+    async def _worker(self):
+        await self.bot.wait_until_ready()
+        now = datetime.utcnow()
+        users = await self.conf.all_users()
+        pass
+    
+    async def _stop(self):
+        channel = await self.conf.user(ctx.author).channel()
+        channel = self.bot.get_channel(channel)
+        user = await self.conf.all_users()
