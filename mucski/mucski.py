@@ -32,6 +32,7 @@ class Mucski(Pet, AdminUtils, Games, Shop, commands.Cog):
             "pets": {}, #pet format {hunger:100,happy:100,clean:100,type:type,mission:False,name:whatever}
         }
         self.conf.register_user(**defaults)
+        self.load_check = self.bot.loop.create_task(self._worker())
         
     Pet.__init__(self)
         
