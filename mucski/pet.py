@@ -102,7 +102,7 @@ class Pet(TaskHelper, commands.Cog):
             await ctx.send("Your pet is already in a mission, wait for it to finish.")
             return
         now = datetime.utcnow()
-        time = random.randint(5, 15)
+        time = random.randint(40, 60)
         timer = timedelta(seconds=time)
         future = timer + now
         future = future.timestamp()
