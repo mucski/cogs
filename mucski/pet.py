@@ -92,8 +92,9 @@ class Pet(TaskHelper, commands.Cog):
         tempStamp = datetime.fromtimestamp(future)
         remaining = tempStamp - now
         remaining = remaining.seconds
+        user = ctx.author
         await ctx.send("Sent pet on a mission.")
-        await self._timer(ctx, remaining)
+        await self._timer(remaining, channel, user)
         
     def cog_unload(self):
         self.__unload()
@@ -101,17 +102,33 @@ class Pet(TaskHelper, commands.Cog):
     def __unload(self):
         self.load_check.cancel()
         
-    async def _timer(self, remaining):
-        await asyncio.sleep(remaining)
-        await self._stop()
+    async def _timer(self, remaining, channel, user):
+        async with self.conf.user(user).pets() as pet:
+            if pet['mission'] is True:
+                await asyncio.sleep(remaining)
+                await self._stop(channel, user)
+            else:
+                await self._stop(channel, user)
         
     async def _worker(self):
         await self.bot.wait_until_ready()
         now = datetime.utcnow()
         users = await self.conf.all_users()
-        pass
+        for user_id, user_data in users:
+            user = self.bot.get_user(user_id)
+            if not user:
+                continue
+            channel = self.bot.get_channel(userdata['channel'])
+            if not channel:
+                continue
+            stamp = datetime.fromtimestamp(user_data['p_stamp'])
+            if stamp < now:
+                await self._stop(channel, user)
+            else:
+                remaining = stamp - now
+                self.schedule_task(self._time(remaining, channel, user))
     
-    async def _stop(self):
-        channel = await self.conf.user(ctx.author).channel()
-        channel = self.bot.get_channel(channel)
-        user = await self.conf.all_users()
+    async def _stop(self, channel, user):
+        #temp shit
+        await channel.send(f"Yo {user.mention} your pet returned")
+        
