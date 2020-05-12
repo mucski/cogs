@@ -90,7 +90,7 @@ class Pet(commands.Cog):
         
     async def _timer(self, ctx, remaining):
         async with self.conf.user(ctx.author).pets() as pet:
-            if pet['mission'] = True:
+            if pet['mission'] == True:
                 await asyncio.sleep(remaining)
                 user = ctx.author
                 await self._stop(ctx, user)
