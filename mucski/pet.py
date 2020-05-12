@@ -47,6 +47,7 @@ class Pet(TaskHelper, commands.Cog):
             return
         now = datetime.utcnow()
         stamp = await self.conf.user(ctx.author).p_stamp()
+        stamp = datetime.fromtimestamp(stamp)
         remaining = stamp - now
         async with self.conf.user(ctx.author).pets() as pet:
             if pet["type"] == "rock":
