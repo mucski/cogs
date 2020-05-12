@@ -34,9 +34,8 @@ class Mucski(Pet, TaskHelper, AdminUtils, Games, Shop, commands.Cog):
             "channel": None,
         }
         self.conf.register_user(**defaults)
+        Pet.__init__(self)
         self.load_check = self.bot.loop.create_task(self._worker())
-    
-    Pet.__init__(self)
         
     @commands.group(name="coin", aliases=['c'], pass_context=True)
     async def coin(self, ctx):
