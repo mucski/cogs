@@ -3,6 +3,7 @@ import asyncio
 from redbot.core import commands, checks
 from datetime import datetime, timedelta
 from .randomstuff import petlist
+from .randomstuff import pet_resp
 from .taskhelper import TaskHelper
 
 class Pet(TaskHelper, commands.Cog):
@@ -132,3 +133,9 @@ class Pet(TaskHelper, commands.Cog):
         await self.conf.user(user).p_stamp.clear()
         type = await self.conf.user(user).pets.get_raw("type")
         await channel.send(f"Yo {user.mention} your {type} returned")
+        random_pet_resp = random.choice(pet_resp)
+        coins = await self.conf.user(user).coins()
+        amt = random.randint(30, 60)
+        coins += amt
+        await self.conf.user(user).coins.set(amt)
+        await channsl.send(random_pet_resp)
