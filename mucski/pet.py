@@ -92,7 +92,8 @@ class Pet(TaskHelper, commands.Cog):
                             "wait for it to finish.")
             return
         now = datetime.utcnow()
-        timer = timedelta(seconds=30)
+        time = random.randint(30, 60)
+        timer = timedelta(seconds=time)
         future = timer + now
         future = future.timestamp()
         await self.conf.user(ctx.author).p_stamp.set(future)
