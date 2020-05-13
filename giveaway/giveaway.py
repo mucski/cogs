@@ -115,13 +115,8 @@ class Giveaway(TaskHelper, commands.Cog):
         stamp = datetime.fromtimestamp(stamp)
         remaining_timedelta = stamp - now
         remaining = remaining_timedelta.total_seconds()
-        msg = await self.conf.guild(guild).msg()
-        if not msg:
-            await channel.send("Message was compromised.")
-            return
+        msg = await self.conf.guild(guild)
         channel = await self.conf.guild(guild).channel()
-        if not channel:
-            return
         if stamp < now:
             await self._teardown(channel, msg, guild)
         else:
