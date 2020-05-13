@@ -61,7 +61,7 @@ class Pet(TaskHelper, commands.Cog):
             e.add_field(name="Clean", value=pet["clean"])
             if pet["mission"] == True:
                 now = datetime.utcnow()
-                stamp = aaait self.conf.user(ctx.author).p_stamp()
+                stamp = await self.conf.user(ctx.author).p_stamp()
                 stamp = datetime.fromtimestamp(stamp)
                 remaining = stamp - now
                 e.add_field(name="On Mission", value=f"Yes, remaining: {humanize_timedelta(timedelta=remaining)}")
