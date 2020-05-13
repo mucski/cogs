@@ -71,7 +71,7 @@ class Giveaway(TaskHelper, commands.Cog):
         await self._worker()
         
     async def _teardown(self, channel, msg, guild):
-        if self.conf.guild(guild).running() is False:
+        if await self.conf.guild(guild).running() is False:
             return
         channel = self.bot.get_channel(channel)
         msg = await channel.fetch_message(msg)
