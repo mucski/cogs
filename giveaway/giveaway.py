@@ -108,7 +108,7 @@ class Giveaway(TaskHelper, commands.Cog):
     async def _worker(self):
         await self.bot.wait.until_ready()
         guilds = await self.conf.all_guilds()
-        for guild in guilds.items():
+        for guild in guilds:
             guild = self.bot.get_guild(guild)
         now = datetime.utcnow()
         stamp = await self.conf.guild(guuld).stamp()
