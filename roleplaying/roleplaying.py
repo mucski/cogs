@@ -4,6 +4,7 @@ from .randomstuff import slaplist, huglist, punchlist, sadlist, patlist, kisslis
 import random
 
 class Roleplaying(commands.Cog):
+    """Simple roleplaying cog by mucski"""
     def __init__(self, bot):
         self.bot = bot
         

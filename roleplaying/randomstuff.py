@@ -12,9 +12,10 @@ kisslist = [
 ]
 
 punchlist = [
-    "https://media1.tenor.com/images/ee3f2a6939a68df9563a7374f131fd96/tenor.gif?itemid=14210784",
     "https://i.pinimg.com/originals/8d/50/60/8d50607e59db86b5afcc21304194ba57.gif",
-    "https://media1.tenor.com/images/6834932465e2659dc5b1ee38dfd42b44/tenor.gif?itemid=14615839",
+    "https://ekladata.com/hRulg2uhsUNUwEgEDHc9q46_y5U.gif",
+    "https://i.gifer.com/BKZ9.gif",
+    "https://66.media.tumblr.com/818ef1e9f58d8058893eae667add6f1e/tumblr_nshd9zA9nn1uac4ivo1_400.gif",
 ]
 
 huglist = [
