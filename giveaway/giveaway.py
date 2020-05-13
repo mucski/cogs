@@ -98,7 +98,7 @@ class Giveaway(TaskHelper, commands.Cog):
         embed.set_author(name=f"{self.bot.user.name}'s giveaway.", icon_url=self.bot.user.avatar_url)
         embed.description = "Giveaway finished. See bellow for winners:"
         embed.set_footer(text=f"Giveaway finished.")
-        msg.edit(embed=embed)
+        await msg.edit(embed=embed)
         if users:
             winner = random.choice(users)
             await channel.send(f"The winner is {winner.mention}, congratulations! 🎉🎊")
