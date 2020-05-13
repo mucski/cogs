@@ -7,7 +7,8 @@ from .taskhelper import TaskHelper
 
 class Giveaway(TaskHelper, commands.Cog):
     """Simple Giveaway Cog by Mucski"""
-    def __init__(self):
+    def __init__(self, bot):
+        self.bot = bot
         TaskHelper.__init__(self)
         self.conf = Config.get_conf(self, 975667633)
         defaults = { "channel": 0, "msg": 0, "stamp": 0, "running": False }
