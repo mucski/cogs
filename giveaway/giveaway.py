@@ -5,7 +5,7 @@ from datetime import datetime, timedelta
 from redbot.core.utils.chat_formatting import humanize_timedelta
 from .taskhelper import TaskHelper
 
-class GiveAway(TaskHelper, commands.Cog):
+class Giveaway(TaskHelper, commands.Cog):
     """Simple Giveaway Cog by Mucski"""
     def __init__(self, bot):
         self.bot = bot
