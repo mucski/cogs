@@ -101,7 +101,7 @@ class Pet(TaskHelper, commands.Cog):
         remaining = tempStamp - now
         remaining = remaining.seconds
         await ctx.send("Sent pet on a mission.")
-        await self._timer(remaining)
+        self.schedule_task(self._timer(remaining))
         
     def cog_unload(self):
         self.__unload()
@@ -129,7 +129,7 @@ class Pet(TaskHelper, commands.Cog):
                 await self._stop(channel, user)
             else:
                 remaining = stamp - now
-                self.schedule_task(self._timer(channel, remaining, user))
+                self.schedule_task(self._timer(remaining))
     
     async def _stop(self, channel, user):
         mission = await self.conf.user(user).pets.get_raw("mission")
