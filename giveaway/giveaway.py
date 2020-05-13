@@ -13,7 +13,7 @@ class Giveaway(TaskHelper, commands.Cog):
         defaults = { "channel": 0, "msg": 0, "stamp": 0, "running": False }
         self.conf.register_guild(**defaults)
         TaskHelper.__init__(self)
-        self.load_check = self.bot.loop.create_task(self._startup())
+        self.load_check = self.bot.loop.create_task(self.worker())
         
         @commands.group()
         async def gw(self, ctx):
@@ -87,7 +87,7 @@ class Giveaway(TaskHelper, commands.Cog):
             msg.edit(embed=embed)
             await channel.send(f"The winner is {winner.mention}, congratulations! 🎉🎊")
             
-        async def _startup(self):
+        async def _worker(self):
             await self.bot.wait.until_ready()
             guilds = await self.conf.all_guilds()
             for guild in guilds.items():
