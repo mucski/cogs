@@ -153,6 +153,7 @@ class Pet(TaskHelper, commands.Cog):
                 await channel.send(f"{user.mention} your {type} returned from a mission:")
                 resp = random.choice(pet_resp)
                 await channel.send(resp.format(type, amt))
+                await self.conf.user(user).p_stamp.clear()
             
     def cog_unload(self):
         #self.__unload()
