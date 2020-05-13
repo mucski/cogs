@@ -52,8 +52,8 @@ class Giveaway(TaskHelper, commands.Cog):
     async def end(self, ctx):
         msg = await self.conf.guild(ctx.guild).msg()
         channel = await self.conf.guild(ctx.guild).channel()
-        await self._teardown(channel, msg, ctx.guild)
-        await self.end_task()
+        self._teardown(channel, msg, ctx.guild)
+        self.end_task()
         await self.conf.guild(ctx.guild).running.set(False)
         
     async def _timer(self, remaining):
@@ -65,7 +65,7 @@ class Giveaway(TaskHelper, commands.Cog):
         msg = await self.conf.guild(guild).msg()
         channel = await self.conf.guild(guild).channel()
         await asyncio.sleep(remaining)
-        await self._teardown(channel, msg, guild)
+        self._teardown(channel, msg, guild)
         
     async def _teardown(self, channel, msg, guild):
         channel = self.bot.get_channel(channel)
@@ -101,9 +101,9 @@ class Giveaway(TaskHelper, commands.Cog):
         msg = await self.conf.guild(guild).msg()
         channel = await self.conf.guild(guild).channel()
         if stamp < now:
-            await self._teardown(channel, msg, guild)
+            self._teardown(channel, msg, guild)
         else:
-            await self.schedule_task(self._timer(remaining))
+            self.schedule_task(self._timer(remaining))
         
     def cog_unload(self):
         self.load_check.cancel()
