@@ -22,9 +22,9 @@ class Giveaway(TaskHelper, commands.Cog):
     
     @gw.command()
     async def start(self, ctx, time: int, channel: discord.TextChannel = None, *, text = None):
-        if not channel:
+        if channel is None:
             channel = ctx.channel
-        if not text:
+        if text is None:
             text = "Daily VIP Supreme giveaway. React bellow to enter."
         now = datetime.utcnow()
         timer = timedelta(minutes=time)
