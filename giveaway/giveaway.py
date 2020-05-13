@@ -7,7 +7,6 @@ from redbot.core.utils.chat_formatting import humanize_timedelta
 from .taskhelper import TaskHelper
 
 class Giveaway(TaskHelper, commands.Cog):
-    """Simple Giveaway Cog by Mucski"""
     def __init__(self, bot):
         self.bot = bot
         self.conf = Config.get_conf(self, 975667633)
