@@ -52,7 +52,7 @@ class Giveaway(TaskHelper, commands.Cog):
     async def end(self, ctx):
         msg = await self.conf.guild(ctx.guild).msg()
         channel = await self.conf.guild(ctx.guild).channel()
-        self._teardown(channel, msg, ctx.guild)
+        await self._teardown(channel, msg, ctx.guild)
         self.end_task()
         await self.conf.guild(ctx.guild).running.set(False)
         
