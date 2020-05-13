@@ -76,8 +76,7 @@ class Giveaway(TaskHelper, commands.Cog):
         await self._teardown(channel, msg, guild)
         
     async def _teardown(self, channel, msg, guild):
-        if not msg or not channel:
-            await ctx.send("Give away already ended or message compromised.")
+        if not msg or channel:
             return
         channel = self.bot.get_channel(channel)
         msg = await channel.fetch_message(msg)
