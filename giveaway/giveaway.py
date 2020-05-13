@@ -103,7 +103,7 @@ class Giveaway(TaskHelper, commands.Cog):
             winner = random.choice(users)
             await channel.send(f"The winner is {winner.mention}, congratulations! 🎉🎊")
         else:
-            await channel.send(f"No one even tried, how ssd is that.")
+            await channel.send(f"No one even tried, how sad is that.")
         
     async def _worker(self):
         await self.bot.wait.until_ready()
