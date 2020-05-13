@@ -111,14 +111,14 @@ class Giveaway(TaskHelper, commands.Cog):
         for guild in guilds:
             guild = self.bot.get_guild(guild)
         now = datetime.utcnow()
-        stamp = await self.conf.guild(guuld).stamp()
+        stamp = await self.conf.guild(guild).stamp()
         stamp = datetime.fromtimestamp(stamp)
         remaining_timedelta = stamp - now
         remaining = remaining_timedelta.total_seconds()
         msg = await self.conf.guild(guild)
         channel = await self.conf.guild(guild).channel()
         if stamp < now:
-            await self._teardown(channel, msg, guild)
+            await self._teardown(channel, msg)
         else:
             self.schedule_task(self._timer(remaining))
         
