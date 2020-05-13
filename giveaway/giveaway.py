@@ -63,6 +63,11 @@ class Giveaway(TaskHelper, commands.Cog):
         if await self.conf.guild(guild).running() is False:
             return
         msg = await self.conf.guild(guild).msg()
+        if not msg:
+            await channel.send("Message compromised.")
+            return
+        if not channel:
+            return
         channel = await self.conf.guild(guild).channel()
         await asyncio.sleep(remaining)
         await self._teardown(channel, msg, guild)
@@ -107,7 +112,6 @@ class Giveaway(TaskHelper, commands.Cog):
             return
         channel = await self.conf.guild(guild).channel()
         if not channel:
-            await channel.send("Channel was compromised.")
             return
         if stamp < now:
             await self._teardown(channel, msg, guild)
