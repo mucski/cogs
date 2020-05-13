@@ -49,7 +49,7 @@ class Giveaway(TaskHelper, commands.Cog):
         await self.conf.guild(ctx.guild).msg.set(msg)
         await self.conf.guild(ctx.guild).stamp.set(future)
         await self.conf.guild(ctx.guild).running.set(True)
-        self.schedule_task(self._timer(remaining))
+        await self._timer(remaining)
         
     @gw.command()
     async def end(self, ctx):
