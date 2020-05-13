@@ -133,12 +133,11 @@ class Pet(TaskHelper, commands.Cog):
                 return
             stamp = datetime.fromtimestamp(user_data['p_stamp'])
             if stamp < now:
-                #await self._stop(channel, user)
-                pass
+                await self._stop(channel, user)
             else:
                 remaining = stamp - now
                 remaining = remaining.total_seconds()
-                #self.schedule_task(self._timer(remaining, channel, user))
+                self.schedule_task(self._timer(remaining, channel, user))
         
     async def _stop(self, channel, user):
         await self.conf.user(user).pets.set_raw("mission", value=False)
