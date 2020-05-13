@@ -100,17 +100,17 @@ class Giveaway(TaskHelper, commands.Cog):
         guilds = await self.conf.all_guilds()
         for guild in guilds:
             guild = self.bot.get_guild(guild)
-        now = datetime.utcnow()
-        stamp = await self.conf.guild(guild).stamp()
-        stamp = datetime.fromtimestamp(stamp)
-        remaining_timedelta = stamp - now
-        remaining = remaining_timedelta.total_seconds()
-        msg = await self.conf.guild(guild)
-        channel = await self.conf.guild(guild).channel()
-        if stamp < now:
-            await self._teardown(channel, msg, guild)
-        else:
-            self.schedule_task(self._timer(remaining))
-        
+            now = datetime.utcnow()
+            stamp = await self.conf.guild(guild).stamp()
+            stamp = datetime.fromtimestamp(stamp)
+            remaining_timedelta = stamp - now
+            remaining = remaining_timedelta.total_seconds()
+            msg = await self.conf.guild(guild)
+            channel = await self.conf.guild(guild).channel()
+            if stamp < now:
+                await self._teardown(channel, msg, guild)
+            else:
+                self.schedule_task(self._timer(remaining))
+    
     def cog_unload(self):
         self.load_check.cancel()
