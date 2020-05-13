@@ -3,7 +3,7 @@
     "NAME" : "Giveaway",
     "SHORT" : "Simple giveaway cog",
     "DESCRIPTION" : "Simple giveaway cog, supports 1 running giveaways per server for now.",
-    "TAGS": ["raffel", "winner", "giveaway", "mucski"],
+    "TAGS": ["raffle", "winner", "giveaway", "mucski"],
     "TYPE": "COG"
 }
 
