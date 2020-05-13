@@ -35,7 +35,7 @@ class Giveaway(TaskHelper, commands.Cog):
         remaining = remaining.total_seconds()
         #Embed Builder
         embed = discord.Embed()
-        embed.set_author(name=f"{bot.user.name}'s giveaway.", icon_url=bot.avatar_url)
+        embed.set_author(name=f"{self.bot.user.name}'s giveaway.", icon_url=self.bot.user.avatar_url)
         embed.description(text)
         embed.set_footer(text=f"{humanize_timedelta(timedelta=remaining.total_seconds())}")
         msg = await channel.send(embed=embed)
@@ -82,7 +82,7 @@ class Giveaway(TaskHelper, commands.Cog):
         await self.conf.guild(guild).running.set(False)
         #Embed Builder
         embed = discord.Embed()
-        embed.set_author(name=f"{bot.user.name}'s giveaway.", icon_url=bot.avatar_url)
+        embed.set_author(name=f"{self.bot.user.name}'s giveaway.", icon_url=self.bot.user.avatar_url)
         embed.description("Giveaway finished. See bellow for winners:")
         embed.set_footer(text=f"Giveaway finished.")
         msg.edit(embed=embed)
