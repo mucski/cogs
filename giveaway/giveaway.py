@@ -65,7 +65,7 @@ class Giveaway(TaskHelper, commands.Cog):
         msg = await self.conf.guild(guild).msg()
         channel = await self.conf.guild(guild).channel()
         await asyncio.sleep(remaining)
-        self._teardown(channel, msg, guild)
+        await self._teardown(channel, msg, guild)
         
     async def _teardown(self, channel, msg, guild):
         channel = self.bot.get_channel(channel)
@@ -101,7 +101,7 @@ class Giveaway(TaskHelper, commands.Cog):
         msg = await self.conf.guild(guild).msg()
         channel = await self.conf.guild(guild).channel()
         if stamp < now:
-            self._teardown(channel, msg, guild)
+            await self._teardown(channel, msg, guild)
         else:
             self.schedule_task(self._timer(remaining))
         
