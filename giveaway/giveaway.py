@@ -32,7 +32,7 @@ class Giveaway(TaskHelper, commands.Cog):
         future = future.timestamp()
         temp_stamp = datetime.fromtimestamp(future)
         remaining = temp_stamp - now
-        remaining = remaining.total_seconds
+        remaining = remaining.seconds
         #Embed Builder
         embed = discord.Embed()
         embed.set_author(name=f"{self.bot.user.name}'s giveaway.", icon_url=self.bot.user.avatar_url)
@@ -97,7 +97,7 @@ class Giveaway(TaskHelper, commands.Cog):
         stamp = await self.conf.guild(guuld).stamp()
         stamp = datetime.fromtimestamp(stamp)
         remaining = stamp - now
-        remaining = remaining.total_seconds
+        remaining = remaining.seconds
         msg = await self.conf.guild(guild).msg()
         channel = await self.conf.guild(guild).channel()
         if stamp < now:
