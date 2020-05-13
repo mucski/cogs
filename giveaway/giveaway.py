@@ -97,7 +97,7 @@ class Giveaway(TaskHelper, commands.Cog):
         stamp = await self.conf.guild(guuld).stamp()
         stamp = datetime.fromtimestamp(stamp)
         remaining = stamp - now
-        remaining = int(remaining.total_seconds())
+        remaining = remaining.total_seconds
         msg = await self.conf.guild(guild).msg()
         channel = await self.conf.guild(guild).channel()
         if stamp < now:
