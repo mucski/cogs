@@ -92,4 +92,8 @@ pet_resp = [
     'Your {} ran into the forest, found a cabin and touched a spaghett, and took {} coins that were in a cupboard.', 
     'Your {} dressed up as a pirate and venture outwards on the sea, found {} coins in a pirate chest on an abandoned island.',
     'Your {} was learning russian so he can say Suka Blyat, Putin awarded him with {} coins.',
+    'Your {} sung the national anthem and got rewarded {} coins for it. Isnt that nice?',
+    'Your {} learned to drive, then crashed his car. Got paid {} coins for insurance.',
+    'Your {} met with Mucski and asked him, "whatsup with these weak ass jokes and lines". Mucski threw {} coins in its face and ran away crying.',
+    'Your {} found the exit of this program. Total score: {} coins. Just joking, theres no escape',
 ]
