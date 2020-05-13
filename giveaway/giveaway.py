@@ -22,7 +22,7 @@ class Giveaway(TaskHelper, commands.Cog):
     
     @gw.command()
     async def start(self, ctx, time: int, channel: discord.TextChannel = None, *, text = None):
-        if self.conf.guild(ctx.guild).running() is True:
+        if await self.conf.guild(ctx.guild).running() is True:
             await ctx.send("There is already a giveaway running.")
             return
         if channel is None:
