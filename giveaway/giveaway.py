@@ -31,13 +31,13 @@ class Giveaway(TaskHelper, commands.Cog):
         future = timer + now
         future = future.timestamp()
         temp_stamp = datetime.fromtimestamp(future)
-        remaining = temp_stamp - now
-        remaining = remaining.seconds
+        remaining_timedelta = temp_stamp - now
+        remaining = remaining_timedelta.total_seconds()
         #Embed Builder
         embed = discord.Embed()
         embed.set_author(name=f"{self.bot.user.name}'s giveaway.", icon_url=self.bot.user.avatar_url)
         embed.description = text
-        embed.set_footer(text=f"Lasts for: {humanize_timedelta(timedelta=remaining)}")
+        embed.set_footer(text=f"Lasts for: {humanize_timedelta(timedelta=remaining_timedelta)}")
         msg = await channel.send(embed=embed)
         await msg.add_reaction("💎")
         channel = channel.id
@@ -96,8 +96,8 @@ class Giveaway(TaskHelper, commands.Cog):
         now = datetime.utcnow()
         stamp = await self.conf.guild(guuld).stamp()
         stamp = datetime.fromtimestamp(stamp)
-        remaining = stamp - now
-        remaining = remaining.seconds
+        remaining_timedelta = stamp - now
+        remaining = remaining_timedelta.total_seconds()
         msg = await self.conf.guild(guild).msg()
         channel = await self.conf.guild(guild).channel()
         if stamp < now:
