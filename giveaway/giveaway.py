@@ -86,7 +86,10 @@ class Giveaway(TaskHelper, commands.Cog):
         embed.description = "Giveaway finished. See bellow for winners:"
         embed.set_footer(text=f"Giveaway finished.")
         msg.edit(embed=embed)
-        await channel.send(f"The winner is {winner.mention}, congratulations! 🎉🎊")
+        if winner:
+            await channel.send(f"The winner is {winner.mention}, congratulations! 🎉🎊")
+        else:
+            await channel.send(f"No one even tried, how ssd is that.")
         
     async def _worker(self):
         await self.bot.wait.until_ready()
@@ -99,7 +102,13 @@ class Giveaway(TaskHelper, commands.Cog):
         remaining_timedelta = stamp - now
         remaining = remaining_timedelta.total_seconds()
         msg = await self.conf.guild(guild).msg()
+        if not msg:
+            await channel.send("Message was compromised.")
+            return
         channel = await self.conf.guild(guild).channel()
+        if not channel:
+            await channel.send("Channel was compromised.")
+            return
         if stamp < now:
             await self._teardown(channel, msg, guild)
         else:
