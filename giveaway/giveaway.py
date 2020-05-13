@@ -58,7 +58,7 @@ class Giveaway(TaskHelper, commands.Cog):
         
     async def _timer(self, remaining):
         guilds = await self.conf.all_guilds()
-        for guild in guilds.items():
+        for guild in guilds:
             guild = self.bot.get_guild(guild)
         if await self.conf.guild(guild).running() is False:
             return
