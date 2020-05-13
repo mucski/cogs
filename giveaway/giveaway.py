@@ -36,7 +36,7 @@ class Giveaway(TaskHelper, commands.Cog):
         #Embed Builder
         embed = discord.Embed()
         embed.set_author(name=f"{self.bot.user.name}'s giveaway.", icon_url=self.bot.user.avatar_url)
-        embed.description(text)
+        embed.description = text
         embed.set_footer(text=f"{humanize_timedelta(timedelta=remaining.total_seconds())}")
         msg = await channel.send(embed=embed)
         msg.addreaction("💎")
