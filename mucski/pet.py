@@ -156,9 +156,4 @@ class Pet(TaskHelper, commands.Cog):
                 await self.conf.user(user).p_stamp.clear()
             
     def cog_unload(self):
-        #self.__unload()
         self.load_check.cancel()
-        
-    #def __unload(self):
-        #self.load_check.cancel()
-        
