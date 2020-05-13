@@ -8,6 +8,10 @@ class TaskHelper:
         for task in list(self.tasks):
             task.cancel()
             
+    def end_task(self):
+        for task in list(self.tasks):
+            task.cancel()
+            
     def schedule_task(self, coro):
         task = asyncio.create_task(coro)
         task.add_done_callback(lambda t: self.tasks.remove(task))
