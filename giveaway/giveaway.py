@@ -83,7 +83,6 @@ class Giveaway(TaskHelper, commands.Cog):
             if user == self.bot.user:
                 continue
             users.append(user)
-        winner = random.choice(users)
         await self.conf.guild(guild).msg.clear()
         await self.conf.guild(guild).channel.clear()
         await self.conf.guild(guild).stamp.clear()
@@ -95,6 +94,7 @@ class Giveaway(TaskHelper, commands.Cog):
         embed.set_footer(text=f"Giveaway finished.")
         msg.edit(embed=embed)
         if winner:
+            winner = random.choice(users)
             await channel.send(f"The winner is {winner.mention}, congratulations! 🎉🎊")
         else:
             await channel.send(f"No one even tried, how ssd is that.")
