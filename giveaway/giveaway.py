@@ -32,7 +32,7 @@ class Giveaway(TaskHelper, commands.Cog):
         future = future.timestamp()
         temp_stamp = datetime.fromtimestamp(future)
         remaining = temp_stamp - now
-        remaining = int(remaining.total_seconds())
+        remaining = remaining.total_seconds
         #Embed Builder
         embed = discord.Embed()
         embed.set_author(name=f"{self.bot.user.name}'s giveaway.", icon_url=self.bot.user.avatar_url)
