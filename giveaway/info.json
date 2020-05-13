@@ -1,1 +1,9 @@
-#jsjsjjs
+{
+    "AUTHOR" : "Mucski",
+    "NAME" : "Giveaway",
+    "SHORT" : "Simple hiveaway cog",
+    "DESCRIPTION" : "Simple giveaway cog, supports 1 running giveaways per server for now.",
+    "TAGS": ["raffel", "winner", "giveaway", "mucski"],
+    "TYPE": "COG"
+}
+
