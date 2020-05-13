@@ -15,5 +15,5 @@ class Roleplaying(commands.Cog):
             embed.set_author(name=f"{ctx.author.name} slaps himself.", icon_url=ctx.author.avatar_url)
         else:
             embed.set_author(name=f"{ctx.author.name} slaps {member.name}", icon_url=ctx.author.avatar_url)
-        embed.image(url=img)
+        embed.set_image(url=img)
         await ctx.send(embed=embed)
