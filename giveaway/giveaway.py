@@ -13,7 +13,7 @@ class Giveaway(TaskHelper, commands.Cog):
         self.conf = Config.get_conf(self, 975667633)
         defaults = { "channel": 0, "msg": 0, "stamp": 0, "running": False }
         self.conf.register_guild(**defaults)
-        self.load_check = self.bot.loop.create_task(self._worker)
+        self.load_check = self.bot.loop.create_task(self._worker())
         TaskHelper.__init__(self)
         
         @commands.group()
