@@ -1,6 +1,7 @@
 import discord
 import asyncio
 from redbot.core import commands, checks
+from redbot.core.utils.chat_formatting import humanize_timedelta
 from datetime import datetime, timedelta
 from .randomstuff import petlist
 from .taskhelper import TaskHelper
@@ -59,7 +60,11 @@ class Pet(TaskHelper, commands.Cog):
             e.add_field(name="Happy", value=pet["happy"])
             e.add_field(name="Clean", value=pet["clean"])
             if pet["mission"] == True:
-                e.add_field(name="On Mission", value="Yes, remaining:")
+                now = datetime.utcnow()
+                stamp = aaait self.conf.user(ctx.author).p_stamp()
+                stamp = datetime.fromtimestamp(stamp)
+                remaining = stamp - now
+                e.add_field(name="On Mission", value=f"Yes, remaining: {humanize_timedelta(timedelta=remaining)}")
             else:
                 e.add_field(name="On Mission", value="Nope")
             e.set_footer(text="Dont forget to feed your pet often especially after a mission.")
