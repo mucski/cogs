@@ -6,6 +6,9 @@ from .randomstuff import petlist
 from .taskhelper import TaskHelper
 
 class Pet(TaskHelper, commands.Cog):
+    def __init__(self):
+        TaskHelper.__init__(self)
+        self.load_check = self.bot.loop.create_task(self._worker())
     
     @commands.group()
     async def pet(self, ctx):
@@ -103,15 +106,36 @@ class Pet(TaskHelper, commands.Cog):
         
     async def _timer(self, remaining):
         await asyncio.sleep(remaining)
-        await self._stop()
+        await self._worker()
         
     async def _worker(self):
         await self.bot.wait_until_ready()
         now = datetime.utcnow()
         users = await self.conf.all_users()
-        pass
+        for user_id, user_data in users.items():
+            user = self.bot.get_user(user_id)
+            if not user:
+                continue
+            channel = self.bot.get_channel(user_data["channel"])
+            if not channel:
+                continue
+            stamp = datetime.fromtimestamp(user_data["p_stamp"])
+            if stamp < now:
+                await self._stop(channel, user)
+            else:
+                remaining = stamp - now
+                self.schedule_task(self._timer(channel, remaining, user))
     
-    async def _stop(self):
-        channel = await self.conf.user(ctx.author).channel()
-        channel = self.bot.get_channel(channel)
-        user = await self.conf.all_users()
+    async def _stop(self, channel, user):
+        mission = await self.conf.user(user).pets.get_raw("mission")
+        if mission is False:
+            return
+        else:
+            type = await self.conf.user(user).pets.get_raw("type")
+            coin = await self.conf.user(user).coins()
+            amt = random.randint(30, 100)
+            coin += amt
+            await self.conf.user(user).coins.set(coin)
+            await channel.send("{} your {} returned from the mission.")
+            await channel.send(resp.format(type, amt))
+            await self.conf.user(user).set_raw("mission", value=False)
