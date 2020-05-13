@@ -1,4 +1,4 @@
-from .giveaway import GiveAway
+from .giveaway import Giveaway
 
 def setup(bot):
-    bot.add_cog(GiveAway(bot))
+    bot.add_cog(Giveaway(bot))
