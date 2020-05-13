@@ -93,7 +93,7 @@ class Giveaway(TaskHelper, commands.Cog):
         embed.description = "Giveaway finished. See bellow for winners:"
         embed.set_footer(text=f"Giveaway finished.")
         msg.edit(embed=embed)
-        if winner:
+        if users:
             winner = random.choice(users)
             await channel.send(f"The winner is {winner.mention}, congratulations! 🎉🎊")
         else:
