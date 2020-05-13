@@ -101,7 +101,7 @@ class Pet(TaskHelper, commands.Cog):
         remaining = tempStamp - now
         remaining = remaining.seconds
         await ctx.send("Sent pet on a mission.")
-        await self._timer(ctx, remaining)
+        await self._timer(remaining)
         
     def cog_unload(self):
         self.__unload()

@@ -61,27 +61,17 @@ class Giveaway(TaskHelper, commands.Cog):
         if not channel:
             await ctx.send("Nothing to end")
             return
-        await self._teardown(channel, msg, ctx.guild)
-        self.end_task()
+        await self.conf.guild(ctx.guild).stamp.clear()
+        await self._worker()
         await self.conf.guild(ctx.guild).running.set(False)
         
     async def _timer(self, remaining):
-        guilds = await self.conf.all_guilds()
-        for guild in guilds:
-            guild = self.bot.get_guild(guild)
-        if await self.conf.guild(guild).running() is False:
-            return
-        msg = await self.conf.guild(guild).msg()
-        if not msg:
-            await channel.send("Message compromised.")
-            return
-        channel = await self.conf.guild(guild).channel()
-        if not channel:
-            return
         await asyncio.sleep(remaining)
-        await self._teardown(channel, msg, guild)
+        await self._worker()
         
     async def _teardown(self, channel, msg, guild):
+        if self.conf.guild(guild).running() is False:
+            return
         channel = self.bot.get_channel(channel)
         msg = await channel.fetch_message(msg)
         users = []
@@ -118,7 +108,7 @@ class Giveaway(TaskHelper, commands.Cog):
         msg = await self.conf.guild(guild)
         channel = await self.conf.guild(guild).channel()
         if stamp < now:
-            await self._teardown(channel, msg)
+            await self._teardown(channel, msg, guild)
         else:
             self.schedule_task(self._timer(remaining))
         
