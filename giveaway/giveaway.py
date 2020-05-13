@@ -39,7 +39,7 @@ class Giveaway(TaskHelper, commands.Cog):
         embed.description = text
         embed.set_footer(text=f"Testing")
         msg = await channel.send(embed=embed)
-        msg.add_reaction("💎")
+        await msg.add_reaction("💎")
         channel = channel.id
         msg = msg.id
         await self.conf.guild(ctx.guild).channel.set(channel)
