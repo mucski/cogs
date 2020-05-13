@@ -96,7 +96,7 @@ class Giveaway(TaskHelper, commands.Cog):
             await channel.send(f"No one even tried, how sad is that.")
         
     async def _worker(self):
-        await self.bot.wait.until_ready()
+        await self.bot.wait_until_ready()
         guilds = await self.conf.all_guilds()
         for guild in guilds:
             guild = self.bot.get_guild(guild)
