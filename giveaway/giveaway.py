@@ -54,7 +54,13 @@ class Giveaway(TaskHelper, commands.Cog):
     @gw.command()
     async def end(self, ctx):
         msg = await self.conf.guild(ctx.guild).msg()
+        if not msg:
+            await ctx.send("Nothing to end")
+            return
         channel = await self.conf.guild(ctx.guild).channel()
+        if not channel:
+            await ctx.send("Nothing to end")
+            return
         await self._teardown(channel, msg, ctx.guild)
         self.end_task()
         await self.conf.guild(ctx.guild).running.set(False)
@@ -76,8 +82,6 @@ class Giveaway(TaskHelper, commands.Cog):
         await self._teardown(channel, msg, guild)
         
     async def _teardown(self, channel, msg, guild):
-        if not msg or channel:
-            return
         channel = self.bot.get_channel(channel)
         msg = await channel.fetch_message(msg)
         users = []
