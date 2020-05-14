@@ -22,14 +22,12 @@ class ColorRoles(commands.Cog):
     
     @commands.command()
     async def color(self, ctx, *, color: str):
-        if color in self.color_roles:
-            roles = ctx.author.roles
-            for color in self.color_roles:
-                color = get(ctx.guild.roles, name=color)
-                try:
-                    roles.remove(color)
-                except ValueError:
-                    pass
-                roles.append(color)
-                await ctx.author.edit(roles=roles)
-            await ctx.send("Gave {} to {}".format(color, ctx.author))
+        roles = ctx.author.roles
+        if color in color_roles:
+            for color in color_roles:
+                color = get(ctx.guild.roles, id=color)
+                roles.remove(color)
+                if color not in roles:
+                    continue
+            roles.append(color)
+            await ctx.send("Success")
