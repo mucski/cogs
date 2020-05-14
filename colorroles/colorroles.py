@@ -25,7 +25,7 @@ class ColorRoles(commands.Cog):
         roles = ctx.author.roles
         if color in self.color_roles:
             for color in self.color_roles:
-                color = get(ctx.guild.roles, id=color)
+                color = get(ctx.guild.roles, name=color)
                 try:
                     roles.remove(color)
                 except ValueError:
