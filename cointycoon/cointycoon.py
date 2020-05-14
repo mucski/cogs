@@ -13,7 +13,6 @@ from redbot.core.utils.predicates import MessagePredicate
 #self imports
 from .pet import Pet
 from .adminutils import AdminUtils
-from .games import Games
 from .shop import Shop
 from .randomstuff import worklist, searchlist, bad_location
 
