@@ -23,7 +23,7 @@ class Roleplaying(commands.Cog):
     async def kiss(self, ctx, member: discord.Member = None):
         img = random.choice(kisslist)
         e = discord.Embed()
-        e.set_image(url=imgurl)
+        e.set_image(url=img)
         if member is None:
             member = "mirror."
         else:
