@@ -27,6 +27,6 @@ class ColorRoles(commands.Cog):
             color = get(ctx.guild.roles, name=color)
             if color in self.color_roles:
                 roles.remove(color)
-        roles.append(color)
+            roles.append(color)
         await ctx.author.edit(roles=roles)
         await ctx.send("Success")
