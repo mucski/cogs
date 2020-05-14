@@ -31,4 +31,5 @@ class ColorRoles(commands.Cog):
                 except ValueError:
                     continue
             roles.append(color)
+            await ctx.author.edit(roles=roles)
             await ctx.send("Success")
