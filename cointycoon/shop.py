@@ -27,7 +27,7 @@ class Shop(commands.Cog):
     async def items(self, ctx):
         """Items"""
         e = discord.Embed()
-        e.set_author(name="Item shop")
+        e.set_author(name="Item shop", icon_url="")
         e.set_footer(text="Buy an item by typing .shop buy itemname")
         for k, v in shoplist.items():
             #build embed
@@ -38,5 +38,18 @@ class Shop(commands.Cog):
             e.add_field(name="Quantity/Price", value=v['quantity'])
         await ctx.send(embed=e)
         
-        
-    
+    @shop.command()
+    async def buy(self, ctx, itemname: str, amt: int):
+        async with self.conf.user(ctx.author).items() as item:
+            item['type'] = shoplist['itemname']['type']
+            item['name'] = shoplist['itemname']
+            item['quantity'] = amt
+            coin = self.conf.user(ctx.author).coins()
+            coins = coin - shoplist['itemname']['price'] * amt
+            await self.conf.user(ctx.author).coins.set(coins)
+            await ctx.send("You bought {} {} for {}".format(item['name'], amt, coins))
+            
+    @shop.command()
+    async def inv(self, ctx):
+        items = self.conf.user(ctx.author).items()
+        await ctx.send(items)
