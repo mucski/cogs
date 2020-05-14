@@ -134,16 +134,17 @@ class Pet(TaskHelper, commands.Cog):
                 self.schedule_task(self._timer(remaining))
     
     async def _stop(self, channel, user):
-        mission = await self.conf.user(user).pets.get_raw("mission")
-        if mission is False:
-            return
-        else:
-            type = await self.conf.user(user).pets.get_raw("type")
-            coin = await self.conf.user(user).coins()
-            amt = random.randint(30, 100)
-            coin += amt
-            resp = random.choice(pet_resp)
-            await self.conf.user(user).coins.set(coin)
-            await channel.send(f"{user.mention} your {type} returned from the mission.")
-            await channel.send(resp.format(type, amt))
-            await self.conf.user(user).set_raw("mission", value=False)
+        async with self.conf.user(user).pets() as pet:
+            if pet["mission"] is False:
+                #return silently
+                return
+            else:
+                pet["mission"] = False
+                type = pet["type"]
+                coin = await self.conf.user(user).coins()
+                amt = random.randint(30, 100)
+                coin += amt
+                resp = random.choice(pet_resp)
+                await self.conf.user(user).coins.set(coin)
+                await channel.send(f"{user.mention} your {type} returned from the mission.")
+                await channel.send(resp.format(type, amt))
