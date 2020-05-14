@@ -1,6 +1,6 @@
 import discord
 from redbot.core import commands, checks
-from .randomstuff import petlist
+from .randomstuff import petlist, shoplist
 
 class Shop(commands.Cog):
     #list pets
@@ -23,4 +23,20 @@ class Shop(commands.Cog):
             e.add_field(name="Price", value=v['price'])
         await ctx.send(embed=e)
             
+    @shop.command()
+    async def items(self, ctx):
+        """Items"""
+        e = discord.Embed()
+        e.set_author(name="Item shop")
+        e.set_footer(text="Buy an item by typing .shop buy itemname")
+        for k, v in shoplist.items():
+            #build embed
+            e.add_field(name=k.capitalize(), value=v['emoji'])
+            e.add_field(name="Description", value=v['description'])
+            e.add_field(name="Price", value=v['price'])
+            e.add_field(name="Type", value=v['type'])
+            e.add_field(name="Quantity/Price", value=v['quantity'])
+        await ctx.send(embed=e)
         
+        
+    
