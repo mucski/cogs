@@ -26,9 +26,9 @@ class ColorRoles(commands.Cog):
             roles = ctx.author.roles
             for colors in self.color_roles:
                 try:
-                    roles.remove(colors)
+                    roles.remove(colors.id)
                 except ValueError:
                     pass
-                roles.append(color)
+                roles.append(color.id)
             await ctx.author.edit(roles=roles)
             await ctx.send("Gave {} to {}".format(color, ctx.author))
