@@ -22,13 +22,14 @@ class Roleplaying(commands.Cog):
     @commands.command()
     async def kiss(self, ctx, member: discord.Member = None):
         img = random.choice(kisslist)
-        embed = discord.Embed()
-        if member is None or member == ctx.author:
-            embed.set_author(name=f"{ctx.author.name} kisses himself/herself.", icon_url=ctx.author.avatar_url)
+        e = discord.Embed()
+        e.set_image(url=imgurl)
+        if member is None:
+            member = "mirror."
         else:
-            embed.set_author(name=f"{ctx.author.name} kisses {member.name}", icon_url=ctx.author.avatar_url)
-        embed.set_image(url=img)
-        await ctx.send(embed=embed)
+            member = member.name
+        e.set_author(name=f"{ctx.author} kisses {member}", icon_url=ctx.author.avatar_url)
+        await ctx.send(embed=e)
         
     @commands.command()
     async def pat(self, ctx, member: discord.Member = None):
