@@ -15,11 +15,9 @@ from .pet import Pet
 from .adminutils import AdminUtils
 from .games import Games
 from .shop import Shop
-from .randomstuff import worklist
-from .randomstuff import searchlist
-from .randomstuff import bad_location
+from .randomstuff import worklist, searchlist, bad_location
 
-class Mucski(Pet, AdminUtils, Games, Shop, commands.Cog):
+class CoinTycoon(Pet, AdminUtils, Games, Shop, commands.Cog):
     def __init__(self, bot):
         self.bot = bot
         self.conf = Config.get_conf(self, 28484827, force_registration=True)

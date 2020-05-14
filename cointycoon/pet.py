@@ -4,8 +4,7 @@ import random
 from redbot.core import commands, checks
 from redbot.core.utils.chat_formatting import humanize_timedelta
 from datetime import datetime, timedelta
-from .randomstuff import petlist
-from .randomstuff import pet_resp
+from .randomstuff import petlist, pet_resp
 from .taskhelper import TaskHelper
 
 class Pet(TaskHelper, commands.Cog):
