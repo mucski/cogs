@@ -16,7 +16,7 @@ from .adminutils import AdminUtils
 from .shop import Shop
 from .randomstuff import worklist, searchlist, bad_location
 
-class CoinTycoon(Pet, AdminUtils, Games, Shop, commands.Cog):
+class CoinTycoon(Pet, AdminUtils, Shop, commands.Cog):
     """Coin tycoon game cog by mucski, massive thanks to DevilXD"""
     def __init__(self, bot):
         self.bot = bot
