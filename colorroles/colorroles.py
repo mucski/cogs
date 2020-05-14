@@ -25,3 +25,5 @@ class ColorRoles(commands.Cog):
                 await self.bot.remove_role(ctx.author, role)
                 await self.bot.add_role(ctx.author, role)
                 await ctx.send("Gave role {} to {}".format(color, ctx.author))
+        else:
+            await ctx.send("No such role")
