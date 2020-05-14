@@ -39,7 +39,7 @@ class Shop(commands.Cog):
         await ctx.send(embed=e)
         
     @shop.command()
-    async def buy(self, ctx, itemname: str, amt: int):
+    async def buyitem(self, ctx, itemname: str, amt: int):
         async with self.conf.user(ctx.author).items() as item:
             item['type'] = shoplist['itemname']['type']
             item['name'] = shoplist['itemname']
