@@ -27,7 +27,7 @@ class ColorRoles(commands.Cog):
             for color in self.color_roles:
                 color = get(ctx.guild.roles, name=color)
                 await ctx.author.remove_roles(color)
-            await ctx.author.add_roles(role)
-            await ctx.send("Gave role {} color to {}".format(color, ctx.author))
+                await ctx.author.add_roles(role)
+                await ctx.send("Gave role {} color to {}".format(color, ctx.author))
         else:
             await ctx.send("That color is not yet available.")
