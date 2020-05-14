@@ -17,10 +17,11 @@ class ColorRoles(commands.Cog):
         "Green",
         "Hot Pink",
         "Pink",
+        "Green",
     ]
     
     @commands.command()
-    async def color(self, ctx, color: str):
+    async def color(self, ctx, *, color: str):
         if color in self.color_roles:
             role = get(ctx.guild.roles, name=color)
             for color in self.color_roles:
