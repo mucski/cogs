@@ -86,6 +86,13 @@ shoplist = {
         "emoji": "soon",
         "type": "toy",
     },
+    "soap": {
+        "description": "Classic way to keep your pet squeeky clea.",
+        "price": 500,
+        "quantity": 1,
+        "emoji": "soon",
+        "type": "cleaning",
+    },
 }
 
 pet_resp = [
