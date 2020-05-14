@@ -23,3 +23,13 @@ cuddlelist = [
     "https://media.tenor.com/images/d03ab0adb5173ce512f255f1e23ca399/tenor.gif",
     "https://media.tenor.com/images/9dd8181420b4b7938463bbe69285293d/tenor.gif",
 ]
+
+huglist = [
+    "https://media.tenor.com/images/15c39a7d6b03267941a87b24483ab696/tenor.gif",
+    "https://media.tenor.com/images/35fc88f417892fad929380ad78c796b9/tenor.gif",
+    "https://media.tenor.com/images/c2e5126c39ad5f3a1a2ae31f3e784da8/tenor.gif",
+    "https://media.tenor.com/images/8f44c083c55620c02f59c6bea378dca4/tenor.gif",
+    "https://media.tenor.com/images/9fe95432f2d10d7de2e279d5c10b9b51/tenor.gif",
+    "https://media.tenor.com/images/934adba8e5516096e526f955458ec94a/tenor.gif",
+    "https://media.tenor.com/images/6083ba11631dd577bcc271268d010832/tenor.gif",
+]
