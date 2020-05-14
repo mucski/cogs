@@ -142,8 +142,8 @@ class Pet(TaskHelper, commands.Cog):
             coin = await self.conf.user(user).coins()
             amt = random.randint(30, 100)
             coin += amt
-            pet_resp = random.choice(pet_resp)
+            resp = random.choice(pet_resp)
             await self.conf.user(user).coins.set(coin)
             await channel.send("{} your {} returned from the mission.")
-            await channel.send(pet_resp.format(type, amt))
+            await channel.send(resp.format(type, amt))
             await self.conf.user(user).set_raw("mission", value=False)
