@@ -26,8 +26,9 @@ class ColorRoles(commands.Cog):
         if color in self.color_roles:
             for color in self.color_roles:
                 color = get(ctx.guild.roles, id=color)
-                roles.remove(color)
-                if color not in roles:
+                try:
+                    roles.remove(color)
+                except ValueError:
                     continue
             roles.append(color)
             await ctx.send("Success")
