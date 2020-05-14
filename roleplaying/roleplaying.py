@@ -9,15 +9,12 @@ class Roleplaying(commands.Cog):
         self.bot = bot
         
     @commands.command()
-    async def kiss(self, ctx, member: discord.Member = None):
+    async def kiss(self, ctx, member: discord.Member):
         img = random.choice(kisslist)
         e = discord.Embed()
         e.set_image(url=img)
-        if member is None:
-            member = "self."
-        else:
-            member = member.mention
-        e.set_author(name=f"{ctx.author} kisses {member}", icon_url=ctx.author.avatar_url)
+        e.set_author(name=f"{ctx.author.name} kisses:", icon_url=ctx.author.avatar_url)
+        e.set_footer(text=member.mention)
         await ctx.send(embed=e)
         
     
