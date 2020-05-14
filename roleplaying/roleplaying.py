@@ -1,6 +1,6 @@
 import discord
 from redbot.core import commands
-from .randomstuff import punchlist, kisslist, cuddlelist
+from .randomstuff import punchlist, kisslist, cuddlelist, huglist
 import random
 
 class Roleplaying(commands.Cog):
@@ -38,6 +38,18 @@ class Roleplaying(commands.Cog):
         e = discord.Embed()
         e.set_image(url=img)
         e.set_author(name=f"{ctx.author.name} cudles with:", icon_url=ctx.author.avatar_url)
+        if member is None:
+            e.set_footer(text="the air.")
+        else:
+            e.set_footer(text=member.name)
+        await ctx.send(embed=e)
+        
+    @commands.command()
+    async def hug(self, ctx, member: discord.Member = None):
+        img = random.choice(huglist)
+        e = discord.Embed()
+        e.set_image(url=img)
+        e.set_author(name=f"{ctx.author.name} hugs:", icon_url=ctx.author.avatar_url)
         if member is None:
             e.set_footer(text="the air.")
         else:
