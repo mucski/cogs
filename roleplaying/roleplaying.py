@@ -1,6 +1,6 @@
 import discord
 from redbot.core import commands
-from .randomstuff import slaplist, huglist, punchlist, sadlist, patlist, kisslist
+from .randomstuff import slaplist, huglist, punchlist, sadlist, patlist, kisslist, cuddlelist
 import random
 
 class Roleplaying(commands.Cog):
