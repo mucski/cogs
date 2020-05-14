@@ -24,7 +24,7 @@ class ColorRoles(commands.Cog):
     async def color(self, ctx, *, color: str):
         if color in self.color_roles:
             roles = ctx.author.roles
-            for colors in color_roles:
+            for colors in self.color_roles:
                 roles.remove(colors)
                 roles.append(color)
             await ctx.author.edit(roles=roles)
