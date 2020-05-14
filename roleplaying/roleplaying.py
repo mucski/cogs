@@ -20,4 +20,16 @@ class Roleplaying(commands.Cog):
             e.set_footer(text=member.name)
         await ctx.send(embed=e)
         
+    @commands.command()
+    async def punch(self, ctx, member: discord.Member = None):
+        img = random.choice(punch)
+        e = discord.Embed()
+        e.set_image(url=img)
+        e.set_author(name=f"{ctx.author.name} punches:", icon_url=ctx.author.avatar_url)
+        if member is None:
+            e.set_footer(text="the air.")
+        else:
+            e.set_footer(text=member.name)
+        await ctx.send(embed=e)
+        
     
