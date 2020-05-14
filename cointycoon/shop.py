@@ -51,5 +51,5 @@ class Shop(commands.Cog):
             
     @shop.command()
     async def inv(self, ctx):
-        items = self.conf.user(ctx.author).items()
+        items = await self.conf.user(ctx.author).items()
         await ctx.send(items)
