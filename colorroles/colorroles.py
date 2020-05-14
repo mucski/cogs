@@ -24,7 +24,7 @@ class ColorRoles(commands.Cog):
     async def color(self, ctx, *, color: str):
         if color in self.color_roles:
             roles = ctx.author.roles
-            color = get(ctx.guild.roles, role=color)
+            color = get(ctx.guild.roles, name=color)
             for color in self.color_roles:
                 try:
                     roles.remove(color)
