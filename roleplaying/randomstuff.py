@@ -43,3 +43,13 @@ patlist = [
     "https://media.tenor.com/images/fa9ad7f4ecfad744aec37241cce2cecc/tenor.gif",
     "https://media.tenor.com/images/3739a516b2f49bdd4b4667f0db7d3a48/tenor.gif",
 ]
+
+slaplist = [
+    "https://media.tenor.com/images/734d628ba871022bc9ae142035b969b5/tenor.gif",
+    "https://media.tenor.com/images/091e0502e5fda1201ee76f5f26eea195/tenor.gif",
+    "https://media.tenor.com/images/53b846f3cc11c7c5fe358fc6d458901d/tenor.gif",
+    "https://media.tenor.com/images/45a27dba6f60c6a8deee02335dd5f1a0/tenor.gif",
+    "https://media.tenor.com/images/a107547117e0b8f22e00a3f39c40eb2f/tenor.gif",
+    "https://media.tenor.com/images/f0ea127d5a4f4d8a3aa808f4cfd7561e/tenor.gif",
+    "https://media.tenor.com/images/57a57baa6b2b20deb81d22fbaef91d88/tenor.gif",
+]
