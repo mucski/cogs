@@ -6,9 +6,13 @@ slaplist = [
 ]
 
 kisslist = [
-    "https://thumbs.gfycat.com/EmbellishedWeeklyGoose-size_restricted.gif",
-    "https://giphy.com/gifs/kiss-anime-riko-G3va31oEEnIkM",
-    "https://media1.tenor.com/images/0b39ba7b0affa79d3d6eddbe5bea684a/tenor.gif?itemid=15111569",
+    "https://media.tenor.com/images/be2b3298bc9880b9ffcdc7a47635fff6/tenor.gif",
+    "https://media.tenor.com/images/21fed1c94754d21acdbccd52adfb53d0/tenor.gif",
+    "https://media.tenor.com/images/6e4be7dcabb41ee76f2372f0492fc107/tenor.gif",
+    "https://media.tenor.com/images/0136ddedea728ae27df8fbcd19d680f5/tenor.gif",
+    "https://media.tenor.com/images/1f9175e76488ebf226de305279151752/tenor.gif",
+    "https://media.tenor.com/images/4b75a7e318cb515156bb7bfe5b3bbe6f/tenor.gif",
+    "https://media.tenor.com/images/68d59bb29d7d8f7895ce385869989852/tenor.gif",
 ]
 
 punchlist = [
