@@ -19,11 +19,11 @@ class ColorRoles(commands.Cog):
     
     @commands.command()
     async def color(self, ctx, color: str):
-        if self.color_roles.items() in ctx.author.roles:
+        if color in self.color_roles:
             for role in ctx.author.roles:
                 role = get(ctx.guild, name=color)
                 await self.bot.remove_role(ctx.author, role)
                 await self.bot.add_role(ctx.author, role)
                 await ctx.send("Gave role {} to {}".format(color, ctx.author))
         else:
-            await ctx.send("No such role")
+            await ctx.send("That color is not yet available.")
