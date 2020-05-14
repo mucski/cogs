@@ -46,9 +46,10 @@ class Roleplaying(commands.Cog):
         img = random.choice(punchlist)
         embed = discord.Embed()
         if member is None or member == ctx.author:
-            embed.set_author(name=f"{ctx.author.name} punches himself/herseld.", icon_url=ctx.author.avatar_url)
+            embed.set_footer(text="the air.")
         else:
-            embed.set_author(name=f"{ctx.author.name} punches {member.name}", icon_url=ctx.author.avatar_url)
+            embed.set_footer(text={member.name})
+        embed.set_author(name=f"{ctx.author.name} punches", icon_url=ctx.author.avatar_url)
         embed.set_image(url=img)
         await ctx.send(embed=embed)
         
