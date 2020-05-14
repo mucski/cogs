@@ -48,8 +48,16 @@ class AdminUtils(commands.Cog):
         await ctx.send("Thanos snapped the db")
         
     @adm.command()
-    async def killpet(self, ctx, member: discord.Member=None):
+    async def killpet(self, ctx, member: discord.Member = None):
         if not member:
             member = ctx.author
-        await self.conf.user(ctx.author).pets.clear()
+        await self.conf.user(member).pets.clear()
         await ctx.send(f"Killed {member.name}'s pet. You bastard!")
+        
+    @adm.command()
+    async def clearinv(self, ctx, member: discord.Member = None):
+        if not member:
+            member = ctx.author
+        await self.conf.user(member).items.clear()
+        await ctx.send(f"Cleared {member.name}'s inventory.")
+       
