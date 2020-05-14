@@ -13,7 +13,7 @@ class Roleplaying(commands.Cog):
         img = random.choice(kisslist)
         e = discord.Embed()
         e.set_image(url=img)
-        e.set_author(name=f"{ctx.author.name} kisses {member.mention}", icon_url=ctx.author.avatar_url)
+        e.set_author(name=f"{ctx.author.name} kisses {member}", icon_url=ctx.author.avatar_url)
         #e.set_footer(text=member.mention)
         await ctx.send(embed=e)
         
