@@ -43,7 +43,7 @@ class Shop(commands.Cog):
         async with self.conf.user(ctx.author).items() as item:
             item['type'] = shoplist[itemname]['type']
             item['name'] = itemname.capitalize()
-            item['quantity'] = amt
+            item['quantity'] += amt
             coin = await self.conf.user(ctx.author).coins()
             coins = shoplist[itemname]['price'] * amt
             coin - coins 
