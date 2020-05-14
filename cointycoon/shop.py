@@ -40,6 +40,9 @@ class Shop(commands.Cog):
         
     @shop.command()
     async def buyitem(self, ctx, itemname: str, amt: int):
+        if amt < 1:
+            await ctx.send("Need to buy at least 1")
+            return
         async with self.conf.user(ctx.author).items() as item:
             item['type'] = shoplist[itemname]['type']
             item['name'] = itemname.capitalize()
