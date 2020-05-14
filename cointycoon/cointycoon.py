@@ -32,7 +32,6 @@ class CoinTycoon(Pet, AdminUtils, Shop, commands.Cog):
         }
         self.conf.register_user(**defaults)
         Pet.__init__(self)
-        #self.load_check = self.bot.loop.create_task(self._worker())
         
     @commands.group(name="coin", aliases=['c'], pass_context=True)
     async def coin(self, ctx):
@@ -81,7 +80,6 @@ class CoinTycoon(Pet, AdminUtils, Shop, commands.Cog):
             row.append(f"{user_obj.display_name}#{user_obj.discriminator}")
             row.append(f"{account['coins']}") 
             li.append(row)
-        #text = "\n".join(li)
         page_list=[]
         table = box(tabulate(li, headers=['#', 'Member', 'Coins'],
                              numalign='right'), lang='ml')
@@ -211,9 +209,3 @@ class CoinTycoon(Pet, AdminUtils, Shop, commands.Cog):
             await self.conf.user(ctx.author).coins.set(sc)
             await self.conf.user(member).coins.set(vc)
             await ctx.send(f"Failed. You paid {perc:.0%} coins to {member.name} as an apology.")
-            
-    #def cog_unload(self):
-        #self.__unload()
-        
-    #def __unload(self):
-        #self.load_check.cancel()
