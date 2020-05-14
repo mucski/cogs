@@ -22,7 +22,7 @@ class Roleplaying(commands.Cog):
         
     @commands.command()
     async def punch(self, ctx, member: discord.Member = None):
-        img = random.choice(punch)
+        img = random.choice(punchlist)
         e = discord.Embed()
         e.set_image(url=img)
         e.set_author(name=f"{ctx.author.name} punches:", icon_url=ctx.author.avatar_url)
