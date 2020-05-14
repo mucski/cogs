@@ -48,7 +48,7 @@ class Roleplaying(commands.Cog):
         if member is None or member == ctx.author:
             embed.set_footer(text="the air.")
         else:
-            embed.set_footer(text=member.mention)
+            embed.set_footer(text=f"{member.mention}")
         embed.set_author(name=f"{ctx.author.name} punches", icon_url=ctx.author.avatar_url)
         embed.set_image(url=img)
         await ctx.send(embed=embed)
