@@ -21,8 +21,7 @@ class ColorRoles(commands.Cog):
     async def color(self, ctx, color: str):
         if self.color_roles in ctx.author.roles:
             for role in ctx.author.roles:
-                role = get(ctx.guild, name=role)
+                role = get(ctx.guild, name=color)
                 await self.bot.remove_role(ctx.author, role)
-                color = get(ctx.guild, name=color)
-                await self.bot.add_role(ctx.author, color)
+                await self.bot.add_role(ctx.author, role)
                 await ctx.send("Gave role {} to {}".format(color, ctx.author))
