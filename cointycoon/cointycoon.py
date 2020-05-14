@@ -28,6 +28,7 @@ class CoinTycoon(Pet, AdminUtils, Shop, commands.Cog):
             "s_stamp": 0, #steal timestamp
             "p_stamp": 0, #pet timestamp
             "pets": {}, #pet format {hunger:100,happy:100,clean:100,type:type,mission:False,name:whatever}
+            "items": {}, #format {name:name, type:type, statboost:0, quantity:0}
             "channel": None,
         }
         self.conf.register_user(**defaults)
