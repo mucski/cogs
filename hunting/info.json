@@ -1,8 +1,8 @@
 {
-    "AUTHOR" : "Paddolicious#8880",
-    "NAME" : "Hunting",
-    "SHORT" : "Hunting, it hunts birds... and things that fly",
-    "DESCRIPTION" : "Hunting, it hunts birds... and things that fly",
-    "TAGS": ["Hunting", "hunt", "birds", "paddo"],
-    "TYPE": "COG"
+    "author": "padolicious",
+    "description": "Hunting flying animals.",
+    "install_msg": "Hunt ducks and other things that pop up randomly.",
+    "short": "Hunting game, not made by Mucski ",
+    "tags": ["shoot", "hunting", "game", "pets"],
+    "type": "COG"
 }
