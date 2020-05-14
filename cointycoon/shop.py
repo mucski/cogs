@@ -47,7 +47,7 @@ class Shop(commands.Cog):
             coin = self.conf.user(ctx.author).coins()
             coin -= shoplist[itemname]['price'] * amt
             await self.conf.user(ctx.author).coins.set(coin)
-            await ctx.send("You bought {} {} for {}".format(item['name'], amt))
+            await ctx.send("You bought {} {}".format(item['name'], amt))
             
     @shop.command()
     async def inv(self, ctx):
