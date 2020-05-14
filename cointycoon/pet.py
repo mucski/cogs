@@ -143,6 +143,9 @@ class Pet(TaskHelper, commands.Cog):
                 return
             else:
                 pet["mission"] = False
+                pet["hunger"] -= random.randint(1, 11)
+                pet["happy"] -= random.randint(1, 11)
+                pet["clean"] -= random.randint(1, 11)
                 type = pet["type"]
                 coin = await self.conf.user(user).coins()
                 amt = random.randint(30, 100)
