@@ -38,7 +38,7 @@ class Pet(TaskHelper, commands.Cog):
             pet["type"] = name.lower()
             await self.conf.user(ctx.author).coins.set(coins)
             await ctx.send(f"You bought a {pet['type']} and spent {price} coins, take good care of it. See [p]pet info for stats and other stuff.")
-        
+    
     @pet.command()
     async def info(self, ctx):
         """Show various information about your pet"""
