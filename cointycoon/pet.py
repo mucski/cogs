@@ -96,7 +96,7 @@ class Pet(TaskHelper, commands.Cog):
             await ctx.send("Your pet is already in a mission, wait for it to finish.")
             return
         now = datetime.utcnow()
-        timer = timedelta(seconds=1)
+        timer = timedelta(seconds=60)
         future = timer + now
         future = future.timestamp()
         await self.conf.user(ctx.author).p_stamp.set(future)
