@@ -20,7 +20,7 @@ class ColorRoles(commands.Cog):
     @commands.command()
     async def color(self, ctx, color: str):
         if color in self.color_roles:
-            role = get(ctx.message.server.roles, name=color)
+            role = get(guild.roles, name=color)
             for role in ctx.author.roles:
                 await self.bot.remove_role(ctx.author, role)
                 await self.bot.add_role(ctx.author, role)
