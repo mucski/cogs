@@ -25,7 +25,7 @@ class ColorRoles(commands.Cog):
         roles = ctx.author.roles
         for color in self.color_roles:
             role = get(ctx.guild.roles, name=color)
-            if color in self.color_roles:
+            if color in roles:
                 roles.remove(role)
         roles.append(role)
         await ctx.author.edit(roles=roles)
