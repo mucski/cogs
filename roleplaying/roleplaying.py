@@ -14,7 +14,7 @@ class Roleplaying(commands.Cog):
         e = discord.Embed()
         e.set_image(url=img)
         e.set_author(name=f"{ctx.author.name} kisses:", icon_url=ctx.author.avatar_url)
-        e.set_footer(text=member)
+        e.set_footer(text=member.name)
         await ctx.send(embed=e)
         
     
