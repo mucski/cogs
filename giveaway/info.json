@@ -1,9 +1,8 @@
 {
-    "AUTHOR" : "Mucski",
-    "NAME" : "Giveaway",
-    "SHORT" : "Simple giveaway cog",
-    "DESCRIPTION" : "Simple giveaway cog, supports 1 running giveaways per server for now.",
-    "TAGS": ["raffle", "winner", "giveaway", "mucski"],
-    "TYPE": "COG"
+    "author": "mucski",
+    "description": "A simple giveaway cog.",
+    "install_msg": "Setup a giveaway and let the bot chose a winner for you.",
+    "short": "Simple giveaway cog ",
+    "tags": ["winner", "random", "giveawat"],
+    "type": "COG"
 }
-

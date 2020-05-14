@@ -18,6 +18,7 @@ class Pet(TaskHelper, commands.Cog):
     
     @pet.command()
     async def buy(self, ctx, pet: str):
+        """Buy a pet see [p]shop for the list"""
         price = petlist[pet]["price"]
         name = pet
         coins = await self.conf.user(ctx.author).coins()
@@ -40,6 +41,7 @@ class Pet(TaskHelper, commands.Cog):
         
     @pet.command()
     async def info(self, ctx):
+        """Show various information about your pet"""
         if not await self.conf.user(ctx.author).pets():
             await ctx.send("You dont own any pets.")
             return
@@ -73,6 +75,7 @@ class Pet(TaskHelper, commands.Cog):
             
     @pet.command()
     async def rename(self, ctx, *, name):
+        """Rename your pet"""
         if not await self.conf.user(ctx.author).pets():
             await ctx.send("You dont own any pets")
             return
@@ -85,6 +88,7 @@ class Pet(TaskHelper, commands.Cog):
             
     @pet.command()
     async def send(self, ctx):
+        """Send your pet on a mission/adventure for it to retrieve coins, items"""
         channel = ctx.channel
         await self.conf.user(ctx.author).channel.set(channel.id)
         petStamp = await self.conf.user(ctx.author).p_stamp()

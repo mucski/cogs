@@ -1,8 +1,8 @@
 {
-    "AUTHOR": "Mucski",
-    "NAME": "Roleplaying",
-    "SHORT": "Special reactions for awesome people",
-    "DESCRIPTION": "Many awesome emotes ans stuff you can use on your server..",
-    "TAGS": ["anime", "emotes", "roleplay", "mucski"],
-    "TYPE": "COG"
+    "author": "mucski",
+    "description": "Roleplaying cog with anime.",
+    "install_msg": "Punch, slap, hug, kiss, pat, sad your friends.",
+    "short": "Roleplaying with anime ",
+    "tags": ["patr", "slap", "hug", "kiss"],
+    "type": "COG"
 }

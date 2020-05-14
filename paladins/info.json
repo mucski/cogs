@@ -1,8 +1,8 @@
 {
     "author": "mucski",
     "description": "Paladins stats cog",
-    "install_msg": "Paladins",
-    "short": "Paladins. ",
-    "tags": ["stats", "paladins", "smite"],
+    "install_msg": "A paladins game cog that shows your recent match stats, more to come.",
+    "short": "Paladins cog that shows stats ",
+    "tags": ["stats", "paladins", "smite", "hirez"],
     "type": "COG"
 }
