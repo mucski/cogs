@@ -5,6 +5,7 @@ from redbot.core import commands, checks
 from redbot.core.utils.chat_formatting import humanize_timedelta
 from datetime import datetime, timedelta
 from .randomstuff import petlist
+from .randomstuff import pet_resp
 from .taskhelper import TaskHelper
 
 class Pet(TaskHelper, commands.Cog):
@@ -143,5 +144,5 @@ class Pet(TaskHelper, commands.Cog):
             coin += amt
             await self.conf.user(user).coins.set(coin)
             await channel.send("{} your {} returned from the mission.")
-            await channel.send(resp.format(type, amt))
+            await channel.send(pet_resp.format(type, amt))
             await self.conf.user(user).set_raw("mission", value=False)
