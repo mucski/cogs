@@ -1,6 +1,6 @@
 import discord
 from redbot.core import commands
-from .randomstuff import punchlist, kisslist, cuddlelist, huglist, patlist
+from .randomstuff import punchlist, kisslist, cuddlelist, huglist, patlist, slaplist
 import random
 
 class Roleplaying(commands.Cog):
@@ -62,6 +62,18 @@ class Roleplaying(commands.Cog):
         e = discord.Embed()
         e.set_image(url=img)
         e.set_author(name=f"{ctx.author.name} pats:", icon_url=ctx.author.avatar_url)
+        if member is None:
+            e.set_footer(text="the air.")
+        else:
+            e.set_footer(text=member.name)
+        await ctx.send(embed=e)
+        
+    @commands.command()
+    async def slap(self, ctx, member: discord.Member = None):
+        img = random.choice(slaplist)
+        e = discord.Embed()
+        e.set_image(url=img)
+        e.set_author(name=f"{ctx.author.name} slaps", icon_url=ctx.author.avatar_url)
         if member is None:
             e.set_footer(text="the air.")
         else:
