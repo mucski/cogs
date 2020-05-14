@@ -15,6 +15,8 @@ class ColorRoles(commands.Cog):
         "Purple",
         "Cyan",
         "Green",
+        "Hot Pink",
+        "Pink",
     ]
     
     @commands.command()
