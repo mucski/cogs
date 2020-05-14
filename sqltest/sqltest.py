@@ -9,12 +9,22 @@ class Sqltest(commands.Cog):
         cursor = db.cursor()
         cursor.execute("""
         CREATE TABLE IF NOT EXISTS main(
-        guild_id TEXT,
-        msg TEXT,
-        channel_id TEXT,
+        guild_id INT,
+        msg_id INT,
+        channel_id INT,
+        user_id INT,
         )
         """)
         
     @commands.group(invoke_without_command=True)
     async def test(self, ctx):
-        
+        msg = await ctx.send("Hi")
+        cursor.execute("SELECT * FROM main WHERE user_id=?", (ctx.author.id,))
+        resp = cursor.fetchone()
+        if not resp:
+            cursor.execute("INSERT INTO main VALUES (?,?,?)",
+                (ctx.guild.id, msg.id, ctx.channel.id,))
+            db.commit()
+            
+        guildid, msgid, channelid = resp
+        await ctx.send("{} {} {}".format(guildid, msgid, channelid))
