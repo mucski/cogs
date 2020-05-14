@@ -33,3 +33,13 @@ huglist = [
     "https://media.tenor.com/images/934adba8e5516096e526f955458ec94a/tenor.gif",
     "https://media.tenor.com/images/6083ba11631dd577bcc271268d010832/tenor.gif",
 ]
+
+patlist = [
+    "https://media.tenor.com/images/87fc4ab2abde188093f9eb0d42698be2/tenor.gif",
+    "https://media.tenor.com/images/ad8357e58d35c1d63b570ab7e587f212/tenor.gif",
+    "https://media.tenor.com/images/69fb17b3eafe27df334f9f873473d531/tenor.gif",
+    "https://media.tenor.com/images/bb4471bdc56bb2cf355338059d9fe4a0/tenor.gif",
+    "https://media.tenor.com/images/a58b340308475e34e324ea437bb40641/tenor.gif",
+    "https://media.tenor.com/images/fa9ad7f4ecfad744aec37241cce2cecc/tenor.gif",
+    "https://media.tenor.com/images/3739a516b2f49bdd4b4667f0db7d3a48/tenor.gif",
+]
