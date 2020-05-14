@@ -16,9 +16,9 @@ class Giveaway(TaskHelper, commands.Cog):
         self.load_check = self.bot.loop.create_task(self._worker())
         TaskHelper.__init__(self)
     
-    @commands.group()
+    @commands.group(invoke_without_command=True)
     async def gw(self, ctx):
-        pass
+        await.ctx.send("Create giveaways with ``.gw start``, stop giveaways with ``.gw stop``")
     
     @gw.command()
     async def start(self, ctx, time: int, channel: discord.TextChannel = None, *, text = None):
