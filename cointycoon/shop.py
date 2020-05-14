@@ -45,8 +45,9 @@ class Shop(commands.Cog):
             item['name'] = shoplist[itemname]
             item['quantity'] = amt
             coin = self.conf.user(ctx.author).coins()
-            coins = coin - shoplist[itemname]['price'] * amt
-            await self.conf.user(ctx.author).coins.set(coins)
+            coins -= shoplist[itemname]['price'] * amt
+            coin - coins 
+            await self.conf.user(ctx.author).coins.set(coin)
             await ctx.send("You bought {} {} for {}".format(item['name'], amt, coins))
             
     @shop.command()
