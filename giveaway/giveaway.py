@@ -66,6 +66,13 @@ class Giveaway(TaskHelper, commands.Cog):
         self.end_task()
         await self.conf.guild(ctx.guild).running.set(False)
         
+    @gw.command()
+    async def reroll(self, ctx, msgid: int, channel: discord.TextChannel = None):
+        if channel is None:
+            channel = ctx.channel
+        await self._teardown(channel, msgid, ctx.guild)
+            
+        
     async def _timer(self, remaining):
         await asyncio.sleep(remaining)
         await self._worker()
@@ -80,9 +87,9 @@ class Giveaway(TaskHelper, commands.Cog):
             if user == self.bot.user:
                 continue
             users.append(user)
-        await self.conf.guild(guild).msg.clear()
-        await self.conf.guild(guild).channel.clear()
-        await self.conf.guild(guild).stamp.clear()
+        #await self.conf.guild(guild).msg.clear()
+        #await self.conf.guild(guild).channel.clear()
+        #await self.conf.guild(guild).stamp.clear()
         await self.conf.guild(guild).running.set(False)
         #Embed Builder
         embed = discord.Embed(color = await self.bot.get_embed_color(location = channel))
