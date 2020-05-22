@@ -1,0 +1,8 @@
+{
+    "author": "mucski",
+    "description": "A simple giveaway cog.",
+    "install_msg": "Setup a giveaway and let the bot chose a winner for you.",
+    "short": "Simple giveaway cog ",
+    "tags": ["winner", "random", "giveawat"],
+    "type": "COG"
+}
