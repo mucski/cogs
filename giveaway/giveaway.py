@@ -68,7 +68,18 @@ class Giveaway(TaskHelper, commands.Cog):
         
     @gw.command()
     async def reroll(self, ctx):
-        await self._worker()
+        channel = self.bot.get_channel(channel)
+        msg = await channel.fetch_message(msg)
+        users = []
+        async for user in msg.reactions[0].users():
+            if user == self.bot.user:
+                continue
+        users.append(user)
+        if users:
+            winner = random.choice(users)
+            await channel.send(f"The new winner is {winner.mention}")
+        else:
+            await channel.send("The winner is still no one.")
             
     async def _timer(self, remaining):
         await asyncio.sleep(remaining)
