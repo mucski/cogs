@@ -67,12 +67,9 @@ class Giveaway(TaskHelper, commands.Cog):
         await self.conf.guild(ctx.guild).running.set(False)
         
     @gw.command()
-    async def reroll(self, ctx, msgid: int, channel: discord.TextChannel = None):
-        if channel is None:
-            channel = ctx.channel
-        await self._teardown(channel, msgid, ctx.guild)
+    async def reroll(self, ctx):
+        await self._worker()
             
-        
     async def _timer(self, remaining):
         await asyncio.sleep(remaining)
         await self._worker()
