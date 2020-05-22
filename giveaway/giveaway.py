@@ -68,10 +68,10 @@ class Giveaway(TaskHelper, commands.Cog):
         
     @gw.command()
     async def reroll(self, ctx):
-        channel = self.conf.guild(ctx.guild).channel()
-        msg = self.conf.guild(ctx.guild).msg()
-        channel = self.bot.get_channel(channel)
-        msg = await channel.fetch_message(msg)
+        chan = self.conf.guild(ctx.guild).channel()
+        message = self.conf.guild(ctx.guild).msg()
+        channel = self.bot.get_channel(chan)
+        msg = await channel.fetch_message(message)
         users = []
         async for user in msg.reactions[0].users():
             if user == self.bot.user:
