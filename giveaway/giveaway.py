@@ -76,7 +76,7 @@ class Giveaway(TaskHelper, commands.Cog):
         async for user in msg.reactions[0].users():
             if user == self.bot.user:
                 continue
-        users.append(user)
+            users.append(user)
         if users:
             winner = random.choice(users)
             await channel.send(f"The new winner is {winner.mention}")
