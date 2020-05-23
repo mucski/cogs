@@ -23,7 +23,7 @@ class Paladins(commands.Cog):
         async with self.session.get(f"https://nonsocial.herokuapp.com/api/lastmatch?player={player}&platform={platform}") as r:
             text = await r.text()
             #pain im the ass regex, domt touch
-            text = re.findall(r"(\w+) ([\w? ]+) \([\w ]+: (\d+) \| \w+: (\d+)m \| \w+: ([\w 🇺🇸]+)\): ([\w ]+) \(([\d/]+) - ([\d.]+) KDA\) [\w ]+: (\d+) \| \w+: ([\d,]+) \| \w+: ([\d,]+) - \w+ \(\w+: ([\d/]+)\)", text)
+            text = re.match(r"(\w+) ([\w? ]+) \([\w ]+: (\d+) \| \w+: (\d+)m \| \w+: ([\w 🇺🇸]+)\): ([\w ]+) \(([\d/]+) - ([\d.]+) KDA\) [\w ]+: (\d+) \| \w+: ([\d,]+) \| \w+: ([\d,]+) - \w+ \(\w+: ([\d/]+)\)", text)
             if not text:
                 await ctx.send(f':x: Wrong player name or platform. If your name contains spaces please use double quotes like so: ``.last "{player}"``')
                 return
