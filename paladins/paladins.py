@@ -27,25 +27,25 @@ class Paladins(commands.Cog):
             if not match:
                 await ctx.send(f':x: Wrong player name or platform. If your name contains spaces please use double quotes like so: ``.last "{player}"``')
                 return
-            region = match[4].replace('🇺🇸', 'North America')
-            avatar = match[5].replace(' ', '-').lower()
+            region = match[5].replace('🇺🇸', 'North America')
+            avatar = match[6].replace(' ', '-').lower()
             avatarurl = f"https://web2.hirez.com/paladins/champion-icons/{avatar}.jpg"
-            if match[0] == "Ranked":
+            if match[1] == "Ranked":
                 matchType = "Ranked"
             else:
                 matchType = "Casual"
             e = discord.Embed(color=await self.bot.get_embed_color(ctx))
             e.set_thumbnail(url=avatarurl)
-            e.add_field(name="Map", value=f"{matchType} - {match[1]}")
-            e.add_field(name="Match Id:", value=match[2])
-            e.add_field(name="Duration", value=f"{match[3]} minutes")
+            e.add_field(name="Map", value=f"{matchType} - {match[2]}")
+            e.add_field(name="Match Id:", value=match[3])
+            e.add_field(name="Duration", value=f"{match[4]} minutes")
             e.add_field(name="Region", value=region)
-            e.add_field(name="Champion", value=match[5])
-            e.add_field(name="KDA", value=f"{match[6]} ({match[7]})")
-            e.add_field(name="Kill Spree", value=match[8])
-            e.add_field(name="Damage", value=match[9])
-            e.add_field(name="Credits", value=match[10])
-            e.add_field(name="Score", value=match[11])
+            e.add_field(name="Champion", value=match[6])
+            e.add_field(name="KDA", value=f"{match[7]} ({match[8]})")
+            e.add_field(name="Kill Spree", value=match[9])
+            e.add_field(name="Damage", value=match[10])
+            e.add_field(name="Credits", value=match[11])
+            e.add_field(name="Score", value=match[12])
             e.set_author(name=f"Paladins: showing last match", icon_url="https://vignette.wikia.nocookie.net/steamtradingcards/images/7/7d/Paladins_Badge_1.png/revision/latest/top-crop/width/300/height/300?cb=20161215201250")
             e.set_footer(text="Data provided by nonsocial.herokuapp.com")
             await ctx.send(embed=e)
