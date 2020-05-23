@@ -12,7 +12,7 @@ from redbot.core.utils.chat_formatting import bold, box, humanize_list, humanize
 from redbot.core.utils.menus import menu, DEFAULT_CONTROLS
 
 
-__version__ = "3.0.8"
+__version__ = "3.0.9"
 
 
 class Hunting(commands.Cog):

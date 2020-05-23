@@ -53,3 +53,11 @@ slaplist = [
     "https://media.tenor.com/images/f0ea127d5a4f4d8a3aa808f4cfd7561e/tenor.gif",
     "https://media.tenor.com/images/57a57baa6b2b20deb81d22fbaef91d88/tenor.gif",
 ]
+
+sadlist = [
+    "https://media.tenor.com/images/56301bf106855a40c17c7882fc996387/tenor.gif",
+    "https://media.tenor.com/images/21e7d9c321eb6035518ad1612d11730a/tenor.gif",
+    "https://media.tenor.com/images/e5412c454e209a351d9eb76e1f3976bb/tenor.gif",
+    "https://media.tenor.com/images/d7286a667f4c7f5e3af2daf2ac3d9948/tenor.gif",
+    "https://media.tenor.com/images/7282d6f67e894c13514f485f258a9186/tenor.gif",
+]

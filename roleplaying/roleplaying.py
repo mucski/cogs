@@ -1,6 +1,6 @@
 import discord
 from redbot.core import commands
-from .randomstuff import punchlist, kisslist, cuddlelist, huglist, patlist, slaplist
+from .randomstuff import punchlist, kisslist, cuddlelist, huglist, patlist, slaplist, sadlist
 import random
 
 class Roleplaying(commands.Cog):
@@ -80,4 +80,11 @@ class Roleplaying(commands.Cog):
             e.set_footer(text=member.name)
         await ctx.send(embed=e)
         
+    @commands.command()
+    async def sad(self, ctx):
+        img = random.choice(sadlist)
+        e = discord.Embed()
+        e.set_image(url=img)
+        e.set_author(name=f"{ctx.author.name} is sad.", icon_url=ctx.author.avatar_url)
+        await ctx.send(embed=e)
     
