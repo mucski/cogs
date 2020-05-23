@@ -15,6 +15,7 @@ from .taskhelper import TaskHelper
 
 
 class Coin(TaskHelper, commands.Cog):
+    """Coin Tycoon game by mucski"""
     def __init__(self, bot):
         self.bot = bot
         TaskHelper.__init__(self)
