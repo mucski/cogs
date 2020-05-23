@@ -27,11 +27,9 @@ class Paladins(commands.Cog):
             if not match:
                 await ctx.send(f':x: Wrong player name or platform. If your name contains spaces please use double quotes like so: ``.last "{player}"``')
                 return
-            avatar = match[5].replace(' ', '')
             region = match[4].replace('🇺🇸', 'North America')
-            if avatar == "bombking" or avatar == "shalin":
-                avatar = avatar.replace("bombking", "bomb-king").replace("shalin", "sha-lin")
-            avatarurl = f"https://web2.hirez.com/paladins/champion-icons/{avatar.lower()}.jpg"
+            avatar = match[5].replace(' ', '-').lower()
+            avatarurl = f"https://web2.hirez.com/paladins/champion-icons/{avatar}.jpg"
             if match[0] == "Ranked":
                 matchType = "Ranked"
             else:
