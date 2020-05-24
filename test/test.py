@@ -16,11 +16,11 @@ class Test(commands.Cog):
         third = random.randint(0, 9)
         
         desc = """
-        #############
-        # - + - + - #
+        #######SAFE######
+        # - + - + - + - #
         # - {} - {} - {} - #
-        # - + - + - #
-        #############
+        # - + - + - + - #
+        #################
         """.format(first, second, third)
         
         safe_lock = dedent(f"```{desc}```")
