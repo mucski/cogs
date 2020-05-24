@@ -24,6 +24,6 @@ class Test(commands.Cog):
         #############
         """.format(first, second, third)
         
-        safe_lock = dedent(f```{desc}```)
+        safe_lock = dedent(f"```{desc}```")
         
         await ctx.send(safe_lock)
