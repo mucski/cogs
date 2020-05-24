@@ -22,7 +22,8 @@ class Test(commands.Cog):
         # - {} - {} - {} - #
         # - + - + - #
         #############
-        """
-        safe_lock = dedent(```{desc}```).format(desc, first, second, third)
+        """.format(first, second, third)
+        
+        safe_lock = dedent(f```{desc}```)
         
         await ctx.send(safe_lock)
