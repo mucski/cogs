@@ -1,0 +1,8 @@
+{
+    "author": "mucski",
+    "description": "Test cog.",
+    "install_msg": "Test cog.",
+    "short": "Test cog ",
+    "tags": ["shoot", "hunting", "game", "pets"],
+    "type": "COG"
+}
