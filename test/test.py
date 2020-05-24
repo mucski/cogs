@@ -1,6 +1,7 @@
 from redbot.core import commands
 from redbot.core.utils.predicates import MessagePredicate
 import random
+from wordwrap import dedent
 
 class Test(commands.Cog):
     def __init__(self, bot):
@@ -15,7 +16,13 @@ class Test(commands.Cog):
         second = lock.append(str(random.randint(0, 9)))
         third = lock.append(str(random.randint(0, 9)))
         
-        safe_lock = ''.join(lock)
-        
+        desc = """
+        #############
+        # - + - + - #
+        # - {} - {} - {} - #
+        # - + - + - #
+        #############
+        """
+        safe_lock = dedent(f```{desc.format(first, second, third)}```)
         
         await ctx.send(safe_lock)
