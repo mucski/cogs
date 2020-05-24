@@ -11,9 +11,9 @@ class Test(commands.Cog):
         #Create the code
         lock = []
         
-        first = lock.append(random.randint(0, 9))
-        second = lock.append(random.randint(0, 9))
-        third = lock.append(random.randint(0, 9))
+        first = lock.append(str(random.randint(0, 9)))
+        second = lock.append(str(random.randint(0, 9)))
+        third = lock.append(str(random.randint(0, 9)))
         
         safe_lock = ''.join(lock)
         
