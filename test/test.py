@@ -9,10 +9,13 @@ class Test(commands.Cog):
     @commands.command()
     async def lockpick(self, ctx):
         #Create the code
-        first = random.randint(0, 9)
-        second = random.randint(0, 9)
-        third = random.randint(0, 9)
+        lock = []
         
-        safe_lock = first + second + third
+        first = lock.append(random.randint(0, 9))
+        second = lock.append(random.randint(0, 9))
+        third = lock.append(random.randint(0, 9))
+        
+        safe_lock = ''.join(lock)
+        
         
         await ctx.send(safe_lock)
