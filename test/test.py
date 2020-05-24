@@ -10,11 +10,10 @@ class Test(commands.Cog):
     @commands.command()
     async def lockpick(self, ctx):
         #Create the code
-        lock = []
-        
-        first = lock.append(str(random.randint(0, 9)))
-        second = lock.append(str(random.randint(0, 9)))
-        third = lock.append(str(random.randint(0, 9)))
+    
+        first = random.randint(0, 9)
+        second = random.randint(0, 9)
+        third = random.randint(0, 9)
         
         desc = """
         #############
