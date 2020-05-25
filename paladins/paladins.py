@@ -101,4 +101,4 @@ class Paladins(commands.Cog):
             "Zhin",
         ]
         random_champ = random.choice(champs)
-        await ctx.send(f"The champion for your next match is {random_champ}")
+        await ctx.send(f"The champion for your next match is **_{random_champ}_**")
