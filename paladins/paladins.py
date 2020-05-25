@@ -1,5 +1,6 @@
 import aiohttp
 import discord
+import random
 import asyncio
 import re
 from redbot.core import commands, Config
