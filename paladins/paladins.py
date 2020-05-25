@@ -53,6 +53,7 @@ class Paladins(commands.Cog):
             
     @commands.command()
     async def randomchamp(self, ctx):
+        """Choses a ``random`` champion for you to play with"""
         champs =[
             "Androxus",
             "Ash",
