@@ -52,7 +52,9 @@ class Paladins(commands.Cog):
                 e.set_footer(text="Data provided by nonsocial.herokuapp.com")
                 await ctx.send(embed=e)
         else:
-            await ctx.send(text)
+            async with self.session.get(f"https://nonsocial.herokuapp.com/api/lastmatch?player={player}&platform={platform}") as r:
+                text = await r.text()
+                await ctx.send(text)
             
     @commands.command()
     async def randomchamp(self, ctx):
