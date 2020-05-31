@@ -30,6 +30,7 @@ class Hunting(commands.Cog):
             "samuel": "<:samuel:705366615302340642> **_Motherfuckers!_**",
             "loli": "<:pogpog:698598264169168917> **_Bang me daddy!_**",
             "jerry": "<:jerrywut:628641056216580120> **_Haha loser!_**",
+            "trump": "<:trump:716662997975695431> **_Where's my wall?!_**",
         }
         self.in_game = []
         self.paused_games = []
