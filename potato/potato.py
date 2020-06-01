@@ -51,6 +51,10 @@ class Potato(commands.Cog):
         pass
     
     @potato.command()
+    async def stash(self, ctx):
+        await ctx.send("How many 🥔 potatoes 🥔 do you wish to stash in your silo?!")
+    
+    @potato.command()
     async def daily(self, ctx):
         async with self.db.user(ctx.author).data() as data:
             data['potato'] = 1
