@@ -2,6 +2,7 @@ import discord
 import asyncio
 from redbot.core.utils.predicates import MessagePredicate
 from redbot.core import commands, Config
+from textwrap import dedent
 
 class Potato(commands.Cog):
     def __init__(self, bot):
