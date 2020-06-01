@@ -62,6 +62,7 @@ class Potato(commands.Cog):
             embed.description=f"🌞 Life: {data['plant']['life']}\n"
                               f"💦 Water: {data['plant']['water']}\n"
                               f"😁 Mood: {data['plant']['mood']}"
+            await ctx.send(embed=embed)
     
     @plant.command()
     async def water(self, ctx):
