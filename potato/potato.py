@@ -46,3 +46,9 @@ class Potato(commands.Cog):
     @potato.command()
     async def gamble(self, ctx):
         pass
+    
+    @potato.command()
+    async def daily(self, ctx):
+        async with self.db.user(ctx.author).data() as data:
+            data['potato'] = 1
+            await ctx.send("🥔 Claimed 1 potato 🥔")
