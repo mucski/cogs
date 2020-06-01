@@ -18,7 +18,7 @@ class Potato(commands.Cog):
     @commands.group(aliases=['p'], invoke_without_command=True)
     async def potato(self, ctx):
         async with self.db.user(ctx.author).data() as data:
-            if data is None:
+            if bool(data) is False
                 await ctx.send("Start playing first by using one of the action commands (farm, daily)")
                 return
             potato = data['potato']
