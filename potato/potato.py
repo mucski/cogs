@@ -55,6 +55,7 @@ class Potato(commands.Cog):
     
     @potato.group(invoke_without_command=True)
     async def plant(self, ctx):
+        channel = ctx.channel
         async with self.db.user(ctx.author).data() as data:
             if data['plant'] is None:
                 data['plant'] = {}
@@ -62,13 +63,25 @@ class Potato(commands.Cog):
                 data['plant']['water'] = 50
                 data['plant']['mood'] = "😄"
             else:
-                embed=discord.Embed(color=await self.bot.get_embed_color(ctx), 
-                                    title=f"{ctx.author.name}'s 🥔 plant", 
-                                    description=f"🌞 **Life**: {50}\n"
-                                                f"💦 **Water**: {50}\n"
-                                                f"🌱 **Growth**:\n"
-                                                f"[]\n"
-                                                f"🥣 **Yield**: {0}")
+                growth = []
+                while len(growth) < 5:
+                    msg = channel.send(embed=discord.Embed(color=await self.bot.get_embed_color(ctx), 
+                    title=f"{ctx.author.name}'s 🥔 plant", 
+                    description=f"🌞 **Life**: {50}\n"
+                                f"💦 **Water**: {50}\n"
+                                f"🌱 **Growth**:\n"
+                                f"{}\n"
+                                f"🥣 **Yield**: {0}"))
+                    asyncio.sleep(30)
+                    growth.append('-')
+                    msg.edit(embed=discord.Embed(color=await self.bot.get_embed_color(ctx), 
+                    title=f"{ctx.author.name}'s 🥔 plant", 
+                    description=f"🌞 **Life**: {50}\n"
+                                f"💦 **Water**: {50}\n"
+                                f"🌱 **Growth**:\n"
+                                f"{growth}\n"
+                                f"🥣 **Yield**: {0}"))
+                
             await ctx.send(embed=embed)
     
     @plant.command()
