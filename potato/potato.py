@@ -62,12 +62,12 @@ class Potato(commands.Cog):
                 data['plant']['life'] = 50
                 data['plant']['water'] = 50
                 data['plant']['mood'] = "😄"
-                life = data['plant']['life']
-                water = data['plant']['water']
-                mood = data['plant']['mood']
             else:
                 growth = []
                 while len(growth) < 5:
+                    life = data['plant']['life']
+                    water = data['plant']['water']
+                    mood = data['plant']['mood']
                     msg = channel.send(embed=discord.Embed(color=await self.bot.get_embed_color(ctx), 
                     title=f"{ctx.author.name}'s 🥔 plant", 
                     description=f"🌞 **Life**: {life}\n"
