@@ -53,6 +53,10 @@ class Potato(commands.Cog):
         pass
     
     @potato.command()
+    async def plant(self, ctx):
+        pass
+    
+    @potato.command()
     async def stash(self, ctx):
         await ctx.send("How many 🥔 potatoes 🥔 do you wish to stash in your silo?!")
         check = MessagePredicate.same_context(ctx)
