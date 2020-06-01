@@ -74,7 +74,7 @@ class Potato(commands.Cog):
                                 f"🥣 **Yield**: {0}"))
                     asyncio.sleep(30)
                     growth.append('-')
-                    await msg.edit(embed=discord.Embed(color=await self.bot.get_embed_color(ctx), 
+                    await msg.edit(content=embed=discord.Embed(color=await self.bot.get_embed_color(ctx), 
                     title=f"{ctx.author.name}'s 🥔 plant", 
                     description=f"🌞 **Life**: {data['plant']['life']}\n"
                                 f"💦 **Water**: {data['data']['water']}\n"
