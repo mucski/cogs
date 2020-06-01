@@ -74,7 +74,7 @@ class Potato(commands.Cog):
                                 f"💦 **Water**: {water}\n"
                                 f"🌱 **Growth**:\n"
                                 f"{growth}\n"
-                                f"🥣 **Yield**: {0}"))
+                                f"🥣 **Yield**: {0}")
                     msg = channel.send(embed=embed)
                     asyncio.sleep(30)
                     growth.append('-')
