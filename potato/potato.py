@@ -53,7 +53,7 @@ class Potato(commands.Cog):
     async def gamble(self, ctx):
         pass
     
-    @potato.group()
+    @potato.group(invoke_without_command=True)
     async def plant(self, ctx):
         async with self.db.user(ctx.author).data() as data:
             if data['plant'] is None:
