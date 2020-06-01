@@ -61,7 +61,7 @@ class Potato(commands.Cog):
             data['plant']['water'] = 100
             data['plant']['mood'] = "😄"
             embed=discord.Embed(color=await self.bot.get_embed_color(ctx), title=f"{ctx.author.name}'s 🥔 plant")
-            embed.description=dedent(d"""🌞 Life: {data['plant']['life']}
+            embed.description=dedent("""🌞 Life: {data['plant']['life']}
                                          💦 Water: {data['plant']['water']}
                                          😁 Mood: {data['plant']['mood']}""")
             await ctx.send(embed=embed)
