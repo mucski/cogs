@@ -27,7 +27,7 @@ class Potato(commands.Cog):
             except KeyError:
                 silo = 0
             embed=discord.Embed(color=await self.bot.get_embed_color(ctx), title="🥔 potatos owned 🥔")
-            embed.description(f"{ctx.author.name} has {potato} 🥔 potatoes 🥔 in his pocket and {silo} 🥔 potatoes 🥔 stashed in silo, jelly yet?")
+            embed.description=f"{ctx.author.name} has {potato} 🥔 potatoes 🥔 in his pocket and {silo} 🥔 potatoes 🥔 stashed in silo, jelly yet?"
             await ctx.send(embed=embed)
     
     @potato.command()
