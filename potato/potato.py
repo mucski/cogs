@@ -52,8 +52,12 @@ class Potato(commands.Cog):
     async def gamble(self, ctx):
         pass
     
-    @potato.command()
+    @potato.group()
     async def plant(self, ctx):
+        pass
+    
+    @plant.command()
+    async def water(self, ctx):
         pass
     
     @potato.command()
