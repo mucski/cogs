@@ -64,8 +64,8 @@ class Potato(commands.Cog):
         async with self.db.user(ctx.author).data() as data:
             try:
                 amount = abs(int(msg.content))
-            except: #exception message
-                if amount == "all":
+            except ValueError:
+                if amount.lower() == "all":
                     amount = data['potato']
                 else:
                     await ctx.send("Invalid input type: either a number or 'all' is required")
