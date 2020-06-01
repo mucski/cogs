@@ -66,6 +66,7 @@ class Potato(commands.Cog):
                                     title=f"{ctx.author.name}'s 🥔 plant", 
                                     description=f"🌞 **Life**: {50}\n"
                                                 f"💦 **Water**: {50}\n"
+                                                f"Growth:\n"
                                                 f"[     ]"\n
                                                 f"🥣 **Yield**: {0}")
             await ctx.send(embed=embed)
