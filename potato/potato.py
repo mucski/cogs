@@ -1,4 +1,6 @@
 import discord
+import asyncio
+from redbot.core.predicates import MessagePredicate
 from redbot.core import commands, Config
 
 class Potato(commands.Cog):
@@ -66,7 +68,13 @@ class Potato(commands.Cog):
                 if amount == "all":
                     amount = data['potato']
                 else:
-                    await ctx.send("Invalid inout type: either a number or 'all' is required")
+                    await ctx.send("Invalid input type: either a number or 'all' is required")
+            if amount - data['potato'] <= 0:
+                await ctx.send("Not enough 🥔 to do that")
+                return
+            data['potato'] -= amount
+            data['silo'] += amount
+            await ctx.send(f"Successfully stashed {amount} 🥔 in your silo.")
     
     @potato.command()
     async def daily(self, ctx):
