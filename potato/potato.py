@@ -37,6 +37,6 @@ class Potato(commands.Cog):
     async def farm(self, ctx):
         pass
     
-    @potato.gamble()
+    @potato.command()
     async def gamble(self, ctx):
         pass
