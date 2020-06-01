@@ -64,9 +64,9 @@ class Potato(commands.Cog):
             else:
                 embed=discord.Embed(color=await self.bot.get_embed_color(ctx), 
                                     title=f"{ctx.author.name}'s 🥔 plant", 
-                                    description=f"🌞 **Life**: {}\n"
-                                                f"💦 **Water**: {}\n"
-                                                f"🥣 **Yield**: {}")
+                                    description=f"🌞 **Life**: {100}\n"
+                                                f"💦 **Water**: {100}\n"
+                                                f"🥣 **Yield**: {0}")
             await ctx.send(embed=embed)
     
     @plant.command()
