@@ -83,7 +83,7 @@ class Potato(commands.Cog):
                                 f"🌱 **Growth**:\n"
                                 f"{growth}\n"
                                 f"🥣 **Yield**: {0}")
-                    asyncio.sleep(30)
+                    asyncio.sleep(60)
                     await msg.edit(embed=new_embed)
                 
             await ctx.send(embed=embed)
