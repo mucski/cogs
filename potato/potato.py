@@ -69,6 +69,7 @@ class Potato(commands.Cog):
                     amount = data['potato']
                 else:
                     await ctx.send("Invalid input type: either a number or 'all' is required")
+                    return
             if data['potato'] - amount < 0:
                 await ctx.send("Not enough 🥔 to do that")
                 return
