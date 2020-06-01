@@ -21,6 +21,8 @@ class Potato(commands.Cog):
             if data is None:
                 await ctx.send("Start playing first by using one of the action commands (farm, daily)")
                 return
+            potato = data['potato']
+            silo = data ['silo']
             embed=discord.Embed(color=await self.bot.get_embed_color(ctx), title="🥔 potatos owned 🥔")
             embed.description(f"{ctx.author.name} has {potato} 🥔 potatoes 🥔 in his pocket and {silo} 🥔 potatoes 🥔 stashed in silo, jelly yet?")
             await ctx.send(embed=embed)
