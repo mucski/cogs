@@ -80,7 +80,7 @@ class Potato(commands.Cog):
                                 f"💦 **Water**: {data['data']['water']}\n"
                                 f"🌱 **Growth**:\n"
                                 f"{growth}\n"
-                                f"🥣 **Yield**: {0}"))
+                                f"🥣 **Yield**: {0}")
                     await msg.edit(embed=embed)
                 
             await ctx.send(embed=embed)
