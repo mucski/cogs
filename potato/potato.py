@@ -55,7 +55,6 @@ class Potato(commands.Cog):
     
     @potato.group(invoke_without_command=True)
     async def plant(self, ctx):
-        channel = ctx.channel
         async with self.db.user(ctx.author).data() as data:
             if data['plant'] is None:
                 data['plant'] = {}
@@ -75,7 +74,7 @@ class Potato(commands.Cog):
                                 f"🌱 **Growth**:\n"
                                 f"{growth}\n"
                                 f"🥣 **Yield**: {0}")
-                    msg = channel.send(embed=embed)
+                    msg = await ctx.send(embed=embed)
                     asyncio.sleep(30)
                     growth.append('-')
                     new_embed=discord.Embed(color=await self.bot.get_embed_color(ctx), 
