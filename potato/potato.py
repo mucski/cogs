@@ -73,7 +73,10 @@ class Potato(commands.Cog):
                 await ctx.send("Not enough 🥔 to do that")
                 return
             data['potato'] -= amount
-            data['silo'] += amount
+            try:
+                data['silo'] += amount
+            except KeyError:
+                data['silo'] = amount
             await ctx.send(f"Successfully stashed {amount} 🥔 in your silo.")
     
     @potato.command()
