@@ -62,13 +62,16 @@ class Potato(commands.Cog):
                 data['plant']['life'] = 50
                 data['plant']['water'] = 50
                 data['plant']['mood'] = "😄"
+                life = data['plant']['life']
+                water = data['plant']['water']
+                mood = data['plant']['mood']
             else:
                 growth = []
                 while len(growth) < 5:
                     msg = channel.send(embed=discord.Embed(color=await self.bot.get_embed_color(ctx), 
                     title=f"{ctx.author.name}'s 🥔 plant", 
-                    description=f"🌞 **Life**: {data['plant']['life']}\n"
-                                f"💦 **Water**: {data['plant']['water']}\n"
+                    description=f"🌞 **Life**: {life}\n"
+                                f"💦 **Water**: {water}\n"
                                 f"🌱 **Growth**:\n"
                                 f"{growth}\n"
                                 f"🥣 **Yield**: {0}"))
@@ -76,8 +79,8 @@ class Potato(commands.Cog):
                     growth.append('-')
                     embed=discord.Embed(color=await self.bot.get_embed_color(ctx), 
                     title=f"{ctx.author.name}'s 🥔 plant", 
-                    description=f"🌞 **Life**: {data['plant']['life']}\n"
-                                f"💦 **Water**: {data['data']['water']}\n"
+                    description=f"🌞 **Life**: {life}\n"
+                                f"💦 **Water**: {water}\n"
                                 f"🌱 **Growth**:\n"
                                 f"{growth}\n"
                                 f"🥣 **Yield**: {0}")
