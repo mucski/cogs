@@ -58,14 +58,15 @@ class Potato(commands.Cog):
         async with self.db.user(ctx.author).data() as data:
             if data['plant'] is None:
                 data['plant'] = {}
-                data['plant']['life'] = 100
-                data['plant']['water'] = 100
+                data['plant']['life'] = 50
+                data['plant']['water'] = 50
                 data['plant']['mood'] = "😄"
             else:
                 embed=discord.Embed(color=await self.bot.get_embed_color(ctx), 
                                     title=f"{ctx.author.name}'s 🥔 plant", 
-                                    description=f"🌞 **Life**: {100}\n"
-                                                f"💦 **Water**: {100}\n"
+                                    description=f"🌞 **Life**: {50}\n"
+                                                f"💦 **Water**: {50}\n"
+                                                f"[     ]"\n
                                                 f"🥣 **Yield**: {0}")
             await ctx.send(embed=embed)
     
