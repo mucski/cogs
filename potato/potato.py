@@ -56,7 +56,7 @@ class Potato(commands.Cog):
     @potato.group()
     async def plant(self, ctx):
         async with self.db.user(ctx.author).data() as data:
-            if bool(data['plant']) is False:
+            if data['plant'] is None:
                 data['plant'] = {}
                 data['plant']['life'] = 100
                 data['plant']['water'] = 100
