@@ -75,7 +75,7 @@ class Potato(commands.Cog):
                             f"🥣 **Yield**: {0}")
                 msg = await ctx.send(embed=embed)
                 while len(growth) < 5:
-                    asyncio.sleep(30)
+                    asyncio.sleep(300)
                     growth.append('-')
                     new_embed=discord.Embed(color=await self.bot.get_embed_color(ctx), 
                     title=f"{ctx.author.name}'s 🥔 plant", 
