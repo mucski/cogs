@@ -65,7 +65,7 @@ class Potato(commands.Cog):
             try:
                 amount = abs(int(msg.content))
             except ValueError:
-                if amount.lower() == "all":
+                if msg.content.lower() == "all":
                     amount = data['potato']
                 else:
                     await ctx.send("Invalid input type: either a number or 'all' is required")
