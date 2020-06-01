@@ -54,6 +54,14 @@ class Potato(commands.Cog):
     
     @potato.group()
     async def plant(self, ctx):
+        async with self.db.user(ctx.author).data() as data:
+            data['plant']['life'] = 100
+            data['plant']['water'] = 100
+            data['plant']['mood'] = "😄"
+            embed=discord.Embed(color=await self.bot.get_embed_color(ctx), title=f"{ctx.author.name}'s 🥔 plant")
+            embed.description=f"🌞 Life: {}\n"
+                              f"💦 Water: {}\n"
+                              f"😁 Mood: {}"
         pass
     
     @plant.command()
