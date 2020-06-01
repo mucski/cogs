@@ -78,14 +78,14 @@ class Potato(commands.Cog):
                     msg = channel.send(embed=embed)
                     asyncio.sleep(30)
                     growth.append('-')
-                    embed=discord.Embed(color=await self.bot.get_embed_color(ctx), 
+                    new_embed=discord.Embed(color=await self.bot.get_embed_color(ctx), 
                     title=f"{ctx.author.name}'s 🥔 plant", 
                     description=f"🌞 **Life**: {life}\n"
                                 f"💦 **Water**: {water}\n"
                                 f"🌱 **Growth**:\n"
                                 f"{growth}\n"
                                 f"🥣 **Yield**: {0}")
-                    await msg.edit(embed=embed)
+                    await msg.edit(embed=new_embed)
                 
             await ctx.send(embed=embed)
     
