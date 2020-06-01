@@ -1,5 +1,5 @@
 import discord
-from redbot.core import commands
+from redbot.core import commands, Config
 
 class Potato(commands.Cog):
     def __init__(self, bot):
