@@ -63,7 +63,7 @@ class Potato(commands.Cog):
             return
         async with self.db.user(ctx.author).data() as data:
             try:
-                amount = int(msg.content)
+                amount = int(abs(msg.content))
             except: #exception message
                 if amount == "all":
                     amount = data['potato']
