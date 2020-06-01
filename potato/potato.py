@@ -53,6 +53,20 @@ class Potato(commands.Cog):
     @potato.command()
     async def stash(self, ctx):
         await ctx.send("How many 🥔 potatoes 🥔 do you wish to stash in your silo?!")
+        check = MessagePredicate.same_context(ctx)
+        try:
+            msg = await self.bot.wait_for("message", timeout=20, check=check)
+        except asyncio.TimeoutError:
+            await ctx.send("Need to input something, lol..")
+            return
+        async with self.db.user(ctx.author).data() as data:
+            try:
+                amount = int(msg.content)
+            except: #exception message
+                if amount == "all":
+                    amount = data['potato']
+                else:
+                    await ctx.send("Invalid inout type: either a number or 'all' is required")
     
     @potato.command()
     async def daily(self, ctx):
