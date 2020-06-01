@@ -63,18 +63,18 @@ class Potato(commands.Cog):
                 data['plant']['mood'] = "😄"
             else:
                 growth = []
+                life = data['plant']['life']
+                water = data['plant']['water']
+                mood = data['plant']['mood']
+                embed=discord.Embed(color=await self.bot.get_embed_color(ctx), 
+                title=f"{ctx.author.name}'s 🥔 plant", 
+                description=f"🌞 **Life**: {life}\n"
+                            f"💦 **Water**: {water}\n"
+                            f"🌱 **Growth**:\n"
+                            f"{growth}\n"
+                            f"🥣 **Yield**: {0}")
+                msg = await ctx.send(embed=embed)
                 while len(growth) < 5:
-                    life = data['plant']['life']
-                    water = data['plant']['water']
-                    mood = data['plant']['mood']
-                    embed=discord.Embed(color=await self.bot.get_embed_color(ctx), 
-                    title=f"{ctx.author.name}'s 🥔 plant", 
-                    description=f"🌞 **Life**: {life}\n"
-                                f"💦 **Water**: {water}\n"
-                                f"🌱 **Growth**:\n"
-                                f"{growth}\n"
-                                f"🥣 **Yield**: {0}")
-                    msg = await ctx.send(embed=embed)
                     asyncio.sleep(30)
                     growth.append('-')
                     new_embed=discord.Embed(color=await self.bot.get_embed_color(ctx), 
