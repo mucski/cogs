@@ -48,7 +48,9 @@ class Potato(commands.Cog):
                 silo = data['silo']
             except KeyError:
                 silo = 0
-            await ctx.send(f"{member.name} has {data['potato']} 🥔 in their pocket and {silo} 🥔 in their silo.")
+            e=discord.Embed(color=await self.bot.get_embed_color(ctx), title="👀 inspect 🥔")
+            e.description=f"{member.name} has {data['potato']} 🥔 in their pocket and {silo} 🥔 in their silo."
+            await ctx.send(embed=e)
             
     
     @potato.command()
