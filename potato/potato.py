@@ -40,7 +40,7 @@ class Potato(commands.Cog):
     
     @potato.command()
     async def inspect(self, ctx, member: discord.Member):
-        async with self.db(member).data() as data:
+        async with self.db.user(member).data() as data:
             if bool(data) is False:
                 await ctx.send(f"{member.name} didn't start playing yet so no 🥔")
                 return
