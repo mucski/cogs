@@ -90,9 +90,12 @@ class Potato(commands.Cog):
                     await asyncio.sleep(2)
                 
                 check = ReactionPredicate.with_emojis("💦", msg)
-                res = await self.bot.wait_for("reaction_add", timeout=timeout, check=check)
+                try:
+                    res = await self.bot.wait_for("reaction_add", timeout=timeout, check=check)
+                except TimeoutError:
+                    await ctx.send("You can stop now.")
                 if res and water != 100:
-                    water = max(water + 20)
+                    water += 20
                         
     @plant.command()
     async def water(self, ctx):
