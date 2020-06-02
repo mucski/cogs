@@ -74,7 +74,7 @@ class Potato(commands.Cog):
                             f"{growth}\n"
                             f"🥣 **Yield**: {0}")
                 msg = await ctx.send(embed=embed)
-                while len(growth) < 10:
+                while len(growth) < 20:
                     growth.append('-')
                     growth_indicator = ''.join(growth)
                     new_embed=discord.Embed(color=await self.bot.get_embed_color(ctx), 
@@ -82,10 +82,10 @@ class Potato(commands.Cog):
                     description=f"🌞 **Life**: {life}\n"
                                 f"💦 **Water**: {water}\n"
                                 f"🌱 **Growth**:\n"
-                                f"{[growth_indicator]}\n"
+                                f"{growth_indicator}\n"
                                 f"🥣 **Yield**: {0}")
                     await msg.edit(embed=new_embed)
-                    await asyncio.sleep(3)
+                    await asyncio.sleep(2)
     
     @plant.command()
     async def water(self, ctx):
