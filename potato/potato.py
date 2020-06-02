@@ -100,8 +100,12 @@ class Potato(commands.Cog):
             except asyncio.TimeoutError:
                 await ctx.send("🧺 You are too slow 🧺")
                 return
+            try:
+                resp = int(msg.content.lower())
+            except ValueError:
+                await ctx.send("You must input numbers.")
+                return
             
-            resp = int(msg.content.lower())
             if math.isclose(resp, potat, rel_tol=0.1) is True:
                 pattern = pattern.replace(str(potat), "🥔")
                 e.description=pattern
