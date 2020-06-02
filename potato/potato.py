@@ -74,7 +74,19 @@ class Potato(commands.Cog):
             pred = MessagePredicate.same_context(ctx)
             while len(growth) < 15:
                 growth += '-'
-                water -= random.randint(1, 20)
+                if water > 0:
+                    water -= random.randint(1, 20)
+                else:
+                    life -= random.randint(1, 20)
+                    if life <= 0:
+                        e.description = (
+                            f"🌞 **Life**: {0}\n"
+                            f"💦 **Water**: {0}\n"
+                            f"🌱 **Growth**:\n"
+                            f"Plant died.\n"
+                            f"🥣 **Yield**: {0}"
+                        )
+                        break
                 e.description = (
                     f"🌞 **Life**: {life}\n"
                     f"💦 **Water**: {water}\n"
@@ -90,7 +102,7 @@ class Potato(commands.Cog):
                     pass
                 else:
                     # code that runs when the user did type in something
-                    water += 10
+                    water += 15
                     if water > 100:
                         water = 100
                     await m.delete()
