@@ -77,14 +77,12 @@ class Potato(commands.Cog):
             while len(growth) < 15:
                 growth.append('-')
                 growth_indicator = ''.join(growth)
-                new_embed=discord.Embed(color=await self.bot.get_embed_color(ctx), 
-                title=f"{ctx.author.name}'s 🥔 plant", 
                 description=f"🌞 **Life**: {life}\n"
                             f"💦 **Water**: {water}\n"
                             f"🌱 **Growth**:\n"
                             f"``[{growth_indicator}]``\n"
-                            f"🥣 **Yield**: {0}")
-                await msg.edit(embed=new_embed)
+                            f"🥣 **Yield**: {0}"
+                await msg.edit(embed=embed)
                 water -= 5
                 timeout = 2
                 await msg.clear_reaction("💦")
