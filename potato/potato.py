@@ -110,9 +110,9 @@ class Potato(commands.Cog):
                     await m.delete()
                     
             if water < 50:
-                amt = random.randint(1, 3)
+                amt = 2
             elif water > 50:
-                amt = random.randint(3, 6)
+                amt = 4
             elif life < 90:
                 amt = 1
             elif life < 50:
