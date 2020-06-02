@@ -58,8 +58,9 @@ class Potato(commands.Cog):
     async def plant(self, ctx):
         async with self.db.user(ctx.author).data() as data:
             try:
-                data['plant']
+                data['plant'] = {}
             except KeyError:
+                data['plant'] = {}
                 data['plant']['life'] = 100
                 data['plant']['water'] = 100
             
