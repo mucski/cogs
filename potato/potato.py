@@ -95,6 +95,7 @@ class Potato(commands.Cog):
                     m = await self.bot.wait_for("message", timeout=timeout, check=pred)
                 except asyncio.TimeoutError:
                     await ctx.send("You can stop now.")
+                    return
                 if m.content.lower() == "water":
                     await ctx.send("fuck")
     
