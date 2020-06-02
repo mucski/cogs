@@ -88,7 +88,7 @@ class Potato(commands.Cog):
                     await asyncio.sleep(2)
                     def check(reaction):
                         return str(reaction.emoji) == "💦"
-                    res = await bot.wait_for("reaction_add", check=check)
+                    res = await self.bot.wait_for("reaction_add", check=check)
                     if res and water != 100:
                         water = max(water + 20)
                     water -= 5
