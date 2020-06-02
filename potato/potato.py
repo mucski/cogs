@@ -93,10 +93,10 @@ class Potato(commands.Cog):
                 pred = MessagePredicate.same_context(ctx)
                 try:
                     m = await self.bot.wait_for("message", timeout=timeout, check=pred)
+                    await ctx.send(m.content)
                 except asyncio.TimeoutError:
                     await ctx.send("You can stop now.")
                     return
-                await ctx.send(m.content)
     
     @potato.command()
     async def stash(self, ctx):
