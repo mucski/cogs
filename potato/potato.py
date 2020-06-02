@@ -96,7 +96,7 @@ class Potato(commands.Cog):
                 except asyncio.TimeoutError:
                     await ctx.send("You can stop now.")
                 if pred.result is True:
-                    water += 20
+                    await ctx.send("fuck")
                         
     @plant.command()
     async def water(self, ctx):
