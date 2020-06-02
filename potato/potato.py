@@ -58,8 +58,8 @@ class Potato(commands.Cog):
         async with self.db.user(ctx.author).data() as data:
             if data['plant'] is None:
                 data['plant'] = {}
-                data['plant']['life'] = 50
-                data['plant']['water'] = 50
+                data['plant']['life'] = 100
+                data['plant']['water'] = 100
                 data['plant']['mood'] = "😄"
             else:
                 growth = []
@@ -74,7 +74,7 @@ class Potato(commands.Cog):
                             f"{growth}\n"
                             f"🥣 **Yield**: {0}")
                 msg = await ctx.send(embed=embed)
-                while len(growth) < 5:
+                while len(growth) < 10:
                     growth.append('-')
                     growth_indicator = ''.join(growth)
                     new_embed=discord.Embed(color=await self.bot.get_embed_color(ctx), 
@@ -82,7 +82,7 @@ class Potato(commands.Cog):
                     description=f"🌞 **Life**: {life}\n"
                                 f"💦 **Water**: {water}\n"
                                 f"🌱 **Growth**:\n"
-                                f"{growth_indicator}\n"
+                                f"{[growth_indicator]}\n"
                                 f"🥣 **Yield**: {0}")
                     await msg.edit(embed=new_embed)
                     await asyncio.sleep(3)
