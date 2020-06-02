@@ -27,7 +27,7 @@ class Potato(commands.Cog):
                 return
             potato = data['potato']
             try:
-                silo = data ['silo']
+                silo = data['silo']
             except KeyError:
                 silo = 0
             embed=discord.Embed(color=await self.bot.get_embed_color(ctx), title="🥔 potatos owned 🥔")
@@ -39,8 +39,17 @@ class Potato(commands.Cog):
         pass
     
     @potato.command()
-    async def inspect(self, ctx):
-        pass
+    async def inspect(self, ctx, member: discord.Member):
+        async with self.db(member).data() as data:
+            if bool(data) is False:
+                await ctx.send(f"{member.name} didn't start playing yet so no 🥔")
+                return
+            try:
+                silo = data['silo']
+            except KeyError:
+                silo = 0
+            await ctx.send(f"{member.name} has {data['potato']} 🥔 in their pocket and {silo} 🥔 in their silo.")
+            
     
     @potato.command()
     async def steal(self, ctx):
