@@ -77,7 +77,7 @@ class Potato(commands.Cog):
                 while len(growth) < 15:
                     check = MessagePredicate.same_context(ctx)
                     message = await self.bot.wait_for("message", check=check)
-                    if msg.content.lower() == "water" and if water != 100:
+                    if msg.content.lower() == "water" and water != 100:
                         water = max(water + 20)
                     growth.append('-')
                     growth_indicator = ''.join(growth)
