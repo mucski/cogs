@@ -62,6 +62,8 @@ class Potato(commands.Cog):
                 data['plant']['life'] = 100
                 data['plant']['water'] = 100
             
+            life = data['plant']['life']
+            water = data['plant']['water']
             e = discord.Embed(
                 color=await self.bot.get_embed_color(ctx), 
                 title=f"{ctx.author.name}'s 🥔 plant",
