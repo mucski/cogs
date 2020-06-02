@@ -92,10 +92,10 @@ class Potato(commands.Cog):
                 
                 pred = MessagePredicate.same_context(ctx)
                 try:
-                    msg = await self.bot.wait_for("message", timeout=timeout, check=pred)
+                    m = await self.bot.wait_for("message", timeout=timeout, check=pred)
                 except asyncio.TimeoutError:
                     await ctx.send("You can stop now.")
-                if msg.content.lower() == "water":
+                if m.content.lower() == "water":
                     await ctx.send("fuck")
                         
     @plant.command()
