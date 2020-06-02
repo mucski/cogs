@@ -64,6 +64,7 @@ class Potato(commands.Cog):
                 " 31 | 32 | 33 | 34 | 35 | 36 \n"
                 "----+----+--- S ---+----+---+```"
             )
+            await ctx.send(pattern)
     
     @potato.command()
     async def gamble(self, ctx):
