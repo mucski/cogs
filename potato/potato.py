@@ -78,7 +78,7 @@ class Potato(commands.Cog):
                     water -= random.randint(1, 20)
                     if water < 0:
                         water = 0
-                else:
+                elif water == 0:
                     life -= random.randint(1, 50)
                     if life <= 0:
                         e.description = (
