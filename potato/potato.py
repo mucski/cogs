@@ -119,7 +119,10 @@ class Potato(commands.Cog):
                 data['potato'] = random.randint(10, 20)
                 await ctx.send("🚜 congrats you found all the 🥔")
             else:
-                await ctx.send("Found no 🥔 at all, how disappointing.")
+                pattern = pattern.replace(str(potat), "🥔")
+                e.description=pattern
+                await main.edit(embed=e)
+                await ctx.send("Found no 🥔 at all, how disappointing. You were really far.")
                 return
                 
     
