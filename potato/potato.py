@@ -104,17 +104,25 @@ class Potato(commands.Cog):
                     pass
                 else:
                     # code that runs when the user did type in something
-                    water += 15
+                    water += 10
                     if water > 100:
                         water = 100
                     await m.delete()
-                    
+            if water < 50:
+                yield = random.randint(1, 3)
+            elif water > 50:
+                yield = random.randint(3, 6)
+            elif life < 90:
+                yield = 1
+            elif life < 50:
+                yield = 0
+            data['potato'] += yield
             e.description = (
                 f"🌞 **Life**: {life}\n"
                 f"💦 **Water**: {water}\n"
                 f"🌱 **Growth**:\n"
                 f"``[{growth}]``\n"
-                f"🥣 **Yield**: {500}"
+                f"🥣 **Yield**: {yield}"
             )
             await msg.edit(embed=e)
     
