@@ -87,7 +87,7 @@ class Potato(commands.Cog):
                             f"🥣 **Yield**: {0}"
                         )
                         await msg.edit(embed=e)
-                        break
+                        return
                 e.description = (
                     f"🌞 **Life**: {life}\n"
                     f"💦 **Water**: {water}\n"
