@@ -75,10 +75,6 @@ class Potato(commands.Cog):
                             f"🥣 **Yield**: {0}")
                 msg = await ctx.send(embed=embed)
                 while len(growth) < 15:
-                    check = MessagePredicate.same_context(ctx)
-                    message = await self.bot.wait_for("message", check=check)
-                    if msg.content.lower() == "water" and water != 100:
-                        water = max(water + 20)
                     growth.append('-')
                     growth_indicator = ''.join(growth)
                     new_embed=discord.Embed(color=await self.bot.get_embed_color(ctx), 
@@ -90,6 +86,10 @@ class Potato(commands.Cog):
                                 f"🥣 **Yield**: {0}")
                     await msg.edit(embed=new_embed)
                     await asyncio.sleep(2)
+                    check = MessagePredicate.same_context(ctx)
+                    message = await self.bot.wait_for("message", check=check)
+                    if msg.content.lower() == "water" and water != 100:
+                        water = max(water + 20)
                     water -= 5
     
     @plant.command()
