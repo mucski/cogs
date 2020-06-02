@@ -104,9 +104,12 @@ class Potato(commands.Cog):
                     pass
                 else:
                     # code that runs when the user did type in something
-                    water += 10
-                    if water > 100:
-                        water = 100
+                    if m.content.lower() == "water":
+                        water += 10
+                        if water > 100:
+                            water = 100
+                    else:
+                        pass
                     await m.delete()
                     
             if water < 50:
