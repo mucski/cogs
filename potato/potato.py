@@ -93,7 +93,7 @@ class Potato(commands.Cog):
                     water += 10
                     if water > 100:
                         water = 100
-                    m.delete()
+                    await m.content.delete()
     
     @potato.command()
     async def stash(self, ctx):
