@@ -92,7 +92,7 @@ class Potato(commands.Cog):
                 check = ReactionPredicate.with_emojis("💦", msg)
                 try:
                     res = await self.bot.wait_for("reaction_add", timeout=timeout, check=check)
-                except TimeoutError:
+                except asyncio.TimeoutError:
                     await ctx.send("You can stop now.")
                 if res and water != 100:
                     water += 20
