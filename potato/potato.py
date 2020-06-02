@@ -90,12 +90,12 @@ class Potato(commands.Cog):
                     await msg.clear_reaction("💦")
                     await asyncio.sleep(2)
                 
-                pred = ReactionPredicate.with_emojis("💦", msg)
+                pred = ReactionPredicate.same_context(ctx)
                 try:
                     await self.bot.wait_for("reaction_add", timeout=timeout, check=pred)
                 except asyncio.TimeoutError:
                     await ctx.send("You can stop now.")
-                if pred.result == "💦":
+                if pred.result is True:
                     water += 20
                         
     @plant.command()
