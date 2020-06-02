@@ -74,7 +74,7 @@ class Potato(commands.Cog):
                 " 31 | 32 | 33 | 34 | 35 | 36 \n"
                 "----+----+--- S ---+----+---+```"
             )
-            e.embed=discord.Embed(color=await self.bot.get_embed_color(ctx), title=f"{ctx.author}'s 🥔 farm")
+            e=discord.Embed(color=await self.bot.get_embed_color(ctx), title=f"{ctx.author}'s 🥔 farm")
             e.description=pattern
             await ctx.send(embed=e)
     
