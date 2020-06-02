@@ -108,6 +108,15 @@ class Potato(commands.Cog):
                     if water > 100:
                         water = 100
                     await m.delete()
+                    
+            e.description = (
+                f"🌞 **Life**: {life}\n"
+                f"💦 **Water**: {water}\n"
+                f"🌱 **Growth**:\n"
+                f"``[{growth}]``\n"
+                f"🥣 **Yield**: {500}"
+            )
+            await msg.edit(embed=e)
     
     @potato.command()
     async def stash(self, ctx):
