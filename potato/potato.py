@@ -90,12 +90,12 @@ class Potato(commands.Cog):
                     await msg.clear_reaction("💦")
                     await asyncio.sleep(2)
                 
-                pred = ReactionPredicate.same_context(ctx)
+                pred = MessagePredicate.same_context(ctx)
                 try:
-                    await self.bot.wait_for("reaction_add", timeout=timeout, check=pred)
+                    msg = await self.bot.wait_for("message", timeout=timeout, check=pred)
                 except asyncio.TimeoutError:
                     await ctx.send("You can stop now.")
-                if pred.result is True:
+                if msg.content.lower() == "water":
                     await ctx.send("fuck")
                         
     @plant.command()
