@@ -97,10 +97,6 @@ class Potato(commands.Cog):
                     await ctx.send("You can stop now.")
                 if m.content.lower() == "water":
                     await ctx.send("fuck")
-                        
-    @plant.command()
-    async def water(self, ctx):
-        pass
     
     @potato.command()
     async def stash(self, ctx):
