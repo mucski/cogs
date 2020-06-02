@@ -93,7 +93,7 @@ class Potato(commands.Cog):
                     water += 10
                     if water > 100:
                         water = 100
-                    ms = ctx.message
+                    ms = ctx.author.message
                     await ms.delete()
     
     @potato.command()
