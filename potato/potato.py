@@ -61,40 +61,41 @@ class Potato(commands.Cog):
             except KeyError:
                 data['plant']['life'] = 100
                 data['plant']['water'] = 100
-                growth = []
-                life = data['plant']['life']
-                water = data['plant']['water']
-                embed=discord.Embed(color=await self.bot.get_embed_color(ctx), 
+                
+            growth = []
+            life = data['plant']['life']
+            water = data['plant']['water']
+            embed=discord.Embed(color=await self.bot.get_embed_color(ctx), 
+            title=f"{ctx.author.name}'s 🥔 plant", 
+            description=f"🌞 **Life**: {life}\n"
+                        f"💦 **Water**: {water}\n"
+                        f"🌱 **Growth**:\n"
+                        f"{growth}\n"
+                        f"🥣 **Yield**: {0}")
+            msg = await ctx.send(embed=embed)
+            while len(growth) < 15:
+                growth.append('-')
+                growth_indicator = ''.join(growth)
+                new_embed=discord.Embed(color=await self.bot.get_embed_color(ctx), 
                 title=f"{ctx.author.name}'s 🥔 plant", 
                 description=f"🌞 **Life**: {life}\n"
                             f"💦 **Water**: {water}\n"
                             f"🌱 **Growth**:\n"
-                            f"{growth}\n"
+                            f"``[{growth_indicator}]``\n"
                             f"🥣 **Yield**: {0}")
-                msg = await ctx.send(embed=embed)
-                while len(growth) < 15:
-                    growth.append('-')
-                    growth_indicator = ''.join(growth)
-                    new_embed=discord.Embed(color=await self.bot.get_embed_color(ctx), 
-                    title=f"{ctx.author.name}'s 🥔 plant", 
-                    description=f"🌞 **Life**: {life}\n"
-                                f"💦 **Water**: {water}\n"
-                                f"🌱 **Growth**:\n"
-                                f"``[{growth_indicator}]``\n"
-                                f"🥣 **Yield**: {0}")
-                    await msg.edit(embed=new_embed)
-                    water -= 5
-                    timeout = 2
-                    await msg.clear_reaction("💦")
-                    await asyncio.sleep(2)
-                
-                pred = MessagePredicate.same_context(ctx)
-                try:
-                    m = await self.bot.wait_for("message", timeout=timeout, check=pred)
-                    await ctx.send(m.content)
-                except asyncio.TimeoutError:
-                    await ctx.send("You can stop now.")
-                    return
+                await msg.edit(embed=new_embed)
+                water -= 5
+                timeout = 2
+                await msg.clear_reaction("💦")
+                await asyncio.sleep(2)
+            
+            pred = MessagePredicate.same_context(ctx)
+            try:
+                m = await self.bot.wait_for("message", timeout=timeout, check=pred)
+                await ctx.send(m.content)
+            except asyncio.TimeoutError:
+                await ctx.send("You can stop now.")
+                return
     
     @potato.command()
     async def stash(self, ctx):
