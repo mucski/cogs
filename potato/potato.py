@@ -76,15 +76,15 @@ class Potato(commands.Cog):
                 growth += '-'
                 if water > 0:
                     water -= random.randint(1, 20)
+                    if water < 0:
+                        water = 0
                 else:
-                    water = 0
                     life -= random.randint(1, 50)
                     if life <= 0:
                         e.description = (
                             f"🌞 **Life**: {0}\n"
                             f"💦 **Water**: {0}\n"
-                            f"🌱 **Growth**:\n"
-                            f"Plant died.\n"
+                            f"🌱 **Growth**: DEAD\n"
                             f"🥣 **Yield**: {0}"
                         )
                         await msg.edit(embed=e)
