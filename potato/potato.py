@@ -74,7 +74,6 @@ class Potato(commands.Cog):
                             f"{growth}\n"
                             f"🥣 **Yield**: {0}")
                 msg = await ctx.send(embed=embed)
-                asyncio.sleep(30)
                 while len(growth) < 5:
                     growth.append('-')
                     new_embed=discord.Embed(color=await self.bot.get_embed_color(ctx), 
@@ -85,6 +84,7 @@ class Potato(commands.Cog):
                                 f"{growth}\n"
                                 f"🥣 **Yield**: {0}")
                     await msg.edit(embed=new_embed)
+                    asyncio.sleep(300)
                 
             await ctx.send(embed=embed)
     
