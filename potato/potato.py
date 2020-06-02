@@ -1,6 +1,6 @@
 import discord
 import asyncio
-from redbot.core.utils.predicates import MessagePredicate
+from redbot.core.utils.predicates import MessagePredicate, ReactionPredicate
 from redbot.core import commands, Config
 from textwrap import dedent
 
@@ -86,8 +86,7 @@ class Potato(commands.Cog):
                                 f"🥣 **Yield**: {0}")
                     await msg.edit(embed=new_embed)
                     await asyncio.sleep(2)
-                    def check(reaction):
-                        return str(reaction.emoji) == "💦"
+                    check = ReactionPredicate.with_emojis("💦", msg)
                     res = await self.bot.wait_for("reaction_add", check=check)
                     if res and water != 100:
                         water = max(water + 20)
