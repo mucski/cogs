@@ -85,13 +85,15 @@ class Potato(commands.Cog):
                                 f"``[{growth_indicator}]``\n"
                                 f"🥣 **Yield**: {0}")
                     await msg.edit(embed=new_embed)
-                    await asyncio.sleep(2)
-                    check = ReactionPredicate.with_emojis("💦", msg)
-                    res = await self.bot.wait_for("reaction_add", check=check)
-                    if res and water != 100:
-                        water = max(water + 20)
                     water -= 5
-    
+                    timeout = 2
+                    await asyncio.sleep(2)
+                
+                check = ReactionPredicate.with_emojis("💦", msg)
+                res = await self.bot.wait_for("reaction_add", timeout=timeout, check=check)
+                if res and water != 100:
+                    water = max(water + 20)
+                        
     @plant.command()
     async def water(self, ctx):
         pass
