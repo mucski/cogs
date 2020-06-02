@@ -88,8 +88,7 @@ class Potato(commands.Cog):
                     pass
                 else:
                     # code that runs when the user did type in something
-                    water -= 5
-                    await ctx.send(m.content)
+                    water += 10
     
     @potato.command()
     async def stash(self, ctx):
