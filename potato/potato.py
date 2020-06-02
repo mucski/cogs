@@ -74,7 +74,9 @@ class Potato(commands.Cog):
                 " 31 | 32 | 33 | 34 | 35 | 36 \n"
                 "----+----+--- S ---+----+---+```"
             )
-            await ctx.send(pattern)
+            e.embed=embed.Discord(color=await self.bot.get_embed_color(ctx), title=f"{ctx.author}'s 🥔 farm")
+            e.description=pattern
+            await ctx.send(embed=e)
     
     @potato.command()
     async def gamble(self, ctx):
