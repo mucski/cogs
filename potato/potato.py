@@ -91,7 +91,32 @@ class Potato(commands.Cog):
             e=discord.Embed(color=await self.bot.get_embed_color(ctx), title=f"{ctx.author}'s 🥔 farm")
             e.description=pattern
             e.set_footer(text=f"Your 🥔 senses are tingling, you have a feeling you should look somewhere in 🧭 {hint}")
-            await ctx.send(embed=e)
+            main = await ctx.send(embed=e)
+            
+            pred = MessagePredicate.same_context(ctx)
+            try:
+                msg = await self.bot.wait_for("message", timeout=20, check=pred)
+            except asyncio.TimeoutError:
+                await ctx.send("🧺 You are too slow 🧺")
+                return
+            
+            resp = msg.content.lower()
+            if math.isclose(resp, potat, rel_tol=0.1) is True:
+                pattern = pattern.replace(potat, "🥔")
+                e.description=pattern
+                main.edit(embed=e)
+                data['potato'] = random.randint(1, 4)
+                await ctx.send("Found a small 🥔, look how close you were to the big 🥔 smh..")
+            elif resp == potat:
+                pattern = pattern.replace(potat, "🥔")
+                e.description=pattern
+                main.edit(embed=e)
+                data['potato'] = random.randint(10, 20)
+                await ctx.send("🚜 congrats you found all the 🥔")
+            else:
+                await ctx.send("Found no 🥔 at all, how disappointing.")
+                return
+                
     
     @potato.command()
     async def gamble(self, ctx):
