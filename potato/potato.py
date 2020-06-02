@@ -79,7 +79,7 @@ class Potato(commands.Cog):
                         water = 0
                 elif water == 0:
                     life -= random.randint(1, 50)
-                    if life <= 0:
+                    if life < 0:
                         e.description = (
                             f"🌞 **Life**: {0}\n"
                             f"💦 **Water**: {0}\n"
