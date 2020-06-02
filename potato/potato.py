@@ -89,6 +89,8 @@ class Potato(commands.Cog):
                 else:
                     # code that runs when the user did type in something
                     water += 10
+                    if water > 100:
+                        water = 100
     
     @potato.command()
     async def stash(self, ctx):
