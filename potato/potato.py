@@ -95,7 +95,7 @@ class Potato(commands.Cog):
                     await self.bot.wait_for("reaction_add", timeout=timeout, check=pred)
                 except asyncio.TimeoutError:
                     await ctx.send("You can stop now.")
-                if check.result and water != 100:
+                if check.result:
                     water += 20
                         
     @plant.command()
