@@ -108,21 +108,22 @@ class Potato(commands.Cog):
                     if water > 100:
                         water = 100
                     await m.delete()
+                    
             if water < 50:
-                yield = random.randint(1, 3)
+                amt = random.randint(1, 3)
             elif water > 50:
-                yield = random.randint(3, 6)
+                amt = random.randint(3, 6)
             elif life < 90:
-                yield = 1
+                amt = 1
             elif life < 50:
-                yield = 0
-            data['potato'] += yield
+                amt = 0
+            data['potato'] += amt
             e.description = (
                 f"🌞 **Life**: {life}\n"
                 f"💦 **Water**: {water}\n"
                 f"🌱 **Growth**:\n"
                 f"``[{growth}]``\n"
-                f"🥣 **Yield**: {yield}"
+                f"🥣 **Yield**: {amt}"
             )
             await msg.edit(embed=e)
     
