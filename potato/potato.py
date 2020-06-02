@@ -3,6 +3,7 @@ import asyncio
 from redbot.core.utils.predicates import MessagePredicate, ReactionPredicate
 from redbot.core import commands, Config
 from textwrap import dedent
+import random
 
 class Potato(commands.Cog):
     def __init__(self, bot):
@@ -73,6 +74,7 @@ class Potato(commands.Cog):
             pred = MessagePredicate.same_context(ctx)
             while len(growth) < 15:
                 growth += '-'
+                water -= random.randint(1, 10)
                 e.description = (
                     f"🌞 **Life**: {life}\n"
                     f"💦 **Water**: {water}\n"
