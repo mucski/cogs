@@ -101,7 +101,7 @@ class Potato(commands.Cog):
                 await ctx.send("🧺 You are too slow 🧺")
                 return
             
-            resp = msg.content.lower()
+            resp = int(msg.content.lower())
             if math.isclose(resp, potat, rel_tol=0.1) is True:
                 pattern = pattern.replace(potat, "🥔")
                 e.description=pattern
