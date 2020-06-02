@@ -68,6 +68,7 @@ class Potato(commands.Cog):
                 color=await self.bot.get_embed_color(ctx), 
                 title=f"{ctx.author.name}'s 🥔 plant",
             )
+            msg = await ctx.send(embed=e)
             growth = ''
             pred = MessagePredicate.same_context(ctx)
             while len(growth) < 15:
@@ -80,7 +81,6 @@ class Potato(commands.Cog):
                     f"🥣 **Yield**: {0}"
                 )
                 await msg.edit(embed=e)
-                await msg.clear_reaction("💦")
                 try:
                     m = await self.bot.wait_for("message", timeout=2, check=pred)
                 except asyncio.TimeoutError:
