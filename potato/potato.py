@@ -1,6 +1,6 @@
 import discord
 import asyncio
-from redbot.core.utils.predicates import MessagePredicate, ReactionPredicate
+from redbot.core.utils.predicates import MessagePredicate
 from redbot.core import commands, Config
 import random
 
