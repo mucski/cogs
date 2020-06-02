@@ -56,16 +56,14 @@ class Potato(commands.Cog):
     @potato.group(invoke_without_command=True)
     async def plant(self, ctx):
         async with self.db.user(ctx.author).data() as data:
-            if data['plant'] is None:
-                data['plant'] = {}
+            try
+                data['plant']
+            except KeyError:
                 data['plant']['life'] = 100
                 data['plant']['water'] = 100
-                data['plant']['mood'] = "😄"
-            else:
                 growth = []
                 life = data['plant']['life']
                 water = data['plant']['water']
-                mood = data['plant']['mood']
                 embed=discord.Embed(color=await self.bot.get_embed_color(ctx), 
                 title=f"{ctx.author.name}'s 🥔 plant", 
                 description=f"🌞 **Life**: {life}\n"
