@@ -4,6 +4,7 @@ from redbot.core.utils.predicates import MessagePredicate
 from redbot.core import commands, Config
 import random
 import math
+import numpy as np
 
 class Potato(commands.Cog):
     def __init__(self, bot):
@@ -105,6 +106,11 @@ class Potato(commands.Cog):
             except ValueError:
                 await ctx.send("You must input numbers.")
                 return
+            
+            def find_nearest(array, value): 
+                array = np.asarray(array)
+                idx = (np.abs(array - value)).argmin()
+                return idx
             
             if math.isclose(resp, potat, rel_tol=0.1) is True:
                 pattern = pattern.replace(str(potat), "🥔")
