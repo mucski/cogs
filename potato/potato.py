@@ -75,9 +75,22 @@ class Potato(commands.Cog):
                 "----+----+--- S ---+----+---+```"
             )
             potat = random.randint(1, 36)
-            
+            ne = [4,5,6,10,11,12,16,17,18]
+            se = [22,23,24,28,29,30,34,35,36]
+            sw = [19,20,21,25,26,27,31,32,33]
+            nw = [1,2,3,7,8,9,13,14,15]
+            if potat in ne:
+                hint = "North East"
+            elif potat in se:
+                hint = "South East"
+            elif potat in sw:
+                hint = "South West"
+            elif potat in nw:
+                hint = "North West"
+                
             e=discord.Embed(color=await self.bot.get_embed_color(ctx), title=f"{ctx.author}'s 🥔 farm")
             e.description=pattern
+            e.set_footer(text=f"Your 🥔 senses are tingling, you have a feeling you should look somewhere in 🧭 {hint}")
             await ctx.send(embed=e)
     
     @potato.command()
