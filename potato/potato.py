@@ -73,6 +73,7 @@ class Potato(commands.Cog):
                         f"{growth}\n"
                         f"🥣 **Yield**: {0}")
             msg = await ctx.send(embed=embed)
+            pred = MessagePredicate.same_context(ctx)
             while len(growth) < 15:
                 growth.append('-')
                 growth_indicator = ''.join(growth)
@@ -88,14 +89,13 @@ class Potato(commands.Cog):
                 timeout = 2
                 await msg.clear_reaction("💦")
                 await asyncio.sleep(2)
-            
-            pred = MessagePredicate.same_context(ctx)
+                
             try:
                 m = await self.bot.wait_for("message", timeout=timeout, check=pred)
-                await ctx.send(m.content)
             except asyncio.TimeoutError:
                 await ctx.send("You can stop now.")
                 return
+            await ctx.send(m.content)
     
     @potato.command()
     async def stash(self, ctx):
