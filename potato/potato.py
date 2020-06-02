@@ -74,6 +74,8 @@ class Potato(commands.Cog):
                 " 31 | 32 | 33 | 34 | 35 | 36 \n"
                 "----+----+--- S ---+----+---+```"
             )
+            potat = random.randint(1, 36)
+            
             e=discord.Embed(color=await self.bot.get_embed_color(ctx), title=f"{ctx.author}'s 🥔 farm")
             e.description=pattern
             await ctx.send(embed=e)
