@@ -86,7 +86,7 @@ class Potato(commands.Cog):
                                 f"🥣 **Yield**: {0}")
                     await msg.edit(embed=new_embed)
                     await asyncio.sleep(2)
-                    def check(reaction)
+                    def check(reaction):
                         return str(reaction.emoji) == "💦"
                     res = await self.bot.wait_for("reaction_add", check=check)
                     if res and water != 100:
