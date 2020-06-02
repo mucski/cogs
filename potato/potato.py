@@ -96,8 +96,7 @@ class Potato(commands.Cog):
                 except asyncio.TimeoutError:
                     await ctx.send("You can stop now.")
                     return
-                if m.content.lower() == "water":
-                    await ctx.send("fuck")
+                await ctx.send(m.content)
     
     @potato.command()
     async def stash(self, ctx):
