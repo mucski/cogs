@@ -61,39 +61,33 @@ class Potato(commands.Cog):
             except KeyError:
                 data['plant']['life'] = 100
                 data['plant']['water'] = 100
-                
-            growth = []
-            life = data['plant']['life']
-            water = data['plant']['water']
-            embed=discord.Embed(color=await self.bot.get_embed_color(ctx), 
-            title=f"{ctx.author.name}'s 🥔 plant", 
-            description=f"🌞 **Life**: {life}\n"
-                        f"💦 **Water**: {water}\n"
-                        f"🌱 **Growth**:\n"
-                        f"{growth}\n"
-                        f"🥣 **Yield**: {0}")
-            msg = await ctx.send(embed=embed)
+            
+            e = discord.Embed(
+                color=await self.bot.get_embed_color(ctx), 
+                title=f"{ctx.author.name}'s 🥔 plant",
+            )
+            growth = ''
             pred = MessagePredicate.same_context(ctx)
             while len(growth) < 15:
-                growth.append('-')
-                growth_indicator = ''.join(growth)
-                description=f"🌞 **Life**: {life}\n"
-                            f"💦 **Water**: {water}\n"
-                            f"🌱 **Growth**:\n"
-                            f"``[{growth_indicator}]``\n"
-                            f"🥣 **Yield**: {0}"
-                await msg.edit(embed=embed)
-                water -= 5
-                timeout = 2
+                growth += '-'
+                e.description = (
+                    f"🌞 **Life**: {life}\n"
+                    f"💦 **Water**: {water}\n"
+                    f"🌱 **Growth**:\n"
+                    f"``[{growth}]``\n"
+                    f"🥣 **Yield**: {0}"
+                )
+                await msg.edit(embed=e)
                 await msg.clear_reaction("💦")
-                await asyncio.sleep(2)
-                
-            try:
-                m = await self.bot.wait_for("message", timeout=timeout, check=pred)
-            except asyncio.TimeoutError:
-                await ctx.send("You can stop now.")
-                return
-            await ctx.send(m.content)
+                try:
+                    m = await self.bot.wait_for("message", timeout=2, check=pred)
+                except asyncio.TimeoutError:
+                        # code that runs when the user didn't type in anything
+                    pass
+                else:
+                    # code that runs when the user did type in something
+                    water -= 5
+                    await ctx.send(m.content)
     
     @potato.command()
     async def stash(self, ctx):
