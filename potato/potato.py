@@ -105,7 +105,7 @@ class Potato(commands.Cog):
                 else:
                     # code that runs when the user did type in something
                     if m.content.lower() == "water":
-                        water += 10
+                        water += random.randint(1, 20)
                         if water > 100:
                             water = 100
                     else:
