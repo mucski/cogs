@@ -30,7 +30,7 @@ class Potato(commands.Cog):
             except KeyError:
                 silo = 0
             embed=discord.Embed(color=await self.bot.get_embed_color(ctx), title="🥔 potatos owned 🥔")
-            embed.description=f"{ctx.author.name} has {potato} 🥔 potatoes 🥔 in his pocket and {silo} 🥔 potatoes 🥔 stashed in silo, jelly yet?"
+            embed.description=f"{ctx.author.name} has {potato} 🥔 in pocket and {silo} 🥔 stashed in silo, jelly yet?"
             await ctx.send(embed=embed)
     
     @potato.command()
@@ -116,7 +116,7 @@ class Potato(commands.Cog):
                             f"🌞 **Life**: {0}\n"
                             f"💦 **Water**: {0}\n"
                             f"🌱 **Growth**: DEAD\n"
-                            f"🥣 **Yield**: {0}"
+                            f"🧺 **Yield**: {0} 🥔"
                         )
                         await msg.edit(embed=e)
                         return
@@ -125,7 +125,7 @@ class Potato(commands.Cog):
                     f"💦 **Water**: {water}\n"
                     f"🌱 **Growth**:\n"
                     f"``[{growth}]``\n"
-                    f"🥣 **Yield**: {0}"
+                    f"🧺 **Yield**: {0} 🥔"
                 )
                 await msg.edit(embed=e)
                 try:
@@ -157,13 +157,13 @@ class Potato(commands.Cog):
                 f"💦 **Water**: {water}\n"
                 f"🌱 **Growth**:\n"
                 f"``[{growth}]``\n"
-                f"🥣 **Yield**: {amt}"
+                f"🧺 **Yield**: {amt} 🥔"
             )
             await msg.edit(embed=e)
     
     @potato.command()
     async def stash(self, ctx):
-        await ctx.send("How many 🥔 potatoes 🥔 do you wish to stash in your silo?!")
+        await ctx.send("How many 🥔 do you wish to stash in your silo?!")
         check = MessagePredicate.same_context(ctx)
         try:
             msg = await self.bot.wait_for("message", timeout=20, check=check)
