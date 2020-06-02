@@ -74,7 +74,7 @@ class Potato(commands.Cog):
             pred = MessagePredicate.same_context(ctx)
             while len(growth) < 15:
                 growth += '-'
-                water -= random.randint(1, 10)
+                water -= random.randint(1, 20)
                 e.description = (
                     f"🌞 **Life**: {life}\n"
                     f"💦 **Water**: {water}\n"
