@@ -81,6 +81,7 @@ class Potato(commands.Cog):
             se = [28,29,30,31,32,33,34,35,36]
             sw = [19,20,21,22,23,24,25,26,27]
             nw = [1,2,3,4,5,6,7,8,9]
+            
             if potat in ne:
                 hint = "North East"
             elif potat in se:
@@ -106,11 +107,6 @@ class Potato(commands.Cog):
             except ValueError:
                 await ctx.send("You must input numbers.")
                 return
-            
-            def find_nearest(array, value): 
-                array = np.asarray(array)
-                idx = (np.abs(array - value)).argmin()
-                return idx
             
             if math.isclose(resp, potat, rel_tol=0.1) is True:
                 pattern = pattern.replace(str(potat), "🥔")
