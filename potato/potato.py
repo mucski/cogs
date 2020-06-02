@@ -56,7 +56,7 @@ class Potato(commands.Cog):
     @potato.group(invoke_without_command=True)
     async def plant(self, ctx):
         async with self.db.user(ctx.author).data() as data:
-            try
+            try:
                 data['plant']
             except KeyError:
                 data['plant']['life'] = 100
