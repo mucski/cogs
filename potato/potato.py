@@ -102,7 +102,7 @@ class Potato(commands.Cog):
                 return
             
             resp = msg.content.lower()
-            if math.isclose(resp, int(potat), rel_tol=0.1) is True:
+            if math.isclose(int(resp), potat, rel_tol=0.1) is True:
                 pattern = pattern.replace(potat, "🥔")
                 e.description=pattern
                 main.edit(embed=e)
