@@ -2,7 +2,6 @@ import discord
 import asyncio
 from redbot.core.utils.predicates import MessagePredicate, ReactionPredicate
 from redbot.core import commands, Config
-from textwrap import dedent
 import random
 
 class Potato(commands.Cog):
