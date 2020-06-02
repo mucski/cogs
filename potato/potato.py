@@ -74,13 +74,6 @@ class Potato(commands.Cog):
                             f"{growth}\n"
                             f"🥣 **Yield**: {0}")
                 msg = await ctx.send(embed=embed)
-                pred = ReactionPredicate.same_context(ctx)
-                try:
-                    await self.bot.wait_for("reaction_add", timeout=timeout, check=pred)
-                except asyncio.TimeoutError:
-                    await ctx.send("You can stop now.")
-                if pred.result is True:
-                    water += 20
                 while len(growth) < 15:
                     growth.append('-')
                     growth_indicator = ''.join(growth)
@@ -97,6 +90,13 @@ class Potato(commands.Cog):
                     await msg.clear_reaction("💦")
                     await asyncio.sleep(2)
                 
+                pred = ReactionPredicate.same_context(ctx)
+                try:
+                    await self.bot.wait_for("reaction_add", timeout=timeout, check=pred)
+                except asyncio.TimeoutError:
+                    await ctx.send("You can stop now.")
+                if pred.result is True:
+                    water += 20
                         
     @plant.command()
     async def water(self, ctx):
