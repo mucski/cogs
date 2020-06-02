@@ -105,13 +105,13 @@ class Potato(commands.Cog):
             if math.isclose(int(resp), potat, rel_tol=0.1) is True:
                 pattern = pattern.replace(str(potat), "🥔")
                 e.description=pattern
-                main.edit(embed=e)
+                await main.edit(embed=e)
                 data['potato'] = random.randint(1, 4)
                 await ctx.send("Found a small 🥔, look how close you were to the big 🥔 smh..")
             elif resp == potat:
                 pattern = pattern.replace(str(potat), "🥔")
                 e.description=pattern
-                main.edit(embed=e)
+                await main.edit(embed=e)
                 data['potato'] = random.randint(10, 20)
                 await ctx.send("🚜 congrats you found all the 🥔")
             else:
