@@ -87,7 +87,7 @@ class Potato(commands.Cog):
                     await msg.edit(embed=new_embed)
                     water -= 5
                     timeout = 2
-                    await msg.clear_reaction()
+                    await msg.clear_reaction("💦")
                     await asyncio.sleep(2)
                 
                 check = ReactionPredicate.with_emojis("💦", msg)
