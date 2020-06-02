@@ -82,7 +82,7 @@ class Potato(commands.Cog):
                     description=f"🌞 **Life**: {life}\n"
                                 f"💦 **Water**: {water}\n"
                                 f"🌱 **Growth**:\n"
-                                f"{growth_indicator}\n"
+                                f"``[{growth_indicator}]``\n"
                                 f"🥣 **Yield**: {0}")
                     await msg.edit(embed=new_embed)
                     await asyncio.sleep(2)
