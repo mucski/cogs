@@ -90,6 +90,7 @@ class Potato(commands.Cog):
                                 f"🥣 **Yield**: {0}")
                     await msg.edit(embed=new_embed)
                     await asyncio.sleep(2)
+                    water -= 5
     
     @plant.command()
     async def water(self, ctx):
