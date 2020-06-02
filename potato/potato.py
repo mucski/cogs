@@ -86,8 +86,7 @@ class Potato(commands.Cog):
                                 f"🥣 **Yield**: {0}")
                     await msg.edit(embed=new_embed)
                     await asyncio.sleep(2)
-                    check = MessagePredicate.same_context(ctx)
-                    message = await self.bot.wait_for("message", check=check)
+                    await self.bot.wait_for_reaction(msg, "💦")
                     if msg.content.lower() == "water" and water != 100:
                         water = max(water + 20)
                     water -= 5
