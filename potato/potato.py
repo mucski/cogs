@@ -93,6 +93,7 @@ class Potato(commands.Cog):
                     water += 10
                     if water > 100:
                         water = 100
+                    await self.bot.delete_message(m)
     
     @potato.command()
     async def stash(self, ctx):
