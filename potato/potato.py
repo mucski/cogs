@@ -74,7 +74,7 @@ class Potato(commands.Cog):
                             f"{growth}\n"
                             f"🥣 **Yield**: {0}")
                 msg = await ctx.send(embed=embed)
-                while len(growth) < 20:
+                while len(growth) < 15:
                     growth.append('-')
                     growth_indicator = ''.join(growth)
                     new_embed=discord.Embed(color=await self.bot.get_embed_color(ctx), 
