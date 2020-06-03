@@ -28,7 +28,7 @@ class Giveaway(TaskHelper, commands.Cog):
         if channel is None:
             channel = ctx.channel
         if text is None:
-            text = "Daily VIP Supreme giveaway. React bellow to enter."
+            text = "A giveaway. React bellow to enter!"
         now = datetime.utcnow()
         timer = timedelta(minutes=time)
         future = timer + now
