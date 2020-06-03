@@ -1,5 +1,5 @@
 {
-    "author": "mucski",
+    "author": ["mucski"],
     "description": "Test cog.",
     "install_msg": "Test cog.",
     "short": "Test cog ",

@@ -1,5 +1,5 @@
 {
-    "author": "padolicious",
+    "author": ["padolicious"],
     "description": "Hunting flying animals.",
     "install_msg": "Hunt ducks and other things that pop up randomly.",
     "short": "Hunting game, not made by Mucski ",
