@@ -11,10 +11,10 @@ class Potato(commands.Cog):
         self.db = Config.get_conf(self, 8272727485, force_registration=True)
         
         default_user = {
-            "data": {} # {potato: 0, and more}
+            "data": {} #{potato: 0, and more}
         }
         default_guild = {
-            "guild_data": {} # {channel: and more}
+            "guild_data": {} #{channel: and more}
         }
         self.db.register_user(**default_user)
         self.db.register_guild(**default_guild)
@@ -129,7 +129,9 @@ class Potato(commands.Cog):
     
     @potato.command()
     async def gamble(self, ctx):
+        # classic roll the dice game until I figure out something better
         pass
+        
     
     @potato.command()
     async def plant(self, ctx):
@@ -178,7 +180,7 @@ class Potato(commands.Cog):
                 try:
                     m = await self.bot.wait_for("message", timeout=2, check=pred)
                 except asyncio.TimeoutError:
-                        # code that runs when the user didn't type in anything
+                    # code that runs when the user didn't type in anything
                     pass
                 else:
                     # code that runs when the user did type in something
@@ -241,3 +243,4 @@ class Potato(commands.Cog):
         async with self.db.user(ctx.author).data() as data:
             data['potato'] = 1
             await ctx.send("🥔 Claimed 1 potato 🥔")
+            await ctx.send("Just another test, don't worry about it.")
