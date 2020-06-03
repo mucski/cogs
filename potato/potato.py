@@ -4,7 +4,6 @@ from redbot.core.utils.predicates import MessagePredicate
 from redbot.core import commands, Config
 import random
 import math
-import numpy as np
 
 class Potato(commands.Cog):
     def __init__(self, bot):
