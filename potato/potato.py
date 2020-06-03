@@ -129,9 +129,19 @@ class Potato(commands.Cog):
                 
     
     @potato.command()
-    async def gamble(self, ctx):
+    async def gamble(self, ctx, amt: int):
         # classic roll the dice game until I figure out something better
-        pass
+        async with self.db.user(ctx.author).data() as data:
+            you = random.randint(1, 6)
+            dealer = random.randint(1, 6)
+            if dealer < 6 and you > dealer:
+                data['potato'] += amt
+                await ctx.send("You won")
+            elif dealer > 6 and you < dealer:
+                data['potato'] -= amt
+                await ctx.send("Dealer won")
+            elif dealer == you:
+                await ctx.send("It's a tie")
         
     
     @potato.command()
