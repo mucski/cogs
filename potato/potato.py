@@ -4,6 +4,7 @@ from redbot.core.utils.predicates import MessagePredicate
 from redbot.core import commands, Config
 import random
 import math
+from datetime import datetime, timedelta
 
 class Potato(commands.Cog):
     def __init__(self, bot):
@@ -241,5 +242,10 @@ class Potato(commands.Cog):
     @potato.command()
     async def daily(self, ctx):
         async with self.db.user(ctx.author).data() as data:
+            now = datetime.utcnow()
+            try:
+                stamp = datetime.fromtimestamp(data['dailystamp'])
+            except KeyError:
+                stamp = now
             data['potato'] = 1
             await ctx.send("🥔 Claimed 1 potato 🥔")
