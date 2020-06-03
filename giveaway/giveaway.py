@@ -97,9 +97,6 @@ class Giveaway(TaskHelper, commands.Cog):
             if user == self.bot.user:
                 continue
             users.append(user)
-        #await self.conf.guild(guild).msg.clear()
-        #await self.conf.guild(guild).channel.clear()
-        #await self.conf.guild(guild).stamp.clear()
         await self.conf.guild(guild).running.set(False)
         #Embed Builder
         embed = discord.Embed(color = await self.bot.get_embed_color(location = channel))
@@ -109,7 +106,7 @@ class Giveaway(TaskHelper, commands.Cog):
         await msg.edit(embed=embed)
         if users:
             winner = random.choice(users)
-            await channel.send(f"The winner is {winner.mention}, congratulations! 🎉🎊")
+            await channel.send(f"The winner is {winner.mention}, congratulations! 🎉")
         else:
             await channel.send(f"No one even tried, how sad is that.")
         

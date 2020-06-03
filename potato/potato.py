@@ -132,6 +132,9 @@ class Potato(commands.Cog):
     async def gamble(self, ctx, amt: int):
         # classic roll the dice game until I figure out something better
         async with self.db.user(ctx.author).data() as data:
+            if data['potato'] - amt <= 0:
+                await ctx.send("You don't have enough potatoes.")
+                return
             you = random.randint(1, 6)
             dealer = random.randint(1, 6)
             if dealer < 6 and you > dealer:
