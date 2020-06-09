@@ -257,7 +257,8 @@ class Potato(commands.Cog):
         async with self.db.user(ctx.author).data() as data:
             now = datetime.utcnow()
             try:
-                stamp = datetime.fromtimestamp(data['dailystamp'])
+                stamp = data['dailystamp']
+                stamp = datetime.fromtimestamp(stamp)
             except KeyError:
                 stamp = now
             data['potato'] = 10
