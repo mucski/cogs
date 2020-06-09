@@ -263,7 +263,7 @@ class Potato(commands.Cog):
                 stamp = now
             data['potato'] = 10
             future =  now + timedelta(hours=12)
-            data['dailystamp'] = future
+            data['dailystamp'] = future.timestamp()
             if stamp > now:
                 await ctx.send("You already claimed your daily 🥔 for today.")
                 return
