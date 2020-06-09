@@ -5,6 +5,8 @@ from redbot.core import commands, Config
 import random
 import math
 from datetime import datetime, timedelta
+import humanize
+import pkg_resources
 
 class Potato(commands.Cog):
     def __init__(self, bot):
@@ -265,6 +267,6 @@ class Potato(commands.Cog):
             future =  now + timedelta(hours=12)
             data['dailystamp'] = future.timestamp()
             if stamp > now:
-                await ctx.send("You already claimed your daily 🥔 for today.")
+                await ctx.send(f"You already claimed your daily 🥔 for today. Come back {humanize.naturaltime(stamp - now)}")
                 return
             await ctx.send("🥔 Claimed 10 potato 🥔")
