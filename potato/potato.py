@@ -260,5 +260,10 @@ class Potato(commands.Cog):
                 stamp = datetime.fromtimestamp(data['dailystamp'])
             except KeyError:
                 stamp = now
-            data['potato'] = 1
-            await ctx.send("🥔 Claimed 1 potato 🥔")
+            data['potato'] = 10
+            future =  now + timedelta(hours=12)
+            data['dailystamp'] = future
+            if stamp > now:
+                await ctx.send("You already claimed your daily 🥔 for today.")
+                return
+            await ctx.send("🥔 Claimed 10 potato 🥔")
