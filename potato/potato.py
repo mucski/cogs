@@ -267,6 +267,6 @@ class Potato(commands.Cog):
             future =  now + timedelta(hours=12)
             data['dailystamp'] = future.timestamp()
             if stamp > now:
-                await ctx.send(f"You already claimed your daily 🥔 for today. Come back {humanize.naturaldelta(stamp - now)}")
+                await ctx.send(f"You already claimed your daily 🥔 for today. Come back in {humanize.naturaldelta(stamp - now)}")
                 return
             await ctx.send("🥔 Claimed 10 potato 🥔")
