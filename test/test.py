@@ -8,10 +8,10 @@ from .markov import Markov
 class Test(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
-        w = Markov(" ", 2)
-        w.learn("the quick brown fox jumps over the lazy dog")
 
     @commands.command()
     async def story(ctx):
+        w = Markov(" ", 2)
+        w.learn("the quick brown fox jumps over the lazy dog")
         story = w.query()
         await ctx.send(story)
