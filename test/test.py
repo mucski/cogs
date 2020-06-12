@@ -9,7 +9,7 @@ class Test(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
         self.w = Markov(" ", 2)
-        self.w.learn_file("https://github.com/dwyl/english-words/raw/master/words.txt")
+        self.w.learn_file("~/words.txt")
 
     @commands.command()
     async def story(self, ctx):
