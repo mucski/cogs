@@ -8,7 +8,7 @@ from .markov import Markov
 class Test(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
-        self.w = Markov(" ", 1)
+        self.w = Markov("\n", 1)
         self.w.learn_file("/home/music166/.local/share/Red-DiscordBot/data/red/cogs/CogManager/cogs/test/dictionary.txt")
 
     @commands.command()

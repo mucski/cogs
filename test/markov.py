@@ -25,7 +25,7 @@ class Markov:
         """Helper function to generate the correct initial chain value."""
         init = []
         for i in range(self.order):
-            init.append('');
+            init.append('')
         return tuple(init)
 
     def step(self, a, e):
