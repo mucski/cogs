@@ -11,7 +11,7 @@ class Test(commands.Cog):
         w = markov.Markov(" ", 2)
         w.learn("the quick brown fox jumps over the lazy dog")
 
-    @command.command()
+    @commands.command()
     async def story(ctx):
         story = w.query()
         await ctx.send(story)
