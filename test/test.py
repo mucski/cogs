@@ -12,6 +12,6 @@ class Test(commands.Cog):
         self.w.learn_file("/home/music166/.local/share/Red-DiscordBot/data/red/cogs/CogManager/cogs/test/dictionary.txt")
 
     @commands.command()
-    async def ask(self, ctx, ask, ask2):
-        story = self.w.ask(ask, ask2)
+    async def ask(self, ctx):
+        story = self.w.ask("the")
         await ctx.send(story.format(ctx.author))
