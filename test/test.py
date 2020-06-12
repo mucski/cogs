@@ -8,7 +8,7 @@ from .markov import Markov
 class Test(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
-        w = markov.Markov(" ", 2)
+        w = Markov(" ", 2)
         w.learn("the quick brown fox jumps over the lazy dog")
 
     @commands.command()
