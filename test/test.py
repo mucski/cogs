@@ -10,7 +10,7 @@ class Test(commands.Cog):
         self.bot = bot
 
     @commands.command()
-    async def story(ctx):
+    async def story(self, ctx):
         w = Markov(" ", 2)
         w.learn("the quick brown fox jumps over the lazy dog")
         story = w.query()
