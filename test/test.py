@@ -1,3 +1,4 @@
+import discord
 from redbot.core import commands
 from redbot.core.utils.predicates import MessagePredicate
 import random
@@ -8,21 +9,4 @@ class Test(commands.Cog):
         self.bot = bot
         
     @commands.command()
-    async def lockpick(self, ctx):
-        #Create the code
-    
-        first = random.randint(0, 9)
-        second = random.randint(0, 9)
-        third = random.randint(0, 9)
-        
-        desc = """
-        #######SAFE######
-        # - + - + - + - #
-        # - {} - {} - {} - #
-        # - + - + - + - #
-        #################
-        """.format(first, second, third)
-        
-        safe_lock = dedent(f"```{desc}```")
-        
-        await ctx.send(safe_lock)
+    async def 
