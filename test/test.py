@@ -9,7 +9,7 @@ class Test(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
         self.w = Markov(" ", 2)
-        self.w.learn_file("/words.txt")
+        self.w.learn_file("/home/music166/redenv/lib/python3.8/site-packages/redbot/cogs/test/words.txt")
 
     @commands.command()
     async def story(self, ctx):
