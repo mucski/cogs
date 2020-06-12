@@ -14,4 +14,4 @@ class Test(commands.Cog):
     @commands.command()
     async def story(self, ctx):
         story = self.w.query()
-        await ctx.send(story.format(ctx.author))
+        await ctx.send(story.format(ctx.author)[:1900])
