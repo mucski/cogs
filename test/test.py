@@ -9,9 +9,9 @@ class Test(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
         self.w = Markov(" ", 2)
-        self.w.learn_file("/home/music166/.local/share/Red-DiscordBot/data/red/cogs/CogManager/cogs/test/words.txt")
+        self.w.learn_file("/home/music166/.local/share/Red-DiscordBot/data/red/cogs/CogManager/cogs/test/dictionary.txt")
 
     @commands.command()
     async def story(self, ctx):
         story = self.w.query()
-        await ctx.send(story.format(ctx.author)[:1900])
+        await ctx.send(story.format(ctx.author))
