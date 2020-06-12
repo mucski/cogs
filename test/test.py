@@ -3,7 +3,7 @@ from redbot.core import commands
 from redbot.core.utils.predicates import MessagePredicate
 import random
 from textwrap import dedent
-from .markov import markov
+from .markov import Markov
 
 class Test(commands.Cog):
     def __init__(self, bot):
