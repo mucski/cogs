@@ -1,5 +1,4 @@
 from redbot.core import commands
-from textwrap import dedent
 import random
 from .words import words, words2
 
