@@ -4,7 +4,7 @@ from redbot.core.utils.predicates import MessagePredicate
 import random
 from textwrap import dedent
 import random
-import words
+from .words import words, words2
 
 class Test(commands.Cog):
     def __init__(self, bot):
