@@ -1,0 +1,33 @@
+words = [
+    "Cool",
+    "Stiff",
+    "Awesome",
+    "Transparent",
+    "Red",
+    "Orange",
+    "Lemon",
+    "Violet",
+    "Purple",
+    "Windy",
+    "Jumpy",
+    "Running",
+    "Rocking",
+    "Pushing",
+    "Sleeping",
+    "Sitting",
+]
+
+words2 = [
+    "Table",
+    "Elf",
+    "Orc",
+    "Gamer",
+    "Table",
+    "Mountain",
+    "Gamer",
+    "Chad",
+    "Cat",
+    "Tiger",
+    "Bot",
+    "Android",
+]

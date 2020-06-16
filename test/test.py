@@ -3,15 +3,15 @@ from redbot.core import commands
 from redbot.core.utils.predicates import MessagePredicate
 import random
 from textwrap import dedent
-from .markov import Markov
+import random
+import words
 
 class Test(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
-        self.w = Markov(" ", 1)
-        self.w.learn_file("/home/music166/.local/share/Red-DiscordBot/data/red/cogs/CogManager/cogs/test/dictionary.txt")
 
     @commands.command()
-    async def ask(self, ctx):
-        story = self.w.ask("the")
-        await ctx.send(story.format(ctx.author))
+    async def whoami(self, ctx):
+        words = random.choice(words)
+        words2 = random.choice(words2)
+        await ctx.send(f"{words} {words2}")
