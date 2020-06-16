@@ -12,6 +12,6 @@ class Test(commands.Cog):
 
     @commands.command()
     async def whoami(self, ctx):
-        words = random.choice(words)
-        words2 = random.choice(words2)
+        words = random.choice(self.words)
+        words2 = random.choice(self.words2)
         await ctx.send(f"{words} {words2}")
