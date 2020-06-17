@@ -15,6 +15,7 @@ words = [
     "Pushing",
     "Sleeping",
     "Sitting",
+    "Material",
 ]
 
 words2 = [
@@ -30,4 +31,6 @@ words2 = [
     "Tiger",
     "Bot",
     "Android",
+    "Admin",
+    "Moderator",
 ]
