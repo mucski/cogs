@@ -82,19 +82,9 @@ class Coin(TaskHelper, commands.Cog):
     	c.execute(f"SELECT name FROM users WHERE user_id=?",(userid,))
     	return c.fetchone()
 
-    @commands.group(invoke_without_command=True, aliases=['c'])
+    @commands.group(aliases=['c'])
     async def coin(self, ctx):
-        await ctx.send("```Welcome to the new and improved Coin Tycoon\n"
-                       "Improvements: using sql\n"
-                       "Faster, better, quicker, and stabler\n\n"
-                       "Commands .coin or .c followed by command:\n"
-                       "daily : Claim your daily coins. It multiplies.\n"
-                       "work : Work for coins (trivia like questions or other stuff).\n"
-                       "search : Search for coins in random locations.\n"
-                       "gamble : Gamble with your hard earned cash.\n"
-                       "shop : This command has various sub commands.\n"
-                       "dig : Dig for pirate treasures, with big earnings.```"
-                       )
+        pass
 
     @coin.command(aliases=['bal'])
     async def balance(self, ctx, member: discord.Member = None):
