@@ -19,6 +19,7 @@ class Coin(TaskHelper, commands.Cog):
     def __init__(self, bot):
         self.bot = bot
         TaskHelper.__init__(self)
+        #THIS SHIT DOESNT WANT TO WORK
         #self.load_check = self.bot.loop.create_task(self.worker())
         #and database creation
         self.db = apsw.Connection(str(cog_data_path(self) / "coin.db"))
