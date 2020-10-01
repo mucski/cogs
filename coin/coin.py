@@ -19,69 +19,16 @@ class Coin(TaskHelper, commands.Cog):
     def __init__(self, bot):
         self.bot = bot
         TaskHelper.__init__(self)
-        #THIS SHIT DOESNT WANT TO WORK
-        #self.load_check = self.bot.loop.create_task(self.worker())
-        #and database creation
-        self.db = apsw.Connection(str(cog_data_path(self) / "coin.db"))
-        c = self.db.cursor()
-        c.execute("""
-            BEGIN;
-            CREATE TABLE IF NOT EXISTS users (
-                user_id INTEGER PRIMARY KEY,
-                name TEXT NOT NULL,
-                channel_id INTEGER,
-                coin INTEGER NOT NULL DEFAULT 0,
-                dailystamp TIMESTAMP NOT NULL DEFAULT (strftime('%s', 'now', '-1 days')),
-                stealstamp TIMESTAMP NOT NULL DEFAULT (strftime('%s', 'now', '-1 days'))
-            );
-            CREATE TABLE IF NOT EXISTS pets (
-                user_id INTEGER NOT NULL REFERENCES users(id),
-                pet_hunger INTEGER NOT NULL,
-                pet_clean INTEGER NOT NULL,
-                pet_happy INTEGER NOT NULL,
-                pet_name TEXT NOT NULL,
-                pet_type TEXT NOT NULL,
-                pet_stamp TIMESTAMP NOT NULL DEFAULT (strftime('%s', 'now', '-1 days'))
-            );
-            CREATE TABLE IF NOT EXISTS items (
-                user_id INTEGER NOT NULL REFERENCES users(id),
-                item_type TEXT NOT NULL,
-                item_name TEXT NOY NULL,
-                item_quantity INTEGER NOT NULL
-            );
-            COMMIT;
-        """)
-
-
-    def select_one(self, item, table, where, value):
-        c = self.db.cursor()
-        c.execute(f"SELECT {item} FROM {table} WHERE {where}={value}")
-        return c.fetchone()
+        self.db = Config.get_conf(self, 49348238760987, force_registration=True)
         
-    def update_one(self, table, item, value, where):
-        c = self.db.cursor()
-        c.execute(f"UPDATE {table} SET {item} = {value} WHERE {where}")
-        
-    def delete_one(self, table, userid):
-        c = self.db.cursor()
-        c.execute(f"DELETE FROM ? WHERE user_id = ?",(table, userid,))
-
-    def add_coin(self, coin, userid):
-        c = self.db.cursor()
-        c.execute(f"UPDATE users SET coin = coin + {coin} WHERE user_id = {userid}")
-    
-    def remove_coin(self, coin, userid):
-        c = self.db.cursor()
-        c.execute(f"UPDATE users SET coin = coin - {coin} WHERE user_id = {userid}")
-        
-    def first_time(self, userid, username, coin):
-        c = self.db.cursor()
-        c.execute(f"INSERT INTO users (user_id, name, coin) VALUES (?,?,?)",(userid,username,coin))
-        
-    def check_player(self, userid):
-    	c = self.db.cursor()
-    	c.execute(f"SELECT name FROM users WHERE user_id=?",(userid,))
-    	return c.fetchone()
+        default_user = {
+            "data": {} #{potato: 0, and more}
+        }
+        default_guild = {
+            "guild_data": {} #{channel: and more}
+        }
+        self.db.register_user(**default_user)
+        self.db.register_guild(**default_guild)
 
     @commands.group(aliases=['c'])
     async def coin(self, ctx):
@@ -99,28 +46,34 @@ class Coin(TaskHelper, commands.Cog):
             await ctx.send(f"You have {coins[0]} coins.")
         else:
             await ctx.send(f"{member.name} has {coins[0]} coins.")
+
+    @coin.command(aliases=['bal'])
+    async def balance(self, ctx, member: discord.Member = None):
+        if member = None:
+            member = ctx.author
+        async with self.db.user(ctx.member).data() as data:
+            if bool(data) is False:
+                await ctx.send("You need to start playing first. To do so claim your first daily by typing in .daily")
+                return
+            coin = data['coin']
+            await ctx.send(f"{ctx.member} has {coin} coins.")
             
     @coin.command()
     async def daily(self, ctx):
-        now = datetime.utcnow()
-        stamp = self.select_one("dailystamp", "users", "user_id", ctx.author.id)
-        if stamp is None:
-            stamp = now
-        else:
-            stamp = datetime.fromtimestamp(stamp[0])
-        coin = 600
-        remaining = stamp - now
-        if stamp > now:
-            await ctx.send(f"On cooldown, {humanize_timedelta(timedelta = remaining)} remaining.")
-            return
-        if self.check_player(ctx.author.id) is None:
-        	self.first_time(ctx.author.id, ctx.author.name, coin)
-        else:
-        	self.add_coin(coin, ctx.author.id)
-        now = datetime.utcnow()
-        await ctx.send(f"{ctx.author.name}, claimed your daily {coin} coins. Come back in 24 hours.")
-        future = now + timedelta(hours=24)
-        self.update_one("users", "dailystamp", future.timestamp(), ctx.author.id)
+        async with self.db.user(ctx.author).data() as data:
+            now = datetime.utcnow()
+            try:
+                stamp = data['dailystamp']
+                stamp = datetime.fromtimestamp(stamp)
+            except KeyError:
+                stamp = now
+            data['coin'] = 300
+            future =  now + timedelta(hours=12)
+            data['dailystamp'] = future.timestamp()
+            if stamp > now:
+                await ctx.send(f"You already claimed your daily coins. Check back in {humanize.naturaldelta(stamp - now)}")
+                return
+            await ctx.send("Claimed 300 coins. Check back in 12 hours.")
 
     @coin.command()
     @commands.cooldown(1, 11, commands.BucketType.user)
