@@ -108,7 +108,7 @@ class Coin(TaskHelper, commands.Cog):
             stamp = now
         else:
             stamp = datetime.fromtimestamp(stamp[0])
-        coin = 300
+        coin = 600
         remaining = stamp - now
         if stamp > now:
             await ctx.send(f"On cooldown, {humanize_timedelta(timedelta = remaining)} remaining.")
@@ -119,7 +119,7 @@ class Coin(TaskHelper, commands.Cog):
         	self.add_coin(coin, ctx.author.id)
         now = datetime.utcnow()
         await ctx.send(f"{ctx.author.name}, claimed your daily {coin} coins. Come back in 12 hours.")
-        future = now + timedelta(hours=12)
+        future = now + timedelta(hours=24)
         self.update_one("users", "dailystamp", future.timestamp(), ctx.author.id)
 
     @coin.command()
