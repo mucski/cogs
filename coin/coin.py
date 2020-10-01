@@ -124,7 +124,7 @@ class Coin(TaskHelper, commands.Cog):
                 embed.add_field(name = "Dealer rolled:", value = f"🎲 {dealer}")
                 embed.add_field(name = "You rolled:", value = f"🎲 {you}")
                 embed.description = "YOU WON!"
-                data['coin'] - amt
+                data['coin'] += amt
             elif you == dealer:
                 embed.add_field(name = "Dealer rolled:", value = f"🎲 {dealer}")
                 embed.add_field(name = "You rolled:", value = f"🎲 {you}")
@@ -133,7 +133,7 @@ class Coin(TaskHelper, commands.Cog):
                 embed.add_field(name = "Dealer rolled:", value = f"🎲 {dealer}")
                 embed.add_field(name = "You rolled:", value = f"🎲 {you}")
                 embed.description = "YOU LOST!"
-                data['coin'] += amt
+                data['coin'] -= amt
             embed.set_footer(text = "Roll the dice, whoever has the highest wins.")
             await ctx.send(embed = embed)
                     
