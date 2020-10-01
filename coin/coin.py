@@ -64,20 +64,20 @@ class Coin(TaskHelper, commands.Cog):
     @coin.command()
     @commands.cooldown(1, 11, commands.BucketType.user)
     async def work(self, ctx):
-        if self.check_player(ctx.author.id) is None:
-            await ctx.send("Start playing first by claiming daily.")
-            return
-        r = random.choice(list(worklist.keys()))
-        await ctx.send(worklist[r])
-        pred = MessagePredicate.lower_equal_to(r, ctx)
-        try:
-            await ctx.bot.wait_for('message', timeout=10, check=pred)
-        except asyncio.TimeoutError:
-            await ctx.send("You failed to work. You are fired. Just kidding.")
-            return
-        earned = random.randint(5, 30)
-        self.add_coin(earned, ctx.author.id)
-        await ctx.send(f"Well done, you earned ``{earned}`` for your hard work.")
+        async with self.db.user(ctx.author).data() as data:
+            if bool(data) is None:
+                await ctx.send("Start playing first by claiming daily.")
+                return
+            r = random.choice(list(worklist.keys()))
+            await ctx.send(worklist[r])
+            pred = MessagePredicate.lower_equal_to(r, ctx)
+            try:
+                await ctx.bot.wait_for('message', timeout=15, check=pred)
+            except asyncio.TimeoutError:
+                await ctx.send("You failed to work. You are fired. Just kidding.")
+                return
+            data['coin'] = random.randint(5, 30)
+            await ctx.send(f"Well done, you earned ``{earned}`` for your hard work.")
 
     @coin.command()
     @commands.cooldown(1, 11, commands.BucketType.user)
