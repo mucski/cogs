@@ -53,12 +53,12 @@ class Coin(TaskHelper, commands.Cog):
                 stamp = datetime.fromtimestamp(stamp)
             except KeyError:
                 stamp = now
-            data['coin'] += 300
             future =  now + timedelta(hours=12)
             data['dailystamp'] = future.timestamp()
             if stamp > now:
                 await ctx.send(f"You already claimed your daily coins. Check back in {humanize.naturaldelta(stamp - now)}")
                 return
+            data['coin'] += 300
             await ctx.send("Claimed 300 coins. Check back in 12 hours.")
 
     @coin.command()
