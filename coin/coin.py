@@ -118,7 +118,7 @@ class Coin(TaskHelper, commands.Cog):
         else:
         	self.add_coin(coin, ctx.author.id)
         now = datetime.utcnow()
-        await ctx.send(f"{ctx.author.name}, claimed your daily {coin} coins. Come back in 12 hours.")
+        await ctx.send(f"{ctx.author.name}, claimed your daily {coin} coins. Come back in 24 hours.")
         future = now + timedelta(hours=24)
         self.update_one("users", "dailystamp", future.timestamp(), ctx.author.id)
 
