@@ -83,25 +83,26 @@ class Coin(TaskHelper, commands.Cog):
     @coin.command()
     @commands.cooldown(1, 11, commands.BucketType.user)
     async def search(self, ctx):
-        if self.check_player(ctx.author.id) is False:
-            await ctx.send("Start playing first by claiming your first daily coins.")
-            return
-        r = random.sample(list(searchlist.keys()), 3)
-        await ctx.send("Chose a random location to search from bellow\n"
-        			   "``{}`` , ``{}`` , ``{}``".format(r[0],r[1],r[2]))
-        check = MessagePredicate.lower_contained_in(r,ctx)
-        try:
-            msg = await ctx.bot.wait_for("message", timeout=10, check=check)
-        except asyncio.TimeoutError:
-            await ctx.send("Epic fail!")
-            return
-        if msg.content.lower() in bad_loc:
-            await ctx.send(searchlist[msg.content.lower()])
-            return
-        else:
-            earned = random.randint(5, 30)
-            self.add_coin(earned, ctx.author.id)
-            await ctx.send(searchlist[msg.content.lower()].format(earned))
+        async with self.db.user(ctx.author).data() as data:
+            if bool(data) is None:
+                await ctx.send("Start playing first by claiming daily.")
+                return
+            r = random.sample(list(searchlist.keys()), 3)
+            await ctx.send("Chose a random location to search from bellow\n"
+                        "``{}`` , ``{}`` , ``{}``".format(r[0],r[1],r[2]))
+            check = MessagePredicate.lower_contained_in(r,ctx)
+            try:
+                msg = await ctx.bot.wait_for("message", timeout=10, check=check)
+            except asyncio.TimeoutError:
+                await ctx.send("Epic fail!")
+                return
+            if msg.content.lower() in bad_loc:
+                await ctx.send(searchlist[msg.content.lower()])
+                return
+            else:
+                earned = random.randint(5, 30)
+                data['coin'] += earned
+                await ctx.send(searchlist[msg.content.lower()].format(earned))
 
     @coin.command()
     async def gamble(self, ctx, amt: int):
@@ -110,31 +111,31 @@ class Coin(TaskHelper, commands.Cog):
         if amt < 0:
             await ctx.send("Cant gamble nothing")
             return
-        if self.check_player(ctx.author.id) is None:
-            await ctx.send("Start playing first by claiming your first daily coins")
-            return
-        coin = self.select_one("coin", "users", "user_id", ctx.author.id)
-        if amt > coin[0]:
-            await ctx.send("You don't have that much coins.")
-            return
-        #Build an EMBED!
-        embed = discord.Embed(color = await self.bot.get_embed_color(ctx), title = "Roll the Dice.")
-        if you > 6 or dealer < you:
-            embed.add_field(name = "Dealer rolled:", value = f"🎲 {dealer}")
-            embed.add_field(name = "You rolled:", value = f"🎲 {you}")
-            embed.description = "YOU WON!"
-            self.add_coin(amt, ctx.author.id)
-        elif you == dealer:
-            embed.add_field(name = "Dealer rolled:", value = f"🎲 {dealer}")
-            embed.add_field(name = "You rolled:", value = f"🎲 {you}")
-            embed.description = "It's a tie."
-        elif you < 6 or dealer > you:
-            embed.add_field(name = "Dealer rolled:", value = f"🎲 {dealer}")
-            embed.add_field(name = "You rolled:", value = f"🎲 {you}")
-            embed.description = "YOU LOST!"
-            self.remove_coin(amt, ctx.author.id)
-        embed.set_footer(text = "Roll the dice, whoever has the highest wins.")
-        await ctx.send(embed = embed)
+        async with self.db.user(ctx.author).data() as data:
+            if bool(data) is None:
+                await ctx.send("Start playing first by claiming daily.")
+                return
+            if amt > data['coin']:
+                await ctx.send("You don't have that much coins.")
+                return
+            #Build an EMBED!
+            embed = discord.Embed(color = await self.bot.get_embed_color(ctx), title = "Roll the Dice.")
+            if you > 6 or dealer < you:
+                embed.add_field(name = "Dealer rolled:", value = f"🎲 {dealer}")
+                embed.add_field(name = "You rolled:", value = f"🎲 {you}")
+                embed.description = "YOU WON!"
+                data['coin'] - amt
+            elif you == dealer:
+                embed.add_field(name = "Dealer rolled:", value = f"🎲 {dealer}")
+                embed.add_field(name = "You rolled:", value = f"🎲 {you}")
+                embed.description = "It's a tie."
+            elif you < 6 or dealer > you:
+                embed.add_field(name = "Dealer rolled:", value = f"🎲 {dealer}")
+                embed.add_field(name = "You rolled:", value = f"🎲 {you}")
+                embed.description = "YOU LOST!"
+                data['coin'] + amt
+            embed.set_footer(text = "Roll the dice, whoever has the highest wins.")
+            await ctx.send(embed = embed)
                     
     @coin.command(aliases = ["lb"])
     async def leaderboard(self, ctx):
