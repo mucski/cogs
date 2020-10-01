@@ -1,10 +1,9 @@
-import apsw
 import discord
 import random
 import math
 import asyncio
 from textwrap import dedent
-from redbot.core import commands
+from redbot.core import commands, Config
 from tabulate import tabulate
 from datetime import datetime, timedelta
 from redbot.core.data_manager import cog_data_path
