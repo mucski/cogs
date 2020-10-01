@@ -49,7 +49,7 @@ class Coin(TaskHelper, commands.Cog):
 
     @coin.command(aliases=['bal'])
     async def balance(self, ctx, member: discord.Member = None):
-        if member = None:
+        if member is None:
             member = ctx.author
         async with self.db.user(ctx.member).data() as data:
             if bool(data) is False:
