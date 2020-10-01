@@ -38,19 +38,6 @@ class Coin(TaskHelper, commands.Cog):
     async def balance(self, ctx, member: discord.Member = None):
         if member is None:
             member = ctx.author
-        coins = self.select_one("coin", "users", "user_id", member.id)
-        if self.check_player(member.id) is None:
-        	await ctx.send(f"{member.name} did not start playing yet")
-        	return
-        if member == ctx.author:
-            await ctx.send(f"You have {coins[0]} coins.")
-        else:
-            await ctx.send(f"{member.name} has {coins[0]} coins.")
-
-    @coin.command(aliases=['bal'])
-    async def balance(self, ctx, member: discord.Member = None):
-        if member is None:
-            member = ctx.author
         async with self.db.user(ctx.member).data() as data:
             if bool(data) is False:
                 await ctx.send("You need to start playing first. To do so claim your first daily by typing in .daily")
