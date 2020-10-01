@@ -76,7 +76,8 @@ class Coin(TaskHelper, commands.Cog):
             except asyncio.TimeoutError:
                 await ctx.send("You failed to work. You are fired. Just kidding.")
                 return
-            data['coin'] = random.randint(5, 30)
+            earned = random.randint(5, 30)
+            data['coin'] = earned
             await ctx.send(f"Well done, you earned ``{earned}`` for your hard work.")
 
     @coin.command()
