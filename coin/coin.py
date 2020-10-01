@@ -6,8 +6,8 @@ from textwrap import dedent
 from redbot.core import commands, Config
 from tabulate import tabulate
 from datetime import datetime, timedelta
-from redbot.core.data_manager import cog_data_path
-from redbot.core.utils.chat_formatting import humanize_timedelta
+import humanize
+import pkg_resources
 from redbot.core.utils.predicates import MessagePredicate
 from .random import worklist, searchlist, petlist, bad_loc
 from .taskhelper import TaskHelper
