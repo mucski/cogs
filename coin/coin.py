@@ -53,7 +53,7 @@ class Coin(TaskHelper, commands.Cog):
                 stamp = datetime.fromtimestamp(stamp)
             except KeyError:
                 stamp = now
-            data['coin'] = 300
+            data['coin'] += 300
             future =  now + timedelta(hours=12)
             data['dailystamp'] = future.timestamp()
             if stamp > now:
@@ -77,7 +77,7 @@ class Coin(TaskHelper, commands.Cog):
                 await ctx.send("You failed to work. You are fired. Just kidding.")
                 return
             earned = random.randint(5, 30)
-            data['coin'] = earned
+            data['coin'] += earned
             await ctx.send(f"Well done, you earned ``{earned}`` for your hard work.")
 
     @coin.command()
