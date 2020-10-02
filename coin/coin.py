@@ -21,6 +21,11 @@ class Coin(commands.Cog):
     async def coin(self, ctx):
         pass
 
+    @coin.command()
+    async def clear(self, ctx):
+        self.db.Config.clear_all()
+        await ctx.send("Success!")
+
     @coin.command(aliases=['bal'])
     async def balance(self, ctx, member: discord.Member = None):
         if member is None:
