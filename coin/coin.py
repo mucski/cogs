@@ -28,7 +28,7 @@ class Coin(commands.Cog):
                 return
             await ctx.send(f"Here's your dumb coin ammount: {data['coin']}")
 
-    @coin command()
+    @coin.command()
     async def daily(self, ctx):
         pass
 
