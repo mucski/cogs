@@ -15,3 +15,21 @@ class Coin(commands.Cog):
         }
         self.db.register_user(**default_user)
         self.db.register_guild(**default_guild)
+
+    @commands.group(aliases=['c'])
+    async def coin(self, ctx):
+        pass
+
+    @coin.command(aliases=['bal'])
+    async def balance(self, ctx, member: discord.Member = None):
+        async with self.db.user(member).data() as data:
+            if bool(data) is False:
+                await ctx.send("First claim your daily coins dummy")
+                return
+            await ctx.send(f"Here's your dumb coin ammount: {data['coin']}")
+
+    @coin command()
+    async def daily(self, ctx):
+        pass
+
+
