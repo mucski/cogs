@@ -29,7 +29,11 @@ class Coin(commands.Cog):
             if bool(data) is False:
                 await ctx.send("First claim your daily coins dummy")
                 return
-            await ctx.send(f"Here's your dumb coin ammount: {data['coin']}")
+            try:
+                coin = data['coin']
+            except KeyError:
+                coin = 0
+            await ctx.send(f"Here's your dumb coin ammount: {coin}")
 
     @coin.command()
     async def daily(self, ctx):
