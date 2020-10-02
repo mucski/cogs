@@ -23,7 +23,7 @@ class Coin(commands.Cog):
 
     @coin.command()
     async def clear(self, ctx):
-        self.db.Config.clear_all()
+        self.db.clear_all()
         await ctx.send("Success!")
 
     @coin.command(aliases=['bal'])
