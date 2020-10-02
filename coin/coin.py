@@ -55,7 +55,6 @@ class Coin(TaskHelper, commands.Cog):
             if stamp > now:
                 await ctx.send(f"You already claimed your daily coins. Check back in {humanize.naturaldelta(stamp - now)}")
                 return
-            coin = data['coin']
             data['coin'] += 300
             await ctx.send("Claimed 300 coins. Check back in 12 hours.")
 
