@@ -9,10 +9,8 @@ class Coin(commands.Cog):
         self.db = Config.get_conf(self, 9408453854, force_registration=True)
 
         default_user = {
-            "data": {
-                "coin": 0
-            }
-        }
+            "data": {}
+        } 
         default_guild = {
             "data_guild": {}
         }
