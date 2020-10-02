@@ -263,7 +263,7 @@ class Potato(commands.Cog):
                 stamp = datetime.fromtimestamp(stamp)
             except KeyError:
                 stamp = now
-            data['potato'] = 10
+            data['potato'] + 10
             future =  now + timedelta(hours=12)
             data['dailystamp'] = future.timestamp()
             if stamp > now:
