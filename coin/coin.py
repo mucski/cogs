@@ -22,6 +22,8 @@ class Coin(commands.Cog):
 
     @coin.command(aliases=['bal'])
     async def balance(self, ctx, member: discord.Member = None):
+        if member is None:
+            member = ctx.author
         async with self.db.user(member).data() as data:
             if bool(data) is False:
                 await ctx.send("First claim your daily coins dummy")
@@ -31,5 +33,3 @@ class Coin(commands.Cog):
     @coin.command()
     async def daily(self, ctx):
         pass
-
-
