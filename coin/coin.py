@@ -37,7 +37,8 @@ class Coin(commands.Cog):
             try:
                 coin = data['coin']
             except KeyError:
-                coin = 0
+                data['coin'] = 0
+                coin = data['coin']
             await ctx.send(f"Here's your dumb coin ammount: {coin}")
 
     @coin.command()
