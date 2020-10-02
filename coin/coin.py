@@ -39,8 +39,7 @@ class Coin(TaskHelper, commands.Cog):
             if bool(data) is False:
                 await ctx.send("You need to start playing first. To do so claim your first daily by typing in .daily")
                 return
-            coin = data['coin']
-            await ctx.send(f"{member.name} has {coin} coins.")
+            await ctx.send(f"{member.name} has {data['coin']} coins.")
             
     @coin.command()
     async def daily(self, ctx):
