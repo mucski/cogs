@@ -1,5 +1,6 @@
 import discord
 from redbot.core import commands, Config
+from datetime import datetime, timedelta
 
 class Coin(commands.Cog):
     """Coin Tycoon, developed by Mucski"""
@@ -32,4 +33,18 @@ class Coin(commands.Cog):
 
     @coin.command()
     async def daily(self, ctx):
-        pass
+        async with self.db.user(ctx.author).data() as data:
+            now = datetime.utcnow()
+            try:
+                stamp = data['dailystamp']
+                stamp = datetime.fromtimestamp(stamp)
+            except KeyError:
+                stamp = now
+            future =  now + timedelta(hours=12)
+            data['dailystamp'] = future.timestamp()
+            if stamp > now:
+                #await ctx.send(f"You already claimed your daily coins. Check back in {humanize.naturaldelta(stamp - now)}")
+                await ctx.send(f"Come back in 12 hours")
+                return
+            data['coin'] += 300
+            await ctx.send("Claimed 300 coins. Check back in 12 hours.")
