@@ -1,24 +1,18 @@
 import discord
+import asyncio
+from redbot.core.utils.predicates import MessagePredicate
+from redbot.core import commands, Config
 import random
 import math
-import asyncio
-from textwrap import dedent
-from redbot.core import commands, Config
-from tabulate import tabulate
 from datetime import datetime, timedelta
 import humanize
 import pkg_resources
-from redbot.core.utils.predicates import MessagePredicate
-from .random import worklist, searchlist, petlist, bad_loc
-from .taskhelper import TaskHelper
 
-
-class Coin(TaskHelper, commands.Cog):
+class Coin(commands.Cog):
     """Coin Tycoon game by mucski"""
     def __init__(self, bot):
         self.bot = bot
-        TaskHelper.__init__(self)
-        self.db = Config.get_conf(self, 49348238760987, force_registration=True)
+        self.db = Config.get_conf(self, 8272727485, force_registration=True)
         
         default_user = {
             "data": {} #{potato: 0, and more}
