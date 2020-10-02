@@ -26,14 +26,14 @@ class Coin(commands.Cog):
     @commands.group(aliases=['c'])
     async def coin(self, ctx):
         pass
-
-    @coin.command(aliases=['bal'])
-    async def balance(self, ctx, member: discord.Member):
-        async with self.db.user(member).data() as data:
+    
+    @coin.command()
+    async def bal(self, ctx):
+        async with self.db.user(ctx.author).data() as data:
             if bool(data) is False:
-                await ctx.send("You need to start playing first. To do so claim your first daily by typing in .daily")
+                await ctx.send("Start playing first by using one of the action commands (farm, daily)")
                 return
-            await ctx.send(f"{member.name} has {data['coin']} coins.")
+            await ctx.send(f"You have {data['coin']} coins.")
             
     @coin.command()
     async def daily(self, ctx):
