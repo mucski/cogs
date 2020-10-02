@@ -9,7 +9,9 @@ class Coin(commands.Cog):
         self.db = Config.get_conf(self, 9408453854, force_registration=True)
 
         default_user = {
-            "data": {}
+            "data": {
+                "coin": 0
+            }
         }
         default_guild = {
             "data_guild": {}
@@ -34,11 +36,7 @@ class Coin(commands.Cog):
             if bool(data) is False:
                 await ctx.send("First claim your daily coins dummy")
                 return
-            try:
-                coin = data['coin']
-            except KeyError:
-                data['coin'] = 0
-                coin = data['coin']
+            coin = data['coin']
             await ctx.send(f"Here's your dumb coin ammount: {coin}")
 
     @coin.command()
