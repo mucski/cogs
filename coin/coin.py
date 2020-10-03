@@ -6,7 +6,7 @@ import random
 import math
 from datetime import datetime, timedelta
 import humanize
-from random import worklist, searchlist, bad_loc
+from .random import worklist, searchlist, bad_loc
 import pkg_resources
 
 class Coin(commands.Cog):
