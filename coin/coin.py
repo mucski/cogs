@@ -7,7 +7,7 @@ import math
 from datetime import datetime, timedelta
 import humanize
 from .random import worklist, searchlist, bad_loc
-import dedent
+from textwrap import dedent
 import pkg_resources
 
 class Coin(commands.Cog):
