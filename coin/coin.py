@@ -9,6 +9,7 @@ import humanize
 from .random import worklist, searchlist, bad_loc
 from textwrap import dedent
 import pkg_resources
+import tabulate
 
 class Coin(commands.Cog):
     """Coin Tycoon game by mucski"""
@@ -130,22 +131,32 @@ class Coin(commands.Cog):
             embed.set_footer(text = "Roll the dice, whoever has the highest wins.")
             await ctx.send(embed = embed)
                     
-    #@coin.command(aliases = ["lb"])
-    #async def leaderboard(self, ctx):
-    #    users = []
-    #    for i, row in enumerate(c, start=1):
-    #        rows = []
-    #        name = f"{row[1]}"
-    #        coin = f"{row[3]}"
-    #        rows.append(f"{i}")
-    #        rows.append(name)
-    #        rows.append(coin)
-    #        users.append(rows)
-    #    table = tabulate(users, headers = ['#', 'Name', 'Coin'], numalign = 'right', tablefmt = 'presto')
-    #    embed = discord.Embed(color = await self.bot.get_embed_color(ctx), title = "Leaderboards")
-    #    embed.description = f"```{table}```"
-    #    embed.set_footer(text = f"Top 50 players on {ctx.guild.name}")
-    #    await ctx.send(embed = embed)
+    @coin.command(aliases = ["lb"])
+    async def leaderboard(self, ctx):
+        """Cookieboards UwU"""
+        userinfo = await self.conf.all_users()
+        if not userinfo:
+            return await ctx.send(bold("Start playing first, then check boards."))
+        sorted_acc = sorted(userinfo.items(), key=lambda x: x[1]['cookies'], reverse=True)[:50]
+        users = []
+        for i, (user_id, account) in enumerate(sorted_acc):
+            user_obj = ctx.guild.get_member(user_id)
+            users.append(f"{i:2} {user_obj.display_name:<15} {account['cookies']:>15}")
+        #text = "\n".join(li)
+        #users = []
+        for i, row in enumerate(c, start=1):
+            rows = []
+            name = f"{row[1]}"
+            coin = f"{row[3]}"
+            rows.append(f"{i}")
+            rows.append(name)
+            rows.append(coin)
+            users.append(rows)
+        table = tabulate(users, headers = ['#', 'Name', 'Coin'], numalign = 'right', tablefmt = 'presto')
+        embed = discord.Embed(color = await self.bot.get_embed_color(ctx), title = "Leaderboards")
+        embed.description = f"```{table}```"
+        embed.set_footer(text = f"Top 50 players on {ctx.guild.name}")
+        await ctx.send(embed = embed)
         
     @coin.command()
     @commands.cooldown(1, 20, commands.BucketType.user)
