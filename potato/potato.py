@@ -14,7 +14,7 @@ class Potato(commands.Cog):
         self.db = Config.get_conf(self, 8272727485, force_registration=True)
         
         default_user = {
-            "data": {} #{potato: 0, and more}
+            "data": {"potato": 0} #{potato: 0, and more}
         }
         default_guild = {
             "guild_data": {} #{channel: and more}
