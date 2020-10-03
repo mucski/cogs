@@ -134,9 +134,9 @@ class Coin(commands.Cog):
     @coin.command(aliases = ["lb"])
     async def leaderboard(self, ctx):
         """Cookieboards UwU"""
-        userinfo = await self.conf.all_users()
+        userinfo = await self.db.all_users()
         if not userinfo:
-            return await ctx.send(bold("Start playing first, then check boards."))
+            return await ctx.send("Start playing first, then check boards.")
         sorted_acc = sorted(userinfo.items(), key=lambda x: x[1]['cookies'], reverse=True)[:50]
         users = []
         for i, (user_id, account) in enumerate(sorted_acc):
