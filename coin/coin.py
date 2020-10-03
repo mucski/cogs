@@ -137,11 +137,11 @@ class Coin(commands.Cog):
         userinfo = await self.db.all_users()
         if not userinfo:
             return await ctx.send("Start playing first, then check boards.")
-        sorted_acc = sorted(userinfo.items(), key=lambda x: x[1]['coin'], reverse=True)[:50]
+        sorted_acc = sorted(userinfo.items(), key=lambda x: x[1]data['data'], reverse=True)[:50]
         users = []
         for i, (user_id, account) in enumerate(sorted_acc):
             user_obj = ctx.guild.get_member(user_id)
-            users.append(f"{i:2} {user_obj.display_name:<15} {account['coin']:>15}")
+            users.append(f"{i:2} {user_obj.display_name:<15} {data['coin']:>15}")
         #text = "\n".join(li)
         #users = []
         for i, row in enumerate(c, start=1):
