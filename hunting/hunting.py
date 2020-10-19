@@ -26,10 +26,10 @@ class Hunting(commands.Cog):
             "penguin": ":penguin: **_Noot!_**",
             "chicken": ":chicken: **_Bah-gawk!_**",
             "duck": ":duck: **_Quack!_**",
-            "samuel": "<:samuel:705366615302340642> **_Motherfuckers!_**",
-            "loli": "<:pogpog:698598264169168917> **_Bang me daddy!_**",
-            "jerry": "<:jerrywut:628641056216580120> **_Haha loser!_**",
-            "trump": "<:trump:716662997975695431> **_Where's my wall?!_**",
+            "samuel": "<:yeboi:765534487203151902> **_Motherfuckers!_**",
+            "loli": "<:browhythefuckamisotired:764683912386576404> **_Bang me daddy!_**",
+            "jerry": ":mouse: **_Haha loser!_**",
+            "trump": ":flag_us: **_Where's my wall?!_**",
         }
         self.in_game = []
         self.paused_games = []
