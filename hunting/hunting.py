@@ -31,6 +31,7 @@ class Hunting(commands.Cog):
             "jerry": ":mouse: **_Haha loser!_**",
             "trump": ":flag_us: **_Where's my wall?!_**",
         }
+        
         self.in_game = []
         self.paused_games = []
         self.next_bang = {}
