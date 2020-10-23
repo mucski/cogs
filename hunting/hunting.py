@@ -30,6 +30,7 @@ class Hunting(commands.Cog):
             "loli": "<:browhythefuckamisotired:764683912386576404> **_Bang me daddy!_**",
             "jerry": ":mouse: **_Haha loser!_**",
             "trump": ":flag_us: **_Where's my wall?!_**",
+            "red mungus": "<:Red:760431790874951700> **_White is sus!_**"
         }
         
         self.in_game = []
