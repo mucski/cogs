@@ -30,7 +30,7 @@ class Hunting(commands.Cog):
             "loli": "<:browhythefuckamisotired:764683912386576404> **_Bang me daddy!_**",
             "jerry": ":mouse: **_Haha loser!_**",
             "trump": ":flag_us: **_Where's my wall?!_**",
-            "red mungus": "<:Red:760431790874951700> **_White is sus!_**"
+            "red mungus": "<:Red:760431790874951700> **_White is sus!_**",
             "black gunman": "<:BlackGunman:760567353938542623> **_Shut the fuck up! I love girls, mmmm._**"
         }
         
