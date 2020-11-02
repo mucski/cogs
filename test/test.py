@@ -13,7 +13,7 @@ class Test(commands.Cog):
         await ctx.send(f"{word} {word2}")
         
     async def on_message(message):
-        if message.content("https://cdn.discordapp.com/attachments/760415177459105803/772901957030903818/20201102_093922.jpg"):
+        if message.content("a"):
             await ctx.send("https://cdn.discordapp.com/attachments/760415177459105803/772901957030903818/20201102_093922.jpg")
         else:
             pass
