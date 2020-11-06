@@ -32,7 +32,7 @@ class Hunting(commands.Cog):
             "trump": ":flag_us: **_Where's my wall?!_**",
             "red mungus": "<:Red:760431790874951700> **_White is sus!_**",
             "black gunman": "<:BlackGunman:760567353938542623> **_Shut the fuck up! I love girls, mmmm._**",
-            "biden": ":older_man: **__I lost my hair, sniff__**"
+            "biden": ":older_man: **_I lost my hair, sniff_**"
         }
         
         self.in_game = []
