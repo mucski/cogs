@@ -16,6 +16,12 @@ words = [
     "Sleeping",
     "Sitting",
     "Material",
+    "Electric",
+    "Automatic",
+    "Dangerous",
+    "Racist",
+    "Stupid",
+    "Retarded",
 ]
 
 words2 = [
@@ -33,4 +39,10 @@ words2 = [
     "Android",
     "Admin",
     "Moderator",
+    "President",
+    "Virus",
+    "Girl",
+    "Babe",
+    "Thanos",
+    "Bitch",
 ]
