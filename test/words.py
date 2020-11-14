@@ -45,4 +45,7 @@ words2 = [
     "Babe",
     "Thanos",
     "Bitch",
+    "Grinch",
+    "Smartphone",
+    "Python",
 ]
