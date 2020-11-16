@@ -27,9 +27,9 @@ class Hunting(commands.Cog):
             "chicken": ":chicken: **_Bah-gawk!_**",
             "duck": ":duck: **_Quack!_**",
             "loli": "<:browhythefuckamisotired:764683912386576404> **_Bang me daddy!_**",
-            "black Gunman": "<:BlackGunman:760567353938542623> **_Girl? Where?!_**",
+            "black gunman": "<:BlackGunman:760567353938542623> **_Girl? Where?!_**",
             "biden": ":older_man: **_I lost my hair, sniff_**",
-            "reanu Keeves": "<:youbreathtaking:768154202794885131> **_No, you're taking a breath!_**",
+            "Rheanu Keeves": "<:youbreathtaking:768154202794885131> **_No, you're taking a breath!_**",
         }
         
         self.in_game = []
