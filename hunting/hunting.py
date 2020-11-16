@@ -29,7 +29,7 @@ class Hunting(commands.Cog):
             "loli": "<:browhythefuckamisotired:764683912386576404> **_Bang me daddy!_**",
             "black Gunman": "<:BlackGunman:760567353938542623> **_Girl? Where?!_**",
             "biden": ":older_man: **_I lost my hair, sniff_**",
-            "reanu Keeves" "<:youbreathtaking:768154202794885131> **_No, you're taking a breath!_**",
+            "reanu Keeves": "<:youbreathtaking:768154202794885131> **_No, you're taking a breath!_**",
         }
         
         self.in_game = []
