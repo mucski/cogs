@@ -12,7 +12,6 @@ words = [
     "Jumpy",
     "Running",
     "Rocking",
-    "Pushing",
     "Sleeping",
     "Sitting",
     "Material",
