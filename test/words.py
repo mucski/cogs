@@ -17,7 +17,7 @@ words = [
     "Retarded",
     "Republican",
     "Democrat",
-    "Comunist",
+    "Communist",
     "Jolly",
     "Fast",
     "Slow",
