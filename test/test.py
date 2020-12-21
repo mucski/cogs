@@ -20,7 +20,7 @@ class Test(commands.Cog):
         orig = ctx.guild.get_member(ctx.author.id).nick
         if orig is None:
             orig = ctx.guild.get_member(ctx.author.id).name
-        if orig.startswith(flags.get(flag)) is True:
+        if orig.find(flags.get(flag)) != -1:
             await ctx.send("You already have a flag ..")
             pass
         if flag in flags:
