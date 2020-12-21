@@ -22,7 +22,7 @@ class Test(commands.Cog):
             orig = ctx.guild.get_member(ctx.author.id).name
         if orig.find(flags.get(flag)) != -1:
             await ctx.send("You already have a flag ..")
-            pass
+            return
         if flag in flags:
             await ctx.guild.get_member(ctx.author.id).edit(nick=f"{flags.get(flag)} {orig}")
             await ctx.send(f"Added {flags.get(flag)} to {orig}")
