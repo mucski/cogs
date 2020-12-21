@@ -57,3 +57,7 @@ words2 = [
     "Dragon",
     "Computer",
 ]
+
+flags = {
+    "nl": "🇳🇱",
+}
