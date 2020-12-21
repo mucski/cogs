@@ -17,6 +17,6 @@ class Test(commands.Cog):
         
     @commands.command()
     async def flag(self, ctx, flag):
-        orig = ctx.guild.get_member(ctx.author).nick
-        await ctx.guild.get_member(ctx.author).edit(nick=f"{flags.get(flag)} {orig}")
+        orig = ctx.guild.get_member(ctx.author.id).nick
+        await ctx.guild.get_member(ctx.author.id).edit(nick=f"{flags.get(flag)} {orig}")
         await ctx.send(f"Added {flag} to {orig}")
