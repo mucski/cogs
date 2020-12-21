@@ -20,6 +20,9 @@ class Test(commands.Cog):
         orig = ctx.guild.get_member(ctx.author.id).nick
         if orig is None:
             orig = ctx.guild.get_member(ctx.author.id).name
+        if orig.startswith(flags) is True:
+            await ctx.send("You already have a flag .. or emoji")
+            pass
         if flag in flags:
             await ctx.guild.get_member(ctx.author.id).edit(nick=f"{flags.get(flag)} {orig}")
             await ctx.send(f"Added {flags.get(flag)} to {orig}")
