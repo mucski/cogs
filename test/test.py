@@ -38,9 +38,9 @@ class Test(commands.Cog):
             await ctx.send("You already have a flag. I'm gonna replace it.")
             return
         #await ctx.send(orig.find(comp))
-        if flag in flags:
-            await ctx.guild.get_member(ctx.author.id).edit(nick=f"{flags.get(flag)} {orig}")
-            await ctx.send(f"Added {flags.get(flag)} to {orig}")
+        #if flag in flags:
+            #await ctx.guild.get_member(ctx.author.id).edit(nick=f"{flags.get(flag)} {orig}")
+            #await ctx.send(f"Added {flags.get(flag)} to {orig}")
     
     @commands.command()
     async def delflag(self, ctx):
