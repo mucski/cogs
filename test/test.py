@@ -24,7 +24,7 @@ class Test(commands.Cog):
         if comp is None:
             await ctx.send("No such flag.")
             return
-        if orig.find(comp) != -1:
+        if orig.find(comp) != 0:
             def deEmojify(text):
                 regrex_pattern = re.compile(pattern = "["
                     u"\U0001F600-\U0001F64F"  # emoticons
