@@ -41,7 +41,7 @@ class Test(commands.Cog):
         if comp is None:
             await ctx.send("No such flag.")
             return
-        if orig.find(comp) == 0:
+        if orig.find(comp) == -1:
             orig.replace(comp,"")
             #await ctx.send("You already have a flag ..")
             return
