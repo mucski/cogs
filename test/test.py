@@ -20,12 +20,14 @@ class Test(commands.Cog):
         orig = ctx.guild.get_member(ctx.author.id).nick
         if orig is None:
             orig = ctx.guild.get_member(ctx.author.id).name
+        comp = flags.get(flag)
+        if comp is None:
+            await ctx.send("No such flag.")
+            return
         if orig.find(flags.get(flag)) != -1:
             await ctx.send("You already have a flag ..")
             return
         if flag in flags:
             await ctx.guild.get_member(ctx.author.id).edit(nick=f"{flags.get(flag)} {orig}")
             await ctx.send(f"Added {flags.get(flag)} to {orig}")
-        else:
-            await ctx.send("No such flag")
         #await ctx.send(orig)
