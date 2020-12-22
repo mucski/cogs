@@ -24,9 +24,9 @@ class Test(commands.Cog):
         if comp is None:
             await ctx.send("No such flag.")
             return
-        if orig.find(comp) == 0:
+        #if orig.find(comp) == 0:
         #await ctx.send(orig.find(comp))
-        elif flag in flags:
+        if flag in flags:
             await ctx.guild.get_member(ctx.author.id).edit(nick=f"{flags.get(flag)} {orig}")
             await ctx.send(f"Added {flags.get(flag)} to {orig}")
     
