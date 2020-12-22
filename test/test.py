@@ -24,7 +24,7 @@ class Test(commands.Cog):
         if comp is None:
             await ctx.send("No such flag.")
             return
-        if orig.find(comp) == 0:
+        if orig.find(comp) == 0 and flag in flags:
             def deEmojify(text):
                 regrex_pattern = re.compile(pattern = "["
                     u"\U0001F600-\U0001F64F"  # emoticons
@@ -35,8 +35,6 @@ class Test(commands.Cog):
                 return regrex_pattern.sub(r'',text)
             
             deEmojify(orig)
-        #await ctx.send(orig.find(comp))
-        elif flag in flags:
             await ctx.guild.get_member(ctx.author.id).edit(nick=f"{flags.get(flag)} {orig}")
             await ctx.send(f"Added {flags.get(flag)} to {orig}")
     
