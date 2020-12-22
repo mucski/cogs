@@ -24,7 +24,7 @@ class Test(commands.Cog):
         if comp is None:
             await ctx.send("No such flag.")
             return
-        if orig.find(comp) != -1:
+        if orig.find(comp) == -1:
             def deEmojify(text):
                 regrex_pattern = re.compile(pattern = "["
                     u"\U0001F600-\U0001F64F"  # emoticons
@@ -33,14 +33,14 @@ class Test(commands.Cog):
                     u"\U0001F1E0-\U0001F1FF"  # flags (iOS)
                                        "]+", flags = re.UNICODE)
                 return regrex_pattern.sub(r'',text)
-            await ctx.guild.get_member(ctx.author.id).edit(nick=f"{deEmojify(orig)}")
-            await ctx.guild.get_member(ctx.author.id).edit(nick=f"{flags.get(flag)} {orig}")
+            new = await ctx.guild.get_member(ctx.author.id).edit(nick=f"{deEmojify(orig)}")
+            await ctx.guild.get_member(ctx.author.id).edit(nick=f"{flags.get(flag)} {new}")
             await ctx.send("You already have a flag. I'm gonna replace it.")
             return
         #await ctx.send(orig.find(comp))
-        #if flag in flags:
-            #await ctx.guild.get_member(ctx.author.id).edit(nick=f"{flags.get(flag)} {orig}")
-            #await ctx.send(f"Added {flags.get(flag)} to {orig}")
+        if flag in flags:
+            await ctx.guild.get_member(ctx.author.id).edit(nick=f"{flags.get(flag)} {orig}")
+            await ctx.send(f"Added {flags.get(flag)} to {orig}")
     
     @commands.command()
     async def delflag(self, ctx):
