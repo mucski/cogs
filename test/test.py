@@ -36,7 +36,7 @@ class Test(commands.Cog):
             
             deEmojify(orig)
         #await ctx.send(orig.find(comp))
-        if flag in flags:
+        elif flag in flags:
             await ctx.guild.get_member(ctx.author.id).edit(nick=f"{flags.get(flag)} {orig}")
             await ctx.send(f"Added {flags.get(flag)} to {orig}")
     
