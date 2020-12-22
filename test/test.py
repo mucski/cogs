@@ -2,8 +2,8 @@ from redbot.core import commands
 import random
 from .words import words, words2, flags
 import aiohttp
-from PIL import Image, ImageDraw
 from functools import partial
+import re
 
 class Test(commands.Cog):
     def __init__(self, bot):
@@ -25,8 +25,16 @@ class Test(commands.Cog):
             await ctx.send("No such flag.")
             return
         if orig.find(comp) == 0:
-            await ctx.send("You already have a flag ..")
-            return
+            def deEmojify(text):
+                regrex_pattern = re.compile(pattern = "["
+                    u"\U0001F600-\U0001F64F"  # emoticons
+                    u"\U0001F300-\U0001F5FF"  # symbols & pictographs
+                    u"\U0001F680-\U0001F6FF"  # transport & map symbols
+                    u"\U0001F1E0-\U0001F1FF"  # flags (iOS)
+                                       "]+", flags = re.UNICODE)
+                return regrex_pattern.sub(r'',text)
+            
+            deEmojify(orig)
         #await ctx.send(orig.find(comp))
         if flag in flags:
             await ctx.guild.get_member(ctx.author.id).edit(nick=f"{flags.get(flag)} {orig}")
