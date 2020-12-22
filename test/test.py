@@ -27,7 +27,7 @@ class Test(commands.Cog):
         if orig.find(comp,1) != -1:
             await ctx.send("You already have a flag ..")
             return
-        await ctx.send(comp)
+        await ctx.send(orig)
         #if flag in flags:
             #await ctx.guild.get_member(ctx.author.id).edit(nick=f"{flags.get(flag)} {orig}")
             #await ctx.send(f"Added {flags.get(flag)} to {orig}")
