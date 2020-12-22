@@ -32,4 +32,21 @@ class Test(commands.Cog):
             await ctx.guild.get_member(ctx.author.id).edit(nick=f"{flags.get(flag)} {orig}")
             await ctx.send(f"Added {flags.get(flag)} to {orig}")
     
+    @commands.command()
+    async def flag2(self, ctx, flag):
+        orig = ctx.guild.get_member(ctx.author.id).nick
+        if orig is None:
+            orig = ctx.guild.get_member(ctx.author.id).name
+        comp = flags.get(flag)
+        if comp is None:
+            await ctx.send("No such flag.")
+            return
+        if orig.find(comp) == 0:
+            await ctx.send("You already have a flag ..")
+            return
+        #await ctx.send(orig.find(comp))
+        if flag in flags:
+            await ctx.guild.get_member(ctx.author.id).edit(nick=f"{flags.get(flag)} {orig}")
+            await ctx.send(f"Added {flags.get(flag)} to {orig}")
+    
        
