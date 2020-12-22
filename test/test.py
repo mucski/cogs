@@ -41,13 +41,6 @@ class Test(commands.Cog):
         if comp is None:
             await ctx.send("No such flag.")
             return
-        def search(values, searchFor):
-            for k in values:
-                for v in values[k]:
-                    if searchFor in v:
-                        return k
-            return None
-
         if orig.find(comp) == 0:
             orig.replace(comp,flag)
             #await ctx.send("You already have a flag ..")
