@@ -34,7 +34,7 @@ class Test(commands.Cog):
             return regrex_pattern.sub(r'',text)
         newnick = deEmojify(orig)
         #await ctx.guild.get_member(ctx.author.id).edit(nick=f"{deEmojify(orig)}")
-        await ctx.guild.get_member(ctx.author.id).edit(nick=f"{comp} {newnick}")
+        await ctx.guild.get_member(ctx.author.id).edit(nick=f"{comp}{newnick}")
         await ctx.send(f"Added {comp} to {orig}")
         #await ctx.send("You already have a flag. I'm gonna replace it.")
         #return
