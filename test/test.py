@@ -44,8 +44,7 @@ class Test(commands.Cog):
                                    "]+", flags = re.UNICODE)
             return regrex_pattern.sub(r'',text)
         
-        deEmojify(orig)
-        await ctx.guild.get_member(ctx.author.id).edit(nick=f"{orig}")
+        await ctx.guild.get_member(ctx.author.id).edit(nick=f"{deEmojify(orig)}")
         await ctx.send("Done")
         
     @commands.command()
