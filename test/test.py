@@ -20,7 +20,7 @@ class Test(commands.Cog):
         orig = ctx.guild.get_member(ctx.author.id).nick
         if orig is None:
             orig = ctx.guild.get_member(ctx.author.id).name
-        comp = flags.get(flag)
+        comp = flags.get(flag.lower())
         if comp is None:
             await ctx.send("No such flag.")
             return
