@@ -35,7 +35,7 @@ class Test(commands.Cog):
         newnick = deEmojify(orig)
         #await ctx.guild.get_member(ctx.author.id).edit(nick=f"{deEmojify(orig)}")
         await ctx.guild.get_member(ctx.author.id).edit(nick=f"{comp} {newnick.strip()}")
-        await ctx.send(f"Added {comp} to {orig}")
+        await ctx.send(f"Changed {newnick.strip()}'s country to {comp}")
         #await ctx.send("You already have a flag. I'm gonna replace it.")
         #return
         #await ctx.send(orig.find(comp))
@@ -58,23 +58,3 @@ class Test(commands.Cog):
         
         await ctx.guild.get_member(ctx.author.id).edit(nick=f"{deEmojify(orig)}")
         await ctx.send("Done")
-        
-    @commands.command()
-    async def flag2(self, ctx, flag):
-        orig = ctx.guild.get_member(ctx.author.id).nick
-        if orig is None:
-            orig = ctx.guild.get_member(ctx.author.id).name
-        comp = flags.get(flag)
-        if comp is None:
-            await ctx.send("No such flag.")
-            return
-        if orig.find(comp) == -1:
-            orig.replace(comp,"")
-            #await ctx.send("You already have a flag ..")
-            return
-        #await ctx.send(orig.find(comp))
-        if flag in flags:
-            await ctx.guild.get_member(ctx.author.id).edit(nick=f"{flags.get(flag)} {orig}")
-            await ctx.send(f"Added {flags.get(flag)} to {orig}")
-    
-       
