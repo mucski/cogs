@@ -274,4 +274,3 @@ class Hirez(commands.Cog):
         embed.set_footer(text=f"Played {humanize.naturaltime(datetime.utcnow() - last.timestamp)}")
         #embed.set_footer(text=f"Played: {humanize.naturaltime(datetime.utcnow() - last.timestamp)} time took to execute {(time.time() - start_time)}")
         await ctx.send(embed=embed)
-        
