@@ -73,7 +73,7 @@ class Hirez(commands.Cog):
             f"Achievements Unlocked: {player.total_achievements}\n"
             f"Account Created: {humanize.naturaltime(datetime.utcnow() - player.created_at)}\n"
             f"Last Login: {humanize.naturaltime(datetime.utcnow() - player.last_login)}\n```"
-        embed.set_footer(text=f"Fetched in {(time.time() - start_time)}, ID: {player.id}")
+        embed.set_footer(text=f"Fetched in {(time.time() - start_time)}")
         await ctx.send(embed=embed)
 
     @commands.command()
