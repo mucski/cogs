@@ -49,6 +49,10 @@ class Hirez(commands.Cog):
         await ctx.bot.on_command_error(ctx, error, unhandled_by_cog=True)
         
     @commands.command()
+    async def keytest(self, ctx):
+        await ctx.send(f"{self.devid} - {self.auth}")
+        
+    @commands.command()
     async def stats(self, ctx, player, platform = "pc"):
         """Player stats, title, avatar and more"""
         platform = arez.Platform(platform)
