@@ -19,14 +19,14 @@ class Hirez(commands.Cog):
     """
     def __init__(self, bot):
         self.bot = bot
-        f = open("/home/music166/mucski/key.txt", "r")
-        self.auth = f.readline()
-        self.devid = f.readline()
+        self.f = open("/home/music166/mucski/key.txt", "r")
+        self.auth = self.f.readline()
+        self.devid = self.f.readline()
         self.api = arez.PaladinsAPI(dev_id = f"{self.devid}", auth_key = f"{self.auth}")
        
     def cog_unload(self):
         asyncio.create_task(self.api.close())
-        f.close()
+        self.f.close()
 
     async def cog_command_error(self, ctx, error):
         if isinstance(error, commands.CommandInvokeError):
