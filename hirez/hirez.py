@@ -73,7 +73,7 @@ class Hirez(commands.Cog):
             f"Achievements Unlocked: {player.total_achievements}\n```"
             "\n\n"
             "**__Casual Stats__**\n"
-            f```"Win Rate: {player.casual.wins} / {player.casual.losses} ({player.casual.winrate_text})\n"
+            f"```Win Rate: {player.casual.wins} / {player.casual.losses} ({player.casual.winrate_text})\n"
             f"Deserted: {player.casual.leaves}\n```"
             "\n\n"
             f"**__Ranked Stats Season {player.ranked_best.season}__**\n"
