@@ -14,8 +14,8 @@ class Test2(commands.Cog):
         text = "Hello I am a test text"
         image = ""
         
-    @bot.command(name='canvas')
-    async def canvas(ctx, text=None):
+    @commands.command()
+    async def canvas(self, ctx, text=None):
     
         IMAGE_WIDTH = 600
         IMAGE_HEIGHT = 300
