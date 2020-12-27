@@ -35,7 +35,7 @@ class Test2(commands.Cog):
         # draw text in center
         text = f'Hello {ctx.author.name}'
 
-        font = ImageFont.truetype('Arial.ttf', 30)
+        font = ImageFont.truetype('arial.ttf', 30)
     
         text_width, text_height = draw.textsize(text, font=font)
         x = (IMAGE_WIDTH - text_width)//2
