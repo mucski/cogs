@@ -48,9 +48,9 @@ class Hirez(commands.Cog):
             #     return
         await ctx.bot.on_command_error(ctx, error, unhandled_by_cog=True)
         
-    @commands.command()
-    async def keytest(self, ctx):
-        await ctx.send(f"{self.devid.strip()} - {self.auth.strip()}")
+    #@commands.command()
+    #async def keytest(self, ctx):
+    #    await ctx.send(f"{self.devid.strip()} - {self.auth.strip()}")
 
     @commands.command()
     async def stats(self, ctx, player, platform = "pc"):
