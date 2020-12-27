@@ -85,9 +85,9 @@ class Hirez(commands.Cog):
             f"Ranked Type: {player.ranked_best.type}\n"
             f"Current Rank: {player.ranked_best.rank} ({player.ranked_best.points} TP)\n```"
         )
-        embed = discord.Embed(color=await self.bot.get_embed_color(ctx), title=f"_{player.title}_")
+        embed = discord.Embed(color=await self.bot.get_embed_color(ctx), title=f"{player.name}({player.platform}) _{player.title}_")
         embed.description=desc
-        embed.set_author(name=f"{player.name}({player.platform})")
+        #embed.set_author(name=f"{player.name}({player.platform})")
         embed.set_thumbnail(url=player.avatar_url)
         embed.set_footer(text=f"Fetched in {(time.time() - start_time)}, ID: {player.id}")
         await ctx.send(embed=embed)
