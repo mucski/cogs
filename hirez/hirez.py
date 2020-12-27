@@ -125,9 +125,9 @@ class Hirez(commands.Cog):
         e.add_field(name="Team 1\nPlayer Name / ID / KDA / Damage / Healing or Shielding", value='\n'.join(map(str, match.team1)).replace(f"{player.name}", f"``{player.name}``"), inline="False")
         e.add_field(name="Team 2\nPlayer Name / ID / KDA / Damage / Healing or Shielding", value='\n'.join(map(str, match.team2)).replace(f"{player.name}", f"``{player.name}``"), inline="False")
         e.set_footer(text=f"Played: {humanize.naturaltime(datetime.utcnow() - match.timestamp)}")
-        #await ctx.send(embed=e)
-        sex = await match.expand_players(match)
-        await ctx.send(sex)
+        await ctx.send(embed=e)
+        #sex = await match.expand_players(match)
+        #await ctx.send(sex)
 
     @commands.command()
     async def current(self, ctx, player, platform="pc"):
