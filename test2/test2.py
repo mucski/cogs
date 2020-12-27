@@ -8,4 +8,7 @@ class Test2(commands.Cog):
     @commands.command()
     async def key(self, ctx):
         f = open("/home/music166/mucski/key.txt", "r")
-        await ctx.send(f.read())
+        auth = f.readline()
+        devid = f.readline()
+        await ctx.send(f"This is the dev id {devid} and this is the author key {auth}")
+        f.close()
