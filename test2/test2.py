@@ -7,5 +7,5 @@ class Test2(commands.Cog):
 
     @commands.command()
     async def key(self, ctx):
-        f = open("/home/music166/mucski/key.txt", "r")
+        f = await open("/home/music166/mucski/key.txt", "r")
         await ctx.send(f)
