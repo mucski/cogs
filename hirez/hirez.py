@@ -70,30 +70,10 @@ class Hirez(commands.Cog):
             f"Playtime: {int(player.playtime.total_hours())} hours\n"
             f"Region: {player.region}\n"
             f"Champions Owned: {player.champion_count}\n"
-            f"Achievements Unlocked: {player.total_achievements}\n```"
-            "\n\n"
-            "**__Casual Stats__**\n"
-            f"```Win Rate: {player.casual.wins} / {player.casual.losses} ({player.casual.winrate_text})\n"
-            f"Deserted: {player.casual.leaves}\n```"
-            "\n\n"
-            f"**__Ranked Stats Season {player.ranked_best.season}__**\n"
-            f"```Win Rate: {player.ranked_best.wins} / {player.ranked_best.losses} ({player.ranked_best.winrate_text})\n"
-            f"Deserted: {player.ranked_best.leaves}\n"
-            f"Ranked Type: {player.ranked_best.type}\n"
-            f"Current Rank: {player.ranked_best.rank} ({player.ranked_best.points} TP)\n```"
-        )
-        embed = discord.Embed(color=await self.bot.get_embed_color(ctx), title=f"Player ID: `{player.id}` Title: _{player.title}_")
-        embed.description=desc
-        embed.set_author(name=f"{player.name}({player.platform})")
-        embed.set_thumbnail(url=player.avatar_url)
-        #embed.add_field(name="Account level", value=player.level)
-        #embed.add_field(name="Playtime", value=f"{int(player.playtime.total_hours())} hours")
-        #embed.add_field(name="Region", value=player.region)
-        #embed.add_field(name="Casual Winrate", value=f"{player.casual.wins} / {player.casual.losses} ({player.casual.winrate_text})")
-        #embed.add_field(name="Ranked Winrate", value=f"{player.ranked_best.wins} / {player.ranked_best.losses} ({player.ranked_best.winrate_text})")
-        #embed.add_field(name="Ranked type", value=player.ranked_best.type)
-        #embed.add_field(name="Current rank", value=eye)
-        embed.set_footer(text=f"Account created: {humanize.naturaltime(datetime.utcnow() - player.created_at)}, last seen: {humanize.naturaltime(datetime.utcnow() - player.last_login)}")
+            f"Achievements Unlocked: {player.total_achievements}\n"
+            f"Account Created: {humanize.naturaltime(datetime.utcnow() - player.created_at)}\n"
+            f"Last Login: {humanize.naturaltime(datetime.utcnow() - player.last_login)}\n```"
+        embed.set_footer(text=f"Fetched in {(time.time() - start_time)}, ID: {player.id}")
         await ctx.send(embed=embed)
 
     @commands.command()
