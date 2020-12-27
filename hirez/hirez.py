@@ -73,14 +73,14 @@ class Hirez(commands.Cog):
             f"Achievements Unlocked: {player.total_achievements}\n```"
             "\n\n"
             "**__Casual Stats__**\n"
-            f"Win Rate: {player.casual.wins} / {player.casual.losses} ({player.casual.winrate_text})\n"
-            f"Deserted: {player.casual.leaves}\n"
+            f```"Win Rate: {player.casual.wins} / {player.casual.losses} ({player.casual.winrate_text})\n"
+            f"Deserted: {player.casual.leaves}\n```"
             "\n\n"
             f"**__Ranked Stats Season {player.ranked_best.season}__**\n"
-            f"Win Rate: {player.ranked_best.wins} / {player.ranked_best.losses} ({player.ranked_best.winrate_text})\n"
+            f"```Win Rate: {player.ranked_best.wins} / {player.ranked_best.losses} ({player.ranked_best.winrate_text})\n"
             f"Deserted: {player.ranked_best.leaves}\n"
             f"Ranked Type: {player.ranked_best.type}\n"
-            f"Current Rank: {player.ranked_best.rank} ({player.ranked_best.points} TP)\n"
+            f"Current Rank: {player.ranked_best.rank} ({player.ranked_best.points} TP)\n```"
         )
         embed = discord.Embed(color=await self.bot.get_embed_color(ctx), title=f"Player ID: `{player.id}` Title: _{player.title}_")
         embed.description=desc
