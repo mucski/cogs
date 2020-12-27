@@ -66,7 +66,7 @@ class Hirez(commands.Cog):
             player = await player_obj[0]
         desc = (
             "**__Player Stats__**\n"
-            f```"Account level: {player.level}\n"
+            f"```Account level: {player.level}\n"
             f"Playtime: {int(player.playtime.total_hours())} hours\n"
             f"Region: {player.region}\n"
             f"Champions Owned: {player.champion_count}\n"
