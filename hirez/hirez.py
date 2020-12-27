@@ -55,6 +55,7 @@ class Hirez(commands.Cog):
     @commands.command()
     async def stats(self, ctx, player, platform = "pc"):
         """Player stats, title, avatar and more"""
+        start_time = time.time()
         platform = arez.Platform(platform)
         if platform is None:
             await ctx.send("Wrong platform buster!")
