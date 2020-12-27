@@ -74,6 +74,10 @@ class Hirez(commands.Cog):
             f"Account Created: {humanize.naturaltime(datetime.utcnow() - player.created_at)}\n"
             f"Last Login: {humanize.naturaltime(datetime.utcnow() - player.last_login)}\n```"
         )
+        embed = discord.Embed(color=await self.bot.get_embed_color(ctx), title=f"_{player.title}_")
+        embed.description=desc
+        embed.set_author(name=f"{player.name}({player.platform})")
+        embed.set_thumbnail(url=player.avatar_url)
         embed.set_footer(text=f"Fetched in {(time.time() - start_time)}, ID: {player.id}")
         await ctx.send(embed=embed)
 
