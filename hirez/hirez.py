@@ -48,9 +48,24 @@ class Hirez(commands.Cog):
             #     return
         await ctx.bot.on_command_error(ctx, error, unhandled_by_cog=True)
         
-    #@commands.command()
-    #async def keytest(self, ctx):
-    #    await ctx.send(f"{self.devid.strip()} - {self.auth.strip()}")
+    async def convert_champ_name(champ_name):
+        champ_name = champ_name.lower()
+        if bomb in champ_name:
+            return "bomb-king"
+        if mal in champ_name:
+            return "mal-damba"
+        if sha in champ_name:
+            return "sha-lin"
+        return champ_name
+        
+    async def get_champ_image(champ_name):
+        champ_name = await convert_champ_name(champ_name)
+        url = "https://web2.hirez.com/paladins/champion-icons/" + str(champ_name) + ".jpg"
+        return url
+        
+    @commands.command()
+    async def hitest(self, ctx, champ):
+        await ctx.send(get_champ_image(champ))
 
     @commands.command()
     async def stats(self, ctx, player, platform = "pc"):
@@ -91,21 +106,6 @@ class Hirez(commands.Cog):
         embed.set_thumbnail(url=player.avatar_url)
         embed.set_footer(text=f"Fetched in {(time.time() - start_time)}, ID: {player.id}")
         await ctx.send(embed=embed)
-
-    async def convert_champ_name(champ_name):
-        champ_name = champ_name.lower()
-        if bomb in champ_name:
-            return "bomb-king"
-        if mal in champ_name:
-            return "mal-damba"
-        if sha in champ_name:
-            return "sha-lin"
-        return champ_name
-        
-    async def get_champ_image(champ_name):
-        champ_name = await convert_champ_name(champ_name)
-        url = "https://web2.hirez.com/paladins/champion-icons/" + str(champ_name) + ".jpg"
-        return url
         
     @commands.command()
     async def match(self, ctx, player, platform="pc"):
