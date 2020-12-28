@@ -18,7 +18,7 @@ class Test2(commands.Cog):
     async def canvas(self, ctx, text=None):
     
         IMAGE_WIDTH = 600
-        IMAGE_HEIGHT = 600
+        IMAGE_HEIGHT = 400
     
         # create empty image 600x300 
         image = Image.new('RGB', (IMAGE_WIDTH, IMAGE_HEIGHT)) # RGB, RGBA (with alpha), L (grayscale), 1 (black & white)
@@ -47,10 +47,10 @@ class Test2(commands.Cog):
         buffer = io.BytesIO()
     
         # save PNG in buffer
-        image.save(buffer, format='PNG')    
+        image.save(buffer, format='JPEG')    
     
         # move to beginning of buffer so `send()` it will read from beginning
         buffer.seek(0) 
     
         # send image
-        await ctx.send(file=File(buffer, 'myimage.png'))
+        await ctx.send(file=File(buffer, 'yourmom.jpg'))
