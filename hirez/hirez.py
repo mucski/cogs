@@ -50,11 +50,11 @@ class Hirez(commands.Cog):
         
     async def convert_champ_name(self, champ_name):
         champ_name = champ_name.lower()
-        if bomb in champ_name:
+        if "bomb" in champ_name:
             return "bomb-king"
-        if mal in champ_name:
+        if "mal" in champ_name:
             return "mal-damba"
-        if sha in champ_name:
+        if "sha" in champ_name:
             return "sha-lin"
         return champ_name
         
