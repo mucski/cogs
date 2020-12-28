@@ -31,7 +31,7 @@ class Test2(commands.Cog):
     
         # draw red rectangle with green outline from point (50,50) to point (550,250) #(600-50, 300-50)
         #draw.rectangle([50, 50, IMAGE_WIDTH-50, IMAGE_HEIGHT-50], fill=(255,0,0), outline=(0,0,0))
-        draw.rectangle([0, 600], fill=(255,0,0))
+        draw.rectangle([0, 600, 0, 0], fill=(255,0,0))
     
         # draw text in center
         text = f'Hello {ctx.author.name}'
