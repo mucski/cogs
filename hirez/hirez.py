@@ -92,6 +92,16 @@ class Hirez(commands.Cog):
         embed.set_footer(text=f"Fetched in {(time.time() - start_time)}, ID: {player.id}")
         await ctx.send(embed=embed)
 
+    async def convert_champ_name(champ_name):
+        champ_name = champ_name.lower()
+        if bomb in champ_name:
+            return "bomb-king"
+        if mal in champ_name:
+            return "mal-damba"
+        if sha in champ_name:
+            return "sha-lin"
+        return champ_name
+            
     @commands.command()
     async def match(self, ctx, player, platform="pc"):
         """A match played by a player"""
