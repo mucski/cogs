@@ -101,7 +101,12 @@ class Hirez(commands.Cog):
         if sha in champ_name:
             return "sha-lin"
         return champ_name
-            
+        
+    async def get_champ_image(champ_name):
+        champ_name = await convert_champ_name(champ_name)
+        url = "https://web2.hirez.com/paladins/champion-icons/" + str(champ_name) + ".jpg"
+        return url
+        
     @commands.command()
     async def match(self, ctx, player, platform="pc"):
         """A match played by a player"""
