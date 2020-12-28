@@ -48,7 +48,7 @@ class Hirez(commands.Cog):
             #     return
         await ctx.bot.on_command_error(ctx, error, unhandled_by_cog=True)
         
-    async def convert_champ_name(self, ctx, champ_name):
+    async def convert_champ_name(self, champ_name):
         champ_name = champ_name.lower()
         if bomb in champ_name:
             return "bomb-king"
@@ -58,7 +58,7 @@ class Hirez(commands.Cog):
             return "sha-lin"
         return champ_name
         
-    async def get_champ_image(self, ctx, champ_name):
+    async def get_champ_image(self, champ_name):
         champ_name = await convert_champ_name(champ_name)
         url = "https://web2.hirez.com/paladins/champion-icons/" + str(champ_name) + ".jpg"
         return url
