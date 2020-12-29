@@ -59,7 +59,7 @@ class Hirez(commands.Cog):
         return champ_name
         
     async def get_champ_image(self, champ_name):
-        champ_name = await convert_champ_name(champ_name)
+        champ_name = await self.convert_champ_name(champ_name)
         url = "https://web2.hirez.com/paladins/champion-icons/" + str(champ_name) + ".jpg"
         return url
         
@@ -72,7 +72,7 @@ class Hirez(commands.Cog):
     
         for champ in champ_list:
             if champ != "?" and "Atlas" != champ:  # Temp fix
-                champ_url = await get_champ_image(champ)
+                champ_url = await self.get_champ_image(champ)
                 response = requests.get(champ_url)
                 champion_images.append(Image.open(BytesIO(response.content)))
             else:
@@ -117,10 +117,10 @@ class Hirez(commands.Cog):
     
     
     # Creates a match image based on the two teams champions
-    async def create_match_image(team1, team2, ranks1, ranks2):
-        buffer1 = await create_team_image(team1, ranks1)
-        buffer2 = await create_team_image(team2, ranks2)
-        middle = await draw_match_vs()
+    async def create_match_image(self, team1, team2, ranks1, ranks2):
+        buffer1 = await self.create_team_image(team1, ranks1)
+        buffer2 = await self.create_team_image(team2, ranks2)
+        middle = await self.draw_match_vs()
         offset = 128
     
         image_size = 512
@@ -151,7 +151,7 @@ class Hirez(commands.Cog):
         return final_buffer
     
     
-    async def draw_match_vs():
+    async def draw_match_vs(self):
         base = Image.new('RGB', (2560, 128), "black")
     
         # put text on image
