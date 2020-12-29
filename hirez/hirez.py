@@ -158,7 +158,7 @@ class Hirez(commands.Cog):
     
         # put text on image
         base_draw = ImageDraw.Draw(base)
-        base_draw.text((1248, 32), "VS", font=ImageFont.truetype("arial.ttf", 64))
+        base_draw.text((1248, 32), "VS", font=ImageFont.truetype("/home/music166/mucski/arial.ttf", 64))
     
         # Creates a buffer to store the image in
         final_buffer = BytesIO()
