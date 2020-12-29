@@ -173,7 +173,7 @@ class Hirez(commands.Cog):
     @commands.command()
     async def hitest(self, ctx, champ_name):
         img = await self.get_champ_image(champ_name)
-        penis = self.draw_match_vs()
+        penis = await self.draw_match_vs()
         await ctx.send(penis)
 
     @commands.command()
