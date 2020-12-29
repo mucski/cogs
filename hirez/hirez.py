@@ -10,6 +10,7 @@ from redbot.core.utils.chat_formatting import pagify
 from redbot.core.utils.chat_formatting import box
 from PIL import Image, ImageFont, ImageDraw
 from io import BytesIO
+import os
 
 
 class Hirez(commands.Cog):
