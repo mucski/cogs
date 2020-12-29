@@ -8,7 +8,8 @@ from redbot.core import commands
 from tabulate import tabulate
 from redbot.core.utils.chat_formatting import pagify
 from redbot.core.utils.chat_formatting import box
-import time
+from PIL import Image, ImageFont, ImageDraw
+from io import BytesIO
 
 
 class Hirez(commands.Cog):
