@@ -59,12 +59,12 @@ class Hirez(commands.Cog):
         return champ_name
         
     async def get_champ_image(self, champ_name):
-        champ_name = await self.convert_champ_name(champ_name)
+        champ_name = await convert_champ_name(champ_name)
         url = "https://web2.hirez.com/paladins/champion-icons/" + str(champ_name) + ".jpg"
         return url
         
     # Creates an team image by using champion Icons
-    async def create_team_image(champ_list, ranks):
+    async def create_team_image(self, champ_list, ranks):
         champion_images = []
     
         while len(champ_list) != 5:
