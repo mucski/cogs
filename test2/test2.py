@@ -34,7 +34,7 @@ class Test2(commands.Cog):
         draw.rectangle([0, 100, 600, 100], fill=(255,0,0))
     
         # draw text in center
-        text = f'Hello {ctx.author.name}'
+        #text = f'Hello {ctx.author.name}'
 
         font = ImageFont.truetype('/home/music166/mucski/arial.ttf', 12)
     
