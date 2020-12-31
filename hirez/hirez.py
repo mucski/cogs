@@ -133,7 +133,7 @@ class Hirez(commands.Cog):
         #match id
         last = history[0]
         match = await self.api.get_match(last.id)
-        team1 = match.team1
+        team1 = await self.api.expand_players(match.team1)
         team2 = match.team2
         rank1 = ""
         rank2 = ""
