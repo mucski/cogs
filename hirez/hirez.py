@@ -9,8 +9,6 @@ from redbot.core import commands
 from tabulate import tabulate
 from redbot.core.utils.chat_formatting import pagify
 from redbot.core.utils.chat_formatting import box
-from PIL import Image, ImageFont, ImageDraw
-from io import
 from discord import File
 import .my_utils as helper
 
