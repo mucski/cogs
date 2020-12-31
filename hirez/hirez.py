@@ -12,8 +12,7 @@ from redbot.core.utils.chat_formatting import box
 from PIL import Image, ImageFont, ImageDraw
 from io import BytesIO
 from discord import File
-#import my_utils as helper
-from .my_utils import *
+import .my_utils as helper
 
 class Hirez(commands.Cog):
     """
