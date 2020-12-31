@@ -137,7 +137,8 @@ class Hirez(commands.Cog):
         for match_player in match.players:
             if match_player.player.private:
                 continue
-            players.append(match_player.player.ranked_best.rank)
+            champion = players.append(match_player.player.champion)
+            name = players.append(match_player.player.name)
             
         team1 = players
         team2 = match.team2
