@@ -51,9 +51,8 @@ class Hirez(commands.Cog):
     
     @commands.command()
     async def hitest(self, ctx, champ_name):
-        img = await self.get_champ_image(champ_name)
-        penis = await self.draw_match_vs()
-        await ctx.send(file=File(penis, 'yourmom.png'))
+        time = get_est_time()
+        await ctx.send(time)
 
     @commands.command()
     async def stats(self, ctx, player, platform = "pc"):
