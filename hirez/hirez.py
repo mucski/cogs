@@ -13,6 +13,7 @@ from PIL import Image, ImageFont, ImageDraw
 from io import BytesIO
 from discord import File
 #import my_utils as helper
+from .my_utils import *
 
 class Hirez(commands.Cog):
     """
