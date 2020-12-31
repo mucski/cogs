@@ -128,6 +128,7 @@ class Hirez(commands.Cog):
         else:
             player_obj = await self.api.search_players(player, platform)
             player = await player_obj[0]
+        img = create_match_image(team1, team2, rank1, rank2)
         
     @commands.command()
     async def match(self, ctx, player, platform="pc"):
