@@ -28,6 +28,29 @@ class Hirez(commands.Cog):
     def cog_unload(self):
         asyncio.create_task(self.api.close())
         self.f.close()
+        
+    DAMAGES = ["Cassie", "Kinessa", "Drogoz", "Bomb King", "Viktor", "Sha Lin", "Tyra", "Willo", "Lian", "Strix",
+               "Vivian", "Dredge", "Imani"]
+    FLANKS = ["Skye", "Buck", "Evie", "Androxus", "Maeve", "Lex", "Zhin", "Talus", "Moji", "Koga"]
+    TANKS = ["Barik", "Fernando", "Ruckus", "Makoa", "Torvald", "Inara", "Ash", "Terminus", "Khan", "Atlas"]
+    SUPPORTS = ["Grohk", "Grover", "Ying", "Mal Damba", "Seris", "Jenos", "Furia", "Pip", "Io"]
+    
+    dashes = "----------------------------------------"
+    
+    # Returns a number for indexing in a list
+    @classmethod
+    def get_champ_class(cls, champ_name: str):
+        champ_name = champ_name.title()
+        if champ_name in cls.DAMAGES:
+            return 0
+        elif champ_name in cls.FLANKS:
+            return 1
+        elif champ_name in cls.TANKS:
+            return 2
+        elif champ_name in cls.SUPPORTS:
+            return 3
+        else:
+            return -1
 
     async def cog_command_error(self, ctx, error):
         if isinstance(error, commands.CommandInvokeError):
