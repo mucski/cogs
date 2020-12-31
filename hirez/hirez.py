@@ -129,6 +129,12 @@ class Hirez(commands.Cog):
         else:
             player_obj = await self.api.search_players(player, platform)
             player = await player_obj[0]
+        history = await player.get_match_history()
+        #match id
+        last = history[0]
+        match = await self.api.get_match(last.id)
+        team1 = match.team1
+        team2 = match.team2
         img = await create_match_image(team1, team2, rank1, rank2)
         
     @commands.command()
