@@ -10,7 +10,7 @@ from tabulate import tabulate
 from redbot.core.utils.chat_formatting import pagify
 from redbot.core.utils.chat_formatting import box
 from discord import File
-import my_utils as helper
+from .my_utils import *
 
 class Hirez(commands.Cog):
     """
