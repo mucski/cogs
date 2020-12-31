@@ -136,7 +136,6 @@ class Hirez(commands.Cog):
         players = []
         for player in match.players:
             players.append(await player)
-            return player.ranked_best
         team1 = players
         team2 = match.team2
         rank1 = ""
