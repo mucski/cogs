@@ -118,6 +118,18 @@ class Hirez(commands.Cog):
         await ctx.send(embed=embed)
         
     @commands.command()
+    async def matchimage(self, ctx, player, platform="pc"):
+        platform = arez.Platform(platform)
+        if platform is None:
+            await ctx.send("Wrong platform")
+            return
+        if player.isdecimal():
+            player = await self.api.get_player(player)
+        else:
+            player_obj = await self.api.search_players(player, platform)
+            player = await player_obj[0]
+        
+    @commands.command()
     async def match(self, ctx, player, platform="pc"):
         """A match played by a player"""
         platform = arez.Platform(platform)
