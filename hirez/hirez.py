@@ -136,7 +136,7 @@ class Hirez(commands.Cog):
         players = []
         for player in match.players:
             if player.player.id == 0:
-                pass
+                continue
             players.append(player.player.ranked_best)
             
         team1 = players
