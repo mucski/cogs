@@ -135,7 +135,7 @@ class Hirez(commands.Cog):
         match = await self.api.get_match(last.id, expand_players=True)
         players = []
         for player in match.players:
-            players.append(player.ranked_best)
+            players.append(player.player.ranked_best)
         team1 = players
         team2 = match.team2
         rank1 = ""
