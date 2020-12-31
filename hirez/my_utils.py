@@ -149,7 +149,7 @@ async def get_seconds_until_reset():
 
 # Converts champion names so they can be used to fetch champion images in a url
 async def convert_champion_name(champ_name, special=False):
-    #champ_name = champ_name.lower()
+    champ_name = champ_name.lower()
     # These are the special cases that need to be checked
     if "bomb" in champ_name:
         return "bomb-king"
