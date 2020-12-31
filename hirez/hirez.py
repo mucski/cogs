@@ -135,7 +135,7 @@ class Hirez(commands.Cog):
         match = await self.api.get_match(last.id, expand_players=True)
         players = []
         for match_player in match.players:
-            if match_player.player.id == 0:
+            if match_player.player.private:
                 continue
             players.append(match_player.player.ranked_best.rank)
             
