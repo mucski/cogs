@@ -139,7 +139,8 @@ class Hirez(commands.Cog):
         rank2 = ""
         img = await create_match_image(team1, team2, rank1, rank2)
         file = discord.File(filename="Yourmom.png", fp=buffer)
-        await ctx.send(file=file)
+        #await ctx.send(file=file)
+        await ctx.send(team1)
         
     @commands.command()
     async def match(self, ctx, player, platform="pc"):
