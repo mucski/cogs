@@ -133,8 +133,8 @@ class Hirez(commands.Cog):
         #match id
         last = history[0]
         match = await self.api.get_match(last.id)
-        team1 = match.team1
-        team2 = match.team2
+        team1 = await match.team1
+        team2 = await match.team2
         rank1 = ""
         rank2 = ""
         img = await create_match_image(team1, team2, rank1, rank2)
