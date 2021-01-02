@@ -1,5 +1,4 @@
 from PIL import Image, ImageFont, ImageDraw, ImageOps
-#import requests
 from io import BytesIO
 from datetime import datetime, timedelta
 from pytz import timezone
