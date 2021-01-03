@@ -148,7 +148,7 @@ class Hirez(commands.Cog):
         ranking = ranks
         rank1 = ""
         rank2 = ""
-        img = await create_team_image(players, ranks)
+        await create_team_image(players, ranks)
         #img = await create_match_image(team1, team2, rank1, rank2)
         file = discord.File(filename="Yourmom.png", fp=buffer)
         await ctx.send(file=file)
