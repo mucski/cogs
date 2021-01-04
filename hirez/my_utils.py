@@ -152,6 +152,8 @@ async def convert_champion_name(champ_name, special=False):
     # These are the special cases that need to be checked
     if "bomb" in champ_name:
         return "bomb-king"
+    if "bk" in champ_name:
+        return "bomb-king"
     if "mal" in champ_name:
         if special:
             return "mal'damba"
