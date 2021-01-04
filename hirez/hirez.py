@@ -53,7 +53,7 @@ class Hirez(commands.Cog):
         await ctx.bot.on_command_error(ctx, error, unhandled_by_cog=True)
     
     @commands.command()
-    async def hitest(self, ctx, champ_name):
+    async def hitest(self, ctx):
         sex = await get_champ_image("bk")
         await ctx.send(sex)
 
