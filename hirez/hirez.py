@@ -10,8 +10,8 @@ from tabulate import tabulate
 from redbot.core.utils.chat_formatting import pagify
 from redbot.core.utils.chat_formatting import box
 from discord import file
-from PIL import Image, ImageFont, ImageDraw, ImageOps
-from io import BytesIO
+#from PIL import Image, ImageFont, ImageDraw, ImageOps
+#from io import BytesIO
 from .my_utils import *
 #import .my_utils as helper
 
@@ -54,7 +54,8 @@ class Hirez(commands.Cog):
     
     @commands.command()
     async def hitest(self, ctx, champ_name):
-        pass
+        sex = await get_champ_image("bk")
+        await ctx.send(sex)
 
     @commands.command()
     async def stats(self, ctx, player, platform = "pc"):
