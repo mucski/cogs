@@ -54,7 +54,7 @@ class Hirez(commands.Cog):
     
     @commands.command()
     async def hitest(self, ctx):
-        sex = await get_champ_image("bk")
+        sex = await create_match_image("sex", "dex", "lex", "flex")
         await ctx.send(sex)
 
     @commands.command()
