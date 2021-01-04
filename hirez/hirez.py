@@ -137,18 +137,16 @@ class Hirez(commands.Cog):
         for match_player in match.players:
             if match_player.player.private:
                 continue
-            champion = players.append(match_player.champion)
+            players.append(match_player.champion)
             #name = players.append(match_player.player.name)
         ranks = []
         for match_player in match.players:
             if match_player.player.private:
                 continue
-            rank = ranks.append(match_player.player.ranked_best.rank)
-        champion = players
-        ranking = ranks
+            ranks.append(match_player.player.ranked_best.rank)
         rank1 = ""
         rank2 = ""
-        img = await create_team_image(players, ranks)
+        await create_team_image(players, ranks)
         #img = await create_match_image(team1, team2, rank1, rank2)
         file = discord.File(filename="Yourmom.png", fp=img)
         await ctx.send(file=file)
