@@ -54,6 +54,10 @@ class Hirez(commands.Cog):
     
     @commands.command()
     async def hitest(self, ctx):
+        team1 = ["Evie", "Maeve", "Fernando", "Sha Lin", "Lex"]
+        team2 = ["Makoa", "Viktor", "Jenos", "Cassie", "Mal Damba"]
+        ranks1 = ["Gold", "Silver", "Bronze", "Bronze", "Unranked"]
+        ranks2 = ["Gold", "Gold", "Master", "GM", "Silver"]
         sex = await create_match_image("sex", "dex", "lex", "flex")
         await ctx.send(sex)
 
