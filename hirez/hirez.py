@@ -175,7 +175,7 @@ class Hirez(commands.Cog):
             ranks.append(match_player.player.ranked_best.rank)
         #file = discord.File(filename="Yourmom.png", fp=buffer)
         #await ctx.send(file=file)
-        await ctx.send(team1data)
+        await ctx.send(team2data)
         
     @commands.command()
     async def match(self, ctx, player, platform="pc"):
