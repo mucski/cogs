@@ -1,4 +1,5 @@
 from PIL import Image, ImageFont, ImageDraw, ImageOps
+import requests
 from io import BytesIO
 from datetime import datetime, timedelta
 from pytz import timezone
@@ -152,8 +153,6 @@ async def convert_champion_name(champ_name, special=False):
     # These are the special cases that need to be checked
     if "bomb" in champ_name:
         return "bomb-king"
-    if "bk" in champ_name:
-        return "bomb-king"
     if "mal" in champ_name:
         if special:
             return "mal'damba"
@@ -184,7 +183,7 @@ async def create_team_image(champ_list, ranks):
         champ_list.append("?")
 
     for champ in champ_list:
-        if champ != "?":
+        if champ != "?" and champ is not None:
             try:
                 champion_images.append(Image.open("icons/champ_icons/{}.png".format(await convert_champion_name(champ))))
             except FileNotFoundError:
@@ -346,20 +345,28 @@ async def create_card_image(card_image, champ_info, json_data, lang):
         desc = json_data[lang][champ_card_name]["card_desc"]
         cool_down = json_data[lang][champ_card_name]["card_cd"]
 
-        # Scale of the card
-        scale = re.search('=(.+?)\|', desc)
-        scale = float(scale.group(1)) * int(champ_card_level)
-        # Text area of the card we are going to replace
-        replacement = re.search('{(.*?)}', desc)
+        # todo --- find all the cards that don't have the word scale in them and see if they follow the same format
+        # some cards don't have the word "scale" in them because cool-down scales.
+        if "scale" not in desc:
+            pass
+        else:
+            # Scale of the card
+            scale = re.search('=(.+?)\|', desc)
+            scale = float(scale.group(1)) * int(champ_card_level)
+            # Text area of the card we are going to replace
+            replacement = re.search('{(.*?)}', desc)
 
-        # Replacing the scaling text with the correct number
-        # desc = desc.replace('{'+str(replacement.group(1))+'}', str(float(scale.group(1)) * int(champ_card_level)))
-        desc = desc.replace('{' + str(replacement.group(1)) + '}', str(round(scale, 1)))
+            # Replacing the scaling text with the correct number
+            # desc = desc.replace('{'+str(replacement.group(1))+'}', str(float(scale.group(1)) * int(champ_card_level)))
+            desc = desc.replace('{' + str(replacement.group(1)) + '}', str(round(scale, 1)))
 
-        # Removes the extra text at the start in-between [****]
-        desc = re.sub("[\[].*?[\]]", '', desc)
+            # Removes the extra text at the start in-between [****]
+            desc = re.sub("[\[].*?[\]]", '', desc)
     except KeyError:
         desc = "Card information missing from bot data."
+        cool_down = 0
+    except AttributeError:
+        desc = "Couldn't find card description for some reason. Please report this."
         cool_down = 0
 
     # Add card name
@@ -441,9 +448,11 @@ async def create_deck_image(player_name, champ_name, deck, lang):
         try:
             if 'mal' in champ_name:
                 champ_name = "Mal'Damba"
-
-            en_card_name = json_data[lang][card_m[0].strip()]["card_name_en"]
-            en_card_name = en_card_name.strip().lower().replace(" ", "-").replace("'", "")
+            try:
+                en_card_name = json_data[lang][card_m[0].strip()]["card_name_en"]
+                en_card_name = en_card_name.strip().lower().replace(" ", "-").replace("'", "")
+            except KeyError:
+                en_card_name = "Not implemented yet."
 
             card_icon_image = Image.open("icons/champ_cards/{}/{}.png".format(champ_name, en_card_name))
         except FileNotFoundError:
