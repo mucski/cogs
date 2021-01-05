@@ -163,7 +163,7 @@ class Hirez(commands.Cog):
             if match_player.player.private:
                 continue
             ranks.append(match_player.player.ranked_best.rank)
-        file = discord.File(filename="Yourmom.png", fp=buffer)
+        #file = discord.File(filename="Yourmom.png", fp=buffer)
         #await ctx.send(file=file)
         await ctx.send(team1data)
         
