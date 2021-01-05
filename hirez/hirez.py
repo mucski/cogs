@@ -153,7 +153,7 @@ class Hirez(commands.Cog):
                 continue
             if match_player.team_number != 1:
                 continue
-            team1data.append(match_player.player.platform_name, match_player.account_level, match_player.credits, match_player.kda_text
+            team1data.append(match_player.player.platform_name, match_player.account_level, match_player.credits, match_player.kda_text,
                              match_player.damage_done, match_player.damage_taken, match_player.objective_time, match_player.damage_mitigated, 
                              match_player.healing_done, match_player.party_number, match_player.player.platform)
             #players.append(match_player.champion)
