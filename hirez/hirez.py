@@ -58,6 +58,7 @@ class Hirez(commands.Cog):
         team2 = ["Makoa", "Viktor", "Jenos", "Cassie", "Mal Damba"]
         ranks1 = ["Gold", "Silver", "Bronze", "Bronze", "Unranked"]
         ranks2 = ["Gold", "Gold", "Master", "GM", "Silver"]
+        buffer = await create_history_image(team1, team2, team1data, team2data, team1psrties, team2parties, (match_info + temp), color)
         sex = await create_match_image(team1, team2, ranks1, ranks2)
         await ctx.send(sex)
 
