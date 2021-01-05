@@ -154,7 +154,7 @@ class Hirez(commands.Cog):
         team2champs = []
         team1parties = {}
         team2parties = {}
-        temp = []
+        temp = match.bans
         new_party_id = 0
         for match_player in match.players:
             if match_player.player.private:
