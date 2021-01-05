@@ -148,6 +148,13 @@ class Hirez(commands.Cog):
         last = history[0]
         match = await self.api.get_match(last.id, expand_players=True)
         team1data = []
+        team2data = []
+        team1champs = []
+        team2champs = []
+        team1parties = {}
+        team2parties = {}
+        temp = []
+        new_party_id = 0
         for match_player in match.players:
             if match_player.player.private:
                 continue
@@ -158,7 +165,6 @@ class Hirez(commands.Cog):
                              match_player.healing_done, match_player.party_number, match_player.player.platform])
             #players.append(match_player.champion)
             #name = players.append(match_player.player.name)
-        team2data = []
         for match_player in match.players:
             if match_player.player.private:
                 continue
