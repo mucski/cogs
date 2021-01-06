@@ -152,8 +152,8 @@ class Hirez(commands.Cog):
         team2data = []
         team1champs = []
         team2champs = []
-        team1parties = {}
-        team2parties = {}
+        team1parties = []
+        team2parties = []
         temp = match.bans
         # handles if they provide the color option and no match id
         try:
@@ -173,7 +173,7 @@ class Hirez(commands.Cog):
                              match_player.healing_done, match_player.party_number, match_player.player.platform])
             team1champs.append(match_player.champion.name)
             #if match_player.party_number not in team1parties or match_player.party_number == 0:
-            team1parties[match_player.party_number] = ""
+            team1parties.append(match_player.party_number)
             #else:
                 #if team1parties[match_player.party_number] == "":
                     #new_party_id += 1
@@ -190,7 +190,7 @@ class Hirez(commands.Cog):
                              match_player.healing_done, match_player.party_number, match_player.player.platform])
             team2champs.append(match_player.champion.name)
             #if match_player.party_number not in team1parties or match_player.party_number == 0:
-            team1parties[match_player.party_number] = ""
+            team2parties.append(match_player.party_number)
             #else:
                 #if team1parties[match_player.party_number] == "":
                     #new_party_id += 1
