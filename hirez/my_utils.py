@@ -28,7 +28,7 @@ directory = 'user_info'
 usage = "usage"
 limits = "limits"
 current_uses_per_day = 4
-card_frames_dir = "icons/card_frames"
+card_frames_dir = "/home/music166/mucski/icons/card_frames"
 
 command_list = ['last', 'stats', 'random', 'current', 'history', 'deck', 'match']
 command_limits = ['current']
@@ -167,7 +167,7 @@ async def convert_champion_name(champ_name, special=False):
 # Gets a url to the image of champion's name passed in
 async def get_champ_image(champ_name):
     champ_name = await convert_champion_name(champ_name)
-    url = "https://raw.githubusercontent.com/EthanHicks1/PaladinsAssistantBot/master/icons/champ_icons/{}.png"\
+    url = "https://raw.githubusercontent.com/EthanHicks1/PaladinsAssistantBot/master/icons/champ_icons{}.png"\
         .format(champ_name)
     # request = requests.get(url)
     # if request.status_code == 404:
@@ -185,18 +185,18 @@ async def create_team_image(champ_list, ranks):
     for champ in champ_list:
         if champ != "?" and champ is not None:
             try:
-                champion_images.append(Image.open("icons/champ_icons/{}.png".format(await convert_champion_name(champ))))
+                champion_images.append(Image.open("/home/music166/mucski/icons/champ_icons/{}.png".format(await convert_champion_name(champ))))
             except FileNotFoundError:
                 image_size = 512
                 base = Image.new('RGB', (image_size, image_size), "black")
-                icon = Image.open("icons/unknown.png")
+                icon = Image.open("/home/music166/mucski/icons/unknown.png")
                 icon = icon.resize((512, 352), Image.ANTIALIAS)
                 base.paste(icon, (0, 80))
                 champion_images.append(base)
         else:
             image_size = 512
             base = Image.new('RGB', (image_size, image_size), "black")
-            icon = Image.open("icons/unknown.png")
+            icon = Image.open("/home/music166/mucski/icons/unknown.png")
             icon = icon.resize((512, 352), Image.ANTIALIAS)
             base.paste(icon, (0, 160))
 
@@ -217,7 +217,7 @@ async def create_team_image(champ_list, ranks):
         # Only try to use ranked icons if its a ranked match
         if ranks:
             if i < len(ranks):  # make sure we don't go out of bounds
-                rank = Image.open("icons/ranks/" + ranks[i] + ".png")  # this works
+                rank = Image.open("/home/music166/mucski/icons/ranks/" + ranks[i] + ".png")  # this works
                 width, height = rank.size
                 rank = rank.resize((int(width * scale), int(height * scale)))
                 team_image.paste(rank, (0 + (image_size * i), 0), rank)  # Upper Left
@@ -323,7 +323,7 @@ async def create_card_image(card_image, champ_info, json_data, lang):
     # Load in the Frame image from the web
     # response = requests.get("https://web2.hirez.com/paladins/cards/frame-{}.png".format(champ_card_level))
     # card_frame = Image.open(BytesIO(response.content))
-    card_frame = Image.open("icons/card_frames/{}.png".format(champ_card_level))
+    card_frame = Image.open("/home/music166/mucski/icons/card_frames/{}.png".format(champ_card_level))
     frame_x, frame_y = card_frame.size
 
     # Create the image without any text (just frame and card image)
@@ -392,7 +392,7 @@ async def create_card_image(card_image, champ_info, json_data, lang):
         draw.text((int(frame_x/2)+2, frame_y - 66), str(cool_down), font=ImageFont.truetype("/home/music166/mucski/arial.ttf", 30),
                   fill=(64, 64, 64))
 
-        cool_down_icon = Image.open("icons/cool_down_icon.png")
+        cool_down_icon = Image.open("/home/music166/mucski/icons/cool_down_icon.png")
         image_base.paste(cool_down_icon, (int(frame_x/2)-20, frame_y - 60), mask=cool_down_icon)
 
     # Final image saving steps
@@ -419,9 +419,9 @@ async def create_deck_image(player_name, champ_name, deck, lang):
 
     champ_name = await convert_champion_name(champ_name)
     try:
-        champ_background = Image.open("icons/champ_headers/{}.png".format(champ_name)).convert('RGBA')
+        champ_background = Image.open("/home/music166/mucski/icons/champ_headers/{}.png".format(champ_name)).convert('RGBA')
     except FileNotFoundError:
-        champ_background = Image.open("icons/maps/test_maps.png").convert('RGBA')
+        champ_background = Image.open("/home/music166/mucski/icons/maps/test_maps.png").convert('RGBA')
     champ_background = champ_background.resize((1570, 800), Image.ANTIALIAS)
     deck_image.paste(champ_background, (0, 0))
 
@@ -437,7 +437,7 @@ async def create_deck_image(player_name, champ_name, deck, lang):
 
         # Opens the json data that relates to the specific champion
         try:
-            file_name = "icons/champ_card_desc_lang/{}.json".format(champ_name)
+            file_name = "/home/music166/mucski/icons/champ_card_desc_lang/{}.json".format(champ_name)
             # file_name = "icons/champ_card_desc/{}.json".format(champ_name)    # Just English
             with open(file_name, encoding='utf-8') as json_f:
                 json_data = json.load(json_f)
@@ -454,9 +454,9 @@ async def create_deck_image(player_name, champ_name, deck, lang):
             except KeyError:
                 en_card_name = "Not implemented yet."
 
-            card_icon_image = Image.open("icons/champ_cards/{}/{}.png".format(champ_name, en_card_name))
+            card_icon_image = Image.open("/home/music166/mucski/icons/champ_cards/{}/{}.png".format(champ_name, en_card_name))
         except FileNotFoundError:
-            card_icon_image = Image.open("icons/temp_card_art.png")
+            card_icon_image = Image.open("/home/music166/mucski/icons/temp_card_art.png")
 
         card_icon = await create_card_image(card_icon_image, info, json_data, lang=lang)
 
@@ -507,9 +507,9 @@ async def create_history_image(team1, team2, t1_data, t2_data, p1, p2, match_dat
     # Adding in player data
     for i, (champ, champ2) in enumerate(zip(team1, team2)):
         try:
-            champ_image = Image.open("icons/champ_icons/{}.png".format(await convert_champion_name(champ)))
+            champ_image = Image.open("/home/music166/mucski/icons/champ_icons/{}.png".format(await convert_champion_name(champ)))
         except FileNotFoundError:
-            champ_image = Image.open("icons/temp_card_art.png")
+            champ_image = Image.open("/home/music166/mucski/icons/temp_card_art.png")
         border = (0, shrink, 0, shrink)  # left, up, right, bottom
         champ_image = ImageOps.crop(champ_image, border)
         # history_image.paste(champ_image, (0, image_size*i, image_size, image_size*(i+1)))
@@ -518,9 +518,9 @@ async def create_history_image(team1, team2, t1_data, t2_data, p1, p2, match_dat
 
         # Second team
         try:
-            champ_image = Image.open("icons/champ_icons/{}.png".format(await convert_champion_name(champ2)))
+            champ_image = Image.open("/home/music166/mucski/icons/champ_icons/{}.png".format(await convert_champion_name(champ2)))
         except FileNotFoundError:
-            champ_image = Image.open("icons/temp_card_art.png")
+            champ_image = Image.open("/home/music166/mucski/icons/temp_card_art.png")
         border = (0, shrink, 0, shrink)  # left, up, right, bottom
         champ_image = ImageOps.crop(champ_image, border)
 
@@ -555,9 +555,9 @@ async def create_middle_info_panel(md):  # update this section
 
     # Needed to catch weird-unknown map modes
     try:
-        match_map = Image.open("icons/maps/{}.png".format(map_file_name.lower().replace(" ", "_").replace("'", "")))
+        match_map = Image.open("/home/music166/mucski/icons/maps/{}.png".format(map_file_name.lower().replace(" ", "_").replace("'", "")))
     except FileNotFoundError:
-        match_map = Image.open("icons/maps/test_maps.png")
+        match_map = Image.open("/home/music166/mucski/icons/maps/test_maps.png")
 
     match_map = match_map.resize((512*2, 512), Image.ANTIALIAS)
     middle_panel.paste(match_map, (0, 0))
@@ -596,14 +596,14 @@ async def create_middle_info_panel(md):  # update this section
 
         # Team 1 Bans
         try:
-            champ_image = Image.open("icons/champ_icons/{}.png".format(await convert_champion_name(str(md[6]))))
+            champ_image = Image.open("/home/music166/mucski/icons/champ_icons/{}.png".format(await convert_champion_name(str(md[6]))))
             champ_image = champ_image.resize((200, 200))
             middle_panel.paste(champ_image, (512 * 7 + rs, ds))
         except FileNotFoundError:
             pass
 
         try:
-            champ_image = Image.open("icons/champ_icons/{}.png".format(await convert_champion_name(str(md[7]))))
+            champ_image = Image.open("/home/music166/mucski/icons/champ_icons/{}.png".format(await convert_champion_name(str(md[7]))))
             champ_image = champ_image.resize((200, 200))
             middle_panel.paste(champ_image, (512 * 7 + rs + 240, ds))
         except FileNotFoundError:
@@ -611,14 +611,14 @@ async def create_middle_info_panel(md):  # update this section
 
         # Team 2 Bans
         try:
-            champ_image = Image.open("icons/champ_icons/{}.png".format(await convert_champion_name(str(md[8]))))
+            champ_image = Image.open("/home/music166/mucski/icons/champ_icons/{}.png".format(await convert_champion_name(str(md[8]))))
             champ_image = champ_image.resize((200, 200))
             middle_panel.paste(champ_image, (512 * 7 + rs, ds+232))
         except FileNotFoundError:
             pass
 
         try:
-            champ_image = Image.open("icons/champ_icons/{}.png".format(await convert_champion_name(str(md[9]))))
+            champ_image = Image.open("/home/music166/mucski/icons/champ_icons/{}.png".format(await convert_champion_name(str(md[9]))))
             champ_image = champ_image.resize((200, 200))
             middle_panel.paste(champ_image, (512 * 7 + rs + 240, ds+232))
         except FileNotFoundError:
@@ -642,18 +642,18 @@ async def create_player_stats_image(champ_icon, champ_stats, index, party, color
 
     platform = champ_stats[10]
     if platform == "XboxLive":
-        platform_logo = Image.open("icons/xbox_logo.png").resize((100, 100), Image.ANTIALIAS)
+        platform_logo = Image.open("/home/music166/mucski/icons/xbox_logo.png").resize((100, 100), Image.ANTIALIAS)
         platform_logo = platform_logo.convert("RGBA")
         champ_stats_image.paste(platform_logo, (img_x + 175, int(middle) + 60), platform_logo)
     elif platform == "Nintendo Switch":
-        platform_logo = Image.open("icons/switch_logo.png")
+        platform_logo = Image.open("/home/music166/mucski/icons/switch_logo.png")
         width, height = platform_logo.size
         scale = .15
         platform_logo = platform_logo.resize((int(width * scale), int(height * scale)), Image.ANTIALIAS)
         platform_logo = platform_logo.convert("RGBA")
         champ_stats_image.paste(platform_logo, (img_x + 135, int(middle) + 45), platform_logo)
     elif platform == "PSN":
-        platform_logo = Image.open("icons/ps4_logo.png").resize((100, 100), Image.ANTIALIAS)
+        platform_logo = Image.open("/home/music166/mucski/icons/ps4_logo.png").resize((100, 100), Image.ANTIALIAS)
         platform_logo = platform_logo.convert("RGBA")
         champ_stats_image.paste(platform_logo, (img_x + 175, int(middle) + 60), platform_logo)
     # For future if I want to add a PC icon
