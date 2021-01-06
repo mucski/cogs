@@ -169,8 +169,8 @@ class Hirez(commands.Cog):
                 team1parties[match_player.party_number] = ""
             else:
                 if team1parties[match_player.party_number] == "":
-                new_party_id += 1
-                team1parties[match_player.party_number] = "" + str(new_party_id)
+                    new_party_id += 1
+                    team1parties[match_player.party_number] = "" + str(new_party_id)
             #players.append(match_player.champion)
             #name = players.append(match_player.player.name)
         for match_player in match.players:
@@ -186,8 +186,8 @@ class Hirez(commands.Cog):
                 team1parties[match_player.party_number] = ""
             else:
                 if team1parties[match_player.party_number] == "":
-                new_party_id += 1
-                team1parties[match_player.party_number] = "" + str(new_party_id)
+                    new_party_id += 1
+                    team1parties[match_player.party_number] = "" + str(new_party_id)
         #ranks = []
         #for match_player in match.players:
             #if match_player.player.private:
