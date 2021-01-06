@@ -672,8 +672,8 @@ async def create_player_stats_image(champ_icon, champ_stats, index, party, color
         champ_stats[0] = "*****"
 
     # Player name and champion name
-    base_draw.text((img_x + 20, middle-40), str(champ_stats[0]), font=ImageFont.truetype("/home/music166/mucski/arialbd.ttf", 80), fill=(0, 0, 0))
-    base_draw.text((img_x + 20, middle+60), str(champ_stats[1]), font=ImageFont.truetype("/home/music166/mucski/arial.ttf", 80), fill=(0, 0, 0))
+    base_draw.text((img_x + 20, middle-40), str(champ_stats[0]), font=ImageFont.truetype("/home/music166/mucski/arialbd.ttf", 80, encoding="unic"), fill=(0, 0, 0))
+    base_draw.text((img_x + 20, middle+60), str(champ_stats[1]), font=ImageFont.truetype("/home/music166/mucski/arial.ttf", 80, encoding="unic"), fill=(0, 0, 0))
 
     # Parties
     fill = (128, 0, 128) if color else (0, 0, 0)
