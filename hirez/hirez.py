@@ -155,6 +155,13 @@ class Hirez(commands.Cog):
         team1parties = {}
         team2parties = {}
         temp = match.bans
+        # handles if they provide the color option and no match id
+        try:
+            match_id = int(match_id)
+        except BaseException:
+            colored = match_id
+            match_id = -1
+            
         new_party_id = 0
         for match_player in match.players:
             if match_player.player.private:
