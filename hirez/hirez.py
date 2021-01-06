@@ -166,11 +166,11 @@ class Hirez(commands.Cog):
                              match_player.healing_done, match_player.party_number, match_player.player.platform])
             team1champs.append(match_player.champion)
             if match_player.party_number not in team1parties or match_player.party_number == 0:
-                team1parties.append("")
+                team1parties[match_player.party_number] = ""
             else:
-                if team1parties == "":
-                    new_party_id += 1
-                    team1parties.append(str(new_party_id))
+                if team1parties[match_player.party_number] == "":
+                new_party_id += 1
+                team1parties[match_player.party_number] = "" + str(new_party_id)
             #players.append(match_player.champion)
             #name = players.append(match_player.player.name)
         for match_player in match.players:
