@@ -154,7 +154,7 @@ class Hirez(commands.Cog):
         team2champs = []
         team1parties = {}
         team2parties = {}
-        temp = match.bans
+        temp = match.bans.list()
         # handles if they provide the color option and no match id
         try:
             match_id = int(match.id)
