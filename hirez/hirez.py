@@ -157,7 +157,7 @@ class Hirez(commands.Cog):
         temp = match.bans
         # handles if they provide the color option and no match id
         try:
-            match_id = int(match_id)
+            match_id = int(match.id)
         except BaseException:
             colored = match_id
             match_id = -1
