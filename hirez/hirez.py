@@ -159,7 +159,7 @@ class Hirez(commands.Cog):
         try:
             match_id = int(match.id)
         except BaseException:
-            colored = match_id
+            colored = match.id
             match_id = -1
             
         new_party_id = 0
