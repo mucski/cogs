@@ -339,7 +339,7 @@ async def create_card_image(card_image, champ_info, json_data, lang):
 
     # Add in the Card Number
     draw = ImageDraw.Draw(image_base)
-    draw.text((30, frame_y-56), champ_card_level, font=ImageFont.truetype("arialbd", 44))
+    draw.text((30, frame_y-56), champ_card_level, font=ImageFont.truetype("/home/music166/mucski/arialbd.ttf", 44))
 
     try:
         desc = json_data[lang][champ_card_name]["card_desc"]
@@ -371,7 +371,7 @@ async def create_card_image(card_image, champ_info, json_data, lang):
 
     # Add card name
     draw = ImageDraw.Draw(image_base)
-    font = ImageFont.truetype("arialbd", 21)
+    font = ImageFont.truetype("/home/music166/mucski/arialbd.ttf", 21)
     text_x, text_y = draw.textsize(champ_card_name, font=font)
     draw.text(((frame_x-text_x)/2, (frame_y-text_y)/2+20), champ_card_name, font=font)
 
@@ -578,21 +578,21 @@ async def create_middle_info_panel(md):  # update this section
     rs = 100
     # Team 1
     draw_panel.text((512 * 4 + rs, ds), "Team 1 Score: ", font=ImageFont.truetype("/home/music166/mucski/arial.ttf", 100), fill=(0, 0, 0))
-    draw_panel.text((512 * 4 + rs * 8, ds), str(md[4]), font=ImageFont.truetype("arialbd", 100), fill=(0, 0, 0))
+    draw_panel.text((512 * 4 + rs * 8, ds), str(md[4]), font=ImageFont.truetype("/home/music166/mucski/arialbd.ttf", 100), fill=(0, 0, 0))
 
     center = (512/2 - 130/2)
     center2 = (512/2 - 80/2)
     # VS
-    draw_panel.text((512 * 5-150, center), "VS", font=ImageFont.truetype("arialbd", 130), fill=(0, 0, 0))
+    draw_panel.text((512 * 5-150, center), "VS", font=ImageFont.truetype("/home/music166/mucski/arialbd.ttf", 130), fill=(0, 0, 0))
 
     # Team 2
     draw_panel.text((512 * 4 + rs, 372), "Team 2 Score: ", font=ImageFont.truetype("/home/music166/mucski/arial.ttf", 100), fill=(0, 0, 0))
-    draw_panel.text((512 * 4 + rs * 8, 372), str(md[5]), font=ImageFont.truetype("arialbd", 100), fill=(0, 0, 0))
+    draw_panel.text((512 * 4 + rs * 8, 372), str(md[5]), font=ImageFont.truetype("/home/music166/mucski/arialbd.ttf", 100), fill=(0, 0, 0))
 
     #  add in banned champs if it's a ranked match
     if md[6] is not None:
         # Ranked bans
-        draw_panel.text((512 * 5 + rs * 8, center2), "Bans:", font=ImageFont.truetype("arialbd", 80), fill=(0, 0, 0))
+        draw_panel.text((512 * 5 + rs * 8, center2), "Bans:", font=ImageFont.truetype("/home/music166/mucski/arialbd.ttf", 80), fill=(0, 0, 0))
 
         # Team 1 Bans
         try:
@@ -672,7 +672,7 @@ async def create_player_stats_image(champ_icon, champ_stats, index, party, color
         champ_stats[0] = "*****"
 
     # Player name and champion name
-    base_draw.text((img_x + 20, middle-40), str(champ_stats[0]), font=ImageFont.truetype("arialbd", 80), fill=(0, 0, 0))
+    base_draw.text((img_x + 20, middle-40), str(champ_stats[0]), font=ImageFont.truetype("/home/music166/mucski/arialbd.ttf", 80), fill=(0, 0, 0))
     base_draw.text((img_x + 20, middle+60), str(champ_stats[1]), font=ImageFont.truetype("/home/music166/mucski/arial.ttf", 80), fill=(0, 0, 0))
 
     # Parties
