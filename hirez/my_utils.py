@@ -677,7 +677,7 @@ async def create_player_stats_image(champ_icon, champ_stats, index, party, color
 
     # Parties
     fill = (128, 0, 128) if color else (0, 0, 0)
-    base_draw.text((img_x + 750, middle), party[champ_stats[9]], font=ImageFont.truetype("/home/music166/mucski/arial.ttf", 100), fill=fill)
+    base_draw.text((img_x + 750, middle), int[champ_stats[9]], font=ImageFont.truetype("/home/music166/mucski/arial.ttf", 100), fill=fill)
 
     # Credits/Gold earned
     fill = (218, 165, 32) if color else (0, 0, 0)
