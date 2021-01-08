@@ -640,22 +640,22 @@ async def create_player_stats_image(champ_icon, champ_stats, index, party, color
 
     champ_stats_image.paste(champ_icon, (offset, offset))
 
-    platform = champ_stats[10]
-    if platform == "XboxLive":
-        platform_logo = Image.open("/home/music166/mucski/icons/xbox_logo.png").resize((100, 100), Image.ANTIALIAS)
-        platform_logo = platform_logo.convert("RGBA")
-        champ_stats_image.paste(platform_logo, (img_x + 175, int(middle) + 60), platform_logo)
-    elif platform == "Nintendo Switch":
-        platform_logo = Image.open("/home/music166/mucski/icons/switch_logo.png")
-        width, height = platform_logo.size
-        scale = .15
-        platform_logo = platform_logo.resize((int(width * scale), int(height * scale)), Image.ANTIALIAS)
-        platform_logo = platform_logo.convert("RGBA")
-        champ_stats_image.paste(platform_logo, (img_x + 135, int(middle) + 45), platform_logo)
-    elif platform == "PSN":
-        platform_logo = Image.open("/home/music166/mucski/icons/ps4_logo.png").resize((100, 100), Image.ANTIALIAS)
-        platform_logo = platform_logo.convert("RGBA")
-        champ_stats_image.paste(platform_logo, (img_x + 175, int(middle) + 60), platform_logo)
+    #platform = champ_stats[10]
+    #if platform == "XboxLive":
+    #    platform_logo = Image.open("/home/music166/mucski/icons/xbox_logo.png").resize((100, 100), Image.ANTIALIAS)
+    #    platform_logo = platform_logo.convert("RGBA")
+    #    champ_stats_image.paste(platform_logo, (img_x + 175, int(middle) + 60), platform_logo)
+    #elif platform == "Nintendo Switch":
+    #    platform_logo = Image.open("/home/music166/mucski/icons/switch_logo.png")
+    #    width, height = platform_logo.size
+    #    scale = .15
+    #    platform_logo = platform_logo.resize((int(width * scale), int(height * scale)), Image.ANTIALIAS)
+    #    platform_logo = platform_logo.convert("RGBA")
+    #    champ_stats_image.paste(platform_logo, (img_x + 135, int(middle) + 45), platform_logo)
+    #elif platform == "PSN":
+    #    platform_logo = Image.open("/home/music166/mucski/icons/ps4_logo.png").resize((100, 100), Image.ANTIALIAS)
+    #    platform_logo = platform_logo.convert("RGBA")
+    #    champ_stats_image.paste(platform_logo, (img_x + 175, int(middle) + 60), platform_logo)
     # For future if I want to add a PC icon
     # else:
     #    print("PC")
