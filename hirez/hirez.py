@@ -202,7 +202,7 @@ class Hirez(commands.Cog):
             #ranks.append(match_player.player.ranked_best.rank)
         color = False
         #if colored == "-c" else False
-        buffer = await create_player_stats_image("a","b","c","d")
+        buffer = await create_player_stats_image("a","b","c","d",color=False)
         #buffer = await create_history_image(team1champs, team2champs, team1data, team2data, team1parties, team2parties, (match_info + temp), color)
         file = discord.File(filename="Yourmom.png", fp=buffer)
         await ctx.send(file=file)
