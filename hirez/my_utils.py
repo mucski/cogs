@@ -673,39 +673,39 @@ async def create_player_stats_image(champ_icon, champ_stats, index, party, color
 
     # Player name and champion name
     base_draw.text((img_x + 20, middle-40), str("Mucski"), font=ImageFont.truetype("/home/music166/mucski/Arial.otf", 80), fill=(0, 0, 0))
-    base_draw.text((img_x + 20, middle+60), "Jenos", font=ImageFont.truetype("/home/music166/mucski/Arial.otf", 80), fill=(0, 0, 0))
+    #base_draw.text((img_x + 20, middle+60), "Jenos", font=ImageFont.truetype("/home/music166/mucski/Arial.otf", 80), fill=(0, 0, 0))
 
     # Parties
-    fill = (128, 0, 128) if color else (0, 0, 0)
-    base_draw.text((img_x + 750, middle), "1", font=ImageFont.truetype("/home/music166/mucski/Arial.otf", 100), fill=fill)
+    #fill = (128, 0, 128) if color else (0, 0, 0)
+    #base_draw.text((img_x + 750, middle), "1", font=ImageFont.truetype("/home/music166/mucski/Arial.otf", 100), fill=fill)
 
     # Credits/Gold earned
-    fill = (218, 165, 32) if color else (0, 0, 0)
-    base_draw.text((img_x + 900, middle), "4000", font=ImageFont.truetype("/home/music166/mucski/Arial.otf", 100), fill=fill)
+    #fill = (218, 165, 32) if color else (0, 0, 0)
+    #base_draw.text((img_x + 900, middle), "4000", font=ImageFont.truetype("/home/music166/mucski/Arial.otf", 100), fill=fill)
 
     # KDA
-    fill = (101, 33, 67) if color else (0, 0, 0)
-    base_draw.text((img_x + 1300, middle), "23/4/24", font=ImageFont.truetype("/home/music166/mucski/Arial.otf", 100), fill=fill)
+    #fill = (101, 33, 67) if color else (0, 0, 0)
+    #base_draw.text((img_x + 1300, middle), "23/4/24", font=ImageFont.truetype("/home/music166/mucski/Arial.otf", 100), fill=fill)
 
     # Damage done
-    fill = (255, 0, 0) if color else (0, 0, 0)
-    base_draw.text((img_x + 1830, middle), "80000", font=ImageFont.truetype("/home/music166/mucski/Arial.otf", 100), fill=fill)
+    #fill = (255, 0, 0) if color else (0, 0, 0)
+    #base_draw.text((img_x + 1830, middle), "80000", font=ImageFont.truetype("/home/music166/mucski/Arial.otf", 100), fill=fill)
 
     # Damage taken
-    fill = (220, 20, 60) if color else (0, 0, 0)
-    base_draw.text((img_x + 2350, middle), "0", font=ImageFont.truetype("/home/music166/mucski/Arial.otf", 100), fill=fill)
+    #fill = (220, 20, 60) if color else (0, 0, 0)
+    #base_draw.text((img_x + 2350, middle), "0", font=ImageFont.truetype("/home/music166/mucski/Arial.otf", 100), fill=fill)
 
     # Objective time
-    fill = (159, 105, 52) if color else (0, 0, 0)
-    base_draw.text((img_x + 2850, middle), "20", font=ImageFont.truetype("/home/music166/mucski/Arial.otf", 100), fill=fill)
+    #fill = (159, 105, 52) if color else (0, 0, 0)
+    #base_draw.text((img_x + 2850, middle), "20", font=ImageFont.truetype("/home/music166/mucski/Arial.otf", 100), fill=fill)
 
     # Shielding
-    fill = (0, 51, 102) if color else (0, 0, 0)
-    base_draw.text((img_x + 3150, middle), "0", font=ImageFont.truetype("/home/music166/mucski/Arial.otf", 100), fill=fill)
+    #fill = (0, 51, 102) if color else (0, 0, 0)
+    #base_draw.text((img_x + 3150, middle), "0", font=ImageFont.truetype("/home/music166/mucski/Arial.otf", 100), fill=fill)
 
     # Healing
-    fill = (0, 128, 0) if color else (0, 0, 0)
-    base_draw.text((img_x + 3600, middle), "20000", font=ImageFont.truetype("/home/music166/mucski/Arial.otf", 100), fill=fill)
+    #fill = (0, 128, 0) if color else (0, 0, 0)
+    #base_draw.text((img_x + 3600, middle), "20000", font=ImageFont.truetype("/home/music166/mucski/Arial.otf", 100), fill=fill)
 
     return champ_stats_image
 
