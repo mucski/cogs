@@ -667,7 +667,7 @@ async def create_player_stats_image(champ_icon, champ_stats, index, party, color
 
     base_draw = ImageDraw.Draw(champ_stats_image)
     
-    fnt = ImageFont.truetype("/home/music166/mucski/Arial.otf", 80)
+    fnt = ImageFont.truetype("/home/music166/mucski/Arial.otf", 80, encoding="ADBE")
 
     # Private account or unknown
     #if str(champ_stats[0]) == "":
