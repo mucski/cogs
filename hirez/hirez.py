@@ -54,43 +54,7 @@ class Hirez(commands.Cog):
     
     @commands.command()
     async def hitest(self, ctx):
-        for pd in match_data:
-            temp = [pd.banName1, pd.banName2, pd.banName3, pd.banName4]
-            if pd.taskForce == 1:
-                kda = "{}/{}/{}".format(pd.killsPlayer, pd.deaths, pd.assists)
-                team1_data.append([pd.playerName, pd.accountLevel, "{:,}".format(pd.goldEarned), kda,
-                                   "{:,}".format(pd.damagePlayer), "{:,}".format(pd.damageTaken),
-                                   pd.objectiveAssists, "{:,}".format(pd.damageMitigated),
-                                   "{:,}".format(pd.healing), pd.partyId, pd.platform])
-                team1_champs.append(pd.referenceName)
-                if pd.partyId not in team1_parties or pd.partyId == 0:
-                    team1_parties[pd.partyId] = ""
-                else:
-                    if team1_parties[pd.partyId] == "":
-                        new_party_id += 1
-                        team1_parties[pd.partyId] = "" + str(new_party_id)
-            else:
-                kda = "{}/{}/{}".format(pd.killsPlayer, pd.deaths, pd.assists)
-                team2_data.append([pd.playerName, pd.accountLevel, "{:,}".format(pd.goldEarned), kda,
-                                   "{:,}".format(pd.damagePlayer), "{:,}".format(pd.damageTaken),
-                                   pd.objectiveAssists, "{:,}".format(pd.damageMitigated),
-                                   "{:,}".format(pd.healing), pd.partyId, pd.platform])
-                team2_champs.append(pd.referenceName)
-                if pd.partyId not in team2_parties or pd.partyId == 0:
-                    team2_parties[pd.partyId] = ""
-                else:
-                    if team2_parties[pd.partyId] == "":
-                        new_party_id += 1
-                        team2_parties[pd.partyId] = str(new_party_id)
-
-        #team1 = ["Evie", "Maeve", "Fernando", "Sha Lin", "Lex"]
-        #team2 = ["Makoa", "Viktor", "Jenos", "Cassie", "Mal Damba"]
-        #ranks1 = ["Gold", "Silver", "Bronze", "Bronze", "Unranked"]
-        #ranks2 = ["Gold", "Gold", "Master", "GM", "Silver"]
-        buffer = await create_history_image(team1champs, team2champs, team1data, team2data, team1parties, team2parties, (match_info + temp), color)
-        #sex = await create_match_image(team1, team2, ranks1, ranks2)
-        file = discord.File(filename="SuckMe.png", fp=buffer)
-        await ctx.send("Fuck you!", file=file)
+        await ctx.send(test)
 
     @commands.command()
     async def stats(self, ctx, player, platform = "pc"):
