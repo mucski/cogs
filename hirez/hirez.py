@@ -20,6 +20,8 @@ class Hirez(commands.Cog):
     Returns stats for Paladins made by Evil Mojo Studios
     
     Every command is subject to change and in constant development.
+    
+    Version: 0.1.24
     """
     def __init__(self, bot):
         self.bot = bot
