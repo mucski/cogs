@@ -154,7 +154,7 @@ class  Hirez(commands.Cog):
                                         "{:,}".format(pd.damage_done), "{:,}".format(pd.damage_taken),
                                         pd.objective_time, "{:,}".format(pd.damage_mitigated),
                                         "{:,}".format(pd.healing_done), pd.player.party_number, pd.player.platform])
-                    team2_champs.appendpd.player.champion.name)
+                    team2_champs.append(pd.player.champion.name)
                     if pd.partyId not in team2_parties or pd.partyId == 0:
                         team2_parties[pd.player.party_number] = ""
                     else:
