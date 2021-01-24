@@ -10,9 +10,6 @@ from tabulate import tabulate
 from redbot.core.utils.chat_formatting import pagify
 from redbot.core.utils.chat_formatting import box
 import discord
-from cogs.utils.dataIO import dataIO
-#from PIL import Image, ImageFont, ImageDraw, ImageOps
-#from io import BytesIO
 from .my_utils import *
 
 class  Hirez(commands.Cog):
