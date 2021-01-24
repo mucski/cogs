@@ -61,7 +61,7 @@ class  Hirez(commands.Cog):
         await ctx.bot.on_command_error(ctx, error, unhandled_by_cog=True)
 
     # Converts champion names so they can be used to fetch champion images in a url
-    async def convert_champion_name(champ_name, special=False):
+    async def convert_champion_name(self, champ_name, special=False):
         champ_name = champ_name.lower()
         # These are the special cases that need to be checked
         if "bomb" in champ_name:
@@ -78,7 +78,7 @@ class  Hirez(commands.Cog):
 
 
     # Gets a url to the image of champion's name passed in
-    async def get_champ_image(champ_name):
+    async def get_champ_image(self, champ_name):
         champ_name = await convert_champion_name(champ_name)
         url = "https://raw.githubusercontent.com/EthanHicks1/PaladinsAssistantBot/master/icons/champ_icons{}.png"\
             .format(champ_name)
@@ -89,7 +89,7 @@ class  Hirez(commands.Cog):
 
 
     # Creates an team image by using champion Icons
-    async def create_team_image(champ_list, ranks):
+    async def create_team_image(self, champ_list, ranks):
         champion_images = []
 
         while len(champ_list) != 5:
@@ -151,7 +151,7 @@ class  Hirez(commands.Cog):
 
 
     # Creates a match image based on the two teams champions
-    async def create_match_image(team1, team2, ranks1, ranks2):
+    async def create_match_image(self, team1, team2, ranks1, ranks2):
         # start = time.time()
         buffer1 = await create_team_image(team1, ranks1)
         buffer2 = await create_team_image(team2, ranks2)
@@ -206,7 +206,7 @@ class  Hirez(commands.Cog):
 
 
     # Draws a question in place of missing information for images
-    async def draw_match_vs():
+    async def draw_match_vs(self):
         base = Image.new('RGB', (2560, 128), "black")
 
         # put text on image
@@ -225,7 +225,7 @@ class  Hirez(commands.Cog):
         return final_buffer
 
 
-    async def create_card_image(card_image, champ_info, json_data, lang):
+    async def create_card_image(self, card_image, champ_info, json_data, lang):
         image_size_x = 256
         image_size_y = 196
         x_offset = 28
@@ -322,7 +322,7 @@ class  Hirez(commands.Cog):
 
 
     # Creates a image desks
-    async def create_deck_image(player_name, champ_name, deck, lang):
+    async def create_deck_image(self, player_name, champ_name, deck, lang):
         card_image_x = 314
         card_image_y = 479
 
@@ -402,7 +402,7 @@ class  Hirez(commands.Cog):
 
 
     # Creates a match image based on the two teams champions
-    async def create_history_image(team1, team2, t1_data, t2_data, p1, p2, match_data, colored):
+    async def create_history_image(self, team1, team2, t1_data, t2_data, p1, p2, match_data, colored):
         shrink = 140
         image_size_y = 512 - shrink*2
         image_size_x = 512
@@ -456,7 +456,7 @@ class  Hirez(commands.Cog):
         return final_buffer
 
 
-    async def create_middle_info_panel(md):  # update this section
+    async def create_middle_info_panel(self, md):  # update this section
         middle_panel = Image.new('RGB', (512*9, 512), color=(217, 247, 247))
 
         # Adding in map to image
@@ -540,7 +540,7 @@ class  Hirez(commands.Cog):
         return middle_panel
 
 
-    async def create_player_stats_image(champ_icon, champ_stats, index, party, color=False):
+    async def create_player_stats_image(self, champ_icon, champ_stats, index, party, color=False):
         shrink = 140
         offset = 10
         image_size_y = 512 - shrink * 2
