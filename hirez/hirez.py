@@ -580,15 +580,15 @@ class  Hirez(commands.Cog):
 
         base_draw = ImageDraw.Draw(champ_stats_image)
         
-        fnt = ImageFont.truetype(f"{bundled_data_path(self)}/arial.ttf", 80)
+        path = bundled_data_path(self)
 
         # Private account or unknown
         #if str(champ_stats[0]) == "":
             #champ_stats[0] = "*****"
 
         # Player name and champion name
-        base_draw.text((img_x + 20, middle-40), str(champ_stats[0]), font=ImageFont.truetype("arialbd", 80), fill=(0, 0, 0))
-        base_draw.text((img_x + 20, middle+60), str(champ_stats[1]), font=ImageFont.truetype("arial", 80), fill=(0, 0, 0))
+        base_draw.text((img_x + 20, middle-40), str(champ_stats[0]), font=ImageFont.truetype(f"{path}/arial", 80), fill=(0, 0, 0))
+        base_draw.text((img_x + 20, middle+60), str(champ_stats[1]), font=ImageFont.truetype(f"{path}/arial", 80), fill=(0, 0, 0))
 
         # Parties
         #fill = (128, 0, 128) if color else (0, 0, 0)
