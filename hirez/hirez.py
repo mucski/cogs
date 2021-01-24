@@ -755,7 +755,7 @@ class  Hirez(commands.Cog):
                              match_player.healing_done, match_player.party_number, match_player.player.platform])
             team2champs.append(match_player.champion.name)
             team2parties.append(match_player.party_number)
-        color = False
+        color = True
         colored = False
         buffer = await self.create_history_image(team1champs, team2champs, team1data, team2data, team1parties, team2parties, (match_info + temp), color)
         file = discord.File(filename="Yourmom.png", fp=buffer)
