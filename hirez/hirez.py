@@ -628,42 +628,43 @@ class  Hirez(commands.Cog):
     async def create_player_key_image(self, x, y, color=False):
         key = Image.new('RGB', (x * 9, y-100), color=(112, 225, 225))
         base_draw = ImageDraw.Draw(key)
+        fnt = ImageFont.truetype(f"{bundled_data_path(self)}/arial.ttf", 80)
         # ss = "Player Credits K/D/A  Damage  Taken  Objective Time  Shielding  Healing"
-        base_draw.text((20, 0), "Champion", font=ImageFont.truetype("/home/music166/mucski/arial.ttf", 80), fill=(0, 0, 0))
-        base_draw.text((x + 20, 0), "Player", font=ImageFont.truetype("/home/music166/mucski/arial.ttf", 80), fill=(0, 0, 0))
+        base_draw.text((20, 0), "Champion", font=fnt, fill=(0, 0, 0))
+        base_draw.text((x + 20, 0), "Player", font=fnt, fill=(0, 0, 0))
 
         # Parties
         fill = (128, 0, 128) if color else (0, 0, 0)
-        base_draw.text((x + 750, 0), "P", font=ImageFont.truetype("/home/music166/mucski/arial.ttf", 100), fill=fill)
+        base_draw.text((x + 750, 0), "P", font=fnt, fill=fill)
 
         # Credits/Gold earned
         fill = (218, 165, 32) if color else (0, 0, 0)
-        base_draw.text((x + 900, 0), "Credits", font=ImageFont.truetype("/home/music166/mucski/arial.ttf", 80), fill=fill)
+        base_draw.text((x + 900, 0), "Credits", font=fnt, fill=fill)
 
         # KDA
         fill = (101, 33, 67) if color else (0, 0, 0)
-        base_draw.text((x + 1300, 0), "K/D/A", font=ImageFont.truetype("/home/music166/mucski/arial.ttf", 80), fill=fill)
+        base_draw.text((x + 1300, 0), "K/D/A", font=fnt, fill=fill)
 
         # Damage done
         fill = (255, 0, 0) if color else (0, 0, 0)
-        base_draw.text((x + 1830, 0), "Damage", font=ImageFont.truetype("/home/music166/mucski/arial.ttf", 80), fill=fill)
+        base_draw.text((x + 1830, 0), "Damage", font=fnt, fill=fill)
 
         # Damage taken
         fill = (220, 20, 60) if color else (0, 0, 0)
-        base_draw.text((x + 2350, 0), "Taken", font=ImageFont.truetype("/home/music166/mucski/arial.ttf", 80), fill=fill)
+        base_draw.text((x + 2350, 0), "Taken", font=fnt, fill=fill)
 
         # Objective time
         fill = (159, 105, 52) if color else (0, 0, 0)
-        base_draw.text((x + 2800, 0), "Objective", font=ImageFont.truetype("/home/music166/mucski/arial.ttf", 60), fill=fill)
-        base_draw.text((x + 2850, 60), "Time", font=ImageFont.truetype("/home/music166/mucski/arial.ttf", 60), fill=fill)
+        base_draw.text((x + 2800, 0), "Objective", font=fnt, fill=fill)
+        base_draw.text((x + 2850, 60), "Time", font=fnt, fill=fill)
 
         # Shielding
         fill = (0, 51, 102) if color else (0, 0, 0)
-        base_draw.text((x + 3150, 0), "Shielding", font=ImageFont.truetype("/home/music166/mucski/arial.ttf", 80), fill=fill)
+        base_draw.text((x + 3150, 0), "Shielding", font=fnt, fill=fill)
 
         # Healing
         fill = (0, 128, 0) if color else (0, 0, 0)
-        base_draw.text((x + 3600, 0), "Healing", font=ImageFont.truetype("/home/music166/mucski/arial.ttf", 80), fill=fill)
+        base_draw.text((x + 3600, 0), "Healing", font=fnt, fill=fill)
 
         return key
 
