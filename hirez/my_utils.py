@@ -1,15 +1,4 @@
-from PIL import Image, ImageFont, ImageDraw, ImageOps
-# import requests
-from io import BytesIO
-from datetime import datetime, timedelta
-from pytz import timezone
-import json
-import textwrap
-import os
-import re
-from redbot.core.data_manager import bundled_data_path
 
-self = client.get_cog("Hirez")
 
 """
 start = time.time()
