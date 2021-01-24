@@ -240,7 +240,7 @@ class  Hirez(commands.Cog):
     
     @commands.command()
     async def status(self, ctx):
-        status = arez.ServerStatus()
+        status = arez.ServerStatus("PC")
         # status2 = self.api.get_server_status
         await ctx.send(status)
     
