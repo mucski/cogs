@@ -739,7 +739,7 @@ class  Hirez(commands.Cog):
         try:
             match_id = int(match.id)
         except BaseException:
-            colored = match.id
+            colored = False
             match_id = -1
             
         new_party_id = 0
@@ -760,6 +760,7 @@ class  Hirez(commands.Cog):
             team2champs.append(match_player.champion.name)
             team2parties.append(match_player.party_number)
         color = False
+        colored = False
         buffer = await self.create_history_image(team1champs, team2champs, team1data, team2data, team1parties, team2parties, (match_info + temp), color)
         file = discord.File(filename="Yourmom.png", fp=buffer)
         await ctx.send(file=file)
