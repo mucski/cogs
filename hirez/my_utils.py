@@ -7,6 +7,7 @@ import json
 import textwrap
 import os
 import re
+from redbot.core.data_manager import bundled_data_path
 
 """
 start = time.time()
@@ -26,8 +27,6 @@ card_frames_dir = "/home/music166/mucski/icons/card_frames"
 
 command_list = ['last', 'stats', 'random', 'current', 'history', 'deck', 'match']
 command_limits = ['current']
-
-PATH = bot.core.data_manager.bundled_data_path(self)
 
 
 # Logs how many times someone uses a command
@@ -663,7 +662,7 @@ async def create_player_stats_image(champ_icon, champ_stats, index, party, color
 
     base_draw = ImageDraw.Draw(champ_stats_image)
     
-    fnt = ImageFont.truetype(f"{PATH}/arial.ttf", 80)
+    fnt = ImageFont.truetype("data/arial.ttf", 80)
 
     # Private account or unknown
     #if str(champ_stats[0]) == "":
