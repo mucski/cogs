@@ -27,7 +27,7 @@ card_frames_dir = "/home/music166/mucski/icons/card_frames"
 command_list = ['last', 'stats', 'random', 'current', 'history', 'deck', 'match']
 command_limits = ['current']
 
-PATH = redbot.core.data_manager.bundled_data_path(self)
+PATH = bot.core.data_manager.bundled_data_path(self)
 
 
 # Logs how many times someone uses a command
