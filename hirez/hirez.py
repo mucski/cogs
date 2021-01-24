@@ -15,13 +15,13 @@ from cogs.utils.dataIO import dataIO
 #from io import BytesIO
 from .my_utils import *
 
-class Hirez(commands.Cog):
+class  Hirez(commands.Cog):
     """
     Returns stats for Paladins made by Evil Mojo Studios
-    
     Every command is subject to change and in constant development.
-    
     Version: 0.1.24
+
+    Developed by Mucski
     """
     def __init__(self, bot):
         self.bot = bot
@@ -130,49 +130,25 @@ class Hirez(commands.Cog):
             
         new_party_id = 0
         for match_player in match.players:
-            #if match_player.player.private:
-                #continue
             if match_player.team_number != 1:
                 continue
             team1data.append([match_player.player.name, match_player.account_level, match_player.credits, match_player.kda_text,
                              match_player.damage_done, match_player.damage_taken, match_player.objective_time, match_player.damage_mitigated, 
                              match_player.healing_done, match_player.party_number, match_player.player.platform])
             team1champs.append(match_player.champion.name)
-            #if match_player.party_number not in team1parties or match_player.party_number == 0:
             team1parties.append(match_player.party_number)
-            #else:
-                #if team1parties[match_player.party_number] == "":
-                    #new_party_id += 1
-                    #team1parties[match_player.party_number] = "" + str(new_party_id)
-            #players.append(match_player.champion)
-            #name = players.append(match_player.player.name)
         for match_player in match.players:
-            #if match_player.player.private:
-                #continue
             if match_player.team_number != 2:
                 continue
             team2data.append([match_player.player.name, match_player.account_level, match_player.credits, match_player.kda_text,
                              match_player.damage_done, match_player.damage_taken, match_player.objective_time, match_player.damage_mitigated, 
                              match_player.healing_done, match_player.party_number, match_player.player.platform])
             team2champs.append(match_player.champion.name)
-            #if match_player.party_number not in team1parties or match_player.party_number == 0:
             team2parties.append(match_player.party_number)
-            #else:
-                #if team1parties[match_player.party_number] == "":
-                    #new_party_id += 1
-                    #team1parties[match_player.party_number] = "" + str(new_party_id)
-        #ranks = []
-        #for match_player in match.players:
-            #if match_player.player.private:
-                #continue
-            #ranks.append(match_player.player.ranked_best.rank)
         color = False
-        #if colored == "-c" else False
-        #buffer = await create_player_stats_image("/home/music166/mucski/icons/champ_icons/cassie.png","b",6,1,color=False)
         buffer = await create_history_image(team1champs, team2champs, team1data, team2data, team1parties, team2parties, (match_info + temp), color)
         file = discord.File(filename="Yourmom.png", fp=buffer)
         await ctx.send(file=file)
-        #await ctx.send(team2data)
         
     @commands.command()
     async def match(self, ctx, player, platform="pc"):
@@ -208,8 +184,6 @@ class Hirez(commands.Cog):
         e.add_field(name="Team 2\nPlayer Name / ID / KDA / Damage / Healing or Shielding", value='\n'.join(map(str, match.team2)).replace(f"{player.name}", f"``{player.name}``"), inline="False")
         e.set_footer(text=f"Played: {humanize.naturaltime(datetime.utcnow() - match.timestamp)}")
         await ctx.send(embed=e)
-        #sex = await match.expand_players(match)
-        #await ctx.send(sex)
 
     @commands.command()
     async def current(self, ctx, player, platform="pc"):
@@ -228,11 +202,9 @@ class Hirez(commands.Cog):
         if match is None:
             await ctx.send("Player not in a match")
             return
-        #Build embed
         e = discord.Embed(color=await self.bot.get_embed_color(ctx), title=f"Current match for {player.name} - _{player.title}_")
         e.set_thumbnail(url=player.avatar_url)
         e.add_field(name="Match", value=f"``{match.id}`` - {match.queue} - {match.map_name} - { match.region}")
-        #e.add_field(name="Blah", value=match.team1.player)
         e.add_field(name="Team 1\nPlayer Name / ID / KDA / Damage / Healing or Shielding", value='\n'.join(map(str, match.team1)).replace(f"{player.name}", f"``{player.name}``"), inline="False")
         e.add_field(name="Team 2\nPlayer Name / ID / KDA / Damage / Healing or Shielding", value='\n'.join(map(str, match.team2)).replace(f"{player.name}", f"``{player.name}``"), inline="False")
         await ctx.send(embed=e)        
@@ -272,7 +244,7 @@ class Hirez(commands.Cog):
     @commands.command()
     async def status(self, ctx):
         #status = arez.ServerStatus(statuses)
-        status2 = self.api.get_server_status
+        status2 = await self.api.get_server_status
         await ctx.send(status2)
     
     @commands.command()
@@ -325,30 +297,5 @@ class Hirez(commands.Cog):
             f"**Loadout**: {last.loadout.talent}\n{cards}\n"
         )
         embed.description = desc
-        #embed.add_field(name="Queue/Map", value=f"{last.queue} - {last.map_name}")
-        #embed.add_field(name="Region", value=last.region)
-        #embed.add_field(name="Match Stats", value=f"{winner} - {last.score[0]}/{last.score[1]} duration: {last.duration.minutes} minutes")
-        #if last.champion is not None:
-        #    embed.add_field(name="Champion", value=last.champion.name)
-        #else:
-        #    embed.add_field(name="Champion", value="Unknown")
-        #embed.add_field(name="Kills/Deaths/Assists", value=f"{last.kda_text} ({last.kda2:.1f}) max streak: {last.multikill_max}")
-        #embed.add_field(name="Damage", value=last.damage_done)
-        #if last.healing_done == 0:
-        #   pass
-        #else:
-        #    embed.add_field(name="Healing", value=last.healing_done)
-        #if last.shielding == 0:
-       #     pass
-       # else:
-       #     embed.add_field(name="Shielding", value=last.shielding)
-        #embed.add_field(name="Credits", value=last.credits)
-        #embed.add_field(name="Objective Time", value=last.objective_time)
-       #items = last.items
-        #item = '\n'.join(map(str, items))
-       # embed.add_field(name="Items Bought", value=f"{item}", inline=False)
-       # cards = '\n'.join(map(str, last.loadout.cards))
-      #  embed.add_field(name="Loadout", value=f"{last.loadout.talent}\n{cards}", inline=False)
         embed.set_footer(text=f"Played {humanize.naturaltime(datetime.utcnow() - last.timestamp)}")
-        #embed.set_footer(text=f"Played: {humanize.naturaltime(datetime.utcnow() - last.timestamp)} time took to execute {(time.time() - start_time)}")
         await ctx.send(embed=embed)

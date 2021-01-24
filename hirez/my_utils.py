@@ -1,18 +1,12 @@
 from PIL import Image, ImageFont, ImageDraw, ImageOps
-#import requests
+# import requests
 from io import BytesIO
 from datetime import datetime, timedelta
 from pytz import timezone
 import json
 import textwrap
-import time
 import os
 import re
-from colorama import Fore
-import math
-
-from concurrent.futures import ThreadPoolExecutor
-import asyncio
 
 """
 start = time.time()
