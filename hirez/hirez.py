@@ -625,7 +625,7 @@ class  Hirez(commands.Cog):
 
 
     # Creates the text at the top of the image
-    async def create_player_key_image(x, y, color=False):
+    async def create_player_key_image(self, x, y, color=False):
         key = Image.new('RGB', (x * 9, y-100), color=(112, 225, 225))
         base_draw = ImageDraw.Draw(key)
         # ss = "Player Credits K/D/A  Damage  Taken  Objective Time  Shielding  Healing"
