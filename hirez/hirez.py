@@ -247,7 +247,7 @@ class  Hirez(commands.Cog):
             f"**Hirez Infrastructure**: {csirke.status}\n"
             f"**Incident Impact**: {csirke.impact}\n"
         )
-        e = discord.Embed(color=csirke.color, title="Hirez Status")
+        e = discord.Embed(color=csirke.color, title="Hirez Status", description=desc)
         await ctx.send(embed=e)
     
     @commands.command()
