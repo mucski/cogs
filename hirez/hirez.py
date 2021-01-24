@@ -420,13 +420,13 @@ class  Hirez(commands.Cog):
         # Adding in player data
         for i, (champ, champ2) in enumerate(zip(team1, team2)):
             try:
-                champ_image = Image.open("/home/music166/mucski/icons/champ_icons/{}.png".format(await convert_champion_name(champ)))
+                champ_image = Image.open("/home/music166/mucski/icons/champ_icons/{}.png".format(await self.convert_champion_name(champ)))
             except FileNotFoundError:
                 champ_image = Image.open("/home/music166/mucski/icons/temp_card_art.png")
             border = (0, shrink, 0, shrink)  # left, up, right, bottom
             champ_image = ImageOps.crop(champ_image, border)
             # history_image.paste(champ_image, (0, image_size*i, image_size, image_size*(i+1)))
-            player_panel = await create_player_stats_image(champ_image, t1_data[i], i, p1, colored)
+            player_panel = await self.create_player_stats_image(champ_image, t1_data[i], i, p1, colored)
             history_image.paste(player_panel, (0, (image_size_y+10)*i+132))
 
             # Second team
