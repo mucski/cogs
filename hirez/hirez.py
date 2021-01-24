@@ -587,7 +587,8 @@ class  Hirez(commands.Cog):
             #champ_stats[0] = "*****"
 
         # Player name and champion name
-        base_draw.text((img_x + 20, middle-40), "Mucski", font=fnt, fill=(0, 0, 0, 0))
+        fill = (128, 0, 128) if color else (0, 0, 0)
+        base_draw.text((img_x + 20, middle-40), "Mucski", font=fnt, fill=fill)
         #base_draw.text((img_x + 20, middle+60), "Jenos", font=ImageFont.truetype("/home/music166/mucski/arial.ttf", 80), fill=(0, 0, 0))
 
         # Parties
@@ -655,8 +656,8 @@ class  Hirez(commands.Cog):
 
         # Objective time
         fill = (159, 105, 52) if color else (0, 0, 0)
-        base_draw.text((x + 2800, 0), "Objective", font=fnt, fill=fill)
-        base_draw.text((x + 2850, 60), "Time", font=fnt, fill=fill)
+        base_draw.text((x + 2800, 0), "Obj Time", font=fnt, fill=fill)
+        # base_draw.text((x + 2850, 60), "Time", font=fnt, fill=fill)
 
         # Shielding
         fill = (0, 51, 102) if color else (0, 0, 0)
