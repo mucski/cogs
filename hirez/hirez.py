@@ -587,8 +587,8 @@ class  Hirez(commands.Cog):
             #champ_stats[0] = "*****"
 
         # Player name and champion name
-        base_draw.text((img_x + 20, middle-40), str(champ_stats[0]), font=ImageFont.truetype(f"{path}/arial.ttf", 80), fill=(0, 0, 0))
-        base_draw.text((img_x + 20, middle+60), str(champ_stats[1]), font=ImageFont.truetype(f"{path}/arial.ttf", 80), fill=(0, 0, 0))
+        base_draw.text((img_x + 20, middle-40), str(champ_stats[0]), font=ImageFont.truetype(f"{path}/firacode.ttf", 80), fill=(0, 0, 0))
+        base_draw.text((img_x + 20, middle+60), str(champ_stats[1]), font=ImageFont.truetype(f"{path}/firacode.ttf", 80), fill=(0, 0, 0))
 
         # Parties
         #fill = (128, 0, 128) if color else (0, 0, 0)
