@@ -7,6 +7,9 @@ import json
 import textwrap
 import os
 import re
+from redbot.core.data_manager import bundled_data_path
+
+self = self.bot
 
 """
 start = time.time()
