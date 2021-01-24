@@ -243,7 +243,7 @@ class  Hirez(commands.Cog):
         status = arez.StatusPage("http://status.hirezstudios.com/")
         csirke = await status.get_status()
         # status2 = self.api.get_server_status
-        await ctx.send(csirke.name)
+        await ctx.send(csirke.status)
     
     @commands.command()
     async def last(self, ctx, player, platform = "pc"):
