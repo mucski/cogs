@@ -243,7 +243,12 @@ class  Hirez(commands.Cog):
         status = arez.StatusPage("http://status.hirezstudios.com/")
         csirke = await status.get_status()
         # status2 = self.api.get_server_status
-        await ctx.send(csirke.status)
+        desc = (
+            f"**Hirez Infrastructure**: {csirke.status}\n"
+            f"**Incident Impact**: {csirke.impact}\n"
+        )
+        e = discord.Embed(color=csirke.color, title="Hirez Status")
+        await ctx.send(embed=e)
     
     @commands.command()
     async def last(self, ctx, player, platform = "pc"):
@@ -279,21 +284,7 @@ class  Hirez(commands.Cog):
         items = last.items
         item = '\n'.join(map(str, items))
         cards = '\n'.join(map(str, last.loadout.cards))
-        desc = (
-            f"**Map Name**: {last.map_name}\n"
-            f"**Queue Type**: {last.queue}\n"
-            f"**Region**: {last.region}\n"
-            f"**Match Stats**: {winner} - {last.score[0]}/{last.score[1]} duration {last.duration.minutes} minutes\n"
-            f"**Champion**: {champ}\n"
-            f"**Kills/Deaths/Assists**: {last.kda_text} ({last.kda2:.1f})\n"
-            f"**Damage**: {last.damage_done}\n"
-            f"**Healing**: {last.healing_done}\n"
-            f"**Shielding**: {last.shielding}\n"
-            f"**Objectice Time**: {last.objective_time}\n"
-            f"**Credits Earned**: {last.credits}\n"
-            f"**Items Bought**: \n{item}\n"
-            f"**Loadout**: {last.loadout.talent}\n{cards}\n"
-        )
+ 
         embed.description = desc
         embed.set_footer(text=f"Played {humanize.naturaltime(datetime.utcnow() - last.timestamp)}")
         await ctx.send(embed=embed)
