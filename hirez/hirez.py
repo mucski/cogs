@@ -59,7 +59,7 @@ class  Hirez(commands.Cog):
             #     await ctx.send(...)
             #     return
         await ctx.bot.on_command_error(ctx, error, unhandled_by_cog=True)
-        
+
     # Converts champion names so they can be used to fetch champion images in a url
     async def convert_champion_name(champ_name, special=False):
         champ_name = champ_name.lower()
@@ -759,7 +759,7 @@ class  Hirez(commands.Cog):
             team2champs.append(match_player.champion.name)
             team2parties.append(match_player.party_number)
         color = False
-        buffer = await create_history_image(team1champs, team2champs, team1data, team2data, team1parties, team2parties, (match_info + temp), color)
+        buffer = await self.create_history_image(team1champs, team2champs, team1data, team2data, team1parties, team2parties, (match_info + temp), color)
         file = discord.File(filename="Yourmom.png", fp=buffer)
         await ctx.send(file=file)
         
