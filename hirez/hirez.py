@@ -736,11 +736,7 @@ class  Hirez(commands.Cog):
         team2parties = []
         temp = match.bans
         # handles if they provide the color option and no match id
-        try:
-            match_id = int(match.id)
-        except BaseException:
-            colored = False
-            match_id = -1
+        colored = False
             
         new_party_id = 0
         for match_player in match.players:
