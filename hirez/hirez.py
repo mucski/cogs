@@ -110,7 +110,7 @@ class  Hirez(commands.Cog):
             player = await player_obj[0]
         history = await player.get_match_history()
         last = history[0]
-        # match = await self.api.get_match(last.id, expand_players=True)
+        match = await self.api.get_match(last.id, expand_players=True)
         team1_data = []
         team2_data = []
         team1_champs = []
