@@ -53,7 +53,7 @@ class  Hirez(commands.Cog):
     
     @commands.command()
     async def hitest(self, ctx):
-        await ctx.send("test, thong")
+        await ctx.send("Your mom")
 
     @commands.command()
     async def stats(self, ctx, player, platform = "pc"):
