@@ -437,7 +437,7 @@ class  Hirez(commands.Cog):
             border = (0, shrink, 0, shrink)  # left, up, right, bottom
             champ_image = ImageOps.crop(champ_image, border)
 
-            player_panel = await create_player_stats_image(champ_image, t2_data[i], i+offset-1, p2, colored)
+            player_panel = await self.create_player_stats_image(champ_image, t2_data[i], i+offset-1, p2, colored)
             history_image.paste(player_panel, (0, image_size_y * (i+offset) + 704))
 
         # Base speed is 10 - seconds
