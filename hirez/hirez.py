@@ -431,7 +431,7 @@ class  Hirez(commands.Cog):
 
             # Second team
             try:
-                champ_image = Image.open("/home/music166/mucski/icons/champ_icons/{}.png".format(await convert_champion_name(champ2)))
+                champ_image = Image.open("/home/music166/mucski/icons/champ_icons/{}.png".format(await self.convert_champion_name(champ2)))
             except FileNotFoundError:
                 champ_image = Image.open("/home/music166/mucski/icons/temp_card_art.png")
             border = (0, shrink, 0, shrink)  # left, up, right, bottom
@@ -509,14 +509,14 @@ class  Hirez(commands.Cog):
 
             # Team 1 Bans
             try:
-                champ_image = Image.open("/home/music166/mucski/icons/champ_icons/{}.png".format(await convert_champion_name(str(md[6]))))
+                champ_image = Image.open("/home/music166/mucski/icons/champ_icons/{}.png".format(await self.convert_champion_name(str(md[6]))))
                 champ_image = champ_image.resize((200, 200))
                 middle_panel.paste(champ_image, (512 * 7 + rs, ds))
             except FileNotFoundError:
                 pass
 
             try:
-                champ_image = Image.open("/home/music166/mucski/icons/champ_icons/{}.png".format(await convert_champion_name(str(md[7]))))
+                champ_image = Image.open("/home/music166/mucski/icons/champ_icons/{}.png".format(await self.convert_champion_name(str(md[7]))))
                 champ_image = champ_image.resize((200, 200))
                 middle_panel.paste(champ_image, (512 * 7 + rs + 240, ds))
             except FileNotFoundError:
@@ -524,14 +524,14 @@ class  Hirez(commands.Cog):
 
             # Team 2 Bans
             try:
-                champ_image = Image.open("/home/music166/mucski/icons/champ_icons/{}.png".format(await convert_champion_name(str(md[8]))))
+                champ_image = Image.open("/home/music166/mucski/icons/champ_icons/{}.png".format(await self.convert_champion_name(str(md[8]))))
                 champ_image = champ_image.resize((200, 200))
                 middle_panel.paste(champ_image, (512 * 7 + rs, ds+232))
             except FileNotFoundError:
                 pass
 
             try:
-                champ_image = Image.open("/home/music166/mucski/icons/champ_icons/{}.png".format(await convert_champion_name(str(md[9]))))
+                champ_image = Image.open("/home/music166/mucski/icons/champ_icons/{}.png".format(await self.convert_champion_name(str(md[9]))))
                 champ_image = champ_image.resize((200, 200))
                 middle_panel.paste(champ_image, (512 * 7 + rs + 240, ds+232))
             except FileNotFoundError:
