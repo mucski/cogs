@@ -79,7 +79,7 @@ class  Hirez(commands.Cog):
 
     # Gets a url to the image of champion's name passed in
     async def get_champ_image(self, champ_name):
-        champ_name = await convert_champion_name(champ_name)
+        champ_name = await self.convert_champion_name(champ_name)
         url = "https://raw.githubusercontent.com/EthanHicks1/PaladinsAssistantBot/master/icons/champ_icons{}.png"\
             .format(champ_name)
         # request = requests.get(url)
@@ -153,9 +153,9 @@ class  Hirez(commands.Cog):
     # Creates a match image based on the two teams champions
     async def create_match_image(self, team1, team2, ranks1, ranks2):
         # start = time.time()
-        buffer1 = await create_team_image(team1, ranks1)
-        buffer2 = await create_team_image(team2, ranks2)
-        middle = await draw_match_vs()
+        buffer1 = await self.create_team_image(team1, ranks1)
+        buffer2 = await self.create_team_image(team2, ranks2)
+        middle = await self.draw_match_vs()
         # end = time.time()
         # print("run1", end - start)
 
@@ -330,7 +330,7 @@ class  Hirez(commands.Cog):
         color = (0, 0, 0, 0)
         deck_image = Image.new('RGBA', (1570, 800), color=color)
 
-        champ_name = await convert_champion_name(champ_name)
+        champ_name = await self.convert_champion_name(champ_name)
         try:
             champ_background = Image.open("/home/music166/mucski/icons/champ_headers/{}.png".format(champ_name)).convert('RGBA')
         except FileNotFoundError:
@@ -371,7 +371,7 @@ class  Hirez(commands.Cog):
             except FileNotFoundError:
                 card_icon_image = Image.open("/home/music166/mucski/icons/temp_card_art.png")
 
-            card_icon = await create_card_image(card_icon_image, info, json_data, lang=lang)
+            card_icon = await self.create_card_image(card_icon_image, info, json_data, lang=lang)
 
             card_icon = Image.open(card_icon)
             deck_image.paste(card_icon, (card_image_x * i, 800-card_image_y), card_icon)
@@ -410,11 +410,11 @@ class  Hirez(commands.Cog):
         history_image = Image.new('RGB', (image_size_x*9, image_size_y*12 + 264))
 
         # Adds the top key panel
-        key = await create_player_key_image(image_size_x, image_size_y, colored)
+        key = await self.create_player_key_image(image_size_x, image_size_y, colored)
         history_image.paste(key, (0, 0))
 
         # Creates middle panel
-        mid_panel = await create_middle_info_panel(match_data)
+        mid_panel = await self.create_middle_info_panel(match_data)
         history_image.paste(mid_panel, (0, 1392-40))
 
         # Adding in player data
