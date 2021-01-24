@@ -129,7 +129,7 @@ class  Hirez(commands.Cog):
 
         if match_id == -1 or match_id == last.id:
             match_data = await self.api.get_match(last.id, expand_players=True)
-            match_info = [match.winner, match.duration, match.region,
+            match_info = [match.winning_team, match.duration, match.region,
                             str(match.map_name).replace("LIVE", ""), match.score[0], match.score[1]]
             # print(match.winStatus, match.matchMinutes, match.matchRegion,
             #      str(match.mapName).replace("LIVE", ""))
