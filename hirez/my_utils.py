@@ -662,7 +662,7 @@ async def create_player_stats_image(champ_icon, champ_stats, index, party, color
 
     base_draw = ImageDraw.Draw(champ_stats_image)
     
-    fnt = ImageFont.truetype("data/arial.ttf", 80)
+    fnt = ImageFont.truetype(f"{bundled_data_path(self)}/arial.ttf", 80)
 
     # Private account or unknown
     #if str(champ_stats[0]) == "":
