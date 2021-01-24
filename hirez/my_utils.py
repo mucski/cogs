@@ -9,7 +9,7 @@ import os
 import re
 from redbot.core.data_manager import bundled_data_path
 
-self = self.bot
+self = bot.get_cog("Hirez")
 
 """
 start = time.time()
