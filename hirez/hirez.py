@@ -107,7 +107,6 @@ class  Hirez(commands.Cog):
             player_obj = await self.api.search_players(player, platform)
             player = await player_obj[0]
         history = await player.get_match_history()
-        #match id
         last = history[0]
         match = await self.api.get_match(last.id, expand_players=True)
         match_info = [match.score, match.duration, match.region, match.map_name, match.score[0], match.score[1]]
@@ -242,7 +241,6 @@ class  Hirez(commands.Cog):
     async def status(self, ctx):
         status = arez.StatusPage("http://status.hirezstudios.com/")
         csirke = await status.get_status()
-        # status2 = self.api.get_server_status
         desc = (
             f"**Hirez Infrastructure**: {csirke.status}\n"
             f"**Incident Impact**: {csirke.impact}\n"
