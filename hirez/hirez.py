@@ -247,8 +247,14 @@ class  Hirez(commands.Cog):
             f"**Hirez Infrastructure**: {csirke.status}\n"
             f"**Incident Impact**: {csirke.impact}\n"
             f"**{csirke.component('Paladins PC').name}**: {csirke.component('Paladins PC').status}\n"
+            f"**{csirke.component('Paladins PS4').name}**: {csirke.component('Paladins PS4').status}\n"
+            f"**{csirke.component('Paladins Xbox').name}**: {csirke.component('Paladins Xbox').status}\n"
+            f"**{csirke.component('Paladins Switch').name}**: {csirke.component('Paladins Switch').status}\n"
+            f"**{csirke.component('Paladins Epic').name}**: {csirke.component('Paladins Epic').status}\n"
+            f"**{csirke.component('Hi-Rez Public APIs').name}**: {csirke.component('Hi-Rez Public APIs').status}\n"
         )
         e = discord.Embed(color=csirke.color, title="Hirez Status", description=desc)
+        e.set_footer(csirke.status.updated_at)
         await ctx.send(embed=e)
     
     @commands.command()
