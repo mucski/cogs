@@ -254,7 +254,7 @@ class  Hirez(commands.Cog):
             f"**{csirke.component('Hi-Rez Public APIs').name}**: {csirke.component('Hi-Rez Public APIs').status}\n"
         )
         e = discord.Embed(color=csirke.color, title="Hirez Status", description=desc)
-        e.set_footer(text=f"{csirke.updated_at}")
+        e.set_footer(text=f"Last updated at: {csirke.updated_at}")
         await ctx.send(embed=e)
     
     @commands.command()
