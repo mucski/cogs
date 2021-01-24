@@ -589,7 +589,7 @@ class  Hirez(commands.Cog):
         # Player name and champion name
         fill = (128, 0, 128) if color else (0, 0, 0)
         base_draw.text((img_x + 20, middle-40), "Mucski", font=fnt, fill=fill)
-        #base_draw.text((img_x + 20, middle+60), "Jenos", font=ImageFont.truetype("/home/music166/mucski/arial.ttf", 80), fill=(0, 0, 0))
+        base_draw.text((img_x + 20, middle+60), "Jenos", font=fnt, fill=fill)
 
         # Parties
         #fill = (128, 0, 128) if color else (0, 0, 0)
