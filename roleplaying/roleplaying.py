@@ -10,14 +10,14 @@ class Roleplaying(commands.Cog):
         
     @commands.command()
     async def kiss(self, ctx, member: discord.Member = None):
-        if ctx.author.nick not None:
-            authnick = ctx.author.nick
-        else
+        if ctx.author.nick is None:
             authnick = ctx.author.name
-        if member.nick not None:
-            memnick = member.nick
         else
+            authnick = ctx.author.nick
+        if member.nick is None:
             memnick = member.name
+        else
+            memnick = member.nick
         img = random.choice(kisslist)
         e = discord.Embed()
         e.set_image(url=img)
