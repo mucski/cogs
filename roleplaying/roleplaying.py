@@ -21,11 +21,11 @@ class Roleplaying(commands.Cog):
         img = random.choice(kisslist)
         e = discord.Embed()
         e.set_image(url=img)
-        e.set_author(name=f"{} kisses:", icon_url=ctx.author.avatar_url)
+        e.set_author(name=f"{authnick} kisses:", icon_url=ctx.author.avatar_url)
         if member is None:
             e.set_footer(text="the air.")
         else:
-            e.set_footer(text=member.name)
+            e.set_footer(text=memnick)
         await ctx.send(embed=e)
         
     @commands.command()
