@@ -72,7 +72,7 @@ class Coin(commands.Cog):
                 return
             earned = random.randint(5, 30)
             data['coin'] += earned
-            await ctx.send(f"Well done, you earned ``{earned}`` for your hard work.")
+            await ctx.send(f"Well done, you earned `{earned}` for your hard work.")
 
     @coin.command()
     @commands.cooldown(1, 11, commands.BucketType.user)
@@ -83,7 +83,7 @@ class Coin(commands.Cog):
                 return
             r = random.sample(list(searchlist.keys()), 3)
             await ctx.send("Chose a random location to search from bellow\n"
-                        "``{}`` , ``{}`` , ``{}``".format(r[0],r[1],r[2]))
+                        "`{}` , `{}` , `{}`".format(r[0],r[1],r[2]))
             check = MessagePredicate.lower_contained_in(r,ctx)
             try:
                 msg = await ctx.bot.wait_for("message", timeout=10, check=check)
@@ -154,7 +154,7 @@ class Coin(commands.Cog):
             users.append(rows)
         table = tabulate(users, headers = ['#', 'Name', 'Coin'], numalign = 'right', tablefmt = 'presto')
         embed = discord.Embed(color = await self.bot.get_embed_color(ctx), title = "Leaderboards")
-        embed.description = f"```{table}```"
+        embed.description = f"``{table}``"
         embed.set_footer(text = f"Top 50 players on {ctx.guild.name}")
         await ctx.send(embed = embed)
         
@@ -217,7 +217,7 @@ class Coin(commands.Cog):
                 
             embed = discord.Embed(
                 color = await self.bot.get_embed_color(ctx), 
-                description = f"Chose a number between 1 and 64```{dedent(desc)}```Hint: Your compass points towards {hint}", 
+                description = f"Chose a number between 1 and 64``{dedent(desc)}``Hint: Your compass points towards {hint}", 
                 title = "Find the pirate booty chest!"
             )
             await ctx.send(embed = embed)
@@ -243,11 +243,11 @@ class Coin(commands.Cog):
             if math.isclose(your_input, chest, rel_tol = 0.1) is True:
                 earned = random.randint(20, 50)
                 data['coin'] += earned
-                await ctx.send(f"You were close, but not really\nFound a small chest with ``{earned}`` coins in it.\nYou can't help but wonder what kind of treasures the big one could contain...")
+                await ctx.send(f"You were close, but not really\nFound a small chest with `{earned}` coins in it.\nYou can't help but wonder what kind of treasures the big one could contain...")
                 return
             elif your_input == chest:
                 data['coin'] += 1000
-                await ctx.send(f"You found it!\nThe treasure chest contained ``1000`` coins")
+                await ctx.send(f"You found it!\nThe treasure chest contained `1000` coins")
                 return
             else:
                 await ctx.send("Not even close, you found nothing.")
