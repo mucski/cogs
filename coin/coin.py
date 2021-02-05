@@ -144,14 +144,14 @@ class Coin(commands.Cog):
             users.append(f"{i:2} {user_obj} {['coin']}")
         #text = "\n".join(li)
         #users = []
-        for i, row in enumerate(c, start=1):
-            rows = []
-            name = f"{row[1]}"
-            coin = f"{row[3]}"
-            rows.append(f"{i}")
-            rows.append(name)
-            rows.append(coin)
-            users.append(rows)
+        #for i, row in enumerate(c, start=1):
+            #rows = []
+            #name = f"{row[1]}"
+            #coin = f"{row[3]}"
+            #rows.append(f"{i}")
+            #rows.append(name)
+            #rows.append(coin)
+            #users.append(rows)
         table = tabulate(users, headers = ['#', 'Name', 'Coin'], numalign = 'right', tablefmt = 'presto')
         embed = discord.Embed(color = await self.bot.get_embed_color(ctx), title = "Leaderboards")
         embed.description = f"``{table}``"
