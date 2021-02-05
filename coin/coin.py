@@ -217,7 +217,7 @@ class Coin(commands.Cog):
                 
             embed = discord.Embed(
                 color = await self.bot.get_embed_color(ctx), 
-                description = f"Chose a number between 1 and 64``{dedent(desc)}``Hint: Your compass points towards {hint}", 
+                description = f"Chose a number between 1 and 64```{dedent(desc)}```Hint: Your compass points towards {hint}", 
                 title = "Find the pirate booty chest!"
             )
             await ctx.send(embed = embed)
