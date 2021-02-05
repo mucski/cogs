@@ -137,25 +137,25 @@ class Coin(commands.Cog):
         userinfo = await self.db.all_users()
         if not userinfo:
             return await ctx.send("Start playing first, then check boards.")
-        #sorted_acc = sorted(userinfo.items(), key=lambda x: x[1]['data'], reverse=True)[:50]
+        sorted_acc = sorted(userinfo.items(), key=lambda x: x[0]['coin'], reverse=True)[:50]
         users = []
-        #for i, (user_id, account) in enumerate(sorted_acc):
-            #user_obj = ctx.guild.get_member(user_id)
-            #users.append(f"{i:2} {user_obj.display_name} {data['coin']}")
+        for i, (user_id, account) in enumerate(sorted_acc):
+            user_obj = ctx.guild.get_member(user_id)
+            users.append(f"{i:2} {user_obj.display_name} {data['coin']}")
         #text = "\n".join(li)
         #users = []
-        #for i, row in enumerate(c, start=1):
-            #rows = []
-            #name = f"{row[1]}"
-            #coin = f"{row[3]}"
-            #rows.append(f"{i}")
-            #rows.append(name)
-            #rows.append(coin)
-            #users.append(rows)
-        #table = tabulate(users, headers = ['#', 'Name', 'Coin'], numalign = 'right', tablefmt = 'presto')
-        #embed = discord.Embed(color = await self.bot.get_embed_color(ctx), title = "Leaderboards")
-        #embed.description = f"``{table}``"
-        #embed.set_footer(text = f"Top 50 players on {ctx.guild.name}")
+        for i, row in enumerate(c, start=1):
+            rows = []
+            name = f"{row[1]}"
+            coin = f"{row[3]}"
+            rows.append(f"{i}")
+            rows.append(name)
+            rows.append(coin)
+            users.append(rows)
+        table = tabulate(users, headers = ['#', 'Name', 'Coin'], numalign = 'right', tablefmt = 'presto')
+        embed = discord.Embed(color = await self.bot.get_embed_color(ctx), title = "Leaderboards")
+        embed.description = f"``{table}``"
+        embed.set_footer(text = f"Top 50 players on {ctx.guild.name}")
         await ctx.send(userinfo)
         
     @coin.command()
