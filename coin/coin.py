@@ -139,9 +139,9 @@ class Coin(commands.Cog):
             return await ctx.send("Start playing first, then check boards.")
         #sorted_acc = sorted(userinfo.items(), key=lambda x: x[1]['data'], reverse=True)[:50]
         users = []
-        for i, (user_id, account) in enumerate(sorted_acc):
-            user_obj = ctx.guild.get_member(user_id)
-            users.append(f"{i:2} {user_obj.display_name} {data['coin']}")
+        #for i, (user_id, account) in enumerate(sorted_acc):
+            #user_obj = ctx.guild.get_member(user_id)
+            #users.append(f"{i:2} {user_obj.display_name} {data['coin']}")
         #text = "\n".join(li)
         #users = []
         for i, row in enumerate(c, start=1):
