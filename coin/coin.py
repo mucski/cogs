@@ -141,7 +141,7 @@ class Coin(commands.Cog):
         users = []
         for i, (user_id, account) in enumerate(sorted_acc):
             user_obj = ctx.guild.get_member(user_id)
-            users.append(f"{i:2} {user_obj} {['coin']}")
+            users.append(f"{i:2} {user_obj} {['data']['coin']}")
         #text = "\n".join(li)
         #users = []
         #for i, row in enumerate(c, start=1):
