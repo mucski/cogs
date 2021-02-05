@@ -153,9 +153,9 @@ class Coin(commands.Cog):
             #rows.append(coin)
             #users.append(rows)
         #table = tabulate(users, headers = ['#', 'Name', 'Coin'], numalign = 'right', tablefmt = 'presto')
-        embed = discord.Embed(color = await self.bot.get_embed_color(ctx), title = "Leaderboards")
-        embed.description = f"``{table}``"
-        embed.set_footer(text = f"Top 50 players on {ctx.guild.name}")
+        #embed = discord.Embed(color = await self.bot.get_embed_color(ctx), title = "Leaderboards")
+        #embed.description = f"``{table}``"
+        #embed.set_footer(text = f"Top 50 players on {ctx.guild.name}")
         await ctx.send(userinfo)
         
     @coin.command()
