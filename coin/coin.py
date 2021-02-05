@@ -132,7 +132,7 @@ class Coin(commands.Cog):
             await ctx.send(embed = embed)
                     
     @coin.command(aliases = ["lb"])
-    async def lb(self, ctx):
+    async def leaderboards(self, ctx):
         """Cookieboards UwU"""
         userinfo = await self.db.all_users()
         if not userinfo:
