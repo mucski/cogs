@@ -137,7 +137,7 @@ class Coin(commands.Cog):
         userinfo = await self.db.all_users()
         if not userinfo:
             return await ctx.send("Start playing first, then check boards.")
-        sorted_acc = sorted(userinfo.items(), key=lambda x: x[1]['data'], reverse=True)[:50]
+        #sorted_acc = sorted(userinfo.items(), key=lambda x: x[1]['data'], reverse=True)[:50]
         users = []
         for i, (user_id, account) in enumerate(sorted_acc):
             user_obj = ctx.guild.get_member(user_id)
