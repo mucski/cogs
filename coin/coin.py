@@ -65,7 +65,7 @@ class Coin(commands.Cog):
             r = random.choice(list(worklist.keys()))
             await ctx.send(worklist[r])
             pred = MessagePredicate.lower_equal_to(r, ctx)
-            try
+            try:
                 await ctx.bot.wait_for('message', timeout=15, check=pred)
             except asyncio.TimeoutError:
                 await ctx.send("You failed to work. You are fired. Just kidding.")
