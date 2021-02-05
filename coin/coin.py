@@ -75,7 +75,7 @@ class Coin(commands.Cog):
             await ctx.send(f"Well done, you earned `{earned}` for your hard work.")
 
     @coin.command()
-    @commands.cooldown(1, 11, commands.BucketType.user)
+    @commands.cooldown(1, 11, commands.Buck: etType.user)
     async def search(self, ctx):
         async with self.db.user(ctx.author).data() as data:
             if bool(data) is None:
@@ -103,7 +103,7 @@ class Coin(commands.Cog):
         you = random.randint(1, 12)
         dealer = random.randint(1, 12)
         if amt < 0:
-            await ctx.send("Cant gamble nothing")
+            await ctx.send("Can't gamble nothing")
             return
         async with self.db.user(ctx.author).data() as data:
             if bool(data) is None:
