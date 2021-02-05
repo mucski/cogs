@@ -15,7 +15,7 @@ worklist = {
     "hit the bell icon": f"Another thing every YOUTUBER says: `{shuffle_word('hit the bell icon')}`",
     "jacksepticeye": f"Green Irish Potato: `{shuffle_word('jacksepticeye')}`",
     "subnautica": f"What game was named 'Minecraft Underwater' by its fans? Hint: `S _ _ _ _ _ _ _ _ _`",
-    "no mans sky": f"What game was named 'Minecraft in Space' by its fans? Hint: `N_ _ _ _ _ _ _ _`",
+    "no man's sky": f"What game was named 'Minecraft in Space' by its fans? Hint: `N_ _ _ _ _ _ _ _`",
     "lab": f"Dog breed that has a scientific name, 3 letters",
     "paris": f"Tour Eifel is located here .....",
     "black widow": f"Do you know the name of a marvel character that bears the name of a spider?",
