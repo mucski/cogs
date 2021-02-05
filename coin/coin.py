@@ -75,7 +75,7 @@ class Coin(commands.Cog):
             await ctx.send(f"Well done, you earned `{earned}` for your hard work.")
 
     @coin.command()
-    @commands.cooldown(1, 11, commands.Buck: etType.user)
+    @commands.cooldown(1, 11, commands.BucketType.user)
     async def search(self, ctx):
         async with self.db.user(ctx.author).data() as data:
             if bool(data) is None:
