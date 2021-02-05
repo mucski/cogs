@@ -132,12 +132,12 @@ class Coin(commands.Cog):
             await ctx.send(embed = embed)
                     
     @coin.command(aliases = ["lb"])
-    async def leaderboard(self, ctx):
+    async def lb(self, ctx):
         """Cookieboards UwU"""
         userinfo = await self.db.all_users()
         if not userinfo:
             return await ctx.send("Start playing first, then check boards.")
-        sorted_acc = sorted(userinfo.items(), key=lambda x: x[1]['coin'], reverse=True)[:50]
+        sorted_acc = sorted(userinfo.items(), key=lambda x: x[1]['data'], reverse=True)[:50]
         users = []
         for i, (user_id, account) in enumerate(sorted_acc):
             user_obj = ctx.guild.get_member(user_id)
@@ -156,7 +156,7 @@ class Coin(commands.Cog):
         embed = discord.Embed(color = await self.bot.get_embed_color(ctx), title = "Leaderboards")
         embed.description = f"``{table}``"
         embed.set_footer(text = f"Top 50 players on {ctx.guild.name}")
-        await ctx.send(embed = embed)
+        await ctx.send(userinfo)
         
     @coin.command()
     @commands.cooldown(1, 20, commands.BucketType.user)
