@@ -11,7 +11,7 @@ from textwrap import dedent
 import pkg_resources
 import tabulate
 from redbot.core.utils.chat_formatting import pagify, box
-from redbot.core.utils.menus import menu
+from redbot.core.utils.menus import menu, DEFAULT_CONTROLStest
 
 class Coin(commands.Cog):
     """Coin Tycoon game by mucski"""
