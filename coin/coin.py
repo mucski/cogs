@@ -15,7 +15,7 @@ class Coin(commands.Cog):
     """Coin Tycoon game by mucski"""
     def __init__(self, bot):
         self.bot = bot
-        self.db = Config.get_conf(self, 38492384052, force_registration=True)
+        self.db = Config.get_conf(self, 9769879876, force_registration=True)
         
         default_user = {
             "coin": 0,
