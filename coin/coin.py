@@ -62,7 +62,7 @@ class Coin(commands.Cog):
     @commands.cooldown(1, 11, commands.BucketType.user)
     async def work(self, ctx):
         coin = await self.db.user(ctx.author).coin()
-        if cookie == 0:
+        if work == 0:
             await ctx.send("Start playing first by claiming daily.")
             return
         r = random.choice(list(worklist.keys()))
