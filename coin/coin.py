@@ -30,9 +30,9 @@ class Coin(commands.Cog):
     @commands.group(aliases=['c'])
     async def coin(self, ctx):
         """ Coin Tycoon created by Mucski \n
-            The point of the game is to have as much coins as you can \n
-            You can earn coins by working, searching, claiming daily \n
-            stealing, gambling (and more coming soon) \n
+            The point of the game is to have as much coins as you can.
+            You can earn coins by working, searching, claiming daily
+            stealing, gambling (and more coming soon). \n
             See the commands bellow to get started.
         """
         pass
