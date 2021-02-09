@@ -8,7 +8,7 @@ def shuffle_word(word):
 worklist = {
     "covid19": "It's quarantine, guess the word: `C _ _ _ _ _ _`",
     "mucski": f"The loser that created this game: `{shuffle_word('mucski')}`",
-    "caut": "Paladins must buy item is?",
+    "walt disney": "Mickey Mouse was conceived by?",
     "thanos": "He is destiny. Dread it, run from it, he still arrives.",
     "captain marvel": f"A female, strong enough to defeat Thanos himself. `{shuffle_word('captain marvel')}`",
     "subscribe": f"Every YOUTUBER says it sooner or later: `{shuffle_word('subscribe')}`",
