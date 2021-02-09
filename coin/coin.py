@@ -199,7 +199,7 @@ class Coin(commands.Cog):
             emoji = emojis[int(pred.result)]
             if emoji == '❌':
                 await msg.clear_reactions()
-                e.description = "You cancelled."
+                e.description = "``You cancelled.``"
                 await msg.edit(embed=e)
                 break
             #elif emoji == '▶️':
@@ -212,7 +212,7 @@ class Coin(commands.Cog):
                     e.description += f"``chars[var]``"
                     await msg.edit(embed=e)
                 except IndexError:
-                    e.description = "You ran out of keys"
+                    e.description = "``You ran out of keys``"
                     await msg.edit(embed=e)
                     break
             if var == 10:
