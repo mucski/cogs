@@ -205,9 +205,11 @@ class Coin(commands.Cog):
                 break
             elif emoji == '▶️':
                 direction = ">"
+                var += 1
             elif emoji == '◀️':
                 direction = "<"
-            e.description = direction
+                var += 1
+            e.description = f"{direction}"
             await msg.edit(embed=e)
             try:
                 await msg.remove_reaction(emoji, ctx.author)
