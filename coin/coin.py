@@ -206,8 +206,6 @@ class Coin(commands.Cog):
             #    direction = ">"
             #elif emoji == '◀️':
             #    direction = "<"
-            fuck = ""
-
             if emoji == chars[var]:
                 try:
                     var += 1
