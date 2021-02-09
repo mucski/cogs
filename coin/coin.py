@@ -175,9 +175,9 @@ class Coin(commands.Cog):
              
     @coin.command()
     async def steal(self, ctx, member: discord.Member = None):
-        reactions = [":arrow_backward:", ":arrow_forward:", ":regional_indicator_x:"]
+        emojis = ["⬅", "➡", "❌"]
         msg = await ctx.send("Reacting to this message!")
-        start_adding_reactions(msg, reactions)
+        start_adding_reactions(msg, emojis)
 
     @coin.command()
     @commands.cooldown(1, 20, commands.BucketType.user)
