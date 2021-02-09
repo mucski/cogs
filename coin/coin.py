@@ -140,9 +140,8 @@ class Coin(commands.Cog):
             embed.set_footer(text = "Roll the dice, whoever has the highest wins.")
             await ctx.send(embed = embed)
                     
-    @coin.command()
-    async def lb(self, ctx):
-        """Cookieboards UwU"""
+    @coin.command(alias=['lb'])
+    async def leaderboard(self, ctx):
         userinfo = await self.db.all_users()
         if not userinfo:
             return await ctx.send(bold("Start playing first, then check boards."))
