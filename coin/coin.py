@@ -149,7 +149,7 @@ class Coin(commands.Cog):
     async def leaderboard(self, ctx):
         userinfo = await self.db.all_users()
         if not userinfo:
-            return await ctx.send(bold("Start playing first, then check boards."))
+            return await ctx.send("Start playing first, then check boards.")
         sorted_acc = sorted(userinfo.items(), key=lambda x: x[1]['coin'], reverse=True)[:50]
         li = []
         #for i, (user_id, account) in enumerate(sorted_acc):
