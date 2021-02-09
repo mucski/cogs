@@ -62,7 +62,7 @@ class Coin(commands.Cog):
     @commands.cooldown(1, 11, commands.BucketType.user)
     async def work(self, ctx):
         coin = await self.db.user(ctx.author).coin()
-        if work == 0:
+        if coin == 0:
             await ctx.send("Start playing first by claiming daily.")
             return
         r = random.choice(list(worklist.keys()))
@@ -107,6 +107,7 @@ class Coin(commands.Cog):
     async def gamble(self, ctx, amt: int):
         you = random.randint(1, 12)
         dealer = random.randint(1, 12)
+        coin = await self.db.user(ctx.author).coin()
         if amt < 0:
             await ctx.send("Can't gamble nothing")
             return
@@ -123,7 +124,8 @@ class Coin(commands.Cog):
                 embed.add_field(name = "Dealer rolled:", value = f"🎲 {dealer}")
                 embed.add_field(name = "You rolled:", value = f"🎲 {you}")
                 embed.description = "YOU WON!"
-                data['coin'] += amt
+                coin += amt
+                await self.db.user(ctx.author).coin.set(coin)
             elif you == dealer:
                 embed.add_field(name = "Dealer rolled:", value = f"🎲 {dealer}")
                 embed.add_field(name = "You rolled:", value = f"🎲 {you}")
@@ -132,7 +134,8 @@ class Coin(commands.Cog):
                 embed.add_field(name = "Dealer rolled:", value = f"🎲 {dealer}")
                 embed.add_field(name = "You rolled:", value = f"🎲 {you}")
                 embed.description = "YOU LOST!"
-                data['coin'] -= amt
+                coin -= amt
+                await self.db.user(ctx.author).coin.set(coin)
             embed.set_footer(text = "Roll the dice, whoever has the highest wins.")
             await ctx.send(embed = embed)
                     
@@ -142,11 +145,11 @@ class Coin(commands.Cog):
         userinfo = await self.db.all_users()
         if not userinfo:
             return await ctx.send("Start playing first, then check boards.")
-        sorted_acc = sorted(userinfo.items(), key=lambda x: x[1]['data']['coin'], reverse=True)[:50]
+        sorted_acc = sorted(userinfo.items(), key=lambda x: x[1]['coin'], reverse=True)[:50]
         users = []
         for i, (user_id, account) in enumerate(sorted_acc):
             user_obj = ctx.guild.get_member(user_id)
-            users.append(f"{i:2} {user_obj} {['coin']}")
+            users.append(f"{i:2} {user_obj.display_name} {['coin']}")
         #text = "\n".join(li)
         #users = []
         #for i, row in enumerate(c, start=1):
@@ -166,94 +169,96 @@ class Coin(commands.Cog):
     @coin.command()
     @commands.cooldown(1, 20, commands.BucketType.user)
     async def dig(self, ctx):
-        async with self.db.user(ctx.author).data() as data:
-            if bool(data) is None:
-                await ctx.send("Start playing first by claiming daily.")
-                return
+        coin = await self.db.user(ctx.author).coin()
+        if coin == 0:
+            await ctx.send("Start playing first by claiming daily.")
+            return
+        
+        chest = random.randint(1, 64)
+        
+        desc = """
+        NW + -- + -- + -- N -- + -- + -- + NE
+        01 | 02 | 03 | 04 | 05 | 06 | 07 | 08 
+        -- + -- + -- + -- + -- + -- + -- + --
+        09 | 10 | 11 | 12 | 13 | 14 | 15 | 16
+        -- + -- + -- + -- + -- + -- + -- + --
+        17 | 18 | 19 | 20 | 21 | 22 | 23 | 24
+        -- + -- + -- + -- + -- + -- + -- + --
+        25 | 26 | 27 | 28 | 29 | 30 | 31 | 32
+        W  + -- + -- + -- o -- + -- + -- +  E
+        33 | 34 | 35 | 36 | 37 | 38 | 39 | 40
+        -- + -- + -- + -- + -- + -- + -- + --
+        41 | 42 | 43 | 44 | 45 | 46 | 47 | 48
+        -- + -- + -- + -- + -- + -- + -- + --
+        49 | 50 | 51 | 52 | 53 | 54 | 55 | 56
+        -- + -- + -- + -- + -- + -- + -- + --
+        57 | 58 | 59 | 60 | 61 | 62 | 63 | 64
+        SW + -- + -- + -- S -- + -- + -- + SE
+        """
+        north = [4, 5, 12, 13, 20, 21, 28, 29]
+        north_west = [1, 2, 3, 9, 10, 11, 17, 18, 19]
+        north_east = [6, 7, 8, 14, 15, 16, 22, 23, 24]
+        west = [25, 26, 27, 28, 29, 30, 35, 36]
+        south_west = [41, 42, 43, 49, 50, 51, 57, 58, 59]
+        south_east = [46, 47, 48, 54, 55, 56, 62, 63, 64]
+        south = [36, 44, 52, 60, 61, 53, 45, 37]
+        east = [29, 30, 31, 32, 37, 38, 39, 40]
+        
+        if chest in north:
+            hint = "North"
+        elif chest in north_west:
+            hint = "North West"
+        elif chest in north_east:
+            hint = "North East"
+        elif chest in west:
+            hint = "West"
+        elif chest in south_west:
+            hint = "South West"
+        elif chest in south_east:
+            hint = "South East"
+        elif chest in south:
+            hint = "South"
+        elif chest in east:
+            hint = "East"
+        else:
+            hint = "None"
             
-            chest = random.randint(1, 64)
+        embed = discord.Embed(
+            color = await self.bot.get_embed_color(ctx), 
+            description = f"Chose a number between 1 and 64```{dedent(desc)}```Hint: Your compass points towards {hint}", 
+            title = "Find the pirate booty chest!"
+        )
+        await ctx.send(embed = embed)
             
-            desc = """
-            NW + -- + -- + -- N -- + -- + -- + NE
-            01 | 02 | 03 | 04 | 05 | 06 | 07 | 08 
-            -- + -- + -- + -- + -- + -- + -- + --
-            09 | 10 | 11 | 12 | 13 | 14 | 15 | 16
-            -- + -- + -- + -- + -- + -- + -- + --
-            17 | 18 | 19 | 20 | 21 | 22 | 23 | 24
-            -- + -- + -- + -- + -- + -- + -- + --
-            25 | 26 | 27 | 28 | 29 | 30 | 31 | 32
-            W  + -- + -- + -- o -- + -- + -- +  E
-            33 | 34 | 35 | 36 | 37 | 38 | 39 | 40
-            -- + -- + -- + -- + -- + -- + -- + --
-            41 | 42 | 43 | 44 | 45 | 46 | 47 | 48
-            -- + -- + -- + -- + -- + -- + -- + --
-            49 | 50 | 51 | 52 | 53 | 54 | 55 | 56
-            -- + -- + -- + -- + -- + -- + -- + --
-            57 | 58 | 59 | 60 | 61 | 62 | 63 | 64
-            SW + -- + -- + -- S -- + -- + -- + SE
-            """
-            north = [4, 5, 12, 13, 20, 21, 28, 29]
-            north_west = [1, 2, 3, 9, 10, 11, 17, 18, 19]
-            north_east = [6, 7, 8, 14, 15, 16, 22, 23, 24]
-            west = [25, 26, 27, 28, 29, 30, 35, 36]
-            south_west = [41, 42, 43, 49, 50, 51, 57, 58, 59]
-            south_east = [46, 47, 48, 54, 55, 56, 62, 63, 64]
-            south = [36, 44, 52, 60, 61, 53, 45, 37]
-            east = [29, 30, 31, 32, 37, 38, 39, 40]
+        pred = MessagePredicate.same_context(ctx)
+        try:
+            msg = await ctx.bot.wait_for("message", timeout = 20, check = pred)
+        except asyncio.TimeoutError:
+            await ctx.send("Can't dig nowhere, you need to input a number or 'random' if you are too lazy.")
+            return
             
-            if chest in north:
-                hint = "North"
-            elif chest in north_west:
-                hint = "North West"
-            elif chest in north_east:
-                hint = "North East"
-            elif chest in west:
-                hint = "West"
-            elif chest in south_west:
-                hint = "South West"
-            elif chest in south_east:
-                hint = "South East"
-            elif chest in south:
-                hint = "South"
-            elif chest in east:
-                hint = "East"
+        your_input = msg.content.lower()
+            
+        try:
+            your_input = int(msg.content)
+        except ValueError:
+            if your_input == "random":
+                your_input = random.randint(1, 64)
             else:
-                hint = "None"
-                
-            embed = discord.Embed(
-                color = await self.bot.get_embed_color(ctx), 
-                description = f"Chose a number between 1 and 64```{dedent(desc)}```Hint: Your compass points towards {hint}", 
-                title = "Find the pirate booty chest!"
-            )
-            await ctx.send(embed = embed)
-                
-            pred = MessagePredicate.same_context(ctx)
-            try:
-                msg = await ctx.bot.wait_for("message", timeout = 20, check = pred)
-            except asyncio.TimeoutError:
-                await ctx.send("Can't dig nowhere, you need to input a number or 'random' if you are too lazy.")
+                await ctx.send("Wrong input type.")
                 return
-                
-            your_input = msg.content.lower()
-                
-            try:
-                your_input = int(msg.content)
-            except ValueError:
-                if your_input == "random":
-                    your_input = random.randint(1, 64)
-                else:
-                    await ctx.send("Wrong input type.")
-                    return
-                
-            if math.isclose(your_input, chest, rel_tol = 0.1) is True:
-                earned = random.randint(20, 50)
-                data['coin'] += earned
-                await ctx.send(f"You were close, but not really\nFound a small chest with `{earned}` coins in it.\nYou can't help but wonder what kind of treasures the big one could contain...")
-                return
-            elif your_input == chest:
-                data['coin'] += 1000
-                await ctx.send(f"You found it!\nThe treasure chest contained `1000` coins")
-                return
-            else:
-                await ctx.send("Not even close, you found nothing.")
-                return
+            
+        if math.isclose(your_input, chest, rel_tol = 0.1) is True:
+            earned = random.randint(20, 50)
+            coin += earned
+            await self.db.user(ctx.author).coin.set(coin)
+            await ctx.send(f"You were close, but not really\nFound a small chest with `{earned}` coins in it.\nYou can't help but wonder what kind of treasures the big one could contain...")
+            return
+        elif your_input == chest:
+            coin += 1000
+            await self.db.user(ctx.author).coin.set(coin)
+            await ctx.send(f"You found it!\nThe treasure chest contained `1000` coins")
+            return
+        else:
+            await ctx.send("Not even close, you found nothing.")
+            return
