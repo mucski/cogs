@@ -184,7 +184,7 @@ class Coin(commands.Cog):
         chars = ''.join(chars)
 
         e = discord.Embed(title=f"{ctx.author} is stealing from {member}")
-        e.description = "__________"
+        e.description = ""
         e.set_footer(text="You have 0 keys left.")
         msg = await ctx.send(embed=e)
         start_adding_reactions(msg, emojis)
@@ -207,9 +207,14 @@ class Coin(commands.Cog):
             #elif emoji == '◀️':
             #    direction = "<"
             if emoji == chars[var]:
-                var += 1
-                e.description += chars[var]
-                await msg.edit(embed=e)
+                try:
+                    var += 1
+                    e.description += f"``chars[var]``"
+                    await msg.edit(embed=e)
+                except IndexError:
+                    e.description = "You ran out of keys"
+                    await msg.edit(embed=e)
+                    break
             if var == 10:
                 break
             try:
