@@ -18,10 +18,11 @@ class Coin(commands.Cog):
         self.db = Config.get_conf(self, 38492384052, force_registration=True)
         
         default_user = {
-            "data": {"coin": 0} #{potato: 0, and more}
+            "coin": 0,
+            "dailystamp": 0,
         }
         default_guild = {
-            "guild_data": {} #{channel: and more}
+            "channel": "",
         }
         self.db.register_user(**default_user)
         self.db.register_guild(**default_guild)
@@ -31,29 +32,31 @@ class Coin(commands.Cog):
         pass
     
     @coin.command()
-    async def bal(self, ctx):
-        async with self.db.user(ctx.author).data() as data:
-            if bool(data) is False:
-                await ctx.send("Start playing first by using one of the action commands (farm, daily)")
-                return
-            await ctx.send(f"You have {data['coin']} coins.")
+    async def bal(self, ctx, discord.Member = None):
+        if member is None:
+            member == ctx.author
+        else:
+            member == discord.Member
+        coin = await self.db.user(member).coin()
+        await ctx.send(f"{member} has {coin} coins.")
             
     @coin.command()
     async def daily(self, ctx):
-        async with self.db.user(ctx.author).data() as data:
-            now = datetime.utcnow()
-            try:
-                stamp = data['dailystamp']
-                stamp = datetime.fromtimestamp(stamp)
-            except KeyError:
-                stamp = now
-            future =  now + timedelta(hours=12)
-            data['dailystamp'] = future.timestamp()
-            if stamp > now:
-                await ctx.send(f"You already claimed your daily coins. Check back in {humanize.naturaldelta(stamp - now)}")
-                return
-            data['coin'] += 300
-            await ctx.send("Claimed 300 coins. Check back in 12 hours.")
+        now = datetime.utcnow()
+        stamp = await self.db.user(ctx.author).dailystamp()
+        if stamp != now:
+            stamp = datetime.fromtimestamp(stamp)
+        else:
+            stamp = now
+        future =  now + timedelta(hours=12)
+        await self.db.user(ctx.author).dailystamp.set(future.timestamp())
+        if stamp > now:
+            await ctx.send(f"You already claimed your daily coins. Check back in {humanize.naturaldelta(stamp - now)}")
+            return
+        coin = await self.db.user(ctx.author).coin()
+        coin += 300
+        await self.db.user(ctx.author).coin.set(coin)
+        await ctx.send("Claimed 300 coins. Check back in 12 hours.")
 
     @coin.command()
     @commands.cooldown(1, 11, commands.BucketType.user)
