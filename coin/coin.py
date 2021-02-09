@@ -209,7 +209,7 @@ class Coin(commands.Cog):
             if emoji == chars[var]:
                 try:
                     var += 1
-                    e.description += f"``chars[var]``"
+                    e.description += f"``{chars[var]}``"
                     await msg.edit(embed=e)
                 except IndexError:
                     e.description = "``You ran out of keys``"
