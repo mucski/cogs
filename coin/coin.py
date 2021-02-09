@@ -1,6 +1,6 @@
 import discord
 import asyncio
-from redbot.core.utils.predicates import MessagePredicate
+from redbot.core.utils.predicates import MessagePredicate, ReactionPredicate
 from redbot.core import commands, Config
 import random
 import math
@@ -183,15 +183,36 @@ class Coin(commands.Cog):
         random.shuffle(chars)
         chars = ''.join(chars)
         
-        desc = """
-        Sex
-        """
-        e = discord.Embed(title=f"{ctx.author} is stealing from {member}")
-        e.description = desc
-        e.set_footer(text="You have 0 keys left.")
-        
         msg = await ctx.send(embed=e)
         start_adding_reactions(msg, emojis)
+
+        while True:
+            e = discord.Embed(title=f"{ctx.author} is stealing from {member}")
+            e.description = "__________"
+            e.set_footer(text="You have 0 keys left.")
+            await msg.edit(embed=e)
+            pred = ReactionPredicate.with_emojis(emojis, message=msg, user=ctx.author)
+            try:
+                await ctx.bot.wait_for("reaction_add", check=pred, timeout=60)
+            except asyncio.TimeoutError:
+                await msg.clear_reactions()
+                break
+            emoji = EMOJIS[int(pred.result)]
+            if emoji == '❌':
+                await msg.clear_reactions()
+                e.description = "You cancelled."
+                await msg.edit(embed=e)
+                break
+            elif emoji == '▶️':
+                direction = ">"
+            elif emoji == '◀️':
+                direction = "<"
+            e.description = direction
+            await msg.edit(embed=e)
+            try:
+                await msg.remove_reaction(emoji, ctx.author)
+            except discord.HTTPException:
+                pass
 
     @coin.command()
     @commands.cooldown(1, 20, commands.BucketType.user)
