@@ -139,7 +139,7 @@ class Coin(commands.Cog):
             embed.set_footer(text = "Roll the dice, whoever has the highest wins.")
             await ctx.send(embed = embed)
                     
-    @_cookie.command()
+    @coin.command()
     async def lb(self, ctx):
         """Cookieboards UwU"""
         userinfo = await self.conf.all_users()
