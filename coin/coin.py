@@ -142,7 +142,7 @@ class Coin(commands.Cog):
     @coin.command()
     async def lb(self, ctx):
         """Cookieboards UwU"""
-        userinfo = await self.conf.all_users()
+        userinfo = await self.db.all_users()
         if not userinfo:
             return await ctx.send(bold("Start playing first, then check boards."))
         sorted_acc = sorted(userinfo.items(), key=lambda x: x[1]['coin'], reverse=True)[:50]
