@@ -188,7 +188,7 @@ class Coin(commands.Cog):
         """
         e = discord.Embed(title=f"{ctx.author} is stealing from {member}")
         e.description = desc
-        e.set_footer = "You have 0 keys left."
+        e.set_footer(text="You have 0 keys left.")
         start_adding_reactions(e, emojis)
 
     @coin.command()
