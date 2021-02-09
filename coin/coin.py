@@ -34,9 +34,9 @@ class Coin(commands.Cog):
     @coin.command()
     async def bal(self, ctx, member: discord.Member = None):
         if member is None:
-            member == ctx.author
+            member = ctx.author
         else:
-            member == discord.Member
+            member = member
         coin = await self.db.user(member).coin()
         await ctx.send(f"{member} has {coin} coins.")
             
