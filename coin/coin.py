@@ -209,6 +209,7 @@ class Coin(commands.Cog):
             if emoji == chars[var]:
                 try:
                     var += 1
+                    fuck = ""
                     e.description = f"```{fuck}```"
                     fuck += f"{chars[var]}"
                     await msg.edit(embed=e)
