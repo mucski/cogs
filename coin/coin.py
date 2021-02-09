@@ -183,7 +183,6 @@ class Coin(commands.Cog):
         chars = ''.join(chars)
         
         desc = """
-        f""
         """"
         e = discord.Embed(title=f"{ctx.author} is stealing from {member}")
         msg = await ctx.send(f"Reacting to this message! {chars}")
