@@ -211,6 +211,8 @@ class Coin(commands.Cog):
                 var += 1
             e.description = f"{direction}"
             await msg.edit(embed=e)
+            if var == 10:
+                break
             try:
                 await msg.remove_reaction(emoji, ctx.author)
             except discord.HTTPException:
