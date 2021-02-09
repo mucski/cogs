@@ -11,7 +11,7 @@ from textwrap import dedent
 import pkg_resources
 import tabulate
 from redbot.core.utils.chat_formatting import pagify, box
-from redbot.core.utils.menus import menu, DEFAULT_CONTROLS
+from redbot.core.utils.menus import menu, DEFAULT_CONTROLS, start_adding_reactions
 
 class Coin(commands.Cog):
     """Coin Tycoon game by mucski"""
@@ -172,7 +172,13 @@ class Coin(commands.Cog):
         page_list.append(embed)
         return await menu(ctx, page_list, DEFAULT_CONTROLS)
         #await ctx.send(sorted_acc)
-        
+             
+    @coin.command()
+    async def steal(self, ctx, member: discord.Member = None)
+        reactions = [⬅,➡,✖]
+        msg = await ctx.send("Reacting to this message!")
+        start_adding_reactions(msg, reactions)
+
     @coin.command()
     @commands.cooldown(1, 20, commands.BucketType.user)
     async def dig(self, ctx):
