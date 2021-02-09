@@ -206,14 +206,13 @@ class Coin(commands.Cog):
             #    direction = ">"
             #elif emoji == '◀️':
             #    direction = "<"
+            e.description = f"```{fuck}```"
             if emoji == chars[var]:
                 try:
                     var += 1
-                    e.description += f"`{chars[var]}`"
+                    fuck += f"{chars[var]}"
                     await msg.edit(embed=e)
                 except IndexError:
-                    e.description = "`You ran out of keys`"
-                    await msg.edit(embed=e)
                     break
             if var == 10:
                 break
