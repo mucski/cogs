@@ -154,7 +154,7 @@ class Coin(commands.Cog):
             return await ctx.send("Start playing first, then check boards.")
         sorted_acc = sorted(userinfo.items(), key=lambda x: x[1]['coin'], reverse=True)[:50]
         li = []
-        for i, (user_id, account) in enumerate(sorted_acc):
+        for i, (user_id, account) in enumerate(sorted_acc, start=1):
             user_obj = ctx.guild.get_member(user_id)
             if user_obj is None:
                 continue
