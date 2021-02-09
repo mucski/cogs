@@ -10,6 +10,7 @@ from .random import worklist, searchlist, bad_loc
 from textwrap import dedent
 import pkg_resources
 import tabulate
+from redbot.core.utils import chat_formatting
 
 class Coin(commands.Cog):
     """Coin Tycoon game by mucski"""
