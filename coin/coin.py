@@ -177,16 +177,19 @@ class Coin(commands.Cog):
     async def steal(self, ctx, member: discord.Member = None):
         emojis = ["⬅", "➡", "❌"]
         chars = "<><><><><>"
+        var = 0
 
         chars = list(chars)
         random.shuffle(chars)
         chars = ''.join(chars)
         
         desc = """
+        Sex
         """
         e = discord.Embed(title=f"{ctx.author} is stealing from {member}")
-        msg = await ctx.send(f"Reacting to this message! {chars}")
-        start_adding_reactions(msg, emojis)
+        e.description = desc
+        e.footer = "You have 0 keys left."
+        start_adding_reactions(e, emojis)
 
     @coin.command()
     @commands.cooldown(1, 20, commands.BucketType.user)
