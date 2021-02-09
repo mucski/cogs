@@ -206,7 +206,7 @@ class Coin(commands.Cog):
                 direction = ">"
             elif emoji == '◀️':
                 direction = "<"
-            if reaction.emoji == chars[var]:
+            if emoji == chars[var]:
                 var += 1
                 e.description += direction
                 await msg.edit(embed=e)
