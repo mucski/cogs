@@ -155,7 +155,9 @@ class Coin(commands.Cog):
         sorted_acc = sorted(userinfo.items(), key=lambda x: x[1]['coin'], reverse=True)[:50]
         li = []
         for i, (user_id, account) in enumerate(sorted_acc):
-            user_obj = ctx.member.get_member(user_id)
+            user_obj = ctx.guild.get_member(user_id)
+            if user_obj is None:
+                continue
             li.append(f"{i:2} {user_obj.display_name:<15} {account['coin']:>15}")
         text = "\n".join(li)
         page_list=[]
