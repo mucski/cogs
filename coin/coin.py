@@ -189,7 +189,9 @@ class Coin(commands.Cog):
         e = discord.Embed(title=f"{ctx.author} is stealing from {member}")
         e.description = desc
         e.set_footer(text="You have 0 keys left.")
-        start_adding_reactions(e, emojis)
+        
+        msg = await ctx.send(embed=e)
+        start_adding_reactions(msg, emojis)
 
     @coin.command()
     @commands.cooldown(1, 20, commands.BucketType.user)
