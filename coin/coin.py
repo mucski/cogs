@@ -32,8 +32,8 @@ class Coin(commands.Cog):
         """ For more help type ``.help Coin`` """
         pass
     
-    @coin.command()
-    async def bal(self, ctx, member: discord.Member = None):
+    @coin.command(aliases=['bal'])
+    async def balance(self, ctx, member: discord.Member = None):
         if member is None:
             member = ctx.author
         else:
@@ -140,7 +140,7 @@ class Coin(commands.Cog):
             embed.set_footer(text = "Roll the dice, whoever has the highest wins.")
             await ctx.send(embed = embed)
                     
-    @coin.command(alias=['lb'])
+    @coin.command(aliases=['lb'])
     async def leaderboard(self, ctx):
         userinfo = await self.db.all_users()
         if not userinfo:
