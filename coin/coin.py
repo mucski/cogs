@@ -166,7 +166,8 @@ class Coin(commands.Cog):
                 text=f"Page {page_num}/{math.ceil(len(text) / 1000)}",
             )
         page_list.append(embed)
-        return await menu(ctx, page_list, DEFAULT_CONTROLS)
+        #return await menu(ctx, page_list, DEFAULT_CONTROLS)
+        await ctx.send(sorted_acc)
         
     @coin.command()
     @commands.cooldown(1, 20, commands.BucketType.user)
