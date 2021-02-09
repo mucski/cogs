@@ -175,7 +175,7 @@ class Coin(commands.Cog):
              
     @coin.command()
     async def steal(self, ctx, member: discord.Member = None):
-        reactions = [:arrow_backward:, :arrow_forward:, :regional_indicator_x:]
+        reactions = [":arrow_backward:", ":arrow_forward:", ":regional_indicator_x:"]
         msg = await ctx.send("Reacting to this message!")
         start_adding_reactions(msg, reactions)
 
