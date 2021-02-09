@@ -204,12 +204,12 @@ class Coin(commands.Cog):
                 break
             elif emoji == '▶️':
                 direction = ">"
-                var += 1
             elif emoji == '◀️':
                 direction = "<"
+            if reaction.emoji == chars[var]:
                 var += 1
-            e.description = f"{direction}"
-            await msg.edit(embed=e)
+                e.description += direction
+                await msg.edit(embed=e)
             if var == 10:
                 break
             try:
