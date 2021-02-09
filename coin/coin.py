@@ -10,7 +10,7 @@ from .random import worklist, searchlist, bad_loc
 from textwrap import dedent
 import pkg_resources
 import tabulate
-from redbot.core.utils.chat_formatting import pagify
+from redbot.core.utils.chat_formatting import pagify, box
 
 class Coin(commands.Cog):
     """Coin Tycoon game by mucski"""
