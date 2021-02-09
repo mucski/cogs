@@ -174,7 +174,7 @@ class Coin(commands.Cog):
         #await ctx.send(sorted_acc)
              
     @coin.command()
-    async def steal(self, ctx, member: discord.Member = None)
+    async def steal(self, ctx, member: discord.Member = None):
         reactions = [⬅,➡,✖]
         msg = await ctx.send("Reacting to this message!")
         start_adding_reactions(msg, reactions)
