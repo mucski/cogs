@@ -202,13 +202,13 @@ class Coin(commands.Cog):
                 e.description = "You cancelled."
                 await msg.edit(embed=e)
                 break
-            elif emoji == '▶️':
-                direction = ">"
-            elif emoji == '◀️':
-                direction = "<"
+            #elif emoji == '▶️':
+            #    direction = ">"
+            #elif emoji == '◀️':
+            #    direction = "<"
             if emoji == chars[var]:
                 var += 1
-                e.description += direction
+                e.description += chars[var]
                 await msg.edit(embed=e)
             if var == 10:
                 break
