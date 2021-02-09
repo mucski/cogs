@@ -38,8 +38,8 @@ class Coin(commands.Cog):
         else:
             member = member
         coin = await self.db.user(member).coin()
-        await ctx.send(f"{member} has {coin} coins.")
-            
+        await ctx.send(f"{member.mention} has {coin} coins.")
+         
     @coin.command()
     async def daily(self, ctx):
         now = datetime.utcnow()
@@ -61,45 +61,47 @@ class Coin(commands.Cog):
     @coin.command()
     @commands.cooldown(1, 11, commands.BucketType.user)
     async def work(self, ctx):
-        async with self.db.user(ctx.author).data() as data:
-            if bool(data) is None:
-                await ctx.send("Start playing first by claiming daily.")
-                return
-            r = random.choice(list(worklist.keys()))
-            await ctx.send(worklist[r])
-            pred = MessagePredicate.lower_equal_to(r, ctx)
-            try:
-                await ctx.bot.wait_for('message', timeout=15, check=pred)
-            except asyncio.TimeoutError:
-                await ctx.send("You failed to work. You are fired. Just kidding.")
-                return
-            earned = random.randint(5, 30)
-            data['coin'] += earned
-            await ctx.send(f"Well done, you earned `{earned}` for your hard work.")
+        coin = await self.db.user(ctx.author).coin()
+        if cookie == 0:
+            await ctx.send("Start playing first by claiming daily.")
+            return
+        r = random.choice(list(worklist.keys()))
+        await ctx.send(worklist[r])
+        pred = MessagePredicate.lower_equal_to(r, ctx)
+        try:
+            await ctx.bot.wait_for('message', timeout=15, check=pred)
+        except asyncio.TimeoutError:
+            await ctx.send("You failed to work. You are fired. Just kidding.")
+            return
+        earned = random.randint(5, 30)
+        coin += earned
+        await self.db.user(ctx.author).coin.set(coin)
+        await ctx.send(f"Well done, you earned `{earned}` for your hard work.")
 
     @coin.command()
     @commands.cooldown(1, 11, commands.BucketType.user)
     async def search(self, ctx):
-        async with self.db.user(ctx.author).data() as data:
-            if bool(data) is None:
-                await ctx.send("Start playing first by claiming daily.")
-                return
-            r = random.sample(list(searchlist.keys()), 3)
-            await ctx.send("Chose a random location to search from bellow\n"
-                        "`{}` , `{}` , `{}`".format(r[0],r[1],r[2]))
-            check = MessagePredicate.lower_contained_in(r,ctx)
-            try:
-                msg = await ctx.bot.wait_for("message", timeout=10, check=check)
-            except asyncio.TimeoutError:
-                await ctx.send("Epic fail!")
-                return
-            if msg.content.lower() in bad_loc:
-                await ctx.send(searchlist[msg.content.lower()])
-                return
-            else:
-                earned = random.randint(5, 30)
-                data['coin'] += earned
-                await ctx.send(searchlist[msg.content.lower()].format(earned))
+        coin = await self.db.user(ctx.author).coin()
+        if coin == 0:
+            await ctx.send("Start playing first by claiming daily.")
+            return
+        r = random.sample(list(searchlist.keys()), 3)
+        await ctx.send("Chose a random location to search from bellow\n"
+                    "`{}` , `{}` , `{}`".format(r[0],r[1],r[2]))
+        check = MessagePredicate.lower_contained_in(r,ctx)
+        try:
+            msg = await ctx.bot.wait_for("message", timeout=10, check=check)
+        except asyncio.TimeoutError:
+            await ctx.send("Epic fail!")
+            return
+        if msg.content.lower() in bad_loc:
+            await ctx.send(searchlist[msg.content.lower()])
+            return
+        else:
+            earned = random.randint(5, 30)
+            coin += earned
+            await self.db.user(ctx.author).coin.set(coin)
+            await ctx.send(searchlist[msg.content.lower()].format(earned))
 
     @coin.command()
     async def gamble(self, ctx, amt: int):
