@@ -152,9 +152,9 @@ class Coin(commands.Cog):
             return await ctx.send(bold("Start playing first, then check boards."))
         sorted_acc = sorted(userinfo.items(), key=lambda x: x[1]['coin'], reverse=True)[:50]
         li = []
-        for i, (user_id, account) in enumerate(sorted_acc):
-            user_obj = ctx.guild.get_member(user_id)
-            li.append(f"{i:2} {user_obj:<15} {account['coin']:>15}")
+        #for i, (user_id, account) in enumerate(sorted_acc):
+            #user_obj = ctx.guild.get_member(user_id)
+            #li.append(f"{i:2} {user_obj.display_name:<15} {account['coin']:>15}")
         text = "\n".join(li)
         page_list=[]
         for page_num, page in enumerate(pagify(text, delims=['\n'], page_length=1000), start=1):
