@@ -32,7 +32,7 @@ class Coin(commands.Cog):
         pass
     
     @coin.command()
-    async def bal(self, ctx, discord.Member = None):
+    async def bal(self, ctx, member: discord.Member = None):
         if member is None:
             member == ctx.author
         else:
