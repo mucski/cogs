@@ -112,10 +112,10 @@ class Coin(commands.Cog):
             await ctx.send("Can't gamble nothing")
             return
         async with self.db.user(ctx.author).data() as data:
-            if bool(data) is None:
+            if coin == 0:
                 await ctx.send("Start playing first by claiming daily.")
                 return
-            if amt > data['coin']:
+            if amt > coin:
                 await ctx.send("You don't have that much coins.")
                 return
             #Build an EMBED!
@@ -139,32 +139,29 @@ class Coin(commands.Cog):
             embed.set_footer(text = "Roll the dice, whoever has the highest wins.")
             await ctx.send(embed = embed)
                     
-    @coin.command(aliases = ["lb"])
-    async def leaderboards(self, ctx):
+    @_cookie.command()
+    async def lb(self, ctx):
         """Cookieboards UwU"""
-        userinfo = await self.db.all_users()
+        userinfo = await self.conf.all_users()
         if not userinfo:
-            return await ctx.send("Start playing first, then check boards.")
+            return await ctx.send(bold("Start playing first, then check boards."))
         sorted_acc = sorted(userinfo.items(), key=lambda x: x[1]['coin'], reverse=True)[:50]
-        users = []
+        li = []
         for i, (user_id, account) in enumerate(sorted_acc):
             user_obj = ctx.guild.get_member(user_id)
-            users.append(f"{i:2} {user_obj.display_name} {['coin']}")
-        #text = "\n".join(li)
-        #users = []
-        #for i, row in enumerate(c, start=1):
-            #rows = []
-            #name = f"{row[1]}"
-            #coin = f"{row[3]}"
-            #rows.append(f"{i}")
-            #rows.append(name)
-            #rows.append(coin)
-            #users.append(rows)
-        #table = tabulate(users, headers = ['#', 'Name', 'Coin'], numalign = 'right', tablefmt = 'presto')
-        #embed = discord.Embed(color = await self.bot.get_embed_color(ctx), title = "Leaderboards")
-        #embed.description = f"``{table}``"
-        #embed.set_footer(text = f"Top 50 players on {ctx.guild.name}")
-        await ctx.send(users)
+            li.append(f"{i:2} {user_obj.display_name:<15} {account['coin']:>15}")
+        text = "\n".join(li)
+        page_list=[]
+        for page_num, page in enumerate(pagify(text, delims=['\n'], page_length=1000), start=1):
+            embed=discord.Embed(
+                color=await ctx.bot.get_embed_color(location=ctx.channel),
+                description=box(f"Cookieboards", lang="prolog") + (box(page, lang="md")),
+            )
+            embed.set_footer (
+                text=f"Page {page_num}/{math.ceil(len(text) / 1000)}",
+            )
+        page_list.append(embed)
+        return await menu(ctx, page_list, DEFAULT_CONTROLS)
         
     @coin.command()
     @commands.cooldown(1, 20, commands.BucketType.user)

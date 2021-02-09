@@ -10,7 +10,7 @@ worklist = {
     "mucski": f"The loser that created this game: `{shuffle_word('mucski')}`",
     "caut": "Paladins must buy item is?",
     "thanos": "He is destiny. Dread it, run from it, he still arrives.",
-    "captain marvel": f"A female captain, strong enough to defeat Thanos himself. `{shuffle_word('captain marvel')}`",
+    "captain marvel": f"A female, strong enough to defeat Thanos himself. `{shuffle_word('captain marvel')}`",
     "subscribe": f"Every YOUTUBER says it sooner or later: `{shuffle_word('subscribe')}`",
     "hit the bell icon": f"Another thing every YOUTUBER says: `{shuffle_word('hit the bell icon')}`",
     "jacksepticeye": f"Green Irish Potato: `{shuffle_word('jacksepticeye')}`",
