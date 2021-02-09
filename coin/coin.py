@@ -176,7 +176,7 @@ class Coin(commands.Cog):
     @coin.command()
     async def steal(self, ctx, member: discord.Member = None):
         emojis = ["⬅", "➡", "❌"]
-        chars = "<><><><><>"
+        chars = "⬅➡⬅➡⬅➡⬅➡⬅➡"
         var = 0
 
         chars = list(chars)
