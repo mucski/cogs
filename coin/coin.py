@@ -29,6 +29,7 @@ class Coin(commands.Cog):
 
     @commands.group(aliases=['c'])
     async def coin(self, ctx):
+        """ For more help type ``.help Coin`` """
         pass
     
     @coin.command()
