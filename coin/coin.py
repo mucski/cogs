@@ -158,7 +158,7 @@ class Coin(commands.Cog):
             user_obj = ctx.guild.get_member(user_id)
             if user_obj is None:
                 continue
-            li.append(f"{i:2} {user_obj.display_name:<15} {account['coin']:>15}")
+            li.append(f"#{i:2} {user_obj.display_name:<15} {account['coin']:>15}")
         text = "\n".join(li)
         page_list=[]
         for page_num, page in enumerate(pagify(text, delims=['\n'], page_length=1000), start=1):
