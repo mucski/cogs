@@ -196,7 +196,7 @@ class Coin(commands.Cog):
             except asyncio.TimeoutError:
                 await msg.clear_reactions()
                 break
-            emoji = EMOJIS[int(pred.result)]
+            emoji = emojis[int(pred.result)]
             if emoji == '❌':
                 await msg.clear_reactions()
                 e.description = "You cancelled."
