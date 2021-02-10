@@ -187,7 +187,7 @@ class Coin(commands.Cog):
         e = discord.Embed(title=f"{ctx.author} is stealing from {member}")
         e.add_field(name="\u200b", value="If you run out of picks, you lost.\nLockpicks left: 3", inline=False)
         e.description = (
-            "```\u200b```"
+            "```___________```"
         )
         #e.add_field(name="\u200b", value="Lockpicks left: 3", inline=False)
         e.set_footer(text="Pick the lock using the ◀ and ▶ and ❌ to cancel.")
@@ -214,9 +214,10 @@ class Coin(commands.Cog):
             if emoji == chars[var]:
                 try:
                     var += 1
+                    line = "__________"
                     pick.append(emoji)
                     e.description = (
-                        f"```{''.join(pick)}```"
+                        f"```{line[var:] + ''.join(pick) +line[var:]}```"
                     )
                     await msg.edit(embed=e)
                 except IndexError:
