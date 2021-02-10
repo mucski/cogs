@@ -186,9 +186,12 @@ class Coin(commands.Cog):
         chars = ''.join(chars)
 
         e = discord.Embed(title=f"{ctx.author} is stealing from {member}")
-        e.add_field(name="\u200b", value="Use the keys bellow to pick the lock", inline=False)
-        e.add_field(name="\u200b", value="When you run out of picks, you lost.", inline=False)
-        e.add_field(name="\u200b", value="_ _ _ _ _ _ _ _ _ _", inline=False)
+        e.description = """```
+        Use the keys bellow to navigate \n
+        When you run out of picks, you lost.\n\n
+
+        _ _ _ _ _ _ _ _ _ _
+        ```"""
         msg = await ctx.send(embed=e)
         start_adding_reactions(msg, emojis)
 
@@ -212,7 +215,12 @@ class Coin(commands.Cog):
             if emoji == chars[var]:
                 try:
                     var += 1
-                    e.set_field_at(2, name="\u200b", value=f"{pick}", inline=False)
+                    e.description = f"""```
+                    Use the keys bellow to navigate \n
+                    When you run out of picks, you lost.\n\n
+
+                    {+=emoji}
+                    ```"""
                     e.set_footer(text=f"lockpicks remaining {key}")
                     await msg.edit(embed=e)
                 except IndexError:
