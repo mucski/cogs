@@ -179,7 +179,7 @@ class Coin(commands.Cog):
         chars = "⬅➡⬅➡⬅➡⬅➡⬅➡"
         var = 0
         key = 3
-        pick = ""
+        pick = []
 
         chars = list(chars)
         random.shuffle(chars)
@@ -214,10 +214,11 @@ class Coin(commands.Cog):
             if emoji == chars[var]:
                 try:
                     var += 1
+                    pick.append(emoji)
                     e.description = (
                         "Pick the lock using the\n"
                         "controls bellow\n\n"
-                        f"{pick+emoji}"
+                        f"{''.join(pick)}"
                     )
                     e.set_footer(text=f"lockpicks remaining {key}")
                     await msg.edit(embed=e)
