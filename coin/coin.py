@@ -191,8 +191,9 @@ class Coin(commands.Cog):
             "controls bellow\n"
             "If you run out of picks, you lost\n"
             "```\u200b```"
+            "Lockpicks left: **3**"
         )
-        e.set_footer(text="Lockpicks available: 3")
+        e.set_footer(text="Pick the lock using the ◀ and ▶ and ❌ to cancel.")
         msg = await ctx.send(embed=e)
         start_adding_reactions(msg, emojis)
 
@@ -222,8 +223,8 @@ class Coin(commands.Cog):
                         "controls bellow\n"
                         "If you run out of picks, you lost\n"
                         f"```{''.join(pick)}```"
+                        f"Lockpicks left: **{key}**"
                     )
-                    e.set_footer(text=f"lockpicks remaining {key}")
                     await msg.edit(embed=e)
                 except IndexError:
                     break
