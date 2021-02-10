@@ -234,7 +234,7 @@ class Coin(commands.Cog):
             if key == 0:
                 e.description = (
                     "You ran out of lock picks."
-                    f"```{pick}```"
+                    f"```\u200b```"
                 )
                 await msg.edit(embed=e)
                 break
