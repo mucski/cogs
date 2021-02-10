@@ -214,7 +214,7 @@ class Coin(commands.Cog):
             if emoji == chars[var]:
                 try:
                     var += 1
-                    thong += emoji
+                    thong = pick += emoji
                     e.description = (
                         "Pick the lock using the\n"
                         "controls bellow\n\n"
