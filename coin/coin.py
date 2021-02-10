@@ -236,6 +236,7 @@ class Coin(commands.Cog):
                     "You ran out of lock picks."
                     f"```{''.join(pick)}```"
                 )
+                await msg.edit(embed=e)
                 break
             try:
                 await msg.remove_reaction(emoji, ctx.author)
