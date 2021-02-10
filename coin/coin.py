@@ -174,9 +174,9 @@ class Coin(commands.Cog):
         #await ctx.send(sorted_acc)
              
     @coin.command()
-    async def steal(self, ctx, member: discord.Member = None):
+    async def steal(self, ctx, member: discord.Member):
         self_coin = await self.db.user(ctx.author).coin()
-        #enemy_coin = await self.db.user(member).coin()
+        enemy_coin = await self.db.user(member).coin()
         emojis = ["◀", "▶", "❌"]
         chars = "◀▶◀▶◀▶◀▶◀▶"
         var = 0
@@ -232,9 +232,12 @@ class Coin(commands.Cog):
                 except IndexError:
                     break
             if var == 10 or key == 0:
-                percent = var / 100
-                e.set_field_at(0, name="\u200b", value=f"You successfully stolen {percent} of {member}'s coins.\nLockpicks left: **{key}**", inline=False)
+                percent = var / 2
+                stolen = floor(enemy_coin * percent / 100)
+                e.set_field_at(0, name="\u200b", value=f"You successfully stolen {percent}({stolen}) percent of {member}'s coins.\nLockpicks left: **{key}**", inline=False)
                 await msg.edit(embed=e)
+                await self.db.user(member).set.coin(enemy_coin -= stolen)
+                await self.db.user(ctx.author).set.coin(stolen += self_coin)
                 break
             try:
                 await msg.remove_reaction(emoji, ctx.author)
