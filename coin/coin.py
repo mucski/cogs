@@ -203,7 +203,7 @@ class Coin(commands.Cog):
             except asyncio.TimeoutError:
                 await msg.clear_reactions()
                 break
-            emoji = emojis[int(pred.result)]
+            emoji = emojis[pred.result]
             if emoji == '❌':
                 await msg.clear_reactions()
                 e.description = "``You cancelled.``"
@@ -232,11 +232,6 @@ class Coin(commands.Cog):
                 e.set_footer(text=f"lockpicks remaining {key}")
                 await msg.edit(embed=e)   
             if key == 0:
-                e.description = (
-                    "You ran out of lock picks."
-                    f"```\u200b```"
-                )
-                await msg.edit(embed=e)
                 break
             try:
                 await msg.remove_reaction(emoji, ctx.author)
