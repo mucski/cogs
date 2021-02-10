@@ -3,7 +3,7 @@ import asyncio
 from redbot.core.utils.predicates import MessagePredicate, ReactionPredicate
 from redbot.core import commands, Config
 import random
-import math import floor
+from math import floor
 from datetime import datetime, timedelta
 import humanize
 from .random import worklist, searchlist, bad_loc
