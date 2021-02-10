@@ -229,14 +229,6 @@ class Coin(commands.Cog):
                     break
             else:
                 key -= 1
-                e.description = (
-                    "Pick the lock using the\n"
-                    "controls bellow\n"
-                    "If you run out of picks, you lost\n"
-                    f"```{''.join(pick)}```"
-                    f"Lockpicks left: **{key}**"
-                )
-                await msg.edit(embed=e) 
             if key == 0:
                 break
             try:
