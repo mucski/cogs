@@ -186,7 +186,8 @@ class Coin(commands.Cog):
         random.shuffle(chars)
         chars = ''.join(chars)
 
-        e = discord.Embed(title=f"{ctx.author} is stealing from {member}")
+        e = discord.Embed(title=f"{ctx.author.name} is stealing from {member.name}")
+        e.set_thumbnail(url=member.avatar_url)
         e.add_field(name="\u200b", value="If you run out of picks, you lost.\nLockpicks left: **3**", inline=False)
         e.description = (
             "```___________```"
@@ -234,7 +235,7 @@ class Coin(commands.Cog):
             if var == 10 or key == 0:
                 percent = var
                 stolen = floor(enemy_coin * percent / 100)
-                e.set_field_at(0, name="\u200b", value=f"You successfully stolen {percent}% of {member}'s coins.\nYou earned {stolen} coins.\nLockpicks left: **{key}**", inline=False)
+                e.set_field_at(0, name="\u200b", value=f"You successfully stolen ``{percent}%`` of {member.name}'s coins.\nYou earned ``{stolen}`` coins.\nLockpicks left: **{key}**", inline=False)
                 await msg.edit(embed=e)
                 self_coin += stolen
                 enemy_coin -= stolen
