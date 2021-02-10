@@ -238,14 +238,6 @@ class Coin(commands.Cog):
                 )
                 await msg.edit(embed=e) 
             if key == 0:
-                e.description = (
-                    "Pick the lock using the\n"
-                    "controls bellow\n"
-                    "If you run out of picks, you lost\n"
-                    f"```{''.join(pick)}```"
-                    f"Lockpicks left: **{key}**"
-                )
-                await msg.edit(embed=e) 
                 break
             try:
                 await msg.remove_reaction(emoji, ctx.author)
