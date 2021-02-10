@@ -215,12 +215,12 @@ class Coin(commands.Cog):
             if emoji == chars[var]:
                 try:
                     var += 1
-                    e.description = f"""```
-                    Use the keys bellow to navigate \n
-                    When you run out of picks, you lost.\n\n
+                    e.description = (
+                    "```Use the keys bellow to navigate \n"
+                    "When you run out of picks, you lost.\n\n"
 
-                    {pick += emoji}
-                    ```"""
+                    f"{pick += emoji}```"
+                    )
                     e.set_footer(text=f"lockpicks remaining {key}")
                     await msg.edit(embed=e)
                 except IndexError:
