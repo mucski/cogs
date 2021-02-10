@@ -236,8 +236,8 @@ class Coin(commands.Cog):
                 stolen = floor(enemy_coin * percent / 100)
                 e.set_field_at(0, name="\u200b", value=f"You successfully stolen {percent}({stolen}) percent of {member}'s coins.\nLockpicks left: **{key}**", inline=False)
                 await msg.edit(embed=e)
-                await self.db.user(member).set.coin(enemy_coin -= stolen)
                 await self.db.user(ctx.author).set.coin(stolen += self_coin)
+                await self.db.user(member).set.coin(stolen -= enemy_coin)
                 break
             try:
                 await msg.remove_reaction(emoji, ctx.author)
