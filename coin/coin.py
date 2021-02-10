@@ -209,14 +209,14 @@ class Coin(commands.Cog):
             var = 0
             key = 3
             pick = []
+            var += 1
+            pick.append(emoji)
             #elif emoji == '▶️':
             #    direction = ">"
             #elif emoji == '◀️':
             #    direction = "<"
             if emoji == chars[var]:
                 try:
-                    var += 1
-                    pick.append(emoji)
                     e.description = (
                         "Pick the lock using the\n"
                         "controls bellow\n"
@@ -233,7 +233,7 @@ class Coin(commands.Cog):
                     "Pick the lock using the\n"
                     "controls bellow\n"
                     "If you run out of picks, you lost\n"
-                    f"```{pick}```"
+                    f"```{''.join(pick)}```"
                     f"Lockpicks left: **{key}**"
                 )
                 await msg.edit(embed=e) 
@@ -243,7 +243,7 @@ class Coin(commands.Cog):
                     "Pick the lock using the\n"
                     "controls bellow\n"
                     "If you run out of picks, you lost\n"
-                    f"```{pick}```"
+                    f"```{''.join(pick)}```"
                     f"Lockpicks left: **{key}**"
                 )
                 await msg.edit(embed=e) 
