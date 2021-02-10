@@ -214,11 +214,10 @@ class Coin(commands.Cog):
             if emoji == chars[var]:
                 try:
                     var += 1
-                    thong = pick += emoji
                     e.description = (
                         "Pick the lock using the\n"
                         "controls bellow\n\n"
-                        f"{thong}"
+                        f"{emoji"
                     )
                     e.set_footer(text=f"lockpicks remaining {key}")
                     await msg.edit(embed=e)
