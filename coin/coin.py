@@ -223,9 +223,12 @@ class Coin(commands.Cog):
                 except IndexError:
                     break
             else:
-                key -= 1
-                e.set_field_at(0, name="\u200b", value=f"If you run out of picks, you lost.\nLockpicks left: {key}", inline=False)
-                await msg.edit(embed=e)
+                try:
+                    key -= 1
+                    e.set_field_at(0, name="\u200b", value=f"If you run out of picks, you lost.\nLockpicks left: {key}", inline=False)
+                    await msg.edit(embed=e)
+                except IndexError:
+                    break
             if key == 0:
                 break
             try:
