@@ -178,6 +178,7 @@ class Coin(commands.Cog):
         emojis = ["⬅", "➡", "❌"]
         chars = "⬅➡⬅➡⬅➡⬅➡⬅➡"
         var = 0
+        key = 3
 
         chars = list(chars)
         random.shuffle(chars)
@@ -206,15 +207,17 @@ class Coin(commands.Cog):
             #    direction = ">"
             #elif emoji == '◀️':
             #    direction = "<"
-            fuck = ""
             if emoji == chars[var]:
                 try:
                     var += 1
-                    e.description = f"```{fuck}```"
-                    fuck += f"{chars[var]}"
+                    e.description = f"```{chars[var]} \n Keys remaining {key}```"
                     await msg.edit(embed=e)
                 except IndexError:
                     break
+            elif key != 0:
+                key -= 1
+                e.description = f"```{chars[var]} \n Keys remaining {key}```"
+                await msg.edit(embed=e)    
             if var == 10:
                 break
             try:
