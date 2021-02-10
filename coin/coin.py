@@ -8,8 +8,6 @@ from datetime import datetime, timedelta
 import humanize
 from .random import worklist, searchlist, bad_loc
 from textwrap import dedent
-import pkg_resources
-import tabulate
 from redbot.core.utils.chat_formatting import pagify, box
 from redbot.core.utils.menus import menu, DEFAULT_CONTROLS, start_adding_reactions
 
