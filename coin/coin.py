@@ -219,7 +219,7 @@ class Coin(commands.Cog):
                     Use the keys bellow to navigate \n
                     When you run out of picks, you lost.\n\n
 
-                    {+=emoji}
+                    {pick += emoji}
                     ```"""
                     e.set_footer(text=f"lockpicks remaining {key}")
                     await msg.edit(embed=e)
