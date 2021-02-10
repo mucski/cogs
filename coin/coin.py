@@ -179,7 +179,6 @@ class Coin(commands.Cog):
         chars = "◀▶◀▶◀▶◀▶◀▶"
         var = 0
         key = 3
-        pick = []
         chars = list(chars)
         random.shuffle(chars)
         chars = ''.join(chars)
@@ -213,6 +212,7 @@ class Coin(commands.Cog):
             #    direction = ">"
             #elif emoji == '◀️':
             #    direction = "<"
+            pick = []
             if emoji == chars[var]:
                 try:
                     var += 1
