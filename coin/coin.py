@@ -209,7 +209,6 @@ class Coin(commands.Cog):
             var = 0
             key = 3
             pick = []
-            var += 1
             pick.append(emoji)
             #elif emoji == '▶️':
             #    direction = ">"
@@ -217,6 +216,7 @@ class Coin(commands.Cog):
             #    direction = "<"
             if emoji == chars[var]:
                 try:
+                    var += 1
                     e.description = (
                         "Pick the lock using the\n"
                         "controls bellow\n"
