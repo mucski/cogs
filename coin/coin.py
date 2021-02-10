@@ -177,10 +177,6 @@ class Coin(commands.Cog):
     async def steal(self, ctx, member: discord.Member = None):
         emojis = ["◀", "▶", "❌"]
         chars = "◀▶◀▶◀▶◀▶◀▶"
-        var = 0
-        key = 3
-        pick = []
-
         chars = list(chars)
         random.shuffle(chars)
         chars = ''.join(chars)
@@ -210,6 +206,9 @@ class Coin(commands.Cog):
                 e.description = "``You cancelled.``"
                 await msg.edit(embed=e)
                 break
+            var = 0
+            key = 3
+            pick = []
             #elif emoji == '▶️':
             #    direction = ">"
             #elif emoji == '◀️':
@@ -230,8 +229,14 @@ class Coin(commands.Cog):
                     break
             else:
                 key -= 1
-                e.set_footer(text=f"lockpicks remaining {key}")
-                await msg.edit(embed=e)   
+                e.description = (
+                    "Pick the lock using the\n"
+                    "controls bellow\n"
+                    "If you run out of picks, you lost\n"
+                    f"```{pick}```"
+                    f"Lockpicks left: **{key}**"
+                )
+                await msg.edit(embed=e) 
             if key == 0:
                 break
             try:
