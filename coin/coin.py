@@ -175,6 +175,8 @@ class Coin(commands.Cog):
              
     @coin.command()
     async def steal(self, ctx, member: discord.Member = None):
+        self_coin = await self.db.user(ctx.author).coin()
+        enemy_coin = await self.db.user(member).coin()
         emojis = ["◀", "▶", "❌"]
         chars = "◀▶◀▶◀▶◀▶◀▶"
         var = 0
@@ -185,7 +187,7 @@ class Coin(commands.Cog):
         chars = ''.join(chars)
 
         e = discord.Embed(title=f"{ctx.author} is stealing from {member}")
-        e.add_field(name="\u200b", value="If you run out of picks, you lost.\nLockpicks left: 3", inline=False)
+        e.add_field(name="\u200b", value="If you run out of picks, you lost.\nLockpicks left: **3**", inline=False)
         e.description = (
             "```___________```"
         )
@@ -225,11 +227,11 @@ class Coin(commands.Cog):
             else:
                 try:
                     key -= 1
-                    e.set_field_at(0, name="\u200b", value=f"If you run out of picks, you lost.\nLockpicks left: {key}", inline=False)
+                    e.set_field_at(0, name="\u200b", value=f"If you run out of picks, you lost.\nLockpicks left: **{key}**", inline=False)
                     await msg.edit(embed=e)
                 except IndexError:
                     break
-            if key == 0:
+            if var == 10 or key == 0:
                 break
             try:
                 await msg.remove_reaction(emoji, ctx.author)
