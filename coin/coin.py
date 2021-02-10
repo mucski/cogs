@@ -210,14 +210,13 @@ class Coin(commands.Cog):
             if emoji == chars[var]:
                 try:
                     var += 1
-                    e.description += chars[var]
+                    e.description += emoji
                     e.set_footer(text=f"lockpicks remaining {key}")
                     await msg.edit(embed=e)
                 except IndexError:
                     break
-            elif key != 0:
+            else
                 key -= 1
-                e.description += chars[var]
                 e.set_footer(text=f"lockpicks remaining {key}")
                 await msg.edit(embed=e)   
             if key == 0:
