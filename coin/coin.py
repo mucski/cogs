@@ -222,7 +222,6 @@ class Coin(commands.Cog):
                         f"```{''.join(pick) + line[var:]}```"
                     )
                     await msg.edit(embed=e)
-                    await msg.remove_reaction(emoji, ctx.author)
                 except IndexError:
                     break
             else:
