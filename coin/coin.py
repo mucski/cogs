@@ -232,6 +232,10 @@ class Coin(commands.Cog):
                 e.set_footer(text=f"lockpicks remaining {key}")
                 await msg.edit(embed=e)   
             if key == 0:
+                e.description = (
+                    "You ran out of lock picks."
+                    f"```{''.join(pick)}```"
+                )
                 break
             try:
                 await msg.remove_reaction(emoji, ctx.author)
