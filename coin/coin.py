@@ -218,7 +218,7 @@ class Coin(commands.Cog):
                     e.description = (
                     "```Use the keys bellow to navigate \n"
                     "When you run out of picks, you lost.\n\n"
-
+                    
                     f"{pick += emoji}```"
                     )
                     e.set_footer(text=f"lockpicks remaining {key}")
