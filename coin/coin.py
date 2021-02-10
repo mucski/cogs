@@ -217,7 +217,7 @@ class Coin(commands.Cog):
                     e.description = (
                         "Pick the lock using the\n"
                         "controls bellow\n\n"
-                        f"{emoji}"
+                        f"{pick+emoji}"
                     )
                     e.set_footer(text=f"lockpicks remaining {key}")
                     await msg.edit(embed=e)
