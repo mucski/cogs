@@ -238,7 +238,6 @@ class Coin(commands.Cog):
                 )
                 await msg.edit(embed=e) 
             if key == 0:
-                key -= 1
                 e.description = (
                     "Pick the lock using the\n"
                     "controls bellow\n"
