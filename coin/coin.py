@@ -229,7 +229,6 @@ class Coin(commands.Cog):
                     break
             else:
                 key -= 1
-                var += 1
                 pick.append(emoji)
                 e.description = (
                     "Pick the lock using the\n"
