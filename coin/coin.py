@@ -185,7 +185,7 @@ class Coin(commands.Cog):
         chars = ''.join(chars)
 
         e = discord.Embed(title=f"{ctx.author} is stealing from {member}")
-        e.desription = "Use the controlls bellow to control your lockpick. When you run out of lockpicks you lost."
+        e.description = "Use the controlls bellow to control your lockpick. When you run out of lockpicks you lost."
         msg = await ctx.send(embed=e)
         start_adding_reactions(msg, emojis)
 
