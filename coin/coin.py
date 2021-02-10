@@ -222,6 +222,7 @@ class Coin(commands.Cog):
                         f"```{''.join(pick) + line[var:]}```"
                     )
                     await msg.edit(embed=e)
+                    await msg.remove_reaction(emoji, ctx.author)
                 except IndexError:
                     break
             else:
@@ -229,6 +230,7 @@ class Coin(commands.Cog):
                     key -= 1
                     e.set_field_at(0, name="\u200b", value=f"If you run out of picks, you lost.\nLockpicks left: **{key}**", inline=False)
                     await msg.edit(embed=e)
+                    await msg.remove_reaction(emoji, ctx.author)
                 except IndexError:
                     break
             if var == 10 or key == 0:
@@ -240,6 +242,7 @@ class Coin(commands.Cog):
                 enemy_coin -= stolen
                 await self.db.user(ctx.author).coin.set(self_coin)
                 await self.db.user(member).coin.set(enemy_coin)
+                await msg.remove_reaction(emoji, ctx.author)
                 break
             try:
                 await msg.remove_reaction(emoji, ctx.author)
