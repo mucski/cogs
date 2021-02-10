@@ -117,33 +117,32 @@ class Coin(commands.Cog):
         if amt < 0:
             await ctx.send("Can't gamble nothing")
             return
-        async with self.db.user(ctx.author).data() as data:
-            if coin == 0:
-                await ctx.send("Start playing first by claiming daily.")
-                return
-            if amt > coin:
-                await ctx.send("You don't have that much coins.")
-                return
-            #Build an EMBED!
-            embed = discord.Embed(color = await self.bot.get_embed_color(ctx), title = "Roll the Dice.")
-            if you > 6 or dealer < you:
-                embed.add_field(name = "Dealer rolled:", value = f"🎲 {dealer}")
-                embed.add_field(name = "You rolled:", value = f"🎲 {you}")
-                embed.description = "YOU WON!"
-                coin += amt
-                await self.db.user(ctx.author).coin.set(coin)
-            elif you == dealer:
-                embed.add_field(name = "Dealer rolled:", value = f"🎲 {dealer}")
-                embed.add_field(name = "You rolled:", value = f"🎲 {you}")
-                embed.description = "It's a tie."
-            elif you < 6 or dealer > you:
-                embed.add_field(name = "Dealer rolled:", value = f"🎲 {dealer}")
-                embed.add_field(name = "You rolled:", value = f"🎲 {you}")
-                embed.description = "YOU LOST!"
-                coin -= amt
-                await self.db.user(ctx.author).coin.set(coin)
-            embed.set_footer(text = "Roll the dice, whoever has the highest wins.")
-            await ctx.send(embed = embed)
+        if coin == 0:
+            await ctx.send("Start playing first by claiming daily.")
+            return
+        if amt > coin:
+            await ctx.send("You don't have that much coins.")
+            return
+        #Build an EMBED!
+        embed = discord.Embed(color = await self.bot.get_embed_color(ctx), title = "Roll the Dice.")
+        if you > 6 or dealer < you:
+            embed.add_field(name = "Dealer rolled:", value = f"🎲 {dealer}")
+            embed.add_field(name = "You rolled:", value = f"🎲 {you}")
+            embed.description = "YOU WON!"
+            coin += amt
+            await self.db.user(ctx.author).coin.set(coin)
+        elif you == dealer:
+            embed.add_field(name = "Dealer rolled:", value = f"🎲 {dealer}")
+            embed.add_field(name = "You rolled:", value = f"🎲 {you}")
+            embed.description = "It's a tie."
+        elif you < 6 or dealer > you:
+            embed.add_field(name = "Dealer rolled:", value = f"🎲 {dealer}")
+            embed.add_field(name = "You rolled:", value = f"🎲 {you}")
+            embed.description = "YOU LOST!"
+            coin -= amt
+            await self.db.user(ctx.author).coin.set(coin)
+        embed.set_footer(text = "Roll the dice, whoever has the highest wins.")
+        await ctx.send(embed = embed)
                     
     @coin.command(aliases=['lb'])
     async def leaderboard(self, ctx):
