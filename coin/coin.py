@@ -179,17 +179,17 @@ class Coin(commands.Cog):
         chars = "◀▶◀▶◀▶◀▶◀▶"
         var = 0
         key = 3
+        pick = []
         chars = list(chars)
         random.shuffle(chars)
         chars = ''.join(chars)
 
         e = discord.Embed(title=f"{ctx.author} is stealing from {member}")
+        e.add_field(name="\u200b", value="If you run out of picks, you lost.", inline=False)
+        e.add_field(name="\u200b", value="Lockpicks left: 3", inline=False)
         e.description = (
-            "Pick the lock using the\n"
-            "controls bellow\n"
-            "If you run out of picks, you lost\n"
+
             "```\u200b```"
-            "Lockpicks left: **3**"
         )
         e.set_footer(text="Pick the lock using the ◀ and ▶ and ❌ to cancel.")
         msg = await ctx.send(embed=e)
@@ -212,31 +212,19 @@ class Coin(commands.Cog):
             #    direction = ">"
             #elif emoji == '◀️':
             #    direction = "<"
-            pick = []
             if emoji == chars[var]:
                 try:
                     var += 1
                     pick.append(emoji)
                     e.description = (
-                        "Pick the lock using the\n"
-                        "controls bellow\n"
-                        "If you run out of picks, you lost\n"
                         f"```{''.join(pick)}```"
-                        f"Lockpicks left: **{key}**"
                     )
                     await msg.edit(embed=e)
                 except IndexError:
                     break
             else:
                 key -= 1
-                pick.append(emoji)
-                e.description = (
-                    "Pick the lock using the\n"
-                    "controls bellow\n"
-                    "If you run out of picks, you lost\n"
-                    f"```{''.join(pick)}```"
-                    f"Lockpicks left: **{key}**"
-                )
+                e.set_field_at(1, name="\u200b", value=f"Lockpicks left: {key}", inline=False)
                 await msg.edit(embed=e)
             if key == 0:
                 break
