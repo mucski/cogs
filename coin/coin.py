@@ -185,11 +185,11 @@ class Coin(commands.Cog):
         chars = ''.join(chars)
 
         e = discord.Embed(title=f"{ctx.author} is stealing from {member}")
-        e.add_field(name="\u200b", value="If you run out of picks, you lost.", inline=False)
+        e.add_field(name="\u200b", value="If you run out of picks, you lost.\nLockpicks left: 3", inline=False)
         e.description = (
             "```\u200b```"
         )
-        e.add_field(name="\u200b", value="Lockpicks left: 3", inline=False)
+        #e.add_field(name="\u200b", value="Lockpicks left: 3", inline=False)
         e.set_footer(text="Pick the lock using the ◀ and ▶ and ❌ to cancel.")
         msg = await ctx.send(embed=e)
         start_adding_reactions(msg, emojis)
@@ -223,7 +223,7 @@ class Coin(commands.Cog):
                     break
             else:
                 key -= 1
-                e.set_field_at(1, name="\u200b", value=f"Lockpicks left: {key}", inline=False)
+                e.set_field_at(0, name="\u200b", value=f"If you run out of picks, you lost.\nLockpicks left: {key}", inline=False)
                 await msg.edit(embed=e)
             if key == 0:
                 break
