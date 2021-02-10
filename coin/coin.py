@@ -188,8 +188,8 @@ class Coin(commands.Cog):
         e = discord.Embed(title=f"{ctx.author} is stealing from {member}")
         e.description = (
             "Pick the lock using the\n"
-            "controls bellow\n\n"
-            "```_ _ _ _ _ _ _ _ _ _```"
+            "controls bellow\n"
+            "```\u200b```"
         )
         msg = await ctx.send(embed=e)
         start_adding_reactions(msg, emojis)
@@ -217,7 +217,7 @@ class Coin(commands.Cog):
                     pick.append(emoji)
                     e.description = (
                         "Pick the lock using the\n"
-                        "controls bellow\n\n"
+                        "controls bellow\n"
                         f"```{''.join(pick)}```"
                     )
                     e.set_footer(text=f"lockpicks remaining {key}")
