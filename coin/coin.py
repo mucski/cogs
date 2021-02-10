@@ -236,7 +236,7 @@ class Coin(commands.Cog):
             if var == 10 or key == 0:
                 percent = var / 2
                 stolen = floor(enemy_coin * percent / 100)
-                e.set_field_at(0, name="\u200b", value=f"You successfully stolen {percent}({stolen}) percent of {member}'s coins.\nLockpicks left: **{key}**", inline=False)
+                e.set_field_at(0, name="\u200b", value=f"You successfully stolen {percent}% of {member}'s coins.\nLockpicks left: **{key}**", inline=False)
                 await msg.edit(embed=e)
                 self_coin += stolen
                 enemy_coin -= stolen
