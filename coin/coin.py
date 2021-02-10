@@ -177,6 +177,9 @@ class Coin(commands.Cog):
     async def steal(self, ctx, member: discord.Member = None):
         emojis = ["◀", "▶", "❌"]
         chars = "◀▶◀▶◀▶◀▶◀▶"
+        var = 0
+        key = 3
+        pick = []
         chars = list(chars)
         random.shuffle(chars)
         chars = ''.join(chars)
@@ -206,9 +209,6 @@ class Coin(commands.Cog):
                 e.description = "``You cancelled.``"
                 await msg.edit(embed=e)
                 break
-            var = 0
-            key = 3
-            pick = []
             #elif emoji == '▶️':
             #    direction = ">"
             #elif emoji == '◀️':
