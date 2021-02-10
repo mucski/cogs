@@ -232,6 +232,9 @@ class Coin(commands.Cog):
                 except IndexError:
                     break
             if var == 10 or key == 0:
+                percent = (var * 100) / 2
+                e.set_field_at(0, name="\u200b", value=f"You successfully stolen {percent} of {member}'s coins.\nLockpicks left: **{key}**", inline=False)
+                await msg.edit(embed=e)
                 break
             try:
                 await msg.remove_reaction(emoji, ctx.author)
