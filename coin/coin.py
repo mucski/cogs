@@ -238,8 +238,8 @@ class Coin(commands.Cog):
                 await msg.edit(embed=e)
                 self_coin += stolen
                 enemy_coin -= stolen
-                await self.db.user(ctx.author).set.coin(self_coin)
-                await self.db.user(member).set.coin(enemy_coin)
+                await self.db.user(ctx.author).coin.set(self_coin)
+                await self.db.user(member).coin.set(enemy_coin)
                 break
             try:
                 await msg.remove_reaction(emoji, ctx.author)
