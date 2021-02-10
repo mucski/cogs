@@ -3,7 +3,7 @@ import asyncio
 from redbot.core.utils.predicates import MessagePredicate, ReactionPredicate
 from redbot.core import commands, Config
 import random
-from math import floor
+from math import floor, ceil, isclose
 from datetime import datetime, timedelta
 import humanize
 from .random import worklist, searchlist, bad_loc
@@ -167,7 +167,7 @@ class Coin(commands.Cog):
                 description=box(f"Leaderboards", lang="prolog") + (box(page, lang="md")),
             )
             embed.set_footer (
-                text=f"Page {page_num}/{math.ceil(len(text) / 1000)}",
+                text=f"Page {page_num}/{ceil(len(text) / 1000)}",
             )
         page_list.append(embed)
         return await menu(ctx, page_list, DEFAULT_CONTROLS)
@@ -328,7 +328,7 @@ class Coin(commands.Cog):
                 await ctx.send("Wrong input type.")
                 return
             
-        if math.isclose(your_input, chest, rel_tol = 0.1) is True:
+        if isclose(your_input, chest, rel_tol = 0.1) is True:
             earned = random.randint(20, 50)
             coin += earned
             await self.db.user(ctx.author).coin.set(coin)
