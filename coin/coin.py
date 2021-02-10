@@ -215,7 +215,7 @@ class Coin(commands.Cog):
                     await msg.edit(embed=e)
                 except IndexError:
                     break
-            else
+            else:
                 key -= 1
                 e.set_footer(text=f"lockpicks remaining {key}")
                 await msg.edit(embed=e)   
