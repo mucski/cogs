@@ -189,7 +189,7 @@ class Coin(commands.Cog):
         e.description = (
             "Pick the lock using the\n"
             "controls bellow\n\n"
-            "_ _ _ _ _ _ _ _ _ _"
+            "```_ _ _ _ _ _ _ _ _ _```"
         )
         msg = await ctx.send(embed=e)
         start_adding_reactions(msg, emojis)
@@ -218,7 +218,7 @@ class Coin(commands.Cog):
                     e.description = (
                         "Pick the lock using the\n"
                         "controls bellow\n\n"
-                        f"{''.join(pick)}"
+                        f"```{''.join(pick)}```"
                     )
                     e.set_footer(text=f"lockpicks remaining {key}")
                     await msg.edit(embed=e)
