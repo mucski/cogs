@@ -217,7 +217,7 @@ class Coin(commands.Cog):
                     line = "__________"
                     pick.append(emoji)
                     e.description = (
-                        f">{''.join(pick) + line[var:]}"
+                        f"`{''.join(pick) + line[var:]}`"
                     )
                     await msg.edit(embed=e)
                 except IndexError:
