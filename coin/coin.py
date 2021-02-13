@@ -204,7 +204,7 @@ class Coin(commands.Cog):
             emoji = emojis[pred.result]
             if emoji == '❌':
                 await msg.clear_reactions()
-                e.description = "``You cancelled.``"
+                e.description = "`You cancelled.`"
                 await msg.edit(embed=e)
                 break
             #elif emoji == '▶️':
@@ -232,7 +232,7 @@ class Coin(commands.Cog):
             if var == 10 or key == 0:
                 percent = var
                 stolen = floor(enemy_coin * percent / 100)
-                e.set_field_at(0, name="\u200b", value=f"You successfully stolen ``{percent}%`` of {member.name}'s coins.\nYou earned ``{stolen}`` coins.\nLockpicks left: **{key}**", inline=False)
+                e.set_field_at(0, name="\u200b", value=f"You successfully stolen `{percent}%` of {member.name}'s coins.\nYou earned `{stolen}` coins.\nLockpicks left: **{key}**", inline=False)
                 await msg.edit(embed=e)
                 self_coin += stolen
                 enemy_coin -= stolen
