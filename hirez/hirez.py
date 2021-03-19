@@ -67,7 +67,7 @@ class  Hirez(commands.Cog):
 
     @commands.command()
     async def hitest(self, ctx, champ):
-        champ = asnyc get_champ_image(champ)
+        champ = await get_champ_image(champ)
         await ctx.send(champ)
 
     @commands.command()
