@@ -12,12 +12,10 @@ class Roleplaying(commands.Cog):
 
     @commands.command()
     async def kiss(self, ctx, member: discord.Member = None):
-        if ctx.author.nick is None:
-            authnick = ctx.author.name
-        else:
+        try:
             authnick = ctx.author.nick
-        if member.nick is None:
-            memnick = member.name
+        except:
+            authnick = ctx.author.name
         else:
             memnick = member.nick
         img = random.choice(kisslist)
