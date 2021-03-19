@@ -301,7 +301,6 @@ class  Hirez(commands.Cog):
 
         return champ_stats_image
 
-
     # Creates the text at the top of the image
     async def player_key_image(self, x, y):
         font = "/home/ubuntu/arial.ttf"
@@ -345,7 +344,6 @@ class  Hirez(commands.Cog):
         base_draw.text((x + 3600, 0), "Healing", font=ImageFont.truetype(font, 80), fill=fill)
 
         return key
-
 
     @commands.command()
     async def hitest(self, ctx):
