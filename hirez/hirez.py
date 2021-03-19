@@ -118,12 +118,12 @@ class  Hirez(commands.Cog):
 
         return final_buffer
 
-    async def middle_info_image(self, match_data):
+    async def middle_info_image(self, md):
         font = "/home/ubuntu/arial.ttf"
         middle_panel = Image.new('RGB', (512*9, 512), color=(217, 247, 247))
 
         # Adding in map to image
-        map_name = map_file_name = (match_data[3].strip().replace("Ranked ", "").replace(" (TDM)", "").replace(" (Onslaught)", "")
+        map_name = map_file_name = (md[3].strip().replace("Ranked ", "").replace(" (TDM)", "").replace(" (Onslaught)", "")
                                 .replace(" (Siege)", "")).replace("Practice ", "")
         if "WIP" in map_name:
             map_file_name = "test_maps"
@@ -140,17 +140,17 @@ class  Hirez(commands.Cog):
         # Add in match information
         ds = 50  # Down Shift
         rs = 20  # Right Shift
-        draw_panel.text((512 * 2 + rs, 0 + ds), str(match_data[0]), font=ImageFont.truetype(font, 100), fill=(0, 0, 0))
-        draw_panel.text((512 * 2 + rs, 100 + ds), (str(match_data[1]) + " minutes"), font=ImageFont.truetype(font, 100),
+        draw_panel.text((512 * 2 + rs, 0 + ds), str(md[0]), font=ImageFont.truetype(font, 100), fill=(0, 0, 0))
+        draw_panel.text((512 * 2 + rs, 100 + ds), (str(md[1]) + " minutes"), font=ImageFont.truetype(font, 100),
                         fill=(0, 0, 0))
-        draw_panel.text((512 * 2 + rs, 200 + ds), str(match_data[2]), font=ImageFont.truetype(font, 100), fill=(0, 0, 0))
+        draw_panel.text((512 * 2 + rs, 200 + ds), str(md[2]), font=ImageFont.truetype(font, 100), fill=(0, 0, 0))
         draw_panel.text((512 * 2 + rs, 300 + ds), str(map_name), font=ImageFont.truetype(font, 100), fill=(0, 0, 0))
 
         # Right shift
         rs = 100
         # Team 1
         draw_panel.text((512 * 4 + rs, ds), "Team 1 Score: ", font=ImageFont.truetype(font, 100), fill=(0, 0, 0))
-        draw_panel.text((512 * 4 + rs * 8, ds), str(match_data[4]), font=ImageFont.truetype(font, 100), fill=(0, 0, 0))
+        draw_panel.text((512 * 4 + rs * 8, ds), str(md[4]), font=ImageFont.truetype(font, 100), fill=(0, 0, 0))
 
         center = (512/2 - 130/2)
         center2 = (512/2 - 80/2)
@@ -159,16 +159,16 @@ class  Hirez(commands.Cog):
 
         # Team 2
         draw_panel.text((512 * 4 + rs, 372), "Team 2 Score: ", font=ImageFont.truetype(font, 100), fill=(0, 0, 0))
-        draw_panel.text((512 * 4 + rs * 8, 372), str(match_data[5]), font=ImageFont.truetype(font, 100), fill=(0, 0, 0))
+        draw_panel.text((512 * 4 + rs * 8, 372), str(md[5]), font=ImageFont.truetype(font, 100), fill=(0, 0, 0))
 
         #  add in banned champs if it's a ranked match
-        if match_data[6] is not None:
+        if md[6] is not None:
             # Ranked bans
             draw_panel.text((512 * 5 + rs * 8, center2), "Bans:", font=ImageFont.truetype(font, 80), fill=(0, 0, 0))
 
             # Team 1 Bans
             try:
-                champ_url = await self.get_champ_image(match_data[6])
+                champ_url = await self.get_champ_image(md[6])
                 sessions = aiohttp.ClientSession()
                 async with sessions.get(champ_url) as response:
                     resp = await response.read()
@@ -180,7 +180,7 @@ class  Hirez(commands.Cog):
                 pass
 
             try:
-                champ_url = await self.get_champ_image(match_data[7])
+                champ_url = await self.get_champ_image(md[7])
                 sessions = aiohttp.ClientSession()
                 async with sessions.get(champ_url) as response:
                     resp = await response.read()
@@ -193,7 +193,7 @@ class  Hirez(commands.Cog):
 
             # Team 2 Bans
             try:
-                champ_url = await self.get_champ_image(match_data[8])
+                champ_url = await self.get_champ_image(md[8])
                 sessions = aiohttp.ClientSession()
                 async with sessions.get(champ_url) as response:
                     resp = await response.read()
@@ -205,7 +205,7 @@ class  Hirez(commands.Cog):
                 pass
 
             try:
-                champ_url = await self.get_champ_image(match_data[9])
+                champ_url = await self.get_champ_image(md[9])
                 sessions = aiohttp.ClientSession()
                 async with sessions.get(champ_url) as response:
                     resp = await response.read()
@@ -232,7 +232,7 @@ class  Hirez(commands.Cog):
 
         champ_stats_image.paste(champ_icon, (offset, offset))
 
-        platform = champ_stats[11]
+        platform = champ_stats[10]
         if platform == "XboxLive":
             platform_logo = Image.open("/home/ubuntu/icons/xbox_logo.png").resize((100, 100), Image.ANTIALIAS)
             platform_logo = platform_logo.convert("RGBA")
@@ -269,35 +269,35 @@ class  Hirez(commands.Cog):
 
         # Parties
         fill = (128, 0, 128)
-        base_draw.text((img_x + 750, middle), party[champ_stats[3]], font=ImageFont.truetype(font, 100), fill=fill)
+        base_draw.text((img_x + 750, middle), party[champ_stats[9]], font=ImageFont.truetype(font, 100), fill=fill)
 
         # Credits/Gold earned
         fill = (218, 165, 32)
-        base_draw.text((img_x + 900, middle), str(champ_stats[4]), font=ImageFont.truetype(font, 100), fill=fill)
+        base_draw.text((img_x + 900, middle), str(champ_stats[2]), font=ImageFont.truetype(font, 100), fill=fill)
 
         # KDA
         fill = (101, 33, 67)
-        base_draw.text((img_x + 1300, middle), str(champ_stats[5]), font=ImageFont.truetype(font, 100), fill=fill)
+        base_draw.text((img_x + 1300, middle), str(champ_stats[3]), font=ImageFont.truetype(font, 100), fill=fill)
 
         # Damage done
         fill = (255, 0, 0)
-        base_draw.text((img_x + 1830, middle), str(champ_stats[6]), font=ImageFont.truetype(font, 100), fill=fill)
+        base_draw.text((img_x + 1830, middle), str(champ_stats[4]), font=ImageFont.truetype(font, 100), fill=fill)
 
         # Damage taken
         fill = (220, 20, 60)
-        base_draw.text((img_x + 2350, middle), str(champ_stats[7]), font=ImageFont.truetype(font, 100), fill=fill)
+        base_draw.text((img_x + 2350, middle), str(champ_stats[5]), font=ImageFont.truetype(font, 100), fill=fill)
 
         # Objective time
         fill = (159, 105, 52)
-        base_draw.text((img_x + 2850, middle), str(champ_stats[8]), font=ImageFont.truetype(font, 100), fill=fill)
+        base_draw.text((img_x + 2850, middle), str(champ_stats[6]), font=ImageFont.truetype(font, 100), fill=fill)
 
         # Shielding
         fill = (0, 51, 102)
-        base_draw.text((img_x + 3150, middle), str(champ_stats[9]), font=ImageFont.truetype(font, 100), fill=fill)
+        base_draw.text((img_x + 3150, middle), str(champ_stats[7]), font=ImageFont.truetype(font, 100), fill=fill)
 
         # Healing
         fill = (0, 128, 0)
-        base_draw.text((img_x + 3600, middle), str(champ_stats[10]), font=ImageFont.truetype(font, 100), fill=fill)
+        base_draw.text((img_x + 3600, middle), str(champ_stats[8]), font=ImageFont.truetype(font, 100), fill=fill)
 
         return champ_stats_image
 
@@ -353,15 +353,18 @@ class  Hirez(commands.Cog):
 
     @commands.command()
     async def hitest(self, ctx):
+        # 5 champion names
         team1 = ["Makoa", "Cassie", "Strix", "Bomb King", "IO"]
         team2 = ["Atlas", "Vora", "Yagorath", "Jenos", "Dredge"]
         t1_data = []
         t2_data = []
         party1 = ["0","0","0","0","0"]
         party2 = ["0","0","0","0","0"]
-        match_info = ["1", "32", "Europe", "Timber Mill", "4", "1"]
+        #win status, match minutes, match region, map, team1 score, team2 score
+        match_info = ["Win", "32", "Europe", "Timber Mill", "4", "1"]
+        #ban 1, ban 2, ban 3, ban 4
         bans = ["Sha Lin, Ruckus", "Tiberius", "Raum"]
-        #player name, champion, party, credit, kda, damage, damage taken, obj time, shielding, healing
+        #player name, champion(determined elsewhere), level, party, credit, kda, damage, damage taken, obj time, shielding, healing
         t1 = ["Joey", "999", "0", "3409", "24/1/93", "83834", "34849", "143", "382834", "338423", "PC"]
         t2 = ["Joey", "999", "0", "3409", "24/1/93", "83834", "34849", "143", "382834", "338423", "PC"]
         t3 = ["Joey", "999", "0", "3409", "24/1/93", "83834", "34849", "143", "382834", "338423", "PC"]
