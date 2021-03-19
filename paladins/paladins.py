@@ -41,8 +41,8 @@ class Paladins(commands.Cog):
             champ = "sha-lin"
         if "mal" in champ:
             champ = "maldamba"
-        url = "https://web2.hirez.com/paladins/champion-icons/" 
-        + str(champ) + ".jpg"
+        url = "https://web2.hirez.com/paladins/champion-icons/" + str(champ) 
+        + ".jpg"
         return url
 
     @commands.command()
