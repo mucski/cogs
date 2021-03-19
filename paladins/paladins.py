@@ -59,7 +59,7 @@ class Paladins(commands.Cog):
         if player.isdecimal():
             player = await self.api.get_player(player)
         else:
-            player_obj = self.api.search_players(player, platform)
+            player_obj = await self.api.search_players(player, platform)
             player = player_obj[0]
         desc = (
             "**__Player Stats__**\n"
