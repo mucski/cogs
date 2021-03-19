@@ -74,7 +74,7 @@ class  Hirez(commands.Cog):
         for champ in champ_list:
             if champ != "?":
                 champ_url = await self.get_champ_image(champ)
-                sessions = aiohttp.ClientSessions()
+                sessions = aiohttp.ClientSession()
                 response = sessions.get(champ_url)
                 champion_images.append(Image.open(BytesIO(response.content)))
                 sessions.close()
