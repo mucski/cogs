@@ -369,9 +369,9 @@ class  Hirez(commands.Cog):
         t1_data.append([t1, t2, t3, t4, t5])
         t2_data.append([t1, t2, t3, t4, t5])
         #final_buffer = await self.match_history_image(team1, team2, t1_data, t2_data, party1, party2, (match_info + bans))
-        final_buffer = await self.match_history_image(team1, team2, t1_data, t2_data, party1, party2, (match_data + bans))
-        file = discord.File(filename="TeamMatch.png", fp=final_buffer)
-        await ctx.send(file=file)
+        #final_buffer = await self.match_history_image(team1, team2, t1_data, t2_data, party1, party2, (match_data + bans))
+        #file = discord.File(filename="TeamMatch.png", fp=final_buffer)
+        await ctx.send(match_data + bans)
 
     @commands.command()
     async def stats(self, ctx, player, platform="pc"):
