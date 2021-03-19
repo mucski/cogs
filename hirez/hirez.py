@@ -140,17 +140,17 @@ class  Hirez(commands.Cog):
         # Add in match information
         ds = 50  # Down Shift
         rs = 20  # Right Shift
-        draw_panel.text((512 * 2 + rs, 0 + ds), str(md[0]), font=ImageFont.truetype(font, 100), fill=(0, 0, 0))
-        draw_panel.text((512 * 2 + rs, 100 + ds), (str(md[1]) + " minutes"), font=ImageFont.truetype(font, 100),
+        draw_panel.text((512 * 2 + rs, 0 + ds), str(match_data[0]), font=ImageFont.truetype(font, 100), fill=(0, 0, 0))
+        draw_panel.text((512 * 2 + rs, 100 + ds), (str(match_data[1]) + " minutes"), font=ImageFont.truetype(font, 100),
                         fill=(0, 0, 0))
-        draw_panel.text((512 * 2 + rs, 200 + ds), str(md[2]), font=ImageFont.truetype(font, 100), fill=(0, 0, 0))
+        draw_panel.text((512 * 2 + rs, 200 + ds), str(match_data[2]), font=ImageFont.truetype(font, 100), fill=(0, 0, 0))
         draw_panel.text((512 * 2 + rs, 300 + ds), str(map_name), font=ImageFont.truetype(font, 100), fill=(0, 0, 0))
 
         # Right shift
         rs = 100
         # Team 1
         draw_panel.text((512 * 4 + rs, ds), "Team 1 Score: ", font=ImageFont.truetype(font, 100), fill=(0, 0, 0))
-        draw_panel.text((512 * 4 + rs * 8, ds), str(md[4]), font=ImageFont.truetype(font, 100), fill=(0, 0, 0))
+        draw_panel.text((512 * 4 + rs * 8, ds), str(match_data[4]), font=ImageFont.truetype(font, 100), fill=(0, 0, 0))
 
         center = (512/2 - 130/2)
         center2 = (512/2 - 80/2)
@@ -159,7 +159,7 @@ class  Hirez(commands.Cog):
 
         # Team 2
         draw_panel.text((512 * 4 + rs, 372), "Team 2 Score: ", font=ImageFont.truetype(font, 100), fill=(0, 0, 0))
-        draw_panel.text((512 * 4 + rs * 8, 372), str(md[5]), font=ImageFont.truetype(font, 100), fill=(0, 0, 0))
+        draw_panel.text((512 * 4 + rs * 8, 372), str(match_data[5]), font=ImageFont.truetype(font, 100), fill=(0, 0, 0))
 
         #  add in banned champs if it's a ranked match
         if md[6] is not None:
