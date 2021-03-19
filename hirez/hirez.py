@@ -346,6 +346,12 @@ class  Hirez(commands.Cog):
         return key
 
     @commands.command()
+    async def atest(self, ctx):
+        match_data = ["TEAM 1", "32", "Europe", "Timber Mill", "4/1"]
+        bans = ["Sha Lin, Ruckus", "Tiberius", "Raum"]
+        await ctx.send(match_data + bans)
+
+    @commands.command()
     async def hitest(self, ctx):
         team1 = ["Makoa", "Cassie", "Strix", "Bomb King", "IO"]
         team2 = ["Atlas", "Vora", "Yagorath", "Jenos", "Dredge"]
