@@ -123,7 +123,7 @@ class  Hirez(commands.Cog):
         middle_panel = Image.new('RGB', (512*9, 512), color=(217, 247, 247))
 
         # Adding in map to image
-        map_name = map_file_name = (match_data[4].strip().replace("Ranked ", "").replace(" (TDM)", "").replace(" (Onslaught)", "")
+        map_name = map_file_name = (match_data[3].strip().replace("Ranked ", "").replace(" (TDM)", "").replace(" (Onslaught)", "")
                                 .replace(" (Siege)", "")).replace("Practice ", "")
         if "WIP" in map_name:
             map_file_name = "test_maps"
@@ -150,7 +150,7 @@ class  Hirez(commands.Cog):
         rs = 100
         # Team 1
         draw_panel.text((512 * 4 + rs, ds), "Team 1 Score: ", font=ImageFont.truetype(font, 100), fill=(0, 0, 0))
-        draw_panel.text((512 * 4 + rs * 8, ds), str(match_data[5]), font=ImageFont.truetype(font, 100), fill=(0, 0, 0))
+        draw_panel.text((512 * 4 + rs * 8, ds), str(match_data[4]), font=ImageFont.truetype(font, 100), fill=(0, 0, 0))
 
         center = (512/2 - 130/2)
         center2 = (512/2 - 80/2)
@@ -159,16 +159,16 @@ class  Hirez(commands.Cog):
 
         # Team 2
         draw_panel.text((512 * 4 + rs, 372), "Team 2 Score: ", font=ImageFont.truetype(font, 100), fill=(0, 0, 0))
-        draw_panel.text((512 * 4 + rs * 8, 372), str(match_data[6]), font=ImageFont.truetype(font, 100), fill=(0, 0, 0))
+        draw_panel.text((512 * 4 + rs * 8, 372), str(match_data[5]), font=ImageFont.truetype(font, 100), fill=(0, 0, 0))
 
         #  add in banned champs if it's a ranked match
-        if match_data[8] is not None:
+        if match_data[6] is not None:
             # Ranked bans
             draw_panel.text((512 * 5 + rs * 8, center2), "Bans:", font=ImageFont.truetype(font, 80), fill=(0, 0, 0))
 
             # Team 1 Bans
             try:
-                champ_url = await self.get_champ_image(match_data[8])
+                champ_url = await self.get_champ_image(match_data[6])
                 sessions = aiohttp.ClientSession()
                 async with sessions.get(champ_url) as response:
                     resp = await response.read()
@@ -180,7 +180,7 @@ class  Hirez(commands.Cog):
                 pass
 
             try:
-                champ_url = await self.get_champ_image(match_data[9])
+                champ_url = await self.get_champ_image(match_data[7])
                 sessions = aiohttp.ClientSession()
                 async with sessions.get(champ_url) as response:
                     resp = await response.read()
@@ -193,7 +193,7 @@ class  Hirez(commands.Cog):
 
             # Team 2 Bans
             try:
-                champ_url = await self.get_champ_image(match_data[10])
+                champ_url = await self.get_champ_image(match_data[8])
                 sessions = aiohttp.ClientSession()
                 async with sessions.get(champ_url) as response:
                     resp = await response.read()
@@ -205,7 +205,7 @@ class  Hirez(commands.Cog):
                 pass
 
             try:
-                champ_url = await self.get_champ_image(match_data[11])
+                champ_url = await self.get_champ_image(match_data[9])
                 sessions = aiohttp.ClientSession()
                 async with sessions.get(champ_url) as response:
                     resp = await response.read()
