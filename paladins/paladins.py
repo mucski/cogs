@@ -1,5 +1,4 @@
 import arez
-import discord
 from PIL import ImageOps, ImageDraw, Image, ImageFont
 from redbot.core import commands
 import asyncio
