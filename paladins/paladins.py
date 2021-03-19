@@ -1,11 +1,12 @@
 import arez
-from PIL import ImageOps, ImageDraw, Image, ImageFont
+# from PIL import ImageOps, ImageDraw, Image, ImageFont
 from redbot.core import commands
 import asyncio
-import aiohttp
-from io import BytesIO
+# import aiohttp
+# from io import BytesIO
 import humanize
 from datetime import datetime
+import discord
 
 
 class Paladins(commands.Cog):
@@ -67,30 +68,31 @@ class Paladins(commands.Cog):
             f"Region: {player.region}\n"
             f"Champions Owned: {player.champion_count}\n"
             f"Achievements Unlocked: {player.total_achievements}\n"
-            f"Account Created: {humanize.naturaltime(datetime.utcnow() 
-                                - player.created_at)}\n"
-            f"Last Login: {humanize.naturaltime(datetime.utcnow()}
-                           - player.last_login)}\n```"
+            f"Account Created:"
+            f"{humanize.naturaltime(datetime.utcnow() - player.created_at)}\n"
+            f"Last Login:"
+            f"{humanize.naturaltime}"
+            f"{(datetime.utcnow() - player.last_login)}\n```"
             "\n\n"
             f"**__Casual Stats__**\n"
-            f"```Win Rate: {player.casual.wins}
-                    {player.casual.losses}" 
+            f"```Win Rate:"
+            f"{player.casual.wins} {player.casual.losses}"
             f"({player.casual.winrate_text})\n"
             f"Deserted: {player.casual.leaves}\n```"
             "\n\n"
             f"**__Ranked Stats Season {player.ranked_best.season}__**\n"
-            f"```Win Rate: {player.ranked_best.wins}
-                            {player.ranked_best.losses}"
+            f"```Win Rate:"
+            f"{player.ranked_best.wins} {player.ranked_best.losses}"
             f"({player.ranked_best.winrate_text})\n"
             f"Deserted: {player.ranked_best.leaves}\n"
             f"Ranked Type: {player.ranked_best.type}\n"
             f"Current Rank: {player.ranked_best.rank}"
             f"({player.ranked_best.points} TP)\n```"
         )
-        e=discord.Embed(color = await self.bot.get_embed_color(ctx),
-        title = f"{player.name}({player.platform})"
+        e = discord.Embed(color=await self.bot.get_embed_color(ctx),
+                          title=f"{player.name}({player.platform})"
                                 f"_({player.title})_")
-        e.description=desc
+        e.description = desc
         e.set_thumbnail(url=player.avatar_url)
         e.set_footer(text=f"Player ID: {player.id}")
         await ctx.send(embed=e)
