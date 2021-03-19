@@ -14,7 +14,7 @@ class Roleplaying(commands.Cog):
     async def kiss(self, ctx, member: discord.Member = None):
         try:
             authnick = ctx.author.nick
-        except:
+        except AttributeError:
             authnick = ctx.author.name
         else:
             memnick = member.nick
