@@ -353,7 +353,7 @@ class  Hirez(commands.Cog):
         t2_data = []
         party1 = ["0","0","0","0","0"]
         party2 = ["0","0","0","0","0"]
-        match_data = ["TEAM 1", "32", "Europe", "Timber Mill", "4", "1"]
+        match_data = ["TEAM 1", "32", "Europe", "Timber Mill", "4/1"]
         bans = ["Sha Lin, Ruckus", "Tiberius", "Raum"]
         t1 = ["Joey", "990", "38492", "25/2/23", "384928", "83834", "2", "0", "382834", "0", "PC"]
         t2 = ["FishFace", "1", "342345", "22/2/23", "384928", "83834", "2", "0", "382834", "0", "XBOX"]
