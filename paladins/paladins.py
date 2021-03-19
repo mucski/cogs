@@ -60,7 +60,7 @@ class Paladins(commands.Cog):
             player = await self.api.get_player(player)
         else:
             player_obj = await self.api.search_players(player, platform)
-            player = player_obj[0]
+            player = await player_obj[0]
         desc = (
             "**__Player Stats__**\n"
             f"```Account level: {player.level}\n"
