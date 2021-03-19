@@ -112,12 +112,13 @@ class  Hirez(commands.Cog):
         
     @commands.command()
     async def matchimage(self, ctx, player, match_id=None):
-        platform = arez.Platform(platform)
+        #platform = arez.Platform(platform)
 
             #buffer = 
 
-            file = discord.File(filename="TeamMatch.png", fp=buffer)
-        await ctx.send(file=file)
+            #file = discord.File(filename="TeamMatch.png", fp=buffer)
+        #await ctx.send(file=file)
+        pass
         
     @commands.command()
     async def match(self, ctx, player, platform="pc"):
