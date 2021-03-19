@@ -23,10 +23,10 @@ class  Hirez(commands.Cog):
     """
     def __init__(self, bot):
         self.bot = bot
-        self.f = open("/home/music166/mucski/key.txt", "r")
+        self.f = open("/home/ubuntu/key.txt", "r")
         self.auth = self.f.readline()
         self.devid = self.f.readline()
-        self.api = arez.PaladinsAPI(dev_id = self.devid.strip(), auth_key = self.auth.strip())
+        self.api = arez.PaladinsAPI(dev_id=self.devid.strip(), auth_key=self.auth.strip())
        
     def cog_unload(self):
         asyncio.create_task(self.api.close())
@@ -57,7 +57,7 @@ class  Hirez(commands.Cog):
         await ctx.send("Your mom")
 
     @commands.command()
-    async def stats(self, ctx, player, platform = "pc"):
+    async def stats(self, ctx, player, platform="pc"):
         """Player stats, title, avatar and more"""
         start_time = time.time()
         platform = arez.Platform(platform)
