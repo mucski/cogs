@@ -359,7 +359,7 @@ class  Hirez(commands.Cog):
         t2_data = []
         party1 = ["0","0","0","0","0"]
         party2 = ["0","0","0","0","0"]
-        match_data = ["1", "32", "Europe", "Timber Mill", "4", "1"]
+        match_info = ["1", "32", "Europe", "Timber Mill", "4", "1"]
         bans = ["Sha Lin, Ruckus", "Tiberius", "Raum"]
         #player name, champion, party, credit, kda, damage, damage taken, obj time, shielding, healing
         t1 = ["Joey", "999", "0", "3409", "24/1/93", "83834", "34849", "143", "382834", "338423", "PC"]
@@ -370,7 +370,8 @@ class  Hirez(commands.Cog):
         t1_data.append([t1, t2, t3, t4, t5])
         t2_data.append([t1, t2, t3, t4, t5])
         #final_buffer = await self.match_history_image(team1, team2, t1_data, t2_data, party1, party2, (match_info + bans))
-        final_buffer = await self.match_history_image(team1, team2, t1_data, t2_data, party1, party2, (match_data + bans))
+        match_data = match_info + bans
+        final_buffer = await self.match_history_image(team1, team2, t1_data, t2_data, party1, party2, match_data)
         file = discord.File(filename="TeamMatch.png", fp=final_buffer)
         await ctx.send(file=file)
 
