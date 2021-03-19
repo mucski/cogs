@@ -12,24 +12,15 @@ class Roleplaying(commands.Cog):
 
     @commands.command()
     async def kiss(self, ctx, member: discord.Member = None):
-        try:
-            authnick = ctx.author.nick
-        except AttributeError:
-            authnick = ctx.author.name
-        if member is not None:
-            try:
-                memnick = member.nick
-            except AttributeError:
-                memnick = member.name
         img = random.choice(kisslist)
         e = discord.Embed()
         e.set_image(url=img)
-        e.set_author(name=f"{authnick} kisses:",
+        e.set_author(name=f"{ctx.author.display_name} kisses:",
                      icon_url=ctx.author.avatar_url)
         if member is None:
             e.set_footer(text="the air.")
         else:
-            e.set_footer(text=memnick)
+            e.set_footer(text=member.display_name)
         await ctx.send(embed=e)
 
     @commands.command()
