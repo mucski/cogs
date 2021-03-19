@@ -205,7 +205,7 @@ class  Hirez(commands.Cog):
                 pass
 
             try:
-                champ_url = await self.get_champ_image(match_data[9])
+                champ_url = await self.get_champ_image(match_data[8])
                 sessions = aiohttp.ClientSession()
                 async with sessions.get(champ_url) as response:
                     resp = await response.read()
