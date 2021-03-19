@@ -119,7 +119,7 @@ class  Hirez(commands.Cog):
     @commands.command()
     async def hitest(self, ctx):
         sex = ["bomb", "sha", "strix", "kinessa", "vora"]
-        ranks = ["gold", "gold", "silver", "bronze", "bronze"]
+        ranks = ["5", "5", "0", "15", "15"]
         final_buffer = await self.create_team_image(sex, ranks)
         file = discord.File(filename="TeamMatch.png", fp=final_buffer)
         await ctx.send(file=file)
