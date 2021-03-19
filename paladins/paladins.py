@@ -9,6 +9,7 @@ from io import BytesIO
 
 class Paladins(commands.Cog):
     def __init__(self, bot):
+        self.bot = bot
         self.f = open("/home/ubuntu/key.txt", "r")
         self.auth = self.f.readline()
         self.devid = self.f.readline()
