@@ -44,9 +44,9 @@ class  Hirez(commands.Cog):
             elif isinstance(exc, arez.NotFound):
                 await ctx.send("Player was not found.")
                 return
-            elif isinstance(exc, IndexError):
-                await ctx.send("Player did not play for over a month, therefore nothing to display.")
-                return
+            #elif isinstance(exc, IndexError):
+            #    await ctx.send("Player did not play for over a month, therefore nothing to display.")
+            #    return
             # elif isinstance(exc, ...):
             #     await ctx.send(...)
             #     return
