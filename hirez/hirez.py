@@ -232,7 +232,7 @@ class  Hirez(commands.Cog):
 
         champ_stats_image.paste(champ_icon, (offset, offset))
 
-        platform = champ_stats[10]
+        platform = champ_stats[11]
         if platform == "XboxLive":
             platform_logo = Image.open("/home/ubuntu/icons/xbox_logo.png").resize((100, 100), Image.ANTIALIAS)
             platform_logo = platform_logo.convert("RGBA")
