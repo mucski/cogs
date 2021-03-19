@@ -3,6 +3,7 @@ import discord
 import asyncio
 import humanize
 import time
+import aiohttp
 from datetime import datetime
 from redbot.core import commands
 from tabulate import tabulate
@@ -63,10 +64,63 @@ class  Hirez(commands.Cog):
         url = "https://web2.hirez.com/paladins/champion-icons/" + str(champ_name) + ".jpg"
         return url
 
+    async def create_team_image(self, champ_list, ranks):
+        font = "/home/ubuntu/arial.ttf"
+        champion_images = []
+
+        while len(champ_list) != 5:
+            champ_list.append("?")
+        
+        for champ in champ_list:
+            if champ != "?":
+                champ_url = await self.get_champ_image(champ)
+                sessions = aiohttp.ClientSessions()
+                response = sessions.get(champ_url)
+                champion_images.append(Image.open(BytesIO(response.content)))
+                sessions.close()
+            else:
+                image_size = 512
+                base = Image.new('RGB', (image_size, image_size), black)
+
+                #put text on image
+                base_draw = ImageDraw.Draw(base)
+                base_draw.text((128, 56), "?", font=ImageFont.truetype(font, 400))
+                champion_images.append(base)
+
+        #image size in width height
+        image_size = 512
+        scale = 1.5
+
+        team_image = Image.new('RGB', (image_size * len(champion_images), image_size))
+        for i, champ in enumerate(champion_images):
+            team_image.paste(champ, (image_size*i, 0, image_size*(i+1), image_size))
+
+            #only use ranked image if its a ranked match.
+            if ranks:
+            if i < len(ranks):  # make sure we don't go out of bounds
+                rank = Image.open("/home/ubuntu/icons/ranks/" + ranks[i] + ".png")  # this works
+                width, height = rank.size
+                rank = rank.resize((int(width * scale), int(height * scale)))
+                team_image.paste(rank, (0 + (image_size * i), 0), rank)  # Upper Left
+
+        # Creates a buffer to store the image in
+        final_buffer = BytesIO()
+
+        # Store the pillow image we just created into the buffer with the PNG format
+        team_image.save(final_buffer, "png")
+
+        # seek back to the start of the buffer stream
+        final_buffer.seek(0)
+
+        return final_buffer
+
     @commands.command()
-    async def hitest(self, ctx, champ):
-        champ = await self.get_champ_image(champ)
-        await ctx.send(champ)
+    async def hitest(self, ctx):
+        sex = ["bomb", "sha", "strix", "kinessa", "vora"]
+        ranks = ["gold", "gold", "silver", "bronze", "bronze"]
+        final_buffer = await self.create_team_image(sex, ranks)
+        file = discord.File(filename="TeamMatch.png", fp=final_buffer)
+        await ctx.send(file=file)
 
     @commands.command()
     async def stats(self, ctx, player, platform="pc"):
