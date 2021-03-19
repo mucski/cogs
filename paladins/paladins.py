@@ -67,10 +67,10 @@ class Paladins(commands.Cog):
             f"Region: {player.region}\n"
             f"Champions Owned: {player.champion_count}\n"
             f"Achievements Unlocked: {player.total_achievements}\n"
-            f"Account Created: {humanize.naturaltime(datetime.utcnow()}
-                                player.created_at)}\n"
+            f"Account Created: {humanize.naturaltime(datetime.utcnow() 
+                                - player.created_at)}\n"
             f"Last Login: {humanize.naturaltime(datetime.utcnow()}
-                            - player.last_login)}\n```"
+                           - player.last_login)}\n```"
             "\n\n"
             f"**__Casual Stats__**\n"
             f"```Win Rate: {player.casual.wins}
@@ -87,9 +87,9 @@ class Paladins(commands.Cog):
             f"Current Rank: {player.ranked_best.rank}"
             f"({player.ranked_best.points} TP)\n```"
         )
-        e = discord.Embed(color=await self.bot.get_embed_color(ctx),
-                              title=f"{player.name}({player.platform})"
-                                    f"_({player.title})_")
+        e=discord.Embed(color = await self.bot.get_embed_color(ctx),
+        title = f"{player.name}({player.platform})"
+                                f"_({player.title})_")
         e.description=desc
         e.set_thumbnail(url=player.avatar_url)
         e.set_footer(text=f"Player ID: {player.id}")
