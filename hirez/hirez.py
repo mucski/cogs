@@ -205,7 +205,7 @@ class  Hirez(commands.Cog):
                 pass
 
             try:
-                champ_url = await self.get_champ_image(match_data[8])
+                champ_url = await self.get_champ_image(match_data[9])
                 sessions = aiohttp.ClientSession()
                 async with sessions.get(champ_url) as response:
                     resp = await response.read()
@@ -232,7 +232,7 @@ class  Hirez(commands.Cog):
 
         champ_stats_image.paste(champ_icon, (offset, offset))
 
-        platform = champ_stats[0]
+        platform = champ_stats[11]
         if platform == "XboxLive":
             platform_logo = Image.open("/home/ubuntu/icons/xbox_logo.png").resize((100, 100), Image.ANTIALIAS)
             platform_logo = platform_logo.convert("RGBA")
@@ -269,35 +269,35 @@ class  Hirez(commands.Cog):
 
         # Parties
         fill = (128, 0, 128)
-        base_draw.text((img_x + 750, middle), party[champ_stats[9]], font=ImageFont.truetype(font, 100), fill=fill)
+        base_draw.text((img_x + 750, middle), party[champ_stats[3]], font=ImageFont.truetype(font, 100), fill=fill)
 
         # Credits/Gold earned
         fill = (218, 165, 32)
-        base_draw.text((img_x + 900, middle), str(champ_stats[2]), font=ImageFont.truetype(font, 100), fill=fill)
+        base_draw.text((img_x + 900, middle), str(champ_stats[4]), font=ImageFont.truetype(font, 100), fill=fill)
 
         # KDA
         fill = (101, 33, 67)
-        base_draw.text((img_x + 1300, middle), str(champ_stats[3]), font=ImageFont.truetype(font, 100), fill=fill)
+        base_draw.text((img_x + 1300, middle), str(champ_stats[5]), font=ImageFont.truetype(font, 100), fill=fill)
 
         # Damage done
         fill = (255, 0, 0)
-        base_draw.text((img_x + 1830, middle), str(champ_stats[4]), font=ImageFont.truetype(font, 100), fill=fill)
+        base_draw.text((img_x + 1830, middle), str(champ_stats[6]), font=ImageFont.truetype(font, 100), fill=fill)
 
         # Damage taken
         fill = (220, 20, 60)
-        base_draw.text((img_x + 2350, middle), str(champ_stats[5]), font=ImageFont.truetype(font, 100), fill=fill)
+        base_draw.text((img_x + 2350, middle), str(champ_stats[7]), font=ImageFont.truetype(font, 100), fill=fill)
 
         # Objective time
         fill = (159, 105, 52)
-        base_draw.text((img_x + 2850, middle), str(champ_stats[6]), font=ImageFont.truetype(font, 100), fill=fill)
+        base_draw.text((img_x + 2850, middle), str(champ_stats[8]), font=ImageFont.truetype(font, 100), fill=fill)
 
         # Shielding
         fill = (0, 51, 102)
-        base_draw.text((img_x + 3150, middle), str(champ_stats[7]), font=ImageFont.truetype(font, 100), fill=fill)
+        base_draw.text((img_x + 3150, middle), str(champ_stats[9]), font=ImageFont.truetype(font, 100), fill=fill)
 
         # Healing
         fill = (0, 128, 0)
-        base_draw.text((img_x + 3600, middle), str(champ_stats[8]), font=ImageFont.truetype(font, 100), fill=fill)
+        base_draw.text((img_x + 3600, middle), str(champ_stats[10]), font=ImageFont.truetype(font, 100), fill=fill)
 
         return champ_stats_image
 
@@ -361,11 +361,12 @@ class  Hirez(commands.Cog):
         party2 = ["0","0","0","0","0"]
         match_data = ["1", "32", "Europe", "Timber Mill", "4", "1"]
         bans = ["Sha Lin, Ruckus", "Tiberius", "Raum"]
-        t1 = ["Joey", "990", "38492", "25/2/23", "384928", "83834", "2", "0", "382834", "0", "PC"]
-        t2 = ["FishFace", "1", "342345", "22/2/23", "384928", "83834", "2", "0", "382834", "0", "XBOX"]
-        t3 = ["Rotterdam", "34", "122", "11/2/23", "384928", "83834", "2", "0", "382834", "0", "XBOX"]
-        t4 = ["TESTTESTEST", "112", "0", "0/2/23", "384928", "83834", "2", "0", "382834", "0", "PS4"]
-        t5 = ["Hahahaha", "456", "123123", "1/2/23", "384928", "83834", "2", "29231", "382834", "0", "PC"]
+        #player name, champion, party, credit, kda, damage, damage taken, obj time, shielding, healing
+        t1 = ["Joey", "999", "0", "3409", "24/1/93", "83834", "34849", "143", "382834", "338423", "PC"]
+        t2 = ["Joey", "999", "0", "3409", "24/1/93", "83834", "34849", "143", "382834", "338423", "PC"]
+        t3 = ["Joey", "999", "0", "3409", "24/1/93", "83834", "34849", "143", "382834", "338423", "PC"]
+        t4 = ["Joey", "999", "0", "3409", "24/1/93", "83834", "34849", "143", "382834", "338423", "PC"]
+        t5 = ["Joey", "999", "0", "3409", "24/1/93", "83834", "34849", "143", "382834", "338423", "PC"]
         t1_data.append([t1, t2, t3, t4, t5])
         t2_data.append([t1, t2, t3, t4, t5])
         #final_buffer = await self.match_history_image(team1, team2, t1_data, t2_data, party1, party2, (match_info + bans))
