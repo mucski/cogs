@@ -52,7 +52,7 @@ class  Hirez(commands.Cog):
             #     return
         await ctx.bot.on_command_error(ctx, error, unhandled_by_cog=True)
 
-    async def get_champ_image(champ_name):
+    async def get_champ_image(self, champ_name):
         champ_name = champ_name.lower()
         if "bomb" in champ_name:
             champ_name = "bomb-king"
@@ -66,7 +66,7 @@ class  Hirez(commands.Cog):
 
     @commands.command()
     async def hitest(self, ctx, champ):
-        champ = await get_champ_image(champ)
+        champ = await self.get_champ_image(champ)
         await ctx.send(champ)
 
     @commands.command()
