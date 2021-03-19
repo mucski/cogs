@@ -162,7 +162,7 @@ class  Hirez(commands.Cog):
         draw_panel.text((512 * 4 + rs * 8, 372), str(match_data[5]), font=ImageFont.truetype(font, 100), fill=(0, 0, 0))
 
         #  add in banned champs if it's a ranked match
-        if md[6] is not None:
+        if match_data[6] is not None:
             # Ranked bans
             draw_panel.text((512 * 5 + rs * 8, center2), "Bans:", font=ImageFont.truetype(font, 80), fill=(0, 0, 0))
 
