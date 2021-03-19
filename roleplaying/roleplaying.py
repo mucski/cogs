@@ -16,8 +16,11 @@ class Roleplaying(commands.Cog):
             authnick = ctx.author.nick
         except AttributeError:
             authnick = ctx.author.name
-        else:
-            memnick = member.nick
+        if member is not None:
+            try:
+                memnick = member.nick
+            except AttributeError:
+                memnick = member.name
         img = random.choice(kisslist)
         e = discord.Embed()
         e.set_image(url=img)
