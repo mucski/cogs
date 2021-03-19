@@ -11,7 +11,7 @@ from redbot.core.utils.chat_formatting import pagify
 from redbot.core.utils.chat_formatting import box
 import discord
 from io import BytesIO
-from PIL import Image, ImageFont, ImageDraw
+from PIL import Image, ImageFont, ImageDraw, ImageOps
 
 class  Hirez(commands.Cog):
     """
@@ -64,63 +64,306 @@ class  Hirez(commands.Cog):
         url = "https://web2.hirez.com/paladins/champion-icons/" + str(champ_name) + ".jpg"
         return url
 
-    async def create_team_image(self, champ_list, ranks):
-        font = "/home/ubuntu/arial.ttf"
-        champion_images = []
-
-        while len(champ_list) != 5:
-            champ_list.append("?")
-        
-        for champ in champ_list:
-            if champ != "?":
+    async def match_history_image(self, team1, team2, t1_data, t2_data, party1, party2, match_data):
+        shrink = 140
+        image_size_y = 540 - shrink*2
+        image_size_x = 540
+        offset = 5
+        history_image = Image.new('RGB', (image_size_x*9, image_size_y*12 + 264))
+        #top key panel
+        key = await self.player_key_image(image_size_x, image_size_y)
+        history_image.paste(key, (0, 0))
+        #create middle panel
+        mid_panel = await self.middle_info_image(match_data)
+        history_image.paste(mid_panel, (0, 1392-40))
+        #player data
+        for i, (champ, champ2) in enumerate(zip(team1, team2)):
+            #first team
+            try:
                 champ_url = await self.get_champ_image(champ)
                 sessions = aiohttp.ClientSession()
                 async with sessions.get(champ_url) as response:
                     resp = await response.read()
-                    champion_images.append(Image.open(BytesIO(resp)))
-                    
+                    champ_image = Image.open(BytesIO(resp))
                 sessions.close()
-            else:
-                image_size = 512
-                base = Image.new('RGB', (image_size, image_size), black)
+            except FileNotFoundError:
+                champ_image = Image.open("/home/ubuntu/icons/temp_card_art.png")
+            border = (0, shrink, 0, shrink) #left, up, right, bottom
+            champ_image = ImageOps.crop(champ_image, border)
+            player_panel = await self.player_stats_image(champ_image, t1_data[i], i, party1)
+            history_image.paste(player_panel, (image_size_y+10)*i+132)
 
-                #put text on image
-                base_draw = ImageDraw.Draw(base)
-                base_draw.text((128, 56), "?", font=ImageFont.truetype(font, 400))
-                champion_images.append(base)
+            #second team
+            try:
+                champ_url = await self.get_champ_image(champ2)
+                sessions = aiohttp.ClientSession()
+                async with sessions.get(champ_url) as response:
+                    resp = await response.read()
+                    champ_image = Image.open(BytesIO(resp))
+                sessions.close()
+            except FileNotFoundError:
+                champ_image = Image.open("/home/ubuntu/icons/temp_card_art.png")
+            border = (0, shrink, 0, shrink) #left, up, right, bottom
+            champ_image = ImageOps.crop(champ_image, border)
+            player_panel = await self.player_stats_image(champ_image, t2_data[i], i+offset-1, party2)
+            history_image.paste(player_panel, (0, image_size_y * (i+offset) + 704))
 
-        #image size in width height
-        image_size = 512
-        scale = 1.5
+        history_image = history_image.resize((4608//2, 3048//2), Image.ANTIALIAS)
 
-        team_image = Image.new('RGB', (image_size * len(champion_images), image_size))
-        for i, champ in enumerate(champion_images):
-            team_image.paste(champ, (image_size*i, 0, image_size*(i+1), image_size))
-
-            #only use ranked image if its a ranked match.
-            if ranks:
-                if i < len(ranks):  # make sure we don't go out of bounds
-                    rank = Image.open("/home/ubuntu/icons/ranks/" + ranks[i] + ".png")  # this works
-                    width, height = rank.size
-                    rank = rank.resize((int(width * scale), int(height * scale)))
-                    team_image.paste(rank, (0 + (image_size * i), 0), rank)  # Upper Left
-
-        # Creates a buffer to store the image in
         final_buffer = BytesIO()
 
-        # Store the pillow image we just created into the buffer with the PNG format
-        team_image.save(final_buffer, "png")
+        history_image.save(final_buffer, "png")
 
-        # seek back to the start of the buffer stream
         final_buffer.seek(0)
 
         return final_buffer
 
+    async def middle_info_image(self, match_data):
+        font = "/home/ubuntu/arial.ttf"
+        middle_panel = Image.new('RGB', (512*9, 512), color=(217, 247, 247))
+
+        # Adding in map to image
+        map_name = map_file_name = (match_data[3].strip().replace("Ranked ", "").replace(" (TDM)", "").replace(" (Onslaught)", "")
+                                .replace(" (Siege)", "")).replace("Practice ", "")
+        if "WIP" in map_name:
+            map_file_name = "test_maps"
+            map_name = map_name.replace("WIP ", "")
+        # Needed to catch weird-unknown map modes
+        try:
+            match_map = Image.open("/home/ubuntu/icons/maps/{}.png".format(map_file_name.lower().replace(" ", "_").replace("'", "")))
+        except FileNotFoundError:
+            match_map = Image.open("/home/ubuntu/icons/maps/test_maps.png")   
+        match_map = match_map.resize((512*2, 512), Image.ANTIALIAS)
+        middle_panel.paste(match_map, (0, 0))
+        # Preparing the panel to draw on
+        draw_panel = ImageDraw.Draw(middle_panel)
+        # Add in match information
+        ds = 50  # Down Shift
+        rs = 20  # Right Shift
+        draw_panel.text((512 * 2 + rs, 0 + ds), str(md[0]), font=ImageFont.truetype(font, 100), fill=(0, 0, 0))
+        draw_panel.text((512 * 2 + rs, 100 + ds), (str(md[1]) + " minutes"), font=ImageFont.truetype(font, 100),
+                        fill=(0, 0, 0))
+        draw_panel.text((512 * 2 + rs, 200 + ds), str(md[2]), font=ImageFont.truetype(font, 100), fill=(0, 0, 0))
+        draw_panel.text((512 * 2 + rs, 300 + ds), str(map_name), font=ImageFont.truetype(font, 100), fill=(0, 0, 0))
+
+        # Right shift
+        rs = 100
+        # Team 1
+        draw_panel.text((512 * 4 + rs, ds), "Team 1 Score: ", font=ImageFont.truetype(font, 100), fill=(0, 0, 0))
+        draw_panel.text((512 * 4 + rs * 8, ds), str(md[4]), font=ImageFont.truetype(font, 100), fill=(0, 0, 0))
+
+        center = (512/2 - 130/2)
+        center2 = (512/2 - 80/2)
+        # VS
+        draw_panel.text((512 * 5-150, center), "VS", font=ImageFont.truetype(font, 130), fill=(0, 0, 0))
+
+        # Team 2
+        draw_panel.text((512 * 4 + rs, 372), "Team 2 Score: ", font=ImageFont.truetype(font, 100), fill=(0, 0, 0))
+        draw_panel.text((512 * 4 + rs * 8, 372), str(md[5]), font=ImageFont.truetype(font, 100), fill=(0, 0, 0))
+
+        #  add in banned champs if it's a ranked match
+        if md[6] is not None:
+            # Ranked bans
+            draw_panel.text((512 * 5 + rs * 8, center2), "Bans:", font=ImageFont.truetype(font, 80), fill=(0, 0, 0))
+
+            # Team 1 Bans
+            try:
+                champ_url = await self.get_champ_image(match_data[6])
+                sessions = aiohttp.ClientSession()
+                async with sessions.get(champ_url) as response:
+                    resp = await response.read()
+                    champ_image = Image.open(BytesIO(resp))
+                sessions.close()
+                champ_image = champ_image.resize((200, 200))
+                middle_panel.paste(champ_image, (512 * 7 + rs, ds))
+            except FileNotFoundError:
+                pass
+
+            try:
+                champ_url = await self.get_champ_image(match_data[7])
+                sessions = aiohttp.ClientSession()
+                async with sessions.get(champ_url) as response:
+                    resp = await response.read()
+                    champ_image = Image.open(BytesIO(resp))
+                sessions.close()
+                champ_image = champ_image.resize((200, 200))
+                middle_panel.paste(champ_image, (512 * 7 + rs + 240, ds))
+            except FileNotFoundError:
+                pass
+
+            # Team 2 Bans
+            try:
+                champ_url = await self.get_champ_image(match_data[8])
+                sessions = aiohttp.ClientSession()
+                async with sessions.get(champ_url) as response:
+                    resp = await response.read()
+                    champ_image = Image.open(BytesIO(resp))
+                sessions.close()
+                champ_image = champ_image.resize((200, 200))
+                middle_panel.paste(champ_image, (512 * 7 + rs, ds+232))
+            except FileNotFoundError:
+                pass
+
+            try:
+                champ_url = await self.get_champ_image(match_data[9])
+                sessions = aiohttp.ClientSession()
+                async with sessions.get(champ_url) as response:
+                    resp = await response.read()
+                    champ_image = Image.open(BytesIO(resp))
+                sessions.close()
+                champ_image = champ_image.resize((200, 200))
+                middle_panel.paste(champ_image, (512 * 7 + rs + 240, ds+232))
+            except FileNotFoundError:
+                pass
+
+        return middle_panel
+
+    async def player_stats_image(self, champ_icon, champ_stats, index, party):
+        font = "/home/ubuntu/arial.ttf"
+        shrink = 140
+        offset = 10
+        image_size_y = 512 - shrink * 2
+        img_x = 512
+        middle = image_size_y/2 - 50
+        im_color = (175, 238, 238, 0) if index % 2 == 0 else (196, 242, 242, 0)
+        # color = (175, 238, 238)   # light blue
+        # color = (196, 242, 242)     # lighter blue
+        champ_stats_image = Image.new('RGBA', (img_x*9, image_size_y+offset*2), color=im_color)
+
+        champ_stats_image.paste(champ_icon, (offset, offset))
+
+        platform = champ_stats[10]
+        if platform == "XboxLive":
+            platform_logo = Image.open("/home/ubuntu/icons/xbox_logo.png").resize((100, 100), Image.ANTIALIAS)
+            platform_logo = platform_logo.convert("RGBA")
+            champ_stats_image.paste(platform_logo, (img_x + 175, int(middle) + 60), platform_logo)
+        elif platform == "Nintendo Switch":
+            platform_logo = Image.open("/home/ubuntu/icons/switch_logo.png")
+            width, height = platform_logo.size
+            scale = .15
+            platform_logo = platform_logo.resize((int(width * scale), int(height * scale)), Image.ANTIALIAS)
+            platform_logo = platform_logo.convert("RGBA")
+            champ_stats_image.paste(platform_logo, (img_x + 135, int(middle) + 45), platform_logo)
+        elif platform == "PSN":
+            platform_logo = Image.open("/home/ubuntu/icons/ps4_logo.png").resize((100, 100), Image.ANTIALIAS)
+            platform_logo = platform_logo.convert("RGBA")
+            champ_stats_image.paste(platform_logo, (img_x + 175, int(middle) + 60), platform_logo)
+        # For future if I want to add a PC icon
+        # else:
+        #    print("PC")
+
+        # if platform_logo:
+        #    platform_logo = platform_logo.convert("RGBA")
+        #    champ_stats_image.paste(platform_logo, (img_x + 175, int(middle)+60), platform_logo)
+        #    # champ_stats_image.show()
+
+        base_draw = ImageDraw.Draw(champ_stats_image)
+
+        # Private account or unknown
+        if str(champ_stats[0]) == "":
+            champ_stats[0] = "*****"
+
+        # Player name and champion name
+        base_draw.text((img_x + 20, middle-40), str(champ_stats[0]), font=ImageFont.truetype(font, 80), fill=(0, 0, 0))
+        base_draw.text((img_x + 20, middle+60), str(champ_stats[1]), font=ImageFont.truetype(font, 80), fill=(0, 0, 0))
+
+        # Parties
+        fill = (128, 0, 128)
+        base_draw.text((img_x + 750, middle), party[champ_stats[9]], font=ImageFont.truetype(font, 100), fill=fill)
+
+        # Credits/Gold earned
+        fill = (218, 165, 32)
+        base_draw.text((img_x + 900, middle), str(champ_stats[2]), font=ImageFont.truetype(font, 100), fill=fill)
+
+        # KDA
+        fill = (101, 33, 67)
+        base_draw.text((img_x + 1300, middle), str(champ_stats[3]), font=ImageFont.truetype(font, 100), fill=fill)
+
+        # Damage done
+        fill = (255, 0, 0)
+        base_draw.text((img_x + 1830, middle), str(champ_stats[4]), font=ImageFont.truetype(font, 100), fill=fill)
+
+        # Damage taken
+        fill = (220, 20, 60)
+        base_draw.text((img_x + 2350, middle), str(champ_stats[5]), font=ImageFont.truetype(font, 100), fill=fill)
+
+        # Objective time
+        fill = (159, 105, 52)
+        base_draw.text((img_x + 2850, middle), str(champ_stats[6]), font=ImageFont.truetype(font, 100), fill=fill)
+
+        # Shielding
+        fill = (0, 51, 102)
+        base_draw.text((img_x + 3150, middle), str(champ_stats[7]), font=ImageFont.truetype(font, 100), fill=fill)
+
+        # Healing
+        fill = (0, 128, 0)
+        base_draw.text((img_x + 3600, middle), str(champ_stats[8]), font=ImageFont.truetype(font, 100), fill=fill)
+
+        return champ_stats_image
+
+
+    # Creates the text at the top of the image
+    async def player_key_image(self, x, y):
+        font = "/home/ubuntu/arial.ttf"
+        key = Image.new('RGB', (x * 9, y-100), color=(112, 225, 225))
+        base_draw = ImageDraw.Draw(key)
+        # ss = "Player Credits K/D/A  Damage  Taken  Objective Time  Shielding  Healing"
+        base_draw.text((20, 0), "Champion", font=ImageFont.truetype(font, 80), fill=(0, 0, 0))
+        base_draw.text((x + 20, 0), "Player", font=ImageFont.truetype(font, 80), fill=(0, 0, 0))
+
+        # Parties
+        fill = (128, 0, 128) 
+        base_draw.text((x + 750, 0), "P", font=ImageFont.truetype(font, 100), fill=fill)
+
+        # Credits/Gold earned
+        fill = (218, 165, 32) 
+        base_draw.text((x + 900, 0), "Credits", font=ImageFont.truetype(font, 80), fill=fill)
+
+        # KDA
+        fill = (101, 33, 67) 
+        base_draw.text((x + 1300, 0), "K/D/A", font=ImageFont.truetype(font, 80), fill=fill)
+
+        # Damage done
+        fill = (255, 0, 0) 
+        base_draw.text((x + 1830, 0), "Damage", font=ImageFont.truetype(font, 80), fill=fill)
+
+        # Damage taken
+        fill = (220, 20, 60) 
+        base_draw.text((x + 2350, 0), "Taken", font=ImageFont.truetype(font, 80), fill=fill)
+
+        # Objective time
+        fill = (159, 105, 52) 
+        base_draw.text((x + 2800, 0), "Objective", font=ImageFont.truetype(font, 60), fill=fill)
+        base_draw.text((x + 2850, 60), "Time", font=ImageFont.truetype(font, 60), fill=fill)
+
+        # Shielding
+        fill = (0, 51, 102) 
+        base_draw.text((x + 3150, 0), "Shielding", font=ImageFont.truetype(font, 80), fill=fill)
+
+        # Healing
+        fill = (0, 128, 0) 
+        base_draw.text((x + 3600, 0), "Healing", font=ImageFont.truetype(font, 80), fill=fill)
+
+        return key
+
+
     @commands.command()
     async def hitest(self, ctx):
-        sex = ["bomb", "sha", "strix", "kinessa", "vora"]
-        ranks = ["5", "5", "0", "15", "15"]
-        final_buffer = await self.create_team_image(sex, ranks)
+        team1 = ["Makoa", "Cassie", "Strix", "Bomb King", "IO"]
+        team2 = ["Atlas", "Vora", "Yagorath", "Jenos", "Dredge"]
+        t1_data = []
+        t2_data = []
+        party1 = ["","","","",""]
+        party2 = ["","","","",""]
+        match_data = []
+        t1 = ["Joey", "990", "38492", "25/2/23", "384928", "83834", "2", "0", "382834", "0", "PC"]
+        t2 = ["FishFace", "1", "342345", "22/2/23", "384928", "83834", "2", "0", "382834", "0", "XBOX"]
+        t3 = ["Rotterdam", "34", "122", "11/2/23", "384928", "83834", "2", "0", "382834", "0", "XBOX"]
+        t4 = ["TESTTESTEST", "112", "0", "0/2/23", "384928", "83834", "2", "0", "382834", "0", "PS4"]
+        t5 = ["Hahahaha", "456", "123123", "1/2/23", "384928", "83834", "2", "29231", "382834", "0", "PC"]
+        t1_data.append([t1, t2, t3, t4, t5])
+        t2_data.append([t1, t2, t3, t4, t5])
+        final_buffer = await self.match_history_image(team1, team2, t1_data, t2_data, party1, party2, match_data)
         file = discord.File(filename="TeamMatch.png", fp=final_buffer)
         await ctx.send(file=file)
 
