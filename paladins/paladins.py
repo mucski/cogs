@@ -4,7 +4,7 @@ from PIL import ImageOps, ImageDraw, Image, ImageFont
 from redbot.core import commands
 import asyncio
 import aiohttp
-import ByteIO
+from io import BytesIO
 
 
 class Paladins(commands.Cog):
