@@ -45,7 +45,7 @@ class Paladins(commands.Cog):
         + str(champ) + ".jpg"
         return url
 
-    @commands.command
+    @commands.command()
     async def hitest(self, ctx, champ):
         res = await self.get_champ_image(champ)
         await ctx.send(res)
