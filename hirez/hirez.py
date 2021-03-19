@@ -97,11 +97,11 @@ class  Hirez(commands.Cog):
 
             #only use ranked image if its a ranked match.
             if ranks:
-            if i < len(ranks):  # make sure we don't go out of bounds
-                rank = Image.open("/home/ubuntu/icons/ranks/" + ranks[i] + ".png")  # this works
-                width, height = rank.size
-                rank = rank.resize((int(width * scale), int(height * scale)))
-                team_image.paste(rank, (0 + (image_size * i), 0), rank)  # Upper Left
+                if i < len(ranks):  # make sure we don't go out of bounds
+                    rank = Image.open("/home/ubuntu/icons/ranks/" + ranks[i] + ".png")  # this works
+                    width, height = rank.size
+                    rank = rank.resize((int(width * scale), int(height * scale)))
+                    team_image.paste(rank, (0 + (image_size * i), 0), rank)  # Upper Left
 
         # Creates a buffer to store the image in
         final_buffer = BytesIO()
