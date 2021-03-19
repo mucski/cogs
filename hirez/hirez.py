@@ -2,7 +2,6 @@ import arez
 import discord
 import asyncio
 import humanize
-import pkg_resources
 import time
 from datetime import datetime
 from redbot.core import commands
