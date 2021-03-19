@@ -76,7 +76,9 @@ class  Hirez(commands.Cog):
                 champ_url = await self.get_champ_image(champ)
                 sessions = aiohttp.ClientSession()
                 async with sessions.get(champ_url) as response:
-                    champion_images.append(Image.open(BytesIO(response.read)))
+                    resp = await response.read()
+                    champion_images.append(Image.open(BytesIO(resp)))
+                    
                 sessions.close()
             else:
                 image_size = 512
