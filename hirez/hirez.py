@@ -12,6 +12,7 @@ from redbot.core.utils.chat_formatting import box
 import discord
 from io import BytesIO
 from .my_utils import *
+from PIL import Image, ImageFont, ImageDraw
 
 class  Hirez(commands.Cog):
     """
@@ -52,9 +53,22 @@ class  Hirez(commands.Cog):
             #     return
         await ctx.bot.on_command_error(ctx, error, unhandled_by_cog=True)
 
+    async def get_champ_image(champ_name):
+        champ_name = champ_name.lower()
+        if "bomb" in champ_name:
+            champ_name = "bomb-king"
+        if "mal" in champ_name:
+            champ_name = "maldamba"
+        if "sha" in champ_name:
+            champ_name = "sha-lin"
+        #just return the champ_name as it is
+        url = "https://web2.hirez.com/paladins/champion-icons/" + str(champ_name) + ".jpg"
+        return url
+
     @commands.command()
-    async def hitest(self, ctx):
-        await ctx.send("Your mom")
+    async def hitest(self, ctx, champ):
+        champ = asnyc get_champ_image(champ)
+        await ctx.send(champ)
 
     @commands.command()
     async def stats(self, ctx, player, platform="pc"):
@@ -97,76 +111,10 @@ class  Hirez(commands.Cog):
         await ctx.send(embed=embed)
         
     @commands.command()
-    async def matchimage(self, ctx, player, match_id=None, colored="-b"):
-        platform = "pc"
+    async def matchimage(self, ctx, player, match_id=None):
         platform = arez.Platform(platform)
-        if platform is None:
-            await ctx.send("Wrong platform")
-            return
-        if player.isdecimal():
-            player = await self.api.get_player(player)
-        else:
-            player_obj = await self.api.search_players(player, platform)
-            player = await player_obj[0]
-        history = await player.get_match_history()
-        last = history[0]
-        match = await self.api.get_match(last.id, expand_players=True)
-        team1_data = []
-        team2_data = []
-        team1_champs = []
-        team2_champs = []
-        team1_parties = {}
-        team2_parties = {}
-        temp = []
-        new_party_id = 0
 
-        # handles if they provide the color option and no match id
-        try:
-            match_id = int(match_id)
-        except BaseException:
-            colored = match_id
-            match_id = -1
-
-        if match_id == -1 or match_id == last.id:
-            match_data = await self.api.get_matches(last.id, expand_players=True)
-            match_info = [match.winning_team, match.duration, match.region,
-                            str(match.map_name).replace("LIVE", ""), match.score[0], match.score[1]]
-            # print(match.winStatus, match.matchMinutes, match.matchRegion,
-            #      str(match.mapName).replace("LIVE", ""))
-            for pd in match_data:
-                temp = [pd.bans[0], pd.bans[1], pd.bans[2], pd.bans[3]]
-                if pd.taskForce == 1:
-                    kda = "{}/{}/{}".format(pd.kills, pd.deaths, pd.assists)
-                    team1_data.append([pd.player.name, pd.player.level, "{:,}".format(pd.credits), kda,
-                                        "{:,}".format(pd.damage_done), "{:,}".format(pd.damage_taken),
-                                        pd.objective_time, "{:,}".format(pd.damage_mitigated),
-                                        "{:,}".format(pd.healing_done), pd.player.party_number, pd.player.platform])
-                    team1_champs.append(pd.player.champion.name)
-                    if pd.player.party_number not in team1_parties or pd.player.party_number == 0:
-                        team1_parties[pd.player.party_number] = ""
-                    else:
-                        if team1_parties[pd.player.party_number] == "":
-                            new_party_id += 1
-                            team1_parties[pd.player.party_number] = "" + str(new_party_id)
-                else:
-                    kda = "{}/{}/{}".format(pd.killsPlayer, pd.deaths, pd.assists)
-                    team2_data.append([pd.player.name, pd.player.level, "{:,}".format(pd.credits), kda,
-                                        "{:,}".format(pd.damage_done), "{:,}".format(pd.damage_taken),
-                                        pd.objective_time, "{:,}".format(pd.damage_mitigated),
-                                        "{:,}".format(pd.healing_done), pd.player.party_number, pd.player.platform])
-                    team2_champs.append(pd.player.champion.name)
-                    if pd.partyId not in team2_parties or pd.partyId == 0:
-                        team2_parties[pd.player.party_number] = ""
-                    else:
-                        if team2_parties[pd.player.party_number] == "":
-                            new_party_id += 1
-                            team1_parties[pd.player.party_number] = "" + str(new_party_id)
-
-            # print("team1: " + str(team1_parties), "team2: " + str(team2_parties))
-            color = True if colored == "-c" else False
-
-            buffer = await helper.create_history_image(team1_champs, team2_champs, team1_data, team2_data,
-                                                        team1_parties, team2_parties, (match_info + temp), color)
+            #buffer = 
 
             file = discord.File(filename="TeamMatch.png", fp=buffer)
         await ctx.send(file=file)
