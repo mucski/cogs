@@ -9,14 +9,16 @@ import humanize
 from .random import worklist, searchlist, bad_loc
 from textwrap import dedent
 from redbot.core.utils.chat_formatting import pagify, box
-from redbot.core.utils.menus import menu, DEFAULT_CONTROLS, start_adding_reactions
+from redbot.core.utils.menus import menu, DEFAULT_CONTROLS
+from redbot.core.utils.menus import start_adding_reactions
+
 
 class Coin(commands.Cog):
     """Coin Tycoon game by mucski"""
     def __init__(self, bot):
         self.bot = bot
         self.db = Config.get_conf(self, 9769879876, force_registration=True)
-        
+
         default_user = {
             "coin": 0,
             "dailystamp": 0,
@@ -36,7 +38,7 @@ class Coin(commands.Cog):
             See the commands bellow to get started.
         """
         pass
-    
+
     @coin.command(aliases=['bal'])
     async def balance(self, ctx, member: discord.Member = None):
         if member is None:
@@ -45,7 +47,7 @@ class Coin(commands.Cog):
             member = member
         coin = await self.db.user(member).coin()
         await ctx.send(f"{member.mention} has {coin} coins.")
-         
+
     @coin.command()
     async def daily(self, ctx):
         now = datetime.utcnow()
@@ -54,10 +56,12 @@ class Coin(commands.Cog):
             stamp = datetime.fromtimestamp(stamp)
         else:
             stamp = now
-        future =  now + timedelta(hours=12)
+        future = now + timedelta(hours=12)
         await self.db.user(ctx.author).dailystamp.set(future.timestamp())
         if stamp > now:
-            await ctx.send(f"You already claimed your daily coins. Check back in {humanize.naturaldelta(stamp - now)}")
+            await ctx.send(f"You already claimed your daily coins."
+                           f"Check back in"
+                           f"{humanize.naturaldelta(stamp - now)}")
             return
         coin = await self.db.user(ctx.author).coin()
         coin += 300
@@ -93,8 +97,8 @@ class Coin(commands.Cog):
             return
         r = random.sample(list(searchlist.keys()), 3)
         await ctx.send("Chose a random location to search from bellow\n"
-                    "`{}` , `{}` , `{}`".format(r[0],r[1],r[2]))
-        check = MessagePredicate.lower_contained_in(r,ctx)
+                       "`{}` , `{}` , `{}`".format(r[0], r[1], r[2]))
+        check = MessagePredicate.lower_contained_in(r, ctx)
         try:
             msg = await ctx.bot.wait_for("message", timeout=10, check=check)
         except asyncio.TimeoutError:
@@ -123,53 +127,58 @@ class Coin(commands.Cog):
         if amt > coin:
             await ctx.send("You don't have that much coins.")
             return
-        #Build an EMBED!
-        embed = discord.Embed(color = await self.bot.get_embed_color(ctx), title = "Roll the Dice.")
+        # Build an EMBED!
+        embed = discord.Embed(color=await self.bot.get_embed_color(ctx),
+                              title="Roll the Dice.")
         if you > 6 or dealer < you:
-            embed.add_field(name = "Dealer rolled:", value = f"🎲 {dealer}")
-            embed.add_field(name = "You rolled:", value = f"🎲 {you}")
+            embed.add_field(name="Dealer rolled:", value=f"🎲 {dealer}")
+            embed.add_field(name="You rolled:", value=f"🎲 {you}")
             embed.description = "YOU WON!"
             coin += amt
             await self.db.user(ctx.author).coin.set(coin)
         elif you == dealer:
-            embed.add_field(name = "Dealer rolled:", value = f"🎲 {dealer}")
-            embed.add_field(name = "You rolled:", value = f"🎲 {you}")
+            embed.add_field(name="Dealer rolled:", value=f"🎲 {dealer}")
+            embed.add_field(name="You rolled:", value=f"🎲 {you}")
             embed.description = "It's a tie."
         elif you < 6 or dealer > you:
-            embed.add_field(name = "Dealer rolled:", value = f"🎲 {dealer}")
-            embed.add_field(name = "You rolled:", value = f"🎲 {you}")
+            embed.add_field(name="Dealer rolled:", value=f"🎲 {dealer}")
+            embed.add_field(name="You rolled:", value=f"🎲 {you}")
             embed.description = "YOU LOST!"
             coin -= amt
             await self.db.user(ctx.author).coin.set(coin)
-        embed.set_footer(text = "Roll the dice, whoever has the highest wins.")
-        await ctx.send(embed = embed)
-                    
+        embed.set_footer(text="Roll the dice, whoever has the highest wins.")
+        await ctx.send(embed=embed)
+
     @coin.command(aliases=['lb'])
     async def leaderboard(self, ctx):
         userinfo = await self.db.all_users()
         if not userinfo:
             return await ctx.send("Start playing first, then check boards.")
-        sorted_acc = sorted(userinfo.items(), key=lambda x: x[1]['coin'], reverse=True)[:50]
+        sorted_acc = sorted(userinfo.items(), key=lambda x: x[1]['coin'],
+                            reverse=True)[:50]
         li = []
         for i, (user_id, account) in enumerate(sorted_acc, start=1):
             user_obj = ctx.guild.get_member(user_id)
             if user_obj is None:
                 continue
-            li.append(f"#{i:2} {user_obj.display_name:<15} {account['coin']:>15}")
+            li.append(f"#{i:2} {user_obj.display_name:<15}"
+                      f"{account['coin']:>15}")
         text = "\n".join(li)
-        page_list=[]
-        for page_num, page in enumerate(pagify(text, delims=['\n'], page_length=1000), start=1):
-            embed=discord.Embed(
+        page_list = []
+        for page_num, page in enumerate(pagify(text, delims=['\n'],
+                                        page_length=1000), start=1):
+            embed = discord.Embed(
                 color=await ctx.bot.get_embed_color(location=ctx.channel),
-                description=box(f"Leaderboards", lang="prolog") + (box(page, lang="md")),
+                description=box("Leaderboards",
+                                lang="prolog") + (box(page, lang="md")),
             )
-            embed.set_footer (
+            embed.set_footer(
                 text=f"Page {page_num}/{ceil(len(text) / 1000)}",
             )
         page_list.append(embed)
         return await menu(ctx, page_list, DEFAULT_CONTROLS)
-        #await ctx.send(sorted_acc)
-             
+        # await ctx.send(sorted_acc)
+
     @coin.command()
     async def steal(self, ctx, member: discord.Member):
         self_coin = await self.db.user(ctx.author).coin()
@@ -183,19 +192,23 @@ class Coin(commands.Cog):
         random.shuffle(chars)
         chars = ''.join(chars)
 
-        e = discord.Embed(title=f"{ctx.author.name} is stealing from {member.name}")
+        e = discord.Embed(title=f"{ctx.author.name}"
+                                f"is stealing from {member.display_name}")
         e.set_thumbnail(url=member.avatar_url)
-        e.add_field(name="\u200b", value="If you run out of picks, you lost.\nLockpicks left: **3**", inline=False)
+        e.add_field(name="\u200b",
+                    value="If you run out of picks, you lost."
+                          "\nLockpicks left: **3**", inline=False)
         e.description = (
             "```___________```"
         )
-        #e.add_field(name="\u200b", value="Lockpicks left: 3", inline=False)
+        # e.add_field(name="\u200b", value="Lockpicks left: 3", inline=False)
         e.set_footer(text="Pick the lock using the ◀ and ▶ and ❌ to cancel.")
         msg = await ctx.send(embed=e)
         start_adding_reactions(msg, emojis)
 
         while True:
-            pred = ReactionPredicate.with_emojis(emojis, message=msg, user=ctx.author)
+            pred = ReactionPredicate.with_emojis(emojis, message=msg,
+                                                 user=ctx.author)
             try:
                 await ctx.bot.wait_for("reaction_add", check=pred, timeout=60)
             except asyncio.TimeoutError:
@@ -207,9 +220,9 @@ class Coin(commands.Cog):
                 e.description = "`You cancelled.`"
                 await msg.edit(embed=e)
                 break
-            #elif emoji == '▶️':
+            # elif emoji == '▶️':
             #    direction = ">"
-            #elif emoji == '◀️':
+            # elif emoji == '◀️':
             #    direction = "<"
             if emoji == chars[var]:
                 try:
@@ -225,14 +238,22 @@ class Coin(commands.Cog):
             else:
                 try:
                     key -= 1
-                    e.set_field_at(0, name="\u200b", value=f"If you run out of picks, you lost.\nLockpicks left: **{key}**", inline=False)
+                    e.set_field_at(0, name="\u200b",
+                                   value=f"If you run out of picks"
+                                         f", you lost.\nLockpicks left:"
+                                         f" **{key}**", inline=False)
                     await msg.edit(embed=e)
                 except IndexError:
                     break
             if var == 10 or key == 0:
                 percent = var
                 stolen = floor(enemy_coin * percent / 100)
-                e.set_field_at(0, name="\u200b", value=f"You successfully stolen `{percent}%` of {member.name}'s coins.\nYou earned `{stolen}` coins.\nLockpicks left: **{key}**", inline=False)
+                e.set_field_at(0, name="\u200b",
+                               value=f"You successfully stolen"
+                               f" `{percent}%` of "
+                               f"{member.display_name}'s coins."
+                               f"\nYou earned `{stolen}` coins.\n"
+                               f"Lockpicks left: **{key}**", inline=False)
                 await msg.edit(embed=e)
                 self_coin += stolen
                 enemy_coin -= stolen
@@ -251,12 +272,12 @@ class Coin(commands.Cog):
         if coin == 0:
             await ctx.send("Start playing first by claiming daily.")
             return
-        
-        chest = random.randint(1, 64)
-        
+
+        chest = random.randint(1, 64)\
+
         desc = """
         NW + -- + -- + -- N -- + -- + -- + NE
-        01 | 02 | 03 | 04 | 05 | 06 | 07 | 08 
+        01 | 02 | 03 | 04 | 05 | 06 | 07 | 08
         -- + -- + -- + -- + -- + -- + -- + --
         09 | 10 | 11 | 12 | 13 | 14 | 15 | 16
         -- + -- + -- + -- + -- + -- + -- + --
@@ -281,7 +302,7 @@ class Coin(commands.Cog):
         south_east = [46, 47, 48, 54, 55, 56, 62, 63, 64]
         south = [36, 44, 52, 60, 61, 53, 45, 37]
         east = [29, 30, 31, 32, 37, 38, 39, 40]
-        
+
         if chest in north:
             hint = "North"
         elif chest in north_west:
@@ -300,23 +321,26 @@ class Coin(commands.Cog):
             hint = "East"
         else:
             hint = "None"
-            
+
         embed = discord.Embed(
-            color = await self.bot.get_embed_color(ctx), 
-            description = f"Chose a number between 1 and 64```{dedent(desc)}```Hint: Your compass points towards {hint}", 
-            title = "Find the pirate booty chest!"
+            color=await self.bot.get_embed_color(ctx),
+            description=f"Chose a number between 1 and 64"
+                        f"```{dedent(desc)}```Hint: Your compass "
+                        f"points towards {hint}",
+            title="Find the pirate booty chest!"
         )
-        await ctx.send(embed = embed)
-            
+        await ctx.send(embed=embed)
+
         pred = MessagePredicate.same_context(ctx)
         try:
-            msg = await ctx.bot.wait_for("message", timeout = 20, check = pred)
+            msg = await ctx.bot.wait_for("message", timeout=20, check=pred)
         except asyncio.TimeoutError:
-            await ctx.send("Can't dig nowhere, you need to input a number or 'random' if you are too lazy.")
+            await ctx.send("Can't dig nowhere, you need to input a number "
+                           "or 'random' if you are too lazy.")
             return
-            
+
         your_input = msg.content.lower()
-            
+
         try:
             your_input = int(msg.content)
         except ValueError:
@@ -325,17 +349,22 @@ class Coin(commands.Cog):
             else:
                 await ctx.send("Wrong input type.")
                 return
-            
-        if isclose(your_input, chest, rel_tol = 0.1) is True:
+
+        if isclose(your_input, chest, rel_tol=0.1) is True:
             earned = random.randint(20, 50)
             coin += earned
             await self.db.user(ctx.author).coin.set(coin)
-            await ctx.send(f"You were close, but not really\nFound a small chest with `{earned}` coins in it.\nYou can't help but wonder what kind of treasures the big one could contain...")
+            await ctx.send(f"You were close, but not really\n"
+                           f"Found a small chest with `{earned}`"
+                           f" coins in it.\n"
+                           f"You can't help but wonder what kind of treasures "
+                           f"the big one could contain...")
             return
         elif your_input == chest:
             coin += 1000
             await self.db.user(ctx.author).coin.set(coin)
-            await ctx.send(f"You found it!\nThe treasure chest contained `1000` coins")
+            await ctx.send("You found it!\nThe treasure"
+                           "chest contained `1000` coins")
             return
         else:
             await ctx.send("Not even close, you found nothing.")
