@@ -6,22 +6,25 @@ from datetime import datetime, timedelta
 from redbot.core.utils.chat_formatting import humanize_timedelta
 from .taskhelper import TaskHelper
 
+
 class Giveaway(TaskHelper, commands.Cog):
     """Simple Giveaway Cog by Mucski"""
     def __init__(self, bot):
         self.bot = bot
         self.conf = Config.get_conf(self, 975667633)
-        defaults = { "channel": 0, "msg": 0, "stamp": 0, "running": False }
+        defaults = {"channel": 0, "msg": 0, "stamp": 0, "running": False}
         self.conf.register_guild(**defaults)
         self.load_check = self.bot.loop.create_task(self._worker())
         TaskHelper.__init__(self)
-    
+
     @commands.group(invoke_without_command=True)
     async def gw(self, ctx):
-        await ctx.send("Create giveaways with ``.gw start``, stop giveaways with ``.gw stop``")
-    
+        await ctx.send("Create giveaways with ``.gw start``"
+                       ", stop giveaways with ``.gw stop``")
+
     @gw.command()
-    async def start(self, ctx, time: int, channel: discord.TextChannel = None, *, text = None):
+    async def start(self, ctx, time: int,
+                    channel: discord.TextChannel = None, *, text=None):
         if await self.conf.guild(ctx.guild).running() is True:
             await ctx.send("There is already a giveaway running.")
             return
@@ -36,11 +39,15 @@ class Giveaway(TaskHelper, commands.Cog):
         temp_stamp = datetime.fromtimestamp(future)
         remaining_timedelta = temp_stamp - now
         remaining = remaining_timedelta.total_seconds()
-        #Embed Builder
-        embed = discord.Embed(color = await self.bot.get_embed_color(ctx))
-        embed.set_author(name=f"{self.bot.user.name}'s giveaway.", icon_url=self.bot.user.avatar_url)
+        # Embed Builder
+        embed = discord.Embed(color=await self.bot.get_embed_color(ctx))
+        embed.set_author(name=f"{self.bot.user.name}'s giveaway.",
+                         icon_url=self.bot.user.avatar_url)
         embed.description = text
-        embed.set_footer(text=f"Lasts for: {humanize_timedelta(timedelta=remaining_timedelta)}")
+        embed.set_footer(
+            text=f"Lasts for:"
+            f"{humanize_timedelta(timedelta=remaining_timedelta)}"
+        )
         msg = await channel.send(embed=embed)
         await msg.add_reaction("💎")
         channel = channel.id
@@ -50,7 +57,7 @@ class Giveaway(TaskHelper, commands.Cog):
         await self.conf.guild(ctx.guild).stamp.set(future)
         await self.conf.guild(ctx.guild).running.set(True)
         self.schedule_task(self._timer(remaining))
-        
+
     @gw.command()
     async def end(self, ctx):
         msg = await self.conf.guild(ctx.guild).msg()
@@ -65,7 +72,7 @@ class Giveaway(TaskHelper, commands.Cog):
         await self._worker()
         self.end_task()
         await self.conf.guild(ctx.guild).running.set(False)
-        
+
     @gw.command()
     async def reroll(self, ctx):
         channel = await self.conf.guild(ctx.guild).channel()
@@ -82,11 +89,11 @@ class Giveaway(TaskHelper, commands.Cog):
             await channel.send(f"The new winner is {winner.mention}")
         else:
             await channel.send("The winner is still no one.")
-            
+
     async def _timer(self, remaining):
         await asyncio.sleep(remaining)
         await self._worker()
-        
+
     async def _teardown(self, channel, msg, guild):
         if await self.conf.guild(guild).running() is False:
             return
@@ -98,18 +105,21 @@ class Giveaway(TaskHelper, commands.Cog):
                 continue
             users.append(user)
         await self.conf.guild(guild).running.set(False)
-        #Embed Builder
-        embed = discord.Embed(color = await self.bot.get_embed_color(location = channel))
-        embed.set_author(name=f"{self.bot.user.name}'s giveaway.", icon_url=self.bot.user.avatar_url)
+        # Embed Builder
+        embed = discord.Embed(color=await self.bot.get_embed_color(
+                              location=channel))
+        embed.set_author(name=f"{self.bot.user.name}'s giveaway.",
+                         icon_url=self.bot.user.avatar_url)
         embed.description = "Giveaway finished. See bellow for winners:"
-        embed.set_footer(text=f"Giveaway finished.")
+        embed.set_footer(text="Giveaway finished.")
         await msg.edit(embed=embed)
         if users:
             winner = random.choice(users)
-            await channel.send(f"The winner is {winner.mention}, congratulations! 🎉")
+            await channel.send(f"The winner is {winner.mention}"
+                               ", congratulations! 🎉")
         else:
-            await channel.send(f"No one even tried, how sad is that.")
-        
+            await channel.send("No one even tried, how sad is that.")
+
     async def _worker(self):
         await self.bot.wait_until_ready()
         guilds = await self.conf.all_guilds()
@@ -126,6 +136,6 @@ class Giveaway(TaskHelper, commands.Cog):
                 await self._teardown(channel, msg, guild)
             else:
                 self.schedule_task(self._timer(remaining))
-    
+
     def cog_unload(self):
         self.load_check.cancel()
