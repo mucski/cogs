@@ -63,7 +63,7 @@ class Paladins(commands.Cog):
         versus = Image.open("home/ubuntu/icons/vs.png")
         (width, height) = (versus.width // 5, versus.height // 5)
         resized_versus = versus.resize((width, height))
-        out.paste(resized_versus, (10, 10) resized_versus)
+        out.paste(resized_versus, (10, 10), resized_versus)
 
         # draw multiline text
         d.multiline_text((10, 10), f"{champ}\nWorld", font=fnt, fill=(0, 0, 0))
