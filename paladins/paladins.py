@@ -59,8 +59,19 @@ class Paladins(commands.Cog):
         out = Image.open(f"home/ubuntu/icons/maps/{map}.png")
         # overlay = Image.new("RGBA", out.size, TINT_COLOR+(0,))
         draw = ImageDraw.Draw(out, "RGBA")
-        w, h = out.size
-        draw.rectangle(((w/2, h/2), (w/2, h/2)), fill=RED_COLOR+(OPACITY,))
+        # Determine extent of the largest possible square centered on the image.
+        # and the image's shorter dimension.
+        if img.size[0] > img.size[1]:
+            shorter = img.size[1]
+            llx, lly = (img.size[0]-img.size[1]) // 2 , 0
+        else:
+            shorter = img.size[0]
+            llx, lly = 0, (img.size[1]-img.size[0]) // 2
+
+        # Calculate upper point + 1 because second point needs to be just outside the
+        # drawn rectangle when drawing rectangles.
+        urx, ury = llx+shorter+1, lly+shorter+1
+        draw.rectangle(((llx, lly), (urx, ury)), fill=RED_COLOR+(OPACITY,))
         # out = Image.alpha_composite(out, overlay)
 
         # get a font
