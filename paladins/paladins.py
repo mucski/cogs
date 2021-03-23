@@ -50,7 +50,7 @@ class Paladins(commands.Cog):
         return url
 
     @commands.command()
-    async def hitest(self, ctx, champ):
+    async def hitest(self, ctx, map):
         # shrink = 140
         # offset = 10
         # image_size_y = 512 - shrink * 2
@@ -59,7 +59,7 @@ class Paladins(commands.Cog):
         # Sum test
         # create an image
         # out = Image.new("RGBA", (img_x*4, image_size_y+offset*2), (3, 177, 252))
-        out = Image.open("home/ubuntu/icons/maps/frog_isle.png")
+        out = Image.open(f"home/ubuntu/icons/maps/{map}.png")
         # (width, height) = (img_x * 4, image_size_y+offset * 2)
         # resize_bg = background.resize((width, height))
         # out.paste(resize_bg, (0, 0), resize_bg)
@@ -75,7 +75,7 @@ class Paladins(commands.Cog):
         out.paste(resized_versus, (10, 10), resized_versus)
 
         # draw multiline text
-        d.multiline_text((10, 10), f"{champ}\nWorld", font=fnt, fill=(0, 0, 0))
+        d.multiline_text((10, 10), f"Hello\nWorld", font=fnt, fill=(0, 0, 0))
 
         # save it to buffer
         buffer = io.BytesIO()
