@@ -54,7 +54,7 @@ class Paladins(commands.Cog):
         # Sum test
         # create buffer
         out = Image.new("RGB", (150, 100), (255, 255, 255))
-        fnt = ImageFont.TrueType("home/ubuntu/arial.ttf", 40)
+        fnt = ImageFont.truetype("home/ubuntu/arial.ttf", 40)
         draw = Image.Draw(out)
         champ2 = "Sexy Fucker"
         draw.multiline_text((10, 10), f"{champ}\{champ2}", font=fnt, fill=(0, 0, 0))
