@@ -61,7 +61,7 @@ class Paladins(commands.Cog):
         d = ImageDraw.Draw(out)
 
         # draw multiline text
-        d.multiline_text((10, 10), "Hello\nWorld", font=fnt, fill=(0, 0, 0))
+        d.multiline_text((10, 10), f"{champ}\nWorld", font=fnt, fill=(0, 0, 0))
         # save it to buffer
         buffer = io.BytesIO()
         # save PNG in buffer
