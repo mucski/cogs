@@ -76,7 +76,7 @@ class Paladins(commands.Cog):
         # save it to buffer
         buffer = io.BytesIO()
         # save PNG in buffer
-        draw.save(buffer, format='PNG')
+        out.save(buffer, format='PNG')
         # move to beginning of buffer so `send()` it will read from beginning
         buffer.seek(0)
         # send image
