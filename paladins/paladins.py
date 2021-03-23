@@ -56,7 +56,7 @@ class Paladins(commands.Cog):
         out = Image.new("RGB", (150, 100), (255, 255, 255))
 
         # get a font
-        fnt = ImageFont.truetype("Pillow/Tests/fonts/FreeMono.ttf", 40)
+        fnt = ImageFont.truetype("home/ubuntu/arial.ttf", 40)
         # get a drawing context
         d = ImageDraw.Draw(out)
 
