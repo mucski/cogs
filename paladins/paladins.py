@@ -58,7 +58,7 @@ class Paladins(commands.Cog):
         middle = image_size_y/2 - 50
         # Sum test
         # create an image
-        out = Image.new("RGBA", (img_x*9, image_size_y+offset*2), (3, 177, 252))
+        out = Image.new("RGBA", (img_x*4, image_size_y+offset*2), (3, 177, 252))
 
         # get a font
         fnt = ImageFont.truetype("home/ubuntu/arial.ttf", 40)
