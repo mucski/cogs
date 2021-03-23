@@ -114,11 +114,11 @@ class Paladins(commands.Cog):
 
     @commands.command()
     async def hitest(self, ctx, map):
-        # out = Image.open(f"home/ubuntu/icons/maps/{map}.png")
+        out = Image.open(f"home/ubuntu/icons/maps/{map}.png")
         # overlay = Image.new("RGBA", out.size, TINT_COLOR+(0,))
         # draw = ImageDraw.Draw(out, "RGBA")
         # await self.draw_rectangle(out, draw)
-        champ_icon = await.get_champ_image("Jenos")
+        champ_icon = await self.get_champ_image("Jenos")
         champ_stats = ["Jenos", "Joey", "1", "4000", "24/1/24", "394923", "39394", "222", "0", "0"]
         index = 1
         party = 1
