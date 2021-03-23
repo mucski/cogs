@@ -53,7 +53,7 @@ class Paladins(commands.Cog):
     async def hitest(self, ctx, champ):
         # Sum test
         # create buffer
-        out = Image.new("RBG", (150, 100), (255, 255, 255))
+        out = Image.new("RGB", (150, 100), (255, 255, 255))
         fnt = Image.truetype("home/ubuntu/arial.ttf", 40)
         draw = Image.Draw(out)
         champ2 = "Sexy Fucker"
