@@ -1,12 +1,13 @@
 import arez
-# from PIL import ImageOps, ImageDraw, Image, ImageFont
+from PIL import ImageOps, ImageDraw, Image, ImageFont
 from redbot.core import commands
 import asyncio
-# import aiohttp
-# from io import BytesIO
+import aiohttp
+import io
 import humanize
 from datetime import datetime
 import discord
+from discord import File
 
 
 class Paladins(commands.Cog):
@@ -50,8 +51,20 @@ class Paladins(commands.Cog):
 
     @commands.command()
     async def hitest(self, ctx, champ):
-        res = await self.get_champ_image(champ)
-        await ctx.send(res)
+        # Sum test
+        # create buffer
+        out = Image.new("RBG", (150, 100), (255, 255, 255))
+        fnt = Image.truetype("home/ubuntu/arial.ttf", 40)
+        draw = Image.Draw(out)
+        champ2 = "Sexy Fucker"
+        draw.multiline_text((10, 10), f"{champ}\{champ2}", font=fnt, fill=(0, 0, 0))
+        buffer = io.BytesIO()
+        # save PNG in buffer
+        Image.save(buffer, format='JPEG')
+        # move to beginning of buffer so `send()` it will read from beginning
+        buffer.seek(0)
+        # send image
+        await ctx.send(file=File(buffer, 'yourmom.jpg'))
 
     @commands.command()
     async def stats(self, ctx, player, platform="PC"):
