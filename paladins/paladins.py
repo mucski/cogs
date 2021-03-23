@@ -78,9 +78,9 @@ class Paladins(commands.Cog):
         img_x = 512
         middle = image_size_y/2 - 50
         im_color = (175, 238, 238, 0) if index % 2 == 0 else (196, 242, 242, 0)
-        img = Image.new("RGB", (img_x*9, image_size_y+offset*2), color=(175, 238, 238, 0))
+        img = Image.new("RBGA", (img_x*9, image_size_y+offset*2), color=im_color)
+        img.paste(champ_icon, (offset, offset))
         draw = ImageDraw.Draw(img)
-        img.paste(champ_icon, (0, 0, offset, offset))
         fnt80 = ImageFont.truetype("home/ubuntu/arial.ttf", 80)
         fnt100 = ImageFont.truetype("home/ubuntu/arial.ttf", 100)
         fill = (0, 0, 0)
