@@ -60,7 +60,7 @@ class Paladins(commands.Cog):
         # create an image
         out = Image.new("RGBA", (img_x*4, image_size_y+offset*2), (3, 177, 252))
         background = Image.open("home/ubuntu/icons/maps/frog_isle.png")
-        (width, height) = (img_x*4, image_size_y+offset*2)
+        (width, height) = (img_x * 4, image_size_y+offset * 2)
         resize_bg = background.resize((width, height))
         out.paste(resize_bg, (0, 0), resize_bg)
 
