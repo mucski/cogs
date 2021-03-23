@@ -55,11 +55,10 @@ class Paladins(commands.Cog):
         TRANSPARENCY = .25  # Degree of transparency, 0-100%
         OPACITY = int(255 * TRANSPARENCY)
         out = Image.open(f"home/ubuntu/icons/maps/{map}.png")
-        out.convert("RGBA")
-        overlay = Image.new("RGBA", out.size, TINT_COLOR+(0,))
-        draw = ImageDraw.Draw(overlay)
+        # overlay = Image.new("RGBA", out.size, TINT_COLOR+(0,))
+        draw = ImageDraw.Draw(out, "RGBA")
         draw.rectangle(((0, 0), (500, 500)), fill=TINT_COLOR+(OPACITY,))
-        out = Image.alpha_composite(out, overlay)
+        # out = Image.alpha_composite(out, overlay)
 
         # get a font
         fnt = ImageFont.truetype("home/ubuntu/arial.ttf", 40)
