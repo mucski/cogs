@@ -63,7 +63,7 @@ class Paladins(commands.Cog):
         # get a font
         fnt = ImageFont.truetype("home/ubuntu/arial.ttf", 40)
         # get a drawing context
-        image = ImageDraw.Draw(out)
+        # image = ImageDraw.Draw(out)
 
         versus = Image.open("home/ubuntu/icons/vs.png")
         (width, height) = (versus.width // 5, versus.height // 5)
@@ -71,12 +71,12 @@ class Paladins(commands.Cog):
         out.paste(resized_versus, (10, 10), resized_versus)
 
         # draw multiline text
-        image.multiline_text((10, 10), "Hello\nWorld", font=fnt, fill=(0, 0, 0))
+        draw.multiline_text((10, 10), "Hello\nWorld", font=fnt, fill=(0, 0, 0))
 
         # save it to buffer
         buffer = io.BytesIO()
         # save PNG in buffer
-        image.save(buffer, format='PNG')
+        draw.save(buffer, format='PNG')
         # move to beginning of buffer so `send()` it will read from beginning
         buffer.seek(0)
         # send image
