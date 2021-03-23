@@ -53,15 +53,19 @@ class Paladins(commands.Cog):
     async def hitest(self, ctx, champ):
         # Sum test
         # create an image
-        out = Image.new("RGB", (150, 100), (255, 255, 255))
+        out = Image.new("RGB", (150, 100), (3, 177, 252))
 
         # get a font
         fnt = ImageFont.truetype("home/ubuntu/arial.ttf", 40)
         # get a drawing context
         d = ImageDraw.Draw(out)
 
+        versus = Image.open("home/ubuntu/icons/vs.png")
+        out.paste(versus, (10, 10))
+
         # draw multiline text
         d.multiline_text((10, 10), f"{champ}\nWorld", font=fnt, fill=(0, 0, 0))
+        
         # save it to buffer
         buffer = io.BytesIO()
         # save PNG in buffer
