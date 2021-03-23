@@ -54,19 +54,12 @@ class Paladins(commands.Cog):
         TINT_COLOR = (0, 0, 0)  # Black
         TRANSPARENCY = .25  # Degree of transparency, 0-100%
         OPACITY = int(255 * TRANSPARENCY)
-        # shrink = 140
-        # offset = 10
-        # image_size_y = 512 - shrink * 2
-        # img_x = 512
-        # middle = image_size_y/2 - 50
-        # Sum test
-        # create an image
-        # out = Image.new("RGBA", (img_x*4, image_size_y+offset*2), (3, 177, 252))
         out = Image.open(f"home/ubuntu/icons/maps/{map}.png")
         out.convert("RGBA")
-        # (width, height) = (img_x * 4, image_size_y+offset * 2)
-        # resize_bg = background.resize((width, height))
-        # out.paste(resize_bg, (0, 0), resize_bg)
+        overlay = Image.new("RGBA", out.size, TINT_COLOR+(0,))
+        draw = ImageDraw.Draw(overlay)
+        draw.rectangle(((0, 0), (500, 500)), fill=TINT_COLOR+(OPACITY,))
+        out = Image.alpha_composite(out, overlay)
 
         # get a font
         fnt = ImageFont.truetype("home/ubuntu/arial.ttf", 40)
@@ -77,22 +70,9 @@ class Paladins(commands.Cog):
         (width, height) = (versus.width // 5, versus.height // 5)
         resized_versus = versus.resize((width, height))
         out.paste(resized_versus, (10, 10), resized_versus)
-        if out.size[0] > out.size[1]:
-            shorter = out.size[1]
-            llx, lly = (out.size[0]-out.size[1]) // 2 , 0
-        else:
-            shorter = out.size[0]
-            llx, lly = 0, (out.size[1]-out.size[0]) // 2
-
-        urx, ury = llx+shorter+1, lly+shorter+1
-
-        overlay = Image.new("RGBA", out.size, TINT_COLOR+(0,))
-        draw = ImageDraw.Draw(overlay)
-        draw.rectangle(((llx, lly), (urx, ury)), fill=TINT_COLOR+(OPACITY,))
-        Image.alpha_composite(out, overlay)
 
         # draw multiline text
-        image.multiline_text((10, 10), f"Hello\nWorld", font=fnt, fill=(0, 0, 0))
+        image.multiline_text((10, 10), "Hello\nWorld", font=fnt, fill=(0, 0, 0))
 
         # save it to buffer
         buffer = io.BytesIO()
