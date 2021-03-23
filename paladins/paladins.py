@@ -71,6 +71,41 @@ class Paladins(commands.Cog):
         return draw.rectangle(((llx, lly), (urx, ury)), fill=RED_COLOR+(OPACITY,))
         # out = Image.alpha_composite(out, overlay)
 
+    async def stats_image(self, champ_icon, champ_stats, index, party):
+        shrink = 140
+        offset = 10
+        image_size_y = 512 - shrink * 2
+        img_x = 512
+        middle = image_size_y/2 - 50
+        im_color = (175, 238, 238, 0) if index % 2 == 0 else (196, 242, 242, 0)
+        img = Image.new("RGBA", (img_x*9, image_size_y+offset*2), color=im_color)
+        img.paste(champ_icon, (offset, offset))
+        draw = ImageDraw.Draw(img)
+        fnt80 = ImageFont.truetype("home/ubuntu/arial.ttf", 80)
+        fnt100 = ImageFont.truetype("home/ubuntu/arial.ttf", 100)
+        fill = (0, 0, 0)
+        # Champion name, player name
+        draw.text((img_x+20, middle-40), str(champ_stats[0]), font=fnt80, fill=fill)
+        draw.text((img_x+20, middle+60), str(champ_stats[1]), font=fnt80, fill=fill)
+        # Parties
+        draw.text((img_x+750, middle), champ_stats[2], font=fnt100, fill=fill)
+        # Credits
+        draw.text((img_x+900, middle), champ_stats[3], font=fnt100, fill=fill)
+        # KDA
+        draw.text((img_x+1300, middle), champ_stats[4], font=fnt100, fill=fill)
+        # Damage Done
+        draw.text((img_x+1830, middle), champ_stats[5], font=fnt100, fill=fill)
+        # Mitigated
+        draw.text((img_x+2350, middle), champ_stats[6], font=fnt100, fill=fill)
+        # OBJ time
+        draw.text((img_x+2850, middle), champ_stats[7], font=fnt100, fill=fill)
+        # Shielding
+        draw.text((img_x+3150, middle), champ_stats[8], font=fnt100, fill=fill)
+        # Healing
+        draw.text((img_x+3600, middle), champ_stats[9], font=fnt100, fill=fill)
+        return stats_image
+
+
     @commands.command()
     async def hitest(self, ctx, map):
         out = Image.open(f"home/ubuntu/icons/maps/{map}.png")
@@ -81,15 +116,11 @@ class Paladins(commands.Cog):
         # get a drawing context
         # image = ImageDraw.Draw(out)
         await self.draw_rectangle(out, draw)
-
-        versus = Image.open("home/ubuntu/icons/vs.png")
-        (width, height) = (versus.width // 5, versus.height // 5)
-        resized_versus = versus.resize((width, height))
-        out.paste(resized_versus, (10, 10), resized_versus)
-
-        # draw multiline text
-        draw.multiline_text((10, 10), "Hello\nWorld", font=fnt, fill=(0, 0, 0))
-
+        champ_icon = await self.get_champ_image("jenos")
+        champ_stats = ["Jenos", "Joey", "1", "4000", "24/1/24", "394923", "39394", "222", "0", "0"]
+        index = 1
+        party = 1
+        await self.stats_image(champ_icon, champ_stats, index, party)
         # save it to buffer
         buffer = io.BytesIO()
         # save PNG in buffer
