@@ -87,7 +87,7 @@ class Paladins(commands.Cog):
         urx, ury = llx+shorter+1, lly+shorter+1
 
         overlay = Image.new("RGBA", out.size, TINT_COLOR+(0,))
-        draw = ImageDraw(overlay)
+        draw = ImageDraw.Draw(overlay)
         draw.rectangle(((llx, lly), (urx, ury)), fill=TINT_COLOR+(OPACITY,))
         Image.alpha_composite(out, overlay)
 
