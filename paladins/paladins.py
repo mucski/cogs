@@ -49,35 +49,38 @@ class Paladins(commands.Cog):
             + str(champ) + ".jpg"
         return url
 
-    @commands.command()
-    async def hitest(self, ctx, map):
+    async def draw_rectangle(self, img):
         TINT_COLOR = (0, 0, 0)  # Black
         RED_COLOR = (237, 59, 59) # Red
         BLUE_COLOR = (59, 142, 237) # Blu
         TRANSPARENCY = .5  # Degree of transparency, 0-100%
         OPACITY = int(255 * TRANSPARENCY)
-        out = Image.open(f"home/ubuntu/icons/maps/{map}.png")
-        # overlay = Image.new("RGBA", out.size, TINT_COLOR+(0,))
-        draw = ImageDraw.Draw(out, "RGBA")
+        # img = ImageDraw.Draw(img, "RGBA")
         # Determine extent of the largest possible square centered on the image.
         # and the image's shorter dimension.
-        if out.size[0] > out.size[1]:
-            shorter = out.size[1]
-            llx, lly = (out.size[0]-out.size[1]) // 2 , 0
+        if img.size[0] > img.size[1]:
+            shorter = img.size[1]
+            llx, lly = (img.size[0]-img.size[1]) // 2 , 0
         else:
-            shorter = out.size[0]
-            llx, lly = 0, (out.size[1]-out.size[0]) // 2
+            shorter = img.size[0]
+            llx, lly = 0, (img.size[1]-img.size[0]) // 2
 
         # Calculate upper point + 1 because second point needs to be just outside the
         # drawn rectangle when drawing rectangles.
         urx, ury = llx+shorter+1, lly+shorter+1
-        draw.rectangle(((llx, lly), (urx, ury)), fill=RED_COLOR+(OPACITY,))
+        return img.rectangle(((llx, lly), (urx, ury)), fill=RED_COLOR+(OPACITY,))
         # out = Image.alpha_composite(out, overlay)
 
+    @commands.command()
+    async def hitest(self, ctx, map):
+        out = Image.open(f"home/ubuntu/icons/maps/{map}.png")
+        # overlay = Image.new("RGBA", out.size, TINT_COLOR+(0,))
+        draw = ImageDraw.Draw(out, "RGBA")
         # get a font
         fnt = ImageFont.truetype("home/ubuntu/arial.ttf", 40)
         # get a drawing context
         # image = ImageDraw.Draw(out)
+        await self.draw_rectangle(draw)
 
         versus = Image.open("home/ubuntu/icons/vs.png")
         (width, height) = (versus.width // 5, versus.height // 5)
