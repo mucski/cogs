@@ -59,7 +59,8 @@ class Paladins(commands.Cog):
         out = Image.open(f"home/ubuntu/icons/maps/{map}.png")
         # overlay = Image.new("RGBA", out.size, TINT_COLOR+(0,))
         draw = ImageDraw.Draw(out, "RGBA")
-        draw.rectangle(((0, 0), (500, 500)), fill=RED_COLOR+(OPACITY,))
+        w, h = out.size
+        draw.rectangle(((w/2, h/2), (w/2, h/2)), fill=RED_COLOR+(OPACITY,))
         # out = Image.alpha_composite(out, overlay)
 
         # get a font
