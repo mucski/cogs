@@ -111,10 +111,6 @@ class Paladins(commands.Cog):
         out = Image.open(f"home/ubuntu/icons/maps/{map}.png")
         # overlay = Image.new("RGBA", out.size, TINT_COLOR+(0,))
         draw = ImageDraw.Draw(out, "RGBA")
-        # get a font
-        fnt = ImageFont.truetype("home/ubuntu/arial.ttf", 40)
-        # get a drawing context
-        # image = ImageDraw.Draw(out)
         await self.draw_rectangle(out, draw)
         champ_icon = await self.get_champ_image("jenos")
         champ_stats = ["Jenos", "Joey", "1", "4000", "24/1/24", "394923", "39394", "222", "0", "0"]

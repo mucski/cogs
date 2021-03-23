@@ -108,7 +108,7 @@ class Test2(commands.Cog):
         # color = (196, 242, 242)     # lighter blue
         champ_stats_image = Image.new('RGBA', (img_x*9, image_size_y+offset*2), color=im_color)
     
-        champ_stats_image.paste(champ_icon, (offset, offset))
+        champ_stats_image.paste(champ_icon, (offset, offset), (offset, offset))
     
         platform = champ_stats[10]
         if platform == "XboxLive":
