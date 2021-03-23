@@ -55,7 +55,7 @@ class Paladins(commands.Cog):
         # create buffer
         out = Image.new("RGB", (150, 100), (255, 255, 255))
         fnt = ImageFont.truetype("home/ubuntu/arial.ttf", 40)
-        draw = Image.Draw(out)
+        draw = ImageDraw(out)
         champ2 = "Sexy Fucker"
         draw.multiline_text((10, 10), f"{champ}\{champ2}", font=fnt, fill=(0, 0, 0))
         buffer = io.BytesIO()
