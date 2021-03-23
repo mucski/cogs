@@ -61,12 +61,12 @@ class Paladins(commands.Cog):
         draw = ImageDraw.Draw(out, "RGBA")
         # Determine extent of the largest possible square centered on the image.
         # and the image's shorter dimension.
-        if img.size[0] > img.size[1]:
-            shorter = img.size[1]
-            llx, lly = (img.size[0]-img.size[1]) // 2 , 0
+        if out.size[0] > out.size[1]:
+            shorter = out.size[1]
+            llx, lly = (out.size[0]-out.size[1]) // 2 , 0
         else:
-            shorter = img.size[0]
-            llx, lly = 0, (img.size[1]-img.size[0]) // 2
+            shorter = out.size[0]
+            llx, lly = 0, (out.size[1]-out.size[0]) // 2
 
         # Calculate upper point + 1 because second point needs to be just outside the
         # drawn rectangle when drawing rectangles.
