@@ -53,7 +53,7 @@ class Paladins(commands.Cog):
     async def hitest(self, ctx, champ):
         # Sum test
         # create an image
-        out = Image.new("RGB", (150, 100), (3, 177, 252))
+        out = Image.new("RGBA", (150, 100), (3, 177, 252))
 
         # get a font
         fnt = ImageFont.truetype("home/ubuntu/arial.ttf", 40)
@@ -63,7 +63,7 @@ class Paladins(commands.Cog):
         versus = Image.open("home/ubuntu/icons/vs.png")
         (width, height) = (versus.width // 5, versus.height // 5)
         resized_versus = versus.resize((width, height))
-        out.paste(resized_versus, (10, 10) versus)
+        out.paste(resized_versus, (10, 10))
 
         # draw multiline text
         d.multiline_text((10, 10), f"{champ}\nWorld", font=fnt, fill=(0, 0, 0))
