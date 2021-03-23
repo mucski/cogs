@@ -109,7 +109,7 @@ class Paladins(commands.Cog):
         draw.text((img_x+3150, middle), champ_stats[8], font=fnt100, fill=fill)
         # Healing
         draw.text((img_x+3600, middle), champ_stats[9], font=fnt100, fill=fill)
-        return stats_image
+        return img
 
 
     @commands.command()
