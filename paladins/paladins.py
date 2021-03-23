@@ -49,7 +49,7 @@ class Paladins(commands.Cog):
             + str(champ) + ".jpg"
         return url
 
-    async def draw_rectangle(self, img):
+    async def draw_rectangle(self, img, draw):
         TINT_COLOR = (0, 0, 0)  # Black
         RED_COLOR = (237, 59, 59) # Red
         BLUE_COLOR = (59, 142, 237) # Blu
@@ -68,7 +68,7 @@ class Paladins(commands.Cog):
         # Calculate upper point + 1 because second point needs to be just outside the
         # drawn rectangle when drawing rectangles.
         urx, ury = llx+shorter+1, lly+shorter+1
-        return img.rectangle(((llx, lly), (urx, ury)), fill=RED_COLOR+(OPACITY,))
+        return draw.rectangle(((llx, lly), (urx, ury)), fill=RED_COLOR+(OPACITY,))
         # out = Image.alpha_composite(out, overlay)
 
     @commands.command()
@@ -80,7 +80,7 @@ class Paladins(commands.Cog):
         fnt = ImageFont.truetype("home/ubuntu/arial.ttf", 40)
         # get a drawing context
         # image = ImageDraw.Draw(out)
-        await self.draw_rectangle(out)
+        await self.draw_rectangle(out, draw)
 
         versus = Image.open("home/ubuntu/icons/vs.png")
         (width, height) = (versus.width // 5, versus.height // 5)
