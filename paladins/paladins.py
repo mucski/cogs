@@ -51,9 +51,14 @@ class Paladins(commands.Cog):
 
     @commands.command()
     async def hitest(self, ctx, champ):
+        shrink = 140
+        offset = 10
+        image_size_y = 512 - shrink * 2
+        img_x = 512
+        middle = image_size_y/2 - 50
         # Sum test
         # create an image
-        out = Image.new("RGBA", (512*9, 512), (3, 177, 252))
+        out = Image.new("RGBA", (img_x*9, image_size_y+offset*2), (3, 177, 252))
 
         # get a font
         fnt = ImageFont.truetype("home/ubuntu/arial.ttf", 40)
