@@ -51,6 +51,9 @@ class Paladins(commands.Cog):
 
     @commands.command()
     async def hitest(self, ctx, map):
+        TINT_COLOR = (0, 0, 0)  # Black
+        TRANSPARENCY = .25  # Degree of transparency, 0-100%
+        OPACITY = int(255 * TRANSPARENCY)
         # shrink = 140
         # offset = 10
         # image_size_y = 512 - shrink * 2
@@ -60,6 +63,7 @@ class Paladins(commands.Cog):
         # create an image
         # out = Image.new("RGBA", (img_x*4, image_size_y+offset*2), (3, 177, 252))
         out = Image.open(f"home/ubuntu/icons/maps/{map}.png")
+        out.convert("RGBA")
         # (width, height) = (img_x * 4, image_size_y+offset * 2)
         # resize_bg = background.resize((width, height))
         # out.paste(resize_bg, (0, 0), resize_bg)
@@ -67,20 +71,33 @@ class Paladins(commands.Cog):
         # get a font
         fnt = ImageFont.truetype("home/ubuntu/arial.ttf", 40)
         # get a drawing context
-        d = ImageDraw.Draw(out)
+        image = ImageDraw.Draw(out)
 
         versus = Image.open("home/ubuntu/icons/vs.png")
         (width, height) = (versus.width // 5, versus.height // 5)
         resized_versus = versus.resize((width, height))
         out.paste(resized_versus, (10, 10), resized_versus)
+        if out.size[0] > out.size[1]:
+            shorter = out.size[1]
+            llx, lly = (out.size[0]-out.size[1]) // 2 , 0
+        else:
+            shorter = out.size[0]
+            llx, lly = 0, (out.size[1]-out.size[0]) // 2
+
+        urx, ury = llx+shorter+1, lly+shorter+1
+
+        overlay = Image.new("RBGA", out.size, TINT_COLOR+(0,))
+        draw = Image.draw(overlay)
+        draw.rectangle(((llx, lly), (urx, ury)), fill=TINT_COLOR+(OPACITY,))
+        Image.alpha_composite(out, overlay)
 
         # draw multiline text
-        d.multiline_text((10, 10), f"Hello\nWorld", font=fnt, fill=(0, 0, 0))
+        image.multiline_text((10, 10), f"Hello\nWorld", font=fnt, fill=(0, 0, 0))
 
         # save it to buffer
         buffer = io.BytesIO()
         # save PNG in buffer
-        out.save(buffer, format='PNG')
+        image.save(buffer, format='PNG')
         # move to beginning of buffer so `send()` it will read from beginning
         buffer.seek(0)
         # send image
