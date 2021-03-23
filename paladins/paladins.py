@@ -52,12 +52,14 @@ class Paladins(commands.Cog):
     @commands.command()
     async def hitest(self, ctx, map):
         TINT_COLOR = (0, 0, 0)  # Black
-        TRANSPARENCY = .25  # Degree of transparency, 0-100%
+        RED_COLOR = (237, 59, 59) # Red
+        BLUE_COLOR = (59, 142, 237) # Blu
+        TRANSPARENCY = .5  # Degree of transparency, 0-100%
         OPACITY = int(255 * TRANSPARENCY)
         out = Image.open(f"home/ubuntu/icons/maps/{map}.png")
         # overlay = Image.new("RGBA", out.size, TINT_COLOR+(0,))
         draw = ImageDraw.Draw(out, "RGBA")
-        draw.rectangle(((0, 0), (500, 500)), fill=TINT_COLOR+(OPACITY,))
+        draw.rectangle(((0, 0), (500, 500)), fill=RED_COLOR+(OPACITY,))
         # out = Image.alpha_composite(out, overlay)
 
         # get a font
