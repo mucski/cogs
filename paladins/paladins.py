@@ -52,12 +52,17 @@ class Paladins(commands.Cog):
     @commands.command()
     async def hitest(self, ctx, champ):
         # Sum test
-        # create buffer
+        # create an image
         out = Image.new("RGB", (150, 100), (255, 255, 255))
-        fnt = ImageFont.truetype("home/ubuntu/arial.ttf", 40)
-        draw = ImageDraw(out)
-        champ2 = "Sexy Fucker"
-        draw.multiline_text((10, 10), f"{champ}\{champ2}", font=fnt, fill=(0, 0, 0))
+
+        # get a font
+        fnt = ImageFont.truetype("Pillow/Tests/fonts/FreeMono.ttf", 40)
+        # get a drawing context
+        d = ImageDraw.Draw(out)
+
+        # draw multiline text
+        d.multiline_text((10, 10), "Hello\nWorld", font=fnt, fill=(0, 0, 0))
+        # save it to buffer
         buffer = io.BytesIO()
         # save PNG in buffer
         Image.save(buffer, format='JPEG')
