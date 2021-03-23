@@ -61,6 +61,7 @@ class Paladins(commands.Cog):
         d = ImageDraw.Draw(out)
 
         versus = Image.open("home/ubuntu/icons/vs.png")
+        versus.resize(100, 100)
         out.paste(versus, (10, 10))
 
         # draw multiline text
