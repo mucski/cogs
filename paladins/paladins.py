@@ -61,7 +61,7 @@ class Paladins(commands.Cog):
         d = ImageDraw.Draw(out)
 
         versus = Image.open("home/ubuntu/icons/vs.png")
-        (width, height) = (versus.width // 2, versus.height // 2)
+        (width, height) = (versus.width // 5, versus.height // 5)
         resized_versus = versus.resize((width, height))
         out.paste(resized_versus, (10, 10))
 
