@@ -80,7 +80,7 @@ class Paladins(commands.Cog):
         fnt = ImageFont.truetype("home/ubuntu/arial.ttf", 40)
         # get a drawing context
         # image = ImageDraw.Draw(out)
-        await self.draw_rectangle(draw)
+        await self.draw_rectangle(out)
 
         versus = Image.open("home/ubuntu/icons/vs.png")
         (width, height) = (versus.width // 5, versus.height // 5)
