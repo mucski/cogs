@@ -53,7 +53,7 @@ class Paladins(commands.Cog):
     async def hitest(self, ctx, champ):
         # Sum test
         # create an image
-        out = Image.new("RGBA", (150, 100), (3, 177, 252))
+        out = Image.new("RGBA", (512, 100), (3, 177, 252))
 
         # get a font
         fnt = ImageFont.truetype("home/ubuntu/arial.ttf", 40)
