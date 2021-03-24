@@ -320,19 +320,16 @@ class Paladins(commands.Cog):
                                                                team1_parties, team2_parties, (match_info + temp))
         file = discord.File(filename="TeamMatch.png", fp=buffer)
         await ctx.send("```You are an amazing person!```", file=file)
+        
 
     @commands.command()
     async def atest(self, ctx, matchId):
         match = await self.api.get_match(matchId, expand_players=True)
-        player_info = []
-        for i in match.team1:
-            for player in match.players:
-                player_info.append(player.champion)
-                player_info.append(player.credits)
-                player_info.append(player.kills)
-                player_info.append(player.deaths)
-                player_info.append(player.assists)
-                player_info.append(player.damage_done)
+         match_info = [match.winning_team, match.duration, match.region,
+                          match.map_name, match.score[0], match.score[1]]
+        temp = match.bans
+        await ctx.send(match.info+temp)
+
 
     @commands.command()
     async def stats(self, ctx, player, platform="PC"):
