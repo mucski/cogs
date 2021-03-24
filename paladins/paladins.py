@@ -200,7 +200,7 @@ class Paladins(commands.Cog):
         # Add in match information
         ds = 50  # Down Shift
         rs = 20  # Right Shift
-        fnt100 = ImageFont.truetype("home/ubuntu/arial.ttf", 100)
+        fnt100 = ImageFont.truetype("home/ubuntu/arialbd.ttf", 100)
         draw_panel.text((512 * 2 + rs, 0 + ds), str(f"Winning Team: {md[0]}"), font=fnt100, fill=(255, 255, 255))
         draw_panel.text((512 * 2 + rs, 100 + ds), (str(md[1]) + " minutes"), font=fnt100,
                         fill=(255, 255, 255))
@@ -222,7 +222,7 @@ class Paladins(commands.Cog):
 
         try:
             # Ranked bans
-            draw_panel.text((512 * 5 + rs * 8, center2), "Bans:", font=fnt100, fill=(0, 0, 0))
+            draw_panel.text((512 * 5 + rs * 8, center2), "Bans:", font=fnt100, fill=(255, 255, 255))
             # Team 1 Bans
             try:
                 sessions = aiohttp.ClientSession()
