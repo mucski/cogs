@@ -174,7 +174,7 @@ class Paladins(commands.Cog):
         # Creates a buffer to store the image in
         final_buffer = BytesIO()
         # Store the pillow image we just created into the buffer with the PNG format
-        history_image.save(final_buffer, "png")
+        history_image.save(final_buffer, "jpg")
         # seek back to the start of the buffer stream
         final_buffer.seek(0)
         return final_buffer
