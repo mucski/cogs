@@ -285,34 +285,33 @@ class Paladins(commands.Cog):
             # match_data = self.bot.paladinsAPI.getMatch(match.matchId)
             match_info = [match.winning_team, match.duration, match.region,
                           match.map_name, match.score[0], match.score[1]]
-        for player in match.players:
             temp = match.bans
-            if match.players.team_number == 1:
-                kda = match.players.kda_text
-                team1_data.append([match.players.player, match.players.account_level, match.players.credits, kda,
-                                   match.players.damage_done, match.players.damage_taken,
-                                   match.players.objective_time, match.players.damage_mitigated,
-                                   match.players.healing_done, match.players.party_number, match.players.platform])
-                team1_champs.append(match.players.champion)
-                if match.players.party_number not in team1_parties or match.players.party_number == 0:
-                    team1_parties[match.players.party_number] = ""
-                else:
-                    if team1_parties[match.players.party_number] == "":
-                        new_party_id += 1
-                        team1_parties[match.players.party_number] = "" + str(new_party_id)
+        for player in match.team1:
+            kda = match.team1.player.kda_text
+            team1_data.append([match.team1.player, match.team1.player.account_level, match.team1.player.credits, kda,
+                               match.team1.player.damage_done, match.team1.player.damage_taken,
+                               match.team1.player.objective_time, match.team1.player.damage_mitigated,
+                               match.team1.player.healing_done, match.team1.player.party_number, match.team1.player.platform])
+            team1_champs.append(match.team1.player.champion)
+            if match.team1.player.party_number not in team1_parties or match.team1.player.party_number == 0:
+                team1_parties[match.team1.player.party_number] = ""
             else:
-                kda = match.players.kda_text
-                team2_data.append([match.players.player, match.players.account_level, match.players.credits, kda,
-                                   match.players.damage_done, match.players.damage_taken,
-                                   match.players.objective_time, match.players.damage_mitigated,
-                                   match.players.healing_done, match.players.party_number, match.players.platform])
-                team2_champs.append(match.players.champion)
-                if match.players.party_number not in team1_parties or match.players.party_number == 0:
-                    team1_parties[match.players.party_number] = ""
-                else:
-                    if team2_champs[match.players.party_number] == "":
-                        new_party_id += 1
-                        team2_champs[match.players.party_number] = "" + str(new_party_id)
+                if team1_parties[match.team1.player.party_number] == "":
+                    new_party_id += 1
+                    team1_parties[match.team1.player.party_number] = "" + str(new_party_id)
+        for player in match.team2:
+            kda = match.team2.player.kda_text
+            team2_data.append([match.team2.player.player, match.team2.player.account_level, match.team2.player.credits, kda,
+                               match.team2.player.damage_done, match.team2.player.damage_taken,
+                               match.team2.player.objective_time, match.team2.player.damage_mitigated,
+                               match.team2.player.healing_done, match.team2.player.party_number, match.team2.player.platform])
+            team2_champs.append(match.team2.player.champion)
+            if match.team2.player.party_number not in team1_parties or match.team2.player.party_number == 0:
+                team1_parties[match.team2.player.party_number] = ""
+            else:
+                if team2_champs[match.team2.player.party_number] == "":
+                    new_party_id += 1
+                    team2_champs[match.team2.player.party_number] = "" + str(new_party_id)
         buffer = await self.history_image(team1_champs, team2_champs, team1_data, team2_data,
                                                                team1_parties, team2_parties, (match_info + temp))
         file = discord.File(filename="TeamMatch.png", fp=buffer)
