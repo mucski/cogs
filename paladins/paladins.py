@@ -281,7 +281,7 @@ class Paladins(commands.Cog):
         team2_parties = {}
         temp = []
         new_party_id = 0
-        if match_id == -1 or match_id == match.matchId:
+        if matchId == -1 or matchId == match.matchId:
             # match_data = self.bot.paladinsAPI.getMatch(match.matchId)
             match_info = [match.winning_team, match.duration, match.region,
                           match.map_name, match.score[0], match.score[1]]
