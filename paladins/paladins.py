@@ -58,15 +58,16 @@ class Paladins(commands.Cog):
         image_size_y = 512 - shrink * 2
         img_x = 512
         middle = image_size_y/2 - 50
-        im_color = (175, 238, 238, 0) if index % 2 == 0 else (196, 242, 242, 0)
+        im_color = (14, 34, 43) if index % 2 == 0 else (8, 21, 25)
         img = Image.new("RGB", (img_x*9, image_size_y+offset*2), color=im_color)
         img.paste(champ_icon, (offset, offset))
         draw = ImageDraw.Draw(img)
         fnt80 = ImageFont.truetype("home/ubuntu/arial.ttf", 80)
         fnt100 = ImageFont.truetype("home/ubuntu/arial.ttf", 100)
-        fill = (0, 0, 0)
+        fnt80bold= ImageFont.truetype("home/ubuntu/arialbd.ttf", 80)
+        fill = (255, 255, 255)
         # Champion name, player name
-        draw.text((img_x+20, middle-40), str(champ_stats[0]), font=fnt80, fill=fill)
+        draw.text((img_x+20, middle-40), str(champ_stats[0]), font=fnt80bold, fill=fill)
         draw.text((img_x+20, middle+60), str(champ_stats[1]), font=fnt80, fill=fill)
         # Parties
         draw.text((img_x+750, middle), str(champ_stats[9]), font=fnt100, fill=fill)
@@ -90,36 +91,36 @@ class Paladins(commands.Cog):
     async def player_key_image(self, x, y):
         key = Image.new("RGBA", (x*9, y-100), color=(112, 225, 255))
         base_draw = ImageDraw.Draw(key)
-        fnt80 = ImageFont.truetype("home/ubuntu/arial.ttf", 80)
+        fnt80bold= ImageFont.truetype("home/ubuntu/arialbd.ttf", 80)
         # fnt100 = ImageFont.truetype("home/ubuntu/arial.ttf", 100)
         # ss = "Player Credits K/D/A  Damage  Taken  Objective Time  Shielding  Healing"
-        base_draw.text((20, 0), "Champion", font=fnt80, fill=(0, 0, 0))
-        base_draw.text((x + 20, 0), "Player", font=fnt80, fill=(0, 0, 0))
+        base_draw.text((20, 0), "Champion", font=fnt80bold, fill=(0, 0, 0))
+        base_draw.text((x + 20, 0), "Player", font=fnt80bold, fill=(0, 0, 0))
         # Parties
-        fill = (128, 0, 128)
-        base_draw.text((x + 750, 0), "P", font=fnt80, fill=fill)
+        fill = (255, 255, 255)
+        base_draw.text((x + 750, 0), "P", font=fnt80bold, fill=fill)
         # Credits/Gold earned
-        fill = (218, 165, 32)
-        base_draw.text((x + 900, 0), "Credits", font=fnt80, fill=fill)
+        fill = (255, 255, 255)
+        base_draw.text((x + 900, 0), "Credits", font=fnt80bold, fill=fill)
         # KDA
-        fill = (101, 33, 67)
-        base_draw.text((x + 1300, 0), "K/D/A", font=fnt80, fill=fill)
+        fill = (255, 255, 255)
+        base_draw.text((x + 1300, 0), "K/D/A", font=fnt80bold, fill=fill)
         # Damage done
-        fill = (255, 0, 0)
-        base_draw.text((x + 1830, 0), "Damage", font=fnt80, fill=fill)
+        fill = (255, 255, 255)
+        base_draw.text((x + 1830, 0), "Damage", font=fnt80bold, fill=fill)
         # Damage taken
-        fill = (220, 20, 60)
-        base_draw.text((x + 2350, 0), "Taken", font=fnt80, fill=fill)
+        fill = (255, 255, 255)
+        base_draw.text((x + 2350, 0), "Taken", font=fnt80bold, fill=fill)
         # Objective time
-        fill = (159, 105, 52)
-        base_draw.text((x + 2800, 0), "Obj Time", font=fnt80, fill=fill)
+        fill = (255, 255, 255)
+        base_draw.text((x + 2800, 0), "Obj", font=fnt80bold, fill=fill)
         # base_draw.text((x + 2850, 60), "Time", font=fnt80, fill=fill)
         # Shielding
-        fill = (0, 51, 102)
-        base_draw.text((x + 3150, 0), "Shielding", font=fnt80, fill=fill)
+        fill = (255, 255, 255)
+        base_draw.text((x + 3150, 0), "Shielding", font=fnt80bold, fill=fill)
         # Healing
-        fill = (0, 128, 0)
-        base_draw.text((x + 3600, 0), "Healing", font=fnt80, fill=fill)
+        fill = (255, 255, 255)
+        base_draw.text((x + 3600, 0), "Healing", font=fnt80bold, fill=fill)
 
         return key
 
@@ -180,7 +181,7 @@ class Paladins(commands.Cog):
 
 
     async def middle_panel(self, md):
-        middle_panel = Image.new('RGB', (512*9, 512), color=(217, 247, 247))
+        middle_panel = Image.new('RGB', (512*9, 512), color=(14, 52, 60))
         # Adding in map to image
         map_name = map_file_name = (md[3].strip().replace("Ranked ", "").replace(" (TDM)", "").replace(" (Onslaught)", "")
                                     .replace(" (Siege)", "")).replace("Practice ", "")
@@ -200,23 +201,23 @@ class Paladins(commands.Cog):
         ds = 50  # Down Shift
         rs = 20  # Right Shift
         fnt100 = ImageFont.truetype("home/ubuntu/arial.ttf", 100)
-        draw_panel.text((512 * 2 + rs, 0 + ds), str(f"Winning Team: {md[0]}"), font=fnt100, fill=(0, 0, 0))
+        draw_panel.text((512 * 2 + rs, 0 + ds), str(f"Winning Team: {md[0]}"), font=fnt100, fill=(255, 255, 255))
         draw_panel.text((512 * 2 + rs, 100 + ds), (str(md[1]) + " minutes"), font=fnt100,
-                        fill=(0, 0, 0))
-        draw_panel.text((512 * 2 + rs, 200 + ds), str(md[2]), font=fnt100, fill=(0, 0, 0))
-        draw_panel.text((512 * 2 + rs, 300 + ds), str(map_name), font=fnt100, fill=(0, 0, 0))
+                        fill=(255, 255, 255))
+        draw_panel.text((512 * 2 + rs, 200 + ds), str(md[2]), font=fnt100, fill=(255, 255, 255))
+        draw_panel.text((512 * 2 + rs, 300 + ds), str(map_name), font=fnt100, fill=(255, 255, 255))
         # Right shift
         rs = 100
         # Team 1
-        draw_panel.text((512 * 4 + rs, ds), "Team 1 Score: ", font=fnt100, fill=(0, 0, 0))
-        draw_panel.text((512 * 4 + rs * 8, ds), str(md[4]), font=fnt100, fill=(0, 0, 0))
+        draw_panel.text((512 * 4 + rs, ds), "Team 1 Score: ", font=fnt100, fill=(255, 255, 255))
+        draw_panel.text((512 * 4 + rs * 8, ds), str(md[4]), font=fnt100, fill=(255, 255, 255))
         center = (512/2 - 130/2)
         center2 = (512/2 - 80/2)
         # VS
-        draw_panel.text((512 * 5-150, center), "VS", font=fnt100, fill=(0, 0, 0))
+        draw_panel.text((512 * 5-150, center), "VS", font=fnt100, fill=(227, 34, 34))
         # Team 2
-        draw_panel.text((512 * 4 + rs, 372), "Team 2 Score: ", font=fnt100, fill=(0, 0, 0))
-        draw_panel.text((512 * 4 + rs * 8, 372), str(md[5]), font=fnt100, fill=(0, 0, 0))
+        draw_panel.text((512 * 4 + rs, 372), "Team 2 Score: ", font=fnt100, fill=(255, 255, 255))
+        draw_panel.text((512 * 4 + rs * 8, 372), str(md[5]), font=fnt100, fill=(255, 255, 255))
         #  add in banned champs if it's a ranked match
 
         try:
