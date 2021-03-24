@@ -48,7 +48,7 @@ class Paladins(commands.Cog):
         if "mal" in champ:
             champ = "maldamba"
         url = "https://raw.githubusercontent.com/EthanHicks1/PaladinsArtAssets/master/champ_icons/" \
-            + str(champ) + ".jpg"
+            + str(champ) + ".png"
         return url
 
 
