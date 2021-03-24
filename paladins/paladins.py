@@ -63,8 +63,8 @@ class Paladins(commands.Cog):
         img = Image.new("RGBA", (img_x*9, image_size_y+offset*2), color=im_color)
         img.paste(champ_icon, (offset, offset))
         draw = ImageDraw.Draw(img)
-        fnt80 = ImageFont.truetype("home/ubuntu/arial.ttf", 80)
-        fnt100 = ImageFont.truetype("home/ubuntu/arial.ttf", 100)
+        fnt80 = ImageFont.truetype("/usr/share/fonts/truetype/freefont/FreeMono.ttf", 80)
+        fnt100 = ImageFont.truetype("/usr/share/fonts/truetype/freefont/FreeMono.ttf", 100)
         fill = (0, 0, 0)
         # Champion name, player name
         draw.text((img_x+20, middle-40), str(champ_stats[0]), font=fnt80, fill=fill)
