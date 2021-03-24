@@ -146,7 +146,8 @@ class Paladins(commands.Cog):
         for i, (champ, champ2) in enumerate(zip(team1, team2)):
             try:
                 sessions = aiohttp.ClientSession()
-                async with sessions.get(champ) as response:
+                url = await self.get_champ_image(champ)
+                async with sessions.get(url) as response:
                     resp = await response.read()
                     champ_image = Image.open(io.BytesIO(resp))
                 sessions.close()
@@ -160,7 +161,8 @@ class Paladins(commands.Cog):
             # Second team
             try:
                 sessions = aiohttp.ClientSession()
-                async with sessions.get(champ2) as response:
+                url = await self.get_champ_image(champ2)
+                async with sessions.get(url) as response:
                     resp = await response.read()
                     champ_image = Image.open(io.BytesIO(resp))
                 sessions.close()
