@@ -58,7 +58,7 @@ class Paladins(commands.Cog):
         image_size_y = 512 - shrink * 2
         img_x = 512
         middle = image_size_y/2 - 50
-        im_color = (14, 34, 43) if index % 2 == 0 else (8, 21, 25)
+        im_color = (14, 34, 43) if index % 2 == 0 else (15, 40, 48)
         img = Image.new("RGB", (img_x*9, image_size_y+offset*2), color=im_color)
         img.paste(champ_icon, (offset, offset))
         draw = ImageDraw.Draw(img)
@@ -89,13 +89,13 @@ class Paladins(commands.Cog):
 
 
     async def player_key_image(self, x, y):
-        key = Image.new("RGBA", (x*9, y-100), color=(112, 225, 255))
+        key = Image.new("RGBA", (x*9, y-100), color=(8, 21, 25))
         base_draw = ImageDraw.Draw(key)
         fnt80bold= ImageFont.truetype("home/ubuntu/arialbd.ttf", 80)
         # fnt100 = ImageFont.truetype("home/ubuntu/arial.ttf", 100)
         # ss = "Player Credits K/D/A  Damage  Taken  Objective Time  Shielding  Healing"
-        base_draw.text((20, 0), "Champion", font=fnt80bold, fill=(0, 0, 0))
-        base_draw.text((x + 20, 0), "Player", font=fnt80bold, fill=(0, 0, 0))
+        base_draw.text((20, 0), "Champion", font=fnt80bold, fill=(255, 255, 255))
+        base_draw.text((x + 20, 0), "Player", font=fnt80bold, fill=(255, 255, 255))
         # Parties
         fill = (255, 255, 255)
         base_draw.text((x + 750, 0), "P", font=fnt80bold, fill=fill)
