@@ -288,7 +288,7 @@ class Paladins(commands.Cog):
         team2_parties = {}
         temp = []
         new_party_id = 0
-        match_info = [match.winning_team, match.duration, match.region,
+        match_info = [match.winning_team, match.duration.minutes, match.region.name,
                           match.map_name, match.score[0], match.score[1]]
         temp = match.bans
         for i in match.team1:
@@ -297,8 +297,8 @@ class Paladins(commands.Cog):
                 team1_data.append([player.player.name, player.account_level, player.credits, kda,
                                    player.damage_done, player.damage_taken,
                                    player.objective_time, player.damage_mitigated,
-                                   player.healing_done, player.party_number, player.player.platform])
-                team1_champs.append(player.champion)
+                                   player.healing_done, player.party_number, player.player.platform.id])
+                team1_champs.append(player.champion.name)
                 if player.party_number not in team1_parties or player.party_number == 0:
                     team1_parties[player.party_number] = "0"
                 else:
@@ -311,8 +311,8 @@ class Paladins(commands.Cog):
                 team1_data.append([player.player.name, player.account_level, player.credits, kda,
                                    player.damage_done, player.damage_taken,
                                    player.objective_time, player.damage_mitigated,
-                                   player.healing_done, player.party_number, player.player.platform])
-                team2_champs.append(player.champion)
+                                   player.healing_done, player.party_number, player.player.platform.id])
+                team2_champs.append(player.champion.name)
                 if player.party_number not in team2_parties or player.party_number == 0:
                     team1_parties[player.party_number] = "0"
                 else:
