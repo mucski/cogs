@@ -226,7 +226,8 @@ class Paladins(commands.Cog):
             # Team 1 Bans
             try:
                 sessions = aiohttp.ClientSession()
-                async with sessions.get(md[6]) as response:
+                champ_url = await self.get_champ_image(md[6])
+                async with sessions.get(champ_url) as response:
                     resp = await response.read()
                     champ_icon = Image.open(io.BytesIO(resp))
                 sessions.close()
@@ -236,8 +237,8 @@ class Paladins(commands.Cog):
                 pass
 
             try:
-                sessions = aiohttp.ClientSession()
-                async with sessions.get(md[6]) as response:
+                champ_url = await self.get_champ_image(md[7])
+                async with sessions.get(champ_url) as response:
                     resp = await response.read()
                     champ_icon = Image.open(io.BytesIO(resp))
                 sessions.close()
@@ -247,8 +248,8 @@ class Paladins(commands.Cog):
                 pass
             # Team 2 Bans
             try:
-                sessions = aiohttp.ClientSession()
-                async with sessions.get(md[6]) as response:
+                champ_url = await self.get_champ_image(md[8])
+                async with sessions.get(champ_url) as response:
                     resp = await response.read()
                     champ_icon = Image.open(io.BytesIO(resp))
                 sessions.close()
@@ -257,8 +258,8 @@ class Paladins(commands.Cog):
             except FileNotFoundError:
                 pass
             try:
-                sessions = aiohttp.ClientSession()
-                async with sessions.get(md[6]) as response:
+                champ_url = await self.get_champ_image(md[9])
+                async with sessions.get(champ_url) as response:
                     resp = await response.read()
                     champ_icon = Image.open(io.BytesIO(resp))
                 sessions.close()
