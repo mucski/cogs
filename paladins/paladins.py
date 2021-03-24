@@ -274,7 +274,12 @@ class Paladins(commands.Cog):
 
     @commands.command()
     async def hitest(self, ctx, matchId):
-        match = await self.api.get_match(matchId, expand_players=True)
+        if isdecimal(matchId):
+            match = await self.api.get_match(matchId, expand_players=True)
+        else:
+            match = await self.api.get_player(matchId)
+            match = match.get_match_history()
+            match = match[0]
         team1_data = []
         team2_data = []
         team1_champs = []
