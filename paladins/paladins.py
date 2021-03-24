@@ -329,7 +329,7 @@ class Paladins(commands.Cog):
                 player_info.append(player.deaths)
                 player_info.append(player.assists)
                 player_info.append(player.damage_done)
-        await ctx.send(player)
+        await ctx.send(player_info)
 
     @commands.command()
     async def stats(self, ctx, player, platform="PC"):
