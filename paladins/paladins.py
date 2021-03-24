@@ -276,7 +276,7 @@ class Paladins(commands.Cog):
     async def hitest(self, ctx, matchId):
         try:
             match = await self.api.get_match(int(matchId), expand_players=True)
-        except:
+        except ValueError:
             match = await self.api.get_player(matchId)
             match = match.get_match_history()
             match = match[0]
