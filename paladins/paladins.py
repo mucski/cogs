@@ -112,8 +112,8 @@ class Paladins(commands.Cog):
         base_draw.text((x + 2350, 0), "Taken", font=fnt80, fill=fill)
         # Objective time
         fill = (159, 105, 52)
-        base_draw.text((x + 2800, 0), "Objective", font=fnt80, fill=fill)
-        base_draw.text((x + 2850, 60), "Time", font=fnt80, fill=fill)
+        base_draw.text((x + 2800, 0), "Obj Time", font=fnt80, fill=fill)
+        # base_draw.text((x + 2850, 60), "Time", font=fnt80, fill=fill)
         # Shielding
         fill = (0, 51, 102)
         base_draw.text((x + 3150, 0), "Shielding", font=fnt80, fill=fill)
@@ -200,7 +200,7 @@ class Paladins(commands.Cog):
         ds = 50  # Down Shift
         rs = 20  # Right Shift
         fnt100 = ImageFont.truetype("home/ubuntu/arial.ttf", 100)
-        draw_panel.text((512 * 2 + rs, 0 + ds), str(md[0]), font=fnt100, fill=(0, 0, 0))
+        draw_panel.text((512 * 2 + rs, 0 + ds), str(f"Winning Team: {md[0]}"), font=fnt100, fill=(0, 0, 0))
         draw_panel.text((512 * 2 + rs, 100 + ds), (str(md[1]) + " minutes"), font=fnt100,
                         fill=(0, 0, 0))
         draw_panel.text((512 * 2 + rs, 200 + ds), str(md[2]), font=fnt100, fill=(0, 0, 0))
