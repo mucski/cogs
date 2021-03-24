@@ -113,7 +113,7 @@ class Paladins(commands.Cog):
         base_draw.text((x + 2350, 0), "Taken", font=fnt80bold, fill=fill)
         # Objective time
         fill = (255, 255, 255)
-        base_draw.text((x + 2800, 0), "Obj", font=fnt80bold, fill=fill)
+        base_draw.text((x + 2800, 0), "Obj T.", font=fnt80bold, fill=fill)
         # base_draw.text((x + 2850, 60), "Time", font=fnt80, fill=fill)
         # Shielding
         fill = (255, 255, 255)
