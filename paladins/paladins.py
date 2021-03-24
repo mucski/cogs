@@ -328,7 +328,7 @@ class Paladins(commands.Cog):
         match_info = [match.winning_team, match.duration, match.region,
                           match.map_name, match.score[0], match.score[1]]
         temp = match.bans
-        await ctx.send(match.info+temp)
+        await ctx.send(match_info+temp)
 
 
     @commands.command()
