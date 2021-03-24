@@ -320,7 +320,7 @@ class Paladins(commands.Cog):
                         team2_parties[player.party_number] = "" + str(new_party_id)
         buffer = await self.history_image(team1_champs, team2_champs, team1_data, team2_data,
                                                                team1_parties, team2_parties, (match_info + temp))
-        file = discord.File(filename="TeamMatch.png", fp=buffer)
+        file = discord.File(filename=f"{matchId}.jpg", fp=buffer)
         await ctx.send(file=file)
 
 
