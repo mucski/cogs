@@ -71,7 +71,7 @@ class Paladins(commands.Cog):
         # Parties
         draw.text((img_x+750, middle), str(champ_stats[9]), font=fnt100, fill=fill)
         # Credits
-        draw.text((img_x+900, middle), champ_stats[2], font=fnt100, fill=fill)
+        draw.text((img_x+900, middle), str(champ_stats[2]), font=fnt100, fill=fill)
         # KDA
         draw.text((img_x+1300, middle), str(champ_stats[3]), font=fnt100, fill=fill)
         # Damage Done
@@ -315,7 +315,7 @@ class Paladins(commands.Cog):
         buffer = await self.history_image(team1_champs, team2_champs, team1_data, team2_data,
                                                                team1_parties, team2_parties, (match_info + temp))
         file = discord.File(filename="TeamMatch.png", fp=buffer)
-        await ctx.send("```You are an amazing person!```", file=file)
+        await ctx.send(file=file)
 
 
     @commands.command()
