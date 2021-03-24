@@ -9,6 +9,7 @@ import humanize
 from datetime import datetime
 import discord
 from discord import File
+from collections import defaultdict
 
 
 class Paladins(commands.Cog):
@@ -274,6 +275,8 @@ class Paladins(commands.Cog):
     @commands.command()
     async def hitest(self, ctx, matchId):
         match = await self.api.get_match(matchId, expand_players=True)
+        d = defaultdict(list)    
+        d[0].append(1)
         team1_data = []
         team2_data = []
         team1_champs = []
