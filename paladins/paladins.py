@@ -73,7 +73,7 @@ class Paladins(commands.Cog):
         # Credits
         draw.text((img_x+900, middle), champ_stats[3], font=fnt100, fill=fill)
         # KDA
-        draw.text((img_x+1300, middle), champ_stats[4], font=fnt100, fill=fill)
+        draw.text((img_x+1300, middle), str(champ_stats[4]), font=fnt100, fill=fill)
         # Damage Done
         draw.text((img_x+1830, middle), champ_stats[5], font=fnt100, fill=fill)
         # Mitigated
