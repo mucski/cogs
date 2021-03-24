@@ -290,10 +290,10 @@ class Paladins(commands.Cog):
         for i in match.team1:
             for player in match.players:
                 kda = player.kda_text
-                team1_data.append([player, player.account_level, player.credits, kda,
+                team1_data.append([player.player.name, player.account_level, player.credits, kda,
                                    player.damage_done, player.damage_taken,
                                    player.objective_time, player.damage_mitigated,
-                                   player.healing_done, player.party_number, player.platform])
+                                   player.healing_done, player.party_number, player.player.platform])
                 team1_champs.append(player.champion)
                 if player.party_number not in team1_parties or player.party_number == 0:
                     team1_parties[player.party_number] = ""
@@ -304,10 +304,10 @@ class Paladins(commands.Cog):
         for i in match.team2:
             for player in match.players:
                 kda = player.kda_text
-                team1_data.append([player, player.account_level, player.credits, kda,
+                team1_data.append([player.player.name, player.account_level, player.credits, kda,
                                    player.damage_done, player.damage_taken,
                                    player.objective_time, player.damage_mitigated,
-                                   player.healing_done, player.party_number, player.platform])
+                                   player.healing_done, player.party_number, player.player.platform])
                 team2_champs.append(player.champion)
                 if player.party_number not in team1_parties or player.party_number == 0:
                     team1_parties[player.party_number] = ""
