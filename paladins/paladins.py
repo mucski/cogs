@@ -11,7 +11,6 @@ from datetime import datetime
 import discord
 from discord import File
 from collections import defaultdict
-import fontconfig
 
 
 class Paladins(commands.Cog):
@@ -55,23 +54,17 @@ class Paladins(commands.Cog):
 
 
     async def stats_image(self, champ_icon, champ_stats, index, party):
-        # find a font file
-        fonts = fontconfig.query(lang='en')
-        for i in range(1, len(fonts)):
-            if fonts[i].fontformat == 'TrueType':
-                absolute_path = fonts[i].file
-                break
         shrink = 140
         offset = 10
         image_size_y = 512 - shrink * 2
         img_x = 512
         middle = image_size_y/2 - 50
         im_color = (175, 238, 238, 0) if index % 2 == 0 else (196, 242, 242, 0)
-        img = Image.new("RGBA", (img_x*9, image_size_y+offset*2), color=im_color)
+        img = Image.new("RBG", (img_x*9, image_size_y+offset*2), color=im_color)
         img.paste(champ_icon, (offset, offset))
         draw = ImageDraw.Draw(img)
-        fnt80 = ImageFont.truetype(absolute_path, 80, encoding="unic")
-        fnt100 = ImageFont.truetype(absolute_path, 100, ecoding="unic")
+        fnt80 = ImageFont.truetype("home/ubuntu/arial.ttf", 80)
+        fnt100 = ImageFont.truetype("home/ubuntu/arial.ttf", 100)
         fill = (0, 0, 0)
         # Champion name, player name
         draw.text((img_x+20, middle-40), str(champ_stats[0]), font=fnt80, fill=fill)
