@@ -1,6 +1,7 @@
 import arez
 from PIL import ImageOps, ImageDraw, Image, ImageFont
 from redbot.core import commands
+from redbot.core.utils.chat_formatting import pagify
 import asyncio
 import aiohttp
 import io
@@ -329,7 +330,7 @@ class Paladins(commands.Cog):
                 player_info.append(player.deaths)
                 player_info.append(player.assists)
                 player_info.append(player.damage_done)
-        await ctx.send(player_info)
+        await ctx.send(pagify(player_info))
 
     @commands.command()
     async def stats(self, ctx, player, platform="PC"):
