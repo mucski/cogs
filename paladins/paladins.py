@@ -75,15 +75,15 @@ class Paladins(commands.Cog):
         # KDA
         draw.text((img_x+1300, middle), str(champ_stats[4]), font=fnt100, fill=fill)
         # Damage Done
-        draw.text((img_x+1830, middle), champ_stats[5], font=fnt100, fill=fill)
+        draw.text((img_x+1830, middle), str(champ_stats[5]), font=fnt100, fill=fill)
         # Mitigated
-        draw.text((img_x+2350, middle), champ_stats[6], font=fnt100, fill=fill)
+        draw.text((img_x+2350, middle), str(champ_stats[6]), font=fnt100, fill=fill)
         # OBJ time
-        draw.text((img_x+2850, middle), champ_stats[7], font=fnt100, fill=fill)
+        draw.text((img_x+2850, middle), str(champ_stats[7]), font=fnt100, fill=fill)
         # Shielding
-        draw.text((img_x+3150, middle), champ_stats[8], font=fnt100, fill=fill)
+        draw.text((img_x+3150, middle), str(champ_stats[8]), font=fnt100, fill=fill)
         # Healing
-        draw.text((img_x+3600, middle), champ_stats[9], font=fnt100, fill=fill)
+        draw.text((img_x+3600, middle), str(champ_stats[9]), font=fnt100, fill=fill)
         return img
 
 
