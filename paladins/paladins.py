@@ -60,7 +60,7 @@ class Paladins(commands.Cog):
         middle = image_size_y/2 - 50
         im_color = (175, 238, 238, 0) if index % 2 == 0 else (196, 242, 242, 0)
         img = Image.new("RGBA", (img_x*9, image_size_y+offset*2), color=im_color)
-        champ_url = champ_icon
+        champ_url = await self.get_champ_image(champ_icon)
         sessions = aiohttp.ClientSession()
         async with sessions.get(champ_url) as response:
             resp = await response.read()
