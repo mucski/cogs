@@ -285,11 +285,9 @@ class Paladins(commands.Cog):
         team2_parties = {}
         temp = []
         new_party_id = 0
-        if matchId == -1 or matchId == match.id:
-            # match_data = self.bot.paladinsAPI.getMatch(match.matchId)
-            match_info = [match.winning_team, match.duration, match.region,
+        match_info = [match.winning_team, match.duration, match.region,
                           match.map_name, match.score[0], match.score[1]]
-            temp = match.bans
+        temp = match.bans
         for i in match.team1:
             for player in match.players:
                 kda = player.kda_text
