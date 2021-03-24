@@ -69,7 +69,7 @@ class Paladins(commands.Cog):
         draw.text((img_x+20, middle-40), str(champ_stats[0]), font=fnt80, fill=fill)
         draw.text((img_x+20, middle+60), str(champ_stats[1]), font=fnt80, fill=fill)
         # Parties
-        draw.text((img_x+750, middle), champ_stats[2], font=fnt100, fill=fill)
+        draw.text((img_x+750, middle), str(champ_stats[2]), font=fnt100, fill=fill)
         # Credits
         draw.text((img_x+900, middle), champ_stats[3], font=fnt100, fill=fill)
         # KDA
