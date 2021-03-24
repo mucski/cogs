@@ -279,7 +279,7 @@ class Paladins(commands.Cog):
         except ValueError:
             match = await self.api.get_player(matchId)
             match = await match.get_match_history()
-            match = match[0]
+            match = await match[0]
         team1_data = []
         team2_data = []
         team1_champs = []
