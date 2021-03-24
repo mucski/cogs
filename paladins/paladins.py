@@ -318,7 +318,7 @@ class Paladins(commands.Cog):
         await ctx.send("```You are an amazing person!```", file=file)
 
     @commands.command()
-    async def atest(self, matchId):
+    async def atest(self, ctx, matchId):
         match = await self.api.get_match(matchId, expand_players=True)
         await ctx.send(match.team1)
 
