@@ -288,8 +288,8 @@ class Paladins(commands.Cog):
         match_info = [match.winning_team, match.duration.minutes, match.region.name,
                           match.map_name, match.score[0], match.score[1]]
         temp = match.bans
-        if match.players.team_number == 1:
-            for player in match.players:
+        for player in match.players:
+            if player.team_number == 1:
                 kda = player.kda_text
                 team1_data.append([player.player.name, player.account_level, player.credits, kda,
                                    player.damage_done, player.damage_taken,
@@ -301,9 +301,8 @@ class Paladins(commands.Cog):
                 else:
                     if team1_parties == "0":
                         new_party_id += 1
-                        team1_parties[player.party_number] = "0" + str(new_party_id)
-        else:
-            for player in match.players:
+                            team1_parties[player.party_number] = "0" + str(new_party_id)
+            else:
                 kda = player.kda_text
                 team2_data.append([player.player.name, player.account_level, player.credits, kda,
                                    player.damage_done, player.damage_taken,
