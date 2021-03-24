@@ -327,7 +327,7 @@ class Paladins(commands.Cog):
                 player_info.append(player.credits)
                 player_info.append(player.kills)
                 player_info.append(player.deaths)
-                player_info.append(player.assits)
+                player_info.append(player.assists)
                 player_info.append(player.damage_done)
         await ctx.send(player)
 
