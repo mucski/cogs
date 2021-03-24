@@ -165,7 +165,7 @@ class Paladins(commands.Cog):
             border = (0, shrink, 0, shrink)  # left, up, right, bottom
             champ_image = ImageOps.crop(champ_image, border)
 
-            player_panel = await self.stats_image(champ_image, t2_data[i], i+offset-1, p2, colored)
+            player_panel = await self.stats_image(champ_image, t2_data[i], i+offset-1, p2)
             history_image.paste(player_panel, (0, image_size_y * (i+offset) + 704))
         # Base speed is 10 - seconds
         history_image = history_image.resize((4608//2, 3048//2), Image.ANTIALIAS)           # 5 seconds
