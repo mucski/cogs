@@ -320,8 +320,9 @@ class Paladins(commands.Cog):
     @commands.command()
     async def atest(self, ctx, matchId):
         match = await self.api.get_match(matchId, expand_players=True)
-        for players in match.team1:
-            player = await match.players
+        for i in match.team1:
+            for player in match.players:
+                player = match.player.name
         await ctx.send(player)
 
     @commands.command()
