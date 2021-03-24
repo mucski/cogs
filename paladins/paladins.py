@@ -1,10 +1,8 @@
 import arez
 from PIL import ImageOps, ImageDraw, Image, ImageFont
 from redbot.core import commands
-from redbot.core.utils.chat_formatting import pagify
 import asyncio
 import aiohttp
-import io
 from io import BytesIO
 import humanize
 from datetime import datetime
