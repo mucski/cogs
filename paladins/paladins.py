@@ -285,7 +285,7 @@ class Paladins(commands.Cog):
             # match_data = self.bot.paladinsAPI.getMatch(match.matchId)
             match_info = [match.winning_team, match.duration, match.region,
                           match.map_name, match.score[0], match.score[1]]
-        for player in match:
+        for player in match.players:
             temp = match.bans
             if match.players.team_number == 1:
                 kda = match.players.kda_text
