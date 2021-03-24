@@ -297,11 +297,11 @@ class Paladins(commands.Cog):
                                    player.healing_done, player.party_number, player.player.platform])
                 team1_champs.append(player.champion.name)
                 if player.party_number not in team1_parties or player.party_number == 0:
-                    team1_parties[player.party_number] = "0"
+                    team1_parties[player.party_number] = ""
                 else:
-                    if team1_parties == "0":
+                    if team1_parties == "":
                         new_party_id += 1
-                        team1_parties[player.party_number] = "0" + str(new_party_id)
+                        team1_parties[player.party_number] = "" + str(new_party_id)
             else:
                 kda = player.kda_text
                 team2_data.append([player.player.name, player.account_level, player.credits, kda,
@@ -310,11 +310,11 @@ class Paladins(commands.Cog):
                                    player.healing_done, player.party_number, player.player.platform])
                 team2_champs.append(player.champion.name)
                 if player.party_number not in team2_parties or player.party_number == 0:
-                    team2_parties[player.party_number] = "0"
+                    team2_parties[player.party_number] = ""
                 else:
-                    if team2_parties[player.party_number] == "0":
+                    if team2_parties[player.party_number] == "":
                         new_party_id += 1
-                        team2_parties[player.party_number] = "0" + str(new_party_id)
+                        team2_parties[player.party_number] = "" + str(new_party_id)
         buffer = await self.history_image(team1_champs, team2_champs, team1_data, team2_data,
                                                                team1_parties, team2_parties, (match_info + temp))
         file = discord.File(filename="TeamMatch.png", fp=buffer)
