@@ -142,7 +142,7 @@ class Paladins(commands.Cog):
                 url = await self.get_champ_image(champ)
                 async with sessions.get(url) as response:
                     resp = await response.read()
-                    champ_image = Image.open(io.BytesIO(resp))
+                    champ_image = Image.open(BytesIO(resp))
                 sessions.close()
             except FileNotFoundError:
                 champ_image = Image.open("icons/temp_card_art.png")
@@ -157,7 +157,7 @@ class Paladins(commands.Cog):
                 url = await self.get_champ_image(champ2)
                 async with sessions.get(url) as response:
                     resp = await response.read()
-                    champ_image = Image.open(io.BytesIO(resp))
+                    champ_image = Image.open(BytesIO(resp))
                 sessions.close()
             except FileNotFoundError:
                 champ_image = Image.open("icons/temp_card_art.png")
@@ -227,7 +227,7 @@ class Paladins(commands.Cog):
                 champ_url = await self.get_champ_image(md[6].name)
                 async with sessions.get(champ_url) as response:
                     resp = await response.read()
-                    champ_icon = Image.open(io.BytesIO(resp))
+                    champ_icon = Image.open(BytesIO(resp))
                 sessions.close()
                 champ_icon = champ_icon.resize((200, 200))
                 middle_panel.paste(champ_icon, (512 * 7 + rs, ds))
@@ -238,7 +238,7 @@ class Paladins(commands.Cog):
                 champ_url = await self.get_champ_image(md[7].name)
                 async with sessions.get(champ_url) as response:
                     resp = await response.read()
-                    champ_icon = Image.open(io.BytesIO(resp))
+                    champ_icon = Image.open(BytesIO(resp))
                 sessions.close()
                 champ_icon = champ_icon.resize((200, 200))
                 middle_panel.paste(champ_icon, (512 * 7 + rs + 240, ds))
@@ -249,7 +249,7 @@ class Paladins(commands.Cog):
                 champ_url = await self.get_champ_image(md[8].name)
                 async with sessions.get(champ_url) as response:
                     resp = await response.read()
-                    champ_icon = Image.open(io.BytesIO(resp))
+                    champ_icon = Image.open(BytesIO(resp))
                 sessions.close()
                 champ_icon = champ_icon.resize((200, 200))
                 middle_panel.paste(champ_icon, (512 * 7 + rs, ds+232))
@@ -259,7 +259,7 @@ class Paladins(commands.Cog):
                 champ_url = await self.get_champ_image(md[9].name)
                 async with sessions.get(champ_url) as response:
                     resp = await response.read()
-                    champ_icon = Image.open(io.BytesIO(resp))
+                    champ_icon = Image.open(BytesIO(resp))
                 sessions.close()
                 champ_icon = champ_icon.resize((200, 200))
                 middle_panel.paste(champ_icon, (512 * 7 + rs + 240, ds+232))
