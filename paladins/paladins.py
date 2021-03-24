@@ -322,7 +322,7 @@ class Paladins(commands.Cog):
         match = await self.api.get_match(matchId, expand_players=True)
         for i in match.team1:
             for player in match.players:
-                player = match.player.name
+                player = player.name
         await ctx.send(player)
 
     @commands.command()
