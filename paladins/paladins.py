@@ -301,7 +301,7 @@ class Paladins(commands.Cog):
                 else:
                     if team1_parties == "0":
                         new_party_id += 1
-                            team1_parties[player.party_number] = "0" + str(new_party_id)
+                        team1_parties[player.party_number] = "0" + str(new_party_id)
             else:
                 kda = player.kda_text
                 team2_data.append([player.player.name, player.account_level, player.credits, kda,
