@@ -222,7 +222,8 @@ class Paladins(commands.Cog):
         draw_panel.text((512 * 4 + rs, 372), "Team 2 Score: ", font=fnt100, fill=(0, 0, 0))
         draw_panel.text((512 * 4 + rs * 8, 372), str(md[5]), font=fnt100, fill=(0, 0, 0))
         #  add in banned champs if it's a ranked match
-        if md[6] is not None:
+
+        try:
             # Ranked bans
             draw_panel.text((512 * 5 + rs * 8, center2), "Bans:", font=fnt100, fill=(0, 0, 0))
             # Team 1 Bans
@@ -268,6 +269,8 @@ class Paladins(commands.Cog):
                 middle_panel.paste(champ_icon, (512 * 7 + rs + 240, ds+232))
             except FileNotFoundError:
                 pass
+        except IndexError:
+            pass
 
         return middle_panel
 
