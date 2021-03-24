@@ -156,7 +156,7 @@ class Paladins(commands.Cog):
             border = (0, shrink, 0, shrink)  # left, up, right, bottom
             champ_image = ImageOps.crop(champ_image, border)
             # history_image.paste(champ_image, (0, image_size*i, image_size, image_size*(i+1)))
-            player_panel = await create_player_stats_image(champ_image, t1_data[i], i, p1, colored)
+            player_panel = await self.stats_image(champ_image, t1_data[i], i, p1)
             history_image.paste(player_panel, (0, (image_size_y+10)*i+132))
             # Second team
             try:
