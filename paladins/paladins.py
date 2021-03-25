@@ -222,7 +222,7 @@ class Paladins(commands.Cog):
         draw_panel.text((512 * 4 + rs * 8, 352), str(md[5]), font=fnt100, fill=(255, 255, 255))
         #  add in banned champs if it's a ranked match
 
-        try:
+        if md[6] not None:
             # Ranked bans
             draw_panel.text((512 * 5 + rs * 8, center2), "Bans:", font=fnt100, fill=(255, 255, 255))
             # Team 1 Bans
@@ -269,8 +269,6 @@ class Paladins(commands.Cog):
                 middle_panel.paste(champ_icon, (512 * 7 + rs + 240, ds+232))
             except FileNotFoundError:
                 pass
-        except IndexError:
-            pass
 
         return middle_panel
 
@@ -293,15 +291,14 @@ class Paladins(commands.Cog):
         team2_champs = []
         team1_parties = {}
         team2_parties = {}
-        temp = []
+        # temp = []
         new_party_id = 0
         match_info = [match.winning_team, match.duration.minutes, match.region.name,
                           match.map_name, match.score[0], match.score[1]]
         temp = match.bans
         for player in match.players:
             if player.team_number == 1:
-                kda = player.kda_text
-                team1_data.append([player.player.name, player.account_level, player.credits, kda,
+                team1_data.append([player.player.name, player.account_level, player.credits, player.kda_text,
                                    player.damage_done, player.damage_taken,
                                    player.objective_time, player.damage_mitigated,
                                    player.healing_done, player.party_number, player.player.platform])
@@ -313,8 +310,7 @@ class Paladins(commands.Cog):
                         new_party_id += 1
                         team1_parties[player.party_number] = "" + str(new_party_id)
             else:
-                kda = player.kda_text
-                team2_data.append([player.player.name, player.account_level, player.credits, kda,
+                team2_data.append([player.player.name, player.account_level, player.credits, player.kda_text,
                                    player.damage_done, player.damage_taken,
                                    player.objective_time, player.damage_mitigated,
                                    player.healing_done, player.party_number, player.player.platform])
