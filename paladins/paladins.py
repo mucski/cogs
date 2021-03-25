@@ -222,7 +222,7 @@ class Paladins(commands.Cog):
         draw_panel.text((512 * 4 + rs * 8, 352), str(md[5]), font=fnt100, fill=(255, 255, 255))
         #  add in banned champs if it's a ranked match
 
-        if md[6] not None:
+        if md[6]:
             # Ranked bans
             draw_panel.text((512 * 5 + rs * 8, center2), "Bans:", font=fnt100, fill=(255, 255, 255))
             # Team 1 Bans
