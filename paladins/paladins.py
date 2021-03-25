@@ -308,7 +308,7 @@ class Paladins(commands.Cog):
                     if player.party_number not in team1_parties or player.party_number == 0:
                         team1_parties[player.party_number] = ""
                     else:
-                        if team1_parties == "":
+                        if team1_parties[player.party_number] == "":
                             new_party_id += 1
                             team1_parties[player.party_number] = "" + str(new_party_id)
                 else:
