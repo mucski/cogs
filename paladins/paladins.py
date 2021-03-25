@@ -23,6 +23,7 @@ class Paladins(commands.Cog):
         asyncio.createTask(self.api.close())
         self.f.close()
 
+
     async def cog_command_error(self, ctx, error):
         if isinstance(error, commands.CommandInvokeError):
             exc = error.original
@@ -36,6 +37,7 @@ class Paladins(commands.Cog):
                 await ctx.send("Player was not found")
                 return
         await ctx.bot.on_command_error(ctx, error, unhandled_by_cog=True)
+
 
     async def get_champ_image(self, champ):
         champ = champ.lower()
@@ -119,8 +121,8 @@ class Paladins(commands.Cog):
         # Healing
         fill = (255, 255, 255)
         base_draw.text((x + 3600, 0), "Healing", font=fnt80bold, fill=fill)
-
         return key
+
 
     # Creates a match image based on the two teams champions
     async def history_image(self, team1, team2, t1_data, t2_data, p1, p2, match_data):
