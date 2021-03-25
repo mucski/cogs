@@ -66,6 +66,8 @@ class Paladins(commands.Cog):
         fnt100 = ImageFont.truetype("home/ubuntu/arial.ttf", 100)
         fnt80bold= ImageFont.truetype("home/ubuntu/arialbd.ttf", 80)
         fill = (255, 255, 255)
+        if champ_stats[0] == "":
+            champ_stats[0] = "???????"
         # Champion name, player name
         draw.text((img_x+20, middle-40), str(champ_stats[0]), font=fnt80bold, fill=fill)
         draw.text((img_x+20, middle+60), str(champ_stats[1]), font=fnt80, fill=fill)
@@ -274,7 +276,7 @@ class Paladins(commands.Cog):
 
 
     @commands.command()
-    async def hitest(self, ctx, matchId):
+    async def match(self, ctx, matchId):
         try:
             match = await self.api.get_match(int(matchId), expand_players=True)
         except ValueError:
