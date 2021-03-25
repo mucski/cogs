@@ -221,55 +221,56 @@ class Paladins(commands.Cog):
         draw_panel.text((512 * 4 + rs, 352), "Team 2 Score: ", font=fnt100, fill=(255, 255, 255))
         draw_panel.text((512 * 4 + rs * 8, 352), str(md[5]), font=fnt100, fill=(255, 255, 255))
         #  add in banned champs if it's a ranked match
-
-        if md[6]:
-            # Ranked bans
-            draw_panel.text((512 * 5 + rs * 8, center2), "Bans:", font=fnt100, fill=(255, 255, 255))
-            # Team 1 Bans
-            try:
-                sessions = aiohttp.ClientSession()
-                champ_url = await self.get_champ_image(md[6].name)
-                async with sessions.get(champ_url) as response:
-                    resp = await response.read()
-                    champ_icon = Image.open(BytesIO(resp))
-                sessions.close()
-                champ_icon = champ_icon.resize((200, 200))
-                middle_panel.paste(champ_icon, (512 * 7 + rs, ds))
-            except FileNotFoundError:
-                pass
-
-            try:
-                champ_url = await self.get_champ_image(md[7].name)
-                async with sessions.get(champ_url) as response:
-                    resp = await response.read()
-                    champ_icon = Image.open(BytesIO(resp))
-                sessions.close()
-                champ_icon = champ_icon.resize((200, 200))
-                middle_panel.paste(champ_icon, (512 * 7 + rs + 240, ds))
-            except FileNotFoundError:
-                pass
-            # Team 2 Bans
-            try:
-                champ_url = await self.get_champ_image(md[8].name)
-                async with sessions.get(champ_url) as response:
-                    resp = await response.read()
-                    champ_icon = Image.open(BytesIO(resp))
-                sessions.close()
-                champ_icon = champ_icon.resize((200, 200))
-                middle_panel.paste(champ_icon, (512 * 7 + rs, ds+232))
-            except FileNotFoundError:
-                pass
-            try:
-                champ_url = await self.get_champ_image(md[9].name)
-                async with sessions.get(champ_url) as response:
-                    resp = await response.read()
-                    champ_icon = Image.open(BytesIO(resp))
-                sessions.close()
-                champ_icon = champ_icon.resize((200, 200))
-                middle_panel.paste(champ_icon, (512 * 7 + rs + 240, ds+232))
-            except FileNotFoundError:
-                pass
-
+        try:
+            if md[6]:
+                # Ranked bans
+                draw_panel.text((512 * 5 + rs * 8, center2), "Bans:", font=fnt100, fill=(255, 255, 255))
+                # Team 1 Bans
+                try:
+                    sessions = aiohttp.ClientSession()
+                    champ_url = await self.get_champ_image(md[6].name)
+                    async with sessions.get(champ_url) as response:
+                        resp = await response.read()
+                        champ_icon = Image.open(BytesIO(resp))
+                    sessions.close()
+                    champ_icon = champ_icon.resize((200, 200))
+                    middle_panel.paste(champ_icon, (512 * 7 + rs, ds))
+                except FileNotFoundError:
+                    pass
+    
+                try:
+                    champ_url = await self.get_champ_image(md[7].name)
+                    async with sessions.get(champ_url) as response:
+                        resp = await response.read()
+                        champ_icon = Image.open(BytesIO(resp))
+                    sessions.close()
+                    champ_icon = champ_icon.resize((200, 200))
+                    middle_panel.paste(champ_icon, (512 * 7 + rs + 240, ds))
+                except FileNotFoundError:
+                    pass
+                # Team 2 Bans
+                try:
+                    champ_url = await self.get_champ_image(md[8].name)
+                    async with sessions.get(champ_url) as response:
+                        resp = await response.read()
+                        champ_icon = Image.open(BytesIO(resp))
+                    sessions.close()
+                    champ_icon = champ_icon.resize((200, 200))
+                    middle_panel.paste(champ_icon, (512 * 7 + rs, ds+232))
+                except FileNotFoundError:
+                    pass
+                try:
+                    champ_url = await self.get_champ_image(md[9].name)
+                    async with sessions.get(champ_url) as response:
+                        resp = await response.read()
+                        champ_icon = Image.open(BytesIO(resp))
+                    sessions.close()
+                    champ_icon = champ_icon.resize((200, 200))
+                    middle_panel.paste(champ_icon, (512 * 7 + rs + 240, ds+232))
+                except FileNotFoundError:
+                    pass
+        except IndexError:
+            pass
         return middle_panel
 
 
