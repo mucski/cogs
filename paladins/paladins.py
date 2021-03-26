@@ -59,7 +59,7 @@ class Paladins(commands.Cog):
         img_x = 512
         middle = image_size_y/2 - 50
         im_color = (14, 34, 43) if index % 2 == 0 else (15, 40, 48)
-        img = Image.new("RGB", (img_x*9, image_size_y+offset*2), color=im_color)
+        img = Image.new("RGB", (img_x*10, image_size_y+offset*2), color=im_color)
         img.paste(champ_icon, (offset, offset))
         draw = ImageDraw.Draw(img)
         fnt80 = ImageFont.truetype("home/ubuntu/arial.ttf", 80)
@@ -87,6 +87,8 @@ class Paladins(commands.Cog):
         draw.text((img_x+3150, middle), str(champ_stats[7]), font=fnt100, fill=fill)
         # Healing
         draw.text((img_x+3600, middle), str(champ_stats[8]), font=fnt100, fill=fill)
+        # Self Healing
+        draw.text((img_x+4120, middle), str(champ_stats[9]), font=fnt100, fill=fill)
         return img
 
 
@@ -306,7 +308,7 @@ class Paladins(commands.Cog):
                     team1_data.append([player.player.name, player.account_level, player.credits, player.kda_text,
                                        player.damage_done, player.damage_taken,
                                        player.objective_time, player.damage_mitigated,
-                                       player.healing_done, player.party_number, player.player.platform])
+                                       player.healing_done, player.party_number, player.player.platform, player.healing_done])
                     team1_champs.append(player.champion.name)
                     if player.party_number not in team1_parties or player.party_number == 0:
                         team1_parties[player.party_number] = ""
@@ -318,7 +320,7 @@ class Paladins(commands.Cog):
                     team2_data.append([player.player.name, player.account_level, player.credits, player.kda_text,
                                        player.damage_done, player.damage_taken,
                                        player.objective_time, player.damage_mitigated,
-                                       player.healing_done, player.party_number, player.player.platform])
+                                       player.healing_done, player.party_number, player.player.platform, player.healing_done])
                     team2_champs.append(player.champion.name)
                     if player.party_number not in team2_parties or player.party_number == 0:
                         team2_parties[player.party_number] = ""
