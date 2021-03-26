@@ -91,7 +91,7 @@ class Paladins(commands.Cog):
 
 
     async def player_key_image(self, x, y):
-        key = Image.new("RGBA", (x*9, y-100), color=(8, 21, 25))
+        key = Image.new("RGBA", (x*10, y-100), color=(8, 21, 25))
         base_draw = ImageDraw.Draw(key)
         fnt80bold= ImageFont.truetype("home/ubuntu/arialbd.ttf", 80)
         # fnt100 = ImageFont.truetype("home/ubuntu/arial.ttf", 100)
@@ -123,6 +123,9 @@ class Paladins(commands.Cog):
         # Healing
         fill = (255, 255, 255)
         base_draw.text((x + 3600, 0), "Healing", font=fnt80bold, fill=fill)
+        # Self Healing
+        fill = (255, 255, 255)
+        base_draw.text((x + 4120, 0), "Self Healing", font=fnt80bold, fill=fill)
         return key
 
 
@@ -132,7 +135,7 @@ class Paladins(commands.Cog):
         image_size_y = 512 - shrink*2
         image_size_x = 512
         offset = 5
-        history_image = Image.new('RGB', (image_size_x*9, image_size_y*12 + 264))
+        history_image = Image.new('RGB', (image_size_x*10, image_size_y*12 + 264))
         # Adds the top key panel
         key = await self.player_key_image(image_size_x, image_size_y)
         history_image.paste(key, (0, 0))
@@ -183,7 +186,7 @@ class Paladins(commands.Cog):
 
 
     async def middle_panel(self, md):
-        middle_panel = Image.new('RGB', (512*9, 512), color=(14, 52, 60))
+        middle_panel = Image.new('RGB', (512*10, 512), color=(14, 52, 60))
         # Adding in map to image
         map_name = map_file_name = (md[3].strip().replace("Ranked ", "").replace(" (TDM)", "").replace(" (Onslaught)", "")
                                     .replace(" (Siege)", "")).replace("Practice ", "")
