@@ -88,7 +88,7 @@ class Paladins(commands.Cog):
         # Healing
         draw.text((img_x+3600, middle), str(champ_stats[8]), font=fnt100, fill=fill)
         # Self Healing
-        draw.text((img_x+4120, middle), str(champ_stats[10]), font=fnt100, fill=fill)
+        draw.text((img_x+4120, middle), str(champ_stats[11]), font=fnt100, fill=fill)
         return img
 
 
