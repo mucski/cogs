@@ -106,10 +106,10 @@ class Paladins(commands.Cog):
                 return
         ranks = []
         for player in match.players:
-            if player.private is True:
+            if player.player.private is True:
                 ranks.append("None")
             else:
-                player = await player
+                player = await player.player
                 ranks.append(player.ranked_best)
         await ctx.send(ranks)
 
