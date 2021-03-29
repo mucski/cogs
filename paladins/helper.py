@@ -150,7 +150,7 @@ class helper:
 	            champ_image = Image.open("icons/temp_card_art.png")
 	        border = (0, shrink, 0, shrink)  # left, up, right, bottom
 	        champ_image = ImageOps.crop(champ_image, border)
-            rank_icon = Image.open(f"home/ubuntu/icons/ranks/{r2[i]}.png")
+	        rank_icon = Image.open(f"home/ubuntu/icons/ranks/{r2[i]}.png")
 	        player_panel = await helper.stats_image(champ_image, rank_icon, t2_data[i], i+offset-1, p2)
 	        history_image.paste(player_panel, (0, image_size_y * (i+offset) + 704))
 	    # Base speed is 10 - seconds
