@@ -38,7 +38,7 @@ class helper:
 	    img.paste(champ_icon, (offset, offset))
 	    if champ_stats[12] is None:
 	    	rank_icon == ""
-    	else:
+		else:
 	    	rank_icon = Image.open(f"home/ubuntu/icons/ranks/{champ_stats[12]}.png")
 	    	rank_icon = rank_icon.resize(200, 200)
 	    	img.paste(rank_icon, (offset, offset + 600))
