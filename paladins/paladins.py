@@ -66,7 +66,7 @@ class Paladins(commands.Cog):
                     ranked_img = ""
                 else:
                     player = await player.player
-                    ranked_img = f"ubuntu/icons/ranks/{player.ranked_best.name.value}.png"
+                    ranked_img = f"ubuntu/icons/ranks/{player.ranked_best.rank.value}.png"
                 if player.team_number == 1:
                     team1_data.append([player.player.name, player.account_level, player.credits, player.kda_text,
                                        player.damage_done, player.damage_taken,
