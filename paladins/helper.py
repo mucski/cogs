@@ -6,10 +6,9 @@ from io import BytesIO
 
 
 class helper:
-	def __init__(self):
-		pass
 
-	async def get_champ_image(champ):
+	@classmethod
+	async def get_champ_image(cls, champ):
 	    champ = champ.lower()
 	    if "bomb" in champ:
 	        champ = "bomb-king"
@@ -21,7 +20,8 @@ class helper:
 	        + str(champ) + ".png"
 	    return url
 
-	async def stats_image(champ_icon, champ_stats, index, party):
+	@classmethod
+	async def stats_image(cls, champ_icon, champ_stats, index, party):
 	    shrink = 140
 	    offset = 10
 	    image_size_y = 512 - shrink * 2
@@ -60,7 +60,8 @@ class helper:
 	    draw.text((img_x+4120, middle), str(champ_stats[11]), font=fnt100, fill=fill)
 	    return img
 
-	async def player_key_image(x, y):
+	@classmethod
+	async def player_key_image(cls, x, y):
 	    key = Image.new("RGB", (x*10, y-100), color=(8, 21, 25))
 	    base_draw = ImageDraw.Draw(key)
 	    fnt80bold= ImageFont.truetype("home/ubuntu/arialbd.ttf", 80)
@@ -98,8 +99,9 @@ class helper:
 	    base_draw.text((x + 4120, 0), "Self Healing", font=fnt80bold, fill=fill)
 	    return key
 
+	@classmethod
 	# Creates a match image based on the two teams champions
-	async def history_image(team1, team2, t1_data, t2_data, p1, p2, match_data):
+	async def history_image(cls, team1, team2, t1_data, t2_data, p1, p2, match_data):
 	    shrink = 140
 	    image_size_y = 512 - shrink*2
 	    image_size_x = 512
@@ -153,7 +155,8 @@ class helper:
 	    final_buffer.seek(0)
 	    return final_buffer
 
-	async def middle_panel(md):
+	@classmethod
+	async def middle_panel(cls, md):
 	    middle_panel = Image.new('RGB', (512*10, 512), color=(14, 52, 60))
 	    # Adding in map to image
 	    map_name = map_file_name = (md[3].strip().replace("Ranked ", "").replace(" (TDM)", "").replace(" (Onslaught)", "")
