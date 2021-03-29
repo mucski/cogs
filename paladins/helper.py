@@ -7,7 +7,6 @@ from io import BytesIO
 
 class helper:
 
-	@staticmethod
 	async def get_champ_image(champ):
 	    champ = champ.lower()
 	    if "bomb" in champ:
@@ -20,7 +19,6 @@ class helper:
 	        + str(champ) + ".png"
 	    return url
 
-	@staticmethod
 	async def stats_image(champ_icon, champ_stats, index, party):
 	    shrink = 140
 	    offset = 10
@@ -60,7 +58,6 @@ class helper:
 	    draw.text((img_x+4120, middle), str(champ_stats[11]), font=fnt100, fill=fill)
 	    return img
 
-	@staticmethod
 	async def player_key_image(x, y):
 	    key = Image.new("RGB", (x*10, y-100), color=(8, 21, 25))
 	    base_draw = ImageDraw.Draw(key)
@@ -99,7 +96,6 @@ class helper:
 	    base_draw.text((x + 4120, 0), "Self Healing", font=fnt80bold, fill=fill)
 	    return key
 
-	@staticmethod
 	# Creates a match image based on the two teams champions
 	async def history_image(team1, team2, t1_data, t2_data, p1, p2, match_data):
 	    shrink = 140
@@ -108,16 +104,16 @@ class helper:
 	    offset = 5
 	    history_image = Image.new('RGB', (image_size_x*10, image_size_y*12 + 264))
 	    # Adds the top key panel
-	    key = await player_key_image(image_size_x, image_size_y)
+	    key = await self.player_key_image(image_size_x, image_size_y)
 	    history_image.paste(key, (0, 0))
 	    # Creates middle panel
-	    mid_panel = await middle_panel(match_data)
+	    mid_panel = await self.middle_panel(match_data)
 	    history_image.paste(mid_panel, (0, 1392-40))
 	    # Adding in player data
 	    for i, (champ, champ2) in enumerate(zip(team1, team2)):
 	        try:
 	            sessions = aiohttp.ClientSession()
-	            url = await get_champ_image(champ)
+	            url = await self.get_champ_image(champ)
 	            async with sessions.get(url) as response:
 	                resp = await response.read()
 	                champ_image = Image.open(BytesIO(resp))
@@ -127,12 +123,12 @@ class helper:
 	        border = (0, shrink, 0, shrink)  # left, up, right, bottom
 	        champ_image = ImageOps.crop(champ_image, border)
 	        # history_image.paste(champ_image, (0, image_size*i, image_size, image_size*(i+1)))
-	        player_panel = await stats_image(champ_image, t1_data[i], i, p1)
+	        player_panel = await self.stats_image(champ_image, t1_data[i], i, p1)
 	        history_image.paste(player_panel, (0, (image_size_y+10)*i+132))
 	        # Second team
 	        try:
 	            sessions = aiohttp.ClientSession()
-	            url = await get_champ_image(champ2)
+	            url = await self.get_champ_image(champ2)
 	            async with sessions.get(url) as response:
 	                resp = await response.read()
 	                champ_image = Image.open(BytesIO(resp))
@@ -142,7 +138,7 @@ class helper:
 	        border = (0, shrink, 0, shrink)  # left, up, right, bottom
 	        champ_image = ImageOps.crop(champ_image, border)
 
-	        player_panel = await stats_image(champ_image, t2_data[i], i+offset-1, p2)
+	        player_panel = await self.stats_image(champ_image, t2_data[i], i+offset-1, p2)
 	        history_image.paste(player_panel, (0, image_size_y * (i+offset) + 704))
 	    # Base speed is 10 - seconds
 	    history_image = history_image.resize((4608//2, 3048//2), Image.ANTIALIAS)           # 5 seconds
@@ -155,7 +151,6 @@ class helper:
 	    final_buffer.seek(0)
 	    return final_buffer
 
-	@staticmethod
 	async def middle_panel(md):
 	    middle_panel = Image.new('RGB', (512*10, 512), color=(14, 52, 60))
 	    # Adding in map to image
@@ -203,7 +198,7 @@ class helper:
 	            # Team 1 Bans
 	            try:
 	                sessions = aiohttp.ClientSession()
-	                champ_url = await get_champ_image(md[6].name)
+	                champ_url = await self.get_champ_image(md[6].name)
 	                async with sessions.get(champ_url) as response:
 	                    resp = await response.read()
 	                    champ_icon = Image.open(BytesIO(resp))
@@ -214,7 +209,7 @@ class helper:
 	                pass
 
 	            try:
-	                champ_url = await get_champ_image(md[7].name)
+	                champ_url = await self.get_champ_image(md[7].name)
 	                async with sessions.get(champ_url) as response:
 	                    resp = await response.read()
 	                    champ_icon = Image.open(BytesIO(resp))
@@ -225,7 +220,7 @@ class helper:
 	                pass
 	            # Team 2 Bans
 	            try:
-	                champ_url = await get_champ_image(md[8].name)
+	                champ_url = await self.get_champ_image(md[8].name)
 	                async with sessions.get(champ_url) as response:
 	                    resp = await response.read()
 	                    champ_icon = Image.open(BytesIO(resp))
@@ -235,7 +230,7 @@ class helper:
 	            except FileNotFoundError:
 	                pass
 	            try:
-	                champ_url = await get_champ_image(md[9].name)
+	                champ_url = await self.get_champ_image(md[9].name)
 	                async with sessions.get(champ_url) as response:
 	                    resp = await response.read()
 	                    champ_icon = Image.open(BytesIO(resp))
