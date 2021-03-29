@@ -40,7 +40,7 @@ class helper:
 	    	rank_icon == ""
 	    else:
 	    	rank_icon = Image.open(f"home/ubuntu/icons/ranks/{champ_stats[12]}.png")
-	    	rank_icon = rank_icon.resize(200, 200)
+	    	rank_icon = rank_icon.resize((200, 200), Image.NEAREST)
 	    	img.paste(rank_icon, (offset, offset + 600))
 	    draw = ImageDraw.Draw(img)
 	    fnt80 = ImageFont.truetype("home/ubuntu/arial.ttf", 80)
