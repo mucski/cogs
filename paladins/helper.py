@@ -27,7 +27,7 @@ class helper:
 
 
 	@classmethod
-	async def stats_image(cls, champ_icon, champ_stats, index, party):
+	async def stats_image(cls, champ_icon, rank_icon, champ_stats, index, party):
 	    shrink = 140
 	    offset = 10
 	    image_size_y = 512 - shrink * 2
@@ -36,11 +36,9 @@ class helper:
 	    im_color = (14, 34, 43) if index % 2 == 0 else (15, 40, 48)
 	    img = Image.new("RGB", (img_x*10, image_size_y+offset*2), color=im_color)
 	    img.paste(champ_icon, (offset, offset))
-	    if champ_stats[12] is None:
+	    if rank_icon is None:
 	    	rank_icon == ""
 	    else:
-	    	rank_icon = Image.open(f"home/ubuntu/icons/ranks/{champ_stats[12]}.png")
-	    	rank_icon = rank_icon.resize((200, 200), Image.NEAREST)
 	    	img.paste(rank_icon, (offset, offset + 600))
 	    draw = ImageDraw.Draw(img)
 	    fnt80 = ImageFont.truetype("home/ubuntu/arial.ttf", 80)
@@ -111,7 +109,7 @@ class helper:
 
 	@classmethod
 	# Creates a match image based on the two teams champions
-	async def history_image(cls, team1, team2, t1_data, t2_data, p1, p2, match_data):
+	async def history_image(cls, team1, team2, t1_data, t2_data, r1, p1, p2, match_data):
 	    shrink = 140
 	    image_size_y = 512 - shrink*2
 	    image_size_x = 512
@@ -136,8 +134,9 @@ class helper:
 	            champ_image = Image.open("icons/temp_card_art.png")
 	        border = (0, shrink, 0, shrink)  # left, up, right, bottom
 	        champ_image = ImageOps.crop(champ_image, border)
+	        rank_icon = Image.open(f"home/ubuntu/icons/ranks/{rank}.png")
 	        # history_image.paste(champ_image, (0, image_size*i, image_size, image_size*(i+1)))
-	        player_panel = await helper.stats_image(champ_image, t1_data[i], i, p1)
+	        player_panel = await helper.stats_image(champ_image, rank_icon, t1_data[i], i, p1)
 	        history_image.paste(player_panel, (0, (image_size_y+10)*i+132))
 	        # Second team
 	        try:

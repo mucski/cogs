@@ -53,6 +53,7 @@ class Paladins(commands.Cog):
             team1_data = []
             team2_data = []
             team1_champs = []
+            team1_ranks= []
             team2_champs = []
             team1_parties = {}
             team2_parties = {}
@@ -67,8 +68,9 @@ class Paladins(commands.Cog):
                     team1_data.append([player.player.name, player.account_level, player.credits, player.kda_text,
                                        player.damage_done, player.damage_taken,
                                        player.objective_time, player.damage_mitigated,
-                                       player.healing_done, player.party_number, player.player.platform, player.healing_self, gugu.ranked_best.rank.value])
+                                       player.healing_done, player.party_number, player.player.platform, player.healing_self])
                     team1_champs.append(player.champion.name)
+                    team1_ranks.append(gugu.ranked_best.rank.value)
                     if player.party_number not in team1_parties or player.party_number == 0:
                         team1_parties[player.party_number] = ""
                     else:
@@ -87,7 +89,7 @@ class Paladins(commands.Cog):
                         if team2_parties[player.party_number] == "":
                             new_party_id += 1
                             team2_parties[player.party_number] = "" + str(new_party_id)
-            buffer = await helper.history_image(team1_champs, team2_champs, team1_data, team2_data,
+            buffer = await helper.history_image(team1_champs, team2_champs, team1_data, team2_data, team1_ranks,
                                                                    team1_parties, team2_parties, (match_info + temp))
             file = discord.File(filename=f"{matchId}.jpg", fp=buffer)
         await ctx.send(file=file)
