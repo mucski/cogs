@@ -52,11 +52,11 @@ class helper:
 	    # Parties
 	    draw.text((img_x+950, middle), str(champ_stats[9]), font=fnt100, fill=fill)
 	    # Credits
-	    draw.text((img_x+1000, middle), str(champ_stats[2]), font=fnt100, fill=fill)
+	    draw.text((img_x+1100, middle), str(champ_stats[2]), font=fnt100, fill=fill)
 	    # KDA
 	    draw.text((img_x+1500, middle), str(champ_stats[3]), font=fnt100, fill=fill)
 	    # Damage Done
-	    draw.text((img_x+2350, middle), str(champ_stats[4]), font=fnt100, fill=fill)
+	    draw.text((img_x+1950, middle), str(champ_stats[4]), font=fnt100, fill=fill)
 	    # Mitigated
 	    draw.text((img_x+2850, middle), str(champ_stats[5]), font=fnt100, fill=fill)
 	    # OBJ time
@@ -85,11 +85,11 @@ class helper:
 	    # Parties
 	    base_draw.text((x + 950, 0), "P", font=fnt80bold, fill=fill)
 	    # Credits/Gold earned
-	    base_draw.text((x + 1000, 0), "Credits", font=fnt80bold, fill=fill)
+	    base_draw.text((x + 1100, 0), "Credits", font=fnt80bold, fill=fill)
 	    # KDA
 	    base_draw.text((x + 1500, 0), "K/D/A", font=fnt80bold, fill=fill)
 	    # Damage done
-	    base_draw.text((x + 1930, 0), "Damage", font=fnt80bold, fill=fill)
+	    base_draw.text((x + 1950, 0), "Damage", font=fnt80bold, fill=fill)
 	    # Damage taken
 	    base_draw.text((x + 2450, 0), "Taken", font=fnt80bold, fill=fill)
 	    # Objective time
