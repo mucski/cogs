@@ -65,10 +65,10 @@ class Paladins(commands.Cog):
             temp = match.bans
             for player in match.players:
                 if player.team_number == 1:
-                    gugu = await player.player
-                    if gugu.private is not None:
+                    if player.private:
                         rank = "0"
                     else:
+                        gugu = await player.player
                         rank = gugu.ranked_best.rank.value
                     team1_data.append([player.player.name, player.account_level, player.credits, player.kda_text,
                                        player.damage_done, player.damage_taken,
@@ -83,11 +83,12 @@ class Paladins(commands.Cog):
                             new_party_id += 1
                             team1_parties[player.party_number] = "" + str(new_party_id)
                 else:
-                    gugu = await player.player
-                    if gugu.private is not None:
-                        rank = "0"
-                    else:
-                        rank = gugu.ranked_best.rank.value
+                    if player.team_number == 1:
+                        if player.private:
+                            rank = "0"
+                        else:
+                            gugu = await player.player
+                            rank = gugu.ranked_best.rank.value
                     team2_data.append([player.player.name, player.account_level, player.credits, player.kda_text,
                                        player.damage_done, player.damage_taken,
                                        player.objective_time, player.damage_mitigated,
