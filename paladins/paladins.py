@@ -94,11 +94,18 @@ class Paladins(commands.Cog):
 
     @commands.command()
     async def atest(self, ctx, matchId):
-        match = await self.api.get_match(matchId, expand_players=True)
-        match_info = [match.winning_team, match.duration, match.region,
-                          match.map_name, match.score[0], match.score[1]]
-        temp = match.bans
-        await ctx.send(match_info+temp)
+        try:
+            match = await self.api.get_match(int(matchId), expand_players=True)
+        except ValueError:
+            match = await self.api.get_player(matchId)
+            match = await match.get_match_history()
+            try:
+                match = await match[0]
+            except IndexError:
+                await ctx.send("No match found.")
+                return
+        for player in match.players:    
+            await ctx.send(player.player.rank)
 
 
     @commands.command()
