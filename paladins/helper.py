@@ -6,6 +6,8 @@ from io import BytesIO
 
 
 class helper:
+	def __init__(self):
+		pass
 
 	async def get_champ_image(champ):
 	    champ = champ.lower()
