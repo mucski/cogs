@@ -230,7 +230,7 @@ class Paladins(commands.Cog):
         try:
             if md[6]:
                 # Ranked bans
-                draw_panel.text((512 * 7 + rs * 8, center2), "Bans:", font=fnt100, fill=(255, 255, 255))
+                draw_panel.text((512 * 7 + rs * 7, center2), "Bans:", font=fnt100, fill=(255, 255, 255))
                 # Team 1 Bans
                 try:
                     sessions = aiohttp.ClientSession()
@@ -240,7 +240,7 @@ class Paladins(commands.Cog):
                         champ_icon = Image.open(BytesIO(resp))
                     sessions.close()
                     champ_icon = champ_icon.resize((200, 200))
-                    middle_panel.paste(champ_icon, (512 * 9 + rs, ds))
+                    middle_panel.paste(champ_icon, (512 * 9, ds))
                 except FileNotFoundError:
                     pass
     
@@ -251,7 +251,7 @@ class Paladins(commands.Cog):
                         champ_icon = Image.open(BytesIO(resp))
                     sessions.close()
                     champ_icon = champ_icon.resize((200, 200))
-                    middle_panel.paste(champ_icon, (512 * 9 + rs + 240, ds))
+                    middle_panel.paste(champ_icon, (512 * 9 + 240, ds))
                 except FileNotFoundError:
                     pass
                 # Team 2 Bans
@@ -262,7 +262,7 @@ class Paladins(commands.Cog):
                         champ_icon = Image.open(BytesIO(resp))
                     sessions.close()
                     champ_icon = champ_icon.resize((200, 200))
-                    middle_panel.paste(champ_icon, (512 * 9 + rs, ds+232))
+                    middle_panel.paste(champ_icon, (512 * 9, ds+232))
                 except FileNotFoundError:
                     pass
                 try:
@@ -272,7 +272,7 @@ class Paladins(commands.Cog):
                         champ_icon = Image.open(BytesIO(resp))
                     sessions.close()
                     champ_icon = champ_icon.resize((200, 200))
-                    middle_panel.paste(champ_icon, (512 * 9 + rs + 240, ds+232))
+                    middle_panel.paste(champ_icon, (512 * 9 + 240, ds+232))
                 except FileNotFoundError:
                     pass
         except IndexError:
