@@ -36,7 +36,7 @@ class helper:
 	    im_color = (14, 34, 43) if index % 2 == 0 else (15, 40, 48)
 	    img = Image.new("RGBA", (img_x*10, image_size_y+offset*2), color=im_color)
 	    img.paste(champ_icon, (offset, offset))
-	    img.paste(rank_icon, (950, 50))
+	    img.paste(rank_icon, (1250, 50))
 	    draw = ImageDraw.Draw(img)
 	    fnt80 = ImageFont.truetype("home/ubuntu/arial.ttf", 80)
 	    fnt100 = ImageFont.truetype("home/ubuntu/arial.ttf", 100)
