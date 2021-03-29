@@ -36,7 +36,12 @@ class helper:
 	    im_color = (14, 34, 43) if index % 2 == 0 else (15, 40, 48)
 	    img = Image.new("RGB", (img_x*10, image_size_y+offset*2), color=im_color)
 	    img.paste(champ_icon, (offset, offset))
-	    img.paste(champ_stats[12], (offset, offset + 600))
+	    if champ_stats[12] == None:
+	    	rank_icon == ""
+	   	else:
+	    	rank_icon = Image.open(f"home/ubuntu/icons/ranks/{champ_stats[12]}.png")
+	    	rank_icon = rank_icon.resize(200, 200)
+	    	img.paste(rank_icon, (offset, offset + 600))
 	    draw = ImageDraw.Draw(img)
 	    fnt80 = ImageFont.truetype("home/ubuntu/arial.ttf", 80)
 	    fnt100 = ImageFont.truetype("home/ubuntu/arial.ttf", 100)
@@ -48,7 +53,7 @@ class helper:
 	    draw.text((img_x+20, middle-40), str(champ_stats[0]), font=fnt80bold, fill=fill)
 	    draw.text((img_x+20, middle+60), str(champ_stats[1]), font=fnt80, fill=fill)
 	    # Rank
-	    draw.text((img_x+750, middle), "", font=fnt100, fill=fill)
+	    draw.text((img_x+750, middle), rank_icon, font=fnt100, fill=fill)
 	    # Parties
 	    draw.text((img_x+750, middle), str(champ_stats[9]), font=fnt100, fill=fill)
 	    # Credits
