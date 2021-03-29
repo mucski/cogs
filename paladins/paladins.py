@@ -240,7 +240,7 @@ class Paladins(commands.Cog):
                         champ_icon = Image.open(BytesIO(resp))
                     sessions.close()
                     champ_icon = champ_icon.resize((200, 200))
-                    middle_panel.paste(champ_icon, (512 * 10 + rs, ds))
+                    middle_panel.paste(champ_icon, (512 * 8 + rs, ds))
                 except FileNotFoundError:
                     pass
     
@@ -251,7 +251,7 @@ class Paladins(commands.Cog):
                         champ_icon = Image.open(BytesIO(resp))
                     sessions.close()
                     champ_icon = champ_icon.resize((200, 200))
-                    middle_panel.paste(champ_icon, (512 * 10 + rs + 240, ds))
+                    middle_panel.paste(champ_icon, (512 * 8 + rs + 240, ds))
                 except FileNotFoundError:
                     pass
                 # Team 2 Bans
@@ -262,7 +262,7 @@ class Paladins(commands.Cog):
                         champ_icon = Image.open(BytesIO(resp))
                     sessions.close()
                     champ_icon = champ_icon.resize((200, 200))
-                    middle_panel.paste(champ_icon, (512 * 10 + rs, ds+232))
+                    middle_panel.paste(champ_icon, (512 * 8 + rs, ds+232))
                 except FileNotFoundError:
                     pass
                 try:
@@ -272,7 +272,7 @@ class Paladins(commands.Cog):
                         champ_icon = Image.open(BytesIO(resp))
                     sessions.close()
                     champ_icon = champ_icon.resize((200, 200))
-                    middle_panel.paste(champ_icon, (512 * 10 + rs + 240, ds+232))
+                    middle_panel.paste(champ_icon, (512 * 8 + rs + 240, ds+232))
                 except FileNotFoundError:
                     pass
         except IndexError:
