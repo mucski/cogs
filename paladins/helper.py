@@ -108,7 +108,7 @@ class helper:
 	    offset = 5
 	    history_image = Image.new('RGB', (image_size_x*10, image_size_y*12 + 264))
 	    # Adds the top key panel
-	    key = await player_key_image(image_size_x, image_size_y)
+	    key = await helper.player_key_image(image_size_x, image_size_y)
 	    history_image.paste(key, (0, 0))
 	    # Creates middle panel
 	    mid_panel = await middle_panel(match_data)
