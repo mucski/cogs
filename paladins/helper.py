@@ -66,7 +66,7 @@ class helper:
 	async def player_key_image(cls, x, y):
 	    key = Image.new("RGB", (x*10, y-100), color=(8, 21, 25))
 	    base_draw = ImageDraw.Draw(key)
-	    fill = 255, 255, 255)
+	    fill = (255, 255, 255)
 	    fnt80bold= ImageFont.truetype("home/ubuntu/arialbd.ttf", 80)
 	    # fnt100 = ImageFont.truetype("home/ubuntu/arial.ttf", 100)
 	    # ss = "Player Credits K/D/A  Damage  Taken  Objective Time  Shielding  Healing"
