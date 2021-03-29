@@ -5,7 +5,7 @@ from io import BytesIO
 
 
 
-class helper():
+class helper:
 
 	@staticmethod
 	async def get_champ_image(champ):
