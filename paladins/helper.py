@@ -54,7 +54,7 @@ class helper:
 	    # Credits
 	    draw.text((img_x+1250, middle), str(champ_stats[2]), font=fnt100, fill=fill)
 	    # KDA
-	    draw.text((img_x+1430, middle), str(champ_stats[3]), font=fnt100, fill=fill)
+	    draw.text((img_x+1630, middle), str(champ_stats[3]), font=fnt100, fill=fill)
 	    # Damage Done
 	    draw.text((img_x+2350, middle), str(champ_stats[4]), font=fnt100, fill=fill)
 	    # Mitigated
