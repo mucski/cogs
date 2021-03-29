@@ -98,9 +98,9 @@ class helper:
 	    # Shielding
 	    base_draw.text((x + 3250, 0), "Shielding", font=fnt80bold, fill=fill)
 	    # Healing
-	    base_draw.text((x + 3700, 0), "Healing", font=fnt80bold, fill=fill)
+	    base_draw.text((x + 3750, 0), "Healing", font=fnt80bold, fill=fill)
 	    # Self Healing
-	    base_draw.text((x + 4220, 0), "Self Healing", font=fnt80bold, fill=fill)
+	    base_draw.text((x + 4220, 0), "Self Heal", font=fnt80bold, fill=fill)
 	    return key
 
 
