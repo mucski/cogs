@@ -111,13 +111,13 @@ class helper:
 	    key = await helper.player_key_image(image_size_x, image_size_y)
 	    history_image.paste(key, (0, 0))
 	    # Creates middle panel
-	    mid_panel = await middle_panel(match_data)
+	    mid_panel = await helper.middle_panel(match_data)
 	    history_image.paste(mid_panel, (0, 1392-40))
 	    # Adding in player data
 	    for i, (champ, champ2) in enumerate(zip(team1, team2)):
 	        try:
 	            sessions = aiohttp.ClientSession()
-	            url = await get_champ_image(champ)
+	            url = await helper.get_champ_image(champ)
 	            async with sessions.get(url) as response:
 	                resp = await response.read()
 	                champ_image = Image.open(BytesIO(resp))
@@ -127,12 +127,12 @@ class helper:
 	        border = (0, shrink, 0, shrink)  # left, up, right, bottom
 	        champ_image = ImageOps.crop(champ_image, border)
 	        # history_image.paste(champ_image, (0, image_size*i, image_size, image_size*(i+1)))
-	        player_panel = await stats_image(champ_image, t1_data[i], i, p1)
+	        player_panel = await helper.stats_image(champ_image, t1_data[i], i, p1)
 	        history_image.paste(player_panel, (0, (image_size_y+10)*i+132))
 	        # Second team
 	        try:
 	            sessions = aiohttp.ClientSession()
-	            url = await get_champ_image(champ2)
+	            url = await helper.get_champ_image(champ2)
 	            async with sessions.get(url) as response:
 	                resp = await response.read()
 	                champ_image = Image.open(BytesIO(resp))
@@ -142,7 +142,7 @@ class helper:
 	        border = (0, shrink, 0, shrink)  # left, up, right, bottom
 	        champ_image = ImageOps.crop(champ_image, border)
 
-	        player_panel = await stats_image(champ_image, t2_data[i], i+offset-1, p2)
+	        player_panel = await helper.stats_image(champ_image, t2_data[i], i+offset-1, p2)
 	        history_image.paste(player_panel, (0, image_size_y * (i+offset) + 704))
 	    # Base speed is 10 - seconds
 	    history_image = history_image.resize((4608//2, 3048//2), Image.ANTIALIAS)           # 5 seconds
@@ -203,7 +203,7 @@ class helper:
 	            # Team 1 Bans
 	            try:
 	                sessions = aiohttp.ClientSession()
-	                champ_url = await get_champ_image(md[6].name)
+	                champ_url = await helper.get_champ_image(md[6].name)
 	                async with sessions.get(champ_url) as response:
 	                    resp = await response.read()
 	                    champ_icon = Image.open(BytesIO(resp))
@@ -214,7 +214,7 @@ class helper:
 	                pass
 
 	            try:
-	                champ_url = await get_champ_image(md[7].name)
+	                champ_url = await helper.get_champ_image(md[7].name)
 	                async with sessions.get(champ_url) as response:
 	                    resp = await response.read()
 	                    champ_icon = Image.open(BytesIO(resp))
@@ -225,7 +225,7 @@ class helper:
 	                pass
 	            # Team 2 Bans
 	            try:
-	                champ_url = await get_champ_image(md[8].name)
+	                champ_url = await helper.get_champ_image(md[8].name)
 	                async with sessions.get(champ_url) as response:
 	                    resp = await response.read()
 	                    champ_icon = Image.open(BytesIO(resp))
@@ -235,7 +235,7 @@ class helper:
 	            except FileNotFoundError:
 	                pass
 	            try:
-	                champ_url = await get_champ_image(md[9].name)
+	                champ_url = await helper.get_champ_image(md[9].name)
 	                async with sessions.get(champ_url) as response:
 	                    resp = await response.read()
 	                    champ_icon = Image.open(BytesIO(resp))
