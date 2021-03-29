@@ -66,7 +66,7 @@ class Paladins(commands.Cog):
             for player in match.players:
                 if player.team_number == 1:
                     if player.player.private:
-                        rank = ""
+                        rank = "0"
                     else:
                         gugu = await player.player
                         rank = gugu.ranked_best.rank.value
@@ -85,7 +85,7 @@ class Paladins(commands.Cog):
                 else:
                     if player.team_number == 1:
                         if player.player.private:
-                            rank = ""
+                            rank = "0"
                         else:
                             gugu = await player.player
                             rank = gugu.ranked_best.rank.value
