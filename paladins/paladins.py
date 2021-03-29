@@ -93,7 +93,7 @@ class Paladins(commands.Cog):
 
 
     async def player_key_image(self, x, y):
-        key = Image.new("RGBA", (x*10, y-100), color=(8, 21, 25))
+        key = Image.new("RGB", (x*10, y-100), color=(8, 21, 25))
         base_draw = ImageDraw.Draw(key)
         fnt80bold= ImageFont.truetype("home/ubuntu/arialbd.ttf", 80)
         # fnt100 = ImageFont.truetype("home/ubuntu/arial.ttf", 100)
