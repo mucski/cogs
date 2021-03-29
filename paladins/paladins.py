@@ -105,7 +105,7 @@ class Paladins(commands.Cog):
                 await ctx.send("No match found.")
                 return
         for player in match.players:    
-            await ctx.send(player.player.rank)
+            await ctx.send(player.player.ranked_best)
 
 
     @commands.command()
