@@ -104,8 +104,14 @@ class Paladins(commands.Cog):
             except IndexError:
                 await ctx.send("No match found.")
                 return
-        for player in match.players:    
-            await ctx.send(player.player.ranked_best)
+        ranks = []
+        for player in match.players:
+            if player.private is True:
+                ranks.append("None")
+            else:
+                player = await player
+                ranks.append(player.ranked_best)
+        await ctx.send(ranks)
 
 
     @commands.command()
