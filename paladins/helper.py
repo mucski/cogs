@@ -34,9 +34,9 @@ class helper:
 	    img_x = 512
 	    middle = image_size_y/2 - 50
 	    im_color = (14, 34, 43) if index % 2 == 0 else (15, 40, 48)
-	    img = Image.new("RGB", (img_x*10, image_size_y+offset*2), color=im_color)
+	    img = Image.new("RGBA", (img_x*10, image_size_y+offset*2), color=im_color)
 	    img.paste(champ_icon, (offset, offset))
-	    img.paste(rank_icon, (1220, 50))
+	    img.paste(rank_icon, (1220, 50), mask=img)
 	    draw = ImageDraw.Draw(img)
 	    fnt80 = ImageFont.truetype("home/ubuntu/arial.ttf", 80)
 	    fnt100 = ImageFont.truetype("home/ubuntu/arial.ttf", 100)
@@ -64,7 +64,7 @@ class helper:
 	    # Shielding
 	    draw.text((img_x+3250, middle), str(champ_stats[7]), font=fnt100, fill=fill)
 	    # Healing
-	    draw.text((img_x+3700, middle), str(champ_stats[8]), font=fnt100, fill=fill)
+	    draw.text((img_x+3750, middle), str(champ_stats[8]), font=fnt100, fill=fill)
 	    # Self Healing
 	    draw.text((img_x+4220, middle), str(champ_stats[11]), font=fnt100, fill=fill)
 	    return img
