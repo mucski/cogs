@@ -58,15 +58,15 @@ class helper:
 	    # Damage Done
 	    draw.text((img_x+1950, middle), str(champ_stats[4]), font=fnt100, fill=fill)
 	    # Mitigated
-	    draw.text((img_x+2850, middle), str(champ_stats[5]), font=fnt100, fill=fill)
+	    draw.text((img_x+2450, middle), str(champ_stats[5]), font=fnt100, fill=fill)
 	    # OBJ time
-	    draw.text((img_x+3150, middle), str(champ_stats[6]), font=fnt100, fill=fill)
+	    draw.text((img_x+2900, middle), str(champ_stats[6]), font=fnt100, fill=fill)
 	    # Shielding
-	    draw.text((img_x+3600, middle), str(champ_stats[7]), font=fnt100, fill=fill)
+	    draw.text((img_x+3250, middle), str(champ_stats[7]), font=fnt100, fill=fill)
 	    # Healing
-	    draw.text((img_x+4120, middle), str(champ_stats[8]), font=fnt100, fill=fill)
+	    draw.text((img_x+3700, middle), str(champ_stats[8]), font=fnt100, fill=fill)
 	    # Self Healing
-	    draw.text((img_x+4642, middle), str(champ_stats[11]), font=fnt100, fill=fill)
+	    draw.text((img_x+4220, middle), str(champ_stats[11]), font=fnt100, fill=fill)
 	    return img
 
 
