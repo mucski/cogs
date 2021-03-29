@@ -217,12 +217,12 @@ class Paladins(commands.Cog):
         # Right shift
         rs = 100
         # Team 1
-        draw_panel.text((512 * 4 + rs, ds), "Team 1 Score: ", font=fnt100, fill=(255, 255, 255))
-        draw_panel.text((512 * 4 + rs * 8, ds), str(md[4]), font=fnt100bold, fill=(255, 255, 255))
+        draw_panel.text((512 * 5 + rs, ds), "Team 1 Score: ", font=fnt100, fill=(255, 255, 255))
+        draw_panel.text((512 * 5 + rs * 8, ds), str(md[4]), font=fnt100bold, fill=(255, 255, 255))
         center = (512/2 - 130/2)
         center2 = (512/2 - 80/2)
         # VS
-        draw_panel.text((512 * 5-150, center), "VS", font=fnt100bold, fill=(227, 34, 34))
+        draw_panel.text((512 * 6-150, center), "VS", font=fnt100bold, fill=(227, 34, 34))
         # Team 2
         draw_panel.text((512 * 5 + rs, 352), "Team 2 Score: ", font=fnt100, fill=(255, 255, 255))
         draw_panel.text((512 * 5 + rs * 8, 352), str(md[5]), font=fnt100bold, fill=(255, 255, 255))
