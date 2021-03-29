@@ -110,7 +110,7 @@ class Paladins(commands.Cog):
                 ranks.append("None")
             else:
                 player = await player.player
-                ranks.append(player.ranked_best.rank)
+                ranks.append(player.ranked_best.rank.value)
         await ctx.send(ranks)
 
 
