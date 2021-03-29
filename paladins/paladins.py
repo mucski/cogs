@@ -66,12 +66,16 @@ class Paladins(commands.Cog):
             for player in match.players:
                 if player.team_number == 1:
                     gugu = await player.player
+                    if gugu.private:
+                        rank = "0"
+                    else:
+                        rank = gugu.ranked_best.rank.value
                     team1_data.append([player.player.name, player.account_level, player.credits, player.kda_text,
                                        player.damage_done, player.damage_taken,
                                        player.objective_time, player.damage_mitigated,
                                        player.healing_done, player.party_number, player.player.platform, player.healing_self])
                     team1_champs.append(player.champion.name)
-                    team1_ranks.append(gugu.ranked_best.rank.value)
+                    team1_ranks.append(rank)
                     if player.party_number not in team1_parties or player.party_number == 0:
                         team1_parties[player.party_number] = ""
                     else:
@@ -80,12 +84,16 @@ class Paladins(commands.Cog):
                             team1_parties[player.party_number] = "" + str(new_party_id)
                 else:
                     gugu = await player.player
+                    if gugu.private:
+                        rank = "0"
+                    else:
+                        rank = gugu.ranked_best.rank.value
                     team2_data.append([player.player.name, player.account_level, player.credits, player.kda_text,
                                        player.damage_done, player.damage_taken,
                                        player.objective_time, player.damage_mitigated,
                                        player.healing_done, player.party_number, player.player.platform, player.healing_self])
                     team2_champs.append(player.champion.name)
-                    team2_ranks.append(gugu.ranked_best.rank.value)
+                    team2_ranks.append(rank)
                     if player.party_number not in team2_parties or player.party_number == 0:
                         team2_parties[player.party_number] = ""
                     else:
