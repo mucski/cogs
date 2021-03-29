@@ -65,7 +65,7 @@ class Paladins(commands.Cog):
             temp = match.bans
             for player in match.players:
                 if player.team_number == 1:
-                    if player.private:
+                    if player.player.private:
                         rank = "0"
                     else:
                         gugu = await player.player
@@ -84,7 +84,7 @@ class Paladins(commands.Cog):
                             team1_parties[player.party_number] = "" + str(new_party_id)
                 else:
                     if player.team_number == 1:
-                        if player.private:
+                        if player.player.private:
                             rank = "0"
                         else:
                             gugu = await player.player
