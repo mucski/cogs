@@ -36,9 +36,9 @@ class helper:
 	    im_color = (14, 34, 43) if index % 2 == 0 else (15, 40, 48)
 	    img = Image.new("RGB", (img_x*10, image_size_y+offset*2), color=im_color)
 	    img.paste(champ_icon, (offset, offset))
-	    if champ_stats[12] == None:
+	    if champ_stats[12] is None:
 	    	rank_icon == ""
-	   	else:
+    	else:
 	    	rank_icon = Image.open(f"home/ubuntu/icons/ranks/{champ_stats[12]}.png")
 	    	rank_icon = rank_icon.resize(200, 200)
 	    	img.paste(rank_icon, (offset, offset + 600))
