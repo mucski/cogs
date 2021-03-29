@@ -50,9 +50,9 @@ class helper:
 	    # Rank
 	    # draw.text((img_x+750, middle), rank_icon, font=fnt100, fill=fill)
 	    # Parties
-	    draw.text((img_x+900, middle), str(champ_stats[9]), font=fnt100, fill=fill)
+	    draw.text((img_x+950, middle), str(champ_stats[9]), font=fnt100, fill=fill)
 	    # Credits
-	    draw.text((img_x+1300, middle), str(champ_stats[2]), font=fnt100, fill=fill)
+	    draw.text((img_x+1250, middle), str(champ_stats[2]), font=fnt100, fill=fill)
 	    # KDA
 	    draw.text((img_x+1830, middle), str(champ_stats[3]), font=fnt100, fill=fill)
 	    # Damage Done
@@ -83,7 +83,7 @@ class helper:
 	    # Ranks
 	    base_draw.text((x + 750, 0), "R", font=fnt80bold, fill=fill)
 	    # Parties
-	    base_draw.text((x + 1000, 0), "P", font=fnt80bold, fill=fill)
+	    base_draw.text((x + 950, 0), "P", font=fnt80bold, fill=fill)
 	    # Credits/Gold earned
 	    base_draw.text((x + 1250, 0), "Credits", font=fnt80bold, fill=fill)
 	    # KDA
