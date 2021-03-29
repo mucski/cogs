@@ -50,23 +50,23 @@ class helper:
 	    # Rank
 	    # draw.text((img_x+750, middle), rank_icon, font=fnt100, fill=fill)
 	    # Parties
-	    draw.text((img_x+750, middle), str(champ_stats[9]), font=fnt100, fill=fill)
+	    draw.text((img_x+900, middle), str(champ_stats[9]), font=fnt100, fill=fill)
 	    # Credits
-	    draw.text((img_x+900, middle), str(champ_stats[2]), font=fnt100, fill=fill)
+	    draw.text((img_x+1300, middle), str(champ_stats[2]), font=fnt100, fill=fill)
 	    # KDA
-	    draw.text((img_x+1300, middle), str(champ_stats[3]), font=fnt100, fill=fill)
+	    draw.text((img_x+1830, middle), str(champ_stats[3]), font=fnt100, fill=fill)
 	    # Damage Done
-	    draw.text((img_x+1830, middle), str(champ_stats[4]), font=fnt100, fill=fill)
+	    draw.text((img_x+2350, middle), str(champ_stats[4]), font=fnt100, fill=fill)
 	    # Mitigated
-	    draw.text((img_x+2350, middle), str(champ_stats[5]), font=fnt100, fill=fill)
+	    draw.text((img_x+2850, middle), str(champ_stats[5]), font=fnt100, fill=fill)
 	    # OBJ time
-	    draw.text((img_x+2850, middle), str(champ_stats[6]), font=fnt100, fill=fill)
+	    draw.text((img_x+3150, middle), str(champ_stats[6]), font=fnt100, fill=fill)
 	    # Shielding
-	    draw.text((img_x+3150, middle), str(champ_stats[7]), font=fnt100, fill=fill)
+	    draw.text((img_x+3600, middle), str(champ_stats[7]), font=fnt100, fill=fill)
 	    # Healing
-	    draw.text((img_x+3600, middle), str(champ_stats[8]), font=fnt100, fill=fill)
+	    draw.text((img_x+4120, middle), str(champ_stats[8]), font=fnt100, fill=fill)
 	    # Self Healing
-	    draw.text((img_x+4120, middle), str(champ_stats[11]), font=fnt100, fill=fill)
+	    draw.text((img_x+4642, middle), str(champ_stats[11]), font=fnt100, fill=fill)
 	    return img
 
 
