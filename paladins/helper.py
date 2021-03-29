@@ -36,10 +36,7 @@ class helper:
 	    im_color = (14, 34, 43) if index % 2 == 0 else (15, 40, 48)
 	    img = Image.new("RGB", (img_x*10, image_size_y+offset*2), color=im_color)
 	    img.paste(champ_icon, (offset, offset))
-	    if rank_icon is None:
-	    	rank_icon == ""
-	    else:
-	    	img.paste(rank_icon, (offset, offset + 600))
+	    img.paste(rank_icon, (img_x+750, middle))
 	    draw = ImageDraw.Draw(img)
 	    fnt80 = ImageFont.truetype("home/ubuntu/arial.ttf", 80)
 	    fnt100 = ImageFont.truetype("home/ubuntu/arial.ttf", 100)
