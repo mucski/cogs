@@ -5,7 +5,7 @@ import humanize
 from datetime import datetime
 import discord
 from discord import File
-from .helper import helper
+import .helper as helper
 
 
 class Paladins(commands.Cog):
