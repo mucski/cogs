@@ -85,7 +85,7 @@ class Paladins(commands.Cog):
                                        player.objective_time, player.damage_mitigated,
                                        player.healing_done, player.party_number, player.player.platform, player.healing_self])
                     team2_champs.append(player.champion.name)
-                    team2_ranks.append(gufu.ranked_best.rank.value)
+                    team2_ranks.append(gugu.ranked_best.rank.value)
                     if player.party_number not in team2_parties or player.party_number == 0:
                         team2_parties[player.party_number] = ""
                     else:
