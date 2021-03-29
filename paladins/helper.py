@@ -34,7 +34,7 @@ class helper:
 	    img_x = 512
 	    middle = image_size_y/2 - 50
 	    im_color = (14, 34, 43) if index % 2 == 0 else (15, 40, 48)
-	    img = Image.new("RGBA", (img_x*10, image_size_y+offset*2), color=im_color)
+	    img = Image.new("RGB", (img_x*10, image_size_y+offset*2), color=im_color)
 	    img.paste(champ_icon, (offset, offset))
 	    img.paste(rank_icon, (1220, 50))
 	    draw = ImageDraw.Draw(img)
@@ -54,7 +54,7 @@ class helper:
 	    # Credits
 	    draw.text((img_x+1250, middle), str(champ_stats[2]), font=fnt100, fill=fill)
 	    # KDA
-	    draw.text((img_x+1830, middle), str(champ_stats[3]), font=fnt100, fill=fill)
+	    draw.text((img_x+1430, middle), str(champ_stats[3]), font=fnt100, fill=fill)
 	    # Damage Done
 	    draw.text((img_x+2350, middle), str(champ_stats[4]), font=fnt100, fill=fill)
 	    # Mitigated
