@@ -20,6 +20,7 @@ class helper:
 	        + str(champ) + ".png"
 	    return url
 
+
 	@classmethod
 	async def stats_image(cls, champ_icon, champ_stats, index, party):
 	    shrink = 140
@@ -60,44 +61,40 @@ class helper:
 	    draw.text((img_x+4120, middle), str(champ_stats[11]), font=fnt100, fill=fill)
 	    return img
 
+
 	@classmethod
 	async def player_key_image(cls, x, y):
 	    key = Image.new("RGB", (x*10, y-100), color=(8, 21, 25))
 	    base_draw = ImageDraw.Draw(key)
+	    fill = 255, 255, 255)
 	    fnt80bold= ImageFont.truetype("home/ubuntu/arialbd.ttf", 80)
 	    # fnt100 = ImageFont.truetype("home/ubuntu/arial.ttf", 100)
 	    # ss = "Player Credits K/D/A  Damage  Taken  Objective Time  Shielding  Healing"
 	    base_draw.text((20, 0), "Champion", font=fnt80bold, fill=(255, 255, 255))
 	    base_draw.text((x + 20, 0), "Player", font=fnt80bold, fill=(255, 255, 255))
+	    # Ranks
+	    base_draw.text((x + 750, 0), "R", font=fnt80bold, fill=fill)
 	    # Parties
-	    fill = (255, 255, 255)
-	    base_draw.text((x + 750, 0), "P", font=fnt80bold, fill=fill)
+	    base_draw.text((x + 1000, 0), "P", font=fnt80bold, fill=fill)
 	    # Credits/Gold earned
-	    fill = (255, 255, 255)
-	    base_draw.text((x + 900, 0), "Credits", font=fnt80bold, fill=fill)
+	    base_draw.text((x + 1150, 0), "Credits", font=fnt80bold, fill=fill)
 	    # KDA
-	    fill = (255, 255, 255)
 	    base_draw.text((x + 1300, 0), "K/D/A", font=fnt80bold, fill=fill)
 	    # Damage done
-	    fill = (255, 255, 255)
 	    base_draw.text((x + 1830, 0), "Damage", font=fnt80bold, fill=fill)
 	    # Damage taken
-	    fill = (255, 255, 255)
 	    base_draw.text((x + 2350, 0), "Taken", font=fnt80bold, fill=fill)
 	    # Objective time
-	    fill = (255, 255, 255)
 	    base_draw.text((x + 2800, 0), "Obj T.", font=fnt80bold, fill=fill)
 	    # base_draw.text((x + 2850, 60), "Time", font=fnt80, fill=fill)
 	    # Shielding
-	    fill = (255, 255, 255)
 	    base_draw.text((x + 3150, 0), "Shielding", font=fnt80bold, fill=fill)
 	    # Healing
-	    fill = (255, 255, 255)
 	    base_draw.text((x + 3600, 0), "Healing", font=fnt80bold, fill=fill)
 	    # Self Healing
-	    fill = (255, 255, 255)
 	    base_draw.text((x + 4120, 0), "Self Healing", font=fnt80bold, fill=fill)
 	    return key
+
 
 	@classmethod
 	# Creates a match image based on the two teams champions
@@ -154,6 +151,7 @@ class helper:
 	    # seek back to the start of the buffer stream
 	    final_buffer.seek(0)
 	    return final_buffer
+
 
 	@classmethod
 	async def middle_panel(cls, md):
