@@ -51,7 +51,7 @@ class helper:
 	    draw.text((img_x+20, middle-40), str(champ_stats[0]), font=fnt80bold, fill=fill)
 	    draw.text((img_x+20, middle+60), str(champ_stats[1]), font=fnt80, fill=fill)
 	    # Rank
-	    draw.text((img_x+750, middle), rank_icon, font=fnt100, fill=fill)
+	    # draw.text((img_x+750, middle), rank_icon, font=fnt100, fill=fill)
 	    # Parties
 	    draw.text((img_x+750, middle), str(champ_stats[9]), font=fnt100, fill=fill)
 	    # Credits
