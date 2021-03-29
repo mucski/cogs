@@ -109,7 +109,7 @@ class helper:
 
 	@classmethod
 	# Creates a match image based on the two teams champions
-	async def history_image(cls, team1, team2, t1_data, t2_data, r1, p1, p2, match_data):
+	async def history_image(cls, team1, team2, t1_data, t2_data, r1, r2, p1, p2, match_data):
 	    shrink = 140
 	    image_size_y = 512 - shrink*2
 	    image_size_x = 512
@@ -150,8 +150,8 @@ class helper:
 	            champ_image = Image.open("icons/temp_card_art.png")
 	        border = (0, shrink, 0, shrink)  # left, up, right, bottom
 	        champ_image = ImageOps.crop(champ_image, border)
-
-	        player_panel = await helper.stats_image(champ_image, t2_data[i], i+offset-1, p2)
+            rank_icon = Image.open(f"home/ubuntu/icons/ranks/{r2[i]}.png")
+	        player_panel = await helper.stats_image(champ_image, rank_icon, t2_data[i], i+offset-1, p2)
 	        history_image.paste(player_panel, (0, image_size_y * (i+offset) + 704))
 	    # Base speed is 10 - seconds
 	    history_image = history_image.resize((4608//2, 3048//2), Image.ANTIALIAS)           # 5 seconds
