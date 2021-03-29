@@ -62,11 +62,16 @@ class Paladins(commands.Cog):
                               match.map_name, match.score[0], match.score[1]]
             temp = match.bans
             for player in match.players:
+                if player.player.private is True:
+                    ranked_img = ""
+                else:
+                    player = await player.player
+                    ranked_img = f"ubuntu/icons/ranks/{player.ranked_best.name.value}.png"
                 if player.team_number == 1:
                     team1_data.append([player.player.name, player.account_level, player.credits, player.kda_text,
                                        player.damage_done, player.damage_taken,
                                        player.objective_time, player.damage_mitigated,
-                                       player.healing_done, player.party_number, player.player.platform, player.healing_self])
+                                       player.healing_done, player.party_number, player.player.platform, player.healing_self, ranked_img])
                     team1_champs.append(player.champion.name)
                     if player.party_number not in team1_parties or player.party_number == 0:
                         team1_parties[player.party_number] = ""
@@ -78,7 +83,7 @@ class Paladins(commands.Cog):
                     team2_data.append([player.player.name, player.account_level, player.credits, player.kda_text,
                                        player.damage_done, player.damage_taken,
                                        player.objective_time, player.damage_mitigated,
-                                       player.healing_done, player.party_number, player.player.platform, player.healing_self])
+                                       player.healing_done, player.party_number, player.player.platform, player.healing_self, ranked_img])
                     team2_champs.append(player.champion.name)
                     if player.party_number not in team2_parties or player.party_number == 0:
                         team2_parties[player.party_number] = ""

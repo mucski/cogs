@@ -27,7 +27,7 @@ class helper:
 
 
 	@classmethod
-	async def stats_image(cls, champ_icon, ranked_icon, champ_stats, index, party):
+	async def stats_image(cls, champ_icon, champ_stats, index, party):
 	    shrink = 140
 	    offset = 10
 	    image_size_y = 512 - shrink * 2
@@ -36,7 +36,7 @@ class helper:
 	    im_color = (14, 34, 43) if index % 2 == 0 else (15, 40, 48)
 	    img = Image.new("RGB", (img_x*10, image_size_y+offset*2), color=im_color)
 	    img.paste(champ_icon, (offset, offset))
-	    img.paste(ranked_icon, (offset, offset + 600))
+	    img.paste(champ_stats[12], (offset, offset + 600))
 	    draw = ImageDraw.Draw(img)
 	    fnt80 = ImageFont.truetype("home/ubuntu/arial.ttf", 80)
 	    fnt100 = ImageFont.truetype("home/ubuntu/arial.ttf", 100)
