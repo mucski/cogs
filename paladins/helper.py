@@ -77,7 +77,7 @@ class helper:
 	    # Parties
 	    base_draw.text((x + 1000, 0), "P", font=fnt80bold, fill=fill)
 	    # Credits/Gold earned
-	    base_draw.text((x + 1350, 0), "Credits", font=fnt80bold, fill=fill)
+	    base_draw.text((x + 1250, 0), "Credits", font=fnt80bold, fill=fill)
 	    # KDA
 	    base_draw.text((x + 1600, 0), "K/D/A", font=fnt80bold, fill=fill)
 	    # Damage done
