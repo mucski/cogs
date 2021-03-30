@@ -133,7 +133,7 @@ class helper:
         image_size_x = 512
         offset = 5
         history_image = Image.new(
-            'RBG', (image_size_x*10, image_size_y*12 + 264))
+            'RGB', (image_size_x*10, image_size_y*12 + 264))
         # Adds the top key panel
         key = await helper.player_key_image(image_size_x, image_size_y)
         history_image.paste(key, (0, 0))
@@ -143,16 +143,18 @@ class helper:
         # Adding in player data
         for i, (champ, champ2) in enumerate(zip(team1, team2)):
             try:
-            #    async with aiohttp.ClientSession() as session:
-            #        url = await helper.get_champ_image(champ)
-            #        async with session.get(url) as resp:
-            #            if resp.status == 200:
-            #                resp = await resp.read()
-            #                champ_image = Image.open(BytesIO(resp))
+                #    async with aiohttp.ClientSession() as session:
+                #        url = await helper.get_champ_image(champ)
+                #        async with session.get(url) as resp:
+                #            if resp.status == 200:
+                #                resp = await resp.read()
+                #                champ_image = Image.open(BytesIO(resp))
                 champ = await helper.get_champ_name(champ)
-                champ_image = Image.open(f"home/ubuntu/icons/champ_icons/{champ}.png")
+                champ_image = Image.open(
+                    f"home/ubuntu/icons/champ_icons/{champ}.png")
             except FileNotFoundError:
-                champ_image = Image.open(f"home/ubuntu/icons/temp_card_art.png")
+                champ_image = Image.open(
+                    f"home/ubuntu/icons/temp_card_art.png")
             border = (0, shrink, 0, shrink)  # left, up, right, bottom
             champ_image = ImageOps.crop(champ_image, border)
             rank_icon = Image.open(f"home/ubuntu/icons/ranks/{r1[i]}.png")
@@ -162,9 +164,11 @@ class helper:
             # Second team
             try:
                 champ2 = await helper.get_champ_name(champ2)
-                champ_image = Image.open(f"home/ubuntu/icons/champ_icons/{champ2}.png")
+                champ_image = Image.open(
+                    f"home/ubuntu/icons/champ_icons/{champ2}.png")
             except FileNotFoundError:
-                champ_image = Image.open(f"home/ubuntu/icons/temp_card_art.png")
+                champ_image = Image.open(
+                    f"home/ubuntu/icons/temp_card_art.png")
             border = (0, shrink, 0, shrink)  # left, up, right, bottom
             champ_image = ImageOps.crop(champ_image, border)
             rank_icon = Image.open(f"home/ubuntu/icons/ranks/{r2[i]}.png")
@@ -241,39 +245,47 @@ class helper:
                 # Team 1 Bans
                 try:
                     champ = await helper.get_champ_name(md[6].name)
-                    champ_icon = Image.open(f"home/ubuntu/icons/champ_icons/{champ}.png")
+                    champ_icon = Image.open(
+                        f"home/ubuntu/icons/champ_icons/{champ}.png")
                     champ_icon.resize((200, 200))
                     middle_panel.paste(champ_icon, (512 * 9, ds))
                 except FileNotFoundError:
-                    champ_icon = Image.open(f"home/ubuntu/icons/temp_card_art.png")
+                    champ_icon = Image.open(
+                        f"home/ubuntu/icons/temp_card_art.png")
                     champ_icon = champ_icon.resize((200, 200))
                     middle_panel.paste(champ_icon, (512 * 9, ds))
                 try:
                     champ = await helper.get_champ_name(md[7].name)
-                    champ_icon = Image.open(f"home/ubuntu/icons/champ_icons/{champ}.png")
+                    champ_icon = Image.open(
+                        f"home/ubuntu/icons/champ_icons/{champ}.png")
                     champ_icon = champ_icon.resize((200, 200))
                     middle_panel.paste(champ_icon, (512 * 9 + 240, ds))
                 except FileNotFoundError:
-                    champ_icon = Image.open(f"home/ubuntu/icons/temp_card_art.png")
+                    champ_icon = Image.open(
+                        f"home/ubuntu/icons/temp_card_art.png")
                     champ_icon = champ_icon.resize((200, 200))
                     middle_panel.paste(champ_icon, (512 * 9 + 240, ds))
                 # Team 2 Bans
                 try:
                     champ = await helper.get_champ_name(md[8].name)
-                    champ_icon = Image.open(f"home/ubuntu/icons/champ_icons/{champ}.png")
+                    champ_icon = Image.open(
+                        f"home/ubuntu/icons/champ_icons/{champ}.png")
                     champ_icon = champ_icon.resize((200, 200))
                     middle_panel.paste(champ_icon, (512 * 9, ds+232))
                 except FileNotFoundError:
-                    champ_icon = Image.open(f"home/ubuntu/icons/temp_card_art.png")
+                    champ_icon = Image.open(
+                        f"home/ubuntu/icons/temp_card_art.png")
                     champ_icon = champ_icon.resize((200, 200))
                     middle_panel.paste(champ_icon, (512 * 9, ds+232))
                 try:
                     champ = await helper.get_champ_name(md[9].name)
-                    champ_icon = Image.open(f"home/ubuntu/icons/champ_icons/{champ}.png")
+                    champ_icon = Image.open(
+                        f"home/ubuntu/icons/champ_icons/{champ}.png")
                     champ_icon = champ_icon.resize((200, 200))
                     middle_panel.paste(champ_icon, (512 * 9 + 240, ds+232))
                 except FileNotFoundError:
-                    champ_icon = Image.open(f"home/ubuntu/icons/temp_card_art.png")
+                    champ_icon = Image.open(
+                        f"home/ubuntu/icons/temp_card_art.png")
                     champ_icon = champ_icon.resize((200, 200))
                     middle_panel.paste(champ_icon, (512 * 9 + 240, ds+232))
         except IndexError:
