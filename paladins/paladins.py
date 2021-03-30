@@ -107,25 +107,9 @@ class Paladins(commands.Cog):
 
 
     @commands.command()
-    async def atest(self, ctx, matchId):
-        try:
-            match = await self.api.get_match(int(matchId), expand_players=True)
-        except ValueError:
-            match = await self.api.get_player(matchId)
-            match = await match.get_match_history()
-            try:
-                match = await match[0]
-            except IndexError:
-                await ctx.send("No match found.")
-                return
-        ranks = []
-        for player in match.players:
-            if player.player.private is True:
-                ranks.append("None")
-            else:
-                player = await player.player
-                ranks.append(player.ranked_best.rank.value)
-        await ctx.send(ranks)
+    async def datausage(self, ctx):
+        data = arez.Endpoint.request(getdataused)
+        await ctx.send(f"```json {data} ```")
 
 
     @commands.command()
