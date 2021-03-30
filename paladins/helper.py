@@ -78,7 +78,7 @@ class helper:
         draw.text((img_x+2200, middle),
                   humanize_number(champ_stats[5]), font=fnt100, fill=fill)
         # OBJ time
-        draw.text((img_x+2500, middle),
+        draw.text((img_x+2600, middle),
                   humanize_number(champ_stats[6]), font=fnt100, fill=fill)
         # Shielding
         draw.text((img_x+2900, middle),
