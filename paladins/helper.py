@@ -15,7 +15,8 @@ class helper:
             champ = "sha-lin"
         if "mal" in champ:
             champ = "maldamba"
-        return champ
+        url = f"https://raw.githubusercontent.com/EthanHicks1/PaladinsArtAssets/master/champ_icons/{champ}.png"
+        return url
 
     @classmethod
     async def get_rank_image(cls, rank):
@@ -142,15 +143,13 @@ class helper:
         # Adding in player data
         for i, (champ, champ2) in enumerate(zip(team1, team2)):
             try:
-                #    async with aiohttp.ClientSession() as session:
-                #        url = await helper.get_champ_image(champ)
-                #        async with session.get(url) as resp:
-                #            if resp.status == 200:
-                #                resp = await resp.read()
-                #                champ_image = Image.open(BytesIO(resp))
-                champ = await helper.get_champ_name(champ)
-                champ_image = Image.open(
-                    f"home/ubuntu/icons/champ_icons/{champ}.png")
+                async with aiohttp.ClientSession() as session:
+                    url = await helper.get_champ_image(champ)
+                    async with session.get(url) as resp:
+                        if resp.status == 200:
+                            resp = await resp.read()
+                            champ_image = Image.open(BytesIO(resp))
+                champ_image.resize((512, 512))
             except FileNotFoundError:
                 champ_image = Image.open(
                     f"home/ubuntu/icons/temp_card_art.png")
@@ -162,9 +161,13 @@ class helper:
             history_image.paste(player_panel, (0, (image_size_y+10)*i+132))
             # Second team
             try:
-                champ2 = await helper.get_champ_name(champ2)
-                champ_image = Image.open(
-                    f"home/ubuntu/icons/champ_icons/{champ2}.png")
+                async with aiohttp.ClientSession() as session:
+                    url = await helper.get_champ_image(champ2)
+                    async with session.get(url) as resp:
+                        if resp.status == 200:
+                            resp = await resp.read()
+                            champ_image = Image.open(BytesIO(resp))
+                champ_image.resize((512, 512))
             except FileNotFoundError:
                 champ_image = Image.open(
                     f"home/ubuntu/icons/temp_card_art.png")
