@@ -149,7 +149,7 @@ class helper:
                         if resp.status == 200:
                             resp = await resp.read()
                             champ_image = Image.open(BytesIO(resp))
-                champ_image.resize((512, 512))
+                champ_image.resize((512, 512), Image.ANTIALIAS)
             except FileNotFoundError:
                 champ_image = Image.open(
                     f"home/ubuntu/icons/temp_card_art.png")
@@ -167,7 +167,7 @@ class helper:
                         if resp.status == 200:
                             resp = await resp.read()
                             champ_image = Image.open(BytesIO(resp))
-                champ_image.resize((512, 512))
+                champ_image.resize((512, 512), Image.ANTIALIAS)
             except FileNotFoundError:
                 champ_image = Image.open(
                     f"home/ubuntu/icons/temp_card_art.png")
