@@ -108,7 +108,7 @@ class Paladins(commands.Cog):
 
     @commands.command()
     async def datausage(self, ctx):
-        data = arez.Endpoint.request("getdataused")
+        data = arez.Endpoint.request.method_name("getdataused")
         await ctx.send(f"```json {data} ```")
 
 
