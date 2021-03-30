@@ -7,6 +7,7 @@ import discord
 from discord import File
 from .helper import helper
 from redbot.core.utils.chat_formatting import pagify
+import aiohttp
 
 
 class Paladins(commands.Cog):
