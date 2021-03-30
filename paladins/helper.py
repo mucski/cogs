@@ -161,7 +161,7 @@ class helper:
             history_image.paste(player_panel, (0, (image_size_y+10)*i+132))
             # Second team
             try:
-                champ = await helper.get_champ_name(champ2)
+                champ2 = await helper.get_champ_name(champ2)
                 champ_image = Image.open(f"home/ubuntu/icons/champ_icons/{champ2}.png")
             except FileNotFoundError:
                 champ_image = Image.open(f"home/ubuntu/icons/temp_card_art.png")
