@@ -238,25 +238,25 @@ class helper:
         draw_panel.text((512 * 2 + rs, 300 + ds), str(map_name),
                         font=fnt100, fill=(255, 255, 255))
         # Team 1
-        draw_panel.text((512 * 4 + rs, ds), "Team 1 Score: ",
+        draw_panel.text((512 * 5 + rs - 300, ds), "Team 1 Score: ",
                         font=fnt100, fill=(255, 255, 255))
-        draw_panel.text((512 * 4 + rs * 8, ds),
+        draw_panel.text((512 * 5 + rs * 8 - 300, ds),
                         str(md[4]), font=fnt100bold, fill=(255, 255, 255))
         center = (512/2 - 130/2)
         center2 = (512/2 - 80/2)
         # VS
-        draw_panel.text((512 * 5-150, 200), "VS",
+        draw_panel.text((512 * 6-150-300, 200), "VS",
                         font=fnt100bold, fill=(227, 34, 34))
         # Team 2
-        draw_panel.text((512 * 4 + rs, 348), "Team 2 Score: ",
+        draw_panel.text((512 * 5 + rs - 300, 348), "Team 2 Score: ",
                         font=fnt100, fill=(255, 255, 255))
-        draw_panel.text((512 * 4 + rs * 8, 348),
+        draw_panel.text((512 * 5 + rs * 8 - 300, 348),
                         str(md[5]), font=fnt100bold, fill=(255, 255, 255))
         #  add in banned champs if it's a ranked match
         try:
             if md[6]:
                 # Ranked bans
-                draw_panel.text((512 * 6 + rs * 7, center2),
+                draw_panel.text((512 * 7 + rs * 7 - 300, center2),
                                 "Bans:", font=fnt100, fill=(255, 255, 255))
                 # Team 1 Bans
                 try:
@@ -267,12 +267,12 @@ class helper:
                                 resp = await resp.read()
                                 champ_icon = Image.open(BytesIO(resp))
                     champ_icon = champ_icon.resize((200, 200))
-                    middle_panel.paste(champ_icon, (512 * 9, ds))
+                    middle_panel.paste(champ_icon, (512 * 9 -300, ds))
                 except FileNotFoundError:
                     champ_icon = Image.open(
                         f"home/ubuntu/icons/temp_card_art.png")
                     champ_icon = champ_icon.resize((200, 200))
-                    middle_panel.paste(champ_icon, (512 * 9, ds))
+                    middle_panel.paste(champ_icon, (512 * 9 -300, ds))
                 try:
                     async with aiohttp.ClientSession() as session:
                         url = await helper.get_champ_name(md[7].name)
@@ -281,12 +281,12 @@ class helper:
                                 resp = await resp.read()
                                 champ_icon = Image.open(BytesIO(resp))
                     champ_icon = champ_icon.resize((200, 200))
-                    middle_panel.paste(champ_icon, (512 * 9 + 240, ds))
+                    middle_panel.paste(champ_icon, (512 * 9 + 240 -300, ds))
                 except FileNotFoundError:
                     champ_icon = Image.open(
                         f"home/ubuntu/icons/temp_card_art.png")
                     champ_icon = champ_icon.resize((200, 200))
-                    middle_panel.paste(champ_icon, (512 * 9 + 240, ds))
+                    middle_panel.paste(champ_icon, (512 * 9 + 240 -300, ds))
                 # Team 2 Bans
                 try:
                     async with aiohttp.ClientSession() as session:
@@ -296,7 +296,7 @@ class helper:
                                 resp = await resp.read()
                                 champ_icon = Image.open(BytesIO(resp))
                     champ_icon = champ_icon.resize((200, 200))
-                    middle_panel.paste(champ_icon, (512 * 9, ds+232))
+                    middle_panel.paste(champ_icon, (512 * 9 - 300, ds+232))
                 except FileNotFoundError:
                     champ_icon = Image.open(
                         f"home/ubuntu/icons/temp_card_art.png")
@@ -310,12 +310,12 @@ class helper:
                                 resp = await resp.read()
                                 champ_icon = Image.open(BytesIO(resp))
                     champ_icon = champ_icon.resize((200, 200))
-                    middle_panel.paste(champ_icon, (512 * 9 + 240, ds+232))
+                    middle_panel.paste(champ_icon, (512 * 9 + 240 -300, ds+232))
                 except FileNotFoundError:
                     champ_icon = Image.open(
                         f"home/ubuntu/icons/temp_card_art.png")
                     champ_icon = champ_icon.resize((200, 200))
-                    middle_panel.paste(champ_icon, (512 * 9 + 240, ds+232))
+                    middle_panel.paste(champ_icon, (512 * 9 + 240 -300, ds+232))
         except IndexError:
             pass
         return middle_panel
