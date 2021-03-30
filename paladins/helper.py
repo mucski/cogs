@@ -258,7 +258,7 @@ class helper:
 	            	async with sessions.get(champ_url) as response:
 	                    resp = await response.read()
 	                    champ_icon = Image.open(BytesIO(resp))
-                	sessions.close()
+                    sessions.close()
 	                champ_icon = champ_icon.resize((200, 200))
 	                middle_panel.paste(champ_icon, (512 * 9, ds+232))
 				if md[9].name == "yagorath":
