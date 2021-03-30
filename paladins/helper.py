@@ -260,7 +260,7 @@ class helper:
                             if resp.status == 200:
                                 resp = await resp.read()
                                 champ_icon = Image.open(BytesIO(resp))
-                    champ_icon.resize((200, 200))
+                    champ_icon = champ_icon.resize((200, 200))
                     middle_panel.paste(champ_icon, (512 * 9, ds))
                 except FileNotFoundError:
                     champ_icon = Image.open(
