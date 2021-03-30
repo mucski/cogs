@@ -95,8 +95,12 @@ class Paladins(commands.Cog):
 
     @commands.command()
     async def testing(self, ctx, champ):
-        img = await helper.get_champ_image(champ)
-        await ctx.send(img)
+        sessions = aiohttp.ClientSession()
+        url = await helper.get_champ_image(champ)
+        async with sessions.get(url) as response:
+                resp = await response.read()
+        sessions.close()
+        await ctx.send(resp)
 
     @commands.command()
     async def stats(self, ctx, player, platform="PC"):
