@@ -46,7 +46,7 @@ class helper:
         else:
             color = fill
         img = Image.new(
-            "RGBA", (img_x*9+300, image_size_y+offset*2), color=im_color)
+            "RGBA", (img_x*9+400, image_size_y+offset*2), color=im_color)
         img.paste(champ_icon, (offset, offset))
         img.paste(rank_icon, (1220, int(middle)), mask=rank_icon)
         draw = ImageDraw.Draw(img)
@@ -72,28 +72,28 @@ class helper:
         draw.text((img_x+1300, middle),
                   str(champ_stats[3]), font=fnt100, fill=fill)
         # Damage Done
-        draw.text((img_x+1700, middle),
+        draw.text((img_x+1800, middle),
                   humanize_number(champ_stats[4]), font=fnt100, fill=fill)
         # Mitigated
-        draw.text((img_x+2200, middle),
+        draw.text((img_x+2300, middle),
                   humanize_number(champ_stats[5]), font=fnt100, fill=fill)
         # OBJ time
-        draw.text((img_x+2700, middle),
+        draw.text((img_x+2800, middle),
                   humanize_number(champ_stats[6]), font=fnt100, fill=fill)
         # Shielding
-        draw.text((img_x+3000, middle),
+        draw.text((img_x+3100, middle),
                   humanize_number(champ_stats[7]), font=fnt100, fill=fill)
         # Healing
-        draw.text((img_x+3500, middle),
+        draw.text((img_x+3600, middle),
                   humanize_number(champ_stats[8]), font=fnt100, fill=fill)
         # Self Healing
-        draw.text((img_x+4000, middle),
+        draw.text((img_x+4100, middle),
                   humanize_number(champ_stats[11]), font=fnt100, fill=fill)
         return img
 
     @classmethod
     async def player_key_image(cls, x, y):
-        key = Image.new("RGB", (x*9+300, y-100), color=(8, 21, 25))
+        key = Image.new("RGB", (x*9+400, y-100), color=(8, 21, 25))
         base_draw = ImageDraw.Draw(key)
         fill = (255, 255, 255)
         fnt80bold = ImageFont.truetype("home/ubuntu/arialbd.ttf", 80)
@@ -115,23 +115,23 @@ class helper:
         base_draw.text((x + 1300, 0), "K/D/A", font=fnt80bold, fill=fill)
         # Damage done
         # base_draw.text((x + 1950, 0), "Damage", font=fnt80bold, fill=fill)
-        base_draw.text((x + 1700, 0), "Damage", font=fnt80bold, fill=fill)
+        base_draw.text((x + 1800, 0), "Damage", font=fnt80bold, fill=fill)
         # Damage taken
         # base_draw.text((x + 2450, 0), "Taken", font=fnt80bold, fill=fill)
-        base_draw.text((x + 2200, 0), "Taken", font=fnt80bold, fill=fill)
+        base_draw.text((x + 2300, 0), "Taken", font=fnt80bold, fill=fill)
         # Objective time
         # base_draw.text((x + 2900, 0), "Obj T.", font=fnt80bold, fill=fill)
-        base_draw.text((x + 2700, 0), "Obj T.", font=fnt80bold, fill=fill)
+        base_draw.text((x + 2800, 0), "Obj T.", font=fnt80bold, fill=fill)
         # base_draw.text((x + 2850, 60), "Time", font=fnt80, fill=fill)
         # Shielding
         # base_draw.text((x + 3250, 0), "Shielding", font=fnt80bold, fill=fill)
-        base_draw.text((x + 3000, 0), "Shielding", font=fnt80bold, fill=fill)
+        base_draw.text((x + 3100, 0), "Shielding", font=fnt80bold, fill=fill)
         # Healing
         # base_draw.text((x + 3750, 0), "Healing", font=fnt80bold, fill=fill)
-        base_draw.text((x + 3500, 0), "Healing", font=fnt80bold, fill=fill)
+        base_draw.text((x + 3600, 0), "Healing", font=fnt80bold, fill=fill)
         # Self Healing
         # base_draw.text((x + 4220, 0), "Self Heal", font=fnt80bold, fill=fill)
-        base_draw.text((x + 4000, 0), "Self Heal", font=fnt80bold, fill=fill)
+        base_draw.text((x + 4100, 0), "Self Heal", font=fnt80bold, fill=fill)
         return key
 
     @classmethod
@@ -141,7 +141,7 @@ class helper:
         image_size_y = 512 - shrink*2
         image_size_x = 512
         offset = 5
-        history_image = Image.new("RGB", (image_size_x*9+300, image_size_y*12 + 264))
+        history_image = Image.new("RGB", (image_size_x*9+400, image_size_y*12 + 264))
         # Adds the top key panel
         key = await helper.player_key_image(image_size_x, image_size_y)
         history_image.paste(key, (0, 0))
@@ -207,7 +207,7 @@ class helper:
 
     @classmethod
     async def middle_panel(cls, md):
-        middle_panel = Image.new("RGB", (512*9+300, 512), color=(14, 52, 60))
+        middle_panel = Image.new("RGB", (512*9+400, 512), color=(14, 52, 60))
         # Adding in map to image
         map_name = map_file_name = (md[3].strip().replace("Ranked ", "").replace(" (TDM)", "").replace(" (Onslaught)", "")
                                     .replace(" (Siege)", "")).replace("Practice ", "")
