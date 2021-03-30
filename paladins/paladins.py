@@ -95,13 +95,15 @@ class Paladins(commands.Cog):
         await ctx.send("```json\n" + data + "```")
 
     @commands.command()
-    async def testing(self, ctx, champ):
-        sessions = aiohttp.ClientSession()
-        url = await helper.get_champ_image(champ)
-        async with sessions.get(url) as response:
-                resp = await response.read()
-        sessions.close()
-        await ctx.send(resp)
+    async def testing(self, ctx, name):
+        match = await self.api.get_player(name)
+        match = await match.get_match_history()
+        try:
+            match = await match[0]
+        except IndexError:
+            await ctx.send("No match found.")
+            return
+        await ctx.send(match.player.champion.name)
 
     @commands.command()
     async def stats(self, ctx, player, platform="PC"):
