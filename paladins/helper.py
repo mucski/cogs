@@ -78,16 +78,16 @@ class helper:
         draw.text((img_x+2200, middle),
                   humanize_number(champ_stats[5]), font=fnt100, fill=fill)
         # OBJ time
-        draw.text((img_x+2600, middle),
+        draw.text((img_x+2700, middle),
                   humanize_number(champ_stats[6]), font=fnt100, fill=fill)
         # Shielding
-        draw.text((img_x+2900, middle),
+        draw.text((img_x+3000, middle),
                   humanize_number(champ_stats[7]), font=fnt100, fill=fill)
         # Healing
-        draw.text((img_x+3700, middle),
+        draw.text((img_x+3400, middle),
                   humanize_number(champ_stats[8]), font=fnt100, fill=fill)
         # Self Healing
-        draw.text((img_x+3950, middle),
+        draw.text((img_x+3800, middle),
                   humanize_number(champ_stats[11]), font=fnt100, fill=fill)
         return img
 
