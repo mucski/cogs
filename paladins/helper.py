@@ -34,6 +34,20 @@ class helper:
 	    img_x = 512
 	    middle = image_size_y/2 - 50
 	    im_color = (14, 34, 43) if index % 2 == 0 else (15, 40, 48)
+	    orange = (252, 186, 3)
+	    green = (7, 252, 3)
+	    red = (252, 102, 3)
+	    purple = (240, 3, 252)
+	    if champ_stats[9] == "1":
+	        color = green
+	    elif champ_stats[9] == "2":
+	        color = orange
+	    elif champ_stats[9] == "3":
+	        color = red
+	    elif champ_stats[9] == "4":
+	        color = purple
+	    else:
+	        color = fill
 	    img = Image.new("RGBA", (img_x*10, image_size_y+offset*2), color=im_color)
 	    img.paste(champ_icon, (offset, offset))
 	    img.paste(rank_icon, (1220, int(middle)), mask=rank_icon)
@@ -45,7 +59,7 @@ class helper:
 	    if champ_stats[0] == "":
 	        champ_stats[0] = "???????"
 	    # Champion name, player name
-	    draw.text((img_x+20, middle-40), str(champ_stats[0]), font=fnt80bold, fill=fill)
+	    draw.text((img_x+20, middle-40), str(champ_stats[0]), font=fnt80bold, fill=color)
 	    draw.text((img_x+20, middle+60), str(champ_stats[1]), font=fnt80, fill=fill)
 	    # Rank
 	    # draw.text((img_x+750, middle), rank_icon, font=fnt100, fill=fill)
