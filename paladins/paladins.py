@@ -95,7 +95,7 @@ class Paladins(commands.Cog):
 
     @commands.command()
     async def testing(self, ctx, champ):
-        img = helper.get_champ_image(champ)
+        img = await helper.get_champ_image(champ)
         await ctx.send(img)
 
     @commands.command()
