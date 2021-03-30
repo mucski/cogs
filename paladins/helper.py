@@ -256,7 +256,7 @@ class helper:
         try:
             if md[6]:
                 # Ranked bans
-                draw_panel.text((512 * 8, center2),
+                draw_panel.text((512 * 8 + 100, center2),
                                 "Bans:", font=fnt100, fill=(255, 255, 255))
                 # Team 1 Bans
                 try:
