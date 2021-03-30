@@ -162,7 +162,7 @@ class helper:
             # Second team
             try:
                 async with aiohttp.ClientSession() as session:
-                    url = await helper.get_champ_image(champ)
+                    url = await helper.get_champ_image(champ2)
                     async with session.get(url) as resp:
                         if resp.status == 200:
                             resp = await resp.read()
