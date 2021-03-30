@@ -149,8 +149,11 @@ class helper:
                         if resp.status == 200:
                             resp = await resp.read()
                             champ_image = Image.open(BytesIO(resp))
-                (width, height) = (champ_image.width * 2, champ_image.height * 2)
-                champ_image_ready = champ_image.resize((width, height))
+                if champ == "Yagorath":
+                    (width, height) = (champ_image.width * 2, champ_image.height * 2)
+                    champ_image_ready = champ_image.resize((width, height))
+                else:
+                    champ_image_ready = champ_image
             except FileNotFoundError:
                 champ_image_ready = Image.open(
                     f"home/ubuntu/icons/temp_card_art.png")
@@ -168,8 +171,11 @@ class helper:
                         if resp.status == 200:
                             resp = await resp.read()
                             champ_image = Image.open(BytesIO(resp))
-                (width, height) = (champ_image.width * 2, champ_image.height * 2)
-                champ_image_ready = champ_image.resize((width, height))
+                if champ == "Yagorath":
+                    (width, height) = (champ_image.width * 2, champ_image.height * 2)
+                    champ_image_ready = champ_image.resize((width, height))
+                else:
+                    champ_image_ready = champ_image
             except FileNotFoundError:
                 champ_image_ready = Image.open(
                     f"home/ubuntu/icons/temp_card_art.png")
