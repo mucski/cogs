@@ -2,6 +2,7 @@ from PIL import ImageOps, ImageDraw, Image, ImageFont
 import aiohttp
 from io import BytesIO
 from redbot.core.utils.chat_formatting import humanize_number
+import urllib2 as urllib
 
 
 class helper:
@@ -146,7 +147,9 @@ class helper:
         for i, (champ, champ2) in enumerate(zip(team1, team2)):
             try:
                 url = await helper.get_champ_image(champ)
-                champ_image = Image.open(r"{}".format(url))
+                fd = urllib.urlopen(url)
+                champ_image = BytesIO(fd.read())
+                champ_image = Image.open(champ_image)
             except FileNotFoundError:
                 champ_image = Image.open(f"home/ubuntu/icons/temp_card_art.png")
             border = (0, shrink, 0, shrink)  # left, up, right, bottom
@@ -158,7 +161,9 @@ class helper:
             # Second team
             try:
                 url = await helper.get_champ_image(champ)
-                champ_image = Image.open(r"{}".format(url))
+                fd = urllib.urlopen(url)
+                champ_image = BytesIO(fd.read())
+                champ_image = Image.open(champ_image)
             except FileNotFoundError:
                 champ_image = Image.open(f"home/ubuntu/icons/temp_card_art.png")
             border = (0, shrink, 0, shrink)  # left, up, right, bottom
