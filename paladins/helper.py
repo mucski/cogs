@@ -46,7 +46,7 @@ class helper:
         else:
             color = fill
         img = Image.new(
-            "RGBA", (img_x*9+200, image_size_y+offset*2), color=im_color)
+            "RGBA", (img_x*9+300, image_size_y+offset*2), color=im_color)
         img.paste(champ_icon, (offset, offset))
         img.paste(rank_icon, (1220, int(middle)), mask=rank_icon)
         draw = ImageDraw.Draw(img)
@@ -93,7 +93,7 @@ class helper:
 
     @classmethod
     async def player_key_image(cls, x, y):
-        key = Image.new("RGB", (x*9+200, y-100), color=(8, 21, 25))
+        key = Image.new("RGB", (x*9+300, y-100), color=(8, 21, 25))
         base_draw = ImageDraw.Draw(key)
         fill = (255, 255, 255)
         fnt80bold = ImageFont.truetype("home/ubuntu/arialbd.ttf", 80)
@@ -141,7 +141,7 @@ class helper:
         image_size_y = 512 - shrink*2
         image_size_x = 512
         offset = 5
-        history_image = Image.new("RGB", (image_size_x*9+200, image_size_y*12 + 264))
+        history_image = Image.new("RGB", (image_size_x*9+300, image_size_y*12 + 264))
         # Adds the top key panel
         key = await helper.player_key_image(image_size_x, image_size_y)
         history_image.paste(key, (0, 0))
@@ -207,7 +207,7 @@ class helper:
 
     @classmethod
     async def middle_panel(cls, md):
-        middle_panel = Image.new("RGB", (512*9+200, 512), color=(14, 52, 60))
+        middle_panel = Image.new("RGB", (512*9+300, 512), color=(14, 52, 60))
         # Adding in map to image
         map_name = map_file_name = (md[3].strip().replace("Ranked ", "").replace(" (TDM)", "").replace(" (Onslaught)", "")
                                     .replace(" (Siege)", "")).replace("Practice ", "")
