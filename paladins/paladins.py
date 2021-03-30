@@ -108,7 +108,7 @@ class Paladins(commands.Cog):
 
     @commands.command()
     async def hirez(self, ctx, request):
-        data = await arez.Endpoint.request(method_name=request)
+        data = await self.arez.Endpoint.request(request)
         await ctx.send(f"```json {data} ```")
 
 
