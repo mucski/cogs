@@ -142,7 +142,7 @@ class helper:
 	                resp = await response.read()
 	                champ_image = Image.open(BytesIO(resp))
 	            sessions.close()
-	        except PIL.UnidentifiedImageError:
+	        except Image.UnidentifiedImageError:
 	            champ_image = Image.open("home/ubuntu/icons/temp_card_art.png")
 	        border = (0, shrink, 0, shrink)  # left, up, right, bottom
 	        champ_image = ImageOps.crop(champ_image, border)
