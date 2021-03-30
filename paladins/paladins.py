@@ -94,7 +94,7 @@ class Paladins(commands.Cog):
     async def hirez(self, ctx, request, data=None):
         data = await self.api.request(request, data)
         # data = await data
-        data = " ".join(data)
+        data = str(data)
         for page in pagify(data):
             await ctx.send(f"```json\n{data}\n```")
 
