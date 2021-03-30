@@ -158,7 +158,7 @@ class helper:
 	                resp = await response.read()
 	                champ_image = Image.open(BytesIO(resp))
 	            sessions.close()
-	        except PIL.UnidentifiedImageError:
+	        except Image.UnidentifiedImageError:
 	            champ_image = Image.open("home/ubuntu/icons/temp_card_art.png")
 	        border = (0, shrink, 0, shrink)  # left, up, right, bottom
 	        champ_image = ImageOps.crop(champ_image, border)
@@ -232,7 +232,7 @@ class helper:
 	                sessions.close()
 	                champ_icon = champ_icon.resize((200, 200))
 	                middle_panel.paste(champ_icon, (512 * 9, ds))
-	            except PIL.UnidentifiedImageError:
+	            except Image.UnidentifiedImageError:
 	                pass
 
 	            try:
@@ -243,7 +243,7 @@ class helper:
 	                sessions.close()
 	                champ_icon = champ_icon.resize((200, 200))
 	                middle_panel.paste(champ_icon, (512 * 9 + 240, ds))
-	            except PIL.UnidentifiedImageError:
+	            except Image.UnidentifiedImageError:
 	                pass
 	            # Team 2 Bans
 	            try:
@@ -254,7 +254,7 @@ class helper:
 	                sessions.close()
 	                champ_icon = champ_icon.resize((200, 200))
 	                middle_panel.paste(champ_icon, (512 * 9, ds+232))
-	            except PIL.UnidentifiedImageError:
+	            except Image.UnidentifiedImageError:
 	                pass
 	            try:
 	                champ_url = await helper.get_champ_image(md[9].name)
@@ -264,7 +264,7 @@ class helper:
 	                sessions.close()
 	                champ_icon = champ_icon.resize((200, 200))
 	                middle_panel.paste(champ_icon, (512 * 9 + 240, ds+232))
-	            except PIL.UnidentifiedImageError:
+	            except Image.UnidentifiedImageError:
 	                pass
 	    except IndexError:
 	        pass
