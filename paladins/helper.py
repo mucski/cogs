@@ -7,7 +7,7 @@ from redbot.core.utils.chat_formatting import humanize_number
 class helper:
 
     @classmethod
-    async def get_champ_image(cls, champ):
+    async def get_champ_name(cls, champ):
         champ = champ.lower()
         if "bomb" in champ:
             champ = "bomb-king"
@@ -15,9 +15,7 @@ class helper:
             champ = "sha-lin"
         if "mal" in champ:
             champ = "maldamba"
-        url = "https://web2.hirez.com/paladins/champion-icons/" \
-            + str(champ) + ".jpg"
-        return url
+        return champ
 
     @classmethod
     async def get_rank_image(cls, rank):
@@ -151,6 +149,7 @@ class helper:
             #            if resp.status == 200:
             #                resp = await resp.read()
             #                champ_image = Image.open(BytesIO(resp))
+                champ = await helper.get_champ_name(champ)
                 champ_image = Image.open(f"home/ubuntu/icons/champ_icons/{champ}.png")
             except FileNotFoundError:
                 champ_image = Image.open(f"home/ubuntu/icons/temp_card_art.png")
@@ -162,6 +161,7 @@ class helper:
             history_image.paste(player_panel, (0, (image_size_y+10)*i+132))
             # Second team
             try:
+                champ = await helper.get_champ_name(champ2)
                 champ_image = Image.open(f"home/ubuntu/icons/champ_icons/{champ2}.png")
             except FileNotFoundError:
                 champ_image = Image.open(f"home/ubuntu/icons/temp_card_art.png")
@@ -240,7 +240,8 @@ class helper:
                                 "Bans:", font=fnt100, fill=(255, 255, 255))
                 # Team 1 Bans
                 try:
-                    champ_icon = Image.open(f"home/ubuntu/icons/champ_icons/{md[6].name}.png")
+                    champ = await helper.get_champ_name(md[6.name])
+                    champ_icon = Image.open(f"home/ubuntu/icons/champ_icons/{champ}.png")
                     champ_icon.resize((200, 200))
                     middle_panel.paste(champ_icon, (512 * 9, ds))
                 except FileNotFoundError:
@@ -248,7 +249,8 @@ class helper:
                     champ_icon = champ_icon.resize((200, 200))
                     middle_panel.paste(champ_icon, (512 * 9, ds))
                 try:
-                    champ_icon = Image.open(f"home/ubuntu/icons/champ_icons/{md[7].name}.png")
+                    champ = await helper.get_champ_name(md[7.name])
+                    champ_icon = Image.open(f"home/ubuntu/icons/champ_icons/{champ}.png")
                     champ_icon = champ_icon.resize((200, 200))
                     middle_panel.paste(champ_icon, (512 * 9 + 240, ds))
                 except FileNotFoundError:
@@ -257,7 +259,8 @@ class helper:
                     middle_panel.paste(champ_icon, (512 * 9 + 240, ds))
                 # Team 2 Bans
                 try:
-                    champ_icon = Image.open(f"home/ubuntu/icons/champ_icons/{md[8].name}.png")
+                    champ = await helper.get_champ_name(md[8.name])
+                    champ_icon = Image.open(f"home/ubuntu/icons/champ_icons/{champ}.png")
                     champ_icon = champ_icon.resize((200, 200))
                     middle_panel.paste(champ_icon, (512 * 9, ds+232))
                 except FileNotFoundError:
@@ -265,7 +268,8 @@ class helper:
                     champ_icon = champ_icon.resize((200, 200))
                     middle_panel.paste(champ_icon, (512 * 9, ds+232))
                 try:
-                    champ_icon = Image.open(f"home/ubuntu/icons/champ_icons/{md[9].name}.png")
+                    champ = await helper.get_champ_name(md[9.name])
+                    champ_icon = Image.open(f"home/ubuntu/icons/champ_icons/{champ}.png")
                     champ_icon = champ_icon.resize((200, 200))
                     middle_panel.paste(champ_icon, (512 * 9 + 240, ds+232))
                 except FileNotFoundError:
