@@ -149,7 +149,7 @@ class helper:
                         if resp.status == 200:
                             resp = await resp.read()
                             champ_image = Image.open(BytesIO(resp))
-                if champ == "Yagorath":
+                if champ_image.size != (512, 512):
                     (width, height) = (champ_image.width * 2, champ_image.height * 2)
                     champ_image_ready = champ_image.resize((width, height))
                 else:
@@ -171,7 +171,7 @@ class helper:
                         if resp.status == 200:
                             resp = await resp.read()
                             champ_image = Image.open(BytesIO(resp))
-                if champ == "Yagorath":
+                if champ_image.size != (512, 512):
                     (width, height) = (champ_image.width * 2, champ_image.height * 2)
                     champ_image_ready = champ_image.resize((width, height))
                 else:
