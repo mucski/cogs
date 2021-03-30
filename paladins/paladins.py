@@ -57,22 +57,20 @@ class Paladins(commands.Cog):
             team1_ranks = []
             team2_ranks = []
             team2_champs = []
-            # temp = []
-            new_party_id = 0
             match_info = [match.winning_team, match.duration.minutes, match.region.name,
                               match.map_name, match.score[0], match.score[1]]
             temp = match.bans
-            for player in match.players:
-                if player.team_number == 1:
-                    if player.player.private:
+            for match_player in match.players:
+                if match_player.team_number == 1:
+                    if match_player.player.private:
                         rank = "0"
                     else:
-                        rank = player.player.ranked_best.rank.value
-                    team1_data.append([player.player.name, player.account_level, player.credits, player.kda_text,
-                                       player.damage_done, player.damage_taken,
-                                       player.objective_time, player.damage_mitigated,
-                                       player.healing_done, player.party_number, player.player.platform, player.healing_self])
-                    team1_champs.append(player.champion.name)
+                        rank = match_player.player.ranked_best.rank.value
+                    team1_data.append([match_player.player.name, match_player.account_level, match_player.credits, match_player.kda_text,
+                                       match_player.damage_done, match_player.damage_taken,
+                                       match_player.objective_time, match_player.damage_mitigated,
+                                       match_player.healing_done, match_player.party_number, match_player.player.platform, match_player.healing_self])
+                    team1_champs.append(match_player.champion.name)
                     team1_ranks.append(rank)
                 else:
                     if player.player.private:
