@@ -145,12 +145,13 @@ class helper:
         # Adding in player data
         for i, (champ, champ2) in enumerate(zip(team1, team2)):
             try:
-                async with aiohttp.ClientSession() as session:
-                    url = await helper.get_champ_image(champ)
-                    async with session.get(url) as resp:
-                        if resp.status == 200:
-                            resp = await resp.read()
-                            champ_image = Image.open(BytesIO(resp))
+            #    async with aiohttp.ClientSession() as session:
+            #        url = await helper.get_champ_image(champ)
+            #        async with session.get(url) as resp:
+            #            if resp.status == 200:
+            #                resp = await resp.read()
+            #                champ_image = Image.open(BytesIO(resp))
+                champ_image = Image.open(f"home/ubuntu/icons/champ_icons/{champ}.png")
             except FileNotFoundError:
                 champ_image = Image.open(f"home/ubuntu/icons/temp_card_art.png")
             border = (0, shrink, 0, shrink)  # left, up, right, bottom
@@ -161,12 +162,7 @@ class helper:
             history_image.paste(player_panel, (0, (image_size_y+10)*i+132))
             # Second team
             try:
-                async with aiohttp.ClientSession() as session:
-                    url = await helper.get_champ_image(champ2)
-                    async with session.get(url) as resp:
-                        if resp.status == 200:
-                            resp = await resp.read()
-                            champ_image = Image.open(BytesIO(resp))
+                champ_image = Image.open(f"home/ubuntu/icons/champ_icons/{champ2}.png")
             except FileNotFoundError:
                 champ_image = Image.open(f"home/ubuntu/icons/temp_card_art.png")
             border = (0, shrink, 0, shrink)  # left, up, right, bottom
@@ -243,58 +239,37 @@ class helper:
                 draw_panel.text((512 * 7 + rs * 7, center2),
                                 "Bans:", font=fnt100, fill=(255, 255, 255))
                 # Team 1 Bans
-                if md[6].name == "":
-                    champ_icon = Image.open(
-                        "home/ubuntu/icons/temp_card_art.png")
+                try:
+                    champ_icon = Image.open(f"home/ubuntu/icons/champ_icons/{md[6].name}.png")
                     champ_icon.resize((200, 200))
                     middle_panel.paste(champ_icon, (512 * 9, ds))
-                else:
-                    sessions = aiohttp.ClientSession()
-                    champ_url = await helper.get_champ_image(md[6].name)
-                    async with sessions.get(champ_url) as response:
-                        resp = await response.read()
-                        champ_icon = Image.open(BytesIO(resp))
-                    sessions.close()
+                except FileNotFoundError:
+                    champ_icon = Image.open(f"home/ubuntu/icons/temp_card_art.png")
                     champ_icon = champ_icon.resize((200, 200))
                     middle_panel.paste(champ_icon, (512 * 9, ds))
-                if md[7].name == "":
-                    champ_icon = Image.open(
-                        "home/ubuntu/icons/temp_card_art.png")
+                try:
+                    champ_icon = Image.open(f"home/ubuntu/icons/champ_icons/{md[7].name}.png")
                     champ_icon = champ_icon.resize((200, 200))
                     middle_panel.paste(champ_icon, (512 * 9 + 240, ds))
-                else:
-                    champ_url = await helper.get_champ_image(md[7].name)
-                    async with sessions.get(champ_url) as response:
-                        resp = await response.read()
-                        champ_icon = Image.open(BytesIO(resp))
-                    sessions.close()
+                except FileNotFoundError:
+                    champ_icon = Image.open(f"home/ubuntu/icons/temp_card_art.png")
                     champ_icon = champ_icon.resize((200, 200))
                     middle_panel.paste(champ_icon, (512 * 9 + 240, ds))
                 # Team 2 Bans
-                if md[8].name == "":
-                    champ_icon = Image.open(
-                        "home/ubuntu/icons/temp_card_art.png")
+                try:
+                    champ_icon = Image.open(f"home/ubuntu/icons/champ_icons/{md[8].name}.png")
                     champ_icon = champ_icon.resize((200, 200))
                     middle_panel.paste(champ_icon, (512 * 9, ds+232))
-                else:
-                    champ_url = await helper.get_champ_image(md[8].name)
-                    async with sessions.get(champ_url) as response:
-                        resp = await response.read()
-                        champ_icon = Image.open(BytesIO(resp))
-                    sessions.close()
+                except FileNotFoundError:
+                    champ_icon = Image.open(f"home/ubuntu/icons/temp_card_art.png")
                     champ_icon = champ_icon.resize((200, 200))
                     middle_panel.paste(champ_icon, (512 * 9, ds+232))
-                if md[9].name == "":
-                    champ_icon = Image.open(
-                        "home/ubuntu/icons/temp_card_art.png")
+                try:
+                    champ_icon = Image.open(f"home/ubuntu/icons/champ_icons/{md[9].name}.png")
                     champ_icon = champ_icon.resize((200, 200))
                     middle_panel.paste(champ_icon, (512 * 9 + 240, ds+232))
                 else:
-                    champ_url = await helper.get_champ_image(md[9].name)
-                    async with sessions.get(champ_url) as response:
-                        resp = await response.read()
-                        champ_icon = Image.open(BytesIO(resp))
-                    sessions.close()
+                    champ_icon = Image.open(f"home/ubuntu/icons/temp_card_art.png")
                     champ_icon = champ_icon.resize((200, 200))
                     middle_panel.paste(champ_icon, (512 * 9 + 240, ds+232))
         except IndexError:
