@@ -237,8 +237,6 @@ class helper:
                         str(md[2]), font=fnt100, fill=(255, 255, 255))
         draw_panel.text((512 * 2 + rs, 300 + ds), str(map_name),
                         font=fnt100, fill=(255, 255, 255))
-        # Right shift
-        rs = 100
         # Team 1
         draw_panel.text((512 * 5 + rs, ds), "Team 1 Score: ",
                         font=fnt100, fill=(255, 255, 255))
