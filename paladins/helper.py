@@ -149,7 +149,7 @@ class helper:
                     url = await helper.get_champ_image(champ)
                     async with session.get(url) as resp:
                         if resp.status == 200:
-                            resp = await response.read()
+                            resp = await resp.read()
                             champ_image = Image.open(BytesIO(resp))
             except FileNotFoundError:
                 champ_image = Image.open(f"home/ubuntu/icons/temp_card_art.png")
@@ -165,7 +165,7 @@ class helper:
                     url = await helper.get_champ_image(champ)
                     async with session.get(url) as resp:
                         if resp.status == 200:
-                            resp = await response.read()
+                            resp = await resp.read()
                             champ_image = Image.open(BytesIO(resp))
             except FileNotFoundError:
                 champ_image = Image.open(f"home/ubuntu/icons/temp_card_art.png")
