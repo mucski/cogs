@@ -41,11 +41,11 @@ class helper:
 	    fill = (255, 255, 255)
 	    if champ_stats[9] == 1:
 	        color = green
-	    elif champ_stats[9] == "2":
+	    elif champ_stats[9] == 2:
 	        color = orange
-	    elif champ_stats[9] == "3":
+	    elif champ_stats[9] == 3:
 	        color = red
-	    elif champ_stats[9] == "4":
+	    elif champ_stats[9] == 4:
 	        color = purple
 	    else:
 	        color = fill
