@@ -255,7 +255,7 @@ class helper:
 	            	middle_panel.paste(champ_icon, (512 * 9, ds+232))
 	            else:
 	            	champ_url = await helper.get_champ_image(md[8].name)
-	                async with sessions.get(champ_url) as response:
+	            	async with sessions.get(champ_url) as response:
 	                    resp = await response.read()
 	                    champ_icon = Image.open(BytesIO(resp))
 	                sessions.close()
