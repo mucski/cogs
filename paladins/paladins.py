@@ -94,7 +94,8 @@ class Paladins(commands.Cog):
         data = await self.api.request(request)
         # data = await data
         await ctx.send("```json"
-                       f"{data} ```")
+                       f"{data}"
+                       "```")
 
 
     @commands.command()
