@@ -63,7 +63,7 @@ class Paladins(commands.Cog):
             for match_player in match.players:
                 if match_player.team_number == 1:
                     if match_player.player.private:
-                        rank = "0"
+                        rank = "99"
                     else:
                         rank = match_player.player.ranked_best.rank.value
                     team1_data.append([match_player.player.name, match_player.account_level, match_player.credits, match_player.kda_text,
@@ -74,7 +74,7 @@ class Paladins(commands.Cog):
                     team1_ranks.append(rank)
                 else:
                     if match_player.player.private:
-                        rank = "0"
+                        rank = "99"
                     else:
                         rank = match_player.player.ranked_best.rank.value
                     team2_data.append([match_player.player.name, match_player.account_level, match_player.credits, match_player.kda_text,
