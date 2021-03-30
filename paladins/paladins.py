@@ -95,7 +95,7 @@ class Paladins(commands.Cog):
         data = await self.api.request(request, data)
         # data = await data
         data = str(data)
-        for page in pagify(data):
+        for page in pagify(data, page_lenght=1900):
             await ctx.send(data)
 
 
