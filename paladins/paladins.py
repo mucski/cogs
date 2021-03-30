@@ -96,7 +96,7 @@ class Paladins(commands.Cog):
         # data = await data
         data = str(data)
         for page in pagify(data):
-            await ctx.send(f"```json\n{data}\n```")
+            await ctx.send(data)
 
 
     @commands.command()
