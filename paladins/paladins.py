@@ -93,7 +93,7 @@ class Paladins(commands.Cog):
     @commands.command()
     async def hirez(self, ctx, request, data=None):
         data = await self.api.request(request, data)
-        # data = await data
+        data = ''.join(data)
         await ctx.send("```json\n" + data + "```")
 
 
