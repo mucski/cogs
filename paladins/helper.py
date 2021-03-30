@@ -39,7 +39,7 @@ class helper:
 	    red = (252, 102, 3)
 	    purple = (240, 3, 252)
 	    fill = (255, 255, 255)
-	    if champ_stats[9] == "1":
+	    if champ_stats[9] == 1:
 	        color = green
 	    elif champ_stats[9] == "2":
 	        color = orange
