@@ -94,7 +94,7 @@ class Paladins(commands.Cog):
         await ctx.send("```json\n" + data + "```")
 
     @commands.command()
-    async def testing(self, champ):
+    async def testing(self, ctx, champ):
         img = helper.get_champ_image(champ)
         await ctx.send(img)
 
