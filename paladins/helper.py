@@ -238,25 +238,25 @@ class helper:
         draw_panel.text((512 * 2 + rs, 300 + ds), str(map_name),
                         font=fnt100, fill=(255, 255, 255))
         # Team 1
-        draw_panel.text((512 * 5 + rs, ds), "Team 1 Score: ",
+        draw_panel.text((512 * 4 + rs, ds), "Team 1 Score: ",
                         font=fnt100, fill=(255, 255, 255))
-        draw_panel.text((512 * 5 + rs * 8, ds),
+        draw_panel.text((512 * 4 + rs * 8, ds),
                         str(md[4]), font=fnt100bold, fill=(255, 255, 255))
         center = (512/2 - 130/2)
         center2 = (512/2 - 80/2)
         # VS
-        draw_panel.text((512 * 6-150, 200), "VS",
+        draw_panel.text((512 * 5-150, 200), "VS",
                         font=fnt100bold, fill=(227, 34, 34))
         # Team 2
-        draw_panel.text((512 * 5 + rs, 348), "Team 2 Score: ",
+        draw_panel.text((512 * 4 + rs, 348), "Team 2 Score: ",
                         font=fnt100, fill=(255, 255, 255))
-        draw_panel.text((512 * 5 + rs * 8, 348),
+        draw_panel.text((512 * 4 + rs * 8, 348),
                         str(md[5]), font=fnt100bold, fill=(255, 255, 255))
         #  add in banned champs if it's a ranked match
         try:
             if md[6]:
                 # Ranked bans
-                draw_panel.text((512 * 7 + rs * 7, center2),
+                draw_panel.text((512 * 6 + rs * 7, center2),
                                 "Bans:", font=fnt100, fill=(255, 255, 255))
                 # Team 1 Bans
                 try:
