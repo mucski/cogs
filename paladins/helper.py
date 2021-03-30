@@ -144,15 +144,11 @@ class helper:
         history_image.paste(mid_panel, (0, 1392-40))
         # Adding in player data
         for i, (champ, champ2) in enumerate(zip(team1, team2)):
-            if champ == "":
-                champ_image = Image.open("home/ubuntu/icons/temp_card_art.png")
-            else:
-                sessions = aiohttp.ClientSession()
+            try:
                 url = await helper.get_champ_image(champ)
-                async with sessions.get(url) as response:
-                    resp = await response.read()
-                    champ_image = Image.open(BytesIO(resp))
-                sessions.close()
+                champ_image = Image.open(url)
+            except FileNotFoundError:
+                champ_image = Image.open(f"home/ubuntu/icons/temp_card_art.png")
             border = (0, shrink, 0, shrink)  # left, up, right, bottom
             champ_image = ImageOps.crop(champ_image, border)
             rank_icon = Image.open(f"home/ubuntu/icons/ranks/{r1[i]}.png")
@@ -160,15 +156,11 @@ class helper:
             player_panel = await helper.stats_image(champ_image, rank_icon, t1_data[i], i)
             history_image.paste(player_panel, (0, (image_size_y+10)*i+132))
             # Second team
-            if champ == "":
-                champ_image = Image.open("home/ubuntu/icons/temp_card_art.png")
-            else:
-                sessions = aiohttp.ClientSession()
+            try:
                 url = await helper.get_champ_image(champ)
-                async with sessions.get(url) as response:
-                    resp = await response.read()
-                    champ_image = Image.open(BytesIO(resp))
-                sessions.close()
+                champ_image = Image.open(url)
+            except FileNotFoundError:
+                champ_image = Image.open(f"home/ubuntu/icons/temp_card_art.png")
             border = (0, shrink, 0, shrink)  # left, up, right, bottom
             champ_image = ImageOps.crop(champ_image, border)
             rank_icon = Image.open(f"home/ubuntu/icons/ranks/{r2[i]}.png")
