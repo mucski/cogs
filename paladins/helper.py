@@ -144,7 +144,7 @@ class helper:
         history_image.paste(mid_panel, (0, 1392-40))
         # Adding in player data
         for i, (champ, champ2) in enumerate(zip(team1, team2)):
-            if champ == "yagorath":
+            if champ == "":
                 champ_image = Image.open("home/ubuntu/icons/temp_card_art.png")
             else:
                 sessions = aiohttp.ClientSession()
@@ -160,7 +160,7 @@ class helper:
             player_panel = await helper.stats_image(champ_image, rank_icon, t1_data[i], i)
             history_image.paste(player_panel, (0, (image_size_y+10)*i+132))
             # Second team
-            if champ == "yagorath":
+            if champ == "":
                 champ_image = Image.open("home/ubuntu/icons/temp_card_art.png")
             else:
                 sessions = aiohttp.ClientSession()
@@ -243,7 +243,7 @@ class helper:
                 draw_panel.text((512 * 7 + rs * 7, center2),
                                 "Bans:", font=fnt100, fill=(255, 255, 255))
                 # Team 1 Bans
-                if md[6].name == "yagorath":
+                if md[6].name == "":
                     champ_icon = Image.open(
                         "home/ubuntu/icons/temp_card_art.png")
                     champ_icon.resize((200, 200))
@@ -257,7 +257,7 @@ class helper:
                     sessions.close()
                     champ_icon = champ_icon.resize((200, 200))
                     middle_panel.paste(champ_icon, (512 * 9, ds))
-                if md[7].name == "yagorath":
+                if md[7].name == "":
                     champ_icon = Image.open(
                         "home/ubuntu/icons/temp_card_art.png")
                     champ_icon = champ_icon.resize((200, 200))
@@ -271,7 +271,7 @@ class helper:
                     champ_icon = champ_icon.resize((200, 200))
                     middle_panel.paste(champ_icon, (512 * 9 + 240, ds))
                 # Team 2 Bans
-                if md[8].name == "yagorath":
+                if md[8].name == "":
                     champ_icon = Image.open(
                         "home/ubuntu/icons/temp_card_art.png")
                     champ_icon = champ_icon.resize((200, 200))
@@ -284,7 +284,7 @@ class helper:
                     sessions.close()
                     champ_icon = champ_icon.resize((200, 200))
                     middle_panel.paste(champ_icon, (512 * 9, ds+232))
-                if md[9].name == "yagorath":
+                if md[9].name == "":
                     champ_icon = Image.open(
                         "home/ubuntu/icons/temp_card_art.png")
                     champ_icon = champ_icon.resize((200, 200))
