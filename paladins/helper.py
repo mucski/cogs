@@ -238,7 +238,7 @@ class helper:
         draw_panel.text((512 * 2 + rs, 300 + ds), str(map_name),
                         font=fnt100, fill=(255, 255, 255))
         # Team 1
-        draw_panel.text((512 * 5 + rs - 300, ds), "Team 1 Score: ",
+        draw_panel.text((512 * 5 + rs - 200, ds), "Team 1 Score: ",
                         font=fnt100, fill=(255, 255, 255))
         draw_panel.text((512 * 6 - 100, ds),
                         str(md[4]), font=fnt100bold, fill=(255, 255, 255))
@@ -248,7 +248,7 @@ class helper:
         draw_panel.text((512 * 6-150-300, 200), "VS",
                         font=fnt100bold, fill=(227, 34, 34))
         # Team 2
-        draw_panel.text((512 * 5 + rs - 300, 348), "Team 2 Score: ",
+        draw_panel.text((512 * 5 + rs - 200, 348), "Team 2 Score: ",
                         font=fnt100, fill=(255, 255, 255))
         draw_panel.text((512 * 6 - 100, 348),
                         str(md[5]), font=fnt100bold, fill=(255, 255, 255))
