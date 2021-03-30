@@ -1,6 +1,7 @@
 from PIL import ImageOps, ImageDraw, Image, ImageFont
 import aiohttp
 from io import BytesIO
+from redbot.core.utils.chat_formatting import humanize_number
 
 
 
@@ -66,21 +67,21 @@ class helper:
 	    # Parties
 	    draw.text((img_x+950, middle), str(champ_stats[9]), font=fnt100, fill=fill)
 	    # Credits
-	    draw.text((img_x+1100, middle), str(champ_stats[2]), font=fnt100, fill=fill)
+	    draw.text((img_x+1100, middle), humanize_number(champ_stats[2]), font=fnt100, fill=fill)
 	    # KDA
 	    draw.text((img_x+1500, middle), str(champ_stats[3]), font=fnt100, fill=fill)
 	    # Damage Done
-	    draw.text((img_x+1950, middle), str(champ_stats[4]), font=fnt100, fill=fill)
+	    draw.text((img_x+1950, middle), humanize_number(champ_stats[4]), font=fnt100, fill=fill)
 	    # Mitigated
-	    draw.text((img_x+2450, middle), str(champ_stats[5]), font=fnt100, fill=fill)
+	    draw.text((img_x+2450, middle), humanize_number(champ_stats[5]), font=fnt100, fill=fill)
 	    # OBJ time
-	    draw.text((img_x+2900, middle), str(champ_stats[6]), font=fnt100, fill=fill)
+	    draw.text((img_x+2900, middle), humanize_number(champ_stats[6]), font=fnt100, fill=fill)
 	    # Shielding
-	    draw.text((img_x+3250, middle), str(champ_stats[7]), font=fnt100, fill=fill)
+	    draw.text((img_x+3250, middle), humanize_number(champ_stats[7]), font=fnt100, fill=fill)
 	    # Healing
-	    draw.text((img_x+3750, middle), str(champ_stats[8]), font=fnt100, fill=fill)
+	    draw.text((img_x+3750, middle), humanize_number(champ_stats[8]), font=fnt100, fill=fill)
 	    # Self Healing
-	    draw.text((img_x+4220, middle), str(champ_stats[11]), font=fnt100, fill=fill)
+	    draw.text((img_x+4220, middle), humanize_number(champ_stats[11]), font=fnt100, fill=fill)
 	    return img
 
 
