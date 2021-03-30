@@ -2,7 +2,6 @@ from PIL import ImageOps, ImageDraw, Image, ImageFont
 import aiohttp
 from io import BytesIO
 from redbot.core.utils.chat_formatting import humanize_number
-import urllib2.request
 
 
 class helper:
@@ -146,8 +145,12 @@ class helper:
         # Adding in player data
         for i, (champ, champ2) in enumerate(zip(team1, team2)):
             try:
-                url = await helper.get_champ_image(champ)
-                champ_image = Image.open(urllib2.request.urlretrieve(url))
+                async with aiohttp.ClientSession() as session:
+                    url = await helper.get_champ_image(champ)
+                    async with session.get(url) as resp:
+                        if resp.status == 200:
+                            resp = await response.read()
+                            champ_image = Image.open(BytesIO(resp))
             except FileNotFoundError:
                 champ_image = Image.open(f"home/ubuntu/icons/temp_card_art.png")
             border = (0, shrink, 0, shrink)  # left, up, right, bottom
@@ -158,8 +161,12 @@ class helper:
             history_image.paste(player_panel, (0, (image_size_y+10)*i+132))
             # Second team
             try:
-                url = await helper.get_champ_image(champ)
-                champ_image = Image.open(urllib2.request.urlretrieve(url))
+                async with aiohttp.ClientSession() as session:
+                    url = await helper.get_champ_image(champ)
+                    async with session.get(url) as resp:
+                        if resp.status == 200:
+                            resp = await response.read()
+                            champ_image = Image.open(BytesIO(resp))
             except FileNotFoundError:
                 champ_image = Image.open(f"home/ubuntu/icons/temp_card_art.png")
             border = (0, shrink, 0, shrink)  # left, up, right, bottom
