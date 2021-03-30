@@ -38,26 +38,25 @@ class Paladins(commands.Cog):
 
 
     @commands.command()
-    async def match(self, ctx, matchId):
+    async def match(self, ctx, match_id_name):
         async with ctx.typing():
-            try:
-                match = await self.api.get_match(int(matchId), expand_players=True)
-            except ValueError:
-                match = await self.api.get_player(matchId)
+            if match_id_name.isdecimal():
+                match = await self.api.get_match(match_id_name, expand_players=True)
+            else:
+                match = await self.api.get_player(match_id_name)
                 match = await match.get_match_history()
                 try:
                     match = await match[0]
                 except IndexError:
                     await ctx.send("No match found.")
                     return
+                await match.expand_players()
             team1_data = []
             team2_data = []
             team1_champs = []
             team1_ranks = []
             team2_ranks = []
             team2_champs = []
-            team1_parties = {}
-            team2_parties = {}
             # temp = []
             new_party_id = 0
             match_info = [match.winning_team, match.duration.minutes, match.region.name,
@@ -68,38 +67,24 @@ class Paladins(commands.Cog):
                     if player.player.private:
                         rank = "0"
                     else:
-                        gugu = await player.player
-                        rank = gugu.ranked_best.rank.value
+                        rank = player.player.ranked_best.rank.value
                     team1_data.append([player.player.name, player.account_level, player.credits, player.kda_text,
                                        player.damage_done, player.damage_taken,
                                        player.objective_time, player.damage_mitigated,
                                        player.healing_done, player.party_number, player.player.platform, player.healing_self])
                     team1_champs.append(player.champion.name)
                     team1_ranks.append(rank)
-                    if player.party_number not in team1_parties or player.party_number == 0:
-                        team1_parties[player.party_number] = ""
-                    else:
-                        if team1_parties[player.party_number] == "":
-                            new_party_id += 1
-                            team1_parties[player.party_number] = "" + str(new_party_id)
                 else:
                     if player.player.private:
                         rank = "0"
                     else:
-                        gugu = await player.player
-                        rank = gugu.ranked_best.rank.value
+                        rank = player.player.ranked_best.rank.value
                     team2_data.append([player.player.name, player.account_level, player.credits, player.kda_text,
                                        player.damage_done, player.damage_taken,
                                        player.objective_time, player.damage_mitigated,
                                        player.healing_done, player.party_number, player.player.platform, player.healing_self])
                     team2_champs.append(player.champion.name)
                     team2_ranks.append(rank)
-                    if player.party_number not in team2_parties or player.party_number == 0:
-                        team2_parties[player.party_number] = ""
-                    else:
-                        if team2_parties[player.party_number] == "":
-                            new_party_id += 1
-                            team2_parties[player.party_number] = "" + str(new_party_id)
             buffer = await helper.history_image(team1_champs, team2_champs, team1_data, team2_data, team1_ranks,
                                                                    team2_ranks, team1_parties, team2_parties, (match_info + temp))
             file = discord.File(filename=f"{matchId}.png", fp=buffer)
