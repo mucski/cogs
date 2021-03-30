@@ -135,15 +135,15 @@ class helper:
 	    history_image.paste(mid_panel, (0, 1392-40))
 	    # Adding in player data
 	    for i, (champ, champ2) in enumerate(zip(team1, team2)):
-	        try:
+	        if champ == "yagorath":
+	        	champ_image = Image.open("home/ubuntu/icons/temp_card_art.png")
+	        else:
 	            sessions = aiohttp.ClientSession()
 	            url = await helper.get_champ_image(champ)
 	            async with sessions.get(url) as response:
 	                resp = await response.read()
 	                champ_image = Image.open(BytesIO(resp))
 	            sessions.close()
-	        except Image.UnidentifiedImageError:
-	            champ_image = Image.open("home/ubuntu/icons/temp_card_art.png")
 	        border = (0, shrink, 0, shrink)  # left, up, right, bottom
 	        champ_image = ImageOps.crop(champ_image, border)
 	        rank_icon = Image.open(f"home/ubuntu/icons/ranks/{r1[i]}.png")
@@ -151,15 +151,15 @@ class helper:
 	        player_panel = await helper.stats_image(champ_image, rank_icon, t1_data[i], i)
 	        history_image.paste(player_panel, (0, (image_size_y+10)*i+132))
 	        # Second team
-	        try:
+	        if champ == "yagorath":
+	        	champ_image = Image.open("home/ubuntu/icons/temp_card_art.png")
+	        else:
 	            sessions = aiohttp.ClientSession()
-	            url = await helper.get_champ_image(champ2)
+	            url = await helper.get_champ_image(champ)
 	            async with sessions.get(url) as response:
 	                resp = await response.read()
 	                champ_image = Image.open(BytesIO(resp))
 	            sessions.close()
-	        except Image.UnidentifiedImageError:
-	            champ_image = Image.open("home/ubuntu/icons/temp_card_art.png")
 	        border = (0, shrink, 0, shrink)  # left, up, right, bottom
 	        champ_image = ImageOps.crop(champ_image, border)
 	        rank_icon = Image.open(f"home/ubuntu/icons/ranks/{r2[i]}.png")
@@ -223,7 +223,11 @@ class helper:
 	            # Ranked bans
 	            draw_panel.text((512 * 7 + rs * 7, center2), "Bans:", font=fnt100, fill=(255, 255, 255))
 	            # Team 1 Bans
-	            try:
+	            if md[6].name == "yagorath":
+	            	champ_icon = Image.open("home/ubuntu/icons/temp_card_art.png")
+	            	champ_icon.resize((200, 200))
+	            	middle_panel.paste(champ_icon, (512 * 9, ds))
+	            else:
 	                sessions = aiohttp.ClientSession()
 	                champ_url = await helper.get_champ_image(md[6].name)
 	                async with sessions.get(champ_url) as response:
@@ -232,10 +236,11 @@ class helper:
 	                sessions.close()
 	                champ_icon = champ_icon.resize((200, 200))
 	                middle_panel.paste(champ_icon, (512 * 9, ds))
-	            except Image.UnidentifiedImageError:
-	                pass
-
-	            try:
+				if md[7].name == "yagorath":
+	            	champ_icon = Image.open("home/ubuntu/icons/temp_card_art.png")
+	                champ_icon = champ_icon.resize((200, 200))
+	                middle_panel.paste(champ_icon, (512 * 9 + 240, ds))
+	            else:
 	                champ_url = await helper.get_champ_image(md[7].name)
 	                async with sessions.get(champ_url) as response:
 	                    resp = await response.read()
@@ -243,10 +248,12 @@ class helper:
 	                sessions.close()
 	                champ_icon = champ_icon.resize((200, 200))
 	                middle_panel.paste(champ_icon, (512 * 9 + 240, ds))
-	            except Image.UnidentifiedImageError:
-	                pass
 	            # Team 2 Bans
-	            try:
+				if md[8].name == "yagorath":
+	            	champ_icon = Image.open("home/ubuntu/icons/temp_card_art.png")
+	                champ_icon = champ_icon.resize((200, 200))
+	                middle_panel.paste(champ_icon, (512 * 9, ds+232))
+                else:
 	                champ_url = await helper.get_champ_image(md[8].name)
 	                async with sessions.get(champ_url) as response:
 	                    resp = await response.read()
@@ -254,18 +261,18 @@ class helper:
 	                sessions.close()
 	                champ_icon = champ_icon.resize((200, 200))
 	                middle_panel.paste(champ_icon, (512 * 9, ds+232))
-	            except Image.UnidentifiedImageError:
-	                pass
-	            try:
-	                champ_url = await helper.get_champ_image(md[9].name)
+				if md[9].name == "yagorath":
+	            	champ_icon = Image.open("home/ubuntu/icons/temp_card_art.png")
+	                champ_icon = champ_icon.resize((200, 200))
+	                middle_panel.paste(champ_icon, (512 * 9 + 240, ds+232))
+	            else:
+	            	champ_url = await helper.get_champ_image(md[9].name)
 	                async with sessions.get(champ_url) as response:
 	                    resp = await response.read()
 	                    champ_icon = Image.open(BytesIO(resp))
 	                sessions.close()
 	                champ_icon = champ_icon.resize((200, 200))
 	                middle_panel.paste(champ_icon, (512 * 9 + 240, ds+232))
-	            except Image.UnidentifiedImageError:
-	                pass
 	    except IndexError:
 	        pass
 	    return middle_panel
