@@ -268,7 +268,7 @@ class helper:
                     champ_icon = Image.open(f"home/ubuntu/icons/champ_icons/{md[9].name}.png")
                     champ_icon = champ_icon.resize((200, 200))
                     middle_panel.paste(champ_icon, (512 * 9 + 240, ds+232))
-                else FileNotFoundError:
+                except FileNotFoundError:
                     champ_icon = Image.open(f"home/ubuntu/icons/temp_card_art.png")
                     champ_icon = champ_icon.resize((200, 200))
                     middle_panel.paste(champ_icon, (512 * 9 + 240, ds+232))
