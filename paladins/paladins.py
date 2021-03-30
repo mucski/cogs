@@ -95,7 +95,11 @@ class Paladins(commands.Cog):
         data = await self.api.request(request, data)
         data = ''.join(str(data))
         await ctx.send("```json\n" + data + "```")
-
+        
+    @commands.command()
+    async def testing(self, champ):
+        img = helper.get_champ_image(champ)
+        await ctx.send(img)
 
     @commands.command()
     async def stats(self, ctx, player, platform="PC"):
