@@ -38,6 +38,7 @@ class helper:
 	    green = (7, 252, 3)
 	    red = (252, 102, 3)
 	    purple = (240, 3, 252)
+	    fill = (255, 255, 255)
 	    if champ_stats[9] == "1":
 	        color = green
 	    elif champ_stats[9] == "2":
@@ -55,7 +56,6 @@ class helper:
 	    fnt80 = ImageFont.truetype("home/ubuntu/arial.ttf", 80)
 	    fnt100 = ImageFont.truetype("home/ubuntu/arial.ttf", 100)
 	    fnt80bold= ImageFont.truetype("home/ubuntu/arialbd.ttf", 80)
-	    fill = (255, 255, 255)
 	    if champ_stats[0] == "":
 	        champ_stats[0] = "???????"
 	    # Champion name, player name
