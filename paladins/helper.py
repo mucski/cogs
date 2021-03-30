@@ -84,10 +84,10 @@ class helper:
         draw.text((img_x+3000, middle),
                   humanize_number(champ_stats[7]), font=fnt100, fill=fill)
         # Healing
-        draw.text((img_x+3400, middle),
+        draw.text((img_x+3500, middle),
                   humanize_number(champ_stats[8]), font=fnt100, fill=fill)
         # Self Healing
-        draw.text((img_x+3800, middle),
+        draw.text((img_x+4000, middle),
                   humanize_number(champ_stats[11]), font=fnt100, fill=fill)
         return img
 
