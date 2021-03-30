@@ -22,7 +22,6 @@ class Paladins(commands.Cog):
         asyncio.createTask(self.api.close())
         self.f.close()
 
-
     async def cog_command_error(self, ctx, error):
         if isinstance(error, commands.CommandInvokeError):
             exc = error.original
@@ -36,7 +35,6 @@ class Paladins(commands.Cog):
                 await ctx.send("Player was not found")
                 return
         await ctx.bot.on_command_error(ctx, error, unhandled_by_cog=True)
-
 
     @commands.command()
     async def match(self, ctx, match_id_name):
@@ -59,7 +57,7 @@ class Paladins(commands.Cog):
             team2_ranks = []
             team2_champs = []
             match_info = [match.winning_team, match.duration.minutes, match.region.name,
-                              match.map_name, match.score[0], match.score[1]]
+                          match.map_name, match.score[0], match.score[1]]
             temp = match.bans
             for match_player in match.players:
                 if match_player.team_number == 1:
@@ -85,19 +83,18 @@ class Paladins(commands.Cog):
                     team2_champs.append(match_player.champion.name)
                     team2_ranks.append(rank)
             buffer = await helper.history_image(team1_champs, team2_champs, team1_data, team2_data, team1_ranks,
-                                                                   team2_ranks, (match_info + temp))
+                                                team2_ranks, (match_info + temp))
             file = discord.File(filename=f"{match_id_name}.png", fp=buffer)
         await ctx.send(file=file)
-
 
     @commands.command()
     async def hirez(self, ctx, request, data=None):
         data = await self.api.request(request, data)
         data = ''.join(str(data))
         await ctx.send("```json\n" + data + "```")
-        
+
     @commands.command()
-    async def testing(self, champ):
+    async wdef testing(self, champ):
         img = helper.get_champ_image(champ)
         await ctx.send(img)
 
