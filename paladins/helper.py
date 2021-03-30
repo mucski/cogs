@@ -284,7 +284,7 @@ class helper:
                     sessions.close()
                     champ_icon = champ_icon.resize((200, 200))
                     middle_panel.paste(champ_icon, (512 * 9, ds+232))
-			    if md[9].name == "yagorath":
+				if md[9].name == "yagorath":
                     champ_icon = Image.open(
                         "home/ubuntu/icons/temp_card_art.png")
                     champ_icon = champ_icon.resize((200, 200))
