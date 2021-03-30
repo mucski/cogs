@@ -103,7 +103,7 @@ class Paladins(commands.Cog):
         except IndexError:
             await ctx.send("No match found.")
             return
-        await ctx.send(match.player.champion.name)
+        await ctx.send(match.champion.name)
 
     @commands.command()
     async def stats(self, ctx, player, platform="PC"):
