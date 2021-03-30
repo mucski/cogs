@@ -238,7 +238,7 @@ class helper:
 	                middle_panel.paste(champ_icon, (512 * 9, ds))
 	            if md[7].name == "yagorath":
 	            	champ_icon = Image.open("home/ubuntu/icons/temp_card_art.png")
-	                champ_icon = champ_icon.resize((200, 200))
+	           	champ_icon = champ_icon.resize((200, 200))
 	                middle_panel.paste(champ_icon, (512 * 9 + 240, ds))
 	            else:
 	                champ_url = await helper.get_champ_image(md[7].name)
