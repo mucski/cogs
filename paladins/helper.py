@@ -149,15 +149,16 @@ class helper:
                         if resp.status == 200:
                             resp = await resp.read()
                             champ_image = Image.open(BytesIO(resp))
-                champ_image.resize((512, 512), Image.ANTIALIAS)
+                (width, height) = (champ_image.width * 2, champ_image.height * 2)
+                champ_image_ready = champ_image.resize((width, height))
             except FileNotFoundError:
-                champ_image = Image.open(
+                champ_image_ready = Image.open(
                     f"home/ubuntu/icons/temp_card_art.png")
             border = (0, shrink, 0, shrink)  # left, up, right, bottom
-            champ_image = ImageOps.crop(champ_image, border)
+            champ_image_ready = ImageOps.crop(champ_image_ready, border)
             rank_icon = Image.open(f"home/ubuntu/icons/ranks/{r1[i]}.png")
             # history_image.paste(champ_image, (0, image_size*i, image_size, image_size*(i+1)))
-            player_panel = await helper.stats_image(champ_image, rank_icon, t1_data[i], i)
+            player_panel = await helper.stats_image(champ_image_ready, rank_icon, t1_data[i], i)
             history_image.paste(player_panel, (0, (image_size_y+10)*i+132))
             # Second team
             try:
@@ -167,14 +168,15 @@ class helper:
                         if resp.status == 200:
                             resp = await resp.read()
                             champ_image = Image.open(BytesIO(resp))
-                champ_image.resize((512, 512), Image.ANTIALIAS)
+                (width, height) = (champ_image.width * 2, champ_image.height * 2)
+                champ_image_ready = champ_image.resize((width, height))
             except FileNotFoundError:
-                champ_image = Image.open(
+                champ_image_ready = Image.open(
                     f"home/ubuntu/icons/temp_card_art.png")
             border = (0, shrink, 0, shrink)  # left, up, right, bottom
-            champ_image = ImageOps.crop(champ_image, border)
+            champ_image_ready = ImageOps.crop(champ_image_ready, border)
             rank_icon = Image.open(f"home/ubuntu/icons/ranks/{r2[i]}.png")
-            player_panel = await helper.stats_image(champ_image, rank_icon, t2_data[i], i+offset-1)
+            player_panel = await helper.stats_image(champ_image_ready, rank_icon, t2_data[i], i+offset-1)
             history_image.paste(
                 player_panel, (0, image_size_y * (i+offset) + 704))
         # Base speed is 10 - seconds
