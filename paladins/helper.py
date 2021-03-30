@@ -240,7 +240,7 @@ class helper:
                                 "Bans:", font=fnt100, fill=(255, 255, 255))
                 # Team 1 Bans
                 try:
-                    champ = await helper.get_champ_name(md[6.name])
+                    champ = await helper.get_champ_name(md[6].name)
                     champ_icon = Image.open(f"home/ubuntu/icons/champ_icons/{champ}.png")
                     champ_icon.resize((200, 200))
                     middle_panel.paste(champ_icon, (512 * 9, ds))
@@ -249,7 +249,7 @@ class helper:
                     champ_icon = champ_icon.resize((200, 200))
                     middle_panel.paste(champ_icon, (512 * 9, ds))
                 try:
-                    champ = await helper.get_champ_name(md[7.name])
+                    champ = await helper.get_champ_name(md[7].name)
                     champ_icon = Image.open(f"home/ubuntu/icons/champ_icons/{champ}.png")
                     champ_icon = champ_icon.resize((200, 200))
                     middle_panel.paste(champ_icon, (512 * 9 + 240, ds))
@@ -259,7 +259,7 @@ class helper:
                     middle_panel.paste(champ_icon, (512 * 9 + 240, ds))
                 # Team 2 Bans
                 try:
-                    champ = await helper.get_champ_name(md[8.name])
+                    champ = await helper.get_champ_name(md[8].name)
                     champ_icon = Image.open(f"home/ubuntu/icons/champ_icons/{champ}.png")
                     champ_icon = champ_icon.resize((200, 200))
                     middle_panel.paste(champ_icon, (512 * 9, ds+232))
@@ -268,7 +268,7 @@ class helper:
                     champ_icon = champ_icon.resize((200, 200))
                     middle_panel.paste(champ_icon, (512 * 9, ds+232))
                 try:
-                    champ = await helper.get_champ_name(md[9.name])
+                    champ = await helper.get_champ_name(md[9].name)
                     champ_icon = Image.open(f"home/ubuntu/icons/champ_icons/{champ}.png")
                     champ_icon = champ_icon.resize((200, 200))
                     middle_panel.paste(champ_icon, (512 * 9 + 240, ds+232))
