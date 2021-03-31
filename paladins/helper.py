@@ -15,7 +15,7 @@ class helper:
             champ = "sha-lin"
         if "mal" in champ:
             champ = "maldamba"
-        url = f"https://raw.githubusercontent.com/EthanHicks1/PaladinsArtAssets/master/champ_icons/{champ}.png"
+        url = f"https://webcdn.hirezstudios.com/paladins/champion-icons/{champ}.jpg"
         return url
 
     @classmethod
