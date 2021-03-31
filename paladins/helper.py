@@ -245,7 +245,7 @@ class helper:
         center = (512/2 - 130/2)
         center2 = (512/2 - 80/2)
         # VS
-        draw_panel.text((512 * 6-350, 200), "VS",
+        draw_panel.text((512 * 6-400, 200), "VS",
                         font=fnt100bold, fill=(227, 34, 34))
         # Team 2
         draw_panel.text((512 * 5 + rs - 200, 348), "Team 2 Score: ",
