@@ -96,7 +96,6 @@ class Paladins(commands.Cog):
         data = await self.api.request(request, *msg)
         pretty = json.dumps(data, indent=4, sort_keys=True)
         if len(pretty) > 2000:
-            pretty = pretty.getvalue()
             f = StringIO(pretty)
             # pretty.save(json_data, "TXT")
             f.seek(0)
