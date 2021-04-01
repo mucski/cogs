@@ -99,7 +99,7 @@ class Paladins(commands.Cog):
             pretty = StringIO()
             # pretty.save(json_data, "TXT")
             pretty.seek(0)
-            file = discord.File(filename="output.txt", fp=json_data)
+            file = discord.File(filename="output.txt", fp=pretty)
             await ctx.send(file=file)
         else:
             await ctx.send("```json\n" + pretty + "```")
