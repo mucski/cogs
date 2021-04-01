@@ -96,18 +96,9 @@ class Paladins(commands.Cog):
 
     @commands.command()
     @checks.is_owner()
-    async def testing(self, ctx, name):
-        match = await self.api.get_player(name)
-        match = await match.get_match_history()
-        try:
-            match = await match[0]
-        except IndexError:
-            await ctx.send("No match found.")
-            return
-        test = []
-        for match_player in match.players:
-            test.append(match_player.champion.name)
-        await ctx.send(test)
+    async def testing(self, ctx, platform):
+        status = arez.Status.platform(platform)
+        await ctx.send(status)
 
     @commands.command()
     async def stats(self, ctx, player, platform="PC"):
