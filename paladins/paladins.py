@@ -96,8 +96,8 @@ class Paladins(commands.Cog):
         data = await self.api.request(request, *msg)
         pretty = json.dumps(data, indent=4, sort_keys=True)
         if len(pretty) > 2000:
-            pretty = StringIO()
             pretty = pretty.getvalue()
+            f = StringIO(pretty)
             # pretty.save(json_data, "TXT")
             pretty.seek(0)
             file = discord.File(filename="output.txt", fp=pretty)
