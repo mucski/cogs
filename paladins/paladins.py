@@ -116,7 +116,7 @@ class Paladins(commands.Cog):
             file = discord.File(filename="output.txt", fp=f)
             await ctx.send(file=file)
         else:
-            await ctx.send("```json\n" + pretty + "```")
+            await ctx.send("```json\n" + response + "```")
 
     @commands.command()
     @checks.is_owner()
