@@ -8,6 +8,7 @@ from discord import File
 from .helper import helper
 from redbot.core.utils.chat_formatting import pagify
 import aiohttp
+import json
 
 
 class Paladins(commands.Cog):
@@ -92,8 +93,9 @@ class Paladins(commands.Cog):
     @checks.is_owner()
     async def hirez(self, ctx, request):
         data = await self.api.request(request)
-        data = ''.join(str(data))
-        await ctx.send("```json\n" + data + "```")
+        data = str(data)
+        pretty = json.dumps(data, indent=4, sort_keys=True)
+        await ctx.send("```json\n" + pretty + "```")
 
     @commands.command()
     @checks.is_owner()
