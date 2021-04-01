@@ -95,7 +95,7 @@ class Paladins(commands.Cog):
     async def hirez(self, ctx, request, *msg):
         try:
             data = await self.api.request(request, *msg)
-        except arez.HTTPException as cause:
+        except arez.HTTPException:
             await ctx.send("Error: wrong usage or api unavaiable!")
             return
         pretty = json.dumps(data, indent=4, sort_keys=True)
