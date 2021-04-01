@@ -93,7 +93,11 @@ class Paladins(commands.Cog):
     @commands.command()
     @checks.is_owner()
     async def hirez(self, ctx, request, *msg):
-        data = await self.api.request(request, *msg)
+        try:
+            data = await self.api.request(request, *msg)
+        except HTTPException:
+            await ctx.send("Not Found")
+            return
         pretty = json.dumps(data, indent=4, sort_keys=True)
         if len(pretty) > 2000:
             f = StringIO(pretty)
