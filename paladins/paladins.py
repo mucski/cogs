@@ -91,7 +91,9 @@ class Paladins(commands.Cog):
 
     @commands.command()
     @checks.is_owner()
-    async def hirez(self, ctx, request, msg: None):
+    async def hirez(self, ctx, request, msg=None):
+        if !msg:
+            request = request.strip()
         data = await self.api.request(request, msg)
         pretty = json.dumps(data, indent=4, sort_keys=True)
         await ctx.send("```json\n" + pretty + "```")
