@@ -6,7 +6,7 @@ from datetime import datetime
 import discord
 from discord import File
 from .helper import helper
-from redbot.core.utils.chat_formatting import pagify
+# from redbot.core.utils.chat_formatting import pagify
 import aiohttp
 import json
 from io import StringIO
@@ -109,10 +109,9 @@ class Paladins(commands.Cog):
             else:
                 await ctx.send("```\nUnknown error```\n")
                 return
-        pretty = json.dumps(data, indent=4, sort_keys=True)
+        response = json.dumps(data, indent=4, sort_keys=True)
         if len(pretty) > 2000:
-            f = StringIO(pretty)
-            # pretty.save(json_data, "TXT")
+            f = StringIO(response)
             f.seek(0)
             file = discord.File(filename="output.txt", fp=f)
             await ctx.send(file=file)
