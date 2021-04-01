@@ -9,6 +9,7 @@ from .helper import helper
 from redbot.core.utils.chat_formatting import pagify
 import aiohttp
 import json
+from io import StringIO
 
 
 class Paladins(commands.Cog):
@@ -94,8 +95,14 @@ class Paladins(commands.Cog):
     async def hirez(self, ctx, request, *msg):
         data = await self.api.request(request, *msg)
         pretty = json.dumps(data, indent=4, sort_keys=True)
-        for page in pagify(pretty):
-            await ctx.send("```json\n" + page + "```")
+        if len(pretty) > 2000:
+            json_data = StringIO()
+            pretty.save(json_data, "TXT")
+            json_data.seek(0)
+            file = discord.File(filename="output.txt", fp=json_data)
+            await ctx.send(file=file)
+        else:
+            await ctx.send("```json\n" + pretty + "```")
 
     @commands.command()
     @checks.is_owner()
