@@ -1,5 +1,5 @@
 import arez
-from redbot.core import commands
+from redbot.core import checks, commands
 import asyncio
 import humanize
 from datetime import datetime
@@ -89,11 +89,13 @@ class Paladins(commands.Cog):
         await ctx.send(file=file)
 
     @commands.command()
+    @checks.is_owner()
     async def hirez(self, ctx, request, data=None):
         data = await self.api.request(request, data)
         await ctx.send("```json\n" + data + "```")
 
     @commands.command()
+    @checks.is_owner()
     async def testing(self, ctx, name):
         match = await self.api.get_player(name)
         match = await match.get_match_history()
