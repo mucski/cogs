@@ -97,7 +97,7 @@ class Paladins(commands.Cog):
     @commands.command()
     @checks.is_owner()
     async def testing(self, ctx, platform):
-        status = arez.Status.platform(platform)
+        status = await self.api.Status.platform(platform)
         await ctx.send(status)
 
     @commands.command()
