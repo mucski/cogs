@@ -91,7 +91,7 @@ class Paladins(commands.Cog):
     @commands.command()
     @checks.is_owner()
     async def hirez(self, ctx, request):
-        data = await self.api.request(request, msg)
+        data = await self.api.request(request)
         await ctx.send("```json\n" + data + "```")
 
     @commands.command()
