@@ -99,10 +99,13 @@ class Paladins(commands.Cog):
             exc = exc.cause
             if isinstance(exc, aiohttp.ClientResponseError):
                 await ctx.send(f"```\n{exc.status}: {exc.message}\n```")
+                return
             elif isinstance(exc, aiohttp.ClientConnectionError):
                 await ctx.send(f"```\nFailed to connect to api.\n```")
+                return
             elif isinstance(exc, asyncio.TimeoutError):
                 await ctx.send("```\nTimed out.```\n")
+                return
             else:
                 await ctx.send("```\nUnknown error```\n")
                 return
