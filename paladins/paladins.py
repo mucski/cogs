@@ -97,7 +97,7 @@ class Paladins(commands.Cog):
     @commands.command()
     @checks.is_owner()
     async def testing(self, ctx):
-        status = await self.api.get_server_status().statuses()
+        status = self.api.get_server_status()
         await ctx.send(status)
 
     @commands.command()
