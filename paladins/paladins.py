@@ -97,11 +97,11 @@ class Paladins(commands.Cog):
             data = await self.api.request(request, *msg)
         except arez.HTTPException as exc:
             exc = exc.cause
-            if isinstance(aiohttp.ClientResponseError):
+            if isinstance(exc, aiohttp.ClientResponseError):
                 await ctx.send(f"```{exc.status}: {exc.message}```")
-            elif isinstance(aiohttp.ClientConnectionError):
+            elif isinstance(exc, aiohttp.ClientConnectionError):
                 await ctx.send(f"```Failed to connect to api.```")
-            elif isinstance(asyncio.TimeoutError):
+            elif isinstance(exc, asyncio.TimeoutError):
                 await ctx.send("```Timed out.```")
             else:
                 await ctx.send("```Unknown error```")
