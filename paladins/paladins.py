@@ -96,7 +96,7 @@ class Paladins(commands.Cog):
         try:
             data = await self.api.request(request, *msg)
         except arez.HTTPException as cause:
-            await ctx.send("Something went wrong. Error message: ```python\n" + cause + "```")
+            await ctx.send("Something went wrong. Error message: ```python\n" + str(cause) + "```")
             return
         pretty = json.dumps(data, indent=4, sort_keys=True)
         if len(pretty) > 2000:
