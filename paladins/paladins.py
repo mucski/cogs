@@ -123,6 +123,7 @@ class Paladins(commands.Cog):
     async def testing(self, ctx, player, platform=None):
         if platform is None:
             platform = "PC"
+        platform = arez.Platform(platform)
         player_obj = await self.api.search_players(player, platform)
         player = await player_obj[0]
         data = await player.get_champion_stats()
