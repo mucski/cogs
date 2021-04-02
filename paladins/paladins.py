@@ -121,7 +121,7 @@ class Paladins(commands.Cog):
     @commands.command()
     @checks.is_owner()
     async def testing(self, ctx, player, platform=None):
-        if platform is None:
+        if platform is not None:
             platform = "PC"
         platform = arez.Platform(platform)
         player_obj = await self.api.search_players(player, platform)
