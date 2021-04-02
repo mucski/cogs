@@ -35,7 +35,7 @@ class Paladins(commands.Cog):
                 await ctx.send("Requested profile is set to private")
                 return
             if isinstance(exc, arez.NotFound):
-                await ctx.send("Player was not found")
+                await ctx.send("Not Found")
                 return
         await ctx.bot.on_command_error(ctx, error, unhandled_by_cog=True)
 
@@ -137,6 +137,7 @@ class Paladins(commands.Cog):
         player_obj = await self.api.search_players(player, platform)
         player = await player_obj[0]
         champions_obj = await player.get_champion_stats()
+        champions_obj = ''
         if champion is not None:
             stats_dict = {s.champion: s for s in champions_obj}
             champ_info = champions_obj.get_champion(champion, fuzzy=True)
