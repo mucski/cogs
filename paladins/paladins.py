@@ -120,9 +120,13 @@ class Paladins(commands.Cog):
 
     @commands.command()
     @checks.is_owner()
-    async def testing(self, ctx):
-        status = await self.api.get_server_status()
-        await ctx.send(status)
+    async def testing(self, ctx, player, platform=None):
+        if platform is None:
+            platform = "PC"
+        player_obj = await self.api.search_players(player, platform)
+        player = await player_obj[0]
+        data = await player.get_champion_stats()
+        await ctx.send(data)
 
     @commands.command()
     async def stats(self, ctx, player, platform="PC"):
@@ -159,7 +163,7 @@ class Paladins(commands.Cog):
             f" ({player.ranked_best.points} TP)\n```"
         )
         e = discord.Embed(color=await self.bot.get_embed_color(ctx),
-                          title=f"{player.name}({player.platform})"
+                          title=f"{player.name} ({player.platform}) "
                                 f"_({player.title})_")
         e.description = desc
         e.set_thumbnail(url=player.avatar_url)
