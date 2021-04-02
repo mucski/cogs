@@ -128,7 +128,27 @@ class Paladins(commands.Cog):
         player = await player_obj[0]
         data = await player.get_champion_stats()
         await ctx.send(data)
-
+        
+    @commands.command()
+    async def champstats(self, ctx, player, champion=None, platform=None):
+        if platform is None:
+            playform = "PC"
+        platform = arez.Platform(platform)
+        player_obj = await self.api.search_players(player, platform)
+        player = await player_obj[0]
+        champions_obj = await player.get_champion_stats()
+        if champion not None:
+            stats_dict = {s.champion: s for s in champions_obj}
+            champ_info = champions_obj.get_champion(champion, fuzzy=True)
+            if champ_info is None:
+                await ctx.send("No such champion, champ!")
+                return
+            stats = stats_dict.get(champ_info)
+            if stats is None:
+                await ctx.send("Champion was never played with.")
+                return
+            await ctx.send(stats)
+            
     @commands.command()
     async def stats(self, ctx, player, platform="PC"):
         platform = arez.Platform(platform)
