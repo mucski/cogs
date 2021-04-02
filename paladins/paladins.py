@@ -144,7 +144,7 @@ class Paladins(commands.Cog):
                 await ctx.send("No such champion, champ!")
                 return
             stats = stats_dict.get(champ_info)
-            if stats is None:
+            if stats is not None:
                 await ctx.send("Champion was never played with.")
                 return
             await ctx.send(stats)
