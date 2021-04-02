@@ -137,7 +137,7 @@ class Paladins(commands.Cog):
         player_obj = await self.api.search_players(player, platform)
         player = await player_obj[0]
         champions_obj = await player.get_champion_stats()
-        if champion not None:
+        if champion is not None:
             stats_dict = {s.champion: s for s in champions_obj}
             champ_info = champions_obj.get_champion(champion, fuzzy=True)
             if champ_info is None:
