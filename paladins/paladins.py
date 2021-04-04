@@ -144,7 +144,7 @@ class Paladins(commands.Cog):
             if champ is None:
                 print("You dun fucked up the champ's name!")
                 return
-            stats = await stats_dict.get(champ)
+            stats = stats_dict.get(champ)
             if stats is None:
                 print("You ain't played this champ yet!")
                 return
