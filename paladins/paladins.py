@@ -110,7 +110,7 @@ class Paladins(commands.Cog):
                 await ctx.send("```\nUnknown error```\n")
                 return
         response = json.dumps(data, indent=4, sort_keys=True)
-        if len(pretty) > 2000:
+        if len(response) > 2000:
             f = StringIO(response)
             f.seek(0)
             file = discord.File(filename="output.txt", fp=f)
