@@ -136,8 +136,8 @@ class Paladins(commands.Cog):
         platform = arez.Platform(platform)
         player_obj = await self.api.search_players(player, platform)
         player = await player_obj[0]
-        champions = await player.get_champion_stats()
-        stats_dict = {s.champion: s for s in champion_stats}  # Dict[Champion, ChampionStats]
+        champions_stats = await player.get_champion_stats()
+        stats_dict = {s.champion: s for s in champions_stats}  # Dict[Champion, ChampionStats]
         entry = await self.api.get_champion_info()
         champ = entry.champions.get(champion)
         if champ is None:
