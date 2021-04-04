@@ -148,9 +148,9 @@ class Paladins(commands.Cog):
             if stats is None:
                 print("You ain't played this champ yet!")
                 return
-            await ctx.send(champions_stats.name)
+            await ctx.send(champ.name)
         else:
-            await ctx.send(champions_stats.name)
+            await ctx.send(champ.name)
             
     @commands.command()
     async def stats(self, ctx, player, platform="PC"):
