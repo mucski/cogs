@@ -136,18 +136,18 @@ class Paladins(commands.Cog):
         platform = arez.Platform(platform)
         player_obj = await self.api.search_players(player, platform)
         player = await player_obj[0]
-        champions_obj = await player.get_champion_stats()
-        entry = self.api.get_entry()
-        if champion is not None:
-            stats_dict = {s.champion: s for s in champions_obj}  # Dict[Champion, ChampionStats]
-            champ = entry.champions.get(champion)
-            if champ is None:
-                print("You dun fucked up the champ's name!")
-                return
-            stats = stats_dict.get(champ)
-            if stats is None:
-                print("You ain't played this champ yet!")
-                return
+        champions = await player.get_champion_stats()
+        stats_dict = {s.champion: s for s in champion_stats}  # Dict[Champion, ChampionStats]
+        entry = await self.api.get_champion_info()
+        champ = entry.champions.get(champion)
+        if champ is None:
+            print("You dun fucked up the champ's name!")
+            return
+        stats = stats_dict.get(champ)
+        if stats is None:
+            print("You ain't played this champ yet!")
+            return
+        await ctx.send(stats)
             
     @commands.command()
     async def stats(self, ctx, player, platform="PC"):
