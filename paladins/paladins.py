@@ -25,20 +25,6 @@ class Paladins(commands.Cog):
         asyncio.createTask(self.api.close())
         self.f.close()
 
-    async def cog_command_error(self, ctx, error):
-        if isinstance(error, commands.CommandInvokeError):
-            exc = error.original
-            if isinstance(exc, arez.Unavailable):
-                await ctx.send("HiRez API is offline or unavaiable.")
-                return
-            if isinstance(exc, arez.Private):
-                await ctx.send("Requested profile is set to private")
-                return
-            if isinstance(exc, arez.NotFound):
-                await ctx.send("Not Found")
-                return
-        await ctx.bot.on_command_error(ctx, error, unhandled_by_cog=True)
-
     @commands.command()
     async def match(self, ctx, match_id_name):
         async with ctx.typing():
@@ -149,6 +135,22 @@ class Paladins(commands.Cog):
                 print("You ain't played this champ yet!")
                 return
             await ctx.send(champ.name)
+            desc = {
+                f"Champion name: {champ.name} {champ.title}"
+                f"Champion role: {champ.role}"
+                f"Level: {stats.level}"
+                f"Winrate: {stats.kda_text} ({stats.winrate_text})"
+                f"Matches played: {stats.matches_played}"
+                f"Playtime: {stats.playtime}"
+                f"Experience: {stats.experience}"
+                f"Last played: {stats.last_played}"
+                f"Credits earned: {stats.credits}"
+            }
+            e = discord.Embed(color=await self.bot.get_embed_color(ctx), title=f"{player}'s {champ.name}")
+            e.set_thumbnail(url=champ.icon_url)
+            e.description = desc
+            e.set_footer(text=f"{player.id}")
+            await ctx.send(embed=e)
         else:
             await ctx.send(champ.name)
             
