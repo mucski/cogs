@@ -144,7 +144,6 @@ class Paladins(commands.Cog):
                 f"Playtime: {stats.playtime}"
                 f"Experience: {stats.experience}"
                 f"Last played: {stats.last_played}"
-                f"Credits earned: {stats.credits}"
             }
             e = discord.Embed(color=await self.bot.get_embed_color(ctx), title=f"{player}'s {champ.name}")
             e.set_thumbnail(url=champ.icon_url)
