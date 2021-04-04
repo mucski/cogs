@@ -150,7 +150,7 @@ class Paladins(commands.Cog):
                 return
             await ctx.send(stats)
         else:
-            await ctx.send(champions_stats)
+            await ctx.send(champions_stats.name)
             
     @commands.command()
     async def stats(self, ctx, player, platform="PC"):
