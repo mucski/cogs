@@ -139,7 +139,7 @@ class Paladins(commands.Cog):
         champions_obj = await player.get_champion_stats()
         if champion is not None:
             stats_dict = {s.champion: s for s in champions_obj}  # Dict[Champion, ChampionStats]
-            champ = champion_info.get_champion(user_input, fuzzy=True)
+            champ = stats_dict.get_champion(user_input, fuzzy=True)
             if champ is None:
                 print("You dun fucked up the champ's name!")
                 return
