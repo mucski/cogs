@@ -139,7 +139,7 @@ class Paladins(commands.Cog):
         champions_obj = await player.get_champion_stats()
         if champion is not None:
             stats_dict = {s.champion: s for s in champions_obj}
-            champ_info = champions_obj.get_champion(champion, fuzzy=True)
+            champ_info = stats_dict.get_champion(champion, fuzzy=True)
             if champ_info is None:
                 await ctx.send("No such champion, champ!")
                 return
