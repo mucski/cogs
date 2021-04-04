@@ -145,10 +145,10 @@ class Paladins(commands.Cog):
                 f"Experience: {stats.experience}"
                 f"Last played: {stats.last_played}"
             }
-            e = discord.Embed(color=await self.bot.get_embed_color(ctx), title=f"{player}'s {champ.name}")
+            e = discord.Embed(color=await self.bot.get_embed_color(ctx), title=f"{champ.name}")
             e.set_thumbnail(url=champ.icon_url)
             e.description = desc
-            e.set_footer(text=f"{player}'s {champ.name} stats")
+            e.set_footer(text=f"stats")
             await ctx.send(embed=e)
         else:
             await ctx.send(champ.name)
