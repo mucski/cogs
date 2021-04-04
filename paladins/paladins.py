@@ -134,7 +134,7 @@ class Paladins(commands.Cog):
             if stats is None:
                 print("You ain't played this champ yet!")
                 return
-            await ctx.send(champ.name)
+            await ctx.send(champ.stats.level)
             desc = {
                 f"Champion name: {champ.name} {champ.title}"
                 f"Champion role: {champ.role}"
