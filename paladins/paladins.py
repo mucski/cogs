@@ -138,16 +138,15 @@ class Paladins(commands.Cog):
         player = await player_obj[0]
         champions_obj = await player.get_champion_stats()
         if champion is not None:
-            stats_dict = {s.champion: s for s in champions_obj}
-            champ_info = stats_dict.get_champion(champion, fuzzy=True)
-            if champ_info is None:
-                await ctx.send("No such champion, champ!")
+            stats_dict = {s.champion: s for s in champions_obj}  # Dict[Champion, ChampionStats]
+            champ = champion_info.get_champion(user_input, fuzzy=True)
+            if champ is None:
+                print("You dun fucked up the champ's name!")
                 return
-            stats = stats_dict.get(champ_info)
-            if stats is not None:
-                await ctx.send("Champion was never played with.")
+            stats = stats_dict.get(champ)
+            if stats is None:
+                print("You ain't played this champ yet!")
                 return
-            await ctx.send(stats)
             
     @commands.command()
     async def stats(self, ctx, player, platform="PC"):
