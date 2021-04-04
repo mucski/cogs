@@ -132,14 +132,14 @@ class Paladins(commands.Cog):
     @commands.command()
     async def champstats(self, ctx, player, champion=None, platform=None):
         if platform is None:
-            playform = "PC"
+            platform = "PC"
         platform = arez.Platform(platform)
         player_obj = await self.api.search_players(player, platform)
         player = await player_obj[0]
         champions_obj = await player.get_champion_stats()
         if champion is not None:
             stats_dict = {s.champion: s for s in champions_obj}  # Dict[Champion, ChampionStats]
-            champ = stats_dict.get_champion(user_input, fuzzy=True)
+            champ = stats_dict.champions.get(user_input, fuzzy=True)
             if champ is None:
                 print("You dun fucked up the champ's name!")
                 return
