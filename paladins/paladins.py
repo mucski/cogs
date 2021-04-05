@@ -35,7 +35,7 @@ class Paladins(commands.Cog):
                 await ctx.send("Requested profile is set to private")
                 return
             if isinstance(exc, arez.NotFound):
-                await ctx.send("Player was not found")
+                await ctx.send("Not found!")
                 return
         await ctx.bot.on_command_error(ctx, error, unhandled_by_cog=True)
 
