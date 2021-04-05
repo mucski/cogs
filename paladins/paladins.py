@@ -154,7 +154,7 @@ class Paladins(commands.Cog):
                 f"Level: {stats.level}\n"
                 f"Winrate: {stats.kda_text} ({stats.winrate_text})\n"
                 f"Matches played: {stats.matches_played}\n"
-                f"Playtime: {humanize.naturaltime(stats.playtime)}\n"
+                f"Playtime: {humanize.naturaltime(stats.playtime.total_hours())}\n"
                 f"Experience: {stats.experience}\n"
                 f"Last played: {humanize.naturaltime(datetime.utcnow() - stats.last_played)}\n"
             )
