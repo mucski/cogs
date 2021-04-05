@@ -138,8 +138,8 @@ class Paladins(commands.Cog):
         champions_stats = await player.get_champion_stats()
         stats_dict = {s.champion: s for s in champions_stats}  # Dict[Champion, ChampionStats]
         if champion_name is None:
-            table = []
             for i in range(len(champions_stats)):
+                table = []
                 table.append(f"{champions_stats[i].champion.name}({champions_stats[i].level})", champions_stats[i].kda_text, champions_stats[i].winrate_text, championstats[i].playtime.total_hours())
                 table.append(champions_stats[i].kda_text)
                 table.append(champions_stats[i].winrate_text)
