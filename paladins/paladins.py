@@ -37,15 +37,6 @@ class Paladins(commands.Cog):
             if isinstance(exc, arez.NotFound):
                 await ctx.send("Not found!")
                 return
-            if isinstance(exc, asyncio.TimeoutError):
-                await ctx.send("Timed out!")
-                return
-            if isinstance(exc, aiohttp.ClientConnectionError):
-                await ctx.send("Failed due to aiohttp connection error.")
-                return
-            if isinstance(exc, aiohttp.ClientResponseError):
-                await ctx.send(f"```\n{exc.status}: {exc.message}\n```")
-                return
         await ctx.bot.on_command_error(ctx, error, unhandled_by_cog=True)
 
     @commands.command()
