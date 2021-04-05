@@ -164,7 +164,8 @@ class Paladins(commands.Cog):
             e.set_footer(text=f"Individual champion stats for {player.name}")
             await ctx.send(embed=e)
         else:
-            await ctx.send(champ.name)
+            for champion in stats_dict:
+                await ctx.send(champ.name)
             
     @commands.command()
     async def stats(self, ctx, player, platform="PC"):
