@@ -11,8 +11,7 @@ import aiohttp
 import json
 from io import StringIO
 import math
-import tabulate
-
+from tabulate import tabulate
 
 class Paladins(commands.Cog):
     def __init__(self, bot):
