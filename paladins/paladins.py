@@ -29,13 +29,13 @@ class Paladins(commands.Cog):
         if isinstance(error, commands.CommandInvokeError):
             exc = error.original
             if isinstance(exc, arez.Unavailable):
-                await ctx.send("HiRez API is unavailable.")
+                await ctx.send("```\nHiRez API is unavailable.\n```")
                 return
             if isinstance(exc, arez.Private):
-                await ctx.send("Requested profile is set to private")
+                await ctx.send("```\nRequested profile is set to private\n```")
                 return
             if isinstance(exc, arez.NotFound):
-                await ctx.send("Not found!")
+                await ctx.send("```\nNot found!\n```")
                 return
         await ctx.bot.on_command_error(ctx, error, unhandled_by_cog=True)
 
@@ -50,7 +50,7 @@ class Paladins(commands.Cog):
                 try:
                     match = await match[0]
                 except IndexError:
-                    await ctx.send("No match found.")
+                    await ctx.send("```\nNo match found.\n```")
                     return
                 await match.expand_players()
             team1_data = []
