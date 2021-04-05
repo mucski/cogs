@@ -10,7 +10,7 @@ from .helper import helper
 import aiohttp
 import json
 from io import StringIO
-from math import math
+import math
 
 
 class Paladins(commands.Cog):
@@ -154,7 +154,7 @@ class Paladins(commands.Cog):
                 f"**Champion level**: {stats.level}\n"
                 f"**Winrate**: {stats.kda_text} ({stats.winrate_text})\n"
                 f"**Matches played**: {stats.matches_played}\n"
-                f"**Playtime**: {floor(stats.playtime.total_hours())} hours\n"
+                f"**Playtime**: {math.floor(stats.playtime.total_hours())} hours\n"
                 f"**Experience**: {stats.experience}\n"
                 f"**Last played**: {humanize.naturaltime(datetime.utcnow() - stats.last_played)}\n"
             )
@@ -177,7 +177,7 @@ class Paladins(commands.Cog):
         desc = (
             "**__Player Stats__**\n"
             f"```\nAccount level: {player.level}\n"
-            f"Playtime: {floor(player.playtime.total_hours())} hours\n"
+            f"Playtime: {math.floor(player.playtime.total_hours())} hours\n"
             f"Region: {player.region}\n"
             f"Champions Owned: {player.champion_count}\n"
             f"Achievements Unlocked: {player.total_achievements}\n"
