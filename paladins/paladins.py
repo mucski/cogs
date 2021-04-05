@@ -138,7 +138,7 @@ class Paladins(commands.Cog):
         champions_stats = await player.get_champion_stats()
         stats_dict = {s.champion: s for s in champions_stats}  # Dict[Champion, ChampionStats]
         if champion_name is None:
-            await ctx.send(f"```\n{"\n".join(stats_dict)}\n```")
+            await ctx.send(f"```\n{'\n'.join(stats_dict)}\n```")
         else:
             entry = await self.api.get_champion_info()
             champ = entry.champions.get(champion)
