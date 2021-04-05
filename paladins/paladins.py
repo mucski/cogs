@@ -29,7 +29,7 @@ class Paladins(commands.Cog):
     async def match(self, ctx, match_id_name):
         async with ctx.typing():
             if match_id_name.isdecimal():
-                match = await self.api.get_match(match_id_name, expand_players=True)
+                match = await self.api.get_match(int(match_id_name), expand_players=True)
             else:
                 match = await self.api.get_player(match_id_name)
                 match = await match.get_match_history()
