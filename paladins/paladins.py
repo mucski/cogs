@@ -147,7 +147,7 @@ class Paladins(commands.Cog):
                 champion_names_levels.append(f"{champions_stats[i].champion.name}({champions_stats[i].level})")
                 champion_kda.append(champions_stats[i].kda_text)
                 champion_winrate.append(champions_stats[i].winrate_text)
-                champion_hours.append(f"{math.floor(champions_stats[i].playtime.total_hours)} hours")
+                champion_hours.append(f"{math.floor(champions_stats[i].playtime.total_hours())} hours")
             table = []
             table.append(champion_names_levels, champion_kda, champion_winrate, champion_hours)
             table_done = tabulate(table, headers=["Name(Level)", "K/D/A", "Winrate", "Hours played"], tablefmt="presto")
