@@ -24,6 +24,20 @@ class Paladins(commands.Cog):
     def cog_unload(self):
         asyncio.createTask(self.api.close())
         self.f.close()
+        
+    async def cog_command_error(self, ctx, error):
+        if isinstance(error, commands.CommandInvokeError):
+            exc = error.original
+            if isinstance(exc, arez.Unavailable):
+                await ctx.send("HiRez API is offline or unavaiable.")
+                return
+            if isinstance(exc, arez.Private):
+                await ctx.send("Requested profile is set to private")
+                return
+            if isinstance(exc, arez.NotFound):
+                await ctx.send("Player was not found")
+                return
+        await ctx.bot.on_command_error(ctx, error, unhandled_by_cog=True)
 
     @commands.command()
     async def match(self, ctx, match_id_name):
