@@ -140,7 +140,10 @@ class Paladins(commands.Cog):
         if champion_name is None:
             table = []
             for i in range(len(champions_stats)):
-                table.append(f"{champions_stats[i].champion.name}({champions_stats[i].level})", champions_stats[i].kda_text, champions_stats[i].winrate_text, f"{champions_stats[i].playtime.total_hours()} hours")
+                table.append(f"{champions_stats[i].champion.name}({champions_stats[i].level})", champions_stats[i].kda_text, champions_stats[i].winrate_text, championstats[i].playtime.total_hours())
+                table.append(champions_stats[i].kda_text)
+                table.append(champions_stats[i].winrate_text)
+                table.append(f"{math.floor(champions_stats[i].playtime.total_hours())} hours")
             table_done = tabulate(table, headers=["Name(Level)", "K/D/A", "Winrate", "Hours played"], tablefmt="presto")
             for page in pagify(table_done):
                 await ctx.send("```\n{}\n```".format(page))
