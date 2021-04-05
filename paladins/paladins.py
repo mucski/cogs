@@ -150,13 +150,13 @@ class Paladins(commands.Cog):
                 print("You ain't played this champ yet!")
                 return
             desc = (
-                f"**Champion role**: {champ.role}\n"
+                f"```\n**Champion role**: {champ.role}\n"
                 f"**Champion level**: {stats.level}\n"
                 f"**Winrate**: {stats.kda_text} ({stats.winrate_text})\n"
                 f"**Matches played**: {stats.matches_played}\n"
                 f"**Playtime**: {math.floor(stats.playtime.total_hours())} hours\n"
                 f"**Experience**: {stats.experience}\n"
-                f"**Last played**: {humanize.naturaltime(datetime.utcnow() - stats.last_played)}\n"
+                f"**Last played**: {humanize.naturaltime(datetime.utcnow() - stats.last_played)}\n```"
             )
             e = discord.Embed(color=await self.bot.get_embed_color(ctx), title=f"{champ.name} ({champ.title})")
             e.set_thumbnail(url=champ.icon_url)
