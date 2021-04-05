@@ -6,7 +6,7 @@ from datetime import datetime
 import discord
 from discord import File
 from .helper import helper
-# from redbot.core.utils.chat_formatting import pagify
+from redbot.core.utils.chat_formatting import pagify
 import aiohttp
 import json
 from io import StringIO
@@ -138,7 +138,8 @@ class Paladins(commands.Cog):
         champions_stats = await player.get_champion_stats()
         stats_dict = {s.champion: s for s in champions_stats}  # Dict[Champion, ChampionStats]
         if champion_name is None:
-            await ctx.send(stats_dict)
+            for page in pagify(stats_dict):
+                await ctx.send(page)
         else:
             entry = await self.api.get_champion_info()
             champ = entry.champions.get(champion_name)
