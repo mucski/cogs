@@ -146,7 +146,9 @@ class Paladins(commands.Cog):
         if stats is None:
             print("You ain't played this champ yet!")
             return
-        if champion is not None:
+        if champion is None:
+            await ctx.send(f"```\n{stats_dict}\n```")
+        else:
             desc = (
                 f"```\nChampion role: {champ.role}\n"
                 f"Champion level: {stats.level}\n"
@@ -161,8 +163,6 @@ class Paladins(commands.Cog):
             e.description = desc
             e.set_footer(text=f"Individual champion stats for {player.name}")
             await ctx.send(embed=e)
-        else:
-            await ctx.send(f"```\n{stats_dict}\n```")
             
     @commands.command()
     async def stats(self, ctx, player, platform="PC"):
