@@ -25,21 +25,24 @@ class Paladins(commands.Cog):
     def cog_unload(self):
         asyncio.createTask(self.api.close())
         self.f.close()
+        
+    async def cog_command_error(self, ctx, error):
+        if isinstance(error, commands.CommandInvokeError):
+            exc = error.original
+            if isinstance(exc, arez.Unavailable):
+                await ctx.send("```\nHiRez API is unavailable.\n```")
+                return
+            if isinstance(exc, arez.Private):
+                await ctx.send("```\nRequested profile is set to private\n```")
+                return
+            if isinstance(exc, arez.NotFound):
+                await ctx.send("```\nNot found!\n```")
+                return
+        await ctx.bot.on_command_error(ctx, error, unhandled_by_cog=True)
 
     @commands.command()
     async def match(self, ctx, match_id_name):
         async with ctx.typing():
-            if isinstance(error, commands.CommandInvokeError):
-                exc = error.original
-                if isinstance(exc, arez.Unavailable):
-                    await ctx.send("```\nHiRez API is unavailable.\n```")
-                    return
-                if isinstance(exc, arez.Private):
-                    await ctx.send("```\nRequested profile is set to private\n```")
-                    return
-                if isinstance(exc, arez.NotFound):
-                    await ctx.send("```\nNot found!\n```")
-                    return
             if match_id_name.isdecimal():
                 match = await self.api.get_match(int(match_id_name), expand_players=True)
             else:
@@ -137,11 +140,11 @@ class Paladins(commands.Cog):
         entry = await self.api.get_champion_info()
         champ = entry.champions.get(champion)
         if champ is None:
-            print("You dun fucked up the champ's name!")
+            await ctx.send("```\nYou dun fucked up the champ's name!\n```")
             return
         stats = stats_dict.get(champ)
         if stats is None:
-            print("You ain't played this champ yet!")
+            await ctx.send("```\nYou ain't played this champ yet!\n```")
             return
         if champion is None:
             await ctx.send(f"```\n{stats_dict}\n```")
