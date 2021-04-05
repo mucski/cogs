@@ -131,9 +131,7 @@ class Paladins(commands.Cog):
         await ctx.send(data)
         
     @commands.command()
-    async def champstats(self, ctx, player, champion=None, platform=None):
-        if platform is None:
-            platform = "PC"
+    async def champstats(self, ctx, player, champion=None, platform="PC"):
         platform = arez.Platform(platform)
         player_obj = await self.api.search_players(player, platform)
         player = await player_obj[0]
@@ -164,7 +162,7 @@ class Paladins(commands.Cog):
             e.set_footer(text=f"Individual champion stats for {player.name}")
             await ctx.send(embed=e)
         else:
-            await ctx.send(f"```\n{''.join(champion_stats)}\n```")
+            await ctx.send(f"```\n{stats_dict}\n```")
             
     @commands.command()
     async def stats(self, ctx, player, platform="PC"):
