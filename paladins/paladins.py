@@ -154,7 +154,7 @@ class Paladins(commands.Cog):
             table_list.append(champion_hours)
             table_done = tabulate(table_list, headers=["Name(Level)", "K/D/A", "Winrate", "Hours played"], tablefmt="presto")
             for page in pagify(table_done):
-                await ctx.send(page)
+                await ctx.send("```\n{}\n```".format(page))
         else:
             entry = await self.api.get_champion_info()
             champ = entry.champions.get(champion_name)
