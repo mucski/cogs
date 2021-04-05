@@ -138,18 +138,13 @@ class Paladins(commands.Cog):
         champions_stats = await player.get_champion_stats()
         stats_dict = {s.champion: s for s in champions_stats}  # Dict[Champion, ChampionStats]
         if champion_name is None:
-            champion_names_levels = []
-            champion_kda = []
-            champion_winrate = []
-            champion_hours = []
+            table = []
             for i in range(len(champions_stats)):
-                champion_names_levels.append(f"{champions_stats[i].champion.name}({champions_stats[i].level})")
-                champion_kda.append(champions_stats[i].kda_text)
-                champion_winrate.append(champions_stats[i].winrate_text)
-                champion_hours.append(f"{math.floor(champions_stats[i].playtime.total_hours())} hours")
-            table_list = []
-            table_list.append(champion_names_levels + champion_kda + champion_winrate + champion_hours)
-            table_done = tabulate(table_list, headers=["Name(Level)", "K/D/A", "Winrate", "Hours played"], tablefmt="presto")
+                table.append(f"{champions_stats[i].champion.name}({champions_stats[i].level})")
+                table.append(champions_stats[i].kda_text)
+                table.append(champions_stats[i].winrate_text)
+                table.append(f"{math.floor(champions_stats[i].playtime.total_hours())} hours")
+            table_done = tabulate(table, headers=["Name(Level)", "K/D/A", "Winrate", "Hours played"], tablefmt="presto")
             for page in pagify(table_done):
                 await ctx.send("```\n{}\n```".format(page))
         else:
