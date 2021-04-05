@@ -102,7 +102,18 @@ class Paladins(commands.Cog):
     @commands.command()
     @checks.is_owner()
     async def hirez(self, ctx, request, *msg):
-        data = await self.api.request(request, *msg)
+        try:
+            data = await self.api.request(request, *msg)
+        except arez.HTTPException as exc:
+            if isinstance(exc, aiohttp.ClientResponseError):
+                await ctx.send(f"{exc.status}: {exc.message}")
+            elif isinstance(exc, aiohttp.ClientConnectionError):
+                await ctx.send(f"Failed to connect to api.")
+            elif isinstance(exc, asyncio.TimeoutError):
+                await ctx.send("Timed out.")
+            else:
+                await ctx.send("Unknown error")
+                return
         response = json.dumps(data, indent=4, sort_keys=True)
         if len(response) > 2000:
             f = StringIO(response)
