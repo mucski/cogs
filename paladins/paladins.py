@@ -140,7 +140,7 @@ class Paladins(commands.Cog):
         if champion_name is None:
             for i in range(len(champions_stats)):
                 table = []
-                table.append(f"{champions_stats[i].champion.name}({champions_stats[i].level})", champions_stats[i].kda_text, champions_stats[i].winrate_text, championstats[i].playtime.total_hours())
+                table.append(f"{champions_stats[i].champion.name}({champions_stats[i].level})")
                 table.append(champions_stats[i].kda_text)
                 table.append(champions_stats[i].winrate_text)
                 table.append(f"{math.floor(champions_stats[i].playtime.total_hours())} hours")
