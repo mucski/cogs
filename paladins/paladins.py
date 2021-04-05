@@ -29,13 +29,22 @@ class Paladins(commands.Cog):
         if isinstance(error, commands.CommandInvokeError):
             exc = error.original
             if isinstance(exc, arez.Unavailable):
-                await ctx.send("HiRez API is offline or unavaiable.")
+                await ctx.send("HiRez API is unavailable.")
                 return
             if isinstance(exc, arez.Private):
                 await ctx.send("Requested profile is set to private")
                 return
             if isinstance(exc, arez.NotFound):
                 await ctx.send("Not found!")
+                return
+            if isinstance(exc, asyncio.TimeoutError):
+                await ctx.send("Timed out!")
+                return
+            if isinstance(exc, aiohttp.ClientConnectionError):
+                await ctx.send("Failed due to aiohttp connection error.")
+                return
+            if isinstance(exc, aiohttp.ClientResponseError):
+                await ctx.send(f"```\n{exc.status}: {exc.message}\n```")
                 return
         await ctx.bot.on_command_error(ctx, error, unhandled_by_cog=True)
 
@@ -93,22 +102,7 @@ class Paladins(commands.Cog):
     @commands.command()
     @checks.is_owner()
     async def hirez(self, ctx, request, *msg):
-        try:
-            data = await self.api.request(request, *msg)
-        except arez.HTTPException as exc:
-            exc = exc.cause
-            if isinstance(exc, aiohttp.ClientResponseError):
-                await ctx.send(f"```\n{exc.status}: {exc.message}\n```")
-                return
-            elif isinstance(exc, aiohttp.ClientConnectionError):
-                await ctx.send(f"```\nFailed to connect to api.\n```")
-                return
-            elif isinstance(exc, asyncio.TimeoutError):
-                await ctx.send("```\nTimed out.```\n")
-                return
-            else:
-                await ctx.send("```\nUnknown error```\n")
-                return
+        data = await self.api.request(request, *msg)
         response = json.dumps(data, indent=4, sort_keys=True)
         if len(response) > 2000:
             f = StringIO(response)
