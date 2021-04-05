@@ -140,15 +140,15 @@ class Paladins(commands.Cog):
         champions_stats = await player.get_champion_stats()
         stats_dict = {s.champion: s for s in champions_stats}  # Dict[Champion, ChampionStats]
         entry = await self.api.get_champion_info()
+        champ = entry.champions.get(champion)
+        if champ is None:
+            print("You dun fucked up the champ's name!")
+            return
+        stats = stats_dict.get(champ)
+        if stats is None:
+            print("You ain't played this champ yet!")
+            return
         if champion is not None:
-            champ = entry.champions.get(champion)
-            if champ is None:
-                print("You dun fucked up the champ's name!")
-                return
-            stats = stats_dict.get(champ)
-            if stats is None:
-                print("You ain't played this champ yet!")
-                return
             desc = (
                 f"```\nChampion role: {champ.role}\n"
                 f"Champion level: {stats.level}\n"
