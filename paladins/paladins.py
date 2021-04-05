@@ -148,12 +148,12 @@ class Paladins(commands.Cog):
                 champion_kda.append(champions_stats[i].kda_text)
                 champion_winrate.append(champions_stats[i].winrate_text)
                 champion_hours.append(f"{math.floor(champions_stats[i].playtime.total_hours())} hours")
-            table = []
-            table.append(champion_names_levels)
-            table.append(champion_kda)
-            table.append(champion_winrate)
-            table.append(champion_hours)
-            table_done = tabulate(table, headers=["Name(Level)", "K/D/A", "Winrate", "Hours played"], tablefmt="presto")
+            table_list = []
+            table_list.append(champion_names_levels)
+            table_list.append(champion_kda)
+            table_list.append(champion_winrate)
+            table_list.append(champion_hours)
+            table_done = tabulate(table_list, headers=["Name(Level)", "K/D/A", "Winrate", "Hours played"], tablefmt="presto")
             for page in pagify(table_done):
                 await ctx.send(page)
         else:
