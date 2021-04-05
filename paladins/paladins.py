@@ -138,8 +138,7 @@ class Paladins(commands.Cog):
         champions_stats = await player.get_champion_stats()
         stats_dict = {s.champion: s for s in champions_stats}  # Dict[Champion, ChampionStats]
         if champion_name is None:
-            pagified_data = "```\n{}\n```".format('\n'.join(str(champions_stats)))
-            for page in pagify(pagified_data):
+            for page in pagify("```\n{}\n```".format('\n'.join(str(champions_stats)))):
                 await ctx.send(page)
         else:
             entry = await self.api.get_champion_info()
