@@ -139,7 +139,7 @@ class Paladins(commands.Cog):
         stats_dict = {s.champion: s for s in champions_stats}  # Dict[Champion, ChampionStats]
         if champion_name is None:
             for i in range(len(champions_stats)):
-                table = ["fuck", "shit", "dick", "cunt"]
+                table = [["fuck"], ["shit"], ["dick"], ["cunt"]]
             table_done = tabulate(table, headers=["Name(Level)", "K/D/A", "Winrate", "Hours played"], tablefmt="presto")
             for page in pagify(table_done):
                 await ctx.send("```\n{}\n```".format(page))
