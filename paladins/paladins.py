@@ -41,13 +41,14 @@ class Paladins(commands.Cog):
         await ctx.bot.on_command_error(ctx, error, unhandled_by_cog=True)
 
     @commands.command()
-    async def match(self, ctx, match_id_name):
+    async def match(self, ctx, match_id_name, platform="PC"):
         async with ctx.typing():
             if match_id_name.isdecimal():
                 match = await self.api.get_match(int(match_id_name), expand_players=True)
             else:
-                match = await self.api.get_player(match_id_name)
-                match = await match.get_match_history()
+                player_obj = await self.api.search_players(match_id_name, platform)
+                player = await player_obj[0]
+                match = await player.get_match_history()
                 try:
                     match = await match[0]
                 except IndexError:
@@ -131,11 +132,11 @@ class Paladins(commands.Cog):
         await ctx.send(data)
         
     @commands.command()
-    async def champstats(self, ctx, player, champion_name=None):
-        # platform = arez.Platform(platform)
-        # player_obj = await self.api.search_players(player, platform)
-        player = await self.api.get_player(player)
-        # player = await player_obj[0]
+    async def champstats(self, ctx, player, champion_name=None, platform="PC"):
+        platform = arez.Platform(platform)
+        player_obj = await self.api.search_players(player, platform)
+        # player = await self.api.get_player(player)
+        player = await player_obj[0]
         champions_stats = await player.get_champion_stats()
         stats_dict = {s.champion: s for s in champions_stats}  # Dict[Champion, ChampionStats]
         if champion_name is None:
