@@ -131,22 +131,23 @@ class Paladins(commands.Cog):
         await ctx.send(data)
         
     @commands.command()
-    async def champstats(self, ctx, player, champion_name=None, platform="PC"):
-        platform = arez.Platform(platform)
-        player_obj = await self.api.search_players(player, platform)
-        player = await player_obj[0]
+    async def champstats(self, ctx, player, champion_name=None):
+        # platform = arez.Platform(platform)
+        # player_obj = await self.api.search_players(player, platform)
+        player = await self.api.get_player(player)
+        # player = await player_obj[0]
         champions_stats = await player.get_champion_stats()
         stats_dict = {s.champion: s for s in champions_stats}  # Dict[Champion, ChampionStats]
         if champion_name is None:
             table = []
             for i in range(len(champions_stats)):
                 # table = [["fuck"], ["shit"], ["dick"], ["cunt"]]
-                test_table = []
-                test_table.append(f"{champions_stats[i].champion.name}({champions_stats[i].level})")
-                test_table.append(f"{champions_stats[i].kda_text}")
-                test_table.append(f"{champions_stats[i].winrate_text}") 
-                test_table.append(f"{math.floor(champions_stats[i].playtime.total_hours())} h")
-                table.append(test_table)
+                t = []
+                t.append(f"{champions_stats[i].champion.name}({champions_stats[i].level})")
+                t.append(f"{champions_stats[i].kda_text}")
+                t.append(f"{champions_stats[i].winrate_text}") 
+                t.append(f"{math.floor(champions_stats[i].playtime.total_hours())} h")
+                table.append(t)
             table_done = tabulate(table, headers=["Name(lvl)", "K/D/A", "Winrate", "Playtime"], tablefmt="presto")
             for page in pagify(table_done):
                 await ctx.send("```\n{}\n```".format(page))
