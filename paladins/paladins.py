@@ -133,14 +133,14 @@ class Paladins(commands.Cog):
         await ctx.send(data)
         
     @commands.command()
-    async def champstats(self, ctx, player, champion_name=None, platform="PC"):
+    async def champstats(self, ctx, champion_name="all", player, platform="PC"):
         platform = arez.Platform(platform)
         player_obj = await self.api.search_players(player, platform)
         # player = await self.api.get_player(player)
         player = await player_obj[0]
         champions_stats = await player.get_champion_stats()
         stats_dict = {s.champion: s for s in champions_stats}  # Dict[Champion, ChampionStats]
-        if champion_name is None:
+        if champion_name == "all":
             table = []
             for i in range(len(champions_stats)):
                 # table = [["fuck"], ["shit"], ["dick"], ["cunt"]]
