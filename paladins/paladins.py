@@ -133,7 +133,7 @@ class Paladins(commands.Cog):
         await ctx.send(data)
         
     @commands.command()
-    async def champstats(self, ctx, champion_name="all", player, platform="PC"):
+    async def champstats(self, ctx, champion_name="all", player="Player", platform="PC"):
         platform = arez.Platform(platform)
         player_obj = await self.api.search_players(player, platform)
         # player = await self.api.get_player(player)
