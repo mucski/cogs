@@ -43,6 +43,7 @@ class Paladins(commands.Cog):
     @commands.command()
     async def match(self, ctx, match_id_name, platform="PC"):
         async with ctx.typing():
+            platform = arez.Platform(platform)
             if match_id_name.isdecimal():
                 match = await self.api.get_match(int(match_id_name), expand_players=True)
             else:
