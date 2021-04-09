@@ -105,7 +105,7 @@ class Paladins(commands.Cog):
                 except arez.NotFound:
                     await ctx.send("```\nNo players found with that name\n```")
                     return
-                player = await player_list[0]
+                player = player_list[0]
             match_list = await player.get_match_history()
             if not match_list:
                 await ctx.send("```\nNo recent matches found.\n```")
@@ -148,6 +148,7 @@ class Paladins(commands.Cog):
                                                 team2_ranks, (match_info + temp))
             file = discord.File(filename=f"{player}.png", fp=buffer)
         await ctx.send(file=file)
+        await ctx.send(match)
 
     @commands.command()
     @checks.is_owner()
