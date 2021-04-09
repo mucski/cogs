@@ -12,6 +12,7 @@ import json
 from io import StringIO
 import math
 from tabulate import tabulate
+from typing import Union
 
 class Paladins(commands.Cog):
     def __init__(self, bot):
