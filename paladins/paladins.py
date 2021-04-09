@@ -42,7 +42,7 @@ class Paladins(commands.Cog):
         await ctx.bot.on_command_error(ctx, error, unhandled_by_cog=True)
 
     @commands.command()
-    async def match(self, ctx, match_id_name: Union[discord.Member, str] = None, platform="PC"):
+    async def last(self, ctx, match_id_name: Union[discord.Member, str] = None, platform="PC"):
         async with ctx.typing():
             if isinstance(match_id_name, discord.Member) or match_id_name is None:
                 if match_id_name is None:
@@ -52,33 +52,17 @@ class Paladins(commands.Cog):
                     # use the ID of the person mentioned
                     discord_id = match_id_name.id
                     # use discord_id to lookup their profile
-                ret = await self.api.get_from_platform(discord_id, arez.Platform.Discord)
-                match = await ret.get_match_history()
                 try:
-                    match = await match[0]
-                except IndexError:
-                    await ctx.send("!!!!!!!!")
-                    return
-                try: ret
-                except UnboundLocalError:
-                    await ctx.send("Link your discord to hirez first.")
+                    ret = await self.api.get_from_platform(discord_id, arez.Platform.Discord)
+                except arez.NotFound:
+                    await ctx.send("Profile not linked to Discord.")
                     return
             else:
                 # player is a str here
-                if match_id_name.isdecimal():
-                    match = await self.api.get_match(int(match_id_name), expand_players=True)
                 else:
                     ret = await self.api.search_players(match_id_name, arez.Platform(platform))
-                    ret = ret[0]
-                    match = await ret.get_match_history()
-                    try:
-                        match = await match[0]
-                        await match.expand_players()
-                    except IndexError:
-                        await ctx.send("```\nNo match found.\n```")
-                        return
-                    # await match.expand_players()
-            # await match.expand_players()
+            ret = ret[0]
+            match = await ret.get_match_history()
             team1_data = []
             team2_data = []
             team1_champs = []
