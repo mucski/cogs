@@ -55,7 +55,7 @@ class Paladins(commands.Cog):
                 try:
                     player = await self.api.get_from_platform(discord_id, arez.Platform.Discord)
                 except arez.NotFound:
-                    await ctx.send("Profile not linked to Discord.")
+                    await ctx.send("Discord account not linked to HiRez. Please link it first")
                     return
             else:
                 # player is a str here
@@ -65,7 +65,7 @@ class Paladins(commands.Cog):
             try:
                 match = await match_list[0]
             except IndexError:
-                await ctx.send("No match found.")
+                await ctx.send("``\nNo recent match found.\n```")
                 return
             await match.expand_players()
             team1_data = []
@@ -211,13 +211,26 @@ class Paladins(commands.Cog):
             await ctx.send(embed=e)
             
     @commands.command()
-    async def stats(self, ctx, player, platform="PC"):
-        platform = arez.Platform(platform)
-        if player.isdecimal():
-            player = await self.api.get_player(player)
+    async def stats(self, ctx, player: Union[discord.Member, str] = None, platform="PC"):
+        if isinstance(player, discord.Member) or player is None:
+            if player is None:
+                # use the ID of the caller
+                discord_id = ctx.author.id
+                player_name = ctx.author.display_name
+            else:
+                # use the ID of the person mentioned
+                discord_id = player.id
+                player_name = player.display_name
+                # use discord_id to lookup their profile
+            try:
+                player = await self.api.get_from_platform(discord_id, arez.Platform.Discord)
+            except arez.NotFound:
+                await ctx.send("Discord account not linked to HiRez. Please link it first")
         else:
-            player_obj = await self.api.search_players(player, platform)
-            player = await player_obj[0]
+            # player is a str here
+            player_list = await self.api.search_players(player, arez.Platform(platform))
+            player = await player_list[0]
+            player_name = player.name        
         desc = (
             "**__Player Stats__**\n"
             f"```\nAccount level: {player.level}\n"
@@ -245,7 +258,7 @@ class Paladins(commands.Cog):
             f" ({player.ranked_best.points} TP)\n```"
         )
         e = discord.Embed(color=await self.bot.get_embed_color(ctx),
-                          title=f"{player.name} ({player.platform}) "
+                          title=f"{player_name} ({player.platform}) "
                                 f"_({player.title})_")
         e.description = desc
         e.set_thumbnail(url=player.avatar_url)
