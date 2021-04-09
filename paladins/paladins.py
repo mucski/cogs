@@ -256,7 +256,7 @@ class Paladins(commands.Cog):
             
     @commands.command()
     async def stats(self, ctx, name: Union[discord.Member, str] = None, platform="PC"):
-        if isinstance(player, discord.Member) or player is None:
+        if isinstance(name, discord.Member) or name is None:
             if name is None:
                 # use the ID of the caller
                 player = ctx.author.id
