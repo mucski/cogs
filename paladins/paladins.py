@@ -42,9 +42,9 @@ class Paladins(commands.Cog):
         await ctx.bot.on_command_error(ctx, error, unhandled_by_cog=True)
 
     @commands.command()
-    async def last(self, ctx, match_id_name: Union[discord.Member, str] = None, platform="PC"):
+    async def last(self, ctx, player: Union[discord.Member, str] = None, platform="PC"):
         async with ctx.typing():
-            if isinstance(match_id_name, discord.Member) or match_id_name is None:
+            if isinstance(player, discord.Member) or player is None:
                 if match_id_name is None:
                     # use the ID of the caller
                     discord_id = ctx.author.id
@@ -53,14 +53,14 @@ class Paladins(commands.Cog):
                     discord_id = match_id_name.id
                     # use discord_id to lookup their profile
                 try:
-                    ret = await self.api.get_from_platform(discord_id, arez.Platform.Discord)
+                    player = await self.api.get_from_platform(discord_id, arez.Platform.Discord)
                 except arez.NotFound:
                     await ctx.send("Profile not linked to Discord.")
                     return
             else:
                 # player is a str here
-                ret = await self.api.search_players(match_id_name, arez.Platform(platform))
-            ret = ret[0]
+                player_list = await self.api.search_players(match_id_name, arez.Platform(platform))
+                player = player_list[0]
             match = await ret.get_match_history()
             team1_data = []
             team2_data = []
