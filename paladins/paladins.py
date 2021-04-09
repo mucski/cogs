@@ -255,16 +255,16 @@ class Paladins(commands.Cog):
             await ctx.send(embed=e)
             
     @commands.command()
-    async def stats(self, ctx, player: Union[discord.Member, str] = None, platform="PC"):
+    async def stats(self, ctx, name: Union[discord.Member, str] = None, platform="PC"):
         if isinstance(player, discord.Member) or player is None:
-            if player is None:
+            if name is None:
                 # use the ID of the caller
                 player = ctx.author.id
                 player_name = ctx.author.display_name
             else:
                 # use the ID of the person mentioned
-                player = player.id
-                player_name = player.display_name
+                player = name.id
+                player_name = name.display_name
                 # use discord_id to lookup their profile
             try:
                 player_obj = await self.api.get_from_platform(player, arez.Platform.Discord)
@@ -274,7 +274,7 @@ class Paladins(commands.Cog):
             player = await player_obj
         else:
             # player is a str here
-            player_list = await self.api.search_players(player, arez.Platform(platform))
+            player_list = await self.api.search_players(name, arez.Platform(platform))
             player = await player_list[0]
             player_name = player.name        
         desc = (
