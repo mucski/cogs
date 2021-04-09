@@ -206,6 +206,55 @@ class helper:
         return final_buffer
 
     @classmethod
+    # Creates a match image based on the two teams champions
+    async def test_history_image(cls, team1, t1_data, r1, match_data):
+        shrink = 140
+        image_size_y = 512 - shrink*2
+        image_size_x = 512
+        offset = 5
+        history_image = Image.new("RGB", (image_size_x*9+400, image_size_y*12 + 264))
+        # Adds the top key panel
+        key = await helper.player_key_image(image_size_x, image_size_y)
+        history_image.paste(key, (0, 0))
+        # Creates middle panel
+        mid_panel = await helper.middle_panel(match_data)
+        history_image.paste(mid_panel, (0, 1392-40))
+        # Adding in player data
+        for i, (champ, champ2) in enumerate(zip(team1)):
+            try:
+                async with aiohttp.ClientSession() as session:
+                    url = await helper.get_champ_name(champ)
+                    async with session.get(url) as resp:
+                        if resp.status == 200:
+                            resp = await resp.read()
+                            champ_image = Image.open(BytesIO(resp))
+                if champ_image.size != (512, 512):
+                    (width, height) = (champ_image.width * 2, champ_image.height * 2)
+                    champ_image_ready = champ_image.resize((width, height))
+                else:
+                    champ_image_ready = champ_image
+            except FileNotFoundError:
+                champ_image_ready = Image.open(
+                    f"home/ubuntu/icons/temp_card_art.png")
+            border = (0, shrink, 0, shrink)  # left, up, right, bottom
+            champ_image_ready = ImageOps.crop(champ_image_ready, border)
+            rank_icon = Image.open(f"home/ubuntu/icons/ranks/{r1[i]}.png")
+            # history_image.paste(champ_image, (0, image_size*i, image_size, image_size*(i+1)))
+            player_panel = await helper.stats_image(champ_image_ready, rank_icon, t1_data[i], i)
+            history_image.paste(player_panel, (0, (image_size_y+10)*i+132))
+        # Base speed is 10 - seconds
+        history_image = history_image.resize(
+            (4608//2, 3048//2), Image.ANTIALIAS)           # 5 seconds
+        # history_image = history_image.resize((4608 // 4, 3048 // 4), Image.ANTIALIAS)     # 2.5 secs but bad looking
+        # Creates a buffer to store the image in
+        final_buffer = BytesIO()
+        # Store the pillow image we just created into the buffer with the PNG format
+        history_image.save(final_buffer, "PNG")
+        # seek back to the start of the buffer stream
+        final_buffer.seek(0)
+        return final_buffer
+
+    @classmethod
     async def middle_panel(cls, md):
         middle_panel = Image.new("RGB", (512*9+400, 512), color=(14, 52, 60))
         # Adding in map to image
