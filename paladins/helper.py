@@ -241,10 +241,10 @@ class helper:
             rank_icon = Image.open(f"home/ubuntu/icons/ranks/{r1[i]}.png")
             # history_image.paste(champ_image, (0, image_size*i, image_size, image_size*(i+1)))
             player_panel = await helper.stats_image(champ_image_ready, rank_icon, t1_data[i], i)
-            if i == 5:
-                (x, y) = (0, (image_size_y+10)*i+132+512)
-            else:
+            while i < 5:
                 (x, y) = (0, (image_size_y+10)*i+132)
+            continue:
+                (x, y) = (0, (image_size_y+10)*i+132+512)
             history_image.paste(player_panel, (x, y))
         # Base speed is 10 - seconds
         history_image = history_image.resize(
