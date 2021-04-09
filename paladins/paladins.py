@@ -123,7 +123,7 @@ class Paladins(commands.Cog):
 
     @commands.command()
     @checks.is_owner()
-    async def testing(self, ctx, player, platform=None):
+    async def testing(self, ctx, player=None, platform=None):
         platform = arez.Platform(platform)
         if player is None:
             player = ctx.author.id
