@@ -54,6 +54,7 @@ class Paladins(commands.Cog):
                     # use discord_id to lookup their profile
                 ret = await self.api.get_from_platform(discord_id, arez.Platform.Discord)
                 match = await ret.get_match_history()
+                await match.expand_players()
                 try:
                     match = await match[0]
                 except IndexError:
@@ -71,6 +72,7 @@ class Paladins(commands.Cog):
                     ret = await self.api.search_players(match_id_name, arez.Platform(platform))
                     ret = await ret[0]
                     match = await ret.get_match_history()
+                    await match.expand_players()
                     try:
                         match = await match[0]
                     except IndexError:
