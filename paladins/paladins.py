@@ -67,16 +67,22 @@ class Paladins(commands.Cog):
                     team1_champs.append(match_player.champion.name)
                     team1_ranks.append(rank)
                 else:
-                    if match_player.player.private:
+                    if not match_player.team2:
                         rank = "99"
+                        team2_data.append(["Bot", "0", "0", "0/0/0", "0", "0", "0", "0", "0", "0", "0", "0"])
+                        team2_champs.append("Jenos")
+                        team2_ranks.append(rank)
                     else:
-                        rank = match_player.player.ranked_best.rank.value
-                    team2_data.append([match_player.player.name, match_player.account_level, match_player.credits, match_player.kda_text,
-                                       match_player.damage_done, match_player.damage_taken,
-                                       match_player.objective_time, match_player.damage_mitigated,
-                                       match_player.healing_done, match_player.party_number, match_player.player.platform, match_player.healing_self])
-                    team2_champs.append(match_player.champion.name)
-                    team2_ranks.append(rank)
+                        if match_player.player.private:
+                            rank = "99"
+                        else:
+                            rank = match_player.player.ranked_best.rank.value
+                        team2_data.append([match_player.player.name, match_player.account_level, match_player.credits, match_player.kda_text,
+                                           match_player.damage_done, match_player.damage_taken,
+                                           match_player.objective_time, match_player.damage_mitigated,
+                                           match_player.healing_done, match_player.party_number, match_player.player.platform, match_player.healing_self])
+                        team2_champs.append(match_player.champion.name)
+                        team2_ranks.append(rank)
             buffer = await helper.history_image(team1_champs, team2_champs, team1_data, team2_data, team1_ranks,
                                                 team2_ranks, (match_info + temp))
             file = discord.File(filename=f"{matchid}.png", fp=buffer)
