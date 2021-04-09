@@ -82,7 +82,7 @@ class Paladins(commands.Cog):
             file = discord.File(filename=f"{matchid}.png", fp=buffer)
         await ctx.send(file=file)
         for player in match.players:
-            if not player:
+            if player.disconnected:
                 await ctx.send("Bot")
             else:
                 await ctx.send(player)
