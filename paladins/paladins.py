@@ -125,11 +125,11 @@ class Paladins(commands.Cog):
     @checks.is_owner()
     async def testing(self, ctx, player=None, platform=None):
         platform = arez.Platform(platform)
-        if player is None:
-            player = ctx.author.id
-        if player is discord.Member:
-            player = member.id
         if platform is None:
+            if player is None:
+                player = ctx.author.id
+            if player is discord.Member:
+                player = member.id
             player = self.api.get_player(player)
         else:
             player_obj = await self.api.search_players(player, platform)
