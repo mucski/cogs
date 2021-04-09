@@ -54,6 +54,10 @@ class Paladins(commands.Cog):
                     # use discord_id to lookup their profile
                 ret = await self.api.get_from_platform(discord_id, arez.Platform.Discord)
                 match = await ret.get_match_history()
+                try ret:
+                except UnboundLocalError:
+                    await ctx.send("Link your discord to hirez first.")
+                    return
             else:
                 # player is a str here
                 if match_id_name.isdecimal():
@@ -62,10 +66,6 @@ class Paladins(commands.Cog):
                     ret = await self.api.search_players(match_id_name, arez.Platform(platform))
                     ret = await ret[0]
                     match = await ret.get_match_history()
-            try: ret
-            except UnboundLocalError:
-                await ctx.send("```\nThis user did not link Discord to HiRez.\n```")
-                return
             try:
                 match = await match[0]
             except IndexError:
