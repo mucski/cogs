@@ -50,7 +50,7 @@ class Paladins(commands.Cog):
                     discord_id = ctx.author.id
                 else:
                     # use the ID of the person mentioned
-                    discord_id = match_id_name.id
+                    discord_id = player.id
                     # use discord_id to lookup their profile
                 try:
                     player = await self.api.get_from_platform(discord_id, arez.Platform.Discord)
@@ -60,9 +60,9 @@ class Paladins(commands.Cog):
             else:
                 # player is a str here
                 player_list = await self.api.search_players(player, arez.Platform(platform))
-                player = await player_list[0]
+                player = player_list[0]
             match_list = await player.get_match_history()
-            match = await match_list[0]
+            match = match_list[0]
             team1_data = []
             team2_data = []
             team1_champs = []
