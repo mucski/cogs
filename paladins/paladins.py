@@ -124,11 +124,12 @@ class Paladins(commands.Cog):
     @commands.command()
     @checks.is_owner()
     async def testing(self, ctx, player, platform=None):
-        if platform is not None:
-            platform = "PC"
         platform = arez.Platform(platform)
-        player_obj = await self.api.search_players(player, platform)
-        player = await player_obj[0]
+        if platform is None:
+            player = self.api.get_player(player)
+        else:
+            player_obj = await self.api.search_players(player, platform)
+            player = await player_obj[0]
         data = await player.get_champion_stats()
         await ctx.send(data)
         
