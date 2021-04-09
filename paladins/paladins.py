@@ -45,12 +45,12 @@ class Paladins(commands.Cog):
     async def match(self, ctx, match_id_name: Union[discord.Member, str], platform="PC"):
         async with ctx.typing():
             if isinstance(match_id_name, discord.Member) or match_id_name is None:
-                if player is None:
+                if match_id_name is None:
                     # use the ID of the caller
                     discord_id = ctx.author.id
                 else:
                     # use the ID of the person mentioned
-                    discord_id = player.id
+                    discord_id = match_id_name.id
                     # use discord_id to lookup their profile
                     ret = await self.api.get_from_platform(discord_id, arez.Platform.Discord)
                     match = await ret.get_match_history()
@@ -59,7 +59,7 @@ class Paladins(commands.Cog):
                 if match_id_name.isdecimal():
                     match = await self.api.get_player(int(match_id_name), expand_players=True)
                 else:
-                    ret = await self.api.search_players(player, arez.Platform(platform))
+                    ret = await self.api.search_players(match_id_name, arez.Platform(platform))
                     ret = await ret[0]
                     match = await ret.get_match_history()
             try: ret
