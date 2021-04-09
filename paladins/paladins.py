@@ -52,8 +52,8 @@ class Paladins(commands.Cog):
                     # use the ID of the person mentioned
                     discord_id = match_id_name.id
                     # use discord_id to lookup their profile
-                    ret = await self.api.get_from_platform(discord_id, arez.Platform.Discord)
-                    match = await ret.get_match_history()
+                ret = await self.api.get_from_platform(discord_id, arez.Platform.Discord)
+                match = await ret.get_match_history()
             else:
                 # player is a str here
                 if match_id_name.isdecimal():
