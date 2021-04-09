@@ -64,7 +64,7 @@ class Paladins(commands.Cog):
                 except arez.NotFound:
                     await ctx.send("No players found with that name")
                     return
-                player = player_list[0]
+            player = player_list[0]
             match_list = await player.get_match_history()
             match = await match_list[0]
             await match.expand_players()
