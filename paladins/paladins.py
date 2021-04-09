@@ -69,7 +69,7 @@ class Paladins(commands.Cog):
                     match = await self.api.get_match(int(match_id_name), expand_players=True)
                 else:
                     ret = await self.api.search_players(match_id_name, arez.Platform(platform))
-                    ret = await ret[0]
+                    ret = ret[0]
                     match = await ret.get_match_history()
                     try:
                         match = await match[0]
