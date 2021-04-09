@@ -44,7 +44,7 @@ class Paladins(commands.Cog):
     @commands.command()
     async def match(self, ctx, matchid: int):
         async with ctx.typing():
-            match = self.api.get_match(matchid, expand_players=True)
+            match = await self.api.get_match(matchid, expand_players=True)
             team1_data = []
             team2_data = []
             team1_champs = []
