@@ -62,7 +62,11 @@ class Paladins(commands.Cog):
                 player_list = await self.api.search_players(player, arez.Platform(platform))
                 player = player_list[0]
             match_list = await player.get_match_history()
-            match = await match_list[0]
+            try:
+                match = await match_list[0]
+            except IndexError:
+                await ctx.send("No match found.")
+                return
             await match.expand_players()
             team1_data = []
             team2_data = []
