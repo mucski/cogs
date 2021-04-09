@@ -46,11 +46,11 @@ class Paladins(commands.Cog):
         async with ctx.typing():
             match = await self.api.get_match(matchid, expand_players=True)
             team1_data = []
-            # team2_data = []
+            team2_data = []
             team1_champs = []
             team1_ranks = []
-            # team2_ranks = []
-            # team2_champs = []
+            team2_ranks = []
+            team2_champs = []
             match_info = [match.winning_team, match.duration.minutes, match.region.name,
                           match.map_name, match.score[0], match.score[1]]
             temp = match.bans
@@ -68,7 +68,16 @@ class Paladins(commands.Cog):
                     team1_data.append(row)
                     team1_champs.append(match_player.champion.name)
                     team1_ranks.append(rank)
-            buffer = await helper.test_history_image(team1_champs, team1_data, team1_ranks, (match_info + temp))
+                else:
+                    if match_player.player.private:
+                        rank = "99"
+                    else:
+                        rank = match_player.player.ranked_best.rank.value
+                    team2_data.append(row)
+                    team2_champs.append(match_player.champion.name)
+                    team2_ranks.append(rank)
+            buffer = await helper.history_image(team1_champs, team2_champs, team1_data, team2_data, team1_ranks,
+                                                team2_ranks, (match_info + temp))
             file = discord.File(filename=f"{matchid}.png", fp=buffer)
         await ctx.send(file=file)
 
