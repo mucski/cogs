@@ -42,6 +42,47 @@ class Paladins(commands.Cog):
         await ctx.bot.on_command_error(ctx, error, unhandled_by_cog=True)
 
     @commands.command()
+    async def match(self, ctx, matchid: int):
+        async with ctx.typing():
+            match = self.api.get_match(matchid, expand_players=True)
+            team1_data = []
+            team2_data = []
+            team1_champs = []
+            team1_ranks = []
+            team2_ranks = []
+            team2_champs = []
+            match_info = [match.winning_team, match.duration.minutes, match.region.name,
+                          match.map_name, match.score[0], match.score[1]]
+            temp = match.bans
+            for match_player in match.players:
+                if match_player.team_number == 1:
+                    if match_player.player.private:
+                        rank = "99"
+                    else:
+                        rank = match_player.player.ranked_best.rank.value
+                    team1_data.append([match_player.player.name, match_player.account_level, match_player.credits, match_player.kda_text,
+                                       match_player.damage_done, match_player.damage_taken,
+                                       match_player.objective_time, match_player.damage_mitigated,
+                                       match_player.healing_done, match_player.party_number, match_player.player.platform, match_player.healing_self])
+                    team1_champs.append(match_player.champion.name)
+                    team1_ranks.append(rank)
+                else:
+                    if match_player.player.private:
+                        rank = "99"
+                    else:
+                        rank = match_player.player.ranked_best.rank.value
+                    team2_data.append([match_player.player.name, match_player.account_level, match_player.credits, match_player.kda_text,
+                                       match_player.damage_done, match_player.damage_taken,
+                                       match_player.objective_time, match_player.damage_mitigated,
+                                       match_player.healing_done, match_player.party_number, match_player.player.platform, match_player.healing_self])
+                    team2_champs.append(match_player.champion.name)
+                    team2_ranks.append(rank)
+            buffer = await helper.history_image(team1_champs, team2_champs, team1_data, team2_data, team1_ranks,
+                                                team2_ranks, (match_info + temp))
+            file = discord.File(filename=f"{matchid}.png", fp=buffer)
+        await ctx.send(file=file)
+
+    @commands.command()
     async def last(self, ctx, player: Union[discord.Member, str] = None, platform="PC"):
         async with ctx.typing():
             if isinstance(player, discord.Member) or player is None:
@@ -66,11 +107,9 @@ class Paladins(commands.Cog):
                     return
                 player = player_list[0]
             match_list = await player.get_match_history()
-            try:
-                match = await match_list[0]
-            except IndexError:
-                await ctx.send("```\nNo recent maches found.\n```")
-                return
+            if not match_list:
+                await ctx.send("```\nNo recent matches found.\n```")
+            match = await match_list[0]
             await match.expand_players()
             team1_data = []
             team2_data = []
