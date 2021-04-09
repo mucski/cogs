@@ -123,24 +123,20 @@ class Paladins(commands.Cog):
 
     @commands.command()
     @checks.is_owner()
-    async def testing(self, ctx, player: discord.Member = None, platform="PC"):
-        try:
-            if player.mention:
-                platform = "Discord"
-                platform = arez.Platform(platform)
-                discord_id = int(player.id)
-                ret = await self.api.get_from_platform(discord_id, platform)
-        except AttributeError:
-            pass
-        if player is None:
-            player = ctx.author
-            platform = "Discord"
-            platform = arez.Platform(platform)
-            discord_id = int(player.id)
-            ret = await self.api.get_from_platform(discord_id, platform)
+    async def testing(self, ctx, player: Union[discord.Member, str] = None, platform="PC"):
+        if isinstance(player, discord.Member) or player is None:
+            if player is None:
+                # use the ID of the caller
+                discord_id = ctx.author.id
+            else:
+                # use the ID of the person mentioned
+                discord_id = player.id
+            # use discord_id to lookup their profile
+            ret = await self.api.get_from_platform(discord_id, arez.Platform.Discord)
         else:
-            player_obj = await self.api.search_players(player, platform)
-            ret = await player_obj[0]
+            # player is a str here
+            ret = await self.api.search_players(player, arez.Platform(platform)) 
+            ret = ret[0]
         data = await ret.get_champion_stats()
         await ctx.send(data)
         
