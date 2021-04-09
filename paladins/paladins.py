@@ -73,6 +73,7 @@ class Paladins(commands.Cog):
                     match = await ret.get_match_history()
                     try:
                         match = await match[0]
+                        await match.expand_players()
                     except IndexError:
                         await ctx.send("```\nNo match found.\n```")
                         return
