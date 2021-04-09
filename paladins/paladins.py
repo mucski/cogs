@@ -54,7 +54,7 @@ class Paladins(commands.Cog):
                     # use discord_id to lookup their profile
                 ret = await self.api.get_from_platform(discord_id, arez.Platform.Discord)
                 match = await ret.get_match_history()
-                try ret:
+                try: ret
                 except UnboundLocalError:
                     await ctx.send("Link your discord to hirez first.")
                     return
