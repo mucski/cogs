@@ -45,7 +45,7 @@ class Paladins(commands.Cog):
     async def last(self, ctx, player: Union[discord.Member, str] = None, platform="PC"):
         async with ctx.typing():
             if isinstance(player, discord.Member) or player is None:
-                if match_id_name is None:
+                if player is None:
                     # use the ID of the caller
                     discord_id = ctx.author.id
                 else:
