@@ -83,7 +83,7 @@ class Paladins(commands.Cog):
         await ctx.send(file=file)
         for player in match.players:
             if not player:
-                await ctx.("Bot")
+                await ctx.send("Bot")
             else:
                 await ctx.send(player)
 
