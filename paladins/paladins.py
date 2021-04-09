@@ -57,7 +57,7 @@ class Paladins(commands.Cog):
             else:
                 # player is a str here
                 if match_id_name.isdecimal():
-                    match = await self.api.get_player(int(match_id_name))
+                    match = await self.api.get_match(int(match_id_name), expand_players=True)
                 else:
                     ret = await self.api.search_players(match_id_name, arez.Platform(platform))
                     ret = await ret[0]
