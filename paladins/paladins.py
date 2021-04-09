@@ -63,7 +63,7 @@ class Paladins(commands.Cog):
                 player = player_list[0]
             match_list = await player.get_match_history()
             match = await match_list[0]
-            await match.expland_players()
+            await match.expand_players()
             team1_data = []
             team2_data = []
             team1_champs = []
