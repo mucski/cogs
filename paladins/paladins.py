@@ -227,7 +227,7 @@ class Paladins(commands.Cog):
             except arez.NotFound:
                 await ctx.send("Discord account not linked to HiRez. Please link it first")
                 return
-                player = await player_obj
+            player = await player_obj
         else:
             # player is a str here
             player_list = await self.api.search_players(player, arez.Platform(platform))
