@@ -130,11 +130,11 @@ class Paladins(commands.Cog):
                 player = ctx.author.id
             if player is discord.Member:
                 player = member.id
-            player = self.api.get_player(player)
+            ret = await self.api.get_from_platform(player)
         else:
             player_obj = await self.api.search_players(player, platform)
-            player = await player_obj[0]
-        data = await player.get_champion_stats()
+            ret = await player_obj[0]
+        data = await ret.get_champion_stats()
         await ctx.send(data)
         
     @commands.command()
