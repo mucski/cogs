@@ -160,19 +160,12 @@ class Paladins(commands.Cog):
                 player_name = player.display_name
                 # use discord_id to lookup their profile
             ret = await self.api.get_from_platform(discord_id, arez.Platform.Discord)
-            # champions_stats = await ret.get_champion_stats()
-            # stats_dict = {s.champion: s for s in champions_stats}  # Dict[Champion, ChampionStats]
         else:
             # player is a str here
             ret = await self.api.search_players(player, arez.Platform(platform))
             ret = await ret[0]
             player_name = ret.name
-        try: ret
-        except UnboundLocalError:
-            await ctx.send("```\nThis user did not link Discord to HiRez.\n```")
-            return
         champions_stats = await ret.get_champion_stats()
-        # stats_dict = {s.champion: s for s in champions_stats}  # Dict[Champion, ChampionStats]
         stats_dict = {s.champion: s for s in champions_stats}  # Dict[Champion, ChampionStats]
         if champion_name == "all":
             table = []
