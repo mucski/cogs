@@ -135,7 +135,7 @@ class Paladins(commands.Cog):
             ret = await self.api.get_from_platform(discord_id, arez.Platform.Discord)
         else:
             # player is a str here
-            ret = await self.api.search_players(player, arez.Platform(platform)) 
+            ret = await self.api.search_players(player, arez.Platform(platform))
             ret = ret[0]
         data = await ret.get_champion_stats()
         await ctx.send(data)
