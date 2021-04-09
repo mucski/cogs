@@ -193,7 +193,7 @@ class Paladins(commands.Cog):
             e = discord.Embed(color=await self.bot.get_embed_color(ctx), title=f"{champ.name} ({champ.title})")
             e.set_thumbnail(url=champ.icon_url)
             e.description = desc
-            e.set_footer(text=f"Individual champion stats for {player.name}")
+            e.set_footer(text=f"Individual champion stats for ")
             await ctx.send(embed=e)
             
     @commands.command()
