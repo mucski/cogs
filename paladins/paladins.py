@@ -76,7 +76,7 @@ class Paladins(commands.Cog):
                     except IndexError:
                         await ctx.send("```\nNo match found.\n```")
                         return
-                    await match.expand_players()
+                    # await match.expand_players()
             # await match.expand_players()
             team1_data = []
             team2_data = []
