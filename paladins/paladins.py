@@ -48,16 +48,12 @@ class Paladins(commands.Cog):
                 if player is None:
                     # use the ID of the caller
                     discord_id = ctx.author.id
-                    # player_name = ctx.author.display_name
                 else:
                     # use the ID of the person mentioned
                     discord_id = player.id
-                    # player_name = player.display_name
                     # use discord_id to lookup their profile
                     ret = await self.api.get_from_platform(discord_id, arez.Platform.Discord)
                     match = await ret.get_match_history()
-                    # champions_stats = await ret.get_champion_stats()
-                    # stats_dict = {s.champion: s for s in champions_stats}  # Dict[Champion, ChampionStats]
             else:
                 # player is a str here
                 if match_id_name.isdecimal():
