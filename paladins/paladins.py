@@ -46,11 +46,11 @@ class Paladins(commands.Cog):
         async with ctx.typing():
             match = await self.api.get_match(matchid, expand_players=True)
             team1_data = []
-            team2_data = []
+            # team2_data = []
             team1_champs = []
             team1_ranks = []
-            team2_ranks = []
-            team2_champs = []
+            # team2_ranks = []
+            # team2_champs = []
             match_info = [match.winning_team, match.duration.minutes, match.region.name,
                           match.map_name, match.score[0], match.score[1]]
             temp = match.bans
