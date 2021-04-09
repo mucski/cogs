@@ -109,6 +109,7 @@ class Paladins(commands.Cog):
             match_list = await player.get_match_history()
             if not match_list:
                 await ctx.send("```\nNo recent matches found.\n```")
+                return
             match = await match_list[0]
             await match.expand_players()
             team1_data = []
