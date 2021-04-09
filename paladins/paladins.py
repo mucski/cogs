@@ -153,12 +153,14 @@ class Paladins(commands.Cog):
                 # use discord_id to lookup their profile
                 ret = await self.api.get_from_platform(discord_id, arez.Platform.Discord)
                 champions_stats = await ret.get_champion_stats()
+                stats_dict = {s.champion: s for s in champions_stats}  # Dict[Champion, ChampionStats]
         else:
             # player is a str here
             ret = await self.api.search_players(player, arez.Platform(platform))
             ret = await ret[0]
             champions_stats = await ret.get_champion_stats()
-        stats_dict = {s.champion: s for s in champions_stats}  # Dict[Champion, ChampionStats]
+            stats_dict = {s.champion: s for s in champions_stats}  # Dict[Champion, ChampionStats]
+        # stats_dict = {s.champion: s for s in champions_stats}  # Dict[Champion, ChampionStats]
         if champion_name == "all":
             table = []
             for i in range(len(champions_stats)):
