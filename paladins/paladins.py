@@ -147,9 +147,11 @@ class Paladins(commands.Cog):
             if player is None:
                 # use the ID of the caller
                 discord_id = ctx.author.id
+                player_name = ctx.author.display_name
             else:
                 # use the ID of the person mentioned
                 discord_id = player.id
+                player_name = player.display_name
                 # use discord_id to lookup their profile
                 ret = await self.api.get_from_platform(discord_id, arez.Platform.Discord)
                 # champions_stats = await ret.get_champion_stats()
@@ -158,6 +160,7 @@ class Paladins(commands.Cog):
             # player is a str here
             ret = await self.api.search_players(player, arez.Platform(platform))
             ret = await ret[0]
+            player_name = ret.name
         try: ret
         except UnboundLocalError:
             await ctx.send("This user did not link discord to HiRez.")
@@ -200,7 +203,7 @@ class Paladins(commands.Cog):
             e = discord.Embed(color=await self.bot.get_embed_color(ctx), title=f"{champ.name} ({champ.title})")
             e.set_thumbnail(url=champ.icon_url)
             e.description = desc
-            e.set_footer(text=f"Individual champion stats for ")
+            e.set_footer(text=f"Individual champion stats for {player_name}")
             await ctx.send(embed=e)
             
     @commands.command()
