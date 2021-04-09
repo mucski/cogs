@@ -220,7 +220,7 @@ class helper:
         mid_panel = await helper.middle_panel(match_data)
         history_image.paste(mid_panel, (0, 1392-40))
         # Adding in player data
-        for i, (champ) in enumerate(zip(team1)):
+        for i, champ in enumerate(zip(team1)):
             try:
                 async with aiohttp.ClientSession() as session:
                     url = await helper.get_champ_name(champ)
