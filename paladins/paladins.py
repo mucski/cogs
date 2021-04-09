@@ -62,7 +62,7 @@ class Paladins(commands.Cog):
                     ret = await self.api.search_players(player, arez.Platform(platform))
                     ret = await ret[0]
                     match = await ret.get_match_history()
-            for Nonetry: ret
+            try: ret
             except UnboundLocalError:
                 await ctx.send("```\nThis user did not link Discord to HiRez.\n```")
                 return
