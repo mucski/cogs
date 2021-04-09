@@ -42,21 +42,40 @@ class Paladins(commands.Cog):
         await ctx.bot.on_command_error(ctx, error, unhandled_by_cog=True)
 
     @commands.command()
-    async def match(self, ctx, match_id_name, platform="PC"):
+    async def match(self, ctx, match_id_name: Union[discord.Member, str], platform="PC"):
         async with ctx.typing():
-            platform = arez.Platform(platform)
-            if match_id_name.isdecimal():
-                match = await self.api.get_match(int(match_id_name), expand_players=True)
+            if isinstance(match_id_name, discord.Member) or match_id_name is None:
+                if player is None:
+                    # use the ID of the caller
+                    discord_id = ctx.author.id
+                    player_name = ctx.author.display_name
+                else:
+                    # use the ID of the person mentioned
+                    discord_id = player.id
+                    player_name = player.display_name
+                    # use discord_id to lookup their profile
+                    ret = await self.api.get_from_platform(discord_id, arez.Platform.Discord)
+                    match = await ret.get_match_history()
+                    # champions_stats = await ret.get_champion_stats()
+                    # stats_dict = {s.champion: s for s in champions_stats}  # Dict[Champion, ChampionStats]
             else:
-                player_obj = await self.api.search_players(match_id_name, platform)
-                player = await player_obj[0]
-                match = await player.get_match_history()
-                try:
-                    match = await match[0]
-                except IndexError:
-                    await ctx.send("```\nNo match found.\n```")
-                    return
-                await match.expand_players()
+                # player is a str here
+                if match_id_name.isdecimal():
+                    match = await self.api.get_player(int(match_id_name), expand_players=True)
+                else:
+                    ret = await self.api.search_players(player, arez.Platform(platform))
+                    ret = await ret[0]
+                    match = await ret.get_match_history()
+            for Nonetry: ret
+            except UnboundLocalError:
+                await ctx.send("```\nThis user did not link Discord to HiRez.\n```")
+                return
+            try:
+                match = await match[0]
+            except IndexError:
+                await ctx.send("```\nNo match found.\n```")
+                return
+            await match.expand_players()
             team1_data = []
             team2_data = []
             team1_champs = []
@@ -163,7 +182,7 @@ class Paladins(commands.Cog):
             player_name = ret.name
         try: ret
         except UnboundLocalError:
-            await ctx.send("This user did not link discord to HiRez.")
+            await ctx.send("```\nThis user did not link Discord to HiRez.\n```")
             return
         champions_stats = await ret.get_champion_stats()
         # stats_dict = {s.champion: s for s in champions_stats}  # Dict[Champion, ChampionStats]
