@@ -157,7 +157,7 @@ class Paladins(commands.Cog):
         await ctx.send(data)
         
     @commands.command()
-    async def champstats(self, ctx, player: Union[discord.Member, str] = None, champion_name = "all", platform = "PC"):
+    async def champstats(self, ctx, champion_name = "all", player: Union[discord.Member, str] = None, platform = "PC"):
         if isinstance(player, discord.Member) or player is None:
             if player is None:
                 # use the ID of the caller
