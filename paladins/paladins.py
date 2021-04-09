@@ -56,10 +56,10 @@ class Paladins(commands.Cog):
             temp = match.bans
             for match_player in match.players:
                 if match_player.team_number == 1:
-                    if not match_player.rank:
+                    if match_player.player.private:
                         rank = "99"
                     else:
-                        rank = match_player.rank
+                        rank = match_player.player.ranked_best.rank.value
                     team1_data.append([match_player.player.name, match_player.account_level, match_player.credits, match_player.kda_text,
                                        match_player.damage_done, match_player.damage_taken,
                                        match_player.objective_time, match_player.damage_mitigated,
@@ -67,10 +67,10 @@ class Paladins(commands.Cog):
                     team1_champs.append(match_player.champion.name)
                     team1_ranks.append(rank)
                 else:
-                    if not match_player.rank:
+                    if match_player.player.private:
                         rank = "99"
                     else:
-                        rank = match_player.rank
+                        rank = match_player.player.ranked_best.rank.value
                     team2_data.append([match_player.player.name, match_player.account_level, match_player.credits, match_player.kda_text,
                                        match_player.damage_done, match_player.damage_taken,
                                        match_player.objective_time, match_player.damage_mitigated,
@@ -81,6 +81,8 @@ class Paladins(commands.Cog):
                                                 team2_ranks, (match_info + temp))
             file = discord.File(filename=f"{matchid}.png", fp=buffer)
         await ctx.send(file=file)
+        for player in match.players:
+            await ctx.send(player)
 
     @commands.command()
     async def last(self, ctx, player: Union[discord.Member, str] = None, platform="PC"):
