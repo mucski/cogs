@@ -123,13 +123,11 @@ class Paladins(commands.Cog):
 
     @commands.command()
     @checks.is_owner()
-    async def testing(self, ctx, player=None, platform=None):
+    async def testing(self, ctx, player=None, platform="PC"):
         platform = arez.Platform(platform)
-        if platform is None:
-            if player is None:
-                player = ctx.author.id
-            if player is discord.Member:
-                player = member.id
+        if user.mention in message.content.split():
+            platform = "Discord"
+            player = player.id
             ret = await self.api.get_from_platform(player, platform)
         else:
             player_obj = await self.api.search_players(player, platform)
