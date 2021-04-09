@@ -59,8 +59,7 @@ class Paladins(commands.Cog):
                     return
             else:
                 # player is a str here
-                else:
-                    ret = await self.api.search_players(match_id_name, arez.Platform(platform))
+                ret = await self.api.search_players(match_id_name, arez.Platform(platform))
             ret = ret[0]
             match = await ret.get_match_history()
             team1_data = []
