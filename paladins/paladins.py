@@ -127,7 +127,7 @@ class Paladins(commands.Cog):
         platform = arez.Platform(platform)
         if player.mention in ctx.message.content.split():
             platform = "Discord"
-            player = player.id
+            player = str(player.id)
             ret = await self.api.get_from_platform(player, platform)
         else:
             player_obj = await self.api.search_players(player, platform)
