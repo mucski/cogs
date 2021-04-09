@@ -56,7 +56,7 @@ class Paladins(commands.Cog):
             temp = match.bans
             for match_player in match.players:
                 if match_player.team_number == 1:
-                    if not match_player.team1:
+                    if not match_player.disconnected:
                         rank = "99"
                         team1_data.append(["Bot", "0", "0", "0/0/0", "0", "0", "0", "0", "0", "0", "0", "0"])
                         team1_champs.append("Jenos")
@@ -73,7 +73,7 @@ class Paladins(commands.Cog):
                         team1_champs.append(match_player.champion.name)
                         team1_ranks.append(rank)
                 else:
-                    if not match_player.team2:
+                    if not match_player.disconnected:
                         rank = "99"
                         team2_data.append(["Bot", "0", "0", "0/0/0", "0", "0", "0", "0", "0", "0", "0", "0"])
                         team2_champs.append("Jenos")
