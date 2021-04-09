@@ -55,18 +55,22 @@ class Paladins(commands.Cog):
                 try:
                     player = await self.api.get_from_platform(discord_id, arez.Platform.Discord)
                 except arez.NotFound:
-                    await ctx.send("Discord account not linked to HiRez. Please link it first")
+                    await ctx.send("```\nDiscord account not linked to HiRez. Please link it first\n```")
                     return
             else:
                 # player is a str here
                 try:
                     player_list = await self.api.search_players(player, arez.Platform(platform))
                 except arez.NotFound:
-                    await ctx.send("No players found with that name")
+                    await ctx.send("```\nNo players found with that name\n```")
                     return
-            player = player_list[0]
+                player = player_list[0]
             match_list = await player.get_match_history()
-            match = await match_list[0]
+            try:
+                match = await match_list[0]
+            except IndexError:
+                await ctx.send("```\nNo recent maches found.\n```")
+                return
             await match.expand_players()
             team1_data = []
             team2_data = []
@@ -225,7 +229,7 @@ class Paladins(commands.Cog):
             try:
                 player_obj = await self.api.get_from_platform(player, arez.Platform.Discord)
             except arez.NotFound:
-                await ctx.send("Discord account not linked to HiRez. Please link it first")
+                await ctx.send("```\nDiscord account not linked to HiRez. Please link it first\n```")
                 return
             player = await player_obj
         else:
