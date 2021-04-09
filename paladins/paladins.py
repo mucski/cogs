@@ -63,6 +63,7 @@ class Paladins(commands.Cog):
                 player = player_list[0]
             match_list = await player.get_match_history()
             match = await match_list[0]
+            await match.expland_players()
             team1_data = []
             team2_data = []
             team1_champs = []
@@ -73,6 +74,7 @@ class Paladins(commands.Cog):
                           match.map_name, match.score[0], match.score[1]]
             temp = match.bans
             for match_player in match.players:
+                await match.player
                 if match_player.team_number == 1:
                     if match_player.player.private:
                         rank = "99"
