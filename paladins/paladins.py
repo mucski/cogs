@@ -142,12 +142,21 @@ class Paladins(commands.Cog):
         await ctx.send(data)
         
     @commands.command()
-    async def champstats(self, ctx, champion_name="all", player="Player", platform="PC"):
-        platform = arez.Platform(platform)
-        player_obj = await self.api.search_players(player, platform)
-        # player = await self.api.get_player(player)
-        player = await player_obj[0]
-        champions_stats = await player.get_champion_stats()
+    async def champstats(self, ctx, champion_name="all", player: Union[discord.Member, str] = None, platform="PC"):
+        if isinstance(player, discord.Member) or player is None:
+            if player is None:
+                # use the ID of the caller
+                discord_id = ctx.author.id
+            else:
+                # use the ID of the person mentioned
+                discord_id = player.id
+                # use discord_id to lookup their profile
+                ret = await self.api.get_from_platform(discord_id, arez.Platform.Discord)
+        else:
+            # player is a str here
+            ret = await self.api.search_players(player, arez.Platform(platform))
+            ret = ret[0]
+        champions_stats = await ret.get_champion_stats()
         stats_dict = {s.champion: s for s in champions_stats}  # Dict[Champion, ChampionStats]
         if champion_name == "all":
             table = []
