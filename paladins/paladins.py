@@ -158,6 +158,9 @@ class Paladins(commands.Cog):
             # player is a str here
             ret = await self.api.search_players(player, arez.Platform(platform))
             ret = await ret[0]
+        if ret is None:
+            await ctx.send("This user did not link discord to HiRez.")
+            return
         champions_stats = await ret.get_champion_stats()
         # stats_dict = {s.champion: s for s in champions_stats}  # Dict[Champion, ChampionStats]
         stats_dict = {s.champion: s for s in champions_stats}  # Dict[Champion, ChampionStats]
