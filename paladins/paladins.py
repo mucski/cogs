@@ -74,7 +74,6 @@ class Paladins(commands.Cog):
                           match.map_name, match.score[0], match.score[1]]
             temp = match.bans
             for match_player in match.players:
-                await match.player
                 if match_player.team_number == 1:
                     if match_player.player.private:
                         rank = "99"
