@@ -124,12 +124,15 @@ class Paladins(commands.Cog):
     @commands.command()
     @checks.is_owner()
     async def testing(self, ctx, player: discord.Member = None, platform="PC"):
-        if player.mention:
-            platform = "Discord"
-            platform = arez.Platform(platform)
-            discord_id = int(player.id)
-            ret = await self.api.get_from_platform(discord_id, platform)
-        elif player is None:
+        try:
+            if player.mention:
+                platform = "Discord"
+                platform = arez.Platform(platform)
+                discord_id = int(player.id)
+                ret = await self.api.get_from_platform(discord_id, platform)
+        except AttributeError:
+            pass
+        if player is None:
             player = ctx.author
             platform = "Discord"
             platform = arez.Platform(platform)
