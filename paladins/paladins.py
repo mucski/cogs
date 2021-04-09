@@ -223,10 +223,11 @@ class Paladins(commands.Cog):
                 player_name = player.display_name
                 # use discord_id to lookup their profile
             try:
-                player = await self.api.get_from_platform(discord_id, arez.Platform.Discord)
+                player_obj = await self.api.get_from_platform(discord_id, arez.Platform.Discord)
             except arez.NotFound:
                 await ctx.send("Discord account not linked to HiRez. Please link it first")
-        else:
+                return
+                player = await player_obj
             # player is a str here
             player_list = await self.api.search_players(player, arez.Platform(platform))
             player = await player_list[0]
