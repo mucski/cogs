@@ -123,7 +123,7 @@ class Paladins(commands.Cog):
 
     @commands.command()
     @checks.is_owner()
-    async def testing(self, ctx, player=None, platform="PC"):
+    async def testing(self, ctx, discord.Member: player=None, platform="PC"):
         platform = arez.Platform(platform)
         if player.mention in message.content.split():
             platform = "Discord"
