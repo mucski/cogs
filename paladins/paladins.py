@@ -129,9 +129,15 @@ class Paladins(commands.Cog):
             platform = arez.Platform(platform)
             discord_id = int(player.id)
             ret = await self.api.get_from_platform(discord_id, platform)
-        #else:
-            #player_obj = await self.api.search_players(player, platform)
-            #ret = await player_obj[0]
+        elif player is None:
+            player = ctx.author
+            platform = "Discord"
+            platform = arez.Platform(platform)
+            discord_id = int(player.id)
+            ret = await self.api.get_from_platform(discord_id, platform)
+        else:
+            player_obj = await self.api.search_players(player, platform)
+            ret = await player_obj[0]
         data = await ret.get_champion_stats()
         await ctx.send(data)
         
