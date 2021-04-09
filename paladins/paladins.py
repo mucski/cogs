@@ -215,15 +215,15 @@ class Paladins(commands.Cog):
         if isinstance(player, discord.Member) or player is None:
             if player is None:
                 # use the ID of the caller
-                discord_id = ctx.author.id
+                player = ctx.author.id
                 player_name = ctx.author.display_name
             else:
                 # use the ID of the person mentioned
-                discord_id = player.id
+                player = player.id
                 player_name = player.display_name
                 # use discord_id to lookup their profile
             try:
-                player_obj = await self.api.get_from_platform(discord_id, arez.Platform.Discord)
+                player_obj = await self.api.get_from_platform(player, arez.Platform.Discord)
             except arez.NotFound:
                 await ctx.send("Discord account not linked to HiRez. Please link it first")
                 return
