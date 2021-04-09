@@ -42,7 +42,7 @@ class Paladins(commands.Cog):
         await ctx.bot.on_command_error(ctx, error, unhandled_by_cog=True)
 
     @commands.command()
-    async def match(self, ctx, match_id_name: Union[discord.Member, str], platform="PC"):
+    async def match(self, ctx, match_id_name: Union[discord.Member, str] = None, platform="PC"):
         async with ctx.typing():
             if isinstance(match_id_name, discord.Member) or match_id_name is None:
                 if match_id_name is None:
