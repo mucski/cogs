@@ -99,20 +99,20 @@ class Paladins(commands.Cog):
             while cunt < 10:
                 cunt += 1
                 row = [
-                        "Bot", "999", "9999", "99/0/99",
+                        "TestSomeLongName", "999", "9999", "99/0/99",
                         "999999", "999999", "999", "999999",
                         "999999", "0", "Steam", "999999",
                         9.99
                 ]
                 if cunt < 6:
-                    rank = "99"
+                    rank = "22"
                     team1_data.append(row)
-                    team1_champs.append("Pip")
+                    team1_champs.append("Octavia")
                     team1_ranks.append(rank)
                 else:
-                    rank = "99"
+                    rank = "22"
                     team2_data.append(row)
-                    team2_champs.append("Ying")
+                    team2_champs.append("Yagorath")
                     team2_ranks.append(rank)
             buffer = await helper.history_image(team1_champs, team2_champs, team1_data, team2_data, team1_ranks,
                                                 team2_ranks, (match_info + temp))
