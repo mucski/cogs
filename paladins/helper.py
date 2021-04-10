@@ -302,7 +302,7 @@ class helper:
         # Team 1
         draw_panel.text((512 * 5 + rs, ds), "Team 1 Score: ",
                         font=fnt100, fill=(255, 255, 255))
-        draw_panel.text((512 * 6, ds),
+        draw_panel.text((512 * 7, ds),
                         str(md[4]), font=fnt100bold, fill=(255, 255, 255))
         center = (512/2 - 130/2)
         center2 = (512/2 - 80/2)
@@ -312,7 +312,7 @@ class helper:
         # Team 2
         draw_panel.text((512 * 5 + rs, 348), "Team 2 Score: ",
                         font=fnt100, fill=(255, 255, 255))
-        draw_panel.text((512 * 6, 348),
+        draw_panel.text((512 * 7, 348),
                         str(md[5]), font=fnt100bold, fill=(255, 255, 255))
         #  add in banned champs if it's a ranked match
         try:
