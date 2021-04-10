@@ -193,7 +193,7 @@ class Paladins(commands.Cog):
             ret = await self.api.search_players(player, arez.Platform(platform))
             ret = ret[0]
         player = await ret
-        await ctx.send(player.platform_name)
+        await ctx.send(player.name)
         
     @commands.command()
     async def champstats(self, ctx, champion_name = "all", player: Union[discord.Member, str] = None, platform = "PC"):
