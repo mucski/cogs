@@ -147,7 +147,6 @@ class Paladins(commands.Cog):
                                                 team2_ranks, (match_info + temp))
             file = discord.File(filename=f"{player}.png", fp=buffer)
         await ctx.send(file=file)
-        await ctx.send(match)
 
     @commands.command()
     @checks.is_owner()
