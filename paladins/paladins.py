@@ -45,8 +45,9 @@ class Paladins(commands.Cog):
     async def match(self, ctx, matchid: int):
         """
         Returns a match played from a given ID.
-        This command onlt supports integer, for player names
-        uuse`[p]last (player) (platform)`, see `[p]help last` for more info.
+        This command only supports integer. 
+        For player names use `[p]last (player) (platform)` 
+        See `[p]help last` for more info.
         """
         async with ctx.typing():
             match = await self.api.get_match(matchid, expand_players=True)
