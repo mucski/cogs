@@ -93,9 +93,9 @@ class Paladins(commands.Cog):
             team2_ranks = []
             team2_champs = []
             cunt = 0
-            match_info = [match.winning_team, match.duration.minutes, match.region.name,
-                          match.map_name, match.score[0], match.score[1]]
-            temp = match.bans
+            match_info = ["1", "30", "Japan",
+                          "Timber Mill", "1", "4"
+            temp = ["Makoa", "Yagorath", "Furia", "Jenos"]
             while cunt < 10:
                 cunt += 1
                 row = [
