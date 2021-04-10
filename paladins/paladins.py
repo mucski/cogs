@@ -104,7 +104,6 @@ class Paladins(commands.Cog):
                         "999999", "0", "Steam", "999999",
                         9.99
                 ]
-                team_number = 1
                 if cunt < 6:
                     rank = "99"
                     team1_data.append(row)
