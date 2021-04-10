@@ -128,6 +128,13 @@ class Paladins(commands.Cog):
 
     @commands.command()
     async def last(self, ctx, player: Union[discord.Member, str] = None, platform="PC"):
+        """
+        Returns the last played match by `player`
+        `player` can be a string or a discord member (mention)
+        Platform is optional
+        If you have Discord linked to HiRez, you can just type `[p]last`
+        followed by nothing.
+        """
         async with ctx.typing():
             if isinstance(player, discord.Member) or player is None:
                 if player is None:
