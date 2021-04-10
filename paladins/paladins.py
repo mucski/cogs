@@ -253,7 +253,7 @@ class Paladins(commands.Cog):
         `[p]champstats all (player) (platform)` returns a list of every champion.
         `[p]champstats (champion) (player) (platform)` returns a specific champion stats.
         Platform is required for consoles.
-        If you have linked Discord to HiRez you no longer have to specify `player` or `platform`
+        No `player` or `platform` required if linked Discord with HiRez
         """
         if isinstance(player, discord.Member) or player is None:
             if player is None:
