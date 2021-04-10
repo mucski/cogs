@@ -200,7 +200,7 @@ class helper:
         image_size_y = 512 - shrink*2
         image_size_x = 512
         offset = 5
-        history_image = Image.new("RGB", (image_size_x*10+400, image_size_y*13 + 264))
+        history_image = Image.new("RGB", (image_size_x*9+400, image_size_y*13 + 264))
         # Adds the top key panel
         key = await helper.player_key_image(image_size_x, image_size_y)
         history_image.paste(key, (0, 0))
