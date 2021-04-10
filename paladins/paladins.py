@@ -81,6 +81,12 @@ class Paladins(commands.Cog):
                                                 team2_ranks, (match_info + temp))
             file = discord.File(filename=f"{matchid}.png", fp=buffer)
         await ctx.send(file=file)
+        
+    @commands.command()
+    @checks.is_owner()
+    async def proto(self, ctx):
+        async with ctx.typing():
+            
 
     @commands.command()
     async def last(self, ctx, player: Union[discord.Member, str] = None, platform="PC"):
