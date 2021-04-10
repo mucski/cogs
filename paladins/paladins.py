@@ -259,11 +259,9 @@ class Paladins(commands.Cog):
             if name is None:
                 # use the ID of the caller
                 player = ctx.author.id
-                player_name = ctx.author.display_name
             else:
                 # use the ID of the person mentioned
                 player = name.id
-                player_name = name.display_name
                 # use discord_id to lookup their profile
             try:
                 player_obj = await self.api.get_from_platform(player, arez.Platform.Discord)
@@ -275,8 +273,7 @@ class Paladins(commands.Cog):
             # player is a str here
             player_list = await self.api.search_players(name, arez.Platform(platform))
             player = await player_list[0]
-            player_name = player.name
-        # await helper.get_global_kda(player)
+        special = await helper.get_global_kda(player.name)
         desc = (
             "**__Player Stats__**\n"
             f"```\nAccount level: {player.level}\n"
@@ -293,7 +290,7 @@ class Paladins(commands.Cog):
             f"```\nWin Rate: "
             f"{player.casual.wins}/{player.casual.losses}"
             f" ({player.casual.winrate_text})\n"
-            f"{player.casual.winrate}\n"
+            f"{special}\n"
             f"Deserted: {player.casual.leaves}\n```"
             f"**__Ranked Stats Season {player.ranked_best.season}__**\n"
             f"```\nWin Rate: "
@@ -305,7 +302,7 @@ class Paladins(commands.Cog):
             f" ({player.ranked_best.points} TP)\n```"
         )
         e = discord.Embed(color=await self.bot.get_embed_color(ctx),
-                          title=f"{player_name} ({player.platform}) "
+                          title=f"{player.name} ({player.platform}) "
                                 f"_({player.title})_")
         e.description = desc
         e.set_thumbnail(url=player.avatar_url)
