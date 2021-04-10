@@ -300,7 +300,7 @@ class Paladins(commands.Cog):
                 desc = (
                     f"```\nChampion role: {champ.role}\n"
                     f"Champion level: {stats.level}\n"
-                    "Champion KDA: {:.2f}".format(stats.kda)
+                     "Champion KDA: {:.2f}".format(stats.kda)
                     f"Winrate: {stats.kda_text} ({stats.winrate_text})\n"
                     f"Matches played: {stats.matches_played}\n"
                     f"Playtime: {math.floor(stats.playtime.total_hours())} hours\n"
