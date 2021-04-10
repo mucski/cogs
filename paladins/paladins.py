@@ -292,7 +292,7 @@ class Paladins(commands.Cog):
             f"```\nWin Rate: "
             f"{player.casual.wins}/{player.casual.losses}"
             f" ({player.casual.winrate_text})\n"
-            f"{player.winrate}\n"
+            f"{player.casual.winrate}\n"
             f"Deserted: {player.casual.leaves}\n```"
             f"**__Ranked Stats Season {player.ranked_best.season}__**\n"
             f"```\nWin Rate: "
