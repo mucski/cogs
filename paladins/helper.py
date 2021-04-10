@@ -114,7 +114,7 @@ class helper:
             champ_stats[0] = "???????"
         # Champion name, player name
         draw.text((img_x+20, middle-40),
-                  str(champ_stats[0]), font=fnt80bold, fill=color)
+                  str(champ_stats[0][:11] + '..'), font=fnt80bold, fill=color)
         draw.text((img_x+20, middle+60),
                   str(champ_stats[1]), font=fnt80, fill=fill)
         # Rank
