@@ -192,8 +192,7 @@ class Paladins(commands.Cog):
             # player is a str here
             ret = await self.api.search_players(player, arez.Platform(platform))
             ret = ret[0]
-        data = await ret.get_champion_stats()
-        await ctx.send(data)
+        await ctx.send(ret.name)
         
     @commands.command()
     async def champstats(self, ctx, champion_name = "all", player: Union[discord.Member, str] = None, platform = "PC"):
@@ -275,7 +274,8 @@ class Paladins(commands.Cog):
             # player is a str here
             player_list = await self.api.search_players(name, arez.Platform(platform))
             player = await player_list[0]
-            player_name = player.name        
+            player_name = player.name
+        # await helper.get_global_kda(player)
         desc = (
             "**__Player Stats__**\n"
             f"```\nAccount level: {player.level}\n"

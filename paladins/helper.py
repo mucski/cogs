@@ -17,7 +17,68 @@ class helper:
             champ = "maldamba"
         url = f"https://webcdn.hirezstudios.com/paladins/champion-icons/{champ}.jpg"
         return url
+    
+    @classmethod
+    async def get_global_kda(cls, player_id):
+        if str(player_id) == '0':
+            return ["Private Account", "???", "???", "???"]
+        url = "http://nonsocial.herokuapp.com/api/kda?player=" + str(player_id)
+        async with aiohttp.ClientSession(conn_timeout=5, read_timeout=5) as cs:
+            async with cs.get(url) as r:
+                soup = await r.text()  # returns dict
 
+                # Error checking to make sure that the player was found on the site
+                if 'ERROR' in soup:
+                    error = ["Private Account", "???", "???", "???"]
+                    return error
+
+                # Stop being an asshole. It was supposed to be free and unlimited, Y'all are paying nothing and it's
+                # online 24/7 almost 1 year (8/2018). But because some shitty viewers are spamming stupid invalid
+                # inputs such as !rank Nightbot, !rank SadMartini all endpoints are limited to 15 calls per minute.
+
+                # Checking to see if we have used up the 15 calls per min
+                if 'Stop being an asshole.' in soup:
+                    try: data
+                        # data = await self.get_player_current_stats_api(player_id)
+                    except BaseException:
+                        data = ["Private Account", "???", "???", "???"]
+                    return data
+                # FeistyJalapeno (Level 710): 5740 Wins, 3475 Losses
+                #  (Kills: 114,019 / Deaths: 63,976 / Assists: 108,076 - 2.63 KDA) - Win rate: 62.29%
+
+                split1 = soup.split("(Level ")
+
+                try:
+                    player_name = str(split1[0]).strip()  # Player Name
+                except BaseException:
+                    print(str(soup))
+                    return ["Connection Error", "???", "???", "???"]
+                try:
+                    level = split1[1].split(")")[0]  # Level
+                    temp = int(level)
+                except (ValueError, IndexError, BaseException) as e:
+                    level = "???"
+                    print("???? what in the string nation is going on: " + soup)
+                    print(e)
+                try:
+                    kda = split1[1].split("- ")[1].split(" KDA")[0]  # KDA
+                    temp = float(kda)
+                except (ValueError, IndexError, BaseException) as e:
+                    kda = "???"
+                    print("???? what in the string nation is going on: " + soup)
+                    print(e)
+                try:
+                    win_rate = soup.split("Win rate: ")[1].split("%")[0]  # Win Rate
+                    temp = float(win_rate)
+                except (ValueError, IndexError, BaseException) as e:
+                    win_rate = "???"
+                    print("???? what in the string nation is going on: " + soup)
+                    print(e)
+
+                stats = [player_name, level, win_rate, kda]
+
+                return stats
+                
     @classmethod
     async def get_rank_image(cls, rank):
         pass
