@@ -148,7 +148,7 @@ class helper:
                   humanize_number(champ_stats[11]), font=fnt100, fill=fill)
         # KDA
         draw.text((img_x+4600, middle),
-                  humanize_number(float("{:.2f}".format(champ_stats[12]))), font=fnt100, fill=fill)
+                  humanize_number("{:.2f}".format(champ_stats[12])), font=fnt100, fill=fill)
         return img
 
     @classmethod
