@@ -280,7 +280,7 @@ class Paladins(commands.Cog):
                     # table = [["fuck"], ["shit"], ["dick"], ["cunt"]]
                     t = []
                     t.append(f"{champions_stats[i].champion.name}({champions_stats[i].level})")
-                    t.append(f"{champions_stats[i].kda_text}")
+                    t.append(f"{champions_stats[i].kda}")
                     t.append(f"{champions_stats[i].winrate_text}") 
                     t.append(f"{math.floor(champions_stats[i].playtime.total_hours())} h")
                     table.append(t)
