@@ -249,6 +249,12 @@ class Paladins(commands.Cog):
         
     @commands.command()
     async def champstats(self, ctx, champion_name = "all", player: Union[discord.Member, str] = None, platform = "PC"):
+        """
+        `[p]champstats all (player) (platform)` returns a list of every champion.
+        `[p]champstats (champion) (player) (platform)` returns a specific champion stats.
+        Platform is required for consoles.
+        If you have linked Discord to HiRez you no longer have to specify `player` or `platform`
+        """
         if isinstance(player, discord.Member) or player is None:
             if player is None:
                 # use the ID of the caller
