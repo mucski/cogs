@@ -150,7 +150,7 @@ class helper:
 
     @classmethod
     async def player_key_image(cls, x, y):
-        key = Image.new("RGB", (x*9+400, y-100), color=(8, 21, 25))
+        key = Image.new("RGB", (x*10+400, y-100), color=(8, 21, 25))
         base_draw = ImageDraw.Draw(key)
         fill = (255, 255, 255)
         fnt80bold = ImageFont.truetype("home/ubuntu/arialbd.ttf", 80)
@@ -200,7 +200,7 @@ class helper:
         image_size_y = 512 - shrink*2
         image_size_x = 512
         offset = 5
-        history_image = Image.new("RGB", (image_size_x*9+400, image_size_y*13 + 264))
+        history_image = Image.new("RGB", (image_size_x*10+400, image_size_y*12 + 264))
         # Adds the top key panel
         key = await helper.player_key_image(image_size_x, image_size_y)
         history_image.paste(key, (0, 0))
