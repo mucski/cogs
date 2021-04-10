@@ -78,10 +78,6 @@ class helper:
                 stats = [player_name, level, win_rate, kda]
 
                 return stats
-                
-    @classmethod
-    async def get_rank_image(cls, rank):
-        pass
 
     @classmethod
     async def stats_image(cls, champ_icon, rank_icon, champ_stats, index):
@@ -193,6 +189,8 @@ class helper:
         # Self Healing
         # base_draw.text((x + 4220, 0), "Self Heal", font=fnt80bold, fill=fill)
         base_draw.text((x + 4100, 0), "Self Heal", font=fnt80bold, fill=fill)
+        # KDA
+        base_draw.text((x + 4600, 0), "KDA", font=fnt80bold, fill=fill)
         return key
 
     @classmethod
