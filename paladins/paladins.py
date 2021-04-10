@@ -255,61 +255,62 @@ class Paladins(commands.Cog):
         Platform is required for consoles.
         No `player` or `platform` required if linked Discord with HiRez
         """
-        if isinstance(player, discord.Member) or player is None:
-            if player is None:
-                # use the ID of the caller
-                discord_id = ctx.author.id
-                player_name = ctx.author.display_name
+        async with ctx.typing():
+            if isinstance(player, discord.Member) or player is None:
+                if player is None:
+                    # use the ID of the caller
+                    discord_id = ctx.author.id
+                    player_name = ctx.author.display_name
+                else:
+                    # use the ID of the person mentioned
+                    discord_id = player.id
+                    player_name = player.display_name
+                    # use discord_id to lookup their profile
+                ret = await self.api.get_from_platform(discord_id, arez.Platform.Discord)
             else:
-                # use the ID of the person mentioned
-                discord_id = player.id
-                player_name = player.display_name
-                # use discord_id to lookup their profile
-            ret = await self.api.get_from_platform(discord_id, arez.Platform.Discord)
-        else:
-            # player is a str here
-            ret = await self.api.search_players(player, arez.Platform(platform))
-            ret = await ret[0]
-            player_name = ret.name
-        champions_stats = await ret.get_champion_stats()
-        stats_dict = {s.champion: s for s in champions_stats}  # Dict[Champion, ChampionStats]
-        if champion_name == "all":
-            table = []
-            for i in range(len(champions_stats)):
-                # table = [["fuck"], ["shit"], ["dick"], ["cunt"]]
-                t = []
-                t.append(f"{champions_stats[i].champion.name}({champions_stats[i].level})")
-                t.append(f"{champions_stats[i].kda_text}")
-                t.append(f"{champions_stats[i].winrate_text}") 
-                t.append(f"{math.floor(champions_stats[i].playtime.total_hours())} h")
-                table.append(t)
-            table_done = tabulate(table, headers=["Name(lvl)", "K/D/A", "Winrate", "Playtime"], tablefmt="presto")
-            for page in pagify(table_done):
-                await ctx.send("```\n{}\n```".format(page))
-        else:
-            entry = await self.api.get_champion_info()
-            champ = entry.champions.get(champion_name)
-            if champ is None:
-                await ctx.send("```\nYou dun fucked up the champ's name!\n```")
-                return
-            stats = stats_dict.get(champ)
-            if stats is None:
-                await ctx.send("```\nYou ain't played this champ yet!\n```")
-                return
-            desc = (
-                f"```\nChampion role: {champ.role}\n"
-                f"Champion level: {stats.level}\n"
-                f"Winrate: {stats.kda_text} ({stats.winrate_text})\n"
-                f"Matches played: {stats.matches_played}\n"
-                f"Playtime: {math.floor(stats.playtime.total_hours())} hours\n"
-                f"Experience: {stats.experience}\n"
-                f"Last played: {humanize.naturaltime(datetime.utcnow() - stats.last_played)}\n```"
-            )
-            e = discord.Embed(color=await self.bot.get_embed_color(ctx), title=f"{champ.name} ({champ.title})")
-            e.set_thumbnail(url=champ.icon_url)
-            e.description = desc
-            e.set_footer(text=f"Individual champion stats for {player_name}")
-            await ctx.send(embed=e)
+                # player is a str here
+                ret = await self.api.search_players(player, arez.Platform(platform))
+                ret = await ret[0]
+                player_name = ret.name
+            champions_stats = await ret.get_champion_stats()
+            stats_dict = {s.champion: s for s in champions_stats}  # Dict[Champion, ChampionStats]
+            if champion_name == "all":
+                table = []
+                for i in range(len(champions_stats)):
+                    # table = [["fuck"], ["shit"], ["dick"], ["cunt"]]
+                    t = []
+                    t.append(f"{champions_stats[i].champion.name}({champions_stats[i].level})")
+                    t.append(f"{champions_stats[i].kda_text}")
+                    t.append(f"{champions_stats[i].winrate_text}") 
+                    t.append(f"{math.floor(champions_stats[i].playtime.total_hours())} h")
+                    table.append(t)
+                table_done = tabulate(table, headers=["Name(lvl)", "K/D/A", "Winrate", "Playtime"], tablefmt="presto")
+                for page in pagify(table_done):
+                    await ctx.send("```\n{}\n```".format(page))
+            else:
+                entry = await self.api.get_champion_info()
+                champ = entry.champions.get(champion_name)
+                if champ is None:
+                    await ctx.send("```\nYou dun fucked up the champ's name!\n```")
+                    return
+                stats = stats_dict.get(champ)
+                if stats is None:
+                    await ctx.send("```\nYou ain't played this champ yet!\n```")
+                    return
+                desc = (
+                    f"```\nChampion role: {champ.role}\n"
+                    f"Champion level: {stats.level}\n"
+                    f"Winrate: {stats.kda_text} ({stats.winrate_text})\n"
+                    f"Matches played: {stats.matches_played}\n"
+                    f"Playtime: {math.floor(stats.playtime.total_hours())} hours\n"
+                    f"Experience: {stats.experience}\n"
+                    f"Last played: {humanize.naturaltime(datetime.utcnow() - stats.last_played)}\n```"
+                )
+                e = discord.Embed(color=await self.bot.get_embed_color(ctx), title=f"{champ.name} ({champ.title})")
+                e.set_thumbnail(url=champ.icon_url)
+                e.description = desc
+                e.set_footer(text=f"Individual champion stats for {player_name}")
+                await ctx.send(embed=e)
             
     @commands.command()
     async def stats(self, ctx, name: Union[discord.Member, str] = None, platform="PC"):
