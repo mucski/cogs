@@ -103,7 +103,7 @@ class helper:
         else:
             color = fill
         img = Image.new(
-            "RGBA", (img_x*9+400, image_size_y+offset*2), color=im_color)
+            "RGBA", (img_x*10+400, image_size_y+offset*2), color=im_color)
         img.paste(champ_icon, (offset, offset))
         img.paste(rank_icon, (1220, int(middle)), mask=rank_icon)
         draw = ImageDraw.Draw(img)
@@ -146,6 +146,9 @@ class helper:
         # Self Healing
         draw.text((img_x+4100, middle),
                   humanize_number(champ_stats[11]), font=fnt100, fill=fill)
+        # KDA
+        draw.text((img_x+4600, middle),
+                  humanize_number(champ_stats[12]), font=fnt100, fill=fill)
         return img
 
     @classmethod
@@ -266,7 +269,7 @@ class helper:
 
     @classmethod
     async def middle_panel(cls, md):
-        middle_panel = Image.new("RGB", (512*9+400, 512), color=(14, 52, 60))
+        middle_panel = Image.new("RGB", (512*10+400, 512), color=(14, 52, 60))
         # Adding in map to image
         map_name = map_file_name = (md[3].strip().replace("Ranked ", "").replace(" (TDM)", "").replace(" (Onslaught)", "")
                                     .replace(" (Siege)", "")).replace("Practice ", "")
