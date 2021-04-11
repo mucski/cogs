@@ -313,7 +313,7 @@ class helper:
         # VS
         vs = Image.open("home/ubuntu/icons/vs.png")
         vs = vs.convert("RGBA")
-        middle_panel.paste(vs, (512 * 6 + 100, 0), mask=vs)
+        middle_panel.paste(vs, (512 * 6 + 100, 100), mask=vs)
         # draw_panel.text((512 * 6 + 100, 200), "VS",
                         # font=fnt100bold, fill=(227, 34, 34))
         # Team 2
