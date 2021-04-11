@@ -313,13 +313,13 @@ class helper:
         # VS
         vs = Image.open("home/ubuntu/icons/vs.png")
         vs = vs.convert("RGBA")
-        middle_panel.paste(vs, (512 * 6 + 100, 100), mask=vs)
+        middle_panel.paste(vs, (512 * 6 + 100, 120), mask=vs)
         # draw_panel.text((512 * 6 + 100, 200), "VS",
                         # font=fnt100bold, fill=(227, 34, 34))
         # Team 2
-        draw_panel.text((512 * 6 + rs - 200, 348), "Team 2 Score: ",
+        draw_panel.text((512 * 4 + rs - 200, 348), "Team 2 Score: ",
                         font=fnt100, fill=(255, 255, 255))
-        draw_panel.text((512 * 7, 348),
+        draw_panel.text((512 * 5, 348),
                         str(md[5]), font=fnt100bold, fill=(255, 255, 255))
         #  add in banned champs if it's a ranked match
         try:
