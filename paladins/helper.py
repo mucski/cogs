@@ -312,6 +312,7 @@ class helper:
         center2 = (512/2 - 80/2)
         # VS
         vs = Image.open("home/ubuntu/icons/vs.png")
+        vs = vs.convert("RGBA")
         middle_panel.paste(vs, (512 * 6 + 100, 200))
         draw_panel.text((512 * 6 + 100, 200), "VS",
                         font=fnt100bold, fill=(227, 34, 34))
