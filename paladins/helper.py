@@ -273,7 +273,7 @@ class helper:
 
     @classmethod
     async def middle_panel(cls, md):
-        middle_panel = Image.new("RGB", (512*10+400, 512), color=(14, 52, 60))
+        middle_panel = Image.new("RGBA", (512*10+400, 512), color=(14, 52, 60))
         # Adding in map to image
         map_name = map_file_name = (md[3].strip().replace("Ranked ", "").replace(" (TDM)", "").replace(" (Onslaught)", "")
                                     .replace(" (Siege)", "")).replace("Practice ", "")
