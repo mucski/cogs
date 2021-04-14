@@ -388,7 +388,7 @@ class Paladins(commands.Cog):
             "{}\n".format(status.statuses['pc'].platform)
             if status.statuses['pc'].up:
                 online = "Operational"
-            elif status.statuses['pc'].limited_access():
+            elif status.statuses['pc'].limited_access:
                 online = "Limited Access"
             else:
                 online = "Unknown"
