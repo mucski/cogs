@@ -384,8 +384,8 @@ class Paladins(commands.Cog):
         Paladins server statuses
         """
         status = await self.api.get_server_status()
-        for k in status.statuses.items():
+        for k, v in status.statuses.items():
             desc = (
-                "{}".format(k)
+                "{}".format(v)
             )
         await ctx.send(desc)
