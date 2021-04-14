@@ -393,7 +393,6 @@ class Paladins(commands.Cog):
                 server = "Unknown"
             desc = (
                 "{}\n".format(v.platform)
-                "{}\n".format(server)
                 "{}\n".format(v.version)
             )
         await ctx.send(desc)
