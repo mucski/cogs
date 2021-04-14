@@ -383,4 +383,5 @@ class Paladins(commands.Cog):
         """
         Paladins server statuses
         """
-        pass
+        status = await self.api.get_server_status()
+        await ctx.send(status.statuses)
