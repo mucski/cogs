@@ -391,8 +391,11 @@ class Paladins(commands.Cog):
         else:
             server = "Unknown"
         desc = (
+            "```\n"
+            "**Server Statuses**"
             f"{status.statuses['pc'].platform}\n"
             f"{server}\n"
             f"{status.statuses['pc'].version}\n"
+            "```"
         )
         await ctx.send(desc)
