@@ -392,5 +392,7 @@ class Paladins(commands.Cog):
             server = "Unknown"
         desc = (
             f"{status.statuses['pc'].platform}\n"
+            f"{server}\n"
+            f"{status.statuses['pc'].version}\n"
         )
         await ctx.send(desc)
