@@ -391,7 +391,7 @@ class Paladins(commands.Cog):
             elif not v.limited_access:
                 server = "Operational"
             else:
-                server = "Unknown"
+                server = "Limited Access"
             desc = (
                 f"{v.platform}\n"
                 f"{server}\n"
