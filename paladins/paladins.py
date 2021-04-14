@@ -376,4 +376,7 @@ class Paladins(commands.Cog):
         
     @commands.command()
     async def status(self, ctx):
+        """
+        Paladins server statuses
+        """
         pass
