@@ -390,4 +390,7 @@ class Paladins(commands.Cog):
             server = "Limited Access"
         else:
             server = "Unknown"
+        desc = (
+            f"{status.statuses['pc'].platform}\n"
+        )
         await ctx.send(server)
