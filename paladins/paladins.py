@@ -384,16 +384,16 @@ class Paladins(commands.Cog):
         Paladins server statuses
         """
         status = await self.api.get_server_status()
-        if status.statuses['pc'].up:
-            server = "Operational"
-        elif status.statuses['pc'].limited_access:
-            server = "Limited Access"
-        else:
-            server = "Unknown"
         desc = (
             "```\n"
-            "**Server Statuses**"
+            "**Server Statuses**\n"
             f"{status.statuses['pc'].platform}\n"
+            if status.statuses['pc'].up:
+                server = "Operational"
+            elif status.statuses['pc'].limited_access:
+                server = "Limited Access"
+            else:
+                server = "Unknown"
             f"{server}\n"
             f"{status.statuses['pc'].version}\n"
             "```"
