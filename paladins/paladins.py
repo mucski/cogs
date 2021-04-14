@@ -396,5 +396,5 @@ class Paladins(commands.Cog):
                 f"{server}\n"
                 f"{v.version}\n"
             )
-        e = discord.Embed(title="Paladins Server Status", description=desc)
-        await ctx.send(embed=e)
+            e = discord.Embed(title="Paladins Server Status", description=desc)
+            await ctx.send(embed=e)
