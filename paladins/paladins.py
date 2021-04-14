@@ -386,7 +386,7 @@ class Paladins(commands.Cog):
         status = await self.api.get_server_status()
         desc = (
             "{}\n".format(status.statuses['pc'].platform)
-            if status.statuses['pc'].up:
+            if status.statuses['pc'].up is True:
                 online = "Operational"
             elif status.statuses['pc'].limited_access:
                 online = "Limited Access"
