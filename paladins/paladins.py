@@ -384,54 +384,17 @@ class Paladins(commands.Cog):
         Paladins server statuses
         """
         status = await self.api.get_server_status()
+        if status.statuses['pc'].up:
+            server = "Operational"
+        elif status.statuses['pc'].limited_access:
+            server = "Limited Access"
+        else:
+            server = "Unknown"
         desc = (
             "```\n"
-            "**Server Statuses**\n"
+            "**Server Statuses**"
             f"{status.statuses['pc'].platform}\n"
-            if status.statuses['pc'].up:
-                server = "Operational"
-            elif status.statuses['pc'].limited_access:
-                server = "Limited Access"
-            else:
-                server = "Unknown"
             f"{server}\n"
             f"{status.statuses['pc'].version}\n"
-            f"{status.statuses['xbox'].platform}\n"
-            if status.statuses['xbox'].up:
-                server = "Operational"
-            elif status.statuses['xbox'].limited_access:
-                server = "Limited Access"
-            else:
-                server = "Unknown"
-            f"{server}\n"
-            f"{status.statuses['xbox'].version}\n"
-            f"{status.statuses['ps4'].platform}\n"
-            if status.statuses['ps4'].up:
-                server = "Operational"
-            elif status.statuses['pc'].limited_access:
-                server = "Limited Access"
-            else:
-                server = "Unknown"
-            f"{server}\n"
-            f"{status.statuses['ps4'].version}\n"
-            f"{status.statuses['switch'].platform}\n"
-            if status.statuses['switch'].up:
-                server = "Operational"
-            elif status.statuses['switch'].limited_access:
-                server = "Limited Access"
-            else:
-                server = "Unknown"
-            f"{server}\n"
-            f"{status.statuses['switch'].version}\n"
-            f"{status.statuses['epic'].platform}\n"
-            if status.statuses['epic'].up:
-                server = "Operational"
-            elif status.statuses['epic'].limited_access:
-                server = "Limited Access"
-            else:
-                server = "Unknown"
-            f"{server}\n"
-            f"{status.statuses['epic'].version}\n"
-            "```"
         )
         await ctx.send(desc)
