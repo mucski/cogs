@@ -389,3 +389,4 @@ class Paladins(commands.Cog):
                 server = "Operational"
             else:
                 pass
+        await ctx.send(server)
