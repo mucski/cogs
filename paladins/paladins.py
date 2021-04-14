@@ -386,10 +386,10 @@ class Paladins(commands.Cog):
         status = await self.api.get_server_status()
         stringus = ""
         for k, v in status.statuses.items():
-            if v.up:
-                server = "Operational"
-            elif v.limited_access:
+            if not v.up:
                 server = "Limited Access"
+            elif not v.limited_access:
+                server = "Operational"
             else:
                 server = "Unknown"
             desc = (
