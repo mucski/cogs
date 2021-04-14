@@ -401,5 +401,5 @@ class Paladins(commands.Cog):
             )
             stringus += desc 
         e = discord.Embed(title="Paladins Server Status", color=await self.bot.get_embed_color(ctx), description=stringus)
-        e.set_footer(text=f"Last updated: {humanize.naturaltime(datetime.utcnow() - status.timestamp)}")
+        e.set_footer(text=f"Current time: {status.timestamp}")
         await ctx.send(embed=e)
