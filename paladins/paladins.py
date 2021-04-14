@@ -392,7 +392,6 @@ class Paladins(commands.Cog):
             online = "Unknown"
         desc = (
             "{}\n".format(status.statuses['pc'].platform)
-            
             "{}\n".format(online)
             "{}\n".format(status.statuses['pc'].version)
         )
