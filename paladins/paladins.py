@@ -384,17 +384,17 @@ class Paladins(commands.Cog):
         Paladins server statuses
         """
         status = await self.api.get_server_status()
+        desc = (
+            for k, v in status.statuses.items():
+                if v.up:
+                    server = "Operational"
+                elif v.limited_access:
+                    server = "Limited Access"
+                else:
+                    server = "Unknown"
+                    f"{v.platform}\n"
+                    f"{server}\n"
+                    f"{v.version}\n"
+        )
         e = discord.Embed(title="Paladins Server Status", description=desc)
-        for k, v in status.statuses.items():
-            if v.up:
-                server = "Operational"
-            elif v.limited_access:
-                server = "Limited Access"
-            else:
-                server = "Unknown"
-            desc = (
-                f"{v.platform}\n"
-                f"{server}\n"
-                f"{v.version}\n"
-            )
         await ctx.send(embed=e)
