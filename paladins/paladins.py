@@ -387,6 +387,13 @@ class Paladins(commands.Cog):
         for k, v in status.statuses.items():
             if v.up:
                 server = "Operational"
+            elif v.limited_access:
+                server = "Limited Access"
             else:
-                pass
-        await ctx.send(server)
+                server = "Unknown"
+            desc = (
+                "{}\n".format(v.platform)
+                "{}\n".format(server)
+                "{}\n".format(v.version)
+            )
+        await ctx.send(desc)
