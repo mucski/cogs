@@ -393,4 +393,4 @@ class Paladins(commands.Cog):
         desc = (
             f"{status.statuses['pc'].platform}\n"
         )
-        await ctx.send(server)
+        await ctx.send(desc)
