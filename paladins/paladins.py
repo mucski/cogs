@@ -385,6 +385,6 @@ class Paladins(commands.Cog):
         """
         status = await self.api.get_server_status()
         desc = (
-            "{}".format(status.pc)
+            "{}".format(status.statuses.pc)
         )
         await ctx.send(desc)
