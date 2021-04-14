@@ -318,6 +318,7 @@ class Paladins(commands.Cog):
         """
         Returns a players stats.
         `[p]stats none` or `[p]stats (player) (platform)`
+        """
         if isinstance(name, discord.Member) or name is None:
             if name is None:
                 # use the ID of the caller
