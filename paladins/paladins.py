@@ -384,7 +384,7 @@ class Paladins(commands.Cog):
         Paladins server statuses
         """
         status = await self.api.get_server_status()
-        for status in status.keys:
+        for status in status.items:
             desc = (
                 f"PC: {status['pc']}"
             )
