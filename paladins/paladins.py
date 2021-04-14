@@ -385,4 +385,7 @@ class Paladins(commands.Cog):
         """
         status = await self.api.get_server_status()
         for k, v in status.statuses.items():
-            await ctx.send(v)
+            if v.up:
+                server = "Operational"
+            else:
+                pass
