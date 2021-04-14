@@ -393,9 +393,11 @@ class Paladins(commands.Cog):
             else:
                 server = "Limited Access"
             desc = (
-                f"{v.platform}\n"
-                f"{server}\n"
-                f"{v.version}\n"
+                "```\n"
+                f"Platform: {v.platform}\n"
+                f"Status: {server}\n"
+                f"Version: {v.version}\n\n"
+                "```"
             )
             stringus += desc 
         e = discord.Embed(title="Paladins Server Status", description=stringus)
