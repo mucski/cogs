@@ -392,9 +392,9 @@ class Paladins(commands.Cog):
             else:
                 server = "Unknown"
             desc = (
-                "{}\n".format(v.platform),
-                "{}\n".format(server),
-                "{}\n".format(v.version)
+                f"{v.platform}\n"
+                f"{server}\n"
+                f"{v.version}\n"
             )
-            e = discord.Embed(title="Paladins Server Status", description=desc)
+        e = discord.Embed(title="Paladins Server Status", description=desc)
         await ctx.send(embed=e)
