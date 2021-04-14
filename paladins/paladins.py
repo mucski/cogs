@@ -384,6 +384,7 @@ class Paladins(commands.Cog):
         Paladins server statuses
         """
         status = await self.api.get_server_status()
+        stringus = ""
         for k, v in status.statuses.items():
             if v.up:
                 server = "Operational"
@@ -396,5 +397,6 @@ class Paladins(commands.Cog):
                 f"{server}\n"
                 f"{v.version}\n"
             )
-        e = discord.Embed(title="Paladins Server Status", description=desc)
+            stringus += desc 
+        e = discord.Embed(title="Paladins Server Status", description=stringus)
         await ctx.send(embed=e)
