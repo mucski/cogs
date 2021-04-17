@@ -6,6 +6,7 @@ from datetime import datetime
 import discord
 from discord import File
 from .helper import helper
+from .helper2 import helper2
 from redbot.core.utils.chat_formatting import pagify
 import aiohttp
 import json
@@ -231,21 +232,8 @@ class Paladins(commands.Cog):
     @commands.command()
     @checks.is_owner()
     async def testing(self, ctx, player: Union[discord.Member, str] = None, platform="PC"):
-        if isinstance(player, discord.Member) or player is None:
-            if player is None:
-                # use the ID of the caller
-                discord_id = ctx.author.id
-            else:
-                # use the ID of the person mentioned
-                discord_id = player.id
-            # use discord_id to lookup their profile
-            ret = await self.api.get_from_platform(discord_id, arez.Platform.Discord)
-        else:
-            # player is a str here
-            ret = await self.api.search_players(player, arez.Platform(platform))
-            ret = ret[0]
-        player = await ret
-        await ctx.send(player.name)
+        string = await helper2.testing()
+        await ctx.send(string)
         
     @commands.command()
     async def champstats(self, ctx, champion_name = "all", player: Union[discord.Member, str] = None, platform = "PC"):
