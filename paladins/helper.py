@@ -7,8 +7,7 @@ from redbot.core.utils.chat_formatting import humanize_number
 class helper:
 
     @classmethod
-    async def get_champ_name(cls, champion):
-        name = champion.name
+    async def get_champ_name(cls, champ):
         champ = name.lower()
         if "bomb" in champ:
             champ = "bomb-king"
