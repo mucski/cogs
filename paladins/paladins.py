@@ -73,7 +73,7 @@ class Paladins(commands.Cog):
                     else:
                         rank = match_player.player.ranked_best.rank.value
                     team1_data.append(row)
-                    team1_champs.append(match_player.champion.name)
+                    team1_champs.append(match_player.champion)
                     team1_ranks.append(rank)
                 else:
                     if match_player.player.private:
@@ -81,7 +81,7 @@ class Paladins(commands.Cog):
                     else:
                         rank = match_player.player.ranked_best.rank.value
                     team2_data.append(row)
-                    team2_champs.append(match_player.champion.name)
+                    team2_champs.append(match_player.champion)
                     team2_ranks.append(rank)
             buffer = await helper.history_image(team1_champs, team2_champs, team1_data, team2_data, team1_ranks,
                                                 team2_ranks, (match_info + temp))
