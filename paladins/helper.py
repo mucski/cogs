@@ -8,7 +8,6 @@ class helper:
 
     @classmethod
     async def get_champ_name(cls, champ):
-        champ = str(champ.lower())
         if "bomb" in champ:
             champ = "bomb-king"
         if "sha" in champ:
