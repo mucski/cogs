@@ -30,7 +30,7 @@ class helper2:
         return img
         
     @classmethod
-    async def create_image(cls, team1, team2, matchdata, bans):
+    async def create_image(cls, team, matchdata, bans):
         offset = 25
         height = 1080
         width = 1920
