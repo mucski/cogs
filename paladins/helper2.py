@@ -38,7 +38,10 @@ class helper2:
         img = Image.new('RGBA', (width, height), color=color)
         draw = ImageDraw.Draw(img)
         player_key = await helper2.player_key("data")
-        img.paste(player_key, (offset, offset))
+        i = 0
+        while i < 10:
+            img.paste(player_key, (offset, 300 + offset))
+            i += 1
         
         # Final image product
         final_buffer = BytesIO()
