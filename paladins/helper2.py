@@ -23,8 +23,8 @@ class helper2:
 
     @classmethod
     async def player_key(cls, data):
-        width = 1080
-        height = 512
+        width = 1920
+        height = 200
         color = (8, 21, 25)
         img = Image.new("RGBA", (width, height), color=color)
         return img
