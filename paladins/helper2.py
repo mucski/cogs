@@ -33,7 +33,7 @@ class helper2:
         # Final image product
         final_buffer = BytesIO()
         # Store the pillow image we just created into the buffer with the PNG format
-        history_image.save(final_buffer, "PNG")
+        draw.save(final_buffer, "PNG")
         # seek back to the start of the buffer stream
         final_buffer.seek(0)
         return final_buffer
