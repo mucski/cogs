@@ -29,10 +29,9 @@ class helper2:
         img = Image.new("RGBA", (width, height), color=color)
         draw = ImageDraw.Draw(img)
         fnt = ImageFont.truetype("home/ubuntu/arialbd.ttf", 30)
-        for line in items.items:
-            i = 0
+        for line in items:
             w, h = draw.textsize(line, font=fnt)
-            draw.text(((width - w) / 2, 0), line[i], font=fnt, fill=(255, 255, 255))
+            draw.text(((width - w) / 2, 0), line, font=fnt, fill=(255, 255, 255))
             i + 1
             h += h
         return img
