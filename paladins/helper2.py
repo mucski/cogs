@@ -46,6 +46,9 @@ class helper2:
         offset2 = 0
         items = []
         while i < 5:
+            champ_icon = await helper2.get_champ_icon(team[2])
+            champ_icon = champ_icon.resize((280, 280))
+            img.paste(champ_icon, (10, 10))
             items.append(team[0])
             player_key = await helper2.player_key(items)
             img.paste(player_key, (offset + offset2, offset))
