@@ -40,7 +40,7 @@ class helper2:
         champ_icon = ImageOps.crop(champ_icon, border)
         img.paste(champ_icon, (10, 10))
         w, h = draw.textsize(items[0], font=fnt)
-        draw.text(((width - w) / 2, 0), items[0], font=fnt, fill=(255, 255, 255))
+        draw.text(((width - w) / 2, 200), items[0], font=fnt, fill=(255, 255, 255))
         h += h
         return img
         
