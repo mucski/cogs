@@ -34,7 +34,7 @@ class helper2:
         
     @classmethod
     async def create_image(cls, team, matchdata, bans):
-        offset = 25
+        offset = 45
         height = 1080
         width = 1920
         color = (14, 34, 43)
