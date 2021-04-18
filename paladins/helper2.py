@@ -44,7 +44,7 @@ class helper2:
         w, h = draw.textsize(items[0], font=fnt)
         draw.text(((width - w) / 2, 200), items[0], font=fnt, fill=fill)
         w, h = draw.textsize(items[2], font=fnt1)
-        draw.text(((width - w) / 2, 200 + h), items[2], font=fnt, fill=fill)
+        draw.text(((width - w) / 2, 200 + h), items[2], font=fnt1, fill=fill)
         return img
         
     @classmethod
