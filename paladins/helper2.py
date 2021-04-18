@@ -44,7 +44,7 @@ class helper2:
         width = 1920
         color = (14, 34, 43)
         img = Image.new('RGBA', (width, height), color=color)
-        draw = ImageDraw.Draw(img)
+        # draw = ImageDraw.Draw(img)
         player_key = await helper2.player_key(items)
         i = 0
         offset2 = 0
