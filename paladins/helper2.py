@@ -65,6 +65,7 @@ class helper2:
         width = 1920
         color = (14, 34, 43)
         img = Image.new('RGBA', (width, height), color=color)
+        map_file_name = matchdata[0]
         try:
             match_map = Image.open("home/ubuntu/icons/maps/{}.png".format(
                 map_file_name.lower().replace(" ", "_").replace("'", "")))
