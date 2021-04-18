@@ -34,7 +34,7 @@ class helper2:
         img = Image.new("RGBA", (width, height), color=color)
         draw = ImageDraw.Draw(img)
         fnt = ImageFont.truetype("home/ubuntu/arialbd.ttf", 30)
-        fnt1 = ImageFont.truetype("home/ubuntu/arial.ttf", 15)
+        fnt1 = ImageFont.truetype("home/ubuntu/arial.ttf", 25)
         champ_icon = await helper2.get_champ_icon(items[1])
         champ_icon = Image.open(BytesIO(champ_icon))
         champ_icon = champ_icon.resize((280, 280))
@@ -44,7 +44,7 @@ class helper2:
         w, h = draw.textsize(items[0], font=fnt)
         draw.text(((width - w) / 2, 200), items[0], font=fnt, fill=fill)
         w, h = draw.textsize(items[2], font=fnt1)
-        draw.text(((width - w) / 2, 200 + h), items[2], font=fnt1, fill=fill)
+        draw.text(((width - w) / 2, 235), items[2], font=fnt1, fill=fill)
         return img
         
     @classmethod
