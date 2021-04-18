@@ -45,6 +45,8 @@ class helper2:
         draw.text(((width - w) / 2, 200), items[0], font=fnt, fill=fill)
         w, h = draw.textsize(items[2], font=fnt1)
         draw.text(((width - w) / 2, 235), items[2], font=fnt1, fill=fill)
+        w, h = draw.textsize(items[3], font=fnt2)
+        draw.text(((width - w) / 2, 270), items[3], font=fnt1, fill=fill)
         return img
         
     @classmethod
@@ -61,6 +63,7 @@ class helper2:
             items.append(team[0])
             items.append(team[2])
             items.append(team[4])
+            items.append(team[5])
             player_key = await helper2.player_key(items)
             img.paste(player_key, (offset + offset2, offset))
             offset2 += 300 + offset
