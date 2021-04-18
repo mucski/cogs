@@ -30,6 +30,7 @@ class helper2:
         width, height = 300, 400
         middle = width / 2
         color = (8, 21, 25)
+        fill = (255, 255, 255)
         img = Image.new("RGBA", (width, height), color=color)
         draw = ImageDraw.Draw(img)
         fnt = ImageFont.truetype("home/ubuntu/arialbd.ttf", 30)
@@ -40,8 +41,8 @@ class helper2:
         champ_icon = ImageOps.crop(champ_icon, border)
         img.paste(champ_icon, (10, 10))
         w, h = draw.textsize(items[0], font=fnt)
-        draw.text(((width - w) / 2, 200), items[0], font=fnt, fill=(255, 255, 255))
-        h += h
+        draw.text(((width - w) / 2, 200), items[0], font=fnt, fill=fill)
+        draw.text(((width - w) / 2, 200 + h), items[2], font=fnt, fill=fill)
         return img
         
     @classmethod
@@ -57,6 +58,7 @@ class helper2:
         while i < 5:
             items.append(team[0])
             items.append(team[2])
+            items.append(team[4])
             player_key = await helper2.player_key(items)
             img.paste(player_key, (offset + offset2, offset))
             offset2 += 300 + offset
