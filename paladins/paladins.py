@@ -127,7 +127,7 @@ class Paladins(commands.Cog):
         await ctx.send(file=file)
         
     @commands.command()
-    @check.is_owner()
+    @checks.is_owner()
     async def proto2(self, ctx):
         # name, level, champ, rank, kda, damage, heal, shield, kda2, self heal, party, team
         team1 = ["Joey", "999", "Jenos", "1", "99/99/99", "999,999", "999,999", "999,999", "99,99", "999,999", "4", "1"]
