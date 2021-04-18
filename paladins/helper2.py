@@ -22,7 +22,6 @@ class helper2:
         async with aiohttp.ClientSession() as session:
             async with session.get(url) as resp:
                 if resp.status == 200:
-                    resp = await resp.read()
                     champ_image = Image.open(BytesIO(resp))
         return champ_image
 
