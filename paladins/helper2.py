@@ -32,7 +32,6 @@ class helper2:
         for line in items:
             w, h = draw.textsize(line, font=fnt)
             draw.text(((width - w) / 2, 0), line, font=fnt, fill=(255, 255, 255))
-            i + 1
             h += h
         return img
         
