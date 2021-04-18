@@ -47,7 +47,7 @@ class helper2:
         i = 0
         offset2 = 0
         while i < 5:
-            items = [team[0], team[4]]
+            items = [team]
             player_key = await helper2.player_key(items)
             img.paste(player_key, (offset + offset2, offset))
             offset2 += 300 + offset
