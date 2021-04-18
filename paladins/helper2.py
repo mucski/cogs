@@ -22,15 +22,17 @@ class helper2:
         return url
 
     @classmethod
-    async def player_key(cls, data):
-        width = 300
-        height = 400
+    async def player_key(cls, items):
+        width, height = 300, 400
         middle = width / 2
         color = (8, 21, 25)
         img = Image.new("RGBA", (width, height), color=color)
         draw = ImageDraw.Draw(img)
         fnt = ImageFont.truetype("home/ubuntu/arialbd.ttf", 12)
-        draw.text((middle, 0), "Champion", font=fnt, fill=(255, 255, 255))
+        for line in items:
+            w, h = draw.textsize(line, font=fnt)
+            draw.text(((width - w) / 2, 0), line[i], font=fnt, fill=(255, 255, 255))
+            h += h
         return img
         
     @classmethod
@@ -41,7 +43,8 @@ class helper2:
         color = (14, 34, 43)
         img = Image.new('RGBA', (width, height), color=color)
         draw = ImageDraw.Draw(img)
-        player_key = await helper2.player_key("data")
+        items = [team[0], team[4]
+        player_key = await helper2.player_key(items)
         i = 0
         offset2 = 0
         while i < 5:
