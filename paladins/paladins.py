@@ -135,6 +135,9 @@ class Paladins(commands.Cog):
         # map name, region, duration, winning team
         matchdata = ["Timber Mill", "North America", "99 minutes", "1"]
         bans = ["Strix", "Corvus", "Yagorath", "Androxus"]
+        buffer = await helper2.create_image(team1, team2, matchdata, bans)
+        file = discord.File(filename=f"prototype.png", fp=buffer)
+        await ctx.send(file=file)
             
     @commands.command()
     async def last(self, ctx, player: Union[discord.Member, str] = None, platform="PC"):
