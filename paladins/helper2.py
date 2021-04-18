@@ -23,7 +23,11 @@ class helper2:
 
     @classmethod
     async def player_key(cls, data):
-        pass
+        width = 1080
+        height = 512
+        color = (8, 21, 25)
+        img = Image.new("RGBA", (width, height), color=color)
+        return img
         
     @classmethod
     async def create_image(cls, team1, team2, matchdata, bans):
@@ -33,6 +37,8 @@ class helper2:
         color = (14, 34, 43)
         img = Image.new('RGBA', (width, height), color=color)
         draw = ImageDraw.Draw(img)
+        player_key = await helper2.player_key("data")
+        img.paste(player_key)
         
         # Final image product
         final_buffer = BytesIO()
