@@ -20,8 +20,11 @@ class helper2:
         if "mal" in champ:
             champ = "maldamba"
         url = f"https://webcdn.hirezstudios.com/paladins/champion-icons/{champ}.jpg"
-        file = cStringIO.StringIO(urllib.urlopen(url).read())
-        return file
+        async with aiohttp.ClientSession() as session:
+            async with session.get(url) as resp:
+                if resp.status == 200:
+                    resp = await resp.read()
+        return resp
 
     @classmethod
     async def player_key(cls, items):
