@@ -20,3 +20,20 @@ class helper2:
             champ = "maldamba"
         url = f"https://webcdn.hirezstudios.com/paladins/champion-icons/{champ}.jpg"
         return url
+
+    @classmethod
+    async def create_image(cls, team1, team2, matchdata, bans, parties):
+        offset = 10
+        imagesize_x = 1080
+        imagesize_y = 1920
+        color = (14, 34, 43)
+        img = Image.new('RGBA', (imagesize_x, imagesize_y), fill=color)
+        draw = ImageDraw.Draw(img)
+        
+        # Final image product
+        final_buffer = BytesIO()
+        # Store the pillow image we just created into the buffer with the PNG format
+        history_image.save(final_buffer, "PNG")
+        # seek back to the start of the buffer stream
+        final_buffer.seek(0)
+        return final_buffer
