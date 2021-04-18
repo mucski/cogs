@@ -130,12 +130,12 @@ class Paladins(commands.Cog):
     @checks.is_owner()
     async def proto2(self, ctx):
         # name, level, champ, rank, kda, damage, heal, shield, kda2, self heal, party, team
-        team1 = ["Joey", "999", "Jenos", "1", "99/99/99", "999,999", "999,999", "999,999", "99,99", "999,999", "4", "1"]
-        team2 = ["TestoBoto", "999", "Furia", "1", "99/99/99", "999,999", "999,999", "999,999", "99,99", "999,999", "3", "2"]
+        team = ["Joey", "999", "Jenos", "1", "99/99/99", "999,999", "999,999", "999,999", "99,99", "999,999", "4", "1"]
+        # team2 = ["TestoBoto", "999", "Furia", "1", "99/99/99", "999,999", "999,999", "999,999", "99,99", "999,999", "3", "2"]
         # map name, region, duration, winning team
         matchdata = ["Timber Mill", "North America", "99 minutes", "1"]
         bans = ["Strix", "Corvus", "Yagorath", "Androxus"]
-        buffer = await helper2.create_image(team1, team2, matchdata, bans)
+        buffer = await helper2.create_image(team, matchdata, bans)
         file = discord.File(filename=f"prototype.png", fp=buffer)
         await ctx.send(file=file)
             
