@@ -27,7 +27,7 @@ class helper2:
         imagesize_x = 1080
         imagesize_y = 1920
         color = (14, 34, 43)
-        img = Image.new('RGBA', (imagesize_x, imagesize_y), color=color)
+        img = Image.new('RGBA', (imagesize_y, imagesize_x), color=color)
         draw = ImageDraw.Draw(img)
         
         # Final image product
