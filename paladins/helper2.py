@@ -25,7 +25,6 @@ class helper2:
     async def player_key(cls, data):
         pass
         
-
     @classmethod
     async def create_image(cls, team1, team2, matchdata, bans):
         offset = 10
