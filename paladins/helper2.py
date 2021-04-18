@@ -42,7 +42,7 @@ class helper2:
         offset2 = 0
         while i < 10:
             img.paste(player_key, (offset + offset2, offset))
-            offset2 += 300
+            offset2 += 300 + offset
             i += 1
         
         # Final image product
