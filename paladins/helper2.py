@@ -30,8 +30,9 @@ class helper2:
         draw = ImageDraw.Draw(img)
         fnt = ImageFont.truetype("home/ubuntu/arialbd.ttf", 12)
         for line in items:
+            i = 0
             w, h = draw.textsize(line, font=fnt)
-            draw.text(((width - w) / 2, 0), line[i], font=fnt, fill=(255, 255, 255))
+            draw.text(((width - w) / 2, 0), line[i + 1], font=fnt, fill=(255, 255, 255))
             h += h
         return img
         
