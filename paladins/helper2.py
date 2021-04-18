@@ -22,7 +22,7 @@ class helper2:
         return url
 
     @classmethod
-    async def create_image(cls, team1, team2, matchdata, bans, parties):
+    async def create_image(cls, team1, team2, matchdata, bans):
         offset = 10
         imagesize_x = 1080
         imagesize_y = 1920
