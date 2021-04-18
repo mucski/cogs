@@ -47,6 +47,7 @@ class helper2:
         items = []
         while i < 5:
             champ_icon = await helper2.get_champ_icon(team[2])
+            champ_icon = Image.open(champ_icon)
             champ_icon = champ_icon.resize((280, 280))
             img.paste(champ_icon, (10, 10))
             items.append(team[0])
