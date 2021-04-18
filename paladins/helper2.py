@@ -27,6 +27,9 @@ class helper2:
         height = 400
         color = (8, 21, 25)
         img = Image.new("RGBA", (width, height), color=color)
+        draw = ImageDraw.Draw(img)
+        fnt = ImageFont.truetype("home/ubuntu/arialbd.ttf", 12)
+        draw.text((20, 0), "Champion", font=fnt, fill=(255, 255, 255))
         return img
         
     @classmethod
