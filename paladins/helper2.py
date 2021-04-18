@@ -39,8 +39,10 @@ class helper2:
         draw = ImageDraw.Draw(img)
         player_key = await helper2.player_key("data")
         i = 0
+        offset2 = 0
         while i < 10:
-            img.paste(player_key, (offset + 300, offset))
+            img.paste(player_key, (offset + offset2, offset))
+            offset2 += 300
             i += 1
         
         # Final image product
