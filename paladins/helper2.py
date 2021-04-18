@@ -41,12 +41,21 @@ class helper2:
         border = (0, 50, 0, 50)
         champ_icon = ImageOps.crop(champ_icon, border)
         img.paste(champ_icon, (10, 10))
+        # name
         w, h = draw.textsize(items[0], font=fnt)
         draw.text(((width - w) / 2, 200), items[0], font=fnt, fill=fill)
+        # kda
         w, h = draw.textsize(items[2], font=fnt1)
-        draw.text(((width - w) / 2, 235), items[2], font=fnt1, fill=fill)
+        draw.text(((width - w) / 2, 230), items[2], font=fnt1, fill=fill)
+        # damage
         w, h = draw.textsize(items[3], font=fnt1)
-        draw.text(((width - w) / 2, 270), items[3], font=fnt1, fill=fill)
+        draw.text(((width - w) / 2, 260), items[3], font=fnt1, fill=fill)
+        # healing
+        w, h = draw.textsize(items[3], font=fnt1)
+        draw.text(((width - w) / 2, 260), items[3], font=fnt1, fill=fill)
+        # shielding
+        w, h = draw.textsize(items[3], font=fnt1)
+        draw.text(((width - w) / 2, 260), items[3], font=fnt1, fill=fill)
         return img
         
     @classmethod
