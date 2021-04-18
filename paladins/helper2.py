@@ -19,11 +19,8 @@ class helper2:
         if "mal" in champ:
             champ = "maldamba"
         url = f"https://webcdn.hirezstudios.com/paladins/champion-icons/{champ}.jpg"
-        async with aiohttp.ClientSession() as session:
-            async with session.get(url) as resp:
-                if resp.status == 200:
-                    resp = await resp.content()
-                    champ_image = Image.open(BytesIO(resp))
+        response = requests.get(url)
+        champ_image = Image.open(BytesIO(response.content))
         return champ_image
 
     @classmethod
