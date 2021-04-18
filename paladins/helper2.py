@@ -29,7 +29,7 @@ class helper2:
         img = Image.new("RGBA", (width, height), color=color)
         draw = ImageDraw.Draw(img)
         fnt = ImageFont.truetype("home/ubuntu/arialbd.ttf", 30)
-        for line in items:
+        for line in items.keys:
             i = 0
             w, h = draw.textsize(line, font=fnt)
             draw.text(((width - w) / 2, 0), line[i], font=fnt, fill=(255, 255, 255))
@@ -48,7 +48,7 @@ class helper2:
         offset2 = 0
         items = []
         while i < 5:
-            items.append(team)
+            items.append(team[0])
             player_key = await helper2.player_key(items)
             img.paste(player_key, (offset + offset2, offset))
             offset2 += 300 + offset
