@@ -22,7 +22,7 @@ class helper2:
         async with aiohttp.ClientSession() as session:
             async with session.get(url) as resp:
                 if resp.status == 200:
-                    champ_image = Image.open(BytesIO(resp))
+                    champ_image = Image.open(BytesIO(resp.content))
         return champ_image
 
     @classmethod
