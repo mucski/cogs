@@ -43,7 +43,7 @@ class helper2:
         color = (14, 34, 43)
         img = Image.new('RGBA', (width, height), color=color)
         draw = ImageDraw.Draw(img)
-        items = [team[0], team[4]
+        items = [team[0], team[4]]
         player_key = await helper2.player_key(items)
         i = 0
         offset2 = 0
