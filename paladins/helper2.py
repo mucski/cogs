@@ -1,7 +1,7 @@
 from PIL import ImageOps, ImageDraw, Image, ImageFont
 import aiohttp
 from io import BytesIO
-import requests
+import urllib, cStringIO
 from redbot.core.utils.chat_formatting import humanize_number
 
 class helper2:
@@ -20,9 +20,8 @@ class helper2:
         if "mal" in champ:
             champ = "maldamba"
         url = f"https://webcdn.hirezstudios.com/paladins/champion-icons/{champ}.jpg"
-        response = requests.get(url)
-        champ_image = Image.open(BytesIO(response.content))
-        return champ_image
+        file = cStringIO.StringIO(urllib.urlopen(url).read())
+        return file
 
     @classmethod
     async def player_key(cls, items):
