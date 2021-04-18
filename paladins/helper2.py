@@ -52,10 +52,10 @@ class helper2:
         draw.text(((width - w) / 2, 260), items[3], font=fnt1, fill=fill)
         # healing
         w, h = draw.textsize(items[3], font=fnt1)
-        draw.text(((width - w) / 2, 260), items[3], font=fnt1, fill=fill)
+        draw.text(((width - w) / 2, 290), items[3], font=fnt1, fill=fill)
         # shielding
         w, h = draw.textsize(items[3], font=fnt1)
-        draw.text(((width - w) / 2, 260), items[3], font=fnt1, fill=fill)
+        draw.text(((width - w) / 2, 310), items[3], font=fnt1, fill=fill)
         return img
         
     @classmethod
