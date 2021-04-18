@@ -37,8 +37,8 @@ class helper2:
         champ_icon = Image.open(BytesIO(champ_icon))
         champ_icon = champ_icon.resize((280, 280))
         img.paste(champ_icon, (10, 10))
-        w, h = draw.textsize(line[0], font=fnt)
-        draw.text(((width - w) / 2, 0), line, font=fnt, fill=(255, 255, 255))
+        w, h = draw.textsize(items[0], font=fnt)
+        draw.text(((width - w) / 2, 0), items[0], font=fnt, fill=(255, 255, 255))
         h += h
         return img
         
