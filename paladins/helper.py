@@ -331,7 +331,7 @@ class helper:
                 # Team 1 Bans
                 try:
                     async with aiohttp.ClientSession() as session:
-                        url = await helper.get_champ_name(md[6])
+                        url = await helper.get_champ_name(str(md[6]))
                         async with session.get(url) as resp:
                             if resp.status == 200:
                                 resp = await resp.read()
@@ -345,7 +345,7 @@ class helper:
                     middle_panel.paste(champ_icon, (512 * 10 -100, ds))
                 try:
                     async with aiohttp.ClientSession() as session:
-                        url = await helper.get_champ_name(md[7])
+                        url = await helper.get_champ_name(str(md[7]))
                         async with session.get(url) as resp:
                             if resp.status == 200:
                                 resp = await resp.read()
@@ -360,7 +360,7 @@ class helper:
                 # Team 2 Bans
                 try:
                     async with aiohttp.ClientSession() as session:
-                        url = await helper.get_champ_name(md[8])
+                        url = await helper.get_champ_name(str(md[8]))
                         async with session.get(url) as resp:
                             if resp.status == 200:
                                 resp = await resp.read()
@@ -374,7 +374,7 @@ class helper:
                     middle_panel.paste(champ_icon, (512 * 10, ds+232))
                 try:
                     async with aiohttp.ClientSession() as session:
-                        url = await helper.get_champ_name(md[9])
+                        url = await helper.get_champ_name(str(md[9]))
                         async with session.get(url) as resp:
                             if resp.status == 200:
                                 resp = await resp.read()
