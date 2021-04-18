@@ -23,6 +23,7 @@ class helper2:
 
     @classmethod
     async def player_key(cls, data):
+        pass
         
 
     @classmethod
