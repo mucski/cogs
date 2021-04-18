@@ -10,9 +10,8 @@ class helper2:
         return "Hello World"
         
     @classmethod
-    async def get_champ_icon(cls, name):
-        ready = name.name
-        champ = ready.lower()
+    async def get_champ_icon(cls, champ):
+        champ = champ.lower()
         if "bomb" in champ:
             champ = "bomb-king"
         if "sha" in champ:
