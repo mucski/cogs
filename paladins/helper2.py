@@ -40,7 +40,7 @@ class helper2:
         player_key = await helper2.player_key("data")
         i = 0
         while i < 10:
-            img.paste(player_key, (offset, 300 + offset))
+            img.paste(player_key, (offset + 300, offset))
             i += 1
         
         # Final image product
