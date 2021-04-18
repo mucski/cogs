@@ -65,6 +65,12 @@ class helper2:
         width = 1920
         color = (14, 34, 43)
         img = Image.new('RGBA', (width, height), color=color)
+        try:
+            match_map = Image.open("home/ubuntu/icons/maps/{}.png".format(
+                map_file_name.lower().replace(" ", "_").replace("'", "")))
+        except FileNotFoundError:
+            match_map = Image.open("home/ubuntu/icons/maps/test_maps.png")
+        img.paste(match_map, (0, 0))
         i = 0
         offset2 = 0
         items = []
