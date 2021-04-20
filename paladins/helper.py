@@ -280,7 +280,7 @@ class helper:
             match_map = Image.open("home/ubuntu/icons/maps/test_maps.png")
         #match_map = match_map.resize((512*2, 512), Image.ANTIALIAS)
         basewidth = 512*10+400
-        wpercent = (basewidth/float(img.size[0]))
+        wpercent = (basewidth/float(match_map.size[0]))
         hsize = int((float(img.size[1])*float(wpercent)))
         match_map = match_map.resize((basewidth,hsize), Image.ANTIALIAS)
         #img.save('somepic.jpg')
