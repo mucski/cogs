@@ -285,7 +285,7 @@ class helper:
         match_map = match_map.resize((basewidth,hsize), Image.ANTIALIAS)
         #img.save('somepic.jpg')
         #match_map = match_map.resize((512*10+400, 512), Image.ANTIALIAS)
-        middle_panel.paste(match_map, (0, -512))
+        middle_panel.paste(match_map, (0, -1080))
         # Preparing the panel to draw on
         draw_panel = ImageDraw.Draw(middle_panel)
         # Add in match information
