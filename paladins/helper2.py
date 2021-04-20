@@ -49,7 +49,7 @@ class helper2:
         draw.text(((width - w) / 2, 240), items[2], font=fnt1, fill=fill)
         # damage
         w, h = draw.textsize(items[3], font=fnt1)
-        draw.text(((width - w) / 2, 280), items[3], font=fnt1, fill=fill)
+        draw.text(((width - w) / 2, 270), items[3], font=fnt1, fill=fill)
         # healing
         w, h = draw.textsize(items[3], font=fnt1)
         draw.text(((width - w) / 2, 300), items[3], font=fnt1, fill=fill)
