@@ -292,16 +292,16 @@ class helper:
         rs = 20  # Right Shift
         fnt100 = ImageFont.truetype("home/ubuntu/arial.ttf", 100)
         fnt100bold = ImageFont.truetype("/home/ubuntu/arialbd.ttf", 100)
-        draw_panel.text((512 * 2 + rs, 0 + ds),
+        draw_panel.text((rs, 0 + ds),
                         str(f"Winning Team: {md[0]}"), font=fnt100, fill=(255, 255, 255))
-        draw_panel.text((512 * 2 + rs, 100 + ds), (str(md[1]) + " minutes"), font=fnt100,
+        draw_panel.text((rs, 100 + ds), (str(md[1]) + " minutes"), font=fnt100,
                         fill=(255, 255, 255))
-        draw_panel.text((512 * 2 + rs, 200 + ds),
+        draw_panel.text((rs, 200 + ds),
                         str(md[2]), font=fnt100, fill=(255, 255, 255))
-        draw_panel.text((512 * 2 + rs, 300 + ds), str(map_name),
+        draw_panel.text((rs, 300 + ds), str(map_name),
                         font=fnt100, fill=(255, 255, 255))
         # Team 1
-        draw_panel.text((512 * 5 + rs - 200, ds), "Team 1 Score: ",
+        draw_panel.text((rs - 200, ds), "Team 1 Score: ",
                         font=fnt100, fill=(255, 255, 255))
         draw_panel.text((512 * 6, ds),
                         str(md[4]), font=fnt100bold, fill=(255, 255, 255))
