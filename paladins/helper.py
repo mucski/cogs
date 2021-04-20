@@ -347,7 +347,7 @@ class helper:
                     middle_panel.paste(champ_icon, (512 * 10 + 240 -100, ds))
                 # Team 2 Bans
                 try:
-                    resp = await helper.get_champ_name(md[8]])
+                    resp = await helper.get_champ_name(md[8])
                     champ_icon = Image.open(resp)
                     champ_icon = champ_icon.resize((200, 200))
                     middle_panel.paste(champ_icon, (512 * 10, ds+232))
@@ -357,7 +357,7 @@ class helper:
                     champ_icon = champ_icon.resize((200, 200))
                     middle_panel.paste(champ_icon, (512 * 10, ds+232))
                 try:
-                    resp = await helper.get_champ_name(md[6])
+                    resp = await helper.get_champ_name(md[9])
                     champ_icon = Image.open(resp)
                     champ_icon = champ_icon.resize((200, 200))
                     middle_panel.paste(champ_icon, (512 * 10 + 240 -100, ds+232))
