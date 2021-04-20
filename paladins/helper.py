@@ -269,6 +269,8 @@ class helper:
     @classmethod
     async def middle_panel(cls, md):
         middle_panel = Image.new("RGBA", (512*10+400, 512), color=(14, 52, 60))
+        fill = (255, 255, 255)
+        stroke = (255, 255, 255)
         # Adding in map to image
         # Needed to catch weird-unknown map modes
         map_name = map_file_name = md[3]
