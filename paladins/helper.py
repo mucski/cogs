@@ -272,7 +272,7 @@ class helper:
         middle_panel = Image.new("RGBA", (512*10+400, 512), color=(14, 52, 60))
         # Adding in map to image
         # Needed to catch weird-unknown map modes
-        map_file_name = md[3]
+        map_name = map_file_name = md[3]
         try:
             match_map = Image.open("home/ubuntu/icons/maps/{}.png".format(
                 map_file_name.lower().replace(" ", "_").replace("'", "")))
