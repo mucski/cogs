@@ -271,8 +271,6 @@ class helper:
     async def middle_panel(cls, md):
         middle_panel = Image.new("RGBA", (512*10+400, 512), color=(14, 52, 60))
         # Adding in map to image
-        map_name = map_file_name = (md[3].strip().replace("Ranked ", "").replace(" (TDM)", "").replace(" (Onslaught)", "")
-                                    .replace(" (Siege)", "")).replace("Practice ", "")
         if "WIP" in map_name:
             map_file_name = "test_maps"
             map_name = map_name.replace("WIP ", "")
@@ -282,7 +280,8 @@ class helper:
                 map_file_name.lower().replace(" ", "_").replace("'", "")))
         except FileNotFoundError:
             match_map = Image.open("home/ubuntu/icons/maps/test_maps.png")
-        match_map = match_map.resize((512*2, 512), Image.ANTIALIAS)
+        #match_map = match_map.resize((512*2, 512), Image.ANTIALIAS)
+        match_map = match_map.resize((512*10+400, 512), Image.ANTIALIAS)
         middle_panel.paste(match_map, (0, 0))
         # Preparing the panel to draw on
         draw_panel = ImageDraw.Draw(middle_panel)
