@@ -160,6 +160,18 @@ class helper:
         return img
 
     @classmethod
+    async def match_key_image(cls, x, y):
+        key = Image.new("RGB", (x*10+400, y-100), color=(15, 40, 48))
+        base_draw = ImageDraw.Draw(key)
+        fill = (255, 255, 255)
+        fnt = ImageFont.truetype("home/ubuntu/arialbd.ttf", 80)
+        base_draw.text((20, 0), "WINNING TEAM: {}", font=fnt, fill=fill)
+        base_draw.text((200, 0), "{Map name}", font=fnt, fill=fill)
+        base_draw.text((800, 0), "{Duration}", font=fnt, fill=fill)
+        base_draw.text((1200, 0), "{Region}", font=fnt, fill=fill)
+        base_draw.text((1800, 0), "{Matc Id}", font=fnt, fill=fill)
+
+    @classmethod
     async def player_key_image(cls, x, y):
         key = Image.new("RGB", (x*10+400, y-100), color=(8, 21, 25))
         base_draw = ImageDraw.Draw(key)
