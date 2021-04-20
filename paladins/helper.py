@@ -256,8 +256,7 @@ class helper:
             history_image.paste(
                 player_panel, (0, image_size_y * (i+offset) + 704))
         # Base speed is 10 - seconds
-        history_image = history_image.resize(
-            (4608//2, 3048//2), Image.ANTIALIAS)           # 5 seconds
+        history_image = history_image.resize((4608//2, 3048//2), Image.ANTIALIAS)           # 5 seconds
         # history_image = history_image.resize((4608 // 4, 3048 // 4), Image.ANTIALIAS)     # 2.5 secs but bad looking
         # Creates a buffer to store the image in
         final_buffer = BytesIO()
@@ -285,7 +284,7 @@ class helper:
         match_map = match_map.resize((basewidth,hsize), Image.ANTIALIAS)
         #img.save('somepic.jpg')
         #match_map = match_map.resize((512*10+400, 512), Image.ANTIALIAS)
-        middle_panel.paste(match_map, (0, -1080))
+        middle_panel.paste(match_map, (0, -512*3))
         # Preparing the panel to draw on
         draw_panel = ImageDraw.Draw(middle_panel)
         # Add in match information
