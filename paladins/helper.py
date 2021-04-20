@@ -221,7 +221,7 @@ class helper:
         # Adding in player data
         for i, (champ, champ2) in enumerate(zip(team1, team2)):
             try:
-                champ_image = await helper.get_champ_name(champ)
+                champ_image = await helper.get_champ_icon(champ)
                 champ_image = Image.open(champ_image)
                 if champ_image.size != (512, 512):
                     (width, height) = (champ_image.width * 2, champ_image.height * 2)
@@ -239,7 +239,7 @@ class helper:
             history_image.paste(player_panel, (0, (image_size_y+10)*i+132))
             # Second team
             try:
-                champ_image = await helper.get_champ_name(champ2)
+                champ_image = await helper.get_champ_icon(champ2)
                 champ_image = Image.open(champ_image)
                 if champ_image.size != (512, 512):
                     (width, height) = (champ_image.width * 2, champ_image.height * 2)
@@ -326,7 +326,7 @@ class helper:
                                 "Bans:", font=fnt100, fill=(255, 255, 255))
                 # Team 1 Bans
                 try:
-                    resp = await helper.get_champ_name(md[6])
+                    resp = await helper.get_champ_icon(md[6])
                     champ_icon = Image.open(resp)
                     champ_icon = champ_icon.resize((200, 200))
                     middle_panel.paste(champ_icon, (512 * 10 -100, ds))
@@ -336,7 +336,7 @@ class helper:
                     champ_icon = champ_icon.resize((200, 200))
                     middle_panel.paste(champ_icon, (512 * 10 -100, ds))
                 try:
-                    resp = await helper.get_champ_name(md[7])
+                    resp = await helper.get_champ_icon(md[7])
                     champ_icon = Image.open(resp)
                     champ_icon = champ_icon.resize((200, 200))
                     middle_panel.paste(champ_icon, (512 * 10 + 240 -100, ds))
@@ -347,7 +347,7 @@ class helper:
                     middle_panel.paste(champ_icon, (512 * 10 + 240 -100, ds))
                 # Team 2 Bans
                 try:
-                    resp = await helper.get_champ_name(md[8])
+                    resp = await helper.get_champ_icon(md[8])
                     champ_icon = Image.open(resp)
                     champ_icon = champ_icon.resize((200, 200))
                     middle_panel.paste(champ_icon, (512 * 10, ds+232))
@@ -357,7 +357,7 @@ class helper:
                     champ_icon = champ_icon.resize((200, 200))
                     middle_panel.paste(champ_icon, (512 * 10, ds+232))
                 try:
-                    resp = await helper.get_champ_name(md[9])
+                    resp = await helper.get_champ_icon(md[9])
                     champ_icon = Image.open(resp)
                     champ_icon = champ_icon.resize((200, 200))
                     middle_panel.paste(champ_icon, (512 * 10 + 240 -100, ds+232))
