@@ -160,19 +160,6 @@ class helper:
         return img
 
     @classmethod
-    async def match_key_image(cls, x, y):
-        key = Image.new("RGB", (x*10+400, y-100), color=(15, 40, 48))
-        base_draw = ImageDraw.Draw(key)
-        fill = (255, 255, 255)
-        fnt = ImageFont.truetype("home/ubuntu/arialbd.ttf", 80)
-        base_draw.text((20, 0), "WINNING TEAM: {}", font=fnt, fill=fill)
-        base_draw.text((200, 0), "{Map name}", font=fnt, fill=fill)
-        base_draw.text((800, 0), "{Duration}", font=fnt, fill=fill)
-        base_draw.text((1200, 0), "{Region}", font=fnt, fill=fill)
-        base_draw.text((1800, 0), "{Matc Id}", font=fnt, fill=fill)
-        return key
-
-    @classmethod
     async def player_key_image(cls, x, y):
         key = Image.new("RGB", (x*10+400, y-100), color=(8, 21, 25))
         base_draw = ImageDraw.Draw(key)
@@ -226,10 +213,8 @@ class helper:
         offset = 5
         history_image = Image.new("RGB", (image_size_x*10+400, image_size_y*12 + 264))
         # Adds the top key panel
-        key2 = await helper.match_key_image(image_size_x, image_size_y)
         key = await helper.player_key_image(image_size_x, image_size_y)
-        history_image.paste(key2, (0, 0))
-        history_image.paste(key, (image_size_y, 0))
+        history_image.paste(key, (0, 0))
         # Creates middle panel
         mid_panel = await helper.middle_panel(match_data)
         history_image.paste(mid_panel, (0, 1392-40))
