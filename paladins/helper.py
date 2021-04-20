@@ -282,7 +282,7 @@ class helper:
         basewidth = 512*10+400
         wpercent = (basewidth/float(img.size[0]))
         hsize = int((float(img.size[1])*float(wpercent)))
-        match_map = img.resize((basewidth,hsize), Image.ANTIALIAS)
+        match_map = match_map.resize((basewidth,hsize), Image.ANTIALIAS)
         #img.save('somepic.jpg')
         match_map = match_map.resize((512*10+400, 512), Image.ANTIALIAS)
         middle_panel.paste(match_map, (0, 0))
