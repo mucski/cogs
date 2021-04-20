@@ -301,9 +301,9 @@ class helper:
         draw_panel.text((rs, 300 + ds), str(map_name),
                         font=fnt100, fill=(255, 255, 255))
         # Team 1
-        draw_panel.text((512 * 6, ds), "Team 1 Score: ",
+        draw_panel.text((512 * 4, ds), "Team 1 Score: ",
                         font=fnt100, fill=(255, 255, 255))
-        draw_panel.text((512 * 6, ds),
+        draw_panel.text((512 * 4 + 100, ds),
                         str(md[4]), font=fnt100bold, fill=(255, 255, 255))
         center = (512/2 - 130/2)
         center2 = (512/2 - 80/2)
