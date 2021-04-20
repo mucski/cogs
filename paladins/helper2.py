@@ -46,7 +46,7 @@ class helper2:
         draw.text(((width - w) / 2, 200), items[0], font=fnt, fill=fill)
         # kda
         w, h = draw.textsize(items[2], font=fnt1)
-        draw.text(((width - w) / 2, 230), items[2], font=fnt1, fill=fill)
+        draw.text(((width - w) / 2, 240), items[2], font=fnt1, fill=fill)
         # damage
         w, h = draw.textsize(items[3], font=fnt1)
         draw.text(((width - w) / 2, 260), items[3], font=fnt1, fill=fill)
