@@ -222,7 +222,7 @@ class helper:
         for i, (champ, champ2) in enumerate(zip(team1, team2)):
             try:
                 resp = await helper.get_champ_icon(champ)
-                champ_image = Image.open(resp)
+                champ_image = Image.open(BytesIO(resp))
                 if champ_image.size != (512, 512):
                     (width, height) = (champ_image.width * 2, champ_image.height * 2)
                     champ_image_ready = champ_image.resize((width, height))
@@ -327,7 +327,7 @@ class helper:
                 # Team 1 Bans
                 try:
                     resp = await helper.get_champ_icon(md[6])
-                    champ_icon = Image.open(resp)
+                    champ_icon = Image.open(BytesIO(resp))
                     champ_icon = champ_icon.resize((200, 200))
                     middle_panel.paste(champ_icon, (512 * 10 -100, ds))
                 except FileNotFoundError:
@@ -337,7 +337,7 @@ class helper:
                     middle_panel.paste(champ_icon, (512 * 10 -100, ds))
                 try:
                     resp = await helper.get_champ_icon(md[7])
-                    champ_icon = Image.open(resp)
+                    champ_icon = Image.open(BytesIO(resp))
                     champ_icon = champ_icon.resize((200, 200))
                     middle_panel.paste(champ_icon, (512 * 10 + 240 -100, ds))
                 except FileNotFoundError:
@@ -348,7 +348,7 @@ class helper:
                 # Team 2 Bans
                 try:
                     resp = await helper.get_champ_icon(md[8])
-                    champ_icon = Image.open(resp)
+                    champ_icon = Image.open(BytesIO(resp))
                     champ_icon = champ_icon.resize((200, 200))
                     middle_panel.paste(champ_icon, (512 * 10, ds+232))
                 except FileNotFoundError:
@@ -358,7 +358,7 @@ class helper:
                     middle_panel.paste(champ_icon, (512 * 10, ds+232))
                 try:
                     resp = await helper.get_champ_icon(md[9])
-                    champ_icon = Image.open(resp)
+                    champ_icon = Image.open(BytesIO(resp))
                     champ_icon = champ_icon.resize((200, 200))
                     middle_panel.paste(champ_icon, (512 * 10 + 240 -100, ds+232))
                 except FileNotFoundError:
