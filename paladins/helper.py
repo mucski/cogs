@@ -350,12 +350,12 @@ class helper:
                     resp = await helper.get_champ_icon(md[8].name)
                     champ_icon = Image.open(BytesIO(resp))
                     champ_icon = champ_icon.resize((200, 200))
-                    middle_panel.paste(champ_icon, (512 * 10, ds+232))
+                    middle_panel.paste(champ_icon, (512 * 10 - 100, ds+232))
                 except FileNotFoundError:
                     champ_icon = Image.open(
                         f"home/ubuntu/icons/temp_card_art.png")
                     champ_icon = champ_icon.resize((200, 200))
-                    middle_panel.paste(champ_icon, (512 * 10, ds+232))
+                    middle_panel.paste(champ_icon, (512 * 10 - 100, ds+232))
                 try:
                     resp = await helper.get_champ_icon(md[9].name)
                     champ_icon = Image.open(BytesIO(resp))
