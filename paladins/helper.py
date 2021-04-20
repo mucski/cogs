@@ -284,7 +284,7 @@ class helper:
         hsize = int((float(match_map.size[1])*float(wpercent)))
         match_map = match_map.resize((basewidth,hsize), Image.ANTIALIAS)
         #img.save('somepic.jpg')
-        match_map = match_map.resize((512*10+400, 512), Image.ANTIALIAS)
+        #match_map = match_map.resize((512*10+400, 512), Image.ANTIALIAS)
         middle_panel.paste(match_map, (0, 0))
         # Preparing the panel to draw on
         draw_panel = ImageDraw.Draw(middle_panel)
