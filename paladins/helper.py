@@ -326,7 +326,7 @@ class helper:
                                 "Bans:", font=fnt100, fill=(255, 255, 255))
                 # Team 1 Bans
                 try:
-                    resp = await helper.get_champ_icon(md[6])
+                    resp = await helper.get_champ_icon(md[6].name)
                     champ_icon = Image.open(BytesIO(resp))
                     champ_icon = champ_icon.resize((200, 200))
                     middle_panel.paste(champ_icon, (512 * 10 -100, ds))
@@ -336,7 +336,7 @@ class helper:
                     champ_icon = champ_icon.resize((200, 200))
                     middle_panel.paste(champ_icon, (512 * 10 -100, ds))
                 try:
-                    resp = await helper.get_champ_icon(md[7])
+                    resp = await helper.get_champ_icon(md[7].name)
                     champ_icon = Image.open(BytesIO(resp))
                     champ_icon = champ_icon.resize((200, 200))
                     middle_panel.paste(champ_icon, (512 * 10 + 240 -100, ds))
@@ -347,7 +347,7 @@ class helper:
                     middle_panel.paste(champ_icon, (512 * 10 + 240 -100, ds))
                 # Team 2 Bans
                 try:
-                    resp = await helper.get_champ_icon(md[8])
+                    resp = await helper.get_champ_icon(md[8].name)
                     champ_icon = Image.open(BytesIO(resp))
                     champ_icon = champ_icon.resize((200, 200))
                     middle_panel.paste(champ_icon, (512 * 10, ds+232))
@@ -357,7 +357,7 @@ class helper:
                     champ_icon = champ_icon.resize((200, 200))
                     middle_panel.paste(champ_icon, (512 * 10, ds+232))
                 try:
-                    resp = await helper.get_champ_icon(md[9])
+                    resp = await helper.get_champ_icon(md[9].name)
                     champ_icon = Image.open(BytesIO(resp))
                     champ_icon = champ_icon.resize((200, 200))
                     middle_panel.paste(champ_icon, (512 * 10 + 240 -100, ds+232))
