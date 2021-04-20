@@ -271,9 +271,6 @@ class helper:
     async def middle_panel(cls, md):
         middle_panel = Image.new("RGBA", (512*10+400, 512), color=(14, 52, 60))
         # Adding in map to image
-        if "WIP" in map_name:
-            map_file_name = "test_maps"
-            map_name = map_name.replace("WIP ", "")
         # Needed to catch weird-unknown map modes
         try:
             match_map = Image.open("home/ubuntu/icons/maps/{}.png".format(
