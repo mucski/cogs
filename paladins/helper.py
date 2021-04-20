@@ -270,7 +270,7 @@ class helper:
     async def middle_panel(cls, md):
         middle_panel = Image.new("RGBA", (512*10+400, 512), color=(14, 52, 60))
         fill = (255, 255, 255)
-        stroke = (255, 255, 255)
+        stroke = (14, 52, 60)
         # Adding in map to image
         # Needed to catch weird-unknown map modes
         map_name = map_file_name = md[3]
@@ -297,7 +297,7 @@ class helper:
         draw_panel.text((rs, 0 + ds),
                         str(f"Winning Team: {md[0]}"), font=fnt100, fill=(255, 255, 255))
         draw_panel.text((rs, 100 + ds), (str(md[1]) + " minutes"), font=fnt100,
-                        fill=(255, 255, 255))
+                        fill=fill, stroke_width=1, stroke_fille=stroke)
         draw_panel.text((rs, 200 + ds),
                         str(md[2]), font=fnt100, fill=(255, 255, 255))
         draw_panel.text((rs, 300 + ds), str(map_name),
