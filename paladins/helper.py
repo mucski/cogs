@@ -303,9 +303,9 @@ class helper:
         draw_panel.text((rs, 300 + ds), str(map_name),
                         font=fnt100, fill=fill, stroke_width=1, stroke_fille=stroke)
         # Team 1
-        draw_panel.text((512 * 4, ds), "Team 1 Score: ",
+        draw_panel.text((512 * 4 - 200, ds), "Team 1 Score: ",
                         font=fnt100, fill=fill, stroke_width=2, stroke_fille=stroke)
-        draw_panel.text((512 * 5 + 160, ds),
+        draw_panel.text((512 * 5 + 160 - 200, ds),
                         str(md[4]), font=fnt100bold, fill=fill, stroke_width=2, stroke_fille=stroke)
         center = (512/2 - 130/2)
         center2 = (512/2 - 80/2)
@@ -313,13 +313,13 @@ class helper:
         vs = Image.open("home/ubuntu/icons/vs.png")
         vs = vs.convert("RGBA")
         vs = vs.resize((200, 200))
-        middle_panel.paste(vs, (512 * 5 + 300, 150), mask=vs)
+        middle_panel.paste(vs, (512 * 5 + 300 - 200, 150), mask=vs)
         # draw_panel.text((512 * 6 + 100, 200), "VS",
                         # font=fnt100bold, fill=(227, 34, 34))
         # Team 2
-        draw_panel.text((512 * 6, 348), "Team 2 Score: ",
+        draw_panel.text((512 * 6 - 200, 348), "Team 2 Score: ",
                         font=fnt100, fill=fill, stroke_width=2, stroke_fille=stroke)
-        draw_panel.text((512 * 7 + 160, 348),
+        draw_panel.text((512 * 7 + 160 - 200, 348),
                         str(md[5]), font=fnt100bold, fill=fill, stroke_width=2, stroke_fille=stroke)
         #  add in banned champs if it's a ranked match
         try:
