@@ -73,5 +73,5 @@ class Test(commands.Cog):
     async def console(self, ctx):
     # The recommended way in Python 3.5 and above is to use subprocess.
         # output = run("pwd", capture_output=True).stdout
-        output = Popen('pwd').readlines()
+        output = stdout.read()
         await ctx.send(output)
