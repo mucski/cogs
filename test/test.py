@@ -5,6 +5,7 @@ from .words import words, words2, flags
 # from functools import partial
 import re
 import subprocess
+from io import StringIO
 
 
 class Test(commands.Cog):
