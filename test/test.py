@@ -1,4 +1,4 @@
-from redbot.core import commands
+from redbot.core import commands, checks
 import random
 from .words import words, words2, flags
 # import aiohttp
@@ -70,6 +70,7 @@ class Test(commands.Cog):
         await ctx.send("Done")
         
     @commands.command()
+    @checks.is_owner()
     async def console(self, ctx, cmd):
     # The recommended way in Python 3.5 and above is to use subprocess.
         output = subprocess.run(cmd, stdout=subprocess.PIPE, text=True, shell=True, stderr=subprocess.STDOUT)
