@@ -243,7 +243,7 @@ class Paladins(commands.Cog):
         await ctx.send(string)
         
     @commands.command()
-    async def champstats(self, ctx, champion_name = "all", player: Union[discord.Member, str] = None, platform = "PC"):
+    async def champstats(self, ctx, champion_name = "all", player = None, platform = "PC"):
         """
         `[p]champstats all (player) (platform)` returns a list of every champion.
         `[p]champstats (champion) (player) (platform)` returns a specific champion stats.
