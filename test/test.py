@@ -73,7 +73,7 @@ class Test(commands.Cog):
         
     @commands.command()
     @checks.is_owner()
-    async def console(self, ctx, *cmd):
+    async def console(self, ctx, *, cmd):
     # The recommended way in Python 3.5 and above is to use subprocess.
         output = subprocess.run(cmd, stdout=subprocess.PIPE, text=True, shell=True, stderr=subprocess.STDOUT)
         #subprocess = subprocess.Popen(shell = True, stdout = subprocess.PIPE)
