@@ -73,16 +73,16 @@ class Test(commands.Cog):
         
     @commands.command()
     @checks.is_owner()
-    async def console(self, ctx, cmd):
+    async def console(self, ctx, *cmd):
     # The recommended way in Python 3.5 and above is to use subprocess.
         output = subprocess.run(cmd, stdout=subprocess.PIPE, text=True, shell=True, stderr=subprocess.STDOUT)
         #subprocess = subprocess.Popen(shell = True, stdout = subprocess.PIPE)
         #output = subprocess.stdout.read()
         response = output.stdout
-        #if len(response) > 2000:
-            #f = StringIO(response)
-            #f.seek(0)
-            #file = discord.File(filename="output.txt", fp=f)
-            #await ctx.send(file=file)
-        #else:
-        await ctx.send("```\n" + response + "\n```")
+        if len(response) > 2000:
+            f = StringIO(response)
+            f.seek(0)
+            file = discord.File(filename="output.txt", fp=f)
+            await ctx.send(file=file)
+        else:
+            await ctx.send("```\n" + response + "\n```")
