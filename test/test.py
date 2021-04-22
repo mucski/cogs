@@ -6,6 +6,7 @@ from .words import words, words2, flags
 import re
 import subprocess
 from io import StringIO
+import discord
 
 
 class Test(commands.Cog):
