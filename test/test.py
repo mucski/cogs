@@ -72,7 +72,7 @@ class Test(commands.Cog):
     @commands.command()
     async def console(self, ctx, cmd):
     # The recommended way in Python 3.5 and above is to use subprocess.
-        output = subprocess.run(cmd, capture_output=True, text=True, shell=True).stdout
+        output = subprocess.run(cmd, capture_output=True, text=True, shell=True, stderr=subprocess.STDOUT)
         #subprocess = subprocess.Popen(shell = True, stdout = subprocess.PIPE)
         #output = subprocess.stdout.read()
         await ctx.send(output)
