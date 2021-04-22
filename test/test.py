@@ -4,7 +4,7 @@ from .words import words, words2, flags
 # import aiohttp
 # from functools import partial
 import re
-from subprocess import run
+from subprocess import run, Popen
 
 
 class Test(commands.Cog):
@@ -72,5 +72,6 @@ class Test(commands.Cog):
     @commands.command()
     async def console(self, ctx):
     # The recommended way in Python 3.5 and above is to use subprocess.
-        output = run("pwd", capture_output=True).stdout
+        # output = run("pwd", capture_output=True).stdout
+        output = Popen('pwd').readlines()
         await ctx.send(output)
