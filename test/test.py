@@ -79,10 +79,14 @@ class Test(commands.Cog):
         #subprocess = subprocess.Popen(shell = True, stdout = subprocess.PIPE)
         #output = subprocess.stdout.read()
         response = output.stdout
-        if len(response) > 2000:
-            f = StringIO(response)
-            f.seek(0)
-            file = discord.File(filename="output.txt", fp=f)
-            await ctx.send(file=file)
+        try:
+            if len(response) > 2000:
+                f = StringIO(response)
+                f.seek(0)
+                file = discord.File(filename="output.txt", fp=f)
+                await ctx.send(file=file)
+        except HTTPException:
+            await ctx.send("File too large.")
+            return
         else:
             await ctx.send("```\n" + response + "\n```")
