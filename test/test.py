@@ -76,4 +76,10 @@ class Test(commands.Cog):
         output = subprocess.run(cmd, stdout=subprocess.PIPE, text=True, shell=True, stderr=subprocess.STDOUT)
         #subprocess = subprocess.Popen(shell = True, stdout = subprocess.PIPE)
         #output = subprocess.stdout.read()
-        await ctx.send("```\n" + output.stdout + "\n```")
+        if len(output.stdout) > 2000:
+            f = StringIO(output.stdout)
+            f.seek(0)
+            file = discord.File(filename="output.txt", fp=f)
+            await ctx.send(file=file)
+        else:
+            await ctx.send("```\n" + output.stdout + "\n```")
