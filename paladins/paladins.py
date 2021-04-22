@@ -315,6 +315,7 @@ class Paladins(commands.Cog):
             discord_id = ctx.author.id
             try:
                 player = await self.api.get_from_platform(discord_id, arez.Platform.Discord)
+                player = await player
             except arez.NotFound:
                 await ctx.send("```\nDiscord account not linked to HiRez. Please link it first\n```")
                 return
