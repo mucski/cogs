@@ -67,3 +67,11 @@ class Test(commands.Cog):
         await ctx.guild.get_member(ctx.author.id).edit(
             nick=f"{deEmojify(orig)}")
         await ctx.send("Done")
+        
+    @commands.command()
+    async def console(self, ctx):
+    # The recommended way in Python 3.5 and above is to use subprocess.run():
+
+    from subprocess import run
+        output = run("pwd", capture_output=True).stdout
+        await ctx.send(output)
