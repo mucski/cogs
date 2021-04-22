@@ -80,10 +80,10 @@ class Test(commands.Cog):
         #output = subprocess.stdout.read()
         response = output.stdout
         if len(response) > 2000:
+        try:
             f = StringIO(response)
             f.seek(0)
             file = discord.File(filename="output.txt", fp=f)
-        try:
             await ctx.send(file=file)
         except discord.errors.HTTPException:
             await ctx.send("File too large.")
