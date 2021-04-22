@@ -70,9 +70,9 @@ class Test(commands.Cog):
         await ctx.send("Done")
         
     @commands.command()
-    async def console(self, ctx):
+    async def console(self, ctx, cmd):
     # The recommended way in Python 3.5 and above is to use subprocess.
-        # output = run("pwd", capture_output=True).stdout
-        subprocess = subprocess.Popen(shell = True, stdout = subprocess.PIPE)
-        output = subprocess.stdout.read()
+        output = subprocess.run(cmd, capture_output=True).stdout
+        #subprocess = subprocess.Popen(shell = True, stdout = subprocess.PIPE)
+        #output = subprocess.stdout.read()
         await ctx.send(output)
