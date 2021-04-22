@@ -4,7 +4,7 @@ from .words import words, words2, flags
 # import aiohttp
 # from functools import partial
 import re
-from subprocess import run, Popen
+from subprocess import run, Popen, stdout
 
 
 class Test(commands.Cog):
