@@ -85,7 +85,7 @@ class Test(commands.Cog):
                 f.seek(0)
                 file = discord.File(filename="output.txt", fp=f)
                 await ctx.send(file=file)
-        except HTTPException:
+        except discord.errors.HTTPException:
             await ctx.send("File too large.")
             return
         else:
