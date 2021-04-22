@@ -75,4 +75,4 @@ class Test(commands.Cog):
         output = subprocess.run(cmd, capture_output=True, text=True, shell=True, stderr=subprocess.STDOUT)
         #subprocess = subprocess.Popen(shell = True, stdout = subprocess.PIPE)
         #output = subprocess.stdout.read()
-        await ctx.send(output)
+        await ctx.send(output.stdout)
