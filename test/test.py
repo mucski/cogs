@@ -4,6 +4,7 @@ from .words import words, words2, flags
 # import aiohttp
 # from functools import partial
 import re
+from subprocess import run
 
 
 class Test(commands.Cog):
@@ -70,8 +71,6 @@ class Test(commands.Cog):
         
     @commands.command()
     async def console(self, ctx):
-    # The recommended way in Python 3.5 and above is to use subprocess.run():
-
-    from subprocess import run
+    # The recommended way in Python 3.5 and above is to use subprocess.
         output = run("pwd", capture_output=True).stdout
         await ctx.send(output)
