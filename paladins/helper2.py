@@ -1,6 +1,6 @@
 from PIL import ImageOps, ImageDraw, Image, ImageFont
 import aiohttp
-from io import BytesIO
+import tempfile
 from redbot.core.utils.chat_formatting import humanize_number
 
 class helper2:
@@ -22,7 +22,8 @@ class helper2:
         async with aiohttp.ClientSession() as session:
             async with session.get(url) as resp:
                 if resp.status == 200:
-                    resp = await resp.read()
+                    response = await resp.read()
+                    resp = tempfile.TemporaryFile()
         return resp
 
     @classmethod
@@ -36,7 +37,7 @@ class helper2:
         fnt = ImageFont.truetype("home/ubuntu/arialbd.ttf", 30)
         fnt1 = ImageFont.truetype("home/ubuntu/arial.ttf", 25)
         champ_icon = await helper2.get_champ_icon(items[1])
-        champ_icon = Image.open(BytesIO(champ_icon))
+        champ_icon = Image.open(champ_icon)
         champ_icon = champ_icon.resize((280, 280))
         border = (0, 50, 0, 50)
         champ_icon = ImageOps.crop(champ_icon, border)
@@ -86,7 +87,7 @@ class helper2:
             i += 1
         
         # Final image product
-        final_buffer = BytesIO()
+        final_buffer = tempfile.TemporaryFile()
         # Store the pillow image we just created into the buffer with the PNG format
         img.save(final_buffer, "PNG")
         # seek back to the start of the buffer stream
