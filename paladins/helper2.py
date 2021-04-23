@@ -37,7 +37,7 @@ class helper2:
         fnt = ImageFont.truetype("home/ubuntu/arialbd.ttf", 30)
         fnt1 = ImageFont.truetype("home/ubuntu/arial.ttf", 25)
         champ_icon = await helper2.get_champ_icon(items[1])
-        champ_icon = Image.open(champ_icon)
+        champ_icon = Image.open(champ_icon + ".jpg")
         champ_icon = champ_icon.resize((280, 280))
         border = (0, 50, 0, 50)
         champ_icon = ImageOps.crop(champ_icon, border)
