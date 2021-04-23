@@ -23,7 +23,9 @@ class helper2:
             async with session.get(url) as resp:
                 if resp.status == 200:
                     response = await resp.read()
-                    resp = tempfile.TemporaryFile()
+                    with tempfile.NamedTemporaryFile(mode="wb") as jpg:
+                        jpg.write(response)
+                        resp = jpg.name
         return resp
 
     @classmethod
