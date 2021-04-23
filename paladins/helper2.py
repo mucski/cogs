@@ -24,7 +24,7 @@ class helper2:
                 if resp.status == 200:
                     response = await resp.read()
                     with tempfile.NamedTemporaryFile(mode="wb") as jpg:
-                        jpg.write(response.content)
+                        jpg.write(response)
                         resp = jpg.name
         return resp
 
