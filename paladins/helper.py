@@ -32,7 +32,7 @@ class helper:
         payload = [('player', player_id), ('platform', platform)]
         timeout = aiohttp.ClientTimeout(total=1)
         async with aiohttp.ClientSession(timeout=timeout) as cs:
-            async with cs.get(url, payload=payload) as r:
+            async with cs.get(url, params=payload) as r:
                 soup = await r.text()  # returns dict
 
                 # Error checking to make sure that the player was found on the site
