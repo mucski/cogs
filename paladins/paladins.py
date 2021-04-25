@@ -4,16 +4,13 @@ import asyncio
 import humanize
 from datetime import datetime
 import discord
-from discord import File
 from .helper import helper
-from .helper2 import helper2
 from redbot.core.utils.chat_formatting import pagify
 import aiohttp
 import json
 from io import StringIO
 import math
 from tabulate import tabulate
-from typing import Union
 
 class Paladins(commands.Cog):
     def __init__(self, bot):
@@ -235,12 +232,6 @@ class Paladins(commands.Cog):
             await ctx.send(file=file)
         else:
             await ctx.send("```json\n" + response + "```")
-
-    @commands.command()
-    @checks.is_owner()
-    async def testing(self, ctx, player: Union[discord.Member, str] = None, platform="PC"):
-        string = await helper2.testing()
-        await ctx.send(string)
         
     @commands.command()
     async def champstats(self, ctx, champion_name = "all", player = None, platform = "PC"):
