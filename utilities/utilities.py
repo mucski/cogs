@@ -69,9 +69,11 @@ class Utilities(commands.Cog):
                         u"\U0001F1E0-\U0001F1FF"  # flags (iOS)
                         "]+", flags=re.UNICODE)
             return regrex_pattern.sub(r'', text)
-
-        await ctx.guild.get_member(ctx.author.id).edit(
-            nick=f"{deEmojify(orig)}")
+        try:
+            await ctx.guild.get_member(ctx.author.id).edit(nick=f"{deEmojify(orig)}")
+        except discord.errors.Forbidden:
+            await ctx.send("Missing permission: Change users nickname")
+            return
         await ctx.send("Done")
         
     @commands.command()
