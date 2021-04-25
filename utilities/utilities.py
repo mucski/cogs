@@ -2,11 +2,8 @@ from redbot.core import commands, checks
 from redbot.core.utils.chat_formatting import text_to_file
 import random
 from .words import words, words2, flags
-# import aiohttp
-# from functools import partial
 import re
 import subprocess
-from io import StringIO
 import discord
 
 
