@@ -90,3 +90,13 @@ class Test(commands.Cog):
                 return
         else:
             await ctx.send("```\n" + response + "\n```")
+
+    @commands.command(aliases=["emoji"])
+    async def emote(self, ctx, emoji: discord.PartialEmoji):
+        await ctx.send(emoji.url)
+
+    @commands.command()
+    async def avatar(self, ctx, member: discord.Member = None):
+        if member is None:
+            member = ctx.author
+        await ctx.send(member.avatar_url)
