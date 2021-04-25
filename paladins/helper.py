@@ -23,13 +23,16 @@ class helper:
         return resp
     
     @classmethod
-    async def get_global_kda(cls, player_id):
+    async def get_global_kda(cls, player_id, platform):
+        if not platform:
+            platform = "PC"
         if str(player_id) == '0':
             return ["Private Account", "???", "???", "???"]
-        url = "http://nonsocial.herokuapp.com/api/kda?player=" + str(player_id)
+        url = "http://nonsocial.herokuapp.com/api/kda"
+        payload = [('player', player_id), ('platform', platform)]
         timeout = aiohttp.ClientTimeout(total=1)
         async with aiohttp.ClientSession(timeout=timeout) as cs:
-            async with cs.get(url) as r:
+            async with cs.get(url, payload=payload) as r:
                 soup = await r.text()  # returns dict
 
                 # Error checking to make sure that the player was found on the site
