@@ -9,7 +9,7 @@ from io import StringIO
 import discord
 
 
-class Test(commands.Cog):
+class Utilities(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
 
