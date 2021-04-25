@@ -5,10 +5,9 @@ import humanize
 from datetime import datetime
 import discord
 from .helper import helper
-from redbot.core.utils.chat_formatting import pagify
+from redbot.core.utils.chat_formatting import pagify, text_to_file
 import aiohttp
 import json
-from io import StringIO
 import math
 from tabulate import tabulate
 
@@ -122,19 +121,6 @@ class Paladins(commands.Cog):
                                                 team2_ranks, (match_info + temp))
             file = discord.File(filename=f"prototype.png", fp=buffer)
         await ctx.send(file=file)
-        
-    @commands.command()
-    @checks.is_owner()
-    async def proto2(self, ctx):
-        # name, level, champ, rank, kda, damage, heal, shield, kda2, self heal, party, team
-        team = ["Joey", "999", "Jenos", "1", "99/99/99", "999,999", "999,999", "999,999", "99,99", "999,999", "4", "1"]
-        # team2 = ["TestoBoto", "999", "Furia", "1", "99/99/99", "999,999", "999,999", "999,999", "99,99", "999,999", "3", "2"]
-        # map name, region, duration, winning team
-        matchdata = ["Timber Mill", "North America", "99 minutes", "1"]
-        bans = ["Strix", "Corvus", "Yagorath", "Androxus"]
-        buffer = await helper2.create_image(team, matchdata, bans)
-        file = discord.File(filename=f"prototype.png", fp=buffer)
-        await ctx.send(file=file)
             
     @commands.command()
     async def last(self, ctx, player = None, platform="PC"):
@@ -226,9 +212,7 @@ class Paladins(commands.Cog):
                 return
         response = json.dumps(data, indent=4, sort_keys=True)
         if len(response) > 2000:
-            f = StringIO(response)
-            f.seek(0)
-            file = discord.File(filename="output.txt", fp=f)
+            file = text_to_file(response, "output.txt")
             await ctx.send(file=file)
         else:
             await ctx.send("```json\n" + response + "```")
