@@ -27,7 +27,7 @@ class helper:
         if str(player_id) == '0':
             return ["Private Account", "???", "???", "???"]
         url = "http://nonsocial.herokuapp.com/api/kda?player=" + str(player_id)
-        timeout = aiohttp.ClientTimeout(total=200)
+        timeout = aiohttp.ClientTimeout(total=1)
         async with aiohttp.ClientSession(timeout=timeout) as cs:
             async with cs.get(url) as r:
                 soup = await r.text()  # returns dict
