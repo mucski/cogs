@@ -44,7 +44,7 @@ class Utilities(commands.Cog):
         try:
             await ctx.guild.get_member(ctx.author.id).edit(nick=f"{comp} {newnick.strip()}")
         except discord.errors.Forbidden:
-            await ctx.send("Missing permssions to change nicknames")
+            await ctx.send("Missing permssion: Change users nickname")
             return
         await ctx.send(f"Changed {newnick.strip()}'s country to {comp}")
         # await ctx.send("You already have a flag. I'm gonna replace it.")
