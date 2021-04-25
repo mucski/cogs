@@ -1,8 +1,0 @@
-{
-    "author": ["mucski"],
-    "description": "Utilities for mucskis realm.",
-    "install_msg": "utilities such as show emoji url or avatar url and more. ",
-    "short": "Various utilities ",
-    "tags": ["utilities"],
-    "type": "COG"
-}
