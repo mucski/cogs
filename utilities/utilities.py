@@ -1,4 +1,5 @@
 from redbot.core import commands, checks
+from redbot.core.utils.chat_formatting import text_to_file
 import random
 from .words import words, words2, flags
 # import aiohttp
@@ -86,9 +87,7 @@ class Utilities(commands.Cog):
         response = output.stdout
         if len(response) > 2000:
             try:
-                f = StringIO(response)
-                f.seek(0)
-                file = discord.File(filename="output.txt", fp=f)
+                file = text_to_file(response, "console.txt")
                 await ctx.send(file=file)
             except discord.errors.HTTPException:
                 await ctx.send("File too large.")
