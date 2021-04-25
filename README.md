@@ -4,7 +4,7 @@ How to install my cogs? You can fork this github or just use it as it is
 
 [prefix]repo add Mucski https://github.com/mucski/mucski
 
-The Hirez COG requires your own Developer ID and API Key which you can grab from here: https://fs12.formsite.com/HiRez/form48/secure_index.html
+The Paladins COG requires your own Developer ID and API Key which you can grab from here: https://fs12.formsite.com/HiRez/form48/secure_index.html
 
 Coins/Potato - are small idle games.
 
