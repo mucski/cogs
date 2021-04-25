@@ -325,7 +325,7 @@ class Paladins(commands.Cog):
             player_list = await self.api.search_players(name, arez.Platform(platform))
             player = await player_list[0]
         try:
-            special = await helper.get_global_kda(player.name)
+            special = await helper.get_global_kda(player.name, platform)
             special = special[3]
         except asyncio.TimeoutError:
             special = "KDA api down."
