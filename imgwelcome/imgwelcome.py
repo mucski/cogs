@@ -14,3 +14,7 @@ class Imgwelcome(commands.Cog):
     @commands.command()
     async def imgsetup(self, ctx):
         pass
+
+    @commands.command()
+    async def imgpreview(self, ctx):
+        pass
