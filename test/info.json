@@ -1,8 +1,8 @@
 {
     "author": ["mucski"],
-    "description": "Test cog.",
-    "install_msg": "Test cog.",
-    "short": "Test cog ",
-    "tags": ["shoot", "hunting", "game", "pets"],
+    "description": "Utilities",
+    "install_msg": "Utilities.",
+    "short": "Utilities ",
+    "tags": ["utilities", "avatar", "emoji"],
     "type": "COG"
 }
