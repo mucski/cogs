@@ -6,3 +6,11 @@ import discord
 
 # Redbot
 from redbot.core import commands, checks
+
+class Imgwelcome(commands.Cog):
+    def __init__(self, bot):
+        self.bot = bot
+
+    @commands.command()
+    async def imgsetup(self, ctx):
+        pass
