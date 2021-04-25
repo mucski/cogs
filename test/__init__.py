@@ -1,4 +1,4 @@
-from .test import Test
+from .test import Utilities
 
 async def setup(bot):
-    bot.add_cog(Test(bot))
+    bot.add_cog(Utilities(bot))
