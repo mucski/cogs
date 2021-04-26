@@ -241,7 +241,7 @@ class Paladins(commands.Cog):
             t.append(match.id)
             t.append(match.map_name)
             t.append(match.champion.name)
-            t.append(match.kda2)
+            t.append("{:.2f}".format(match.kda2))
             table.append(t)
         table_done = tabulate(table, headers = ["#", "Match ID", "Map", "Champion", "KDA"], tablefmt = "presto")
         for page in pagify(table_done):
