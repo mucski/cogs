@@ -216,6 +216,22 @@ class Paladins(commands.Cog):
             await ctx.send(file=file)
         else:
             await ctx.send("```json\n" + response + "```")
+            
+    @commands.command()
+    async def history(self, ctx, player = None, platform = "PC"):
+        if player is None:
+            discord_id = ctx.author.id
+            try:
+                ret = await self.api.get_from_platform(discord_id, arez.Platform.Discord)
+                ret = await ret
+            except arez.NotFound:
+                await ctx.send("```\nDiscord account not linked to HiRez. Please link it first\n```")
+                return
+        else:
+            ret = await self.api.search_players(player, arez.Platform(platform))
+            ret = await ret[0]
+        history = ret.get_match_history()
+        await ctx.send(history)
         
     @commands.command()
     async def champstats(self, ctx, champion_name = "all", player = None, platform = "PC"):
