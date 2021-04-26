@@ -230,7 +230,7 @@ class Paladins(commands.Cog):
         else:
             ret = await self.api.search_players(player, arez.Platform(platform))
             ret = await ret[0]
-        history = ret.get_match_history()
+        history = await ret.get_match_history()
         await ctx.send(history)
         
     @commands.command()
