@@ -193,7 +193,7 @@ class Coin(commands.Cog):
         chars = ''.join(chars)
 
         e = discord.Embed(title=f"{ctx.author.name}"
-                                f"is stealing from {member.display_name}")
+                                f" is stealing from {member.display_name}")
         e.set_thumbnail(url=member.avatar_url)
         e.add_field(name="\u200b",
                     value="If you run out of picks, you lost."
