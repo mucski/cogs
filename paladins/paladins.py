@@ -231,9 +231,21 @@ class Paladins(commands.Cog):
             ret = await self.api.search_players(player, arez.Platform(platform))
             ret = await ret[0]
         history = await ret.get_match_history()
+        table = []
         for match in history:
-            match_id = match.id
-        await ctx.send(match_id)
+            t = []
+            if match.winner:
+                t.append("+")
+            else:
+                t.append("-")
+            t.append(match.id)
+            t.append(match.map_name)
+            t.append(match.champion.name)
+            t.append(match.kda2)
+            table.append(t)
+        table_done = tabulate(table, headers = ["#", "Match ID", "Map", "Champion", "KDA"], tablefmt = "presto")
+        for page in pagify(table_done):
+            await ctx.send("```diff\n{}\n```".format(page))
         
     @commands.command()
     async def champstats(self, ctx, champion_name = "all", player = None, platform = "PC"):
