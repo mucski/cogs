@@ -231,6 +231,8 @@ class Paladins(commands.Cog):
             ret = await self.api.search_players(player, arez.Platform(platform))
             ret = await ret[0]
         history = await ret.get_match_history()
+        if not history:
+            await ctx.send("Player did not play for over a month. Nothing to display.")
         table = []
         for match in history:
             t = []
