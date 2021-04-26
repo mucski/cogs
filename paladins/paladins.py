@@ -10,6 +10,7 @@ import aiohttp
 import json
 import math
 from tabulate import tabulate
+from collections import Counter
 
 class Paladins(commands.Cog):
     def __init__(self, bot):
@@ -247,8 +248,16 @@ class Paladins(commands.Cog):
             t.append("{:.2f}".format(match.kda2))
             table.append(t)
         table_done = tabulate(table, headers = ["#", "Match ID", "Map", "Champion", "KDA"], tablefmt = "presto")
+        champs = Counter(m.champion for m in history)
+        most_champ = champs.most_common(1)[0][0].name
+        if all(isinstance(c, arez.Champion) for c in champs.keys()):
+            classes = Counter(m.champion.role for m in history)
+            most_class = classes.most_common(1)[0][0]
+        else:
+            most_class = "Unknown"
         for page in pagify(table_done):
             await ctx.send("```diff\n{}\n```".format(page))
+        await ctx.send("```\nMost played champion: {}\nMost played class: {}\n```".format(most_champ, most_class))
         
     @commands.command()
     async def champstats(self, ctx, champion_name = "all", player = None, platform = "PC"):
