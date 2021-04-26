@@ -231,7 +231,9 @@ class Paladins(commands.Cog):
             ret = await self.api.search_players(player, arez.Platform(platform))
             ret = await ret[0]
         history = await ret.get_match_history()
-        await ctx.send(history.id)
+        for match in history:
+            match_id = match.id
+        await ctx.send(match_id)
         
     @commands.command()
     async def champstats(self, ctx, champion_name = "all", player = None, platform = "PC"):
