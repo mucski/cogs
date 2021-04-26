@@ -236,6 +236,8 @@ class Paladins(commands.Cog):
             await ctx.send("Player did not play for over a month. Nothing to display.")
             return
         table = []
+        final_kda = 0
+        kda_counter = 0
         for match in history:
             t = []
             if match.winner:
@@ -246,6 +248,8 @@ class Paladins(commands.Cog):
             t.append(match.map_name)
             t.append(match.champion.name)
             t.append("{:.2f}".format(match.kda2))
+            final_kda += match.kda2
+            kda_counter += 1
             table.append(t)
         table_done = tabulate(table, headers = ["#", "Match ID", "Map", "Champion", "KDA"], tablefmt = "presto")
         champs = Counter(m.champion for m in history)
@@ -257,7 +261,7 @@ class Paladins(commands.Cog):
             most_class = "Unknown"
         for page in pagify(table_done):
             await ctx.send("```diff\n{}\n```".format(page))
-        await ctx.send("```\nMost played champion: {}\nMost played class: {}\n```".format(most_champ, most_class))
+        await ctx.send("```\nMost played champion: {}\nMost played class: {}\nAverage KDA: {}\n```".format(most_champ, most_class, final_kda / kda_counter))
         
     @commands.command()
     async def champstats(self, ctx, champion_name = "all", player = None, platform = "PC"):
