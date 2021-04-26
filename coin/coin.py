@@ -199,7 +199,7 @@ class Coin(commands.Cog):
                     value="If you run out of picks, you lost."
                           "\nLockpicks left: **3**", inline=False)
         e.description = (
-            "```___________```"
+            "```\n___________\n```"
         )
         # e.add_field(name="\u200b", value="Lockpicks left: 3", inline=False)
         e.set_footer(text="Pick the lock using the ◀ and ▶ and ❌ to cancel.")
@@ -230,7 +230,7 @@ class Coin(commands.Cog):
                     line = "__________"
                     pick.append(emoji)
                     e.description = (
-                        f"`{''.join(pick) + line[var:]}`"
+                        "```\n{}\n```".format(''.join(pick) + line[var:])
                     )
                     await msg.edit(embed=e)
                 except IndexError:
