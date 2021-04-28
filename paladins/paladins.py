@@ -347,7 +347,21 @@ class Paladins(commands.Cog):
         if not live_match:
             await ctx.send("```\n{} is currently not in a match or unsupported queue (customs)\n```".format(player))
             return
-        await ctx.send(status)
+        team1 = ""
+        team2 = ""
+        for player in live_match.team1:
+            team1 += player.name
+            team1 += player.champion
+        desc = (
+            f"Match ID: {live_match.id}\n"
+            f"Map: {live_match.map_name}\n"
+            f"Queue: {live_match.queue}\n"
+            f"Region: {live_match.region}\n"
+            f"{team1}\n"
+            "Versus\n"
+            f"{team2}\n"
+        )
+        
 
     @commands.command()
     async def stats(self, ctx, name = None, platform="PC"):
