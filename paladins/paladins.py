@@ -351,7 +351,7 @@ class Paladins(commands.Cog):
         team2 = ""
         for live_player in live_match.team1:
             team1 += live_player.player.name
-            team1 += live_player.champion
+            team1 += live_player.champion.name
         desc = (
             f"Match ID: {live_match.id}\n"
             f"Map: {live_match.map_name}\n"
