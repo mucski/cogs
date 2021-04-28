@@ -354,11 +354,11 @@ class Paladins(commands.Cog):
             if live_player.player.private:
                 team1 += f"Player: ?????(???)\n"
                 team1 += f"Champion: {live_player.champion.name}({live_player.champion.level})\n"
-                team1 += f"Winrate: {live_player.winrate_text}\n"
+                team1 += f"Winrate: {live_player.player.casual.winrate_text}\n"
             else:
                 team1 += f"Player: {live_player.player.name}({live_player.account_level})\n"
                 team1 += f"Champion: {live_player.champion.name}({live_player.mastery_level})\n"
-                team1 += f"Winrate: {live_player.player.winrate_text}\n"
+                team1 += f"Winrate: {live_player.player.casual.winrate_text}\n"
         desc = (
             f"Match ID: {live_match.id}\n"
             f"Map: {live_match.map_name}\n"
