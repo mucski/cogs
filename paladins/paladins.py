@@ -372,7 +372,7 @@ class Paladins(commands.Cog):
         if status.status == 5 or status.status == 0:
             player_status = "Last login: {}".format(humanize.naturaltime(datetime.utcnow() - player.last_login))
         else:
-            player_status = status.status
+            player_status = "Currently: {}".format(status.status)
         desc = (
             "**__Player Stats__**\n"
             f"```\nAccount level: {player.level}\n"
@@ -398,14 +398,17 @@ class Paladins(commands.Cog):
             f"Current Rank: {player.ranked_best.rank}"
             f" ({player.ranked_best.points} TP)\n```"
         )
+        if status.status == 5 or status.status == 0:
+            status_emoji = "🔴"
+        else:
+            status_emoji = "🟢"
         e = discord.Embed(color=await self.bot.get_embed_color(ctx),
-                          title=f"{player.name} ({player.platform}) "
+                          title=f"{status_emoji} {player.name} ({player.platform}) "
                                 f"_({player.title})_")
         e.description = desc
         e.set_thumbnail(url=player.avatar_url)
         e.set_footer(text=f"Player ID: {player.id}")
         await ctx.send(embed=e)
-        await ctx.send(status.status)
         
     @commands.command()
     async def status(self, ctx):
