@@ -368,6 +368,11 @@ class Paladins(commands.Cog):
             # player is a str here
             player_list = await self.api.search_players(name, arez.Platform(platform))
             player = await player_list[0]
+        status = await player.get_status()
+        if status.status not "Unknown" or "Offline:
+            player_status = status.status
+        else:
+            player_status = "Last login: {}".format(humanize.naturaltime(datetime.utcnow() - player.last_login))
         desc = (
             "**__Player Stats__**\n"
             f"```\nAccount level: {player.level}\n"
@@ -375,13 +380,12 @@ class Paladins(commands.Cog):
             f"Region: {player.region}\n"
             f"Champions Owned: {player.champion_count}\n"
             f"Achievements Unlocked: {player.total_achievements}\n"
-            f"Account Created: "
+            "Account Created: "
             f"{humanize.naturaltime(datetime.utcnow() - player.created_at)}\n"
-            f"Last Login: "
-            f"{humanize.naturaltime(datetime.utcnow() - player.last_login)}\n"
+            "{}\n".format(player_status)
             "```"
-            f"**__Casual Stats__**\n"
-            f"```\nWin Rate: "
+            "**__Casual Stats__**\n"
+            "```\nWin Rate: "
             f"{player.casual.wins}/{player.casual.losses}"
             f" ({player.casual.winrate_text})\n"
             f"Deserted: {player.casual.leaves}\n```"
