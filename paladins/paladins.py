@@ -350,14 +350,16 @@ class Paladins(commands.Cog):
         team1 = ""
         team2 = ""
         for live_player in live_match.team1:
-            team1 += live_player.player.name
-            team1 += live_player.champion.name
+            team1 += f"{live_player.player.name}\n"
+            team1 += f"{live_player.champion.name}\n"
         desc = (
             f"Match ID: {live_match.id}\n"
             f"Map: {live_match.map_name}\n"
             f"Queue: {live_match.queue}\n"
             f"Region: {live_match.region}\n"
+            "```\n"
             f"{team1}\n"
+            "```"
             "Versus\n"
             f"{team2}\n"
         )
