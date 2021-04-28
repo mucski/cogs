@@ -359,6 +359,15 @@ class Paladins(commands.Cog):
                 team1 += f"{live_player.player.name}({live_player.account_level}) / "
                 team1 += f"{live_player.champion.name}({live_player.mastery_level}) / "
                 team1 += f"({live_player.player.casual.winrate_text})\n"
+        for live_player in live_match.team2:
+            if live_player.player.private:
+                team2 += f"?????({live_player.account_level}) / "
+                team2 += f"{live_player.champion.name}({live_player.mastery_level}) / "
+                team2 += f"???\n"
+            else:
+                team2 += f"{live_player.player.name}({live_player.account_level}) / "
+                team2 += f"{live_player.champion.name}({live_player.mastery_level}) / "
+                team2 += f"({live_player.player.casual.winrate_text})\n"
         desc = (
             f"Match ID: {live_match.id}\n"
             f"Map: {live_match.map_name}\n"
