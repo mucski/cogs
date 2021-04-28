@@ -369,7 +369,7 @@ class Paladins(commands.Cog):
             player_list = await self.api.search_players(name, arez.Platform(platform))
             player = await player_list[0]
         status = await player.get_status()
-        if status.status != "Unknown" and status.status != "Offline":
+        if status.status != "Unknown" or status.status != "Offline":
             player_status = status.status
         else:
             player_status = "Last login: {}".format(humanize.naturaltime(datetime.utcnow() - player.last_login))
