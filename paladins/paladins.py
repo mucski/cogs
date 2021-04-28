@@ -329,61 +329,62 @@ class Paladins(commands.Cog):
             
     @commands.command()
     async def current(self, ctx, name = None, platform = "PC"):
-        if name is None:
-            # use the ID of the caller
-            discord_id = ctx.author.id
-            try:
-                player = await self.api.get_from_platform(discord_id, arez.Platform.Discord)
-                player = await player
-            except arez.NotFound:
-                await ctx.send("```\nDiscord account not linked to HiRez. Please link it first\n```")
+        async with ctx.typing():
+            if name is None:
+                # use the ID of the caller
+                discord_id = ctx.author.id
+                try:
+                    player = await self.api.get_from_platform(discord_id, arez.Platform.Discord)
+                    player = await player
+                except arez.NotFound:
+                    await ctx.send("```\nDiscord account not linked to HiRez. Please link it first\n```")
+                    return
+            else:
+                # player is a str here
+                player_list = await self.api.search_players(name, arez.Platform(platform))
+                player = await player_list[0]
+            status = await player.get_status()
+            live_match = await status.get_live_match()
+            if not live_match:
+                await ctx.send("```\n{} is currently not in a match or unsupported queue (customs)\n```".format(player))
                 return
-        else:
-            # player is a str here
-            player_list = await self.api.search_players(name, arez.Platform(platform))
-            player = await player_list[0]
-        status = await player.get_status()
-        live_match = await status.get_live_match()
-        if not live_match:
-            await ctx.send("```\n{} is currently not in a match or unsupported queue (customs)\n```".format(player))
-            return
-        await live_match.expand_players()
-        team1 = ""
-        team2 = ""
-        for live_player in live_match.team1:
-            if live_player.player.private:
-                team1 += f"?????({live_player.account_level}) / "
-                team1 += f"{live_player.champion.name}({live_player.mastery_level}) / "
-                team1 += f"???\n"
-            else:
-                team1 += f"{live_player.player.name}({live_player.account_level}) / "
-                team1 += f"{live_player.champion.name}({live_player.mastery_level}) / "
-                team1 += f"({live_player.player.casual.winrate_text})\n"
-        for live_player in live_match.team2:
-            if live_player.player.private:
-                team2 += f"?????({live_player.account_level}) / "
-                team2 += f"{live_player.champion.name}({live_player.mastery_level}) / "
-                team2 += f"???\n"
-            else:
-                team2 += f"{live_player.player.name}({live_player.account_level}) / "
-                team2 += f"{live_player.champion.name}({live_player.mastery_level}) / "
-                team2 += f"({live_player.player.casual.winrate_text})\n"
-        desc = (
-            f"Map: {live_match.map_name}\n"
-            f"Region: {live_match.region}\n"
-            "```\n"
-            f"{team1}\n"
-            "```"
-            "Versus\n"
-            f"{team2}\n"
-        )
-        e = discord.Embed(color=await self.bot.get_embed_color(ctx),
-                          title=f"{player.name} is in a {live_match.queue}")
-        e.description = desc
-        e.set_thumbnail(url=player.avatar_url)
-        e.set_footer(text=f"Match ID: {live_match.id}")
-        await ctx.send(embed=e)
-        
+            await live_match.expand_players()
+            team1 = ""
+            team2 = ""
+            for live_player in live_match.team1:
+                if live_player.player.private:
+                    team1 += f"?????({live_player.account_level}) / "
+                    team1 += f"{live_player.champion.name}({live_player.mastery_level}) / "
+                    team1 += f"???\n"
+                else:
+                    team1 += f"{live_player.player.name}({live_player.account_level}) / "
+                    team1 += f"{live_player.champion.name}({live_player.mastery_level}) / "
+                    team1 += f"({live_player.player.casual.winrate_text})\n"
+            for live_player in live_match.team2:
+                if live_player.player.private:
+                    team2 += f"?????({live_player.account_level}) / "
+                    team2 += f"{live_player.champion.name}({live_player.mastery_level}) / "
+                    team2 += f"???\n"
+                else:
+                    team2 += f"{live_player.player.name}({live_player.account_level}) / "
+                    team2 += f"{live_player.champion.name}({live_player.mastery_level}) / "
+                    team2 += f"({live_player.player.casual.winrate_text})\n"
+            desc = (
+                f"Map: {live_match.map_name}\n"
+                f"Region: {live_match.region}\n"
+                "```\n"
+                f"{team1}\n"
+                "```"
+                "Versus\n"
+                f"{team2}\n"
+            )
+            e = discord.Embed(color=await self.bot.get_embed_color(ctx),
+                              title=f"{player.name} is in a {live_match.queue}")
+            e.description = desc
+            e.set_thumbnail(url=player.avatar_url)
+            e.set_footer(text=f"Match ID: {live_match.id}")
+            await ctx.send(embed=e)
+            
     @commands.command()
     async def stats(self, ctx, name = None, platform="PC"):
         """
