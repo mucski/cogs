@@ -327,6 +327,26 @@ class Paladins(commands.Cog):
             e.description = desc
             e.set_footer(text=f"Individual champion stats for {player_name}")
             await ctx.send(embed=e)
+            
+    @commands.command()
+    async def current(self, ctx, name = None, platform = "PC"):
+        if name is None:
+            # use the ID of the caller
+            discord_id = ctx.author.id
+            try:
+                player = await self.api.get_from_platform(discord_id, arez.Platform.Discord)
+                player = await player
+            except arez.NotFound:
+                await ctx.send("```\nDiscord account not linked to HiRez. Please link it first\n```")
+                return
+        else:
+            # player is a str here
+            player_list = await self.api.search_players(name, arez.Platform(platform))
+            player = await player_list[0]
+        status = await player.get_status()
+        await ctx.send(status)
+
+        
 
     @commands.command()
     async def stats(self, ctx, name = None, platform="PC"):
