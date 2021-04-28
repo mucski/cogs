@@ -382,7 +382,7 @@ class Paladins(commands.Cog):
             f"Achievements Unlocked: {player.total_achievements}\n"
             "Account Created: "
             f"{humanize.naturaltime(datetime.utcnow() - player.created_at)}\n"
-            "{}".format(player_status)
+            f"{player_status}"
             "\n```"
             "**__Casual Stats__**\n"
             "```\nWin Rate: "
