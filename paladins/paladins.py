@@ -351,12 +351,13 @@ class Paladins(commands.Cog):
         team2 = ""
         for live_player in live_match.team1:
             if live_player.player.private:
-                player_name = "Private Account"
+                team1 += f"Player: ?????(???)\n"
+                team1 += f"Champion: {live_player.champion.name}({player.champion.level})\n"
+                team1 += f"Winrate: {live_player.winrate_text}\n"
             else:
-                player_name = live_player.player.name
-            team1 += f"Player: {player_name}({live_player.account_level})\n"
-            team1 += f"Champion: {live_player.champion.name}({player.champion.level})\n"
-            team1 += f"Winrate: {live_player.winrate_text}\n"
+                team1 += f"Player: {player_name}({live_player.account_level})\n"
+                team1 += f"Champion: {live_player.champion.name}({player.champion.level})\n"
+                team1 += f"Winrate: {live_player.winrate_text}\n"
         desc = (
             f"Match ID: {live_match.id}\n"
             f"Map: {live_match.map_name}\n"
