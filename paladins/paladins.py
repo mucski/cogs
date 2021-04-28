@@ -370,7 +370,7 @@ class Paladins(commands.Cog):
             player = await player_list[0]
         status = await player.get_status()
         if status.status != "Unknown" and status.status != "Offline":
-            player_status = status.status
+            player_status = str(status.status)
         else:
             player_status = "Last login: {}".format(humanize.naturaltime(datetime.utcnow() - player.last_login))
         desc = (
