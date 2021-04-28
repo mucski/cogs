@@ -349,35 +349,45 @@ class Paladins(commands.Cog):
                 await ctx.send("```\n{} is currently not in a match or unsupported queue (customs)\n```".format(player))
                 return
             await live_match.expand_players()
-            team1 = ""
-            team2 = ""
+            team1 = []
+            team2 = []
             for live_player in live_match.team1:
                 if live_player.player.private:
-                    team1 += f"?????({live_player.account_level}) / "
-                    team1 += f"{live_player.champion.name}({live_player.mastery_level}) / "
-                    team1 += f"???\n"
+                    t = []
+                    t.append(f"?????({live_player.account_level})")
+                    t.append(f"{live_player.champion.name}({live_player.mastery_level})")
+                    t.appwnd(f"???")
+                    team1.append(t)
                 else:
-                    team1 += f"{live_player.player.name}({live_player.account_level}) / "
-                    team1 += f"{live_player.champion.name}({live_player.mastery_level}) / "
-                    team1 += f"({live_player.player.casual.winrate_text})\n"
+                    t = []
+                    t.append(f"{live_player.player.name}({live_player.account_level})")
+                    t.append(f"{live_player.champion.name}({live_player.mastery_level})")
+                    t.append(f"({live_player.player.casual.winrate_text})")
+                    team1.append(t)
             for live_player in live_match.team2:
                 if live_player.player.private:
-                    team2 += f"?????({live_player.account_level}) / "
-                    team2 += f"{live_player.champion.name}({live_player.mastery_level}) / "
-                    team2 += f"???\n"
+                    t = []
+                    t.append(f"?????({live_player.account_level})")
+                    t.append(f"{live_player.champion.name}({live_player.mastery_level})")
+                    t.append(f"???")
+                    team2.append(t)
                 else:
-                    team2 += f"{live_player.player.name}({live_player.account_level}) / "
-                    team2 += f"{live_player.champion.name}({live_player.mastery_level}) / "
-                    team2 += f"({live_player.player.casual.winrate_text})\n"
+                    t = []
+                    t.append(f"{live_player.player.name}({live_player.account_level})")
+                    t.append(f"{live_player.champion.name}({live_player.mastery_level})")
+                    t.append(f"({live_player.player.casual.winrate_text})")
+                    team2.append(t)
+            team1_done = tabulate(team1)
+            team2_done = tabulate(team2)
             desc = (
                 f"Map: {live_match.map_name}\n"
                 f"Region: {live_match.region}\n"
                 "```\n"
-                f"{team1}\n"
+                f"{''.join(team1_done)}\n"
                 "```"
                 "Versus\n"
                 "```\n"
-                f"{team2}\n"
+                f"{''.join(team2_done)}\n"
                 "```"
             )
             e = discord.Embed(color=await self.bot.get_embed_color(ctx),
