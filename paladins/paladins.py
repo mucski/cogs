@@ -376,7 +376,9 @@ class Paladins(commands.Cog):
                 f"{team1}\n"
                 "```"
                 "Versus\n"
+                "```\n"
                 f"{team2}\n"
+                "```"
             )
             e = discord.Embed(color=await self.bot.get_embed_color(ctx),
                               title=f"{player.name} is in a {live_match.queue}")
