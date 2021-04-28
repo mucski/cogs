@@ -377,8 +377,8 @@ class Paladins(commands.Cog):
                     t.append(f"{live_player.champion.name}({live_player.mastery_level})")
                     t.append(f"({live_player.player.casual.winrate_text})")
                     team2.append(t)
-            team1_done = tabulate(team1, tablefmt="psql")
-            team2_done = tabulate(team2, tablefmt="psql")
+            team1_done = tabulate(team1, tablefmt="plain")
+            team2_done = tabulate(team2, tablefmt="plain")
             desc = (
                 f"Map: {live_match.map_name}\n"
                 f"Region: {live_match.region}\n"
