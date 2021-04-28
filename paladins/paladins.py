@@ -349,8 +349,6 @@ class Paladins(commands.Cog):
             return
         await ctx.send(status)
 
-        
-
     @commands.command()
     async def stats(self, ctx, name = None, platform="PC"):
         """
