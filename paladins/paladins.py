@@ -355,7 +355,7 @@ class Paladins(commands.Cog):
                 team1 += f"Champion: {live_player.champion.name}({live_player.champion.level})\n"
                 team1 += f"Winrate: {live_player.winrate_text}\n"
             else:
-                team1 += f"Player: {player_name}({live_player.account_level})\n"
+                team1 += f"Player: {player.name}({live_player.account_level})\n"
                 team1 += f"Champion: {live_player.champion.name}({live_player.champion.level})\n"
                 team1 += f"Winrate: {live_player.winrate_text}\n"
         desc = (
