@@ -369,9 +369,7 @@ class Paladins(commands.Cog):
                 team2 += f"{live_player.champion.name}({live_player.mastery_level}) / "
                 team2 += f"({live_player.player.casual.winrate_text})\n"
         desc = (
-            f"Match ID: {live_match.id}\n"
             f"Map: {live_match.map_name}\n"
-            f"Queue: {live_match.queue}\n"
             f"Region: {live_match.region}\n"
             "```\n"
             f"{team1}\n"
@@ -380,7 +378,7 @@ class Paladins(commands.Cog):
             f"{team2}\n"
         )
         e = discord.Embed(color=await self.bot.get_embed_color(ctx),
-                          title=f"{player.name}'s Live Match")
+                          title=f"{player.name} is in a {live_match.queue}")
         e.description = desc
         e.set_thumbnail(url=player.avatar_url)
         e.set_footer(text=f"Match ID: {live_match.id}")
