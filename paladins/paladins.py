@@ -344,10 +344,10 @@ class Paladins(commands.Cog):
             player = await player_list[0]
         status = await player.get_status()
         live_match = await status.get_live_match()
-        await live_match.expand_players()
         if not live_match:
             await ctx.send("```\n{} is currently not in a match or unsupported queue (customs)\n```".format(player))
             return
+        await live_match.expand_players()
         team1 = ""
         team2 = ""
         for live_player in live_match.team1:
