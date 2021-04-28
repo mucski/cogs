@@ -405,6 +405,7 @@ class Paladins(commands.Cog):
         e.set_thumbnail(url=player.avatar_url)
         e.set_footer(text=f"Player ID: {player.id}")
         await ctx.send(embed=e)
+        await ctx.send(status.status)
         
     @commands.command()
     async def status(self, ctx):
