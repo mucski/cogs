@@ -384,7 +384,7 @@ class Paladins(commands.Cog):
                               title=f"{player.name} is in a {live_match.queue}")
             e.description = desc
             e.set_thumbnail(url=player.avatar_url)
-            e.set_footer(text=f"Match ID: {live_match.id}")
+            e.set_footer(text=f"Match ID: {live_match.id} / Missing players are bots.")
             await ctx.send(embed=e)
             
     @commands.command()
