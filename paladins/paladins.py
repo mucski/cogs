@@ -345,11 +345,6 @@ class Paladins(commands.Cog):
             # player is a str here
             player_list = await self.api.search_players(name, arez.Platform(platform))
             player = await player_list[0]
-        try:
-            special = await helper.get_global_kda(player.name, platform)
-            special = special[3]
-        except asyncio.TimeoutError:
-            special = "KDA api down."
         desc = (
             "**__Player Stats__**\n"
             f"```\nAccount level: {player.level}\n"
@@ -366,7 +361,6 @@ class Paladins(commands.Cog):
             f"```\nWin Rate: "
             f"{player.casual.wins}/{player.casual.losses}"
             f" ({player.casual.winrate_text})\n"
-            f"KDA: {special}\n"
             f"Deserted: {player.casual.leaves}\n```"
             f"**__Ranked Stats Season {player.ranked_best.season}__**\n"
             f"```\nWin Rate: "
