@@ -361,8 +361,13 @@ class Paladins(commands.Cog):
             "Versus\n"
             f"{team2}\n"
         )
+        e = discord.Embed(color=await self.bot.get_embed_color(ctx),
+                          title=f"Live Match")
+        e.description = desc
+        e.set_thumbnail(url=player.avatar_url)
+        e.set_footer(text=f"Player ID: {player.id}")
+        await ctx.send(embed=e)
         
-
     @commands.command()
     async def stats(self, ctx, name = None, platform="PC"):
         """
