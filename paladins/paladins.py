@@ -394,15 +394,15 @@ class Paladins(commands.Cog):
         stringus = ""
         for k, v in status.statuses.items():
             if not v.up:
-                server = "🟡 Limited Access"
+                server = "🟡"
             elif not v.limited_access:
-                server = "🟢 Operational"
+                server = "🟢"
             else:
-                server = "🟡 Limited Access"
+                server = "🟡"
             desc = (
                 "```\n"
                 f"Platform: {v.platform}\n"
-                f"Status: {server}\n"
+                f"Status: {server} {v.status}\n"
                 f"Version: {v.version}\n\n"
                 "```"
             )
