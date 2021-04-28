@@ -370,7 +370,7 @@ class Paladins(commands.Cog):
             player = await player_list[0]
         status = await player.get_status()
         if status.status != "Unknown" and status.status != "Offline":
-            player_status = str(status.status)
+            player_status = status.status
         else:
             player_status = "Last login: {}".format(humanize.naturaltime(datetime.utcnow() - player.last_login))
         desc = (
@@ -382,8 +382,8 @@ class Paladins(commands.Cog):
             f"Achievements Unlocked: {player.total_achievements}\n"
             "Account Created: "
             f"{humanize.naturaltime(datetime.utcnow() - player.created_at)}\n"
-            "{}\n".format(player_status)
-            "```"
+            "{}".format(player_status)
+            "\n```"
             "**__Casual Stats__**\n"
             "```\nWin Rate: "
             f"{player.casual.wins}/{player.casual.losses}"
