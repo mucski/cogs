@@ -262,7 +262,7 @@ class Paladins(commands.Cog):
             else:
                 most_class = "Unknown"
             for page in pagify(table_done):
-                await ctx.send("```diff\n{}\n```".format(page))
+                await ctx.send("```dif\n{}\n```".format(page))
             await ctx.send("```\nMost played champion: {}\nMost played class: {}\nAverage KDA: {:.2f}\n```".format(most_champ, most_class, final_kda / kda_counter))
         
     @commands.command()
