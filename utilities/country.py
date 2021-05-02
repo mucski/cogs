@@ -721,7 +721,7 @@ country = {
     "tobago": "tt", 
     "trinidad": "tt", 
     "trinidad and tobago": "tt",
-    "the republic of trinidad and tobago": "tt"
+    "the republic of trinidad and tobago": "tt",
     "tto": "tt",
     "tuvalu": "tv", 
     "tuv": "tv",
