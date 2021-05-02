@@ -22,7 +22,11 @@ class Utilities(commands.Cog):
         orig = ctx.guild.get_member(ctx.author.id).nick
         if orig is None:
             orig = ctx.guild.get_member(ctx.author.id).name
-        comp = flags.get(flag.lower())
+        if flag < 2:
+            comp = flags.get(flag.lower())
+        else:
+            country = country.get(flag.lower())
+            comp = flags.get(country)
         if comp is None:
             await ctx.send("No such flag.")
             return
