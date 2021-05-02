@@ -324,5 +324,7 @@ flags = {
 
 country = {
     "netherlands": "nl",
-    "holland": "nl"
+    "holland": "nl",
+    "france": "fr",
+    "algeria": "ar"
 }
