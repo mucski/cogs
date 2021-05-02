@@ -328,7 +328,7 @@ class Paladins(commands.Cog):
             await ctx.send(embed=e)
             
     @commands.command()
-    async def current(self, ctx, name = None, platform = "PC"):
+    async def curr(self, ctx, name = None, platform = "PC"):
         async with ctx.typing():
             if name is None:
                 # use the ID of the caller
