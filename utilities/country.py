@@ -154,7 +154,7 @@ country = {
     "colombia": "co", 
     "the republic of colombia": "co", 
     "col": "co",
-    "cp": "clipperton island"
+    "cp": "clipperton island",
     "costa rica": "cr", 
     "the republic of costa rica": "cr", 
     "cri": "cr",
