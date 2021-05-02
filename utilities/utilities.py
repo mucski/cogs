@@ -1,7 +1,7 @@
 from redbot.core import commands, checks
 from redbot.core.utils.chat_formatting import text_to_file
 import random
-from .words import words, words2, flags
+from .words import words, words2, flags, country
 import re
 import subprocess
 import discord
