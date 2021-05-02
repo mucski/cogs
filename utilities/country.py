@@ -631,7 +631,7 @@ country = {
     "saint helena": "sh", 
     "saint helena ascension island tristan da cunha": "sh", 
     "saint helena, ascension and tristan da cunha": "sh", 
-    "shn": "sh"
+    "shn": "sh",
     "slovenia": "si", 
     "the republic of slovenia": "si", 
     "svn": "si",
