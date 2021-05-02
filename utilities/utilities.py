@@ -22,12 +22,10 @@ class Utilities(commands.Cog):
         orig = ctx.guild.get_member(ctx.author.id).nick
         if orig is None:
             orig = ctx.guild.get_member(ctx.author.id).name
-        if len(flag) > 2:
+        if len(flag) < 3:
             comp = flags.get(flag.lower())
         else:
-            county = country.get(flag.lower())
-            if flag in county:
-                comp = flags.get(county)
+            
 
         def deEmojify(text):
             regrex_pattern = re.compile(
