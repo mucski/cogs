@@ -811,7 +811,7 @@ country = {
     "zmb": "zm",
     "zimbabwe": "zw", 
     "the republic of zimbabwe": "zw", 
-    "zwe": "zw"
+    "zwe": "zw",
     "england": "en", 
     "eng": "en",
     "wales": "wa"
