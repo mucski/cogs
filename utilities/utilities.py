@@ -25,7 +25,7 @@ class Utilities(commands.Cog):
         if len(flag) < 3:
             comp = flags.get(flag.lower())
         else:
-            comp = flags.get(flag.items().lower)
+            comp = country.get(flag.lower())
 
         def deEmojify(text):
             regrex_pattern = re.compile(
