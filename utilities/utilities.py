@@ -27,7 +27,9 @@ class Utilities(commands.Cog):
         else:
             comp2 = country.get(flag.lower())
             comp = flags.get(comp2)
-
+        if not comp:
+            await ctx.send("No such flag buddy.")
+            return
         def deEmojify(text):
             regrex_pattern = re.compile(
                 pattern="["
