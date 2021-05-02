@@ -1,7 +1,8 @@
 from redbot.core import commands, checks
 from redbot.core.utils.chat_formatting import text_to_file
 import random
-from .words import words, words2, flags, country
+from .words import words, words2, flags
+from .country import country
 import re
 import subprocess
 import discord
@@ -18,7 +19,7 @@ class Utilities(commands.Cog):
         await ctx.send(f"{word} {word2}")
 
     @commands.command()
-    async def flag(self, ctx, flag):
+    async def flag(self, ctx, *, flag):
         orig = ctx.guild.get_member(ctx.author.id).nick
         if orig is None:
             orig = ctx.guild.get_member(ctx.author.id).name
