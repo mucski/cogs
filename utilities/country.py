@@ -378,7 +378,7 @@ country = {
     "the union of the comoros": "km", 
     "com": "km", 
     "the comoros": "km",
-    "saint kitts and nevis": "kn"
+    "saint kitts and nevis": "kn",
     "kna": "kn",
     "democratic people's republic of korea": "kp", 
     "the democratic people's republic of korea": "kp", 
