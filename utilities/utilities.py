@@ -28,9 +28,6 @@ class Utilities(commands.Cog):
             county = country.get(flag.lower())
             if flag in county:
                 comp = flags.get(county)
-        if comp is None:
-            await ctx.send("No such flag.")
-            return
 
         def deEmojify(text):
             regrex_pattern = re.compile(
