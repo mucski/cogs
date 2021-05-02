@@ -322,9 +322,3 @@ flags = {
     "wa": "🏴󠁧󠁢󠁷󠁬󠁳󠁿"
 }
 
-country = {
-    "netherlands": "nl",
-    "holland": "nl",
-    "france": "fr",
-    "algeria": "ar"
-}
