@@ -25,8 +25,8 @@ class Utilities(commands.Cog):
         if len(flag) < 2:
             comp = flags.get(flag.lower())
         else:
-            country = country.get(flag.lower())
-            comp = flags.get(country)
+            county = country.get(flag.lower())
+            comp = flags.get(county)
         if comp is None:
             await ctx.send("No such flag.")
             return
