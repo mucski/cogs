@@ -47,6 +47,8 @@ country = {
     "azerbaijan": "az", 
     "the republic of azerbaijan": "az", 
     "aze": "az",
+    "bosnia": "ba",
+    "herzegovina": "ba",
     "bosnia and herzegovina": "ba", 
     "bih": "ba",
     "barbados": "bb", 
