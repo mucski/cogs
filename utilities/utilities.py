@@ -24,7 +24,10 @@ class Utilities(commands.Cog):
         if orig is None:
             orig = ctx.guild.get_member(ctx.author.id).name
         if len(flag) < 3:
-            comp = flags.get(flag.lower())
+            if flag == "uk":
+                comp = flag.get("gb")
+            else:
+                comp = flags.get(flag.lower())
         else:
             comp2 = country.get(flag.lower())
             comp = flags.get(comp2)
