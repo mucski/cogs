@@ -291,6 +291,7 @@ class Paladins(commands.Cog):
             stats_dict = {s.champion: s for s in champions_stats}  # Dict[Champion, ChampionStats]
             if champion_name == "all":
                 table = []
+                hours_count = 0
                 for i in range(len(champions_stats)):
                     # table = [["fuck"], ["shit"], ["dick"], ["cunt"]]
                     t = []
