@@ -299,7 +299,7 @@ class Paladins(commands.Cog):
                     t.append("{:.2f}".format(champions_stats[i].kda))
                     t.append(f"{champions_stats[i].winrate_text}") 
                     t.append(f"{math.floor(champions_stats[i].playtime.total_hours())} h")
-                    hours_count += champion_stats[i].playtime.total_hours()
+                    hours_count += champions_stats[i].playtime.total_hours()
                     table.append(t)
                 table_done = tabulate(table, headers=["Name(lvl)", "K/D/A", "Winrate", "Time"], tablefmt="presto")
                 for page in pagify(table_done):
