@@ -164,7 +164,8 @@ class Paladins(commands.Cog):
             match_info = [match.winning_team, match.duration.minutes, match.region.name,
                           match.map_name, match.score[0], match.score[1]]
             temp = match.bans
-            for match_player in match.players:
+            for match_player in sorted(match.players):
+                key = lambda match_player: match_player.df
                 row = [
                         match_player.player.name, match_player.account_level, match_player.credits, match_player.kda_text,
                         match_player.damage_done, match_player.damage_taken, match_player.objective_time, match_player.damage_mitigated,
