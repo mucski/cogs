@@ -48,7 +48,7 @@ class helper:
         img = Image.new(
             "RGBA", (img_x*10+400, image_size_y+offset*2), color=im_color)
         img.paste(champ_icon, (offset, offset))
-        img.paste(rank_icon, (1220, int(middle)), mask=rank_icon)
+        img.paste(rank_icon, (1280, int(middle)), mask=rank_icon)
         draw = ImageDraw.Draw(img)
         fnt80 = ImageFont.truetype("home/ubuntu/arial.ttf", 80)
         fnt100 = ImageFont.truetype("home/ubuntu/arial.ttf", 100)
@@ -66,31 +66,31 @@ class helper:
         # draw.text((img_x+950, middle),
         #           str(champ_stats[9]), font=fnt100, fill=fill)
         # Credits
-        draw.text((img_x+950, middle),
+        draw.text((img_x+1000, middle),
                   humanize_number(champ_stats[2]), font=fnt100, fill=fill)
         # KDA
-        draw.text((img_x+1300, middle),
+        draw.text((img_x+1350, middle),
                   str(champ_stats[3]), font=fnt100, fill=fill)
         # Damage Done
-        draw.text((img_x+1800, middle),
+        draw.text((img_x+1850, middle),
                   humanize_number(champ_stats[4]), font=fnt100, fill=fill)
         # Mitigated
-        draw.text((img_x+2300, middle),
+        draw.text((img_x+2350, middle),
                   humanize_number(champ_stats[5]), font=fnt100, fill=fill)
         # OBJ time
-        draw.text((img_x+2800, middle),
+        draw.text((img_x+2850, middle),
                   humanize_number(champ_stats[6]), font=fnt100, fill=fill)
         # Shielding
-        draw.text((img_x+3100, middle),
+        draw.text((img_x+3150, middle),
                   humanize_number(champ_stats[7]), font=fnt100, fill=fill)
         # Healing
-        draw.text((img_x+3600, middle),
+        draw.text((img_x+3650, middle),
                   humanize_number(champ_stats[8]), font=fnt100, fill=fill)
         # Self Healing
-        draw.text((img_x+4100, middle),
+        draw.text((img_x+4150, middle),
                   humanize_number(champ_stats[11]), font=fnt100, fill=fill)
         # KDA
-        draw.text((img_x+4600, middle),
+        draw.text((img_x+4650, middle),
                   humanize_number("{:.2f}".format(champ_stats[12])), font=fnt100, fill=fill)
         return img
 
@@ -107,36 +107,36 @@ class helper:
         base_draw.text((x + 20, 0), "Player",
                        font=fnt80bold, fill=(255, 255, 255))
         # Ranks
-        base_draw.text((x + 750, 0), "R", font=fnt80bold, fill=fill)
+        base_draw.text((x + 800, 0), "R", font=fnt80bold, fill=fill)
         # Parties
         # base_draw.text((x + 950, 0), "P", font=fnt80bold, fill=fill)
         # Credits/Gold earned
         # base_draw.text((x + 1100, 0), "Credits", font=fnt80bold, fill=fill)
-        base_draw.text((x + 950, 0), "Credits", font=fnt80bold, fill=fill)
+        base_draw.text((x + 1000, 0), "Credits", font=fnt80bold, fill=fill)
         # KDA
         # base_draw.text((x + 1500, 0), "K/D/A", font=fnt80bold, fill=fill)
-        base_draw.text((x + 1300, 0), "K/D/A", font=fnt80bold, fill=fill)
+        base_draw.text((x + 1350, 0), "K/D/A", font=fnt80bold, fill=fill)
         # Damage done
         # base_draw.text((x + 1950, 0), "Damage", font=fnt80bold, fill=fill)
-        base_draw.text((x + 1800, 0), "Damage", font=fnt80bold, fill=fill)
+        base_draw.text((x + 1850, 0), "Damage", font=fnt80bold, fill=fill)
         # Damage taken
         # base_draw.text((x + 2450, 0), "Taken", font=fnt80bold, fill=fill)
-        base_draw.text((x + 2300, 0), "Taken", font=fnt80bold, fill=fill)
+        base_draw.text((x + 2350, 0), "Taken", font=fnt80bold, fill=fill)
         # Objective time
         # base_draw.text((x + 2900, 0), "Obj T.", font=fnt80bold, fill=fill)
-        base_draw.text((x + 2800, 0), "Obj T.", font=fnt80bold, fill=fill)
+        base_draw.text((x + 2850, 0), "Obj T.", font=fnt80bold, fill=fill)
         # base_draw.text((x + 2850, 60), "Time", font=fnt80, fill=fill)
         # Shielding
         # base_draw.text((x + 3250, 0), "Shielding", font=fnt80bold, fill=fill)
-        base_draw.text((x + 3100, 0), "Shielding", font=fnt80bold, fill=fill)
+        base_draw.text((x + 3150, 0), "Shielding", font=fnt80bold, fill=fill)
         # Healing
         # base_draw.text((x + 3750, 0), "Healing", font=fnt80bold, fill=fill)
-        base_draw.text((x + 3600, 0), "Healing", font=fnt80bold, fill=fill)
+        base_draw.text((x + 3650, 0), "Healing", font=fnt80bold, fill=fill)
         # Self Healing
         # base_draw.text((x + 4220, 0), "Self Heal", font=fnt80bold, fill=fill)
-        base_draw.text((x + 4100, 0), "Self Heal", font=fnt80bold, fill=fill)
+        base_draw.text((x + 4150, 0), "Self Heal", font=fnt80bold, fill=fill)
         # KDA
-        base_draw.text((x + 4600, 0), "KDA", font=fnt80bold, fill=fill)
+        base_draw.text((x + 4650, 0), "KDA", font=fnt80bold, fill=fill)
         return key
 
     @classmethod
