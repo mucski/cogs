@@ -293,7 +293,6 @@ class Paladins(commands.Cog):
                 table = []
                 hours_count = 0
                 for i in range(len(champions_stats)):
-                    # table = [["fuck"], ["shit"], ["dick"], ["cunt"]
                     t = []
                     t.append(f"{champions_stats[i].champion.name}({champions_stats[i].level})")
                     t.append("{:.2f}".format(champions_stats[i].kda))
