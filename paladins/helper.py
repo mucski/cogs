@@ -239,7 +239,7 @@ class helper:
                         font=fnt100, fill=fill, stroke_width=1, stroke_fille=stroke)
         # Team 1
         draw_panel.text((512 * 4 - 230, ds), f"Team 1 Score: {md[4]}",
-                        font=fnt100bold, fill=fill, stroke_width=2, stroke_fille=stroke)
+                        font=fnt100bold, fill=(76, 104, 245))
         center = (512/2 - 130/2)
         center2 = (512/2 - 80/2)
         # VS
