@@ -296,6 +296,8 @@ class Paladins(commands.Cog):
                     key = lambda s: s.kda2
                 elif champion_name == "wr":
                     key = lambda s: s.winrate_text
+                else:
+                    key = lambda s: s.level
                 for stats in sorted(champions_stats, key=key, reverse=True):
                     t = []
                     t.append(f"{stats.champion.name}({stats.level})")
