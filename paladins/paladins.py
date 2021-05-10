@@ -291,12 +291,12 @@ class Paladins(commands.Cog):
             stats_dict = {s.champion: s for s in champions_stats}  # Dict[Champion, ChampionStats]
             if champion_name == "all" or champion_name == "top" or champion_name == "lvl":
                 if champion_name == "all" or champion_name == "top":
-                    sort_info = "kda"
+                    sort_info = lambda champions_stats: champions_stats.kda
                 elif champion_name == "lvl":
-                    sort_info = "level"
+                    sort_info = lambda champions_stats: champions_stats.level
                 table = []
                 hours_count = 0
-                for i in range(len(sorted(champions_stats, key=lambda champions_stats: champions_stats.sort_info))):
+                for i in range(len(sorted(champions_stats, key=sort_info))):
                     # table = [["fuck"], ["shit"], ["dick"], ["cunt"]]
                     t = []
                     t.append(f"{champions_stats[i].champion.name}({champions_stats[i].level})")
