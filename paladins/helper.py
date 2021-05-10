@@ -245,9 +245,7 @@ class helper:
         # VS
         vs = Image.open("home/ubuntu/icons/vs.png")
         vs = vs.convert("RGBA")
-        vs = vs.putdata((0,0,0,0,255))
         vs = vs.resize((200, 200))
-        vs = vs.putalpha(128)
         middle_panel.paste(vs, (512 * 5 + 300 - 200, 150), mask=vs)
         # draw_panel.text((512 * 6 + 100, 200), "VS",
                         # font=fnt100bold, fill=(227, 34, 34))
