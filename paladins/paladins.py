@@ -291,10 +291,8 @@ class Paladins(commands.Cog):
             stats_dict = {s.champion: s for s in champions_stats}  # Dict[Champion, ChampionStats]
             if champion_name == "all" or champion_name == "top" or champion_name == "lvl":
                 z = 0
-                if champion_name == "all" or champion_name == "top":
-                    sort_info = lambda champions_stats: champions_stats[z].kda
-                elif champion_name == "wr":
-                    sort_info = lambda champions_stats: champions_stats[z].winrate_text
+                def winrate(winrate):
+                    return champions_stats[z].winrate_text
                 table = []
                 hours_count = 0
                 for i in range(len(champions_stats.sort(key=winrate_text))):
