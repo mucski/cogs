@@ -296,7 +296,7 @@ class Paladins(commands.Cog):
                     sort_info = "level"
                 table = []
                 hours_count = 0
-                for i in range(len(sorted(champions_stats, key=lambda champions_stats: champions_stats[i].sort_info))):
+                for i in range(len(sorted(champions_stats, key=lambda champions_stats: champions_stats.sort_info))):
                     # table = [["fuck"], ["shit"], ["dick"], ["cunt"]]
                     t = []
                     t.append(f"{champions_stats[i].champion.name}({champions_stats[i].level})")
