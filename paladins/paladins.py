@@ -290,15 +290,12 @@ class Paladins(commands.Cog):
             champions_stats = await ret.get_champion_stats()
             stats_dict = {s.champion: s for s in champions_stats}  # Dict[Champion, ChampionStats]
             if champion_name == "all" or champion_name == "top" or champion_name == "lvl":
-                z = 0
-                def winrate(winrate):
-                    return champions_stats[z].winrate_text
                 table = []
                 hours_count = 0
                 for i in range(len(champions_stats.sort(key=winrate))):
-                    # table = [["fuck"], ["shit"], ["dick"], ["cunt"]]
-                    z + 1
+                    # table = [["fuck"], ["shit"], ["dick"], ["cunt"]
                     t = []
+                    t.sort(key=lambda champions_stats: champions_stats[i].winrate_text)
                     t.append(f"{champions_stats[i].champion.name}({champions_stats[i].level})")
                     t.append("{:.2f}".format(champions_stats[i].kda))
                     t.append(f"{champions_stats[i].winrate_text}") 
