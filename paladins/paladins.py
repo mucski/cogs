@@ -292,13 +292,13 @@ class Paladins(commands.Cog):
             if champion_name == "all" or champion_name == "top" or champion_name == "lvl":
                 table = []
                 hours_count = 0
-                for i in range(len(champions_stats)):
+                for stats in champions_stats:
                     t = []
-                    t.append(f"{champions_stats[i].champion.name}({champions_stats[i].level})")
-                    t.append("{:.2f}".format(champions_stats[i].kda))
-                    t.append(f"{champions_stats[i].winrate_text}") 
-                    t.append(f"{math.floor(champions_stats[i].playtime.total_hours())} h")
-                    hours_count += champions_stats[i].playtime.total_hours()
+                    t.append(f"{stats.champion.name}({stats.level})")
+                    t.append("{:.2f}".format(stats.kda))
+                    t.append(f"{stats.winrate_text}") 
+                    t.append(f"{math.floor(stats.playtime.total_hours())} h")
+                    hours_count += stats.playtime.total_hours()
                     table.append(t)
                 table_done = tabulate(table, headers=["Name(lvl)", "K/D/A", "Winrate", "Time"], tablefmt="presto")
                 for page in pagify(table_done):
