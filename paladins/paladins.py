@@ -55,7 +55,7 @@ class Paladins(commands.Cog):
             team1_ranks = []
             team2_ranks = []
             team2_champs = []
-            match_info = [match.winning_team, match.duration.minutes, match.region.name,
+            match_info = [match.id, match.duration.minutes, match.region.name,
                           match.map_name, match.score[0], match.score[1]]
             temp = match.bans
             for match_player in sorted(match.players, key=lambda match_player: match_player.df, reverse=True):
