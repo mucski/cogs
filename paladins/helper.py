@@ -251,7 +251,7 @@ class helper:
                         # font=fnt100bold, fill=(227, 34, 34))
         # Team 2
         draw_panel.text((512 * 6 - 200, 348), f"Team 2 Score: {md[5]}",
-                        font=fnt100bold, fill=(0,0,0,15))
+                        font=fnt100bold, fill=(214, 104, 71))
         #  add in banned champs if it's a ranked match
         try:
             if md[6]:
