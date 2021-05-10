@@ -292,12 +292,12 @@ class Paladins(commands.Cog):
             if champion_name == "all" or champion_name == "top" or champion_name == "lvl":
                 z = 0
                 def winrate(winrate):
-                    return champions_stats[i].winrate_text
+                    return champions_stats[z].winrate_text
                 table = []
                 hours_count = 0
                 for i in range(len(champions_stats.sort(key=winrate))):
                     # table = [["fuck"], ["shit"], ["dick"], ["cunt"]]
-                    z += 1
+                    z + 1
                     t = []
                     t.append(f"{champions_stats[i].champion.name}({champions_stats[i].level})")
                     t.append("{:.2f}".format(champions_stats[i].kda))
