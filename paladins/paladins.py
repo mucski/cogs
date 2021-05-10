@@ -292,7 +292,7 @@ class Paladins(commands.Cog):
             if champion_name == "all" or champion_name == "top" or champion_name == "lvl":
                 z = 0
                 def winrate(winrate):
-                    return champions_stats.winrate_text
+                    return champions_stats[i].winrate_text
                 table = []
                 hours_count = 0
                 for i in range(len(champions_stats.sort(key=winrate))):
