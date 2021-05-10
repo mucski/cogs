@@ -252,7 +252,6 @@ class helper:
         # Team 2
         draw_panel.text((512 * 6 - 200, 348), f"Team 2 Score: {md[5]}",
                         font=fnt100bold, fill=(0,0,0,15))
-        middle_panel = Image.alpha_composite(middle_panel, txt)
         #  add in banned champs if it's a ranked match
         try:
             if md[6]:
