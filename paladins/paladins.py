@@ -297,7 +297,7 @@ class Paladins(commands.Cog):
                     sort_info = lambda champions_stats: champions_stats[z].winrate_text
                 table = []
                 hours_count = 0
-                for i in range(len(sorted(champions_stats, key=champions_stats.winrate_text))):
+                for i in range(len(sorted(champions_stats, key=winrate_text))):
                     # table = [["fuck"], ["shit"], ["dick"], ["cunt"]]
                     z += 1
                     t = []
