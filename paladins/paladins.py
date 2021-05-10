@@ -292,7 +292,11 @@ class Paladins(commands.Cog):
             if champion_name == "all" or champion_name == "top" or champion_name == "lvl":
                 table = []
                 hours_count = 0
-                for stats in champions_stats:
+                if champion_name == "kda":
+                    key = lambda s: s.kda2
+                elif champion_name == "wr":
+                    key = lambda s: s.winrate_text
+                for stats in sorted(champions_stats, key=key, reverse=True):
                     t = []
                     t.append(f"{stats.champion.name}({stats.level})")
                     t.append("{:.2f}".format(stats.kda))
