@@ -292,7 +292,7 @@ class Paladins(commands.Cog):
             if champion_name == "all" or champion_name == "top" or champion_name == "lvl":
                 table = []
                 hours_count = 0
-                for i in range(len(champions_stats.sort(key=winrate))):
+                for i in range(len(champions_stats)):
                     # table = [["fuck"], ["shit"], ["dick"], ["cunt"]
                     t = []
                     t.sort(key=lambda champions_stats: champions_stats[i].winrate_text)
