@@ -292,12 +292,12 @@ class Paladins(commands.Cog):
             if champion_name == "all" or champion_name == "top" or champion_name == "lvl":
                 z = 0
                 if champion_name == "all" or champion_name == "top":
-                    sort_info = lambda champions_stats: await champions_stats[z].kda
+                    sort_info = lambda champions_stats: champions_stats[z].kda
                 elif champion_name == "wr":
-                    sort_info = lambda champions_stats: await champions_stats[z].winrate_text
+                    sort_info = lambda champions_stats: champions_stats[z].winrate_text
                 table = []
                 hours_count = 0
-                for i in range(len(sorted(champions_stats, key=sort_info))):
+                for i in range(len(sorted(champions_stats, key=champions_stats.winrate_text))):
                     # table = [["fuck"], ["shit"], ["dick"], ["cunt"]]
                     z += 1
                     t = []
