@@ -239,7 +239,7 @@ class helper:
                         font=fnt100, fill=fill, stroke_width=1, stroke_fille=stroke)
         # Team 1
         draw_panel.text((512 * 4 - 230, ds), f"Team 1 Score: {md[4]}",
-                        font=fnt100bold, fill=(76, 104, 245), stroke_width=1, stroke_fill=stroke)
+                        font=fnt100bold, fill=(173, 216, 255), stroke_width=1, stroke_fill=stroke)
         center = (512/2 - 130/2)
         center2 = (512/2 - 80/2)
         # VS
@@ -251,7 +251,7 @@ class helper:
                         # font=fnt100bold, fill=(227, 34, 34))
         # Team 2
         draw_panel.text((512 * 6 - 200, 348), f"Team 2 Score: {md[5]}",
-                        font=fnt100bold, fill=(245, 76, 76), stroke_width=1, stroke_fill=stroke)
+                        font=fnt100bold, fill=(255, 173, 173), stroke_width=1, stroke_fill=stroke)
         #  add in banned champs if it's a ranked match
         try:
             if md[6]:
