@@ -289,7 +289,7 @@ class Paladins(commands.Cog):
                 ret = await ret[0]
             champions_stats = await ret.get_champion_stats()
             stats_dict = {s.champion: s for s in champions_stats}  # Dict[Champion, ChampionStats]
-            if champion_name == "all" or champion_name == "top" or champion_name == "lvl":
+            if champion_name == "all" or champion_name == "kda" or champion_name == "wr":
                 table = []
                 hours_count = 0
                 if champion_name == "kda":
