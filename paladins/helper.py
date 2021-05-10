@@ -234,7 +234,7 @@ class helper:
         fnt100 = ImageFont.truetype("home/ubuntu/arial.ttf", 100)
         fnt100bold = ImageFont.truetype("/home/ubuntu/arialbd.ttf", 100)
         draw_panel.text((rs, 0 + ds),
-                        str(f"Match ID: {md[0]}"), font=fnt100, fill=fill, stroke_width=1, stroke_fille=stroke)
+                        str(f"ID: {md[0]}"), font=fnt100, fill=fill, stroke_width=1, stroke_fille=stroke)
         draw_panel.text((rs, 100 + ds), (str(md[1]) + " minutes"), font=fnt100,
                         fill=fill, stroke_width=1, stroke_fille=stroke)
         draw_panel.text((rs, 200 + ds),
