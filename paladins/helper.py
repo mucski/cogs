@@ -56,12 +56,8 @@ class helper:
         if champ_stats[0] == "":
             champ_stats[0] = "???????"
         # Champion name, player name
-        if len(champ_stats[0]) > 11:
-            player_name = champ_stats[0][:11] + ".."
-        else:
-            player_name = champ_stats[0]
         draw.text((img_x+20, middle-40),
-                  str(player_name), font=fnt80bold, fill=color)
+                  str(champ_stats[0]), font=fnt80bold, fill=color)
         draw.text((img_x+20, middle+60),
                   str(champ_stats[1]), font=fnt80, fill=fill)
         # Rank
