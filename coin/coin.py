@@ -217,7 +217,7 @@ class Coin(commands.Cog):
             emoji = emojis[pred.result]
             if emoji == '❌':
                 await msg.clear_reactions()
-                e.description = "`You cancelled.`"
+                e.description = "```\nYou cancelled.\n```"
                 await msg.edit(embed=e)
                 break
             # elif emoji == '▶️':
