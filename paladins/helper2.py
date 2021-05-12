@@ -67,7 +67,6 @@ class helper2:
         draw.text((img_x, middle + 60), str(stats[1]), font=fnt, color=fill)
         
         offset = 256
-        margin = 128
         #credits earned
         draw.text((img_x * 3, middle), humanize_number(stats[2]), font=fnt, color=fill)
         #kda
@@ -75,7 +74,7 @@ class helper2:
         #dmg done
         draw.text((img_x * 5 - offset + offset / 3, middle), humanize_number(stats[4]), font=fnt, color=fill)
         #dmg taken
-        draw.text((img_x * 6, middle), humanize_number(stats[5]), font=fnt, color=fill)
+        draw.text((img_x * 6 - offset, middle), humanize_number(stats[5]), font=fnt, color=fill)
         #objective
         draw.text((img_x * 7, middle), humanize_number(stats[6]), font=fnt, color=fill)
         #shielding
