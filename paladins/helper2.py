@@ -186,7 +186,7 @@ class helper2:
         img_x = 512
         img_y = 512 - crop * 2
         #(horizontal, vertical)
-        img = Image.new("RGB", (img_x * 11, math.floor(img_x * 12 / 2)), color = (8, 21, 25))
+        img = Image.new("RGB", (img_x * 11, math.floor(img_x * 12 / 2)))
         map_name = match_data[3]
         format_map = map_name.lower().replace(" ", "_").replace("'", "")
         try:
