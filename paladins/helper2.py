@@ -187,4 +187,15 @@ class helper2:
         img_y = 512 - crop * 2
         #(horizontal, vertical)
         img = Image.new("RGB", (img_x * 11, math.floor(img_x * 12 / 2)), color = (8, 21, 25))
+        map_name = md[3]
+        format_map = map_name.lower().replace(" ", "_").replace("'", "")
+        try:
+            match_map = Image.open(f"home/ubuntu/icons/maps/{format_map}.png")
+        except FileNotFoundError:
+            match_map = Image.open("home/ubuntu/icons/maps/test_maps.png")
+        basewidth = img_x * 11
+        wpercent = (basewidth / float(match_map.size[0]))
+        hsize = int((float(match_map.size[1]) * float(wpercent)))
+        match_map = match_map.resize((basewidth, hsize), Image.ANTIALIAS)
+        img.paste(match_map, (0, img_x * 12 / 2))
         return img
