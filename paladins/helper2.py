@@ -183,5 +183,5 @@ class helper2:
         img_x = 512
         img_y = 512 - crop * 2
         #(horizontal, vertical)
-        img = Image.new("RGB", (img_x * 10, img_x))
+        img = Image.new("RGB", (img_x * 10, img_x), color = (8, 21, 25))
         return img
