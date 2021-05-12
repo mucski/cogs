@@ -152,7 +152,7 @@ class helper2:
                 playerpanel = await helper2.statsimage(champimgcrop, rankicon, t1_data[i], i)
                 img.paste(playerpanel, (0, img_y * i))
             except:
-                pass
+                img.paste(playerpanel, (0, img_y * i))
             #team 2
             try:
                 resp = await helper2.champimg(champ2)
@@ -167,7 +167,7 @@ class helper2:
                 playerpanel = await helper2.statsimage(champimgcrop, rankicon, t1_data[i], i)
                 img.paste(playerpanel, (0, img_y * i + img_x))
             except:
-                pass
+                img.paste(playerpanel, (0, img_y * i + img_x))
         #done, reisizing for speed
         historyimg = img.resize((1920, 1080), Image.ANTIALIAS)
         #create the buffer
