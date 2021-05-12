@@ -44,7 +44,7 @@ class helper2:
         #padding or margin size
         padding = 10
         #vertical middle
-        middle = int(img_y / 2)
+        middle = int(img_y / 4)
         #image background color odd and even
         img_color = (14, 34, 43) if index % 2 == 0 else (15, 40, 48)
         #text fill size 
