@@ -197,5 +197,5 @@ class helper2:
         wpercent = (basewidth / float(match_map.size[0]))
         hsize = int((float(match_map.size[1]) * float(wpercent)))
         match_map = match_map.resize((basewidth, hsize), Image.ANTIALIAS)
-        img.paste(match_map, (0, math.floor(-img_x * 4 - img_x / 2)))
+        img.paste(match_map, (0, math.floor(-img_x * 4 + img_x / 2)))
         return img
