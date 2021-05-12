@@ -2,6 +2,7 @@ from PIL import ImageOps, ImageDraw, Image, ImageFont
 import aiohttp
 from io import BytesIO
 from redbot.core.utils.chat_formatting import humanize_number
+import math
 
 class helper2:
     
@@ -44,7 +45,7 @@ class helper2:
         #padding or margin size
         padding = 10
         #vertical middle
-        middle = int(img_y / 4)
+        middle = math.ceil(img_y / 3)
         #image background color odd and even
         img_color = (14, 34, 43) if index % 2 == 0 else (15, 40, 48)
         #text fill size 
