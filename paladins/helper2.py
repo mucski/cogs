@@ -76,9 +76,9 @@ class helper2:
         #dmg taken
         draw.text((img_x * 6 - offset + offset / 3, middle), humanize_number(stats[5]), font=fnt, color=fill)
         #objective
-        draw.text((img_x * 7, middle), humanize_number(stats[6]), font=fnt, color=fill)
+        draw.text((img_x * 7 - offset + offset / 3, middle), humanize_number(stats[6]), font=fnt, color=fill)
         #shielding
-        draw.text((img_x * 8, middle), humanize_number(stats[7]), font=fnt, color=fill)
+        draw.text((img_x * 8 - offset + offset - 3, middle), humanize_number(stats[7]), font=fnt, color=fill)
         #healing
         draw.text((img_x * 9, middle), humanize_number(stats[8]), font=fnt, color=fill)
         #self healing
