@@ -178,3 +178,10 @@ class helper2:
         final_buffer.seek(0)
         return final_buffer
         
+    @classmethod
+    async def middlepanel(cls, match_data):
+        crop = 140
+        img_x = 512
+        img_y = 512 - crop * 2
+        #(horizontal, vertical)
+        img = Image.new("RGB", (img_x * 10, img_x))
