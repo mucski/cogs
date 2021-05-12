@@ -82,9 +82,9 @@ class helper2:
         #healing
         draw.text((offset * 10 - offset - offset / 4, middle), humanize_number(stats[8]), font=fnt, color=fill)
         #self healing
-        draw.text((offset * 11 - offset - offset / 4, middle), humanize_number(stats[9]), font=fnt, color=fill)
+        draw.text((offset * 11 - offset - offset / 4, middle), humanize_number(stats[11]), font=fnt, color=fill)
         #kda2
-        draw.text((offset * 12 - offset - offset / 4, middle), stats[10], font=fnt, color=fill)
+        draw.text((offset * 12 - offset - offset / 4, middle), stats[12], font=fnt, color=fill)
         return img
 
     @classmethod
