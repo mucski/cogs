@@ -67,23 +67,23 @@ class helper2:
         draw.text((img_x, middle + 60), str(stats[1]), font=fnt, color=fill)
         
         #credits earned
-        draw.text((img_x * 2, middle), str(stats[2]), font=fnt, color=fill)
+        draw.text((img_x * 3, middle), str(stats[2]), font=fnt, color=fill)
         #kda
-        draw.text((img_x * 3, middle), str(stats[3]), font=fnt, color=fill)
+        draw.text((img_x * 4, middle), str(stats[3]), font=fnt, color=fill)
         #dmg done
-        draw.text((img_x * 4, middle), str(stats[4]), font=fnt, color=fill)
+        draw.text((img_x * 5, middle), str(stats[4]), font=fnt, color=fill)
         #dmg taken
-        draw.text((img_x * 5, middle), str(stats[5]), font=fnt, color=fill)
+        draw.text((img_x * 6, middle), str(stats[5]), font=fnt, color=fill)
         #objective
-        draw.text((img_x * 6, middle), str(stats[6]), font=fnt, color=fill)
+        draw.text((img_x * 7, middle), str(stats[6]), font=fnt, color=fill)
         #shielding
-        draw.text((img_x * 7, middle), str(stats[7]), font=fnt, color=fill)
+        draw.text((img_x * 8, middle), str(stats[7]), font=fnt, color=fill)
         #healing
-        draw.text((img_x * 8, middle), str(stats[8]), font=fnt, color=fill)
+        draw.text((img_x * 9, middle), str(stats[8]), font=fnt, color=fill)
         #self healing
-        draw.text((img_x * 9, middle), str(stats[9]), font=fnt, color=fill)
+        draw.text((img_x * 10, middle), str(stats[9]), font=fnt, color=fill)
         #kda2
-        draw.text((img_x * 10, middle), str(stats[10]), font=fnt, color=fill)
+        draw.text((img_x * 11, middle), str(stats[10]), font=fnt, color=fill)
         return img
 
     @classmethod
