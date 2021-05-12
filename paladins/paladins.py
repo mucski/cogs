@@ -5,6 +5,7 @@ import humanize
 from datetime import datetime
 import discord
 from .helper import helper
+from .helper2 import helper2
 from redbot.core.utils.chat_formatting import pagify, text_to_file
 import aiohttp
 import json
