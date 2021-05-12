@@ -41,7 +41,7 @@ class helper2:
         img_y = 512 - shrink * 2
         #horizontal
         img_x = 512
-        #padsing or margin size
+        #padding or margin size
         padding = 10
         #vertical middle
         middle = img_y / 2
@@ -50,4 +50,12 @@ class helper2:
         #text fill size 
         fill = (255, 255, 255)
         #new image object
-        img = Image.new()
+        img = Image.new("RGBA", (img_x * 11, img_y), color = img_color)
+        #champion icon
+        img.paste(champicon, (padding, padding))
+        #rank icon
+        img.paste(rankicon, (1300, middle), mask = rankicon)
+        #make the image drawable
+        draw = ImageDraw.Draw(img)
+        #normal font
+        fnt = ImageFont.truetype("/home/ubuntu/arial.ttf", 80)
