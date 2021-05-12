@@ -51,7 +51,7 @@ class helper2:
         #text fill size 
         fill = (255, 255, 255)
         #new image object
-        img = Image.new("RGBA", (img_x * 11, img_y), color = img_color)
+        img = Image.new("RGBA", (img_x * 11, img_y + padding * 2), color = img_color)
         #champion icon
         img.paste(champicon, (padding, padding))
         #rank icon
