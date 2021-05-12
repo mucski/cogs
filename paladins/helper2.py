@@ -73,7 +73,7 @@ class helper2:
         #kda
         draw.text((img_x * 4 - offset / 2, middle), stats[3], font=fnt, color=fill)
         #dmg done
-        draw.text((img_x * 5 - offset, middle), humanize_number(stats[4]), font=fnt, color=fill)
+        draw.text((img_x * 5 - offset + offset / 3, middle), humanize_number(stats[4]), font=fnt, color=fill)
         #dmg taken
         draw.text((img_x * 6, middle), humanize_number(stats[5]), font=fnt, color=fill)
         #objective
