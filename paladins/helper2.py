@@ -74,7 +74,7 @@ class helper2:
         #dmg done
         draw.text((img_x * 5 - offset + offset / 3, middle), humanize_number(stats[4]), font=fnt, color=fill)
         #dmg taken
-        draw.text((img_x * 6 - offset, middle), humanize_number(stats[5]), font=fnt, color=fill)
+        draw.text((img_x * 6 - offset + offset / 3, middle), humanize_number(stats[5]), font=fnt, color=fill)
         #objective
         draw.text((img_x * 7, middle), humanize_number(stats[6]), font=fnt, color=fill)
         #shielding
