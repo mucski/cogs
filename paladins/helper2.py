@@ -129,7 +129,7 @@ class helper2:
         img_x = 512
         img_y = 512 - crop * 2
         padding = 10
-        img = Image.new("RGB", (img_x * 11, img_y * 12))
+        img = Image.new("RGB", (img_x * 11, img_y * 13))
         
         #headers
         key = await helper2.playerkey(img_x, img_y)
