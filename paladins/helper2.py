@@ -68,29 +68,29 @@ class helper2:
         
         offset = 256
         #credits earned
-        draw.text((img_x * 4, middle), humanize_number(stats[2]), font=fnt, color=fill)
+        draw.text((img_x * 3, middle), humanize_number(stats[2]), font=fnt, color=fill)
         #kda
-        draw.text((img_x * 5 - offset / 2, middle), stats[3], font=fnt, color=fill)
+        draw.text((img_x * 4 - offset / 2, middle), stats[3], font=fnt, color=fill)
         #dmg done
-        draw.text((img_x * 6 - offset + offset / 3, middle), humanize_number(stats[4]), font=fnt, color=fill)
+        draw.text((img_x * 5 - offset + offset / 3, middle), humanize_number(stats[4]), font=fnt, color=fill)
         #dmg taken
-        draw.text((img_x * 7 - offset + offset / 3, middle), humanize_number(stats[5]), font=fnt, color=fill)
+        draw.text((img_x * 6 - offset + offset / 3, middle), humanize_number(stats[5]), font=fnt, color=fill)
         #objective
-        draw.text((img_x * 8 - offset + offset / 3, middle), humanize_number(stats[6]), font=fnt, color=fill)
+        draw.text((img_x * 7 - offset + offset / 3, middle), humanize_number(stats[6]), font=fnt, color=fill)
         #shielding
-        draw.text((img_x * 9 - offset - offset / 4, middle), humanize_number(stats[7]), font=fnt, color=fill)
+        draw.text((img_x * 8 - offset - offset / 4, middle), humanize_number(stats[7]), font=fnt, color=fill)
         #healing
-        draw.text((img_x * 10 - offset - offset / 4, middle), humanize_number(stats[8]), font=fnt, color=fill)
+        draw.text((img_x * 9 - offset - offset / 4, middle), humanize_number(stats[8]), font=fnt, color=fill)
         #self healing
-        draw.text((img_x * 11 - offset - offset / 4, middle), humanize_number(stats[11]), font=fnt, color=fill)
+        draw.text((img_x * 10 - offset - offset / 4, middle), humanize_number(stats[11]), font=fnt, color=fill)
         #kda2
-        draw.text((img_x * 12 - offset - offset / 4, middle), "{:.2f}".format(stats[12]), font=fnt, color=fill)
+        draw.text((img_x * 11 - offset - offset / 4, middle), "{:.2f}".format(stats[12]), font=fnt, color=fill)
         return img
 
     @classmethod
     async def playerkey(cls, x, y):
         #the image object
-        key = Image.new("RGB", (x * 10, y), color = (8, 21, 25))
+        key = Image.new("RGB", (x * 11, y), color = (8, 21, 25))
         draw = ImageDraw.Draw(key)
         fill = (255, 255, 255)
         fntbld = ImageFont.truetype("home/ubuntu/arialbd.ttf", 80)
@@ -127,7 +127,7 @@ class helper2:
         img_x = 512
         img_y = 512 - crop * 2
         padding = 10
-        img = Image.new("RGB", (img_x * 10, img_y * 11))
+        img = Image.new("RGB", (img_x * 11, img_y * 12))
         
         #headers
         key = await helper2.playerkey(img_x, img_y)
