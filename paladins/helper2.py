@@ -84,7 +84,7 @@ class helper2:
         #self healing
         draw.text((offset * 11 - offset - offset / 4, middle), humanize_number(stats[11]), font=fnt, color=fill)
         #kda2
-        draw.text((offset * 12 - offset - offset / 4, middle), int(stats[12]), font=fnt, color=fill)
+        draw.text((offset * 12 - offset - offset / 4, middle), "{:.2f}".format(stats[12]), font=fnt, color=fill)
         return img
 
     @classmethod
