@@ -67,7 +67,7 @@ class helper2:
         draw.text((img_x, middle + 60), str(stats[1]), font=fnt, color=fill)
         
         offset = 256
-        margin = 116
+        margin = 56
         #credits earned
         draw.text((img_x * 3 + margin, middle), humanize_number(stats[2]), font=fnt, color=fill)
         #kda
