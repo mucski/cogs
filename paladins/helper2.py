@@ -114,7 +114,7 @@ class helper2:
         #damage taken
         draw.text((x * 6 + margin - offset + offset / 3, 0), "Mitigated", font = fntbld, fill = fill)
         #objective
-        draw.text((x * 7 + margin - offset + offset / 3, 0), "Objective", font = fntbld, fill = fill)
+        draw.text((x * 7 + margin - offset + offset / 3, 0), "Obj Time", font = fntbld, fill = fill)
         #shielding
         draw.text((x * 8 + margin - offset - offset / 4, 0), "Shielding", font = fntbld, fill = fill)
         #healing
@@ -122,7 +122,7 @@ class helper2:
         #self healing
         draw.text((x * 10 + margin - offset - offset / 4, 0), "Self Heal", font = fntbld, fill = fill)
         #kda2
-        draw.text((x * 11 + margin - offset - offset / 4, 0), "K/D/A2", font = fntbld, fill = fill)
+        draw.text((x * 11 + margin - offset - offset / 4, 0), "KDA", font = fntbld, fill = fill)
         return key
 
     @classmethod
