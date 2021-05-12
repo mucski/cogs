@@ -49,3 +49,5 @@ class helper2:
         img_color = (14, 34, 43) if index % 2 == 0 else (15, 40, 48)
         #text fill size 
         fill = (255, 255, 255)
+        #new image object
+        img = Image.new()
