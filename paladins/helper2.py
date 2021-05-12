@@ -92,7 +92,7 @@ class helper2:
     @classmethod
     async def playerkey(cls, x, y):
         #the image object
-        key = Image.new("RGB", (x * 11, y), color = (8, 21, 25))
+        key = Image.new("RGB", (x * 11, y - 100), color = (8, 21, 25))
         draw = ImageDraw.Draw(key)
         fill = (255, 255, 255)
         fntbld = ImageFont.truetype("home/ubuntu/arialbd.ttf", 80)
