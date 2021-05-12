@@ -97,11 +97,12 @@ class helper2:
         fill = (255, 255, 255)
         margin = 56
         offset = 256
+        padding = 10
         fntbld = ImageFont.truetype("home/ubuntu/arialbd.ttf", 80)
         
         #champion and player
         draw.text((20, 0), "Champion", font = fntbld, fill = fill)
-        draw.text((x + 10, 0), "Player", font = fntbld, fill = fill)
+        draw.text((x + padding, 0), "Player", font = fntbld, fill = fill)
         
         #rank
         draw.text((math.floor(x * 3 - x / 3), 0), "R", font = fntbld, fill = fill)
