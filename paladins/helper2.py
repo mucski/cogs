@@ -64,8 +64,8 @@ class helper2:
         fntbld = ImageFont.truetype("home/ubuntu/arialbd.ttf", 80)
         
         #player name and level
-        draw.text((img_x, middle - 40), str(stats[0]), font=fntbld, color=fill)
-        draw.text((img_x, middle + 60), str(stats[1]), font=fnt, color=fill)
+        draw.text((img_x + padding, middle - 40), str(stats[0]), font=fntbld, color=fill)
+        draw.text((img_x + padding, middle + 60), str(stats[1]), font=fnt, color=fill)
         
         offset = 256
         margin = 56
@@ -101,7 +101,7 @@ class helper2:
         
         #champion and player
         draw.text((20, 0), "Champion", font = fntbld, fill = fill)
-        draw.text((x, 0), "Player", font = fntbld, fill = fill)
+        draw.text((x + 10, 0), "Player", font = fntbld, fill = fill)
         
         #rank
         draw.text((math.floor(x * 3 - x / 3), 0), "R", font = fntbld, fill = fill)
@@ -114,7 +114,7 @@ class helper2:
         #damage taken
         draw.text((x * 6 + margin - offset + offset / 3, 0), "Mitigated", font = fntbld, fill = fill)
         #objective
-        draw.text((x * 7 + margin - offset + offset / 3, 0), "Obj Time", font = fntbld, fill = fill)
+        draw.text((x * 7 + margin - offset + offset / 3, 0), "Obj", font = fntbld, fill = fill)
         #shielding
         draw.text((x * 8 + margin - offset - offset / 4, 0), "Shielding", font = fntbld, fill = fill)
         #healing
