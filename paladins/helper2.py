@@ -151,8 +151,6 @@ class helper2:
                 #playerstats
                 playerpanel = await helper2.statsimage(champimgcrop, rankicon, t1_data[i], i)
                 img.paste(playerpanel, (0, img_y * i))
-            except:
-                img.paste(playerpanel, (0, img_y * i))
             #team 2
             try:
                 resp = await helper2.champimg(champ2)
@@ -165,8 +163,6 @@ class helper2:
                 rankicon = Image.open(f"home/ubuntu/icons/ranks/{r1[i]}.png")
                 #playerstats
                 playerpanel = await helper2.statsimage(champimgcrop, rankicon, t1_data[i], i)
-                img.paste(playerpanel, (0, img_y * i + img_x))
-            except:
                 img.paste(playerpanel, (0, img_y * i + img_x))
         #done, reisizing for speed
         historyimg = img.resize((1920, 1080), Image.ANTIALIAS)
