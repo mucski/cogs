@@ -143,7 +143,7 @@ class helper:
     # Creates a match image based on the two teams champions
     async def history_image(cls, team1, team2, t1_data, t2_data, r1, r2, match_data):
         shrink = 140
-        shrink2 = 160
+        shrink2 = 150
         image_size_y = 512 - shrink*2
         image_size_x = 512
         offset = 5
