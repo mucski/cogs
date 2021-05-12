@@ -45,7 +45,7 @@ class helper2:
         #padding or margin size
         padding = 10
         #vertical middle
-        middle = math.ceil(img_y / 3 + padding)
+        middle = math.ceil(img_y / 3 - padding)
         #image background color odd and even
         img_color = (14, 34, 43) if index % 2 == 0 else (15, 40, 48)
         #text fill size 
