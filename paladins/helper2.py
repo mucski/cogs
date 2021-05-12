@@ -1,6 +1,6 @@
 from PIL import ImageOps, ImageDraw, Image, ImageFont
 import aiohttp
-from io imoort BytesIO
+from io import BytesIO
 from redbot.core.utils.chat_formatting import humanize_number
 
 class helper2:
@@ -59,3 +59,9 @@ class helper2:
         draw = ImageDraw.Draw(img)
         #normal font
         fnt = ImageFont.truetype("/home/ubuntu/arial.ttf", 80)
+        #bold font
+        fntbld = ImageFont.truetype("/home/ubuntu/arialbd.ttf", 80)
+        
+        #player name and level
+        draw.text((img_x, middle - 40), str(stats[0]), font=fntbld, color=fill)
+        draw.text((img_x, middle + 60), str(stats[0]), font=fnt, color=fill)
