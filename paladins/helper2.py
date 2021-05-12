@@ -67,12 +67,13 @@ class helper2:
         draw.text((img_x, middle + 60), str(stats[1]), font=fnt, color=fill)
         
         offset = 256
+        margin = 128
         #credits earned
         draw.text((img_x * 3, middle), humanize_number(stats[2]), font=fnt, color=fill)
         #kda
         draw.text((img_x * 4 - offset / 2, middle), stats[3], font=fnt, color=fill)
         #dmg done
-        draw.text((img_x * 5 - offset, middle), humanize_number(stats[4]), font=fnt, color=fill)
+        draw.text((img_x * 5 - offset + margin, middle), humanize_number(stats[4]), font=fnt, color=fill)
         #dmg taken
         draw.text((img_x * 6, middle), humanize_number(stats[5]), font=fnt, color=fill)
         #objective
