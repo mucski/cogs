@@ -95,6 +95,7 @@ class helper2:
         key = Image.new("RGB", (x * 11, y - 100), color = (8, 21, 25))
         draw = ImageDraw.Draw(key)
         fill = (255, 255, 255)
+        margin = 56
         fntbld = ImageFont.truetype("home/ubuntu/arialbd.ttf", 80)
         
         #champion and player
@@ -102,7 +103,7 @@ class helper2:
         draw.text((x, 0), "Player", font = fntbld, fill = fill)
         
         #rank
-        draw.text((x * 2, 0), "R", font = fntbld, fill = fill)
+        draw.text((math.floor(x * 3 - x / 3), 0), "R", font = fntbld, fill = fill)
         #credits
         draw.text((x * 3, 0), "Credits", font = fntbld, fill = fill)
         #kda
