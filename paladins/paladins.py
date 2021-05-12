@@ -117,7 +117,7 @@ class Paladins(commands.Cog):
                 else:
                     rank = "22"
                     team2_data.append(row)
-                    team2_champs.append("Yagorath")
+                    team2_champs.append("Sha Lin")
                     team2_ranks.append(rank)
             buffer = await helper2.historyimg(team1_champs, team2_champs, team1_data, team2_data, team1_ranks,
                                                 team2_ranks, (match_info + temp))
