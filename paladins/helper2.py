@@ -169,7 +169,7 @@ class helper2:
             except:
                 pass
         #done, reisizing for speed
-        historyimg = historyimg.resize((1920, 1080), Image.ANTIALIAS)
+        historyimg = img.resize((1920, 1080), Image.ANTIALIAS)
         #create the buffer
         final_buffer = BytesIO()
         #store image in buffer
