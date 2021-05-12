@@ -119,7 +119,7 @@ class Paladins(commands.Cog):
                     team2_data.append(row)
                     team2_champs.append("Yagorath")
                     team2_ranks.append(rank)
-            buffer = await helper2.historyimage(team1_champs, team2_champs, team1_data, team2_data, team1_ranks,
+            buffer = await helper2.historyimg(team1_champs, team2_champs, team1_data, team2_data, team1_ranks,
                                                 team2_ranks, (match_info + temp))
             file = discord.File(filename=f"prototype.png", fp=buffer)
         await ctx.send(file=file)
