@@ -184,8 +184,9 @@ class helper2:
     async def middlepanel(cls, match_data):
         crop = 140
         img_x = 512
+        img_y = 512 - crop * 2
         #(horizontal, vertical)
-        img = Image.new("RGB", (img_x * 11, math.floor(img_x * 12 / 2)))
+        img = Image.new("RGB", (img_x * 11, math.floor(img_y * 13 / 2)))
         
         #add in the map image 
         map_name = match_data[3]
