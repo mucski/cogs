@@ -139,31 +139,29 @@ class helper2:
         #player data
         for i, (champ, champ2) in enumerate(zip(team1, team2)):
             #team 1
-            try:
-                resp = await helper2.champimg(champ)
-                champimg = Image.open(BytesIO(resp))
+            resp = await helper2.champimg(champ)
+            champimg = Image.open(BytesIO(resp))
                 
-                #cropping champion image
-                border = (0, crop, 0, crop)
-                champimgcrop = ImageOps.crop(champimg, border)
-                #rank icon
-                rankicon = Image.open(f"home/ubuntu/icons/ranks/{r1[i]}.png")
-                #playerstats
-                playerpanel = await helper2.statsimage(champimgcrop, rankicon, t1_data[i], i)
-                img.paste(playerpanel, (0, img_y * i))
+            #cropping champion image
+            border = (0, crop, 0, crop)
+            champimgcrop = ImageOps.crop(champimg, border)
+            #rank icon
+            rankicon = Image.open(f"home/ubuntu/icons/ranks/{r1[i]}.png")
+            #playerstats
+            playerpanel = await helper2.statsimage(champimgcrop, rankicon, t1_data[i], i)
+            img.paste(playerpanel, (0, img_y * i))
             #team 2
-            try:
-                resp = await helper2.champimg(champ2)
-                champimg = Image.open(BytesIO(resp))
+            resp = await helper2.champimg(champ2)
+            champimg = Image.open(BytesIO(resp))
                 
-                #cropping champion image
-                border = (0, crop, 0, crop)
-                champimgcrop = ImageOps.crop(champimg, border)
-                #rank icon
-                rankicon = Image.open(f"home/ubuntu/icons/ranks/{r1[i]}.png")
-                #playerstats
-                playerpanel = await helper2.statsimage(champimgcrop, rankicon, t1_data[i], i)
-                img.paste(playerpanel, (0, img_y * i + img_x))
+            #cropping champion image
+            border = (0, crop, 0, crop)
+            champimgcrop = ImageOps.crop(champimg, border)
+            #rank icon
+            rankicon = Image.open(f"home/ubuntu/icons/ranks/{r1[i]}.png")
+            #playerstats
+            playerpanel = await helper2.statsimage(champimgcrop, rankicon, t1_data[i], i)
+            img.paste(playerpanel, (0, img_y * i + img_x))
         #done, reisizing for speed
         historyimg = img.resize((1920, 1080), Image.ANTIALIAS)
         #create the buffer
