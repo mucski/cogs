@@ -130,7 +130,7 @@ class helper2:
         
         #headers
         key = await helper2.playerkey(img_x, img_y)
-        img.paste(key, (0, 0))
+        img.paste(key, (0, -20))
         
         #middle panel
         middle = await helper2.middlepanel(match_data)
