@@ -80,11 +80,11 @@ class helper2:
         #shielding
         draw.text((img_x * 8 - offset + offset / 3, middle), humanize_number(stats[7]), font=fnt, color=fill)
         #healing
-        draw.text((img_x * 9, middle), humanize_number(stats[8]), font=fnt, color=fill)
+        draw.text((img_x * 9 - offset + offset / 3, middle), humanize_number(stats[8]), font=fnt, color=fill)
         #self healing
-        draw.text((img_x * 10, middle), humanize_number(stats[9]), font=fnt, color=fill)
+        draw.text((img_x * 10 - offset + offset / 3, middle), humanize_number(stats[9]), font=fnt, color=fill)
         #kda2
-        draw.text((img_x * 11, middle), stats[10], font=fnt, color=fill)
+        draw.text((img_x * 11 - offset + offset / 3, middle), stats[10], font=fnt, color=fill)
         return img
 
     @classmethod
