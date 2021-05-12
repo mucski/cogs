@@ -110,19 +110,19 @@ class helper2:
         #kda
         draw.text((x * 4 + margin - offset / 2, 0), "K/D/A", font = fntbld, fill = fill)
         #damage done
-        draw.text((x * 5, 0), "Damage", font = fntbld, fill = fill)
+        draw.text((x * 5 + margin - offset + offset / 3, 0), "Damage", font = fntbld, fill = fill)
         #damage taken
-        draw.text((x * 6, 0), "Mitigated", font = fntbld, fill = fill)
+        draw.text((x * 6 + margin - offset + offset / 3, 0), "Mitigated", font = fntbld, fill = fill)
         #objective
-        draw.text((x * 7, 0), "Objective", font = fntbld, fill = fill)
+        draw.text((x * 7 + margin - offset + offset / 3, 0), "Objective", font = fntbld, fill = fill)
         #shielding
-        draw.text((x * 8, 0), "Shielding", font = fntbld, fill = fill)
+        draw.text((x * 8 + margin - offset - offset / 4, 0), "Shielding", font = fntbld, fill = fill)
         #healing
-        draw.text((x * 9, 0), "Healing", font = fntbld, fill = fill)
+        draw.text((x * 9 + margin - offset - offset / 4, 0), "Healing", font = fntbld, fill = fill)
         #self healing
-        draw.text((x * 10, 0), "Self Heal", font = fntbld, fill = fill)
+        draw.text((x * 10 + margin - offset - offset / 4, 0), "Self Heal", font = fntbld, fill = fill)
         #kda2
-        draw.text((x * 11, 0), "K/D/A2", font = fntbld, fill = fill)
+        draw.text((x * 11 + margin - offset - offset / 4, 0), "K/D/A2", font = fntbld, fill = fill)
         return key
 
     @classmethod
