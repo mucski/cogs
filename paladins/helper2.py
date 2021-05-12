@@ -119,3 +119,62 @@ class helper2:
         #kda2
         draw.text((x * 11, 0), "K/D/A2", font = fntbld, fill = fill)
         return key
+
+    @classmethod
+    async def historyimg(cls, team1, team2, t1_data, t2_data, r1, r2, match_data):
+        crop = 140
+        img_x = 512
+        img_y = 512 - crop * 2
+        padding = 10
+        img = Image.new("RGB", (img_x * 10, img_y * 11))
+        
+        #headers
+        key = await helper2.playerkey(img_x, img_y)
+        img.paste(key, (0, 0))
+        
+        #middle panel
+        middle = await helper2.middlepanel(match_data)
+        img.paste(middle, (0, img_y * 3))
+        
+        #player data
+        for i, (champ, champ2) in enumerate(zip(team1, team2)):
+            #team 1
+            try:
+                resp = await helper2.champimg(champ)
+                champimg = Image.open(BytesIO(resp))
+                
+                #cropping champion image
+                border = (0, crop, 0, crop)
+                champimgcrop = ImageOps.crop(champimg, border)
+                #rank icon
+                rankicon = Image.open(f"home/ubuntu/icons/ranks/{r1[i]}.png")
+                #playerstats
+                playerpanel = await helper2.statsimage(champimgcrop, rankicon, t1_data[i], i)
+                img.paste(playerpanel, (0, img_y * i))
+            except:
+                pass
+            #team 2
+            try:
+                resp = await helper2.champimg(champ2)
+                champimg = Image.open(BytesIO(resp))
+                
+                #cropping champion image
+                border = (0, crop, 0, crop)
+                champimgcrop = ImageOps.crop(champimg, border)
+                #rank icon
+                rankicon = Image.open(f"home/ubuntu/icons/ranks/{r1[i]}.png")
+                #playerstats
+                playerpanel = await helper2.statsimage(champimgcrop, rankicon, t1_data[i], i)
+                img.paste(playerpanel, (0, img_y * i + img_x))
+            except:
+                pass
+        #done, reisizing for speed
+        historyimg = historyimg.resize((1920, 1080), Image.ANTIALIAS)
+        #create the buffer
+        final_buffer = BytesIO()
+        #store image in buffer
+        historyimg.save(final_buffer, "PNG")
+        #seek back to start
+        final_buffer.seek(0)
+        return final_buffer
+        
