@@ -142,11 +142,12 @@ class helper:
     @classmethod
     # Creates a match image based on the two teams champions
     async def history_image(cls, team1, team2, t1_data, t2_data, r1, r2, match_data):
-        shrink = 180
+        shrink = 140
+        shrink2 = 180
         image_size_y = 512 - shrink*2
         image_size_x = 512
         offset = 5
-        history_image = Image.new("RGB", (image_size_x*10+400, image_size_y*13))
+        history_image = Image.new("RGB", (image_size_x*10+400, image_size_y*12 + 264))
         # Adds the top key panel
         key = await helper.player_key_image(image_size_x, image_size_y)
         history_image.paste(key, (0, 0))
@@ -166,7 +167,7 @@ class helper:
             except FileNotFoundError:
                 champ_image_ready = Image.open(
                     f"home/ubuntu/icons/temp_card_art.png")
-            border = (0, shrink, 0, shrink)  # left, up, right, bottom
+            border = (0, shrink2, 0, shrink2)  # left, up, right, bottom
             champ_image_ready = ImageOps.crop(champ_image_ready, border)
             rank_icon = Image.open(f"home/ubuntu/icons/ranks/{r1[i]}.png")
             # history_image.paste(champ_image, (0, image_size*i, image_size, image_size*(i+1)))
@@ -184,7 +185,7 @@ class helper:
             except FileNotFoundError:
                 champ_image_ready = Image.open(
                     f"home/ubuntu/icons/temp_card_art.png")
-            border = (0, shrink, 0, shrink)  # left, up, right, bottom
+            border = (0, shrink2, 0, shrink2)  # left, up, right, bottom
             champ_image_ready = ImageOps.crop(champ_image_ready, border)
             rank_icon = Image.open(f"home/ubuntu/icons/ranks/{r2[i]}.png")
             player_panel = await helper.stats_image(champ_image_ready, rank_icon, t2_data[i], i+offset-1)
