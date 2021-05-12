@@ -68,23 +68,23 @@ class helper2:
         
         offset = 256
         #credits earned
-        draw.text((offset * 4, middle), humanize_number(stats[2]), font=fnt, color=fill)
+        draw.text((img_x * 4, middle), humanize_number(stats[2]), font=fnt, color=fill)
         #kda
-        draw.text((offset * 5 - offset / 2, middle), stats[3], font=fnt, color=fill)
+        draw.text((img_x * 5 - offset / 2, middle), stats[3], font=fnt, color=fill)
         #dmg done
-        draw.text((offset * 6 - offset + offset / 3, middle), humanize_number(stats[4]), font=fnt, color=fill)
+        draw.text((img_x * 6 - offset + offset / 3, middle), humanize_number(stats[4]), font=fnt, color=fill)
         #dmg taken
-        draw.text((offset * 7 - offset + offset / 3, middle), humanize_number(stats[5]), font=fnt, color=fill)
+        draw.text((img_x * 7 - offset + offset / 3, middle), humanize_number(stats[5]), font=fnt, color=fill)
         #objective
-        draw.text((offset * 8 - offset + offset / 3, middle), humanize_number(stats[6]), font=fnt, color=fill)
+        draw.text((img_x * 8 - offset + offset / 3, middle), humanize_number(stats[6]), font=fnt, color=fill)
         #shielding
-        draw.text((offset * 9 - offset - offset / 4, middle), humanize_number(stats[7]), font=fnt, color=fill)
+        draw.text((img_x * 9 - offset - offset / 4, middle), humanize_number(stats[7]), font=fnt, color=fill)
         #healing
-        draw.text((offset * 10 - offset - offset / 4, middle), humanize_number(stats[8]), font=fnt, color=fill)
+        draw.text((img_x * 10 - offset - offset / 4, middle), humanize_number(stats[8]), font=fnt, color=fill)
         #self healing
-        draw.text((offset * 11 - offset - offset / 4, middle), humanize_number(stats[11]), font=fnt, color=fill)
+        draw.text((img_x * 11 - offset - offset / 4, middle), humanize_number(stats[11]), font=fnt, color=fill)
         #kda2
-        draw.text((offset * 12 - offset - offset / 4, middle), "{:.2f}".format(stats[12]), font=fnt, color=fill)
+        draw.text((img_x * 12 - offset - offset / 4, middle), "{:.2f}".format(stats[12]), font=fnt, color=fill)
         return img
 
     @classmethod
