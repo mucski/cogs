@@ -64,4 +64,58 @@ class helper2:
         
         #player name and level
         draw.text((img_x, middle - 40), str(stats[0]), font=fntbld, color=fill)
-        draw.text((img_x, middle + 60), str(stats[0]), font=fnt, color=fill)
+        draw.text((img_x, middle + 60), str(stats[1]), font=fnt, color=fill)
+        
+        #credits earned
+        draw.text((img_x * 2, middle), str(stats[2]), font=fnt, color=fill)
+        #kda
+        draw.text((img_x * 3, middle), str(stats[3]), font=fnt, color=fill)
+        #dmg done
+        draw.text((img_x * 4, middle), str(stats[4]), font=fnt, color=fill)
+        #dmg taken
+        draw.text((img_x * 5, middle), str(stats[5]), font=fnt, color=fill)
+        #objective
+        draw.text((img_x * 6, middle), str(stats[6]), font=fnt, color=fill)
+        #shielding
+        draw.text((img_x * 7, middle), str(stats[7]), font=fnt, color=fill)
+        #healing
+        draw.text((img_x * 8, middle), str(stats[8]), font=fnt, color=fill)
+        #self healing
+        draw.text((img_x * 9, middle), str(stats[9]), font=fnt, color=fill)
+        #kda2
+        draw.text((img_x * 10, middle), str(stats[10]), font=fnt, color=fill)
+        return img
+
+    @classmethod
+    async def playerkey(cls, x, y):
+        #the image object
+        key = Image.new("RGB", (x * 10, y), color = (8, 21, 25))
+        draw = ImageDraw.Draw(key)
+        fill = (255, 255, 255)
+        fntbld = ImageFont.truetype("/home/ubuntu/arialbld.ttf", 80)
+        
+        #champion and player
+        draw.text((20, 0), "Champion", font = fntbld, fill = fill)
+        draw.text((x, 0), "Player", font = fntbld, fill = fill)
+        
+        #rank
+        draw.text((x * 2, 0), "R", font = fntbld, fill = fill)
+        #credits
+        draw.text((x * 3, 0), "Credits", font = fntbld, fill = fill)
+        #kda
+        draw.text((x * 4, 0), "K/D/A", font = fntbld, fill = fill)
+        #damage done
+        draw.text((x * 5, 0), "Damage", font = fntbld, fill = fill)
+        #damage taken
+        draw.text((x * 6, 0), "Mitigated", font = fntbld, fill = fill)
+        #objective
+        draw.text((x * 7, 0), "Objective", font = fntbld, fill = fill)
+        #shielding
+        draw.text((x * 8, 0), "Shielding", font = fntbld, fill = fill)
+        #healing
+        draw.text((x * 9, 0), "Healing", font = fntbld, fill = fill)
+        #self healing
+        draw.text((x * 10, 0), "Self Heal", font = fntbld, fill = fill)
+        #kda2
+        draw.text((x * 11, 0), "K/D/A2", font = fntbld, fill = fill)
+        return key
