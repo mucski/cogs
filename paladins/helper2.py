@@ -175,6 +175,9 @@ class helper2:
             #team 2
             resp = await helper2.champimg(champ2)
             champimg = Image.open(BytesIO(resp))
+            if champimg.size < (512, 512):
+                (width, height) = (champimg.width * 2, champimg.height * 2)
+                champimg = champimg.resize((width, height))
                 
             #cropping champion image
             border = (0, crop, 0, crop)
