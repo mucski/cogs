@@ -41,7 +41,7 @@ class helper2:
         #vertical
         W, H = (512, 232)
         #padding or margin size
-        padding = 20
+        padding = 10
         #middle
         mid = int((H - 80) / 2)
         #image background color odd and even
@@ -62,8 +62,8 @@ class helper2:
         fntbld = ImageFont.truetype("home/ubuntu/arialbd.ttf", 80)
         
         #player name and level
-        draw.text((W + padding, mid - 50), str(stats[0]), font=fntbld, color=fill)
-        draw.text((W + padding, mid + 30), str(stats[1]), font=fnt, color=fill)
+        draw.text((W + padding * 4, mid - 50), str(stats[0]), font=fntbld, color=fill)
+        draw.text((W + padding * 4, mid + 30), str(stats[1]), font=fnt, color=fill)
     
         
         #credits earned
