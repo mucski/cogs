@@ -202,7 +202,7 @@ class helper2:
         hsize = int((float(match_map.size[1]) * float(wpercent)))
         match_map = match_map.resize((basewidth, hsize), Image.ANTIALIAS)
         #final product
-        #img.paste(match_map, (0, math.floor(-img_x * 2)))
+        img.paste(match_map, (0, math.floor(-img_x * 2)))
         
         draw = ImageDraw.Draw(img)
         fnt = ImageFont.truetype("home/ubuntu/arial.ttf", 80)
@@ -210,6 +210,11 @@ class helper2:
         stroke = (8, 21, 25)
         stroke_size = 2
         
-        draw.text((0, img_x / 2), f"ID: {match_data[0]}", font = fnt, stroke_width = stroke_size, stroke_fill = stroke, fill = fill)
+        draw.text((crop, crop), f"ID: {match_data[0]}", font = fnt, stroke_width = stroke_size, stroke_fill = stroke, fill = fill)
+        draw.text((crop, crop), f"ID: {match_data[0]}", font = fnt, stroke_width = stroke_size, stroke_fill = stroke, fill = fill)
+        draw.text((crop, crop), f"ID: {match_data[0]}", font = fnt, stroke_width = stroke_size, stroke_fill = stroke, fill = fill)
+        draw.text((crop, crop), f"ID: {match_data[0]}", font = fnt, stroke_width = stroke_size, stroke_fill = stroke, fill = fill)
+        draw.text((crop, crop), f"ID: {match_data[0]}", font = fnt, stroke_width = stroke_size, stroke_fill = stroke, fill = fill)
+        draw.text((crop, crop), f"ID: {match_data[0]}", font = fnt, stroke_width = stroke_size, stroke_fill = stroke, fill = fill)
         
         return img
