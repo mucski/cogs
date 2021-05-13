@@ -198,11 +198,12 @@ class helper2:
         img.paste(match_map, (0, 0))
         
         draw = ImageDraw.Draw(img)
-        fnt = ImageFont.truetype("home/ubuntu/arial.ttf", 80)
+        fnt = ImageFont.truetype("home/ubuntu/arial.ttf", 100)
         fill = (255, 255, 255)
         stroke = (8, 21, 25)
         stroke_size = 2
         
         draw.text((padding, padding), f"ID: {match_data[0]}", font = fnt, stroke_width = stroke_size, stroke_fill = stroke, fill = fill)
+        draw.text((padding, 100 + padding), f"ID: {match_data[0]}", font = fnt, stroke_width = stroke_size, stroke_fill = stroke, fill = fill)
         
         return img
