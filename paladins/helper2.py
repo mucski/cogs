@@ -124,7 +124,7 @@ class helper2:
     @classmethod
     async def historyimg(cls, team1, team2, t1_data, t2_data, r1, r2, match_data):
         crop = 140
-        W, H = (4900, 2900)
+        W, H = (4900, 3000)
         padding = 10
         img = Image.new("RGB", (W, H))
         
