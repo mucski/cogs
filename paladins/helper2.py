@@ -126,7 +126,7 @@ class helper2:
         crop = 140
         W, H = (512, 236)
         padding = 10
-        img = Image.new("RGB", (W * 9 + 256, H * 11 - 100))
+        img = Image.new("RGB", (W * 9 + 256, H * 12 - 100))
         w, h = img.size
         
         #headers
