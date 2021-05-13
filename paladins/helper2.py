@@ -130,7 +130,7 @@ class helper2:
         w, h = img.size
         
         #headers
-        key = await helper2.playerkey(img_x, img_y)
+        key = await helper2.playerkey(W, H)
         img.paste(key, (0, 0))
         
         #middle panel
