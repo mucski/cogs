@@ -97,7 +97,7 @@ class helper2:
         
         #champion and player
         draw.text((20, 20), "CHAMPION", font = fntbld, fill = fill)
-        draw.text((x + padding * 4, 20), "PLAYER", font = fntbld, fill = fill)
+        draw.text((512 + padding * 4, 20), "PLAYER", font = fntbld, fill = fill)
         
         #rank
         draw.text((1576, 20), "R", font = fntbld, fill = fill)
@@ -134,7 +134,7 @@ class helper2:
         
         #middle panel
         middle = await helper2.middlepanel(match_data)
-        img.paste(middle, (0, int(H / 2 - 512)))
+        img.paste(middle, (0, int(H / 2)))
         
         #player data
         for i, (champ, champ2) in enumerate(zip(team1, team2)):
@@ -163,7 +163,7 @@ class helper2:
             rankicon = Image.open(f"home/ubuntu/icons/ranks/{r1[i]}.png")
             #playerstats
             playerpanel = await helper2.statsimage(champimgcrop, rankicon, t1_data[i], i)
-            img.paste(playerpanel, (0, 236 * i + 1692))
+            img.paste(playerpanel, (0, 236 * i + 1792))
         #done, reisizing for speed
         historyimg = img.resize((1920, 1080), Image.ANTIALIAS)
         #create the buffer
