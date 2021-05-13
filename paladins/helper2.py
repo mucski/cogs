@@ -46,25 +46,9 @@ class helper2:
         mid = int((H - 80) / 2)
         #image background color odd and even
         img_color = (14, 34, 43) if index % 2 == 0 else (15, 40, 48)
-        #text fill size 
+        #text fill size )
         fill = (255, 255, 255)
-        #new image object
-        img = Image.new("RGBA", (W, H), color = img_color)
-        #champion icon
-        img.paste(champicon, (padding, padding))
-        #rank icon
-        img.paste(rankicon, (1526, mid), mask = rankicon)
-        #make the image drawable
-        draw = ImageDraw.Draw(img)
-        #normal font
-        fnt = ImageFont.truetype("home/ubuntu/arial.ttf", 80)
-        #bold font
-        fntbld = ImageFont.truetype("home/ubuntu/arialbd.ttf", 80)
-        smallfnt = ImageFont.truetype("home/ubuntu/arial.ttf", 60)
         
-        if stats[0] == "":
-            stats[0] = "?PrivateAccount?"
-            
         orange = (252, 186, 3)
         green = (7, 252, 3)
         red = (252, 102, 3)
@@ -81,6 +65,23 @@ class helper2:
         else:
             color = fill
         
+        #new image object
+        img = Image.new("RGBA", (W, H), color = img_color)
+        #champion icon
+        img.paste(champicon, (padding, padding))
+        #rank icon
+        img.paste(rankicon, (1526, mid), mask = rankicon)
+        #make the image drawable
+        draw = ImageDraw.Draw(img)
+        #normal font
+        fnt = ImageFont.truetype("home/ubuntu/arial.ttf", 80)
+        #bold font
+        fntbld = ImageFont.truetype("home/ubuntu/arialbd.ttf", 80)
+        smallfnt = ImageFont.truetype("home/ubuntu/arial.ttf", 60)
+        
+        if stats[0] == "":
+            stats[0] = "?????????"
+            
         #player name and level
         draw.text((512 + padding * 4, mid - 30), str(stats[0]), font=fntbld, color=color)
         draw.text((512 + padding * 4, mid + 60), str(stats[1]), font=smallfnt, color=fill)
