@@ -186,7 +186,7 @@ class helper2:
             border = (0, crop, 0, crop)
             champimgcrop = ImageOps.crop(champimg, border)
             #rank icon
-            rankicon = Image.open(f"home/ubuntu/icons/ranks/{r1[i]}.png")
+            rankicon = Image.open(f"home/ubuntu/icons/ranks/{r2[i]}.png")
             #playerstats
             playerpanel = await helper2.statsimage(champimgcrop, rankicon, t2_data[i], i)
             img.paste(playerpanel, (0, 232 * i + 1772))
