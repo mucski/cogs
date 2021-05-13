@@ -71,7 +71,7 @@ class helper2:
         #kda
         draw.text((W * 4 + W / 4, mid), stats[3], font=fnt, color=fill)
         #dmg done
-        draw.text((W * 5, mid), humanize_number(stats[4]), font=fnt, color=fill)
+        draw.text((W * 5 + W / 4, mid), humanize_number(stats[4]), font=fnt, color=fill)
         #dmg taken
         draw.text((W * 6, mid), humanize_number(stats[5]), font=fnt, color=fill)
         #objective
