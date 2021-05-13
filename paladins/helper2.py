@@ -100,7 +100,7 @@ class helper2:
         draw.text((x + padding * 4, 0), "PLAYER", font = fntbld, fill = fill)
         
         #rank
-        draw.text((1600, 0), "R", font = fntbld, fill = fill)
+        draw.text((1586, 0), "R", font = fntbld, fill = fill)
         #credits
         draw.text((1736, 0), "CREDITS", font = fntbld, fill = fill)
         #kda
