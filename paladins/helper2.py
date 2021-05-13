@@ -124,9 +124,9 @@ class helper2:
     @classmethod
     async def historyimg(cls, team1, team2, t1_data, t2_data, r1, r2, match_data):
         crop = 140
-        W, H = (512, 256)
+        W, H = (512, 236)
         padding = 10
-        img = Image.new("RGB", (W * 9 + 256, H * 13))
+        img = Image.new("RGB", (W * 9 + 256, H * 12))
         w, h = img.size
         
         #headers
@@ -150,7 +150,7 @@ class helper2:
             rankicon = Image.open(f"home/ubuntu/icons/ranks/{r1[i]}.png")
             #playerstats
             playerpanel = await helper2.statsimage(champimgcrop, rankicon, t1_data[i], i)
-            img.paste(playerpanel, (0, H * i + 100))
+            img.paste(playerpanel, (0, H * i))
             
             
             #team 2
@@ -164,7 +164,7 @@ class helper2:
             rankicon = Image.open(f"home/ubuntu/icons/ranks/{r1[i]}.png")
             #playerstats
             playerpanel = await helper2.statsimage(champimgcrop, rankicon, t1_data[i], i)
-            img.paste(playerpanel, (0, H * i + 512))
+            img.paste(playerpanel, (0, H * i + 1692))
         #done, reisizing for speed
         historyimg = img.resize((1920, 1080), Image.ANTIALIAS)
         #create the buffer
