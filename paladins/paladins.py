@@ -107,7 +107,7 @@ class Paladins(commands.Cog):
                         "TestSomeLongName", "999", "9999", "99/0/99",
                         "999999", "999999", "999", "999999",
                         "999999", "0", "Steam", "999999",
-                        9.99
+                        99.99
                 ]
                 if cunt < 6:
                     rank = "22"
