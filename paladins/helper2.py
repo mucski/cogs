@@ -189,7 +189,7 @@ class helper2:
         except FileNotFoundError:
             match_map = Image.open("home/ubuntu/icons/maps/test_maps.png")
         #middle image width
-        basewidth = 4636
+        basewidth = 4900
         #dynamic resize
         wpercent = (basewidth / float(match_map.size[0]))
         hsize = int((float(match_map.size[1]) * float(wpercent)))
