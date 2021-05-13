@@ -177,7 +177,7 @@ class helper2:
     @classmethod
     async def middlepanel(cls, match_data):
         W, H = (4880, 512)
-        padding = 20
+        padding = 30
         #(horizontal, vertical)
         img = Image.new("RGB", (W, H))
         
@@ -203,9 +203,9 @@ class helper2:
         stroke = (8, 21, 25)
         stroke_size = 2
         
-        draw.text((padding, padding + 10), f"ID: {match_data[0]}", font = fnt, stroke_width = stroke_size, stroke_fill = stroke, fill = fill)
-        draw.text((padding, 100 + padding + 10), f"ID: {match_data[0]}", font = fnt, stroke_width = stroke_size, stroke_fill = stroke, fill = fill)
-        draw.text((padding, 200 + padding + 10), f"ID: {match_data[0]}", font = fnt, stroke_width = stroke_size, stroke_fill = stroke, fill = fill)
+        draw.text((padding, padding), f"ID: {match_data[0]}", font = fnt, stroke_width = stroke_size, stroke_fill = stroke, fill = fill)
+        draw.text((padding, 100 + padding), f"ID: {match_data[0]}", font = fnt, stroke_width = stroke_size, stroke_fill = stroke, fill = fill)
+        draw.text((padding, 200 + padding), f"ID: {match_data[0]}", font = fnt, stroke_width = stroke_size, stroke_fill = stroke, fill = fill)
         draw.text((padding, 300 + padding), f"ID: {match_data[0]}", font = fnt, stroke_width = stroke_size, stroke_fill = stroke, fill = fill)
         
         return img
