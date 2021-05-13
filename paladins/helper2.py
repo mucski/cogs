@@ -186,7 +186,7 @@ class helper2:
         img_x = 512
         img_y = 512 - crop * 2
         #(horizontal, vertical)
-        img = Image.new("RGB", (img_x * 11, math.floor(img_y * 13 / 2)))
+        img = Image.new("RGB", (img_x * 11, math.floor(img_x)))
         
         #add in the map image 
         map_name = match_data[3]
@@ -210,6 +210,6 @@ class helper2:
         stroke = (8, 21, 25)
         stroke_size = 2
         
-        draw.text((0, 0), f"ID: {match_data[0]}", font = fnt, stroke_width = stroke_size, stroke_fill = stroke, fill = fill)
+        draw.text((0, img_y), f"ID: {match_data[0]}", font = fnt, stroke_width = stroke_size, stroke_fill = stroke, fill = fill)
         
         return img
