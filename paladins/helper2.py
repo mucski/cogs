@@ -49,7 +49,7 @@ class helper2:
         #new image object
         img = Image.new("RGBA", (W * 11, int(H / 2)), color = img_color)
         w, h = img.size
-        mid = (H-h) / 2
+        mid = int((H-h) / 2)
         #champion icon
         img.paste(champicon, (padding, padding))
         #rank icon
