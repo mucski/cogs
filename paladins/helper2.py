@@ -39,7 +39,7 @@ class helper2:
         #crop size
         shrink = 140
         #vertical
-        W, H = (512, 256)
+        W, H = (512, 232)
         #padding or margin size
         padding = 10
         #image background color odd and even
