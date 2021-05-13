@@ -48,7 +48,7 @@ class helper2:
         fill = (255, 255, 255)
         #new image object
         img = Image.new("RGBA", (W * 11, int(H / 2)), color = img_color)
-        w, h = Image.size(img)
+        w, h = img.size
         mid = (H-h) / 2
         #champion icon
         img.paste(champicon, (padding, padding))
