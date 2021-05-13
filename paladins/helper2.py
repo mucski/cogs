@@ -184,9 +184,9 @@ class helper2:
     async def middlepanel(cls, match_data):
         crop = 140
         img_x = 512
-        img_y = 512 - crop * 2
+        img_y = 512
         #(horizontal, vertical)
-        img = Image.new("RGB", (img_x * 11, math.floor(img_x)))
+        img = Image.new("RGB", (img_x * 11, img_y))
         
         #add in the map image 
         map_name = match_data[3]
@@ -202,7 +202,7 @@ class helper2:
         hsize = int((float(match_map.size[1]) * float(wpercent)))
         match_map = match_map.resize((basewidth, hsize), Image.ANTIALIAS)
         #final product
-        img.paste(match_map, (0, math.floor(-img_x * 2)))
+        img.paste(match_map, (0, 0))
         
         draw = ImageDraw.Draw(img)
         fnt = ImageFont.truetype("home/ubuntu/arial.ttf", 80)
