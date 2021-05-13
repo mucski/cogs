@@ -93,11 +93,11 @@ class helper2:
         draw = ImageDraw.Draw(key)
         fill = (255, 255, 255)
         padding = 10
-        fntbld = ImageFont.truetype("home/ubuntu/arialbd.ttf", 60)
+        fntbld = ImageFont.truetype("home/ubuntu/arialbd.ttf", 50)
         
         #champion and player
-        draw.text((20, 0), "CHAMPION", font = fntbld, fill = fill)
-        draw.text((x + padding * 4, 0), "PLAYER", font = fntbld, fill = fill)
+        draw.text((20, 20), "CHAMPION", font = fntbld, fill = fill)
+        draw.text((x + padding * 4, 20), "PLAYER", font = fntbld, fill = fill)
         
         #rank
         draw.text((1586, 0), "R", font = fntbld, fill = fill)
