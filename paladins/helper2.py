@@ -124,7 +124,7 @@ class helper2:
     @classmethod
     async def historyimg(cls, team1, team2, t1_data, t2_data, r1, r2, match_data):
         crop = 140
-        W, H = (4900, 2972)
+        W, H = (4900, 3072)
         padding = 10
         img = Image.new("RGB", (W, H))
         
@@ -134,7 +134,7 @@ class helper2:
         
         #middle panel
         middle = await helper2.middlepanel(match_data)
-        img.paste(middle, (0, int(H / 2 - 236)))
+        img.paste(middle, (0, int(H / 2 - 200)))
         
         #player data
         for i, (champ, champ2) in enumerate(zip(team1, team2)):
