@@ -177,9 +177,9 @@ class helper2:
         
     @classmethod
     async def middlepanel(cls, match_data):
-        W, H = (512, 236)
+        W, H = (512, 512)
         #(horizontal, vertical)
-        img = Image.new("RGB", (img_x * 11, img_y))
+        img = Image.new("RGB", (W * 9 + 256, H))
         
         #add in the map image 
         map_name = match_data[3]
@@ -189,7 +189,7 @@ class helper2:
         except FileNotFoundError:
             match_map = Image.open("home/ubuntu/icons/maps/test_maps.png")
         #middle image width
-        basewidth = img_x * 11
+        basewidth = W * 9 + 256
         #dynamic resize
         wpercent = (basewidth / float(match_map.size[0]))
         hsize = int((float(match_map.size[1]) * float(wpercent)))
@@ -203,6 +203,6 @@ class helper2:
         stroke = (8, 21, 25)
         stroke_size = 2
         
-        draw.text((0, img_y), f"ID: {match_data[0]}", font = fnt, stroke_width = stroke_size, stroke_fill = stroke, fill = fill)
+        draw.text((0, 0), f"ID: {match_data[0]}", font = fnt, stroke_width = stroke_size, stroke_fill = stroke, fill = fill)
         
         return img
