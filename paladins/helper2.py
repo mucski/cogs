@@ -202,7 +202,7 @@ class helper2:
         hsize = int((float(match_map.size[1]) * float(wpercent)))
         match_map = match_map.resize((basewidth, hsize), Image.ANTIALIAS)
         #final product
-        img.paste(match_map, (0, math.floor(-img_x * 2)))
+        #img.paste(match_map, (0, math.floor(-img_x * 2)))
         
         draw = ImageDraw.Draw(img)
         fnt = ImageFont.truetype("home/ubuntu/arial.ttf", 80)
