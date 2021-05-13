@@ -96,8 +96,8 @@ class helper2:
         fntbld = ImageFont.truetype("home/ubuntu/arialbd.ttf", 60)
         
         #champion and player
-        draw.text((20, 0), "Champion", font = fntbld, fill = fill)
-        draw.text((x + padding * 4, 0), "Player", font = fntbld, fill = fill)
+        draw.text((20, 0), "CHAMPION", font = fntbld, fill = fill)
+        draw.text((x + padding * 4, 0), "PLAYER", font = fntbld, fill = fill)
         
         #rank
         draw.text((1600, 0), "R", font = fntbld, fill = fill)
