@@ -39,7 +39,7 @@ class helper2:
         #crop size
         shrink = 140
         #vertical
-        W, H = (4900, 232)
+        W, H = (4880, 232)
         #padding or margin size
         padding = 10
         #middle
@@ -124,7 +124,7 @@ class helper2:
     @classmethod
     async def historyimg(cls, team1, team2, t1_data, t2_data, r1, r2, match_data):
         crop = 140
-        W, H = (4900, 2960)
+        W, H = (4880, 2960)
         padding = 10
         img = Image.new("RGB", (W, H))
         
@@ -176,7 +176,7 @@ class helper2:
         
     @classmethod
     async def middlepanel(cls, match_data):
-        W, H = (4900, 512)
+        W, H = (4880, 512)
         #(horizontal, vertical)
         img = Image.new("RGB", (W, H))
         
@@ -188,7 +188,7 @@ class helper2:
         except FileNotFoundError:
             match_map = Image.open("home/ubuntu/icons/maps/test_maps.png")
         #middle image width
-        basewidth = 4900
+        basewidth = 4880
         #dynamic resize
         wpercent = (basewidth / float(match_map.size[0]))
         hsize = int((float(match_map.size[1]) * float(wpercent)))
