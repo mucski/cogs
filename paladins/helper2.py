@@ -150,7 +150,7 @@ class helper2:
             rankicon = Image.open(f"home/ubuntu/icons/ranks/{r1[i]}.png")
             #playerstats
             playerpanel = await helper2.statsimage(champimgcrop, rankicon, t1_data[i], i)
-            img.paste(playerpanel, (0, H * i))
+            img.paste(playerpanel, (60, H * i))
             
             
             #team 2
