@@ -93,7 +93,7 @@ class helper2:
         draw = ImageDraw.Draw(key)
         fill = (255, 255, 255)
         padding = 10
-        fntbld = ImageFont.truetype("home/ubuntu/arialbd.ttf", 40)
+        fntbld = ImageFont.truetype("home/ubuntu/arialbd.ttf", 60)
         
         #champion and player
         draw.text((20, 0), "Champion", font = fntbld, fill = fill)
