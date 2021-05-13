@@ -186,7 +186,7 @@ class helper2:
             #rank icon
             rankicon = Image.open(f"home/ubuntu/icons/ranks/{r1[i]}.png")
             #playerstats
-            playerpanel = await helper2.statsimage(champimgcrop, rankicon, t1_data[i], i)
+            playerpanel = await helper2.statsimage(champimgcrop, rankicon, t2_data[i], i)
             img.paste(playerpanel, (0, 232 * i + 1772))
         #done, reisizing for speed
         historyimg = img.resize((int(W / 2), int(H / 2)), Image.ANTIALIAS)
