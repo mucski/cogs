@@ -78,27 +78,27 @@ class helper2:
             stats[0] = "?????????"
             
         #player name and level
-        draw.text((512 + padding * 4, mid - 30), str(stats[0]), font=fntbld, color=orange)
-        draw.text((512 + padding * 4, mid + 60), str(stats[1]), font=smallfnt, color=fill)
+        draw.text((512 + padding * 4, mid - 30), str(stats[0]), font=fntbld, fill=color)
+        draw.text((512 + padding * 4, mid + 60), str(stats[1]), font=smallfnt, fill=fill)
         
         #credits earned
-        draw.text((1736, mid), humanize_number(stats[2]), font=fnt, color=fill)
+        draw.text((1736, mid), humanize_number(stats[2]), font=fnt, fill=fill)
         #kda
         draw.text((2036, mid), stats[3], font=fnt, color=fill)
         #dmg done
-        draw.text((2400, mid), humanize_number(stats[4]), font=fnt, color=fill)
+        draw.text((2400, mid), humanize_number(stats[4]), font=fnt, fill=fill)
         #dmg taken
-        draw.text((2800, mid), humanize_number(stats[5]), font=fnt, color=fill)
+        draw.text((2800, mid), humanize_number(stats[5]), font=fnt, fill=fill)
         #objective
-        draw.text((3200, mid), humanize_number(stats[6]), font=fnt, color=fill)
+        draw.text((3200, mid), humanize_number(stats[6]), font=fnt, fill=fill)
         #shielding
-        draw.text((3436, mid), humanize_number(stats[7]), font=fnt, color=fill)
+        draw.text((3436, mid), humanize_number(stats[7]), font=fnt, fill=fill)
         #healing
-        draw.text((3836, mid), humanize_number(stats[8]), font=fnt, color=fill)
+        draw.text((3836, mid), humanize_number(stats[8]), font=fnt, fill=fill)
         #self healing
-        draw.text((4236, mid), humanize_number(stats[11]), font=fnt, color=fill)
+        draw.text((4236, mid), humanize_number(stats[11]), font=fnt, fill=fill)
         #kda2
-        draw.text((4636, mid), "{:.2f}".format(stats[12]), font=fnt, color=fill)
+        draw.text((4636, mid), "{:.2f}".format(stats[12]), font=fnt, fill=fill)
         return img
 
     @classmethod
