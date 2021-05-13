@@ -69,7 +69,7 @@ class helper2:
         #credits earned
         draw.text((1736, mid), humanize_number(stats[2]), font=fnt, color=fill)
         #kda
-        draw.text((1936, mid), stats[3], font=fnt, color=fill)
+        draw.text((2036, mid), stats[3], font=fnt, color=fill)
         #dmg done
         draw.text((2336, mid), humanize_number(stats[4]), font=fnt, color=fill)
         #dmg taken
