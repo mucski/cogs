@@ -75,15 +75,15 @@ class helper2:
         #dmg taken
         draw.text((2836, mid), humanize_number(stats[5]), font=fnt, color=fill)
         #objective
-        draw.text((W * 7, mid), humanize_number(stats[6]), font=fnt, color=fill)
+        draw.text((3236, mid), humanize_number(stats[6]), font=fnt, color=fill)
         #shielding
-        draw.text((W * 8, mid), humanize_number(stats[7]), font=fnt, color=fill)
+        draw.text((3436, mid), humanize_number(stats[7]), font=fnt, color=fill)
         #healing
-        draw.text((W * 9, mid), humanize_number(stats[8]), font=fnt, color=fill)
+        draw.text((3836, mid), humanize_number(stats[8]), font=fnt, color=fill)
         #self healing
-        draw.text((W * 10, mid), humanize_number(stats[11]), font=fnt, color=fill)
+        draw.text((4236, mid), humanize_number(stats[11]), font=fnt, color=fill)
         #kda2
-        draw.text((W * 11, mid), "{:.2f}".format(stats[12]), font=fnt, color=fill)
+        draw.text((4636, mid), "{:.2f}".format(stats[12]), font=fnt, color=fill)
         return img
 
     @classmethod
