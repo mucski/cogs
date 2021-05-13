@@ -127,7 +127,6 @@ class helper2:
         W, H = (4900, 2972)
         padding = 10
         img = Image.new("RGB", (W, H))
-        w, h = img.size
         
         #headers
         key = await helper2.playerkey(W, H)
@@ -135,7 +134,7 @@ class helper2:
         
         #middle panel
         middle = await helper2.middlepanel(match_data)
-        img.paste(middle, (0, int(h / 2)))
+        img.paste(middle, (0, H / 2)
         
         #player data
         for i, (champ, champ2) in enumerate(zip(team1, team2)):
