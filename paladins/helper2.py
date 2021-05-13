@@ -42,18 +42,18 @@ class helper2:
         W, H = (512, 512)
         #padding or margin size
         padding = 10
-        #vertical middle
-        middle = int(H / 2)
         #image background color odd and even
         img_color = (14, 34, 43) if index % 2 == 0 else (15, 40, 48)
         #text fill size 
         fill = (255, 255, 255)
         #new image object
-        img = Image.new("RGBA", (W * 11, middle), color = img_color)
+        img = Image.new("RGBA", (W * 11, int(H / 2)), color = img_color)
+        w, h = Image.size(img)
+        mid = (H-h) / 2
         #champion icon
         img.paste(champicon, (padding, padding))
         #rank icon
-        img.paste(rankicon, (W * 3, middle / 2), mask = rankicon)
+        img.paste(rankicon, (W * 3, mid), mask = rankicon)
         #make the image drawable
         draw = ImageDraw.Draw(img)
         #normal font
@@ -62,29 +62,28 @@ class helper2:
         fntbld = ImageFont.truetype("home/ubuntu/arialbd.ttf", 80)
         
         #player name and level
-        draw.text((W + padding, middle - 40), str(stats[0]), font=fntbld, color=fill)
-        draw.text((W + padding, middle + 60), str(stats[1]), font=fnt, color=fill)
+        draw.text((W, mid - 40), str(stats[0]), font=fntbld, color=fill)
+        draw.text((W, mid + 60), str(stats[1]), font=fnt, color=fill)
+    
         
-        offset = 256
-        margin = 56
         #credits earned
-        draw.text((W * 3 + margin, middle), humanize_number(stats[2]), font=fnt, color=fill)
+        draw.text((W * 3, mid), humanize_number(stats[2]), font=fnt, color=fill)
         #kda
-        draw.text((W * 4 + margin, middle), stats[3], font=fnt, color=fill)
+        draw.text((W * 4, mid), stats[3], font=fnt, color=fill)
         #dmg done
-        draw.text((W * 5 + margin, middle), humanize_number(stats[4]), font=fnt, color=fill)
+        draw.text((W * 5, mid), humanize_number(stats[4]), font=fnt, color=fill)
         #dmg taken
-        draw.text((W * 6 + margin, middle), humanize_number(stats[5]), font=fnt, color=fill)
+        draw.text((W * 6, mid), humanize_number(stats[5]), font=fnt, color=fill)
         #objective
-        draw.text((W * 7 + margin, middle), humanize_number(stats[6]), font=fnt, color=fill)
+        draw.text((W * 7, mid), humanize_number(stats[6]), font=fnt, color=fill)
         #shielding
-        draw.text((W * 8 + margin, middle), humanize_number(stats[7]), font=fnt, color=fill)
+        draw.text((W * 8, mid), humanize_number(stats[7]), font=fnt, color=fill)
         #healing
-        draw.text((W * 9 + margin, middle), humanize_number(stats[8]), font=fnt, color=fill)
+        draw.text((W * 9, mid), humanize_number(stats[8]), font=fnt, color=fill)
         #self healing
-        draw.text((W * 10 + margin, middle), humanize_number(stats[11]), font=fnt, color=fill)
+        draw.text((W * 10, mid), humanize_number(stats[11]), font=fnt, color=fill)
         #kda2
-        draw.text((W * 11 + margin, middle), "{:.2f}".format(stats[12]), font=fnt, color=fill)
+        draw.text((W * 11, mid), "{:.2f}".format(stats[12]), font=fnt, color=fill)
         return img
 
     @classmethod
