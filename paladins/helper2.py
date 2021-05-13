@@ -127,17 +127,17 @@ class helper2:
         #kda
         draw.text((2036, 20), "K/D/A", font = fntbld, fill = fill)
         #damage done
-        draw.text((2400, 20), "DAMAGE", font = fntbld, fill = fill)
+        draw.text((2436, 20), "DAMAGE", font = fntbld, fill = fill)
         #damage taken
-        draw.text((2800, 20), "MITIGATED", font = fntbld, fill = fill)
+        draw.text((2826, 20), "MITIGATED", font = fntbld, fill = fill)
         #objective
-        draw.text((3200, 20), "OBJ", font = fntbld, fill = fill)
+        draw.text((3226, 20), "OBJ", font = fntbld, fill = fill)
         #shielding
-        draw.text((3436, 20), "SHIELDING", font = fntbld, fill = fill)
+        draw.text((3456, 20), "SHIELDING", font = fntbld, fill = fill)
         #healing
-        draw.text((3836, 20), "HEALING", font = fntbld, fill = fill)
+        draw.text((3856, 20), "HEALING", font = fntbld, fill = fill)
         #self healing
-        draw.text((4236, 20), "SELF HEAL", font = fntbld, fill = fill)
+        draw.text((4256, 20), "SELF HEAL", font = fntbld, fill = fill)
         #kda2
         #draw.text((4636, 20), "KDA", font = fntbld, fill = fill)
         return key
