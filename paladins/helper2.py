@@ -124,9 +124,9 @@ class helper2:
     @classmethod
     async def historyimg(cls, team1, team2, t1_data, t2_data, r1, r2, match_data):
         crop = 140
-        W, H = (512, 236)
+        W, H = (4636, 2972)
         padding = 10
-        img = Image.new("RGB", (W * 9 + 256, H * 13 - 136))
+        img = Image.new("RGB", (W, H))
         w, h = img.size
         
         #headers
@@ -177,9 +177,9 @@ class helper2:
         
     @classmethod
     async def middlepanel(cls, match_data):
-        W, H = (512, 512)
+        W, H = (4636, 512)
         #(horizontal, vertical)
-        img = Image.new("RGB", (W * 9 + 256, H))
+        img = Image.new("RGB", (W, H))
         
         #add in the map image 
         map_name = match_data[3]
@@ -189,7 +189,7 @@ class helper2:
         except FileNotFoundError:
             match_map = Image.open("home/ubuntu/icons/maps/test_maps.png")
         #middle image width
-        basewidth = W * 9 + 256
+        basewidth = 4636
         #dynamic resize
         wpercent = (basewidth / float(match_map.size[0]))
         hsize = int((float(match_map.size[1]) * float(wpercent)))
