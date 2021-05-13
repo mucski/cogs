@@ -140,7 +140,7 @@ class helper2:
         
         #middle panel
         middle = await helper2.middlepanel(match_data)
-        img.paste(middle, (0, math.floor(img_y * 13 / 2)))
+        img.paste(middle, (0, int(img_y * 13 / 2)))
         
         #player data
         for i, (champ, champ2) in enumerate(zip(team1, team2)):
@@ -155,7 +155,7 @@ class helper2:
             rankicon = Image.open(f"home/ubuntu/icons/ranks/{r1[i]}.png")
             #playerstats
             playerpanel = await helper2.statsimage(champimgcrop, rankicon, t1_data[i], i)
-            #img.paste(playerpanel, (0, img_y * i + 100))
+            img.paste(playerpanel, (0, img_y * i + 100))
             
             
             #team 2
@@ -169,7 +169,7 @@ class helper2:
             rankicon = Image.open(f"home/ubuntu/icons/ranks/{r1[i]}.png")
             #playerstats
             playerpanel = await helper2.statsimage(champimgcrop, rankicon, t1_data[i], i)
-            #img.paste(playerpanel, (0, math.floor(img_y * i + img_x * 3 + img_x / 2 + img_x / 8)))
+            img.paste(playerpanel, (0, math.floor(img_y * i + img_x * 3 + img_x / 2 + img_x / 8)))
         #done, reisizing for speed
         historyimg = img.resize((1920, 1080), Image.ANTIALIAS)
         #create the buffer
