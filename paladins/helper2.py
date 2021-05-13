@@ -100,25 +100,25 @@ class helper2:
         draw.text((x + padding * 4, 20), "PLAYER", font = fntbld, fill = fill)
         
         #rank
-        draw.text((1586, 0), "R", font = fntbld, fill = fill)
+        draw.text((1576, 20), "R", font = fntbld, fill = fill)
         #credits
-        draw.text((1736, 0), "CREDITS", font = fntbld, fill = fill)
+        draw.text((1736, 20), "CREDITS", font = fntbld, fill = fill)
         #kda
-        draw.text((2036, 0), "K/D/A", font = fntbld, fill = fill)
+        draw.text((2036, 20), "K/D/A", font = fntbld, fill = fill)
         #damage done
-        draw.text((2400, 0), "DAMAGE", font = fntbld, fill = fill)
+        draw.text((2400, 20), "DAMAGE", font = fntbld, fill = fill)
         #damage taken
-        draw.text((2800, 0), "MITIGATED", font = fntbld, fill = fill)
+        draw.text((2800, 20), "MITIGATED", font = fntbld, fill = fill)
         #objective
-        draw.text((3200, 0), "OBJ", font = fntbld, fill = fill)
+        draw.text((3200, 20), "OBJ", font = fntbld, fill = fill)
         #shielding
-        draw.text((3436, 0), "SHIELDING", font = fntbld, fill = fill)
+        draw.text((3436, 20), "SHIELDING", font = fntbld, fill = fill)
         #healing
-        draw.text((3836, 0), "HEALING", font = fntbld, fill = fill)
+        draw.text((3836, 20), "HEALING", font = fntbld, fill = fill)
         #self healing
-        draw.text((4236, 0), "SELF HEAL", font = fntbld, fill = fill)
+        draw.text((4236, 20), "SELF HEAL", font = fntbld, fill = fill)
         #kda2
-        draw.text((4636, 0), "KDA", font = fntbld, fill = fill)
+        draw.text((4636, 20), "KDA", font = fntbld, fill = fill)
         return key
 
     @classmethod
