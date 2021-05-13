@@ -104,7 +104,7 @@ class Paladins(commands.Cog):
             while cunt < 10:
                 cunt += 1
                 row = [
-                        "TestSomeLongName", "999", "9999", "99/0/99",
+                        "TestSomeLongName", "999", "9999", "99/99/99",
                         "999999", "999999", "999", "999999",
                         "999999", "4", "Steam", "999999",
                         99.99
