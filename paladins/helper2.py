@@ -210,6 +210,6 @@ class helper2:
         stroke = (8, 21, 25)
         stroke_size = 2
         
-        draw.text((0, img_x), f"ID: {match_data[0]}", font = fnt, stroke_width = stroke_size, stroke_fill = stroke, fill = fill)
+        draw.text((0, img_x / 2), f"ID: {match_data[0]}", font = fnt, stroke_width = stroke_size, stroke_fill = stroke, fill = fill)
         
         return img
