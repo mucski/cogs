@@ -61,10 +61,28 @@ class helper2:
         #bold font
         fntbld = ImageFont.truetype("home/ubuntu/arialbd.ttf", 80)
         
+        if stats[2] == "":
+            stats[2] = "?PrivateAccount?"
+            
+        orange = (252, 186, 3)
+        green = (7, 252, 3)
+        red = (252, 102, 3)
+        purple = (240, 3, 252)
+        fill = (255, 255, 255)
+        if champ_stats[9] == 1:
+            color = green
+        elif champ_stats[9] == 2:
+            color = orange
+        elif champ_stats[9] == 3:
+            color = red
+        elif champ_stats[9] == 4:
+            color = purple
+        else:
+            color = fill
+        
         #player name and level
-        draw.text((512 + padding * 4, mid - 50), str(stats[0]), font=fntbld, color=fill)
+        draw.text((512 + padding * 4, mid - 50), str(stats[0]), font=fntbld, color=color)
         draw.text((512 + padding * 4, mid + 30), str(stats[1]), font=fnt, color=fill)
-    
         
         #credits earned
         draw.text((1736, mid), humanize_number(stats[2]), font=fnt, color=fill)
