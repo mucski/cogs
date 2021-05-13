@@ -60,6 +60,7 @@ class helper2:
         fnt = ImageFont.truetype("home/ubuntu/arial.ttf", 80)
         #bold font
         fntbld = ImageFont.truetype("home/ubuntu/arialbd.ttf", 80)
+        smallfnt = ImageFont.truetype("home/ubuntu/arial.ttf", 60)
         
         if stats[0] == "":
             stats[0] = "?PrivateAccount?"
@@ -82,7 +83,7 @@ class helper2:
         
         #player name and level
         draw.text((512 + padding * 4, mid - 50), str(stats[0]), font=fntbld, color=color)
-        draw.text((512 + padding * 4, mid + 30), str(stats[1]), font=fnt, color=fill)
+        draw.text((512 + padding * 4, mid + 30), str(stats[1]), font=smallfnt, color=fill)
         
         #credits earned
         draw.text((1736, mid), humanize_number(stats[2]), font=fnt, color=fill)
