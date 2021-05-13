@@ -234,13 +234,13 @@ class helper2:
         draw.text((padding, 200 + padding), f"Region: {match_data[2]}", font = fnt, stroke_width = stroke_size, stroke_fill = stroke, fill = fill)
         draw.text((padding, 300 + padding), f"Map: {match_data[3]}", font = fnt, stroke_width = stroke_size, stroke_fill = stroke, fill = fill)
         
-        draw.text((int(W / 2 - 1032), padding), f"Team 1 score: {match_data[4]}", font = fnt, stroke_width = stroke_size, stroke_fill = stroke, fill = fill)
+        draw.text((int(W / 2 - 1032), padding), f"Team 1 score: {match_data[4]}", font = fnt, stroke_width = stroke_size, stroke_fill = stroke, fill = (173, 216, 255))
         
         vs = Image.open("home/ubuntu/icons/vs.png")
         w, h = vs.size
         vs = vs.resize((int(w * 2 / 3), int(h * 2 / 3)))
         img.paste(vs, (int((W-w) / 2), int((H-h) / 2 + 48)), mask = vs)
         
-        draw.text((int(W / 2 + 183), 300 + padding), f"Team 2 score: {match_data[5]}", font = fnt, stroke_width = stroke_size, stroke_fill = stroke, fill = fill)
+        draw.text((int(W / 2 + 183), 300 + padding), f"Team 2 score: {match_data[5]}", font = fnt, stroke_width = stroke_size, stroke_fill = stroke, fill = (255, 173, 173))
         
         return img
