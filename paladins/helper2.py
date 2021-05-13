@@ -55,8 +55,14 @@ class helper2:
         purple = (240, 3, 252)
         fill = (255, 255, 255)
         
-        if stats[9] == "4":
+        if stats[9] == 1:
+            color = green
+        elif stats[9] == 2:
+            color = orange
+        elif stats[9] == 3:
             color = purple
+        elif stats[9] == 4:
+            color = red
         else:
             color = fill
         
