@@ -44,6 +44,7 @@ class helper2:
         padding = 10
         #middle
         mid = int(H / 2)
+        mid2 = int(mid / 2)
         #image background color odd and even
         img_color = (14, 34, 43) if index % 2 == 0 else (15, 40, 48)
         #text fill size 
@@ -53,7 +54,7 @@ class helper2:
         #champion icon
         img.paste(champicon, (padding, padding))
         #rank icon
-        img.paste(rankicon, (W * 3, mid), mask = rankicon)
+        img.paste(rankicon, (W * 3, mid2), mask = rankicon)
         #make the image drawable
         draw = ImageDraw.Draw(img)
         #normal font
@@ -62,8 +63,8 @@ class helper2:
         fntbld = ImageFont.truetype("home/ubuntu/arialbd.ttf", 80)
         
         #player name and level
-        draw.text((W, mid - 80), str(stats[0]), font=fntbld, color=fill)
-        draw.text((W, mid + 40), str(stats[1]), font=fnt, color=fill)
+        draw.text((W, mid2), str(stats[0]), font=fntbld, color=fill)
+        draw.text((W, mid2 - 80), str(stats[1]), font=fnt, color=fill)
     
         
         #credits earned
