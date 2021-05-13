@@ -75,7 +75,7 @@ class helper2:
         #dmg taken
         draw.text((2800, mid), humanize_number(stats[5]), font=fnt, color=fill)
         #objective
-        draw.text((3236, mid), humanize_number(stats[6]), font=fnt, color=fill)
+        draw.text((3200, mid), humanize_number(stats[6]), font=fnt, color=fill)
         #shielding
         draw.text((3436, mid), humanize_number(stats[7]), font=fnt, color=fill)
         #healing
