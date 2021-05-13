@@ -124,10 +124,9 @@ class helper2:
     @classmethod
     async def historyimg(cls, team1, team2, t1_data, t2_data, r1, r2, match_data):
         crop = 140
-        img_x = 512
-        img_y = 512 - crop * 2
+        W, H = (512, 512)
         padding = 10
-        img = Image.new("RGB", (img_x * 11, img_y * 13))
+        img = Image.new("RGB", (W * 9 + 256, H * 12))
         
         #headers
         key = await helper2.playerkey(img_x, img_y)
