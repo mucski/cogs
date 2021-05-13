@@ -92,7 +92,7 @@ class helper2:
         #kda
         draw.text((2036, mid), stats[3], font=fnt, fill=(224, 197, 135))
         #dmg done
-        draw.text((2400, mid), humanize_number(stats[4]), font=fnt, fill=fill)
+        draw.text((2436, mid), humanize_number(stats[4]), font=fnt, fill=fill)
         #dmg taken
         draw.text((2800, mid), humanize_number(stats[5]), font=fnt, fill=fill)
         #objective
