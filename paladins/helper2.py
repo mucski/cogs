@@ -126,7 +126,7 @@ class helper2:
         crop = 140
         W, H = (512, 236)
         padding = 10
-        img = Image.new("RGB", (W * 9 + 256, H * 11))
+        img = Image.new("RGB", (W * 9 + 256, H * 11 - 100))
         w, h = img.size
         
         #headers
@@ -166,7 +166,7 @@ class helper2:
             playerpanel = await helper2.statsimage(champimgcrop, rankicon, t1_data[i], i)
             img.paste(playerpanel, (0, H * i + 1692))
         #done, reisizing for speed
-        historyimg = img.resize((1920, 1080), Image.ANTIALIAS)
+        historyimg = img.resize((1920, 2080), Image.ANTIALIAS)
         #create the buffer
         final_buffer = BytesIO()
         #store image in buffer
