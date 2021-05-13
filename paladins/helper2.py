@@ -62,8 +62,8 @@ class helper2:
         fntbld = ImageFont.truetype("home/ubuntu/arialbd.ttf", 80)
         
         #player name and level
-        draw.text((W, mid - 40), str(stats[0]), font=fntbld, color=fill)
-        draw.text((W, mid + 60), str(stats[1]), font=fnt, color=fill)
+        draw.text((W, mid - 80), str(stats[0]), font=fntbld, color=fill)
+        draw.text((W, mid + 40), str(stats[1]), font=fnt, color=fill)
     
         
         #credits earned
