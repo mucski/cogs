@@ -82,8 +82,8 @@ class helper2:
             color = fill
         
         #player name and level
-        draw.text((512 + padding * 4, mid - 50), str(stats[0]), font=fntbld, color=color)
-        draw.text((512 + padding * 4, mid + 30), str(stats[1]), font=smallfnt, color=fill)
+        draw.text((512 + padding * 4, mid - 30), str(stats[0]), font=fntbld, color=color)
+        draw.text((512 + padding * 4, mid + 20), str(stats[1]), font=smallfnt, color=fill)
         
         #credits earned
         draw.text((1736, mid), humanize_number(stats[2]), font=fnt, color=fill)
