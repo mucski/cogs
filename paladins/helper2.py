@@ -55,7 +55,7 @@ class helper2:
         purple = (240, 3, 252)
         fill = (255, 255, 255)
         
-        it stats[9] == 4:
+        if stats[9] == 4:
             color = purple
         else:
             color = fill
