@@ -39,7 +39,7 @@ class helper2:
         #crop size
         shrink = 140
         #vertical
-        W, H = (4636, 232)
+        W, H = (4836, 232)
         #padding or margin size
         padding = 10
         #middle
@@ -53,7 +53,7 @@ class helper2:
         #champion icon
         img.paste(champicon, (padding, padding))
         #rank icon
-        img.paste(rankicon, (W * 3, mid), mask = rankicon)
+        img.paste(rankicon, (1576, mid), mask = rankicon)
         #make the image drawable
         draw = ImageDraw.Draw(img)
         #normal font
@@ -124,7 +124,7 @@ class helper2:
     @classmethod
     async def historyimg(cls, team1, team2, t1_data, t2_data, r1, r2, match_data):
         crop = 140
-        W, H = (4636, 2972)
+        W, H = (4836, 2972)
         padding = 10
         img = Image.new("RGB", (W, H))
         w, h = img.size
@@ -177,7 +177,7 @@ class helper2:
         
     @classmethod
     async def middlepanel(cls, match_data):
-        W, H = (4636, 512)
+        W, H = (4836, 512)
         #(horizontal, vertical)
         img = Image.new("RGB", (W, H))
         
