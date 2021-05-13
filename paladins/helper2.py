@@ -126,7 +126,7 @@ class helper2:
         crop = 140
         W, H = (512, 236)
         padding = 10
-        img = Image.new("RGB", (W * 9 + 256, H * 12 + 256))
+        img = Image.new("RGB", (W * 9 + 256, H * 12 + 236))
         w, h = img.size
         
         #headers
@@ -177,9 +177,7 @@ class helper2:
         
     @classmethod
     async def middlepanel(cls, match_data):
-        crop = 140
-        img_x = 512
-        img_y = 512
+        W, H = (512, 236)
         #(horizontal, vertical)
         img = Image.new("RGB", (img_x * 11, img_y))
         
