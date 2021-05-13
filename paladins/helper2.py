@@ -89,7 +89,7 @@ class helper2:
     @classmethod
     async def playerkey(cls, x, y):
         #the image object
-        key = Image.new("RGB", (x * 9 + 256, y - 100), color = (8, 21, 25))
+        key = Image.new("RGB", (x * 9 + 256, y - 60), color = (8, 21, 25))
         draw = ImageDraw.Draw(key)
         fill = (255, 255, 255)
         padding = 10
