@@ -39,7 +39,7 @@ class helper2:
         #crop size
         shrink = 140
         #vertical
-        W, H = (512, 232)
+        W, H = (4636, 232)
         #padding or margin size
         padding = 10
         #middle
@@ -49,7 +49,7 @@ class helper2:
         #text fill size 
         fill = (255, 255, 255)
         #new image object
-        img = Image.new("RGBA", (W * 9 + 256, H), color = img_color)
+        img = Image.new("RGBA", (W, H), color = img_color)
         #champion icon
         img.paste(champicon, (padding, padding))
         #rank icon
@@ -62,8 +62,8 @@ class helper2:
         fntbld = ImageFont.truetype("home/ubuntu/arialbd.ttf", 80)
         
         #player name and level
-        draw.text((W + padding * 4, mid - 50), str(stats[0]), font=fntbld, color=fill)
-        draw.text((W + padding * 4, mid + 30), str(stats[1]), font=fnt, color=fill)
+        draw.text((512 + padding * 4, mid - 50), str(stats[0]), font=fntbld, color=fill)
+        draw.text((512 + padding * 4, mid + 30), str(stats[1]), font=fnt, color=fill)
     
         
         #credits earned
@@ -89,7 +89,7 @@ class helper2:
     @classmethod
     async def playerkey(cls, x, y):
         #the image object
-        key = Image.new("RGB", (x * 9 + 256, y - 60), color = (8, 21, 25))
+        key = Image.new("RGB", (x, y - 60), color = (8, 21, 25))
         draw = ImageDraw.Draw(key)
         fill = (255, 255, 255)
         padding = 10
@@ -150,7 +150,7 @@ class helper2:
             rankicon = Image.open(f"home/ubuntu/icons/ranks/{r1[i]}.png")
             #playerstats
             playerpanel = await helper2.statsimage(champimgcrop, rankicon, t1_data[i], i)
-            img.paste(playerpanel, (0, H * i + 100))
+            img.paste(playerpanel, (0, 236 * i + 100))
             
             
             #team 2
@@ -164,7 +164,7 @@ class helper2:
             rankicon = Image.open(f"home/ubuntu/icons/ranks/{r1[i]}.png")
             #playerstats
             playerpanel = await helper2.statsimage(champimgcrop, rankicon, t1_data[i], i)
-            img.paste(playerpanel, (0, H * i + 1692))
+            img.paste(playerpanel, (0, 236 * i + 1692))
         #done, reisizing for speed
         historyimg = img.resize((1920, 1080), Image.ANTIALIAS)
         #create the buffer
