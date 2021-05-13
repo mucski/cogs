@@ -177,7 +177,7 @@ class helper2:
     @classmethod
     async def middlepanel(cls, match_data):
         W, H = (4880, 512)
-        padding = 40
+        padding = 46
         #(horizontal, vertical)
         img = Image.new("RGB", (W, H))
         
