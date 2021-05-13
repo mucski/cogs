@@ -210,7 +210,7 @@ class helper2:
         
         vs = Image.open("home/ubuntu/icons/vs.png")
         w, h = vs.size
-        vs.resize((w / 2, h / 2))
+        vs.resize((int(w / 2), int(h / 2)))
         img.paste(vs, ((W-w / 2), (H-h) / 2), mask = vs)
         
         return img
