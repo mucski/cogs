@@ -67,7 +67,7 @@ class helper2:
     
         
         #credits earned
-        draw.text((1400, mid), humanize_number(stats[2]), font=fnt, color=fill)
+        draw.text((W * 3 + 136, mid), humanize_number(stats[2]), font=fnt, color=fill)
         #kda
         draw.text((W * 4, mid), stats[3], font=fnt, color=fill)
         #dmg done
