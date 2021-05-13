@@ -134,7 +134,7 @@ class helper2:
         
         #middle panel
         middle = await helper2.middlepanel(match_data)
-        img.paste(middle, (0, int(H / 2 - 256)))
+        img.paste(middle, (0, int(H / 2 - 236)))
         
         #player data
         for i, (champ, champ2) in enumerate(zip(team1, team2)):
