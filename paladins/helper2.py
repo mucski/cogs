@@ -89,38 +89,36 @@ class helper2:
     @classmethod
     async def playerkey(cls, x, y):
         #the image object
-        key = Image.new("RGB", (x * 11, y - 100), color = (8, 21, 25))
+        key = Image.new("RGB", (x * 9 + 256, y - 100), color = (8, 21, 25))
         draw = ImageDraw.Draw(key)
         fill = (255, 255, 255)
-        margin = 56
-        offset = 256
         padding = 10
-        fntbld = ImageFont.truetype("home/ubuntu/arialbd.ttf", 80)
+        fntbld = ImageFont.truetype("home/ubuntu/arialbd.ttf", 40)
         
         #champion and player
         draw.text((20, 0), "Champion", font = fntbld, fill = fill)
-        draw.text((x + padding, 0), "Player", font = fntbld, fill = fill)
+        draw.text((x + padding * 4, 0), "Player", font = fntbld, fill = fill)
         
         #rank
-        draw.text((math.floor(x * 3 - x / 3), 0), "R", font = fntbld, fill = fill)
+        draw.text((1536, 0), "R", font = fntbld, fill = fill)
         #credits
-        draw.text((x * 3 + margin, 0), "Credits", font = fntbld, fill = fill)
+        draw.text((1736, 0), "CREDITS", font = fntbld, fill = fill)
         #kda
-        draw.text((x * 4 + margin - offset / 2, 0), "K/D/A", font = fntbld, fill = fill)
+        draw.text((2036, 0), "K/D/A", font = fntbld, fill = fill)
         #damage done
-        draw.text((x * 5 + margin - offset + offset / 3, 0), "Damage", font = fntbld, fill = fill)
+        draw.text((2400, 0), "DAMAGE", font = fntbld, fill = fill)
         #damage taken
-        draw.text((x * 6 + margin - offset + offset / 3, 0), "Mitigated", font = fntbld, fill = fill)
+        draw.text((2800, 0), "MITIGATED", font = fntbld, fill = fill)
         #objective
-        draw.text((x * 7 + margin - offset + offset / 3, 0), "Obj", font = fntbld, fill = fill)
+        draw.text((3200, 0), "OBJ", font = fntbld, fill = fill)
         #shielding
-        draw.text((x * 8 + margin - offset - offset / 4, 0), "Shielding", font = fntbld, fill = fill)
+        draw.text((3436, 0), "SHIELDING", font = fntbld, fill = fill)
         #healing
-        draw.text((x * 9 + margin - offset - offset / 4, 0), "Healing", font = fntbld, fill = fill)
+        draw.text((3836, 0), "HEALING", font = fntbld, fill = fill)
         #self healing
-        draw.text((x * 10 + margin - offset - offset / 4, 0), "Self Heal", font = fntbld, fill = fill)
+        draw.text((4236, 0), "SELF HEAL", font = fntbld, fill = fill)
         #kda2
-        draw.text((x * 11 + margin - offset - offset / 4, 0), "KDA", font = fntbld, fill = fill)
+        draw.text((4636, 0), "KDA", font = fntbld, fill = fill)
         return key
 
     @classmethod
