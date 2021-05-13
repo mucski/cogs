@@ -61,8 +61,8 @@ class helper2:
         #bold font
         fntbld = ImageFont.truetype("home/ubuntu/arialbd.ttf", 80)
         
-        if stats[2] == "":
-            stats[2] = "?PrivateAccount?"
+        if stats[0] == "":
+            stats[0] = "?PrivateAccount?"
             
         orange = (252, 186, 3)
         green = (7, 252, 3)
