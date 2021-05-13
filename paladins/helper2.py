@@ -147,7 +147,7 @@ class helper2:
         crop = 140
         W, H = (4620, 2932)
         padding = 10
-        img = Image.new("RGB", (W, H))
+        img = Image.new("RGB", (W, H), color = (8, 21, 25))
         
         #headers
         key = await helper2.playerkey(W, H)
