@@ -53,7 +53,7 @@ class helper2:
         #champion icon
         img.paste(champicon, (padding, padding))
         #rank icon
-        img.paste(rankicon, (W * 3, mid2), mask = rankicon)
+        img.paste(rankicon, (W * 3, mid), mask = rankicon)
         #make the image drawable
         draw = ImageDraw.Draw(img)
         #normal font
