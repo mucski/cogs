@@ -39,7 +39,7 @@ class helper2:
         #crop size
         shrink = 140
         #vertical
-        W, H = (4880, 232)
+        W, H = (4780, 232)
         #padding or margin size
         padding = 10
         #middle
@@ -104,7 +104,7 @@ class helper2:
         #self healing
         draw.text((4236, mid), humanize_number(stats[11]), font=fnt, fill=fill)
         #kda2
-        draw.text((4636, mid), "{:.2f}".format(stats[12]), font=fnt, fill=fill)
+        #draw.text((4636, mid), "{:.2f}".format(stats[12]), font=fnt, fill=fill)
         return img
 
     @classmethod
@@ -145,7 +145,7 @@ class helper2:
     @classmethod
     async def historyimg(cls, team1, team2, t1_data, t2_data, r1, r2, match_data):
         crop = 140
-        W, H = (4880, 2932)
+        W, H = (4780, 2932)
         padding = 10
         img = Image.new("RGB", (W, H))
         
@@ -202,7 +202,7 @@ class helper2:
         
     @classmethod
     async def middlepanel(cls, match_data):
-        W, H = (4880, 512)
+        W, H = (4780, 512)
         padding = 46
         #(horizontal, vertical)
         img = Image.new("RGB", (W, H))
