@@ -71,9 +71,9 @@ class helper2:
         #kda
         draw.text((2036, mid), stats[3], font=fnt, color=fill)
         #dmg done
-        draw.text((2136, mid), humanize_number(stats[4]), font=fnt, color=fill)
+        draw.text((2436, mid), humanize_number(stats[4]), font=fnt, color=fill)
         #dmg taken
-        draw.text((2436, mid), humanize_number(stats[5]), font=fnt, color=fill)
+        draw.text((2836, mid), humanize_number(stats[5]), font=fnt, color=fill)
         #objective
         draw.text((W * 7, mid), humanize_number(stats[6]), font=fnt, color=fill)
         #shielding
