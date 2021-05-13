@@ -204,8 +204,8 @@ class helper2:
         stroke_size = 2
         
         draw.text((padding, padding), f"ID: {match_data[0]}", font = fnt, stroke_width = stroke_size, stroke_fill = stroke, fill = fill)
-        draw.text((padding, 100 + padding), f"ID: {match_data[1]}", font = fnt, stroke_width = stroke_size, stroke_fill = stroke, fill = fill)
-        draw.text((padding, 200 + padding), f"ID: {match_data[2]}", font = fnt, stroke_width = stroke_size, stroke_fill = stroke, fill = fill)
-        draw.text((padding, 300 + padding), f"ID: {match_data[3]}", font = fnt, stroke_width = stroke_size, stroke_fill = stroke, fill = fill)
+        draw.text((padding, 100 + padding), f"Duration: {match_data[1]} min", font = fnt, stroke_width = stroke_size, stroke_fill = stroke, fill = fill)
+        draw.text((padding, 200 + padding), f"Region: {match_data[2]}", font = fnt, stroke_width = stroke_size, stroke_fill = stroke, fill = fill)
+        draw.text((padding, 300 + padding), f"Map: {match_data[3]}", font = fnt, stroke_width = stroke_size, stroke_fill = stroke, fill = fill)
         
         return img
