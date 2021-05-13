@@ -149,7 +149,7 @@ class helper2:
             rankicon = Image.open(f"home/ubuntu/icons/ranks/{r1[i]}.png")
             #playerstats
             playerpanel = await helper2.statsimage(champimgcrop, rankicon, t1_data[i], i)
-            img.paste(playerpanel, (0, 236 * i + 100))
+            img.paste(playerpanel, (0, 232 * i + 100))
             
             
             #team 2
@@ -163,7 +163,7 @@ class helper2:
             rankicon = Image.open(f"home/ubuntu/icons/ranks/{r1[i]}.png")
             #playerstats
             playerpanel = await helper2.statsimage(champimgcrop, rankicon, t1_data[i], i)
-            img.paste(playerpanel, (0, 236 * i + 1792))
+            img.paste(playerpanel, (0, 232 * i + 1792))
         #done, reisizing for speed
         historyimg = img.resize((int(W / 2), int(H / 2)), Image.ANTIALIAS)
         #create the buffer
@@ -211,6 +211,6 @@ class helper2:
         vs = Image.open("home/ubuntu/icons/vs.png")
         w, h = vs.size
         vs = vs.resize((int(w * 2 / 3), int(h * 2 / 3)))
-        img.paste(vs, (int((W-w) / 2), int(H / 2)), mask = vs)
+        img.paste(vs, (int((W-w) / 2), int(H / 2 - 232)), mask = vs)
         
         return img
