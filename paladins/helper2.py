@@ -42,14 +42,14 @@ class helper2:
         W, H = (512, 232)
         #padding or margin size
         padding = 10
+        #middle
+        mid = H / 2
         #image background color odd and even
         img_color = (14, 34, 43) if index % 2 == 0 else (15, 40, 48)
         #text fill size 
         fill = (255, 255, 255)
         #new image object
         img = Image.new("RGBA", (W * 11, H), color = img_color)
-        w, h = img.size
-        mid = int((H-h) / 2)
         #champion icon
         img.paste(champicon, (padding, padding))
         #rank icon
