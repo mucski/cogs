@@ -39,7 +39,7 @@ class helper2:
         #crop size
         shrink = 140
         #vertical
-        W, H = (512, 512)
+        W, H = (512, 256)
         #padding or margin size
         padding = 10
         #image background color odd and even
@@ -47,7 +47,7 @@ class helper2:
         #text fill size 
         fill = (255, 255, 255)
         #new image object
-        img = Image.new("RGBA", (W * 11, int(H)), color = img_color)
+        img = Image.new("RGBA", (W * 11, H, color = img_color)
         w, h = img.size
         mid = int((H-h) / 2)
         #champion icon
