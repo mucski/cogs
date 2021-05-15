@@ -42,8 +42,7 @@ class Paladins(commands.Cog):
 
     @commands.command()
     async def match(self, ctx, matchid: int):
-        """
-        Returns a match played from a given ID.
+        """Returns a match played from a given ID.
         This command only supports integer. 
         For player names use `[p]last (player) (platform)` 
         See `[p]help last` for more info.
@@ -126,8 +125,7 @@ class Paladins(commands.Cog):
             
     @commands.command()
     async def last(self, ctx, player = None, platform="PC"):
-        """
-        Returns the last played match by `player`
+        """Returns the last played match by `player`
         `player` can be a string or a discord member (mention)
         Platform is optional
         If you have Discord linked to HiRez, you can just type `[p]last`
@@ -222,7 +220,7 @@ class Paladins(commands.Cog):
     @commands.command()
     async def history(self, ctx, player = None, platform = "PC"):
         """Returns the history of someone (or yourself)
-        Usage: [p]history name platform (or leave both blank for yourself if you have discord linked to hirez)
+        Usage: `[p]history name platform` (or leave both blank for yourself if you have discord linked to hirez)
         """
         async with ctx.typing():
             if player is None:
@@ -272,7 +270,7 @@ class Paladins(commands.Cog):
     @commands.command()
     async def champstats(self, ctx, champion_name = "all", player = None, platform = "PC"):
         async with ctx.typing():
-            """
+            """Returns champion stats (multiple) or individual `[p]help champstats`
             `[p]champstats all (player) (platform)` returns a list of every champion.
             `[p]champstats (champion) (player) (platform)` returns a specific champion stats.
             Platform is required for consoles.
@@ -342,6 +340,10 @@ class Paladins(commands.Cog):
                 
     @commands.command()
     async def current(self, ctx, name = None, platform = "PC"):
+        """Returns the current match for yourself or someone.
+        `[p]help current` for more information
+        `[p]current player platform` or leave blank for yourself if you have discoed linked to hirez
+        """
         async with ctx.typing():
             if name is None:
                 # use the ID of the caller
@@ -412,8 +414,7 @@ class Paladins(commands.Cog):
             
     @commands.command()
     async def stats(self, ctx, name = None, platform="PC"):
-        """
-        Returns a players stats.
+        """Returns a players stats.
         `[p]stats none` or `[p]stats (player) (platform)`
         """
         if name is None:
@@ -473,8 +474,8 @@ class Paladins(commands.Cog):
         
     @commands.command()
     async def status(self, ctx):
-        """
-        Paladins server statuses
+        """Paladins server statuses
+        Green means online, red means offline, yellow means limited access
         """
         status = await self.api.get_server_status()
         stringus = ""
