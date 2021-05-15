@@ -14,6 +14,12 @@ from tabulate import tabulate
 from collections import Counter
 
 class Paladins(commands.Cog):
+    """Paladins stats cog by Mucski
+    for a better experience you should link yout discord account to hirez
+    that way you can use most commands without typing anything else but the command itself
+
+    example: [p]champstats
+    """
     def __init__(self, bot):
         self.bot = bot
         self.f = open("/home/ubuntu/key.txt", "r")
