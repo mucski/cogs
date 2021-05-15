@@ -221,6 +221,9 @@ class Paladins(commands.Cog):
             
     @commands.command()
     async def history(self, ctx, player = None, platform = "PC"):
+        """Returns the history of someone (or yourself)
+        Usage: [p]history name platform (or leave both blank for yourself if you have discord linked to hirez)
+        """
         async with ctx.typing():
             if player is None:
                 discord_id = ctx.author.id
