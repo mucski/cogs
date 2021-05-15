@@ -270,7 +270,7 @@ class Paladins(commands.Cog):
     @commands.command()
     async def champstats(self, ctx, champion_name = "all", player = None, platform = "PC"):
         async with ctx.typing():
-            """Returns champion stats (multiple) or individual `[p]help champstats`
+            """Returns champion stats `[p]help champstats`
             `[p]champstats all (player) (platform)` returns a list of every champion.
             `[p]champstats (champion) (player) (platform)` returns a specific champion stats.
             Platform is required for consoles.
