@@ -15,7 +15,7 @@ from collections import Counter
 
 class Paladins(commands.Cog):
     """Paladins stats cog by Mucski
-    for a better experience you should link yout discord account to hirez
+    For a better experience you should link yout discord account to hirez
     that way you can use most commands without typing anything else but the command itself
 
     example: [p]champstats
