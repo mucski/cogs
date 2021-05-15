@@ -332,7 +332,7 @@ class Paladins(commands.Cog):
                     f"```\nChampion role: {champ.role}\n"
                     f"Champion level: {stats.level}\n"
                     "Champion KDA: {:.2f}".format(stats.kda) + "\n"
-                    "Winrate: {}".format(stats.kda_text) + "({:.2f}".format(stats.winrate_text) + ")\n"
+                    "Winrate: {}".format(stats.kda_text) + "({:.2f}".format(float(stats.winrate_text)) + ")\n"
                     f"Matches played: {stats.matches_played}\n"
                     f"Playtime: {math.floor(stats.playtime.total_hours())} hours\n"
                     f"Experience: {stats.experience}\n"
