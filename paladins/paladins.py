@@ -273,7 +273,7 @@ class Paladins(commands.Cog):
         `[p]champstats wr name platform` to sort by winrate
         `[p]champstats kda name platform` to sort by kda
         `[p]champstats all name platform` sorts by level by default
-        You can just do `[p]champstats` if you have your discord linked to hirez
+        You can just do `[p]champstats` if discord is linked
         """
         async with ctx.typing():
             if player is None:
