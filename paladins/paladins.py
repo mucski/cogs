@@ -269,13 +269,13 @@ class Paladins(commands.Cog):
         
     @commands.command()
     async def champstats(self, ctx, champion_name = "all", player = None, platform = "PC"):
+        """Returns champion stats, individual or multiple
+        `[p]champstats wr name platform` to sort by winrate
+        `[p]champstats kda name platform` to sort by kda
+        `[p]champstats all name platform` sorts by level by default
+        You can just do `[p]champstats` if you have your discord linked to hirez
+        """
         async with ctx.typing():
-            """Returns champion stats `[p]help champstats`
-            `[p]champstats all (player) (platform)` returns a list of every champion.
-            `[p]champstats (champion) (player) (platform)` returns a specific champion stats.
-            Platform is required for consoles.
-            No `player` or `platform` required if linked Discord with HiRez
-            """
             if player is None:
                 # use the ID of the caller
                 discord_id = ctx.author.id
