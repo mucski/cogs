@@ -44,8 +44,8 @@ class Paladins(commands.Cog):
     async def match(self, ctx, matchid: int):
         """Returns a match played from a given ID.
         This command only supports integer. 
-        For player names use `[p]last (player) (platform)` 
-        See `[p]help last` for more info.
+        For player names use [p]last (player) (platform) 
+        See [p]help last for more info.
         """
         async with ctx.typing():
             match = await self.api.get_match(matchid, expand_players=True)
@@ -125,10 +125,10 @@ class Paladins(commands.Cog):
             
     @commands.command()
     async def last(self, ctx, player = None, platform="PC"):
-        """Returns the last played match by `player`
-        `player` can be a string or a discord member (mention)
+        """Returns the last played match by player
+        player can be a string or a discord member (mention)
         Platform is optional
-        If you have Discord linked to HiRez, you can just type `[p]last`
+        If you have Discord linked to HiRez, you can just type [p]last
         followed by nothing.
         """
         async with ctx.typing():
@@ -220,7 +220,7 @@ class Paladins(commands.Cog):
     @commands.command()
     async def history(self, ctx, player = None, platform = "PC"):
         """Returns the history of someone (or yourself)
-        Usage: `[p]history name platform` (or leave both blank for yourself if you have discord linked to hirez)
+        Usage: [p]history name platform (or leave both blank for yourself if you have discord linked to hirez)
         """
         async with ctx.typing():
             if player is None:
@@ -270,10 +270,10 @@ class Paladins(commands.Cog):
     @commands.command()
     async def champstats(self, ctx, champion_name = "all", player = None, platform = "PC"):
         """Returns champion stats, individual or multiple
-        `[p]champstats wr name platform` to sort by winrate
-        `[p]champstats kda name platform` to sort by kda
-        `[p]champstats all name platform` sorts by level by default
-        `[p]champstats champion` for individual
+        [p]champstats wr name platform to sort by winrate
+        [p]champstats kda name platform to sort by kda
+        [p]champstats all name platform sorts by level by default
+        [p]champstats champion for individual
         """
         async with ctx.typing():
             if player is None:
@@ -341,8 +341,8 @@ class Paladins(commands.Cog):
     @commands.command()
     async def current(self, ctx, name = None, platform = "PC"):
         """Returns the current match for yourself or someone.
-        `[p]help current` for more information
-        `[p]current player platform` or leave blank for yourself if you have discoed linked to hirez
+        [p]help current for more information
+        [p]current player platform or leave blank for yourself if you have discoed linked to hirez
         """
         async with ctx.typing():
             if name is None:
@@ -415,7 +415,7 @@ class Paladins(commands.Cog):
     @commands.command()
     async def stats(self, ctx, name = None, platform="PC"):
         """Returns a players stats.
-        `[p]stats none` or `[p]stats (player) (platform)`
+        [p]stats none or [p]stats (player) (platform)
         """
         if name is None:
             # use the ID of the caller
