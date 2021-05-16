@@ -246,7 +246,7 @@ class helper2:
         #ranked bans
         try:
             if match_data[6]:
-                draw.text(int((W-w) / 2) + 1300, int((H-h) / 2), "Bans", font = fnt, stroke_width = stroke_size, stroke_fill = stroke, fill = fill)
+                draw.text((int((W-w) / 2) + 1300, int((H-h) / 2)), "Bans", font = fnt, stroke_width = stroke_size, stroke_fill = stroke, fill = fill)
                 # team 1 bans
                 #champ 1
                 resp = helper2.champimg(match_data[6])
