@@ -5,7 +5,6 @@ import humanize
 from datetime import datetime
 import discord
 from .helper import helper
-from .helper2 import helper2
 from redbot.core.utils.chat_formatting import pagify, text_to_file
 import aiohttp
 import json
@@ -87,7 +86,7 @@ class Paladins(commands.Cog):
                     team2_data.append(row)
                     team2_champs.append(match_player.champion.name)
                     team2_ranks.append(rank)
-            buffer = await helper2.historyimg(team1_champs, team2_champs, team1_data, team2_data, team1_ranks,
+            buffer = await helper.historyimg(team1_champs, team2_champs, team1_data, team2_data, team1_ranks,
                                                 team2_ranks, (match_info + temp))
             file = discord.File(filename=f"{matchid}.png", fp=buffer)
         await ctx.send(file=file)
@@ -124,7 +123,7 @@ class Paladins(commands.Cog):
                     team2_data.append(row)
                     team2_champs.append("Sha Lin")
                     team2_ranks.append(rank)
-            buffer = await helper2.historyimg(team1_champs, team2_champs, team1_data, team2_data, team1_ranks,
+            buffer = await helper.historyimg(team1_champs, team2_champs, team1_data, team2_data, team1_ranks,
                                                 team2_ranks, (match_info + temp))
             file = discord.File(filename=f"prototype.png", fp=buffer)
         await ctx.send(file=file)
@@ -192,7 +191,7 @@ class Paladins(commands.Cog):
                     team2_data.append(row)
                     team2_champs.append(match_player.champion.name)
                     team2_ranks.append(rank)
-            buffer = await helper2.historyimg(team1_champs, team2_champs, team1_data, team2_data, team1_ranks,
+            buffer = await helper.historyimg(team1_champs, team2_champs, team1_data, team2_data, team1_ranks,
                                                 team2_ranks, (match_info + temp))
             file = discord.File(filename=f"{player}.png", fp=buffer)
         await ctx.send(file=file)
