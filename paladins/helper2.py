@@ -246,10 +246,17 @@ class helper2:
         #ranked bans
         try:
             if match_data[6]:
-                banned1 = match_data[6].name
-                banned2 = match_data[7].name
-                banned3 = match_data[8].name
-                banned4 = match_data[9].name
+                try:
+                    banned1 = match_data[6].name
+                    banned2 = match_data[7].name
+                    banned3 = match_data[8].name
+                    banned4 = match_data[9].name
+                except AttributeError:
+                    banned1 = match_data[6]
+                    banned2 = match_data[7]
+                    banned3 = match_data[8]
+                    banned4 = match_data[9]
+                    
                 draw.text((int((W-w) / 2) + 1720, int((H-h) / 2) + 80), "Bans", font = fnt, stroke_width = stroke_size, stroke_fill = stroke, fill = fill)
                 # team 1 bans
                 #champ 1
