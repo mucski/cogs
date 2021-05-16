@@ -159,7 +159,7 @@ class Paladins(commands.Cog):
                 await ctx.send("```\nNo recent matches found.\n```")
                 return
             match = await match_list[0]
-            await match.expand_players()
+            #await match.expand_players()
             team1_data = []
             team2_data = []
             team1_champs = []
