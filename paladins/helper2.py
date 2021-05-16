@@ -241,6 +241,6 @@ class helper2:
         vs = vs.resize((int(w * 2 / 3), int(h * 2 / 3)))
         img.paste(vs, (int((W-w) / 2), int((H-h) / 2 + 48)), mask = vs)
         
-        draw.text((int(W / 2 + 173), 300 + padding), f"Team 2 score: {match_data[5]}", font = fnt, stroke_width = stroke_size, stroke_fill = stroke, fill = fill
+        draw.text((int(W / 2 + 173), 300 + padding), f"Team 2 score: {match_data[5]}", font = fnt, stroke_width = stroke_size, stroke_fill = stroke, fill = fill)
         
         return img
