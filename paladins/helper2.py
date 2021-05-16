@@ -251,7 +251,7 @@ class helper2:
                 #champ 1
                 resp = helper2.champimg(match_data[6])
                 champ_icon = Image.open(BytesIO(resp))
-                champ_icon = champ_icon.resize(200, 200)
+                champ_icon = champ_icon.resize((200, 200))
                 img.paste(champ_icon, (int((W-w) / 2) + 1300, int((H-h)/ 2) - 100))
         
         return img
