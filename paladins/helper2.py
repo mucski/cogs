@@ -243,4 +243,15 @@ class helper2:
         
         draw.text((int(W / 2 + 173), 300 + padding), f"Team 2 score: {match_data[5]}", font = fnt, stroke_width = stroke_size, stroke_fill = stroke, fill = fill)
         
+        #ranked bans
+        try:
+            if match_data[6]:
+                draw.text(int((W-w) / 2) + 1300, int((H-h) / 2), "Bans", font = fnt, stroke_width = stroke_size, stroke_fill = stroke, fill = fill)
+                # team 1 bans
+                #champ 1
+                resp = helper2.champimg(match_data[6])
+                champ_icon = Image.open(BytesIO(resp))
+                champ_icon = champ_icon.resize(200, 200)
+                img.paste(champ_icon, (int((W-w) / 2) + 1300, int((H-h)/ 2) - 100)
+        
         return img
