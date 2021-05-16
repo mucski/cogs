@@ -246,13 +246,13 @@ class helper2:
         #ranked bans
         try:
             if match_data[6]:
-                draw.text((int((W-w) / 2) + 1800, int((H-h) / 2) - 80), "Bans", font = fnt, stroke_width = stroke_size, stroke_fill = stroke, fill = fill)
+                draw.text((int((W-w) / 2) + 1720, int((H-h) / 2) + 80), "Bans", font = fnt, stroke_width = stroke_size, stroke_fill = stroke, fill = fill)
                 # team 1 bans
                 #champ 1
                 resp = await helper2.champimg(match_data[6])
                 champ_icon = Image.open(BytesIO(resp))
                 champ_icon = champ_icon.resize((200, 200))
-                img.paste(champ_icon, (int((W-w) / 2) + 2000, int((H-h)/ 2) - 100))
+                img.paste(champ_icon, (int((W-w) / 2) + 2020, int((H-h)/ 2) - 100))
                 #champ 2
                 resp = await helper2.champimg(match_data[7])
                 champ_icon = Image.open(BytesIO(resp))
