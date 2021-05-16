@@ -43,7 +43,7 @@ class helper:
         #padding or margin size
         padding = 10
         #middle
-        mid = int((H - 80) / 2)
+        mid = int((H - 100) / 2)
         #image background color odd and even
         img_color = (14, 34, 43) if index % 2 == 0 else (15, 40, 48)
         #text fill size )
@@ -71,7 +71,7 @@ class helper:
         #champion icon
         img.paste(champicon, (padding, padding))
         #rank icon
-        img.paste(rankicon, (1526, mid - 20), mask = rankicon)
+        img.paste(rankicon, (1526, mid), mask = rankicon)
         #make the image drawable
         draw = ImageDraw.Draw(img)
         #normal font
