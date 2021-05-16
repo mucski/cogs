@@ -263,12 +263,12 @@ class helper2:
                 resp = await helper2.champimg(match_data[8])
                 champ_icon = Image.open(BytesIO(resp))
                 champ_icon = champ_icon.resize((200, 200))
-                img.paste(champ_icon, (int((W-w) / 2) + 2020, int((H-h)/ 2) + 120))
+                img.paste(champ_icon, (int((W-w) / 2) + 2020, int((H-h)/ 2) + 160))
                 #champ 2
                 resp = await helper2.champimg(match_data[9])
                 champ_icon = Image.open(BytesIO(resp))
                 champ_icon = champ_icon.resize((200, 200))
-                img.paste(champ_icon, (int((W-w) / 2) + 2240, int((H-h)/ 2) + 120))
+                img.paste(champ_icon, (int((W-w) / 2) + 2240, int((H-h)/ 2) + 160))
         
         except IndexError:
             pass
