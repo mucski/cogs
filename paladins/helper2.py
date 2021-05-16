@@ -4,7 +4,7 @@ from io import BytesIO
 from redbot.core.utils.chat_formatting import humanize_number
 import math
 
-class helper2:
+class helper:
     
     @classmethod
     async def champimg(cls, name):
@@ -150,17 +150,17 @@ class helper2:
         img = Image.new("RGB", (W, H), color = (8, 21, 25))
         
         #headers
-        key = await helper2.playerkey(W, H)
+        key = await helper.playerkey(W, H)
         img.paste(key, (0, 0))
         
         #middle panel
-        middle = await helper2.middlepanel(match_data)
+        middle = await helper.middlepanel(match_data)
         img.paste(middle, (0, int(H / 2 - 200)))
         
         #player data
         for i, (champ, champ2) in enumerate(zip(team1, team2)):
             #team 1
-            resp = await helper2.champimg(champ)
+            resp = await helper.champimg(champ)
             champimg = Image.open(BytesIO(resp))
             if champimg.size < (512, 512):
                 (width, height) = (champimg.width * 2, champimg.height * 2)
@@ -171,12 +171,12 @@ class helper2:
             #rank icon
             rankicon = Image.open(f"home/ubuntu/icons/ranks/{r1[i]}.png")
             #playerstats
-            playerpanel = await helper2.statsimage(champimgcrop, rankicon, t1_data[i], i)
+            playerpanel = await helper.statsimage(champimgcrop, rankicon, t1_data[i], i)
             img.paste(playerpanel, (0, 232 * i + 100))
             
             
             #team 2
-            resp = await helper2.champimg(champ2)
+            resp = await helper.champimg(champ2)
             champimg = Image.open(BytesIO(resp))
             if champimg.size < (512, 512):
                 (width, height) = (champimg.width * 2, champimg.height * 2)
@@ -188,7 +188,7 @@ class helper2:
             #rank icon
             rankicon = Image.open(f"home/ubuntu/icons/ranks/{r2[i]}.png")
             #playerstats
-            playerpanel = await helper2.statsimage(champimgcrop, rankicon, t2_data[i], i)
+            playerpanel = await helper.statsimage(champimgcrop, rankicon, t2_data[i], i)
             img.paste(playerpanel, (0, 232 * i + 1772))
         #done, reisizing for speed
         historyimg = img.resize((int(W / 2), int(H / 2)), Image.ANTIALIAS)
@@ -260,23 +260,23 @@ class helper2:
                 draw.text((int((W-w) / 2) + 1720, int((H-h) / 2) + 80), "Bans", font = fnt, stroke_width = stroke_size, stroke_fill = stroke, fill = fill)
                 # team 1 bans
                 #champ 1
-                resp = await helper2.champimg(banned1)
+                resp = await helper.champimg(banned1)
                 champ_icon = Image.open(BytesIO(resp))
                 champ_icon = champ_icon.resize((200, 200))
                 img.paste(champ_icon, (int((W-w) / 2) + 2020, int((H-h)/ 2) - 70))
                 #champ 2
-                resp = await helper2.champimg(banned2)
+                resp = await helper.champimg(banned2)
                 champ_icon = Image.open(BytesIO(resp))
                 champ_icon = champ_icon.resize((200, 200))
                 img.paste(champ_icon, (int((W-w) / 2) + 2240, int((H-h)/ 2) - 70))
                 # team 2 bans 
                 #champ 1
-                resp = await helper2.champimg(banned3)
+                resp = await helper.champimg(banned3)
                 champ_icon = Image.open(BytesIO(resp))
                 champ_icon = champ_icon.resize((200, 200))
                 img.paste(champ_icon, (int((W-w) / 2) + 2020, int((H-h)/ 2) + 150))
                 #champ 2
-                resp = await helper2.champimg(banned4)
+                resp = await helper.champimg(banned4)
                 champ_icon = Image.open(BytesIO(resp))
                 champ_icon = champ_icon.resize((200, 200))
                 img.paste(champ_icon, (int((W-w) / 2) + 2240, int((H-h)/ 2) + 150))
