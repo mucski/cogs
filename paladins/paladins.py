@@ -374,14 +374,14 @@ class Paladins(commands.Cog):
             for i, live_player in enumerate(live_match.team1, 1):
                 if live_player.player.private:
                     t = []
-                    t.append(f"{i}.")
+                    t.append(i)
                     t.append(f"?????({live_player.account_level})")
                     t.append(f"{live_player.champion.name}({live_player.mastery_level})")
                     t.append(f"???")
                     team1.append(t)
                 else:
                     t = []
-                    t.append(f"{i}.")
+                    t.append(i)
                     t.append(f"{live_player.player.name}({live_player.account_level})")
                     t.append(f"{live_player.champion.name}({live_player.mastery_level})")
                     t.append(f"({live_player.player.casual.winrate_text})")
@@ -389,14 +389,14 @@ class Paladins(commands.Cog):
             for i, live_player in enumerate(live_match.team2, 1):
                 if live_player.player.private:
                     t = []
-                    t.append(f"{i}.")
+                    t.append(i)
                     t.append(f"?????({live_player.account_level})")
                     t.append(f"{live_player.champion.name}({live_player.mastery_level})")
                     t.append(f"???")
                     team2.append(t)
                 else:
                     t = []
-                    t.append(f"{i}.")
+                    t.append(i)
                     t.append(f"{live_player.player.name}({live_player.account_level})")
                     t.append(f"{live_player.champion.name}({live_player.mastery_level})")
                     t.append(f"({live_player.player.casual.winrate_text})")
