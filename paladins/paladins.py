@@ -371,15 +371,17 @@ class Paladins(commands.Cog):
             await live_match.expand_players()
             team1 = []
             team2 = []
-            for live_player in live_match.team1:
+            for i, live_player in enumerate(live_match.team1):
                 if live_player.player.private:
                     t = []
+                    t.append(f"{i}.")
                     t.append(f"?????({live_player.account_level})")
                     t.append(f"{live_player.champion.name}({live_player.mastery_level})")
                     t.appwnd(f"???")
                     team1.append(t)
                 else:
                     t = []
+                    t.append(f"{i}.")
                     t.append(f"{live_player.player.name}({live_player.account_level})")
                     t.append(f"{live_player.champion.name}({live_player.mastery_level})")
                     t.append(f"({live_player.player.casual.winrate_text})")
