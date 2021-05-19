@@ -377,7 +377,7 @@ class Paladins(commands.Cog):
                     t.append(f"{i}.")
                     t.append(f"?????({live_player.account_level})")
                     t.append(f"{live_player.champion.name}({live_player.mastery_level})")
-                    t.appwnd(f"???")
+                    t.append(f"???")
                     team1.append(t)
                 else:
                     t = []
