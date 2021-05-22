@@ -526,11 +526,20 @@ class Paladins(commands.Cog):
             player_list = await self.api.search_players(name, arez.Platform(platform))
             player = await player_list[0]
         friends = await player.get_friends()
+        desc = ""
         for friend in friends:
-            desc = (
-                "```"
+            status = await friend.get_status()
+            if status == 5 or status == 0:
+                ss = "offline"
+            else:
+                ss = "online"
+            desc += (
                 f"{friend.name}",
                 f"{friend.platform}"
-                "```"
+                f"{ss}"
             )
+        if desc > 2000:
+            file = text_to_file(desc, "test.txt")
+            await ctx.send(file=file)
+        else:
             await ctx.send(desc)
