@@ -526,4 +526,5 @@ class Paladins(commands.Cog):
             player_list = await self.api.search_players(name, arez.Platform(platform))
             player = await player_list[0]
         friends = await player.get_friends()
-        await ctx.send(friends)
+        file = text_to_file(friends, "test.txt")
+        await ctx.send(file=file)
