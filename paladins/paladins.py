@@ -506,3 +506,24 @@ class Paladins(commands.Cog):
         e = discord.Embed(title="Paladins Server Status", color=await self.bot.get_embed_color(ctx), description=stringus)
         e.set_footer(text=f"Current time: {status.timestamp.strftime('%c')}")
         await ctx.send(embed=e)
+        
+    @commands.command()
+    async def friends(self, ctx, name = None, platform="PC"):
+        """Returns a players stats.
+        [p]stats none or [p]stats (player) (platform)
+        """
+        if name is None:
+            # use the ID of the caller
+            discord_id = ctx.author.id
+            try:
+                player = await self.api.get_from_platform(discord_id, arez.Platform.Discord)
+                player = await player
+            except arez.NotFound:
+                await ctx.send("```\nDiscord account not linked to HiRez. Please link it first\n```")
+                return
+        else:
+            # player is a str here
+            player_list = await self.api.search_players(name, arez.Platform(platform))
+            player = await player_list[0]
+        friends = await player.get_friends()
+        await ctx.send(friends)
