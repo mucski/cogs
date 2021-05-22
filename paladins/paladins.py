@@ -538,7 +538,7 @@ class Paladins(commands.Cog):
                 f"{friend.platform}"
                 f"{ss}"
             )
-        if desc > 2000:
+        if len(desc) > 2000:
             file = text_to_file(desc, "test.txt")
             await ctx.send(file=file)
         else:
