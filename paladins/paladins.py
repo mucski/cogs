@@ -532,7 +532,7 @@ class Paladins(commands.Cog):
             desc += (
                 f"{friend.name} - "
                 f"{friend.platform} - "
-                f"{status.status.activity}\n\n"
+                f"{status.status}\n\n"
             )
         if len(desc) > 2000:
             file = text_to_file(desc, "test.txt")
