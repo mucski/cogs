@@ -534,7 +534,7 @@ class Paladins(commands.Cog):
             else:
                 ss = "online"
             desc += (
-                f"{friend.name}",
+                f"{friend.name}"
                 f"{friend.platform}"
                 f"{ss}"
             )
