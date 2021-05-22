@@ -527,5 +527,10 @@ class Paladins(commands.Cog):
             player = await player_list[0]
         friends = await player.get_friends()
         for friend in friends:
-            file = text_to_file(friend, "test.txt")
-        await ctx.send(file=file)
+            desc = (
+                "```"
+                f"{friend.name}",
+                f"{friend.platform}"
+                "```"
+            )
+            await ctx.send(desc)
