@@ -510,8 +510,8 @@ class Paladins(commands.Cog):
     @commands.command()
     @checks.is_owner()
     async def friends(self, ctx, name = None, platform="PC"):
-        """Returns a players stats.
-        [p]stats none or [p]stats (player) (platform)
+        """Returns a players friends
+        [p]friends none or [p]friends (player) (platform)
         """
         if name is None:
             # use the ID of the caller
