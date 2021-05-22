@@ -529,14 +529,10 @@ class Paladins(commands.Cog):
         desc = ""
         for friend in friends:
             status = await friend.get_status()
-            if status == 5 or status == 0:
-                ss = "offline"
-            else:
-                ss = "online"
             desc += (
                 f"{friend.name} - "
                 f"{friend.platform} - "
-                f"{ss}\n\n"
+                f"{status.status.activity}\n\n"
             )
         if len(desc) > 2000:
             file = text_to_file(desc, "test.txt")
