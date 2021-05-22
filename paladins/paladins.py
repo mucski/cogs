@@ -534,9 +534,9 @@ class Paladins(commands.Cog):
             else:
                 ss = "online"
             desc += (
-                f"{friend.name}"
-                f"{friend.platform}"
-                f"{ss}"
+                f"{friend.name} - "
+                f"{friend.platform} - "
+                f"{ss}\n\n"
             )
         if len(desc) > 2000:
             file = text_to_file(desc, "test.txt")
