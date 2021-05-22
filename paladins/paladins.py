@@ -508,6 +508,7 @@ class Paladins(commands.Cog):
         await ctx.send(embed=e)
         
     @commands.command()
+    @checks.is_owner()
     async def friends(self, ctx, name = None, platform="PC"):
         """Returns a players stats.
         [p]stats none or [p]stats (player) (platform)
