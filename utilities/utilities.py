@@ -97,3 +97,7 @@ class Utilities(commands.Cog):
         if member is None:
             member = ctx.author
         await ctx.send(member.avatar_url)
+        
+    @commands.command()
+    async def say(self, ctx, *, stuff):
+        await ctx.send(stuff)
