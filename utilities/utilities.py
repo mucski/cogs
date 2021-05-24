@@ -100,4 +100,7 @@ class Utilities(commands.Cog):
         
     @commands.command()
     async def say(self, ctx, *, stuff):
+        async for log in bot.logs_from(message.channel  limit=1):
+            if log.author == ctx.author:
+                await bot.delete_message(log)
         await ctx.send(stuff)
