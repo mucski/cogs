@@ -100,7 +100,7 @@ class Utilities(commands.Cog):
         
     @commands.command()
     async def say(self, ctx, *, stuff):
-        async for log in channel.history(limit=1):
+        async for log in ctx.channel.history(limit=1):
             if log.author == ctx.author:
                 await log.delete()
         await ctx.send(stuff)
