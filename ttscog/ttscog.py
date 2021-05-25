@@ -35,7 +35,7 @@ class TTSCog(commands.Cog):
         
     @commands.command()
     @checks.is_owner()
-    async def setttslanguagw(self, ctx, lang):
+    async def setttslanguage(self, ctx, lang):
         await self.db.guild(ctx.guild).lang.set(lang)
         await ctx.send(f"TTS language set to {lang}")
     
