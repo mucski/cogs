@@ -107,5 +107,5 @@ class Utilities(commands.Cog):
         
     @commands.Cog.listener()
     async def on_message(self, msg: discord.Message):
-        if msg.content != bot.user:
+        if msg.author != bot.user:
             await msg.channel.send("a")
