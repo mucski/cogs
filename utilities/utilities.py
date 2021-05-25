@@ -105,7 +105,5 @@ class Utilities(commands.Cog):
                 await log.delete()
         await ctx.send(stuff, tts=True)
         
-async def on_message(self, msg: discord.Message):
-    if msg.channel.id != 830384640568066069:
-        return
-    await msg.channel.send(msg)
+    async def on_message(self, msg):
+        await msg.channel.send(msg)
