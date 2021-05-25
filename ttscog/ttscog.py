@@ -83,8 +83,8 @@ class TTSCog(commands.Cog):
     #@commands.command()
     @commands.Cog.listener()
     async def on_message(self, msg: discord.Message):
-        self.load_check = self.bot.loop.create_task(self.message_check(channel))
         channel = await self.db.guild(msg.guild).channel()
+        self.load_check = self.bot.loop.create_task(self.message_check(channel))
         if msg.channel.id != channel:
             return
         if msg.author == self.bot.user:
@@ -136,3 +136,6 @@ class TTSCog(commands.Cog):
                 await vc.disconnect()
                 await message.channel.send("No one is talking, so bye 👋")
                 self.load_check.cancel()
+                
+    def cog_unload(self):
+        self.load_check.cancel()
