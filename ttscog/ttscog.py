@@ -60,7 +60,7 @@ class TTSCog(commands.Cog):
                 # We are not currently in a voice channel
                 #await msg.channel.send("I need to be in a voice channel to do this, please use the connect command.")
                 return
-            lang = await self.db.guild(ctx.guild).lang()
+            lang = await self.db.guild(msg.guild).lang()
             await msg.channel.send(lang)
             # Lets prepare our text, and then save the audio file
             fp = BytesIO()
