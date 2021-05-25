@@ -105,6 +105,3 @@ class Utilities(commands.Cog):
                 await log.delete()
         await ctx.send(stuff, tts=True)
         
-    @commands.Cog.listener()
-    async def on_message(self, msg):
-        await msg.channel.send(msg)
