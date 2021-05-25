@@ -63,7 +63,7 @@ class TTSCog(commands.Cog):
             lang = await self.db.guild(msg.guild).lang()
             # Lets prepare our text, and then save the audio file
             fp = BytesIO()
-            tts = gTTS(text=f"{msg.author.name} said {msg.content}", lang=lang)
+            tts = gTTS(text=f"{msg.author.name} said {msg.content}", lang=lang, tld="ca")
             tts.write_to_fp(fp)
             fp.seek(0)
             # tts.save("text.mp3")
