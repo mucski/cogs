@@ -55,7 +55,7 @@ class TTSCog(commands.Cog):
             
             # Lets prepare our text, and then save the audio file
             fp = BytesIO()
-            tts = gTTS(text=f"{msg.author.name} said {msg.content}", lang="us")
+            tts = gTTS(text=f"{msg.author.name} said {msg.content}", lang="en")
             tts.write_to_fp(fp)
             fp.seek(0)
             # tts.save("text.mp3")
@@ -68,6 +68,6 @@ class TTSCog(commands.Cog):
                 vc.source = discord.PCMVolumeTransformer(vc.source)
                 vc.source.volume = 100
             except:
-                await msg.channel.send("An error occured.")
+                await msg.channel.send("Please wait for me to finish speaking.")
         finally:
             self._locks.remove(msg.author)
