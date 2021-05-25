@@ -3,6 +3,7 @@ import shlex
 import io
 from discord.opus import Encoder
 import discord
+import ffmpeg
 
 class FFmpegPCMAudio(discord.AudioSource):
     def __init__(self, source, *, executable='ffmpeg', pipe=False, stderr=None, before_options=None, options=None):
