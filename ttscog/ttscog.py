@@ -14,7 +14,8 @@ class TTSCog(commands.Cog):
         self.db = Config.get_conf(self, 828282859272, force_registration=True)
         default_guild = {
             "channel": "",
-            "lang": "en"
+            "lang": "en",
+            "tld": "tld"
         }
         self.db.register_guild(**default_guild)
         self._locks = []
