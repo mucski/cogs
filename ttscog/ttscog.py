@@ -124,7 +124,7 @@ class TTSCog(commands.Cog):
             self._locks.remove(msg.author)
             
     async def message_check(self, channel):
-        async for message in self.bot.logs_from(channel, limit=5, reverse=True):
+        async for message in channel.history(limit=5, reverse=True):
             delta = datetime.datetime.utcnow() - message.timestamp
             if delta.total_seconds() < 5 and message.author.id != self.bot.user.id:
                 vc = message.guild.voice_client
