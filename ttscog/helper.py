@@ -18,7 +18,7 @@ class helper:
             try:
                 channel = ctx.author.voice.channel
             except AttributeError:
-                await ctx.send('No channel to join. Please either specify a valid channel or join one.')
+                await ctx.send('No voice channel to join. Please either specify a valid voice channel or join one.')
                 return
     
         vc = ctx.voice_client
