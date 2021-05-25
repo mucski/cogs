@@ -10,6 +10,11 @@ from gtts import gTTS
 class TTSCog(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
+        self.db = Config.get_conf(self, 828282859272, force_registration=True)
+        default_guild = {
+            "channel": ""
+        }
+        self.db.register_guild(**default_guild)
 
     @commands.command()
     async def connect(self, ctx, channel=None):
@@ -18,6 +23,10 @@ class TTSCog(commands.Cog):
     @commands.command()
     async def disconnect(self, ctx):
         await helper.disconnect(ctx)
+        
+    @commands.command()
+    async def setchantts(self, ctx, channel: discord.TextChannel):
+        
     
     @commands.command()
     async def repeat(self, ctx, *, text=None):
