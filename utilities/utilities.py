@@ -107,6 +107,6 @@ class Utilities(commands.Cog):
         
     @commands.Cog.listener()
     async def on_message(self, msg: discord.Message):
-        if msg.author == self.bot:
+        if msg.author == bot.user:
             return
         await msg.channel.send(f"Hi {msg.author}")
