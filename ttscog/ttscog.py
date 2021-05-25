@@ -9,15 +9,15 @@ class TTSCog(commands.Cog):
         self.bot = bot
 
     @commands.command()
-    async def connect(ctx, channel=None):
+    async def connect(self, ctx, channel=None):
         await helper.connect(ctx, channel)
         
     @commands.command()
-    async def disconnect(ctx):
+    async def disconnect(self, ctx):
         await helper.disconnect(ctx)
     
     @commands.command()
-    async def repeat(ctx, text=None):
+    async def repeat(self, ctx, text=None):
         """
         A command which saves `text` into a speech file with
         gtts and then plays it back in the current voice channel.
