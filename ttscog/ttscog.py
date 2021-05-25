@@ -17,7 +17,7 @@ class TTSCog(commands.Cog):
         await helper.disconnect()
     
     @commands.command()
-    async def repeat(ctx, *, text=None):
+    async def repeat(ctx, text=None):
         """
         A command which saves `text` into a speech file with
         gtts and then plays it back in the current voice channel.
