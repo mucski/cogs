@@ -130,7 +130,7 @@ class TTSCog(commands.Cog):
     async def message_check(self, channel):
         channel = self.bot.get_channel(channel)
         async for msg in channel.history(limit=1):
-            if msg.created_at < datetime.datetime.utcnow() and msg.author != self.bot.user:
+            if msg.created_at.total_seconds() + 5 < datetime.datetime.utcnow().total_seconds() and msg.author != self.bot.user:
                 remaining = 5
                 await asyncio.sleep(remaining)
                 vc = msg.guild.voice_client
