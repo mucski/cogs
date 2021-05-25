@@ -28,11 +28,13 @@ class TTSCog(commands.Cog):
         await helper.disconnect(ctx)
         
     @commands.command()
+    @checks.is_owner()
     async def setttschan(self, ctx, channel: discord.TextChannel):
         await self.db.guild(ctx.guild).channel.set(channel.id)
         await ctx.send(f"TTS channel has been set to {channel.name}")
         
     @commands.command()
+    @checks.is_owner()
     async def setttslanguagw(self, ctx, lang):
         await self.db.guild(ctx.guild).lang.set(lang)
         await ctx.send(f"TTS language set to {lang}")
