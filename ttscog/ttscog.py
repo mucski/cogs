@@ -91,6 +91,11 @@ class TTSCog(commands.Cog):
         async for message in self.bot.logs_from(channel, limit=5, reverse=True):
             delta = datetime.datetime.utcnow() - message.timestamp
             if delta.total_seconds() < 5 and message.author.id != self.bot.user.id:
-                if channel.id in self.paused_games:
-                    self.paused_games.remove(channel.id)
-                return True
+                vc = ctx.voice_client
+    
+                if not vc:
+                    await ctx.send("I am not in a voice channel.")
+                    return
+    
+                await vc.disconnect()
+                await ctx.send("No one is talking, so bye 👋")
