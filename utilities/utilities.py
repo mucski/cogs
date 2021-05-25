@@ -107,6 +107,5 @@ class Utilities(commands.Cog):
         
     @commands.Cog.listener()
     async def on_message(self, msg: discord.Message):
-        if msg.content == "":
-            return
-        await ctx.send("a")
+        if msg.content != "":
+            await ctx.send("a")
