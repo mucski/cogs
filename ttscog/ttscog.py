@@ -10,11 +10,11 @@ class TTSCog(commands.Cog):
 
     @commands.command()
     async def connect(ctx, channel=None):
-        await helper.connect(channel)
+        await helper.connect(ctx, channel)
         
     @commands.command()
     async def disconnect(ctx):
-        await helper.disconnect()
+        await helper.disconnect(ctx)
     
     @commands.command()
     async def repeat(ctx, text=None):
