@@ -1,7 +1,7 @@
 import asyncio
 
 
-class TaskHelper:
+class helper:
     def __init__(self):
         self.tasks = []
 
