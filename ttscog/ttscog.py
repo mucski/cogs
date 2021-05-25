@@ -49,7 +49,7 @@ class TTSCog(commands.Cog):
     
         try:
             # Lets play that mp3 file in the voice channel
-            vc.play(discord.FFmpegPCMAudio(fp, pipe=True), after=lambda e: print(f"Finished playing: {e}"))
+            vc.play(FFmpegPCMAudio(fp.read(), pipe = True), after=lambda e: print(f"Finished playing: {e}"))
     
             # Lets set the volume to 1
             vc.source = discord.PCMVolumeTransformer(vc.source)
