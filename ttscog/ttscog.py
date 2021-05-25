@@ -13,7 +13,8 @@ class TTSCog(commands.Cog):
         self.bot = bot
         self.db = Config.get_conf(self, 828282859272, force_registration=True)
         default_guild = {
-            "channel": ""
+            "channel": "",
+            "lang": "en"
         }
         self.db.register_guild(**default_guild)
         self._locks = []
@@ -30,6 +31,11 @@ class TTSCog(commands.Cog):
     async def setttschan(self, ctx, channel: discord.TextChannel):
         await self.db.guild(ctx.guild).channel.set(channel.id)
         await ctx.send(f"TTS channel has been set to {channel.name}")
+        
+    @commands.command()
+    async def setttslanguagw(self, ctx, lang):
+        await self.db.guild(ctx.guild).lang.set(lang)
+        await ctx.send(f"TTS language set to {lang}")
     
     #@commands.command()
     @commands.Cog.listener()
