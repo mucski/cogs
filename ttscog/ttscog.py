@@ -134,7 +134,7 @@ class TTSCog(commands.Cog):
             now = datetime.utcnow()
             future = now + timedelta(seconds=5)
             if created != now and msg.author != self.bot.user:
-                await asyncio.sleep(future.total_seconds())
+                await asyncio.sleep(future.second())
                 vc = msg.guild.voice_client
                 #if not vc:
                     #await msg.channel.send("I am not in a voice channel.")
