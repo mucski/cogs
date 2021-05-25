@@ -70,4 +70,3 @@ class TTSCog(commands.Cog):
                 await msg.channel.send("An error occured.")
         finally:
             await self._locks.discard(msg.author)
-        bot.process_commands(msg)
