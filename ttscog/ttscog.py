@@ -73,6 +73,8 @@ class TTSCog(commands.Cog):
                 # Lets set the volume to 1
                 vc.source = discord.PCMVolumeTransformer(vc.source)
                 vc.source.volume = 1
+            except:
+                await msg.channel.send("An error occured.")
         
         finally:
             await self._locks.discard(msg.author)
