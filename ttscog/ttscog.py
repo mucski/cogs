@@ -61,6 +61,7 @@ class TTSCog(commands.Cog):
                 #await msg.channel.send("I need to be in a voice channel to do this, please use the connect command.")
                 return
             lang = await self.db.guild(ctx.guild).lang()
+            await msg.channel.send(lang)
             # Lets prepare our text, and then save the audio file
             fp = BytesIO()
             tts = gTTS(text=f"{msg.author.name} said {msg.content}", lang=lang)
