@@ -33,7 +33,7 @@ class TTSCog(commands.Cog):
         
     #@commands.command()
     @commands.Cog.listener()
-    async def on_message(self, msg: discord.Message):
+    async def on_message(self, ctx, msg: discord.Message):
         #channel = await self.db.guild(msg.guild).channel()
         channel = 830384640568066069
         if msg.channel.id != channel:
