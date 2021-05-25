@@ -6,6 +6,7 @@ import discord
 from gtts import gTTS
 import datetime
 import traceback
+import asyncio
 
 
 class TTSCog(commands.Cog):
