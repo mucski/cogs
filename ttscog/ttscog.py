@@ -131,16 +131,9 @@ class TTSCog(commands.Cog):
         channel = self.bot.get_channel(channel)
         async for msg in channel.history(limit=1):
             if msg.created_at < datetime.datetime.utcnow() and msg.author != self.bot.user:
-                vc = msg.guild.voice_client
-                chan = msg.author.voice.channel
-                if vc:
-                    await vc.move_to(chan)
-                else:
-                    await chan.connect()
-                remaining = 0
-                remaining += 10
+                remaining = 10
                 await asyncio.sleep(remaining)
-    
+                vc = msg.guild.voice_client
                 #if not vc:
                     #await msg.channel.send("I am not in a voice channel.")
                     #return
