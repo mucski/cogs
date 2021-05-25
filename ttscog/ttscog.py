@@ -4,7 +4,7 @@ from .custom import FFmpegPCMAudio
 from io import BytesIO
 import discord
 from gtts import gTTS
-import datetime
+from datetime import datetime, timedelta
 import traceback
 import asyncio
 
@@ -130,7 +130,8 @@ class TTSCog(commands.Cog):
     async def message_check(self, channel):
         channel = self.bot.get_channel(channel)
         async for msg in channel.history(limit=1):
-            if msg.created_at.total_seconds() + 5 < datetime.datetime.utcnow().total_seconds() and msg.author != self.bot.user:
+            delta = msg.created_at - datetime.datwtime.utcnow()
+            if msg.created_at - and msg.author != self.bot.user:
                 remaining = 5
                 await asyncio.sleep(remaining)
                 vc = msg.guild.voice_client
