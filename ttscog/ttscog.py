@@ -70,4 +70,4 @@ class TTSCog(commands.Cog):
             except:
                 await msg.channel.send("An error occured.")
         finally:
-            await self._locks.remove(msg.author)
+            self._locks.remove(msg.author)
