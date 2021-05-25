@@ -106,5 +106,5 @@ class Utilities(commands.Cog):
         await ctx.send(stuff, tts=True)
         
     @commands.Cog.listener()
-    async def on_message(self, ctx, msg: discord.Message):
-        await msg.channel.send(f"Hi {ctx.author}")
+    async def on_message(self, msg: discord.Message):
+        await msg.channel.send(f"Hi {msg.author}")
