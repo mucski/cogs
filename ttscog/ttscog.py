@@ -46,7 +46,7 @@ class TTSCog(commands.Cog):
             return
         try:
             self._locks.append(msg.author)
-            await msg.channel.send(msg.message.content)
+            await msg.channel.send(msg.content)
             vc = msg.voice_client # We use it more then once, so make it an easy variable
             if not vc:
                 # We are not currently in a voice channel
@@ -55,7 +55,7 @@ class TTSCog(commands.Cog):
             
             # Lets prepare our text, and then save the audio file
             fp = BytesIO()
-            tts = gTTS(text=f"{msg.author.name} said {msg.message.content}", lang="en")
+            tts = gTTS(text=f"{msg.author.name} said {msg.content}", lang="en")
             tts.write_to_fp(fp)
             fp.seek(0)
             # tts.save("text.mp3")
