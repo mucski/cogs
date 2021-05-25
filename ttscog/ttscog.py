@@ -133,14 +133,14 @@ class TTSCog(commands.Cog):
             if msg.created_at < datetime.datetime.utcnow() and msg.author != self.bot.user:
                 remaining = 10
                 await asyncio.sleep(remaining)
-                vc = message.guild.voice_client
+                vc = msg.guild.voice_client
     
-                if not vc:
-                    await message.channel.send("I am not in a voice channel.")
-                    return
+                #if not vc:
+                    #await msg.channel.send("I am not in a voice channel.")
+                    #return
         
                 await vc.disconnect()
-                await message.channel.send("No one is talking, so bye 👋")
+                await msg.channel.send("No one is talking, so bye 👋")
                 self.load_check.cancel()
                 
     def cog_unload(self):
