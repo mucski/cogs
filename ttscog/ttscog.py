@@ -119,8 +119,8 @@ class TTSCog(commands.Cog):
                 # Lets set the volume to 1
                 vc.source = discord.PCMVolumeTransformer(vc.source)
                 vc.source.volume = 100
-            except:
-                await msg.channel.send("Please wait for me to finish speaking.")
+            #except:
+                #await msg.channel.send("Please wait for me to finish speaking.")
             except Exception:
                 await mag.channel.send(traceback.format_exc())
         finally:
