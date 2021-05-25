@@ -35,7 +35,7 @@ class TTSCog(commands.Cog):
     @commands.Cog.listener()
     async def on_message(self, msg: discord.Message):
         #channel = await self.db.guild(msg.guild).channel()
-        if msg.channel.id != 830384640568066069:
+        if msg.channel.id != 830384640568066069 or msg.channel.id != 846162065923506196:
             return
         if msg.author == self.bot.user:
             return
@@ -46,11 +46,11 @@ class TTSCog(commands.Cog):
             return
         try:
             self._locks.append(msg.author)
-            await msg.channel.send(msg.content)
+            #await msg.channel.send(msg.content)
             vc = msg.guild.voice_client # We use it more then once, so make it an easy variable
             if not vc:
                 # We are not currently in a voice channel
-                await msg.channel.send("I need to be in a voice channel to do this, please use the connect command.")
+                #await msg.channel.send("I need to be in a voice channel to do this, please use the connect command.")
                 return
             
             # Lets prepare our text, and then save the audio file
