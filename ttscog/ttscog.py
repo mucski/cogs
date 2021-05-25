@@ -140,7 +140,7 @@ class TTSCog(commands.Cog):
         
                 await vc.disconnect()
                 await msg.channel.send("No one is talking, so bye 👋")
-                self.load_check.cancel()
+            self.load_check.cancel()
                 
     def cog_unload(self):
         self.load_check.cancel()
