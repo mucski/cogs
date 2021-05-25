@@ -33,10 +33,11 @@ class TTSCog(commands.Cog):
     
     #@commands.command()
     @commands.Cog.listener()
-    async def on_message(self, ctx, msg: discord.Message):
+    async def on_message(self, msg: discord.Message):
         #channel = await self.db.guild(msg.guild).channel()
-        channel = 830384640568066069
-        if msg.channel.id != channel:
+        if msg.channel.id != 830384640568066069:
+            return
+        if msg.author == self.bot.user:
             return
         # channel = self.bot.get_channel(channel)
     
@@ -46,7 +47,7 @@ class TTSCog(commands.Cog):
         try:
             self._locks.append(msg.author)
             
-            vc = ctx.voice_client # We use it more then once, so make it an easy variable
+            vc = msg.voice_client # We use it more then once, so make it an easy variable
             if not vc:
                 # We are not currently in a voice channel
                 await mag.channel.send("I need to be in a voice channel to do this, please use the connect command.")
