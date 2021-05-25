@@ -38,6 +38,12 @@ class TTSCog(commands.Cog):
     async def setttslang(self, ctx, lang):
         await self.db.guild(ctx.guild).lang.set(lang)
         await ctx.send(f"TTS language set to {lang}")
+        
+    @commands.command()
+    @checks.is_owner()
+    async def setttstld(self, ctx, tld):
+        await self.db.guild(ctx.guild).tld.set(tld)
+        await ctx.send(f"TTSTld language set to {tld}")
     
     #@commands.command()
     @commands.Cog.listener()
@@ -61,9 +67,10 @@ class TTSCog(commands.Cog):
                 #await msg.channel.send("I need to be in a voice channel to do this, please use the connect command.")
                 return
             lang = await self.db.guild(msg.guild).lang()
+            tld = await self.db.guild(msg.guild).tld()
             # Lets prepare our text, and then save the audio file
             fp = BytesIO()
-            tts = gTTS(text=f"{msg.author.name} said {msg.content}", lang=lang, tld="com.au")
+            tts = gTTS(text=f"{msg.author.name} said {msg.content}", lang=lang, tld=tld)
             tts.write_to_fp(fp)
             fp.seek(0)
             # tts.save("text.mp3")
