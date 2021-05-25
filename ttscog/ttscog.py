@@ -3,6 +3,7 @@ from .helper import helper
 from .custom import FFmpegPCMAudio
 from io import BytesIO
 import discord
+import traceback
 
 from gtts import gTTS
 
@@ -35,7 +36,7 @@ class TTSCog(commands.Cog):
         channel = await self.db.guild(msg.guild).channel()
         if not channel:
             return
-        if not msg.channel.id == channel:
+        if msg.channel.id != channel:
             return
         # channel = self.bot.get_channel(channel)
     
@@ -67,7 +68,7 @@ class TTSCog(commands.Cog):
                 vc.source.volume = 1
             except:
                 await msg.channel.send("An error occured.")
-            
+        except Exception:    
         finally:
             await self._locks.discard(msg.author)
         bot.process_commands(msg)
