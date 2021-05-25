@@ -54,3 +54,11 @@ class helper:
     
         await vc.disconnect()
         await ctx.send("I have left the voice channel!")
+
+    async def _latest_message_check(self, channel):
+        async for message in self.bot.logs_from(channel, limit=self._latest_message_check_message_limit, reverse=True):
+            delta = datetime.datetime.utcnow() - message.timestamp
+            if delta.total_seconds() < self._latest_message_check_wait_limit and message.author.id != self.bot.user.id:
+                if channel.id in self.paused_games:
+                    self.paused_games.remove(channel.id)
+                return True
