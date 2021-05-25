@@ -137,7 +137,7 @@ class TTSCog(commands.Cog):
                     await vc.move_to(chan)
                 else:
                     await chan.connect()
-                remaining = 10
+                remaining += 10
                 await asyncio.sleep(remaining)
     
                 #if not vc:
