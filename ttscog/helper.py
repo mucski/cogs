@@ -34,3 +34,18 @@ class helper:
                 raise VoiceConnectionError(f'Connecting to channel: <{channel}> timed out.')
     
         await ctx.send(f'Connected to: **{channel}**', delete_after=20)
+        
+        
+    @classmethod
+    async def disconnect(cls):
+        """
+        Disconnect from a voice channel, if in one
+        """
+        vc = ctx.voice_client
+    
+        if not vc:
+            await ctx.send("I am not in a voice channel.")
+            return
+    
+        await vc.disconnect()
+        await ctx.send("I have left the voice channel!")
