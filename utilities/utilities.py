@@ -105,6 +105,6 @@ class Utilities(commands.Cog):
                 await log.delete()
         await ctx.send(stuff, tts=True)
         
-    @commandd.Cog.listener()
+    @commands.Cog.listener()
     async def on_message(self, ctx, msg: discord.Message):
         await ctx.send(f"Hi {ctx.author}")
