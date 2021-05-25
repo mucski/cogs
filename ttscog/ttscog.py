@@ -31,7 +31,6 @@ class TTSCog(commands.Cog):
         await ctx.send(f"TTS channel has been set to {channel.name}")
         
     #@commands.command()
-    @bot.event()
     async def on_message(self, msg: discord.Message):
         channel = await self.db.guild(ctx.guild).channel()
         if not channel:
