@@ -1,6 +1,7 @@
 from redbot.core import commands, checks
 from .helper import helper
 from io import BytesIO
+import discord
 
 from gtts import gTTS
 
