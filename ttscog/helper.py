@@ -19,6 +19,7 @@ class helper:
                 channel = ctx.author.voice.channel
             except AttributeError:
                 await ctx.send('No channel to join. Please either specify a valid channel or join one.')
+                return
     
         vc = ctx.voice_client
     
@@ -29,11 +30,13 @@ class helper:
                 await vc.move_to(channel)
             except asyncio.TimeoutError:
                 await ctx.send(f'Moving to channel: <{channel}> timed out.')
+                return
         else:
             try:
                 await channel.connect()
             except asyncio.TimeoutError:
                 await ctx.send(f'Connecting to channel: <{channel}> timed out.')
+                return
     
         await ctx.send(f'Connected to: **{channel}**', delete_after=20)
         
