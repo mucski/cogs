@@ -3,8 +3,6 @@ from .helper import helper
 from .custom import FFmpegPCMAudio
 from io import BytesIO
 import discord
-import traceback
-
 from gtts import gTTS
 
 
