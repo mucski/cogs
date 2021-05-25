@@ -1,5 +1,6 @@
 from redbot.core import commands, checks
 from .helper import helper
+from io import BytesIO
 
 from gtts import gTTS
 
@@ -39,7 +40,10 @@ class TTSCog(commands.Cog):
     
         # Lets prepare our text, and then save the audio file
         tts = gTTS(text=text, lang="en")
-        tts.save("text.mp3")
+        fp = BytesIO()
+        tts.write_to_fp(fp)
+        fp.seek(0)
+        # tts.save("text.mp3")
     
         try:
             # Lets play that mp3 file in the voice channel
