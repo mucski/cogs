@@ -4,6 +4,7 @@ from .custom import FFmpegPCMAudio
 from io import BytesIO
 import discord
 from gtts import gTTS
+import datetime
 
 
 class TTSCog(commands.Cog):
