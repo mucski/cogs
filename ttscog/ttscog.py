@@ -68,7 +68,6 @@ class TTSCog(commands.Cog):
                 vc.source.volume = 1
             except:
                 await msg.channel.send("An error occured.")
-        except Exception:    
         finally:
             await self._locks.discard(msg.author)
         bot.process_commands(msg)
