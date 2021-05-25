@@ -131,9 +131,23 @@ class TTSCog(commands.Cog):
         channel = self.bot.get_channel(channel)
         async for msg in channel.history(limit=1):
             if msg.created_at < datetime.datetime.utcnow() and msg.author != self.bot.user:
+                vc = msg.guild.voice_client
+                if vc:
+                    if vc.channel.id == channel.id:
+                        return
+                    try:
+                        await vc.move_to(channel)
+                    except asyncio.TimeoutError:
+                        await ctx.send(f'Moving to channel: <{channel}> timed out.')
+                        return
+                else:
+                    try:
+                        await channel.connect()
+                    except asyncio.TimeoutError:
+                        await ctx.send(f'Connecting to channel: <{channel}> timed out.')
+                        return
                 remaining = 10
                 await asyncio.sleep(remaining)
-                vc = msg.guild.voice_client
     
                 #if not vc:
                     #await msg.channel.send("I am not in a voice channel.")
