@@ -18,7 +18,7 @@ class helper:
             try:
                 channel = ctx.author.voice.channel
             except AttributeError:
-                raise InvalidVoiceChannel('No channel to join. Please either specify a valid channel or join one.')
+                await ctx.send('No channel to join. Please either specify a valid channel or join one.')
     
         vc = ctx.voice_client
     
@@ -28,12 +28,12 @@ class helper:
             try:
                 await vc.move_to(channel)
             except asyncio.TimeoutError:
-                raise VoiceConnectionError(f'Moving to channel: <{channel}> timed out.')
+                await ctx.send(f'Moving to channel: <{channel}> timed out.')
         else:
             try:
                 await channel.connect()
             except asyncio.TimeoutError:
-                raise VoiceConnectionError(f'Connecting to channel: <{channel}> timed out.')
+                await ctx.send(f'Connecting to channel: <{channel}> timed out.')
     
         await ctx.send(f'Connected to: **{channel}**', delete_after=20)
         
