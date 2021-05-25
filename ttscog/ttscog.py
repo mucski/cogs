@@ -32,8 +32,8 @@ class TTSCog(commands.Cog):
         await ctx.send(f"TTS channel has been set to {channel.name}")
     
     #@commands.command()
-    @commands.command()
-    async def repeat(self, msg: discord.Message):
+    @commands.Cog.listener()
+    async def on_message(self, msg: discord.Message):
         #channel = await self.db.guild(msg.guild).channel()
         if msg.channel.id != 830384640568066069:
             return
