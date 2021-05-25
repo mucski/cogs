@@ -4,7 +4,7 @@ import discord
 class helper:
 
     @classmethod
-    async def connect(cls, channel: discord.VoiceChannel=None):
+    async def connect(cls, ctx, channel: discord.VoiceChannel=None):
         """
         Connect to a voice channel
         This command also handles moving the bot to different channels.
@@ -39,7 +39,7 @@ class helper:
         
         
     @classmethod
-    async def disconnect(cls):
+    async def disconnect(cls, ctx):
         """
         Disconnect from a voice channel, if in one
         """
