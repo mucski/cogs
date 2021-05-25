@@ -1,6 +1,6 @@
 from redbot.core import commands, checks
 from .helper import helper
-FFmpegPCMAudiomport FFmpegPCMAudio
+from .custom import FFmpegPCMAudio
 from io import BytesIO
 import discord
 
