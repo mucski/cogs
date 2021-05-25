@@ -1,6 +1,8 @@
 from redbot.core import commands, checks
 from .helper import helper
 
+from gtts import gTTS
+
 
 class TTSCog(commands.Cog):
     
