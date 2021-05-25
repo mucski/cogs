@@ -5,7 +5,9 @@ from gtts import gTTS
 
 
 class TTSCog(commands.Cog):
-    
+    def __init__(self, bot):
+        self.bot = bot
+
     @commands.command()
     async def connect(ctx, channel=None):
         await helper.connect(channel)
