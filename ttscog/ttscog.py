@@ -30,7 +30,7 @@ class TTSCog(commands.Cog):
     async def setttschan(self, ctx, channel: discord.TextChannel):
         await self.db.guild(ctx.guild).channel.set(channel.id)
         await ctx.send(f"TTS channel has been set to {channel.name}")
-        
+    
     #@commands.command()
     @commands.Cog.listener()
     async def on_message(self, ctx, msg: discord.Message):
