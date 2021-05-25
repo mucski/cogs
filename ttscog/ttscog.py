@@ -37,8 +37,8 @@ class TTSCog(commands.Cog):
         #channel = await self.db.guild(msg.guild).channel()
         if msg.channel.id != 830384640568066069:
             return
-        #if msg.author == self.bot.user:
-            #return
+        if msg.author == self.bot.user:
+            return
         # channel = self.bot.get_channel(channel)
     
         if msg.author in self._locks:
