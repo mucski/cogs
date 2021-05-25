@@ -15,7 +15,7 @@ class TTSCog(commands.Cog):
         default_guild = {
             "channel": "",
             "lang": "en",
-            "tld": "tld"
+            "tld": "com"
         }
         self.db.register_guild(**default_guild)
         self._locks = []
