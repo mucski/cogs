@@ -106,7 +106,7 @@ class Utilities(commands.Cog):
         await ctx.send(stuff, tts=True)
         
     @commands.Cog.listener()
-    async def on_message(self, msg):
+    async def on_message(self, msg: discord.Message):
         if msg.channel.id != 830384640568066069:
             return
         if msg.author == client.user:
