@@ -103,4 +103,4 @@ class Utilities(commands.Cog):
         async for log in ctx.channel.history(limit=1):
             if log.author == ctx.author:
                 await log.delete()
-        await ctx.send(stuff)
+        await ctx.send(stuff, tts=True)
