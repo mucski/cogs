@@ -126,7 +126,7 @@ class TTSCog(commands.Cog):
     async def message_check(self, channel):
         channel = self.bot.get_channel(channel)
         async for message in channel.history(limit=5):
-            delta = datetime.datetime.utcnow() - message.timestamp
+            delta = datetime.datetime.utcnow() - message.created_at
             if delta.total_seconds() < 5 and message.author.id != self.bot.user.id:
                 vc = message.guild.voice_client
     
