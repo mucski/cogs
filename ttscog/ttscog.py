@@ -122,7 +122,7 @@ class TTSCog(commands.Cog):
             except:
                 await msg.channel.send("Please wait for me to finish speaking.")
 
-            except Exception
+            except Exception:
                 # use 3 backticks of course
                 await msg.channel.send(f"```\n{traceback.format_exc()}\n```") 
 
