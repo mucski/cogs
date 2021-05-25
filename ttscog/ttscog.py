@@ -132,20 +132,11 @@ class TTSCog(commands.Cog):
         async for msg in channel.history(limit=1):
             if msg.created_at < datetime.datetime.utcnow() and msg.author != self.bot.user:
                 vc = msg.guild.voice_client
+                chan = msg.author.voice.channel
                 if vc:
-                    if vc.channel.id == channel.id:
-                        return
-                    try:
-                        await vc.move_to(channel)
-                    except asyncio.TimeoutError:
-                        await ctx.send(f'Moving to channel: <{channel}> timed out.')
-                        return
+                    await vc.move_to(chan)
                 else:
-                    try:
-                        await channel.connect()
-                    except asyncio.TimeoutError:
-                        await ctx.send(f'Connecting to channel: <{channel}> timed out.')
-                        return
+                    await chan.connect()
                 remaining = 10
                 await asyncio.sleep(remaining)
     
