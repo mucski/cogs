@@ -5,6 +5,7 @@ from io import BytesIO
 import discord
 from gtts import gTTS
 import datetime
+import traceback
 
 
 class TTSCog(commands.Cog):
