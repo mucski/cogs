@@ -78,3 +78,4 @@ class TTSCog(commands.Cog):
         
         finally:
             await self._locks.discard(msg.author)
+        bot.process_commands(msg)
