@@ -34,8 +34,8 @@ class TTSCog(commands.Cog):
     #@commands.command()
     @commands.Cog.listener()
     async def on_message(self, msg: discord.Message):
-        #channel = await self.db.guild(msg.guild).channel()
-        if msg.channel.id != 830384640568066069 or msg.channel.id != 846162065923506196:
+        channel = await self.db.guild(msg.guild).channel()
+        if msg.channel.id != channel:
             return
         if msg.author == self.bot.user:
             return
