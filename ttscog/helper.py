@@ -4,7 +4,7 @@ import discord
 class helper:
 
     @classmethod
-    async def connect(cls, *, channel: discord.VoiceChannel=None):
+    async def connect(cls, channel: discord.VoiceChannel=None):
         """
         Connect to a voice channel
         This command also handles moving the bot to different channels.
