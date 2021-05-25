@@ -109,6 +109,6 @@ class Utilities(commands.Cog):
     async def on_message(self, msg):
         if msg.channel.id != 830384640568066069:
             return
-        if msg.author == bot.user:
+        if msg.author == client.user:
             return
         await msg.channel.send(msg.content)
