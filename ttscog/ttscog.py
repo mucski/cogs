@@ -130,10 +130,11 @@ class TTSCog(commands.Cog):
     async def message_check(self, channel):
         channel = self.bot.get_channel(channel)
         async for msg in channel.history(limit=1):
-            delta = msg.created_at - datetime.datwtime.utcnow()
-            if msg.created_at - and msg.author != self.bot.user:
-                remaining = 5
-                await asyncio.sleep(remaining)
+            created = msg.created_at
+            now = datetime.utcnow()
+            future = now + timedelta(seconds=5)
+            if created != now and msg.author != self.bot.user:
+                await asyncio.sleep(future.total_seconds())
                 vc = msg.guild.voice_client
                 #if not vc:
                     #await msg.channel.send("I am not in a voice channel.")
