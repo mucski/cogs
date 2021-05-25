@@ -124,7 +124,7 @@ class TTSCog(commands.Cog):
 
             except Exception:
                 # use 3 backticks of course
-                await msg.channel.send("```\n" + traceback.format_exc() + "\n```") 
+                await msg.channel.send(traceback.format_exc()) 
 
         finally:
             self._locks.remove(msg.author)
