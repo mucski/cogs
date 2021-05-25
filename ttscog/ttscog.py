@@ -1,7 +1,16 @@
 from redbot.core import commands, checks
+from .helper import helper
 
 
 class TTSCog(commands.Cog):
+    
+    @commands.command()
+    async def connect(ctx, channel=None):
+        await helper.connect(channel)
+        
+    @commands.command()
+    async def disconnect(ctx):
+        await helper.disconnect()
     
     @commands.command()
     async def repeat(ctx, *, text=None):
