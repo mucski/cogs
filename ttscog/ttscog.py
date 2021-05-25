@@ -85,3 +85,11 @@ class TTSCog(commands.Cog):
                 await msg.channel.send("Please wait for me to finish speaking.")
         finally:
             self._locks.remove(msg.author)
+            
+    async def message_check(self, ctx, channel):
+        async for message in self.bot.logs_from(channel, limit=5, reverse=True):
+            delta = datetime.datetime.utcnow() - message.timestamp
+            if delta.total_seconds() < 5 and message.author.id != self.bot.user.id:
+                if channel.id in self.paused_games:
+                    self.paused_games.remove(channel.id)
+                return True
