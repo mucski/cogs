@@ -46,7 +46,7 @@ class TTSCog(commands.Cog):
         try:
             self._locks.append(msg.author)
             
-            vc = msg.voice_client # We use it more then once, so make it an easy variable
+            vc = ctx.voice_client # We use it more then once, so make it an easy variable
             if not vc:
                 # We are not currently in a voice channel
                 await mag.channel.send("I need to be in a voice channel to do this, please use the connect command.")
