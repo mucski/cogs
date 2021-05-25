@@ -42,7 +42,7 @@ class TTSCog(commands.Cog):
     
         # Lets prepare our text, and then save the audio file
         fp = BytesIO()
-        tts = gTTS(text=text, lang="en")
+        tts = gTTS(text=f"{ctx.author.name} said {text}", lang="en")
         tts.write_to_fp(fp)
         fp.seek(0)
         # tts.save("text.mp3")
