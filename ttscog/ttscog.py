@@ -66,7 +66,7 @@ class TTSCog(commands.Cog):
             
                 # Lets set the volume to 1
                 vc.source = discord.PCMVolumeTransformer(vc.source)
-                vc.source.volume = 1
+                vc.source.volume = 100
             except:
                 await msg.channel.send("An error occured.")
         finally:
