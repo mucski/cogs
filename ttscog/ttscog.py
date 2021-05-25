@@ -16,7 +16,7 @@ class TTSCog(commands.Cog):
             "channel": ""
         }
         self.db.register_guild(**default_guild)
-        self._locks = set()
+        self._locks = []
 
     @commands.command()
     async def connect(self, ctx, channel=None):
