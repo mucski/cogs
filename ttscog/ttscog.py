@@ -64,9 +64,9 @@ class TTSCog(commands.Cog):
         
     @commands.command()
     @checks.is_owner()
-    async def ttsnick(self, ctx, bool: msg):
-        await self.db.guild(ctx.guild).with_nick.set(msg)
-        await ctx.send(f"TTS nick name speaking is set to {msg}")
+    async def ttsnick(self, ctx, bool):
+        await self.db.guild(ctx.guild).with_nick.set(bool)
+        await ctx.send(f"TTS nick name speaking is set to {bool}")
     
     #@commands.command()
     @commands.Cog.listener()
