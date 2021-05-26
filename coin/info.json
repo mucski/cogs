@@ -1,0 +1,8 @@
+{
+    "author": ["mucski"],
+    "description": "Coin Tycon game on discord",
+    "install_msg": "Coin Tycoon game with lots of mini games, and interaction with others.",
+    "short": "Coin Tycoon idle game",
+    "tags": ["game", "idle", "clicker"],
+    "type": "COG"
+}
