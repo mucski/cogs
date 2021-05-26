@@ -164,7 +164,7 @@ class helper:
             try:
                 champimg = Image.open(BytesIO(resp))
             except TypeError:
-                champimg = Image.open("home/ubuntu/icons/unknown.png")
+                champimg = Image.open("home/ubuntu/icons/temp_card_art.png")
             if champimg.size < (512, 512):
                 (width, height) = (champimg.width * 2, champimg.height * 2)
                 champimg = champimg.resize((width, height))
@@ -183,7 +183,7 @@ class helper:
             try:
                 champimg = Image.open(BytesIO(resp))
             except TypeError:
-                champimg = Image.open("home/ubuntu/icons/unknown.png")
+                champimg = Image.open("home/ubuntu/icons/temp_card_art.png")
             if champimg.size < (512, 512):
                 (width, height) = (champimg.width * 2, champimg.height * 2)
                 champimg = champimg.resize((width, height))
