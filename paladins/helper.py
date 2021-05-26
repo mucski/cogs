@@ -161,7 +161,10 @@ class helper:
         for i, (champ, champ2) in enumerate(zip(team1, team2)):
             #team 1
             resp = await helper.champimg(champ)
-            champimg = Image.open(BytesIO(resp))
+            try:
+                champimg = Image.open(BytesIO(resp))
+            except TypeError:
+                champimg = Image.open("home/ubuntu/icons/unknown.png")
             if champimg.size < (512, 512):
                 (width, height) = (champimg.width * 2, champimg.height * 2)
                 champimg = champimg.resize((width, height))
@@ -177,7 +180,10 @@ class helper:
             
             #team 2
             resp = await helper.champimg(champ2)
-            champimg = Image.open(BytesIO(resp))
+            try:
+                champimg = Image.open(BytesIO(resp))
+            except TypeError:
+                champimg = Image.open("home/ubuntu/icons/unknown.png")
             if champimg.size < (512, 512):
                 (width, height) = (champimg.width * 2, champimg.height * 2)
                 champimg = champimg.resize((width, height))
