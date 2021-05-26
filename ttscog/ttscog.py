@@ -59,7 +59,7 @@ class TTSCog(commands.Cog):
     @checks.is_owner()
     async def tts-tld(self, ctx, tld):
         await self.db.guild(ctx.guild).tld.set(tld)
-        await ctx.send(f"TTSTld language set to {tld}")
+        await ctx.send(f"TTS language tld set to {tld}")
     
     #@commands.command()
     @commands.Cog.listener()
