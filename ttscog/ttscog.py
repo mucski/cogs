@@ -97,8 +97,8 @@ class TTSCog(commands.Cog):
                 vc.source.volume = 1
             #except:
                 #await msg.channel.send("Please wait for me to finish speaking.")
-            #except Exception:
-                #await msg.channel.send(traceback.format_exc())
+            except Exception:
+                await msg.channel.send(traceback.format_exc())
         finally:
             self._locks.remove(msg.author)
             
