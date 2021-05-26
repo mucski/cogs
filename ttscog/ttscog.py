@@ -131,7 +131,7 @@ class TTSCog(commands.Cog):
         channel = self.bot.get_channel(channel)
         async for msg in channel.history(limit=1):
             created = msg.created_at
-            now = datetime.utcnow()
+            now = datetime.now()
             future = now + timedelta(seconds=5)
             if created != now and msg.author != self.bot.user:
                 await asyncio.sleep(future.second())
