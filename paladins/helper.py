@@ -165,6 +165,7 @@ class helper:
                 champimg = Image.open(BytesIO(resp))
             except TypeError:
                 champimg = Image.open("home/ubuntu/icons/temp_card_art.png")
+                champimg.resize((1024, 512))
             if champ == "yagorath":
                 (width, height) = (champimg.width * 2, champimg.height * 2)
                 champimg = champimg.resize((width, height))
