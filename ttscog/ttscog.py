@@ -45,19 +45,19 @@ class TTSCog(commands.Cog):
         
     @commands.command()
     @checks.is_owner()
-    async def setttschan(self, ctx, channel: discord.TextChannel):
+    async def tts-channel(self, ctx, channel: discord.TextChannel):
         await self.db.guild(ctx.guild).channel.set(channel.id)
         await ctx.send(f"TTS channel has been set to {channel.name}")
         
     @commands.command()
     @checks.is_owner()
-    async def setttslang(self, ctx, lang):
+    async def tts-lang(self, ctx, lang):
         await self.db.guild(ctx.guild).lang.set(lang)
         await ctx.send(f"TTS language set to {lang}")
         
     @commands.command()
     @checks.is_owner()
-    async def setttstld(self, ctx, tld):
+    async def tts-tld(self, ctx, tld):
         await self.db.guild(ctx.guild).tld.set(tld)
         await ctx.send(f"TTSTld language set to {tld}")
     
@@ -94,9 +94,9 @@ class TTSCog(commands.Cog):
             
                 # Lets set the volume to 1
                 vc.source = discord.PCMVolumeTransformer(vc.source)
-                vc.source.volume = 100
-            except:
-                await msg.channel.send("Please wait for me to finish speaking.")
+                vc.source.volume = 1
+            #except:
+                #await msg.channel.send("Please wait for me to finish speaking.")
             #except Exception:
                 #await msg.channel.send(traceback.format_exc())
         finally:
