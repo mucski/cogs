@@ -45,19 +45,19 @@ class TTSCog(commands.Cog):
         
     @commands.command()
     @checks.is_owner()
-    async def tts-channel(self, ctx, channel: discord.TextChannel):
+    async def ttschannel(self, ctx, channel: discord.TextChannel):
         await self.db.guild(ctx.guild).channel.set(channel.id)
         await ctx.send(f"TTS channel has been set to {channel.name}")
         
     @commands.command()
     @checks.is_owner()
-    async def tts-lang(self, ctx, lang):
+    async def ttslang(self, ctx, lang):
         await self.db.guild(ctx.guild).lang.set(lang)
         await ctx.send(f"TTS language set to {lang}")
         
     @commands.command()
     @checks.is_owner()
-    async def tts-tld(self, ctx, tld):
+    async def ttstld(self, ctx, tld):
         await self.db.guild(ctx.guild).tld.set(tld)
         await ctx.send(f"TTS language tld set to {tld}")
     
