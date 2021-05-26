@@ -70,6 +70,12 @@ class TTSCog(commands.Cog):
             return
         await self.db.guild(ctx.guild).with_nick.set(msg)
         await ctx.send(f"TTS nick name speaking is set to {msg}")
+        
+    @commands.command()
+    @checks.is_owner()
+    async def ttscleardb(self, ctx):
+        await self.db.clear_all()
+        await ctx.send("The db has been wiped.")
     
     #@commands.command()
     @commands.Cog.listener()
