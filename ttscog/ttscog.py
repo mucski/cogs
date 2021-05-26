@@ -107,6 +107,7 @@ class TTSCog(commands.Cog):
                 sentence = f"{msg.content}"
             else:
                 sentence = "something went wrong"
+            await msg.channel.send(with_nick)
             fp = BytesIO()
             tts = gTTS(text=sentence, lang=lang, tld=tld)
             tts.write_to_fp(fp)
