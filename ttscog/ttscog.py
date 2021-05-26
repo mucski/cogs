@@ -65,7 +65,7 @@ class TTSCog(commands.Cog):
     @commands.command()
     @checks.is_owner()
     async def ttsnick(self, ctx, msg):
-        if msg != "on" or msg != "off":
+        if msg != "on" and msg != "off":
             await ctx.send("Please input a valid on or off sentence.")
             return
         await self.db.guild(ctx.guild).with_nick.set(msg)
