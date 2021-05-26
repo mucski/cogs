@@ -13,3 +13,5 @@ TTSCog is a simple tts system that will speak out loud whatever you type in a ch
 Utilities includes many useful small tools that us primarily intended for personal use
 
 Roleplaying is a bunch of anime gifs with actions such as kiss, hug, pat
+
+Giveaway is a simple single giveaway cog, you can set a timer, the item the rest is all automatic.
