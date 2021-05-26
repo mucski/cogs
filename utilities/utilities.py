@@ -103,12 +103,4 @@ class Utilities(commands.Cog):
         async for log in ctx.channel.history(limit=1):
             if log.author == ctx.author:
                 await log.delete()
-        await ctx.send(stuff, tts=True)
-        
-    #@commands.Cog.listener()
-    #async def on_message(self, msg: discord.Message):
-        #if msg.channel.id != 830384640568066069:
-            #return
-        #if msg.author == self.bot.user:
-            #return
-        #await msg.channel.send(msg.content)
+        await ctx.send(stuff)

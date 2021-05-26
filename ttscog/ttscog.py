@@ -83,7 +83,7 @@ class TTSCog(commands.Cog):
         channel = await self.db.guild(msg.guild).channel()
         if msg.channel.id != channel:
             return
-        if msg.author == self.bot.user:
+        if msg.author.bot:
             return
     
         if msg.author in self._locks:
@@ -106,7 +106,7 @@ class TTSCog(commands.Cog):
             elif with_nick == "off":
                 sentence = f"{msg.content}"
             else:
-                sentence = "something went wrong"
+                sentence = "Something went wrong, please contact mucski."
             fp = BytesIO()
             tts = gTTS(text=sentence, lang=lang, tld=tld)
             tts.write_to_fp(fp)
