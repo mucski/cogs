@@ -4,9 +4,6 @@ from .custom import FFmpegPCMAudio
 from io import BytesIO
 import discord
 from gtts import gTTS
-from datetime import datetime, timedelta
-import traceback
-import asyncio
 
 
 class TTSCog(commands.Cog):
@@ -72,7 +69,6 @@ class TTSCog(commands.Cog):
             return
         if msg.author == self.bot.user:
             return
-        # channel = self.bot.get_channel(channel)
     
         if msg.author in self._locks:
             # their message being processed
