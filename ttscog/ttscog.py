@@ -20,7 +20,6 @@ class TTSCog(commands.Cog):
         }
         self.db.register_guild(**default_guild)
         self._locks = []
-        helper.__init__(self)
 
     @commands.command()
     async def connect(self, ctx, channel: discord.VoiceChannel=None):
