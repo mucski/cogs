@@ -111,7 +111,7 @@ class TTSCog(commands.Cog):
             
     @commands.command()
     async def disconnect(self, ctx):
-        vc = msg.guild.voice_client
+        vc = ctx.guild.voice_client
         if not vc:
             await ctx.channel.send("I am not in a voice channel.")
             return
