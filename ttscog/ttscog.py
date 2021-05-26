@@ -97,8 +97,10 @@ class TTSCog(commands.Cog):
             with_nick = self.db.guild(msg.guild).with_nick()
             if with_nick == "on":
                 sentence = f"{msg.author.name} said {msg.content}"
-            else:
+            elif with_nick == "off":
                 sentence = f"{msg.content}"
+            else:
+                sentence = "something went wrong"
             fp = BytesIO()
             tts = gTTS(text=sentence, lang=lang, tld=tld)
             tts.write_to_fp(fp)
