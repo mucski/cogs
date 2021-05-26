@@ -13,7 +13,8 @@ class TTSCog(commands.Cog):
         default_guild = {
             "channel": "",
             "lang": "en",
-            "tld": "com"
+            "tld": "com",
+            "with_nick": True
         }
         self.db.register_guild(**default_guild)
         self._locks = []
@@ -60,6 +61,12 @@ class TTSCog(commands.Cog):
     async def ttstld(self, ctx, tld):
         await self.db.guild(ctx.guild).tld.set(tld)
         await ctx.send(f"TTS language tld set to {tld}")
+        
+    @commands.command()
+    @checks.is_owner()
+    async def ttsnick(self, ctx, bool: msg):
+        await self.db.guild(ctx.guild).with_nick.set(msg)
+        await ctx.send(f"TTS nick name speaking is set to {msg}")
     
     #@commands.command()
     @commands.Cog.listener()
@@ -84,8 +91,13 @@ class TTSCog(commands.Cog):
             lang = await self.db.guild(msg.guild).lang()
             tld = await self.db.guild(msg.guild).tld()
             # Lets prepare our text, and then save the audio file
+            with_nick = self.db.guild(msg.guild).with_nick()
+            if with_nick is True:
+                sentence = f"{msg.author.name} said {msg.content}"
+            else:
+                sentence = f"{msg.content}"
             fp = BytesIO()
-            tts = gTTS(text=f"{msg.author.name} said {msg.content}", lang=lang, tld=tld)
+            tts = gTTS(text=sentence, lang=lang, tld=tld)
             tts.write_to_fp(fp)
             fp.seek(0)
             try:
