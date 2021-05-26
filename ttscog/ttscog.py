@@ -67,7 +67,7 @@ class TTSCog(commands.Cog):
     async def ttsnick(self, ctx, msg):
         if msg == "True":
             msg = bool(True)
-        elif fsg == "False":
+        elif msg == "False":
             msg = bool(False)
         else:
             await ctx.send("Please input a valid True or False statement.")
