@@ -165,7 +165,7 @@ class helper:
                 champimg = Image.open(BytesIO(resp))
             except TypeError:
                 champimg = Image.open("home/ubuntu/icons/temp_card_art.png")
-            if champimg.size < (512, 512):
+            if champimg.size < (1024, 1024):
                 (width, height) = (champimg.width * 2, champimg.height * 2)
                 champimg = champimg.resize((width, height))
             #cropping champion image
@@ -184,7 +184,7 @@ class helper:
                 champimg = Image.open(BytesIO(resp))
             except TypeError:
                 champimg = Image.open("home/ubuntu/icons/temp_card_art.png")
-            if champimg.size < (512, 512):
+            if champimg.size < (1024, 1024):
                 (width, height) = (champimg.width * 2, champimg.height * 2)
                 champimg = champimg.resize((width, height))
                 
