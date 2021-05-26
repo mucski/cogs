@@ -14,7 +14,7 @@ class TTSCog(commands.Cog):
             "channel": "",
             "lang": "en",
             "tld": "com",
-            "with_nick": True
+            "with_nick": "on"
         }
         self.db.register_guild(**default_guild)
         self._locks = []
@@ -65,12 +65,8 @@ class TTSCog(commands.Cog):
     @commands.command()
     @checks.is_owner()
     async def ttsnick(self, ctx, msg):
-        if msg == "True":
-            msg = bool(True)
-        elif msg == "False":
-            msg = bool(False)
-        else:
-            await ctx.send("Please input a valid True or False statement.")
+        if msg != "on" or msg != "off":
+            await ctx.send("Please input a valid on or off sentence.")
             return
         await self.db.guild(ctx.guild).with_nick.set(msg)
         await ctx.send(f"TTS nick name speaking is set to {msg}")
@@ -99,7 +95,7 @@ class TTSCog(commands.Cog):
             tld = await self.db.guild(msg.guild).tld()
             # Lets prepare our text, and then save the audio file
             with_nick = self.db.guild(msg.guild).with_nick()
-            if with_nick is True:
+            if with_nick == "on":
                 sentence = f"{msg.author.name} said {msg.content}"
             else:
                 sentence = f"{msg.content}"
