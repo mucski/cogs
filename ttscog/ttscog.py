@@ -92,8 +92,6 @@ class TTSCog(commands.Cog):
             tts = gTTS(text=f"{msg.author.name} said {msg.content}", lang=lang, tld=tld)
             tts.write_to_fp(fp)
             fp.seek(0)
-            # tts.save("text.mp3")
-            
             try:
                 # Lets play that mp3 file in the voice channel
                 vc.play(FFmpegPCMAudio(fp.read(), pipe = True))
@@ -115,7 +113,6 @@ class TTSCog(commands.Cog):
         if not vc:
             await ctx.channel.send("I am not in a voice channel.")
             return
-        
         await vc.disconnect()
         await ctx.send("No one is talking, so bye 👋")
         
