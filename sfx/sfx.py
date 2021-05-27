@@ -61,16 +61,16 @@ class SFX(commands.Cog):
             pass
 
         tts_audio = gtts.gTTS(text, lang=lang)
-        #audio_file = os.path.join(tempfile.gettempdir(), ''.join(random.choice('0123456789ABCDEF') for i in range(12)) + '.mp3')
-        #tts_audio.save(audio_file)
-        fp = BytesIO()
-        tts_audio.write_to_fp(fp)
-        fp.seek(0)
-        audio_data = pydub.AudioSegment.from_file(fp, format="mp3")
+        audio_file = os.path.join(tempfile.gettempdir(), ''.join(random.choice('0123456789ABCDEF') for i in range(12)) + '.mp3')
+        tts_audio.save(audio_file)
+        #fp = BytesIO()
+        #tts_audio.write_to_fp(fp)
+        #fp.seek(0)
+        #audio_data = pydub.AudioSegment.from_file(audio_file)
         #silence = pydub.AudioSegment.silent(duration=cfg_padding)
         #padded_audio = silence + audio_data + silence
         #audio_data.export(fp, format='mp3')
-        await self._play_sfx(ctx.author.voice.channel, audio_data, True)
+        await self._play_sfx(ctx.author.voice.channel, audio_file, True)
 
     @commands.group()
     async def sfxconfig(self, ctx):
@@ -297,7 +297,7 @@ class SFX(commands.Cog):
     async def _play_sfx(self, vc, filepath, is_tts=False):
         player = await lavalink.connect(vc)
         if is_tts:
-            track = (await player.get_tracks(query=filepath))
+            track = await player.get_tracks(query=filepath)
         else:
             track = (await player.get_tracks(query=filepath))[0]
 
