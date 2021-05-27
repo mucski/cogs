@@ -1,6 +1,6 @@
 {
     "author": ["mucski"],
-    "description": "Text to speech",
+    "description": "Text to speech and audio",
     "install_msg": "Text to speech using gtts, in voice channel from a text channel.",
     "short": "Text to speech using gtts",
     "tags": ["tts", "accessibility", "voice"],

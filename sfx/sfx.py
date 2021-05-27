@@ -9,7 +9,7 @@ import lavalink
 import pydub
 import aiohttp
 
-class TTSCog(commands.Cog):
+class SFX(commands.Cog):
     """Plays uploaded sounds or text-to-speech using gTTS."""
 
     def __init__(self):
