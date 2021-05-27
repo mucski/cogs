@@ -75,10 +75,10 @@ class helper:
         #make the image drawable
         draw = ImageDraw.Draw(img)
         #normal font
-        fnt = ImageFont.truetype("home/ubuntu/arial.ttf", 80)
+        fnt = ImageFont.truetype("root/mucski/stuff/arial.ttf", 80)
         #bold font
-        fntbld = ImageFont.truetype("home/ubuntu/arialbd.ttf", 80)
-        smallfnt = ImageFont.truetype("home/ubuntu/arial.ttf", 60)
+        fntbld = ImageFont.truetype("root/mucski/stuff/arialbd.ttf", 80)
+        smallfnt = ImageFont.truetype("root/mucski/stuff/arial.ttf", 60)
         
         if stats[0] == "":
             stats[0] = "?????????"
@@ -114,7 +114,7 @@ class helper:
         draw = ImageDraw.Draw(key)
         fill = (255, 255, 255)
         padding = 10
-        fntbld = ImageFont.truetype("home/ubuntu/arialbd.ttf", 50)
+        fntbld = ImageFont.truetype("root/mucski/stuff/arialbd.ttf", 50)
         
         #champion and player
         draw.text((20, 20), "CHAMPION", font = fntbld, fill = fill)
@@ -164,7 +164,7 @@ class helper:
             try:
                 champimg = Image.open(BytesIO(resp))
             except TypeError:
-                champimg = Image.open("home/ubuntu/icons/error.jpg")
+                champimg = Image.open("root/mucski/stuff/icons/error.jpg")
             if champimg.size < (512, 512):
                 (width, height) = (champimg.width * 2, champimg.height * 2)
                 champimg = champimg.resize((width, height))
@@ -172,7 +172,7 @@ class helper:
             border = (0, crop, 0, crop)
             champimgcrop = ImageOps.crop(champimg, border)
             #rank icon
-            rankicon = Image.open(f"home/ubuntu/icons/ranks/{r1[i]}.png")
+            rankicon = Image.open(f"root/mucski/stuff/icons/ranks/{r1[i]}.png")
             #playerstats
             playerpanel = await helper.statsimage(champimgcrop, rankicon, t1_data[i], i)
             img.paste(playerpanel, (0, 232 * i + 100))
@@ -183,7 +183,7 @@ class helper:
             try:
                 champimg = Image.open(BytesIO(resp))
             except TypeError:
-                champimg = Image.open("home/ubuntu/icons/error.jpg")
+                champimg = Image.open("root/mucski/stuff/icons/error.jpg")
             if champimg.size < (512, 512):
                 (width, height) = (champimg.width * 2, champimg.height * 2)
                 champimg = champimg.resize((width, height))
@@ -192,7 +192,7 @@ class helper:
             border = (0, crop, 0, crop)
             champimgcrop = ImageOps.crop(champimg, border)
             #rank icon
-            rankicon = Image.open(f"home/ubuntu/icons/ranks/{r2[i]}.png")
+            rankicon = Image.open(f"root/mucski/stuff/icons/ranks/{r2[i]}.png")
             #playerstats
             playerpanel = await helper.statsimage(champimgcrop, rankicon, t2_data[i], i)
             img.paste(playerpanel, (0, 232 * i + 1772))
@@ -217,9 +217,9 @@ class helper:
         map_name = match_data[3]
         format_map = map_name.lower().replace(" ", "_").replace("'", "")
         try:
-            match_map = Image.open(f"home/ubuntu/icons/maps/{format_map}.png")
+            match_map = Image.open(f"root/mucski/stuff/icons/maps/{format_map}.png")
         except FileNotFoundError:
-            match_map = Image.open("home/ubuntu/icons/maps/test_maps.png")
+            match_map = Image.open("root/mucski/stuff/icons/maps/test_maps.png")
         #middle image width
         basewidth = 4620
         #dynamic resize
@@ -230,7 +230,7 @@ class helper:
         img.paste(match_map, (0, -512))
         
         draw = ImageDraw.Draw(img)
-        fnt = ImageFont.truetype("home/ubuntu/arial.ttf", 100)
+        fnt = ImageFont.truetype("root/mucski/stuff/arial.ttf", 100)
         fill = (255, 255, 255)
         stroke = (8, 21, 25)
         stroke_size = 2
@@ -242,7 +242,7 @@ class helper:
         
         draw.text((int(W / 2 - 1032), padding), f"Team 1 score: {match_data[4]}", font = fnt, stroke_width = stroke_size, stroke_fill = stroke, fill = fill)
         
-        vs = Image.open("home/ubuntu/icons/vs.png")
+        vs = Image.open("root/mucski/stuff/icons/vs.png")
         w, h = vs.size
         vs = vs.resize((int(w * 2 / 3), int(h * 2 / 3)))
         img.paste(vs, (int((W-w) / 2), int((H-h) / 2 + 48)), mask = vs)
