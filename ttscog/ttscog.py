@@ -19,7 +19,7 @@ class TTSCog(commands.Cog):
         self._locks = []
 
     @commands.command()
-    async def connect(self, ctx, channel: discord.VoiceChannel=None):
+    async def ttsconnect(self, ctx, channel: discord.VoiceChannel=None):
         if not channel:
             try:
                 channel = ctx.author.voice.channel
@@ -126,7 +126,7 @@ class TTSCog(commands.Cog):
             
             
     @commands.command()
-    async def disconnect(self, ctx):
+    async def ttsdisconnect(self, ctx):
         vc = ctx.guild.voice_client
         if not vc:
             await ctx.channel.send("I am not in a voice channel.")
