@@ -69,7 +69,7 @@ class SFX(commands.Cog):
         #audio_data = pydub.AudioSegment.from_mp3(fp).export(fp, format="mp3")
         #silence = pydub.AudioSegment.silent(duration=cfg_padding)
         #padded_audio = silence + audio_data + silence
-        padded_audio.export(fp, format='mp3')
+        fp.export(fp, format='mp3')
         await self._play_sfx(ctx.author.voice.channel, fp, True)
 
     @commands.group()
