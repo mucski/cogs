@@ -8,6 +8,7 @@ import random
 import lavalink
 import pydub
 import aiohttp
+from io import BytesIO
 
 class SFX(commands.Cog):
     """Plays uploaded sounds or text-to-speech using gTTS."""
@@ -60,13 +61,16 @@ class SFX(commands.Cog):
             pass
 
         tts_audio = gtts.gTTS(text, lang=lang)
-        audio_file = os.path.join(tempfile.gettempdir(), ''.join(random.choice('0123456789ABCDEF') for i in range(12)) + '.mp3')
-        tts_audio.save(audio_file)
-        audio_data = pydub.AudioSegment.from_mp3(audio_file)
+        #audio_file = os.path.join(tempfile.gettempdir(), ''.join(random.choice('0123456789ABCDEF') for i in range(12)) + '.mp3')
+        #tts_audio.save(audio_file)
+        fp = BytesIO(y['data'])
+        tts_audio.write_to_fp(fp)
+        #fp.seek(0)
+        audio_data = pydub.AudioSegment.from_mp3(fp).export(x, format="mp3")
         silence = pydub.AudioSegment.silent(duration=cfg_padding)
         padded_audio = silence + audio_data + silence
-        padded_audio.export(audio_file, format='mp3')
-        await self._play_sfx(ctx.author.voice.channel, audio_file, True)
+        padded_audio.export(fp, format='mp3')
+        await self._play_sfx(ctx.author.voice.channel, fp, True)
 
     @commands.group()
     async def sfxconfig(self, ctx):
