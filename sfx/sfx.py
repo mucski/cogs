@@ -59,9 +59,11 @@ class SFX(commands.Cog):
                 lang = cfg_tts_lang
         except ValueError:
             pass
+        
         tts_audio = gtts.gTTS(text, lang=lang)
         audio_file = os.path.join(tempfile.gettempdir(), ''.join(random.choice('0123456789ABCDEF') for i in range(12)) + '.mp3')
         tts_audio.save(audio_file)
+        
         audio_data = pydub.AudioSegment.from_mp3(audio_file)
         silence = pydub.AudioSegment.silent(duration=cfg_padding)
         padded_audio = silence + audio_data + silence
