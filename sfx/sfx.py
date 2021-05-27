@@ -297,7 +297,7 @@ class SFX(commands.Cog):
     async def _play_sfx(self, vc, filepath, is_tts=False):
         player = await lavalink.connect(vc)
         if is_tts:
-            track = await player.get_tracks(query=filepath)
+            track = (await player.get_tracks(query=filepath))
         else:
             track = (await player.get_tracks(query=filepath))[0]
 
