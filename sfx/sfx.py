@@ -66,10 +66,10 @@ class SFX(commands.Cog):
         fp = BytesIO()
         tts_audio.write_to_fp(fp)
         fp.seek(0)
-        #audio_data = pydub.AudioSegment.from_mp3(fp).export(fp, format="mp3")
+        audio_data = pydub.AudioSegment.from_mp3(fp).export(fp, format="mp3")
         #silence = pydub.AudioSegment.silent(duration=cfg_padding)
         #padded_audio = silence + audio_data + silence
-        #fp.export(fp, format='mp3')
+        audio_data.export(fp, format='mp3')
         await self._play_sfx(ctx.author.voice.channel, fp, True)
 
     @commands.group()
