@@ -34,7 +34,7 @@ class SFX(commands.Cog):
     def __unload(self):
         lavalink.unregister_event_listener(self.ll_check)
 
-
+    
     @commands.command(usage='[language code] <text>')
     @commands.cooldown(rate=1, per=1, type=discord.ext.commands.cooldowns.BucketType.guild)
     async def tts(self, ctx, *, text):
