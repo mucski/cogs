@@ -5,7 +5,7 @@ import discord
 from gtts import gTTS
 
 
-class sfx(commands.Cog):
+class SFX(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
         self.db = Config.get_conf(self, 828282859272, force_registration=True)
