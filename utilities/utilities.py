@@ -44,10 +44,7 @@ class Utilities(commands.Cog):
         try:
             await ctx.guild.get_member(ctx.author.id).edit(nick=f"{comp} {orig.strip()}")
         except (discord.errors.Forbidden, discord.errors.HTTPException):
-            await ctx.send("Missing permssion: Change users nickname")
-            return
-        else:
-            await ctx.send("Nickname too large, 32 characters max.")
+            await ctx.send("Missing permissions or nickname too large (32 chars max)")
             return
         await ctx.send(f"Changed {orig.strip()}'s country to {comp}")
 
