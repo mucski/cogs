@@ -68,6 +68,9 @@ class Utilities(commands.Cog):
         except discord.errors.Forbidden:
             await ctx.send("Missing permission: Change users nickname")
             return
+        except HTTPException:
+            await ctx.send("Nick too large, 32 chars only")
+            return
         await ctx.send("Done")
         
     @commands.command()
