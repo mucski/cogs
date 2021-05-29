@@ -43,6 +43,8 @@ class Paladins(commands.Cog):
             if isinstance(exc, arez.NotFound):
                 await ctx.send("```\nNot found!\n```")
                 return
+            if isinstance(exc, arez.ClientResponseError):
+                await ctx.send("```\nTimed out. Try again in a minute\n```")
         await ctx.bot.on_command_error(ctx, error, unhandled_by_cog=True)
 
     @commands.command()
