@@ -94,7 +94,8 @@ class SFX(commands.Cog):
             vc = msg.guild.voice_client # We use it more then once, so make it an easy variable
             if not vc:
                 # We are not currently in a voice channel
-                await msg.channel.send("I need to be in a voice channel to do this, please use the connect command.")
+                # Silently exit
+                # await msg.channel.send("I need to be in a voice channel to do this, please use the connect command.")
                 return
             lang = await self.db.guild(msg.guild).lang()
             tld = await self.db.guild(msg.guild).tld()
