@@ -46,7 +46,7 @@ class Utilities(commands.Cog):
         except discord.errors.Forbidden:
             await ctx.send("Missing permssion: Change users nickname")
             return
-        await ctx.send(f"Changed {newnick.strip()}'s country to {comp}")
+        await ctx.send(f"Changed {orig.strip()}'s country to {comp}")
 
     @commands.command()
     async def delflag(self, ctx):
