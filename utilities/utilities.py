@@ -65,11 +65,9 @@ class Utilities(commands.Cog):
             return regrex_pattern.sub(r'', text)
         try:
             await ctx.guild.get_member(ctx.author.id).edit(nick=f"{deEmojify(orig)}")
-        except discord.errors.Forbidden:
-            await ctx.send("Missing permission: Change users nickname")
+        except (discord.errors.Forbidden, discord.errors.HTTPException):
+            await ctx.send("Missing permissions or nickname too large (32 chars max)")
             return
-        else:
-            await ctx.send("Nick too large, 32 chars max.")
         await ctx.send("Done")
         
     @commands.command()
