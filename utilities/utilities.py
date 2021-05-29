@@ -46,7 +46,7 @@ class Utilities(commands.Cog):
         except (discord.errors.Forbidden, discord.errors.HTTPException):
             await ctx.send("Missing permissions or nickname too large (32 chars max)")
             return
-        await ctx.send(f"Changed {orig.strip()}'s country to {comp}")
+        await ctx.send(f"Added {comp} to {orig.strip()}'s nickname. To remove it use [p]delflag.")
 
     @commands.command()
     async def delflag(self, ctx):
