@@ -63,12 +63,12 @@ class SFX(commands.Cog):
         
     @commands.command()
     @checks.is_owner()
-    async def ttsnick(self, ctx, msg):
+    async def ttsname(self, ctx, msg):
         if msg != "on" and msg != "off":
             await ctx.send("Please input a valid on or off sentence.")
             return
         await self.db.guild(ctx.guild).with_nick.set(msg)
-        await ctx.send(f"TTS nick name speaking is set to {msg}")
+        await ctx.send(f"TTS name calling is set to {msg}")
         
     @commands.command()
     @checks.is_owner()
