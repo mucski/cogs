@@ -43,7 +43,7 @@ class Utilities(commands.Cog):
         # newnick = deEmojify(orig)
         try:
             await ctx.guild.get_member(ctx.author.id).edit(nick=f"{comp} {orig.strip()}")
-        except discord.errors.Forbidden:
+        except (discord.errors.Forbidden, HTTPException):
             await ctx.send("Missing permssion: Change users nickname")
             return
         else:
