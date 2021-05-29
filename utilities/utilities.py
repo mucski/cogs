@@ -40,9 +40,9 @@ class Utilities(commands.Cog):
                         u"\U0001F1E0-\U0001F1FF"  # flags (iOS)
                         "]+", flags=re.UNICODE)
             return regrex_pattern.sub(r'', text)
-        newnick = deEmojify(orig)
+        # newnick = deEmojify(orig)
         try:
-            await ctx.guild.get_member(ctx.author.id).edit(nick=f"{comp} {newnick.strip()}")
+            await ctx.guild.get_member(ctx.author.id).edit(nick=f"{comp} {orig.strip()}")
         except discord.errors.Forbidden:
             await ctx.send("Missing permssion: Change users nickname")
             return
