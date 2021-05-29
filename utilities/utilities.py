@@ -46,6 +46,9 @@ class Utilities(commands.Cog):
         except discord.errors.Forbidden:
             await ctx.send("Missing permssion: Change users nickname")
             return
+        else:
+            await ctx.send("Nickname too large, 32 characters max.")
+            return
         await ctx.send(f"Changed {orig.strip()}'s country to {comp}")
 
     @commands.command()
