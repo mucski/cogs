@@ -11,6 +11,7 @@ import discord
 class Utilities(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
+        self.bot.remove_command("info")
 
     @commands.command()
     async def whoami(self, ctx):
@@ -104,3 +105,17 @@ class Utilities(commands.Cog):
             if log.author == ctx.author:
                 await log.delete()
         await ctx.send(stuff)
+        
+    @commands.command()
+    async def info(self, ctx):
+        e = discord.Embed(title=f"{self.bot.disppay_name}'s info", color=await self.bot.get_embed_color(ctx))
+        desc = (
+            "Multipurpose bot hosted by mucski, created by Twentysix"
+            "For support you can contact my owner with the contact command"
+            "Or join our discord server: https://discord.gg/qt2tXUrH"
+        )
+        e.description(desc)
+        await ctx.send(embed=e)
+        
+    def cog_unload(self):
+        self.bot.add_command("info")
