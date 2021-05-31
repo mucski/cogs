@@ -111,11 +111,10 @@ class Utilities(commands.Cog):
         desc = (
             "Multipurpose bot hosted by mucski, created by Twentysix\n"
             "For support you can contact my owner with the contact command\n"
-            "Or join our discord server:"
+            "Or join my support discord server:"
         )
         e = discord.Embed(title=f"{self.bot.user.display_name}'s info", color=await self.bot.get_embed_color(ctx), description=desc)
-        await ctx.send(embed=e)
-        await ctx.send("https://discord.gg/qt2tXUrH")
+        await ctx.send(embed=e,"https://discord.gg/qt2tXUrH")
         
     def cog_unload(self):
         self.bot.add_command("info")
