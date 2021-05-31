@@ -109,8 +109,8 @@ class Utilities(commands.Cog):
     @commands.command()
     async def info(self, ctx):
         desc = (
-            "Multipurpose bot hosted by mucski, created by Twentysix"
-            "For support you can contact my owner with the contact command"
+            "Multipurpose bot hosted by mucski, created by Twentysix\n"
+            "For support you can contact my owner with the contact command\n"
             "Or join our discord server: https://discord.gg/qt2tXUrH"
         )
         e = discord.Embed(title=f"{self.bot.user.display_name}'s info", color=await self.bot.get_embed_color(ctx), description=desc)
