@@ -114,7 +114,7 @@ class Utilities(commands.Cog):
             "Or join my support discord server:"
         )
         e = discord.Embed(title=f"{self.bot.user.display_name}'s info", color=await self.bot.get_embed_color(ctx), description=desc)
-        await ctx.send(embed=e,"https://discord.gg/qt2tXUrH")
+        await ctx.send(embed=e,content="https://discord.gg/qt2tXUrH")
         
     def cog_unload(self):
         self.bot.add_command("info")
