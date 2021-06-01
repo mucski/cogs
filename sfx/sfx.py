@@ -80,8 +80,9 @@ class SFX(commands.Cog):
     @commands.command()
     @checks.is_owner()
     async def ttsspeed(self, ctx, speed: float):
-        if len(speed) > 3:
-            await ctx.send("This command only supports a float.")
+        s = [speed]
+        if len(s) > 2:
+            await ctx.send("This command only supports a 2 number int or float.")
             return
         await self.db.guild(ctx.guild).speed.set(speed)
         await ctx.send(f"TTS speech speed has been set to {speed}")
