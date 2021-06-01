@@ -13,7 +13,8 @@ class SFX(commands.Cog):
             "channel": "",
             "lang": "en",
             "tld": "com",
-            "with_nick": "on"
+            "with_nick": "on",
+            "speed": 1
         }
         self.db.register_guild(**default_guild)
         self._locks = []
@@ -75,6 +76,12 @@ class SFX(commands.Cog):
     async def ttscleardb(self, ctx):
         await self.db.clear_all()
         await ctx.send("The db has been wiped.")
+        
+    @commands.command()
+    @checks.is_owner()
+    async def ttsspeed(self, ctx, int: speed):
+        await self.db.guild(ctx.guild).speed.set(speed)
+        await ctx.send(f"TTS speech speed has been set to {speed}")
     
     #@commands.command()
     @commands.Cog.listener()
@@ -99,6 +106,7 @@ class SFX(commands.Cog):
                 return
             lang = await self.db.guild(msg.guild).lang()
             tld = await self.db.guild(msg.guild).tld()
+            speed = await self.db.guild.(msg.guild).speed()
             # Lets prepare our text, and then save the audio file
             with_nick = await self.db.guild(msg.guild).with_nick()
             if with_nick == "on":
@@ -113,7 +121,7 @@ class SFX(commands.Cog):
             fp.seek(0)
             try:
                 # Lets play that mp3 file in the voice channel
-                vc.play(FFmpegPCMAudio(fp.read(), pipe = True, options='-filter:a "atempo=1.9"'))
+                vc.play(FFmpegPCMAudio(fp.read(), pipe = True, options=f'-filter:a "atempo={speed}"'))
             
                 # Lets set the volume to 1
                 vc.source = discord.PCMVolumeTransformer(vc.source)
