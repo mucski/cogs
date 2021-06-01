@@ -106,7 +106,7 @@ class SFX(commands.Cog):
                 return
             lang = await self.db.guild(msg.guild).lang()
             tld = await self.db.guild(msg.guild).tld()
-            speed = await self.db.guild.(msg.guild).speed()
+            speed = await self.db.guild(msg.guild).speed()
             # Lets prepare our text, and then save the audio file
             with_nick = await self.db.guild(msg.guild).with_nick()
             if with_nick == "on":
