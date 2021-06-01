@@ -131,7 +131,7 @@ class SFX(commands.Cog):
             fp.seek(0)
             try:
                 # Lets play that mp3 file in the voice channel
-                vc.play(FFmpegPCMAudio(fp.read(), pipe = True, options=f'-filter:a "atempo={speed}" -t 30'))
+                vc.play(FFmpegPCMAudio(fp.read(), pipe = True, options=f'-filter:a "atempo={speed}" -t 00:00:15'))
             
                 # Lets set the volume to 1
                 vc.source = discord.PCMVolumeTransformer(vc.source)
