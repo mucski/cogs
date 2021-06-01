@@ -102,13 +102,13 @@ class SFX(commands.Cog):
             # Lets prepare our text, and then save the audio file
             with_nick = await self.db.guild(msg.guild).with_nick()
             if with_nick == "on":
-                sentence = f"{msg.author.name} said {msg.content}"
+                sentence = f"{msg.author.name} says {msg.content}"
             elif with_nick == "off":
                 sentence = f"{msg.content}"
             else:
                 sentence = "something went wrong"
             fp = BytesIO()
-            tts = gTTS(text=sentence, lang=lang, tld=tld)
+            tts = gTTS(text=sentence, lang=lang, tld=tld, slow=False)
             tts.write_to_fp(fp)
             fp.seek(0)
             try:
