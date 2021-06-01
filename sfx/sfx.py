@@ -84,6 +84,12 @@ class SFX(commands.Cog):
         if len(s) > 2:
             await ctx.send("This command only supports a 2 number int or float.")
             return
+        if speed < 0.5:
+            await ctx.send("Speed bellow 0.5 not supported.")
+            return
+        if speed > 2.0:
+            await ctx.send("Speed above 2.0 not supported.")
+            return
         await self.db.guild(ctx.guild).speed.set(speed)
         await ctx.send(f"TTS speech speed has been set to {speed}")
     
