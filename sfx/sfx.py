@@ -3,6 +3,7 @@ from .custom import FFmpegPCMAudio
 from io import BytesIO
 import discord
 from gtts import gTTS
+import re
 
 
 class SFX(commands.Cog):
@@ -120,6 +121,7 @@ class SFX(commands.Cog):
             # Lets prepare our text, and then save the audio file
             with_nick = await self.db.guild(msg.guild).with_nick()
             if with_nick == "on":
+                sentence = re.sub(r'^<:$')
                 sentence = f"{msg.author.name} says {msg.content}"
             elif with_nick == "off":
                 sentence = f"{msg.content}"
