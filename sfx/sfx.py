@@ -121,8 +121,8 @@ class SFX(commands.Cog):
             # Lets prepare our text, and then save the audio file
             with_nick = await self.db.guild(msg.guild).with_nick()
             if with_nick == "on":
-                sentence = re.sub(r'^<:$')
-                sentence = f"{msg.author.name} says {msg.content}"
+                sentence = re.sub(r'^<:$', msg.content)
+                sentence = f"{msg.author.name} says {sentence}"
             elif with_nick == "off":
                 sentence = f"{msg.content}"
             else:
