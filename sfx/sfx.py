@@ -123,8 +123,8 @@ class SFX(commands.Cog):
             if with_nick == "on":
                 #text = re.sub(r'<@\d+>', '', msg.content)
                 text = re.sub(r'<a:.+?:\d+>|<:.+?:\d+>', '', msg.content)
-                text = re.sub(r'<(?::\w+:|@!*&*|#)[0-9]+>', '', msg.content)
-                sentence = f"{msg.author.name} says {text}"
+                text2 = re.sub(r'<(?::\w+:|@!*&*|#)[0-9]+>', '', text)
+                sentence = f"{msg.author.name} says {text2}"
             elif with_nick == "off":
                 sentence = f"{msg.content}"
             else:
