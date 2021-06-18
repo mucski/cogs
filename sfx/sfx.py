@@ -122,7 +122,7 @@ class SFX(commands.Cog):
             with_nick = await self.db.guild(msg.guild).with_nick()
             if with_nick == "on":
                 text = re.sub(r'^<:$', '', msg.content)
-                sentence = f"{msg.author.name} says {sentence}"
+                sentence = f"{msg.author.name} says {text}"
             elif with_nick == "off":
                 sentence = f"{msg.content}"
             else:
