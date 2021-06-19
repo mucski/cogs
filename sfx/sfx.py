@@ -121,9 +121,8 @@ class SFX(commands.Cog):
             # Lets prepare our text, and then save the audio file
             with_nick = await self.db.guild(msg.guild).with_nick()
             text = re.sub(r'<a?:(\w+):\d+?>', '\1', msg.content)
-            #text = re.sub(r'<a:.+?:\d+>|<:.+?:\d+>', '', msg.content)
-            text2 = re.sub(r'<(?::\w+:|@!*&*|#)[0-9]+>', '', text)
-            text3 = re.sub(r'(http|https)://[\w-]+(.[\w-]+)+\S*', '', text2)
+            text = re.sub(r'<(?::\w+:|@!*&*|#)[0-9]+>', '', text)
+            text = re.sub(r'https?://[\w-]+(.[\w-]+)+\S*', '', text) 
             if with_nick == "on":
                 sentence = f"{msg.author.name} says {text3}"
             elif with_nick == "off":
