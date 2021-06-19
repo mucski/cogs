@@ -120,7 +120,8 @@ class SFX(commands.Cog):
             speed = await self.db.guild(msg.guild).speed()
             # Lets prepare our text, and then save the audio file
             with_nick = await self.db.guild(msg.guild).with_nick()
-            text = re.sub(r'<a:.+?:\d+>|<:.+?:\d+>', '', msg.content)
+            text = re.sub(r'\b<\:.*\\d.*\:>\b', '', msg.content)
+            #text = re.sub(r'<a:.+?:\d+>|<:.+?:\d+>', '', msg.content)
             text2 = re.sub(r'<(?::\w+:|@!*&*|#)[0-9]+>', '', text)
             text3 = re.sub(r'(http|https)://[\w-]+(.[\w-]+)+\S*', '', text2)
             if with_nick == "on":
