@@ -126,7 +126,7 @@ class SFX(commands.Cog):
             if with_nick == "on":
                 sentence = f"{msg.author.name} says {text3}"
             elif with_nick == "off":
-                sentence = f"{msg.content}"
+                sentence = f"{text3}"
             else:
                 sentence = "something went wrong"
             fp = BytesIO()
