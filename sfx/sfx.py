@@ -125,7 +125,7 @@ class SFX(commands.Cog):
             if with_nick == "on":
                 sentence = f"{msg.author.name} says {text}"
             elif with_nick == "off":
-                sentence = f"{text3}"
+                sentence = f"{text}"
             fp = BytesIO()
             tts = gTTS(text=sentence, lang=lang, tld=tld, slow=False)
             tts.write_to_fp(fp)
