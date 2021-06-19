@@ -125,10 +125,8 @@ class SFX(commands.Cog):
             text3 = re.sub(r'(http|https)://[\w-]+(.[\w-]+)+\S*', '', text2)
             if with_nick == "on":
                 sentence = f"{msg.author.name} says {text3}"
-            elif with_nick == "off":
+            else with_nick == "off":
                 sentence = f"{text3}"
-            else:
-                sentence = "something went wrong"
             fp = BytesIO()
             tts = gTTS(text=sentence, lang=lang, tld=tld, slow=False)
             tts.write_to_fp(fp)
