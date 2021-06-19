@@ -122,7 +122,7 @@ class SFX(commands.Cog):
             with_nick = await self.db.guild(msg.guild).with_nick()
             text = re.sub(r'<a?:(\w+):\d+?>', '\1', msg.content)
             text = re.sub(r'<(?::\w+:|@!*&*|#)[0-9]+>', '', text)
-            text = re.sub(r'https?://[\w-]+(.[\w-]+)+\S*', '', text) 
+            text = re.sub(r'https?://[\w-]+(.[\w-]+)+\S*', '', text)
             if with_nick == "on":
                 sentence = f"{msg.author.name} says {text3}"
             elif with_nick == "off":
