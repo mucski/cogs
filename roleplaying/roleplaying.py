@@ -16,10 +16,10 @@ class Roleplaying(commands.Cog):
         e = discord.Embed()
         e.set_image(url=img)
         if member:
-            member = member.display_name
+            member = member.mention
         else:
             member = "no one."
-        e.set_author(name=f"{author.display_name} {action} {member}", icon_url=(author.avatar_url))
+        e.set_author(name=f"{author.mention} {action} {member}", icon_url=(author.avatar_url))
         return e
 
     @commands.command()
