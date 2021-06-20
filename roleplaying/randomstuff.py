@@ -82,7 +82,6 @@ bitelist = [
 	"https://cdn.discordapp.com/attachments/855197640153104424/856126929232068608/2.gif",
 	"https://cdn.discordapp.com/attachments/855197640153104424/856126973780557844/1.gif",
 	"https://cdn.discordapp.com/attachments/855197640153104424/856127051362467840/8.gif",
-	"https://cdn.discordapp.com/attachments/855197640153104424/856127184896393236/7.webp",
 	"https://cdn.discordapp.com/attachments/855197640153104424/856127214713176084/3.gif",
 	"https://cdn.discordapp.com/attachments/855197640153104424/856127262834819072/4.gif",
 	"https://cdn.discordapp.com/attachments/855197640153104424/856127309757022248/5.gif",
