@@ -59,7 +59,7 @@ class Roleplaying(commands.Cog):
         await ctx.send(embed=embed)
 
     @commands.command()
-    async def sad(self, ctx):
+    async def sad(self, ctx, member: discord.Member = None):
         author = ctx.author
-        embed = await self.img_grab(sadlist, "sad", author, member)
+        embed = await self.img_grab(sadlist, "is sad", author, member)
         await ctx.send(embed=embed)
