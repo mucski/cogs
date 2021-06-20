@@ -1,7 +1,7 @@
 import discord
 from redbot.core import commands
 from .randomstuff import kisslist, slaplist, punchlist, cuddlelist, sadlist, patlist, huglist, licklist, bitelist, middlefingerlist
-from .randomstuff import twerklist, dancelist, crylist, meowlist, rawrlist, angrylist, shylist, blushlist, killist, karatelist
+from .randomstuff import twerklist, dancelist, crylist, meowlist, rawrlist, angrylist, shylist, blushlist, killlist, karatelist
 from .randomstuff import rektlist, hungrylist, thirstylist, happylist, greetlist, wavelist, hornylist, marrylist, praylist, curselist, smokelist
 from .randomstuff import lewdlist, sleepylist, lazylist, thinklist, richlist, poorlist, nomlist, pokelist, booplist, highfivelist
 from .randomstuff import ticklelist, bullylist, toxiclist, trashlist, popcornlist, lovelist
