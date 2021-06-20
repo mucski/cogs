@@ -15,7 +15,7 @@ class Roleplaying(commands.Cog):
 
 	@classmethod
 	async def img_grab(self, cmd, action, author, member):
-		img = random.choice(cmd)
+		img = random.shuffle(cmd)
 		e = discord.Embed()
 		e.set_image(url=img)
 		if member:
