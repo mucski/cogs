@@ -1,7 +1,6 @@
 import discord
 from redbot.core import commands
-from .randomstuff import kisslist, slaplist, punchlist
-from .randomstuff import cuddlelist, sadlist, patlist, huglist
+from .randomstuff import kisslist, slaplist, punchlist, cuddlelist, sadlist, patlist, huglist, licklist, bitelist, middlefingerlist, twerklist, dancelist, crylist, meowlist, rawrlist, angrylist, shylist, blushlist
 import random
 
 
@@ -62,4 +61,70 @@ class Roleplaying(commands.Cog):
     async def sad(self, ctx, member: discord.Member = None):
         author = ctx.author
         embed = await self.img_grab(sadlist, "is sad", author, member)
+        await ctx.send(embed=embed)
+		
+	@commands.command()
+    async def lick(self, ctx, member: discord.Member = None):
+        author = ctx.author
+        embed = await self.img_grab(licklist, "licks", author, member)
+        await ctx.send(embed=embed)
+		
+	@commands.command()
+    async def bite(self, ctx, member: discord.Member = None):
+        author = ctx.author
+        embed = await self.img_grab(bitelist, "bites", author, member)
+        await ctx.send(embed=embed)
+		
+	@commands.command()
+    async def middlefinger(self, ctx, member: discord.Member = None):
+        author = ctx.author
+        embed = await self.img_grab(middlefingerlist, "flips off", author, member)
+        await ctx.send(embed=embed)
+		
+	@commands.command()
+    async def twerk(self, ctx, member: discord.Member = None):
+        author = ctx.author
+        embed = await self.img_grab(twerklist, "twerks on", author, member)
+        await ctx.send(embed=embed)
+		
+	@commands.command()
+    async def dance(self, ctx, member: discord.Member = None):
+        author = ctx.author
+        embed = await self.img_grab(dancelist, "dances with", author, member)
+        await ctx.send(embed=embed)
+		
+	@commands.command()
+    async def cry(self, ctx, member: discord.Member = None):
+        author = ctx.author
+        embed = await self.img_grab(crylist, "cries", author, member)
+        await ctx.send(embed=embed)
+		
+	@commands.command()
+    async def meow(self, ctx, member: discord.Member = None):
+        author = ctx.author
+        embed = await self.img_grab(meowlist, "meows", author, member)
+        await ctx.send(embed=embed)
+		
+	@commands.command()
+    async def rawr(self, ctx, member: discord.Member = None):
+        author = ctx.author
+        embed = await self.img_grab(rawrlist, "rawrs", author, member)
+        await ctx.send(embed=embed)
+		
+	@commands.command()
+    async def angry(self, ctx, member: discord.Member = None):
+        author = ctx.author
+        embed = await self.img_grab(angrylist, "is angry", author, member)
+        await ctx.send(embed=embed)
+		
+	@commands.command()
+    async def shy(self, ctx, member: discord.Member = None):
+        author = ctx.author
+        embed = await self.img_grab(shylist, "is shy", author, member)
+        await ctx.send(embed=embed)
+		
+	@commands.command()
+    async def blush(self, ctx, member: discord.Member = None):
+        author = ctx.author
+        embed = await self.img_grab(blushlist, "blushes", author, member)
         await ctx.send(embed=embed)
