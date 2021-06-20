@@ -38,7 +38,7 @@ class Roleplaying(commands.Cog):
         author = ctx.author
         embed = await self.img_grab(cuddlelist, "cuddles", author, member)
         await ctx.send(embed=embed)
-
+        
     @commands.command()
     async def hug(self, ctx, member: discord.Member = None):
         author = ctx.author
