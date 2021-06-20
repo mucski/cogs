@@ -81,7 +81,7 @@ bitelist = [
     "https://media1.tenor.com/images/0e4006a2c76ce0a67f463d07296dad58/tenor.gif",
 ]
 
-middlefingerlist [
+middlefingerlist = [
     "https://media1.tenor.com/images/5df68dcc43fe1d1906269476bab6e53a/tenor.gif",
     "https://media1.tenor.com/images/562721e020c8c8bf348553603040b11b/tenor.gif",
     "https://media1.tenor.com/images/f0025ce6eb81627ed1aba11ff195b893/tenor.gif",
@@ -91,7 +91,7 @@ middlefingerlist [
     "https://media1.tenor.com/images/4564cc81a034b526dab2e0bbe8892779/tenor.gif",
 ]
 
-twerklist [
+twerklist = [
     "https://media1.tenor.com/images/6e05d36c9c0a846f4c31c9e8f51baa41/tenor.gif",
     "https://media1.tenor.com/images/139a374f7a5cd8d9a4b697fc8de57f07/tenor.gif",
     "https://media1.tenor.com/images/83a30fb41512af975645c6d6ff61aabe/tenor.gif",
@@ -157,7 +157,7 @@ angrylist = [
 	"https://media1.tenor.com/images/05bcd47e2540b6f055aa6837e70650f5/tenor.gif",
 ]
 
-shylist [
+shylist = [
     "https://media1.tenor.com/images/0d84880342a1ac0c40f1f67caaceeee7/tenor.gif",
 	"https://media1.tenor.com/images/aae072f610517a235786db733c07c38b/tenor.gif",
 	"https://media1.tenor.com/images/b7b6ed8715dc9af4a449556fde6f1b12/tenor.gif",
@@ -169,7 +169,7 @@ shylist [
 	"https://media1.tenor.com/images/6d829802af3d4cea31d7e8a2b45f6474/tenor.gif",
 ]
 
-blushlist [
+blushlist = [
 	"https://media1.tenor.com/images/0cca08a1809076586c912020062f2d6c/tenor.gif",
 	"https://media1.tenor.com/images/8fa23373a85e831e71eedd9be697ad36/tenor.gif",
 	"https://media1.tenor.com/images/8b3a0c35393978847697a0bd1625a562/tenor.gif",
