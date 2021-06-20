@@ -10,9 +10,9 @@ class Roleplaying(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
 
-    @commands.command()
-    async def kiss(self, ctx, member: discord.Member = None):
-        img = random.choice(kisslist)
+    @classmethod
+    async def img_grab(self, cmd, author, member):
+        img = random.choice(f"{cmd}list")
         e = discord.Embed()
         e.set_image(url=img)
         e.set_author(name=f"{ctx.author.display_name} kisses:",
@@ -21,7 +21,12 @@ class Roleplaying(commands.Cog):
             e.set_footer(text="the air.")
         else:
             e.set_footer(text=member.display_name)
-        await ctx.send(embed=e)
+        return ctx.send(embed=e)
+
+    @commands.command()
+    async def kiss(self, ctx, member: discord.Member = None):
+        author = ctx.author.display_name
+        await self.img_grab("kiss", author, member)
 
     @commands.command()
     async def punch(self, ctx, member: discord.Member = None):
