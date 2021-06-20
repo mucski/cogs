@@ -17,7 +17,7 @@ class Roleplaying(commands.Cog):
         e.set_image(url=img)
         e.set_author(name=f"{author.display_name} {action}:", icon_url=(author.avatar_url))
         if member is None:
-            e.set_footer(text="the air.")
+            e.set_footer(text="")
         else:
             e.set_footer(text=member.display_name)
         return e
