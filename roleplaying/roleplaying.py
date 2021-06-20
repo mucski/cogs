@@ -18,7 +18,7 @@ class Roleplaying(commands.Cog):
         if member:
             member = member.mention
         else:
-            member = "no one."
+            member = ""
         e.description=f"{author.mention} {action} {member}"
         return e
 
