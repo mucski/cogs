@@ -21,10 +21,6 @@ class Roleplaying(commands.Cog):
 	    if img not in tab:
 		    e.set_image(url=img)
 		    tab.append(img)
-		if member:
-			member = member.mention
-		else:
-			member = "djejjf"
 		e.description=f"{author.mention} {action} {member}"
 		return e
 
