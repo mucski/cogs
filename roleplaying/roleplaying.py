@@ -15,10 +15,12 @@ class Roleplaying(commands.Cog):
 
 	@classmethod
 	async def img_grab(self, cmd, action, author, member):
-		shuffled = random.shuffle(cmd)
-		img = random.choice(shuffled)
+	    tab = []
 		e = discord.Embed()
-		e.set_image(url=img)
+	    img = random.choice(cmd)
+	    if img not in tab:
+		    e.set_image(url=img)
+	        tab.append(img)
 		if member:
 			member = member.mention
 		else:
