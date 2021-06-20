@@ -19,7 +19,7 @@ class Roleplaying(commands.Cog):
             member = member.mention
         else:
             member = "no one."
-        e.set_author(name=f"Roleplaying", icon_url=(author.avatar_url))
+        e.set_author(icon_url=(author.avatar_url))
         e.description=f"{author.mention} {action} {member}"
         return e
 
