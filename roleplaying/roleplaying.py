@@ -15,7 +15,11 @@ class Roleplaying(commands.Cog):
         img = random.choice(cmd)
         e = discord.Embed()
         e.set_image(url=img)
-        e.set_author(name=f"{author.display_name} {action}: {member}", icon_url=(author.avatar_url))
+        if member:
+            member = member.display_name
+        else:
+            member = "no one."
+        e.set_author(name=f"{author.display_name} {action} {member}", icon_url=(author.avatar_url))
         return e
 
     @commands.command()
