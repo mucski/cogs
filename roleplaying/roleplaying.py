@@ -14,7 +14,7 @@ class Roleplaying(commands.Cog):
     async def img_grab(self, cmd, author, member):
         img = random.choice(f"{cmd}list")
         e = discord.Embed()
-        e.set_image(url=img)
+        #e.set_image(url=img)
         e.set_author(name=f"{author.display_name} kisses:", icon_url=(author.avatar_url))
         if member is None:
             e.set_footer(text="the air.")
@@ -26,7 +26,7 @@ class Roleplaying(commands.Cog):
     async def kiss(self, ctx, member: discord.Member = None):
         author = ctx.author
         embed = await self.img_grab("kiss", author, member)
-        await ctx.send(embed)
+        await ctx.send(embed=embed)
 
     @commands.command()
     async def punch(self, ctx, member: discord.Member = None):
