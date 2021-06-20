@@ -20,7 +20,7 @@ class Roleplaying(commands.Cog):
 	    img = random.choice(cmd)
 	    if img not in tab:
 		    e.set_image(url=img)
-	        tab.append(img)
+		    tab.append(img)
 		if member:
 			member = member.mention
 		else:
