@@ -79,6 +79,16 @@ bitelist = [
     "https://media1.tenor.com/images/ebc0cf14de0e77473a3fc00e60a2a9d3/tenor.gif",
     "https://media1.tenor.com/images/6dd67bd831780c4a754cb33697cddcb6/tenor.gif",
     "https://media1.tenor.com/images/0e4006a2c76ce0a67f463d07296dad58/tenor.gif",
+    "https://cdn.discordapp.com/attachments/855197640153104424/856126929232068608/2.gif",
+    "https://cdn.discordapp.com/attachments/855197640153104424/856126973780557844/1.gif",
+    "https://cdn.discordapp.com/attachments/855197640153104424/856127051362467840/8.gif",
+    "https://cdn.discordapp.com/attachments/855197640153104424/856127184896393236/7.webp",
+    "https://cdn.discordapp.com/attachments/855197640153104424/856127214713176084/3.gif",
+    "https://cdn.discordapp.com/attachments/855197640153104424/856127262834819072/4.gif",
+    "https://cdn.discordapp.com/attachments/855197640153104424/856127309757022248/5.gif",
+    "https://cdn.discordapp.com/attachments/855197640153104424/856127340659736606/9.gif",
+    "https://cdn.discordapp.com/attachments/855197640153104424/856127398877986816/6.gif",
+
 ]
 
 middlefingerlist = [
