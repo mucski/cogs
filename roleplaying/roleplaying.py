@@ -18,13 +18,13 @@ class Roleplaying(commands.Cog):
 	async def img_grab(self, cmd, action, author, member):
 		e = discord.Embed()
 		img = random.choice(cmd)
-		if img not in tab:
+		if img not in self.tab:
 		    e.set_image(url=img)
 		    self.tab.append(img)
 		if member:
 			member = member.mention
 		else:
-			member = "sex"
+			member = ""
 		e.description=f"{author.mention} {action} {member}"
 		return e
 
