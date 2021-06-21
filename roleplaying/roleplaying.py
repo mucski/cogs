@@ -12,11 +12,11 @@ class Roleplaying(commands.Cog):
 	"""Simple roleplaying cog by mucski"""
 	def __init__(self, bot):
 		self.bot = bot
-		self.tab = []
-
+		
+		
 	@classmethod
 	async def img_grab(self, cmd, action, author, member):
-        tab = self.tab
+	    tab = []
 		e = discord.Embed()
 		img = random.choice(cmd)
 		if img not in tab:
