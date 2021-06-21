@@ -12,7 +12,7 @@ class Roleplaying(commands.Cog):
 	"""Simple roleplaying cog by mucski"""
 	def __init__(self, bot):
 		self.bot = bot
-        self.tab = []
+		self.tab = []
 
 	@classmethod
 	async def img_grab(self, cmd, action, author, member):
@@ -24,7 +24,7 @@ class Roleplaying(commands.Cog):
 		if member:
 			member = member.mention
 		else:
-			member = ""
+			member = "sex"
 		e.description=f"{author.mention} {action} {member}"
 		return e
 
