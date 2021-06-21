@@ -16,7 +16,7 @@ class Roleplaying(commands.Cog):
 
 	@classmethod
 	async def img_grab(self, cmd, action, author, member):
-	    tab = self.tab
+        tab = self.tab
 		e = discord.Embed()
 		img = random.choice(cmd)
 		if img not in tab:
