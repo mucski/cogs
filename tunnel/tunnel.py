@@ -20,9 +20,6 @@ class Tunnel(commands.Cog):
 	    channel1 = 779860372190396447
 	    channel2 = 830384640568066069
 
-	    def check(msg):
-		    return msg.channel.id in (channel1, channel2)
-
-		msg = await bot.wait_for("message", check=check)
+	    msg = await bot.wait_for("message", check=lambda msg: msg.channel.id in (channel1, channel2))
 
 		await msg.channel.send(msg.content)
