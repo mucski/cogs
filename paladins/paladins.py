@@ -12,6 +12,7 @@ import math
 from tabulate import tabulate
 from collections import Counter
 
+
 class Paladins(commands.Cog):
     """Paladins stats cog by Mucski
     For a better experience you should link yout discord account to hirez

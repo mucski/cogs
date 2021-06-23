@@ -2,7 +2,8 @@ from PIL import ImageOps, ImageDraw, Image, ImageFont
 import aiohttp
 from io import BytesIO
 from redbot.core.utils.chat_formatting import humanize_number
-import math
+
+
 
 class helper:
     
@@ -36,17 +37,17 @@ class helper:
 
     @classmethod
     async def statsimage(cls, champicon, rankicon, stats, index):
-        #crop size
+        # crop size
         shrink = 140
-        #vertical
+        # vertical
         W, H = (4620, 232)
-        #padding or margin size
+         #padding or margin size
         padding = 10
-        #middle
+        # middle
         mid = int((H - 120) / 2)
-        #image background color odd and even
+        # image background color odd and even
         img_color = (14, 34, 43) if index % 2 == 0 else (15, 40, 48)
-        #text fill size )
+        # text fill size )
         fill = (255, 255, 255)
         
         orange = (252, 186, 3)
@@ -66,45 +67,45 @@ class helper:
         else:
             color = fill
         
-        #new image object
+        # new image object
         img = Image.new("RGBA", (W, H), color = img_color)
-        #champion icon
+        # champion icon
         img.paste(champicon, (padding, padding))
-        #rank icon
+        # rank icon
         img.paste(rankicon, (1526, mid), mask = rankicon)
-        #make the image drawable
+        # make the image drawable
         draw = ImageDraw.Draw(img)
-        #normal font
+        # normal font
         fnt = ImageFont.truetype("root/mucski/stuff/arial.ttf", 80)
-        #bold font
+        # bold font
         fntbld = ImageFont.truetype("root/mucski/stuff/arialbd.ttf", 80)
         smallfnt = ImageFont.truetype("root/mucski/stuff/arial.ttf", 60)
         
         if stats[0] == "":
             stats[0] = "?????????"
             
-        #player name and level
+        # player name and level
         draw.text((512 + padding * 4, mid - 30), str(stats[0]), font=fntbld, fill=color)
         draw.text((512 + padding * 4, mid + 60), str(stats[1]), font=smallfnt, fill=fill)
         
-        #credits earned
+        # credits earned
         draw.text((1736, mid), humanize_number(stats[2]), font=fnt, fill=fill)
-        #kda
+        # kda
         draw.text((2036, mid), stats[3], font=fnt, fill=(224, 197, 135))
-        #dmg done
+        # dmg done
         draw.text((2436, mid), humanize_number(stats[4]), font=fnt, fill=fill)
-        #dmg taken
+        # dmg taken
         draw.text((2826, mid), humanize_number(stats[5]), font=fnt, fill=fill)
-        #objective
+        # objective
         draw.text((3226, mid), humanize_number(stats[6]), font=fnt, fill=fill)
-        #shielding
+        # shielding
         draw.text((3456, mid), humanize_number(stats[7]), font=fnt, fill=fill)
-        #healing
+        # healing
         draw.text((3856, mid), humanize_number(stats[8]), font=fnt, fill=fill)
-        #self healing
+        # self healing
         draw.text((4256, mid), humanize_number(stats[11]), font=fnt, fill=fill)
-        #kda2
-        #draw.text((4636, mid), "{:.2f}".format(stats[12]), font=fnt, fill=fill)
+        # kda2
+        # draw.text((4636, mid), "{:.2f}".format(stats[12]), font=fnt, fill=fill)
         return img
 
     @classmethod
@@ -116,30 +117,30 @@ class helper:
         padding = 10
         fntbld = ImageFont.truetype("root/mucski/stuff/arialbd.ttf", 50)
         
-        #champion and player
+        # champion and player
         draw.text((20, 20), "CHAMPION", font = fntbld, fill = fill)
         draw.text((512 + padding * 4, 20), "PLAYER", font = fntbld, fill = fill)
         
-        #rank
+        # rank
         draw.text((1576, 20), "R", font = fntbld, fill = fill)
-        #credits
+        # credits
         draw.text((1736, 20), "CREDITS", font = fntbld, fill = fill)
-        #kda
+        # kda
         draw.text((2036, 20), "K/D/A", font = fntbld, fill = fill)
-        #damage done
+        # damage done
         draw.text((2436, 20), "DAMAGE", font = fntbld, fill = fill)
-        #damage taken
+        # damage taken
         draw.text((2826, 20), "MITIGATED", font = fntbld, fill = fill)
-        #objective
+        # objective
         draw.text((3226, 20), "OBJ", font = fntbld, fill = fill)
-        #shielding
+        # shielding
         draw.text((3456, 20), "SHIELDING", font = fntbld, fill = fill)
-        #healing
+        # healing
         draw.text((3856, 20), "HEALING", font = fntbld, fill = fill)
-        #self healing
+        # self healing
         draw.text((4256, 20), "SELF HEAL", font = fntbld, fill = fill)
-        #kda2
-        #draw.text((4636, 20), "KDA", font = fntbld, fill = fill)
+        # kda2
+        # draw.text((4636, 20), "KDA", font = fntbld, fill = fill)
         return key
 
     @classmethod
@@ -149,17 +150,17 @@ class helper:
         padding = 10
         img = Image.new("RGB", (W, H), color = (8, 21, 25))
         
-        #headers
+        # headers
         key = await helper.playerkey(W, H)
         img.paste(key, (0, 0))
         
-        #middle panel
+        # middle panel
         middle = await helper.middlepanel(match_data)
         img.paste(middle, (0, int(H / 2 - 200)))
         
-        #player data
+        # player data
         for i, (champ, champ2) in enumerate(zip(team1, team2)):
-            #team 1
+            # team 1
             resp = await helper.champimg(champ)
             try:
                 champimg = Image.open(BytesIO(resp))
@@ -168,17 +169,17 @@ class helper:
             if champimg.size < (512, 512):
                 (width, height) = (champimg.width * 2, champimg.height * 2)
                 champimg = champimg.resize((width, height))
-            #cropping champion image
+            # cropping champion image
             border = (0, crop, 0, crop)
             champimgcrop = ImageOps.crop(champimg, border)
-            #rank icon
+            # rank icon
             rankicon = Image.open(f"root/mucski/stuff/icons/ranks/{r1[i]}.png")
-            #playerstats
+            # playerstats
             playerpanel = await helper.statsimage(champimgcrop, rankicon, t1_data[i], i)
             img.paste(playerpanel, (0, 232 * i + 100))
             
             
-            #team 2
+            # team 2
             resp = await helper.champimg(champ2)
             try:
                 champimg = Image.open(BytesIO(resp))
