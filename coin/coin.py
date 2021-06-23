@@ -199,6 +199,9 @@ class Coin(commands.Cog):
 
     @coin.command()
     async def steal(self, ctx, member: discord.Member):
+        if member == ctx.author:
+            await ctx.send("Really? You want to rob yourself?!")
+            return
         self_coin = await self.db.user(ctx.author).coin()
         enemy_coin = await self.db.user(member).coin()
         emojis = ["◀", "▶", "❌"]
