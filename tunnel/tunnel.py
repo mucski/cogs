@@ -11,4 +11,4 @@ class Tunnel(commands.Cog):
 	@commands.command()
 	async def tunnel(self, ctx, *, message):
 		channel = self.bot.get_channel(779860372190396447)
-		await channel.send(f"{ctx.author.mention} sennt {message}")
+		await channel.send(f"{ctx.author.mention} sent {message}")
