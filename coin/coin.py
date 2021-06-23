@@ -75,6 +75,16 @@ class Coin(commands.Cog):
             member = ctx.author
         await self.db.user(member).dailystamp.clear()
         await ctx.send(f"Cleared daily for {member}")
+        
+    @coin.command()
+    @checks.is_owner()
+    async def setcoin(self, ctx, int: amt, member: discord.Mwmber = None):
+        if not member:
+            member = ctx.author
+        coin = await self.db.user(member).coin()
+        coin = amt
+        await self.db.user(member).coin.set(coin)
+        await ctx.send(f"Set {member}'s coin to {amt}")
 
     @coin.command()
     @commands.cooldown(1, 11, commands.BucketType.user)
