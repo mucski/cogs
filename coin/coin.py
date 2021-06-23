@@ -78,7 +78,7 @@ class Coin(commands.Cog):
         
     @coin.command()
     @checks.is_owner()
-    async def setcoin(self, ctx, int: amt, member: discord.Mwmber = None):
+    async def setcoin(self, ctx, amt: int, member: discord.Member = None):
         if not member:
             member = ctx.author
         coin = await self.db.user(member).coin()
