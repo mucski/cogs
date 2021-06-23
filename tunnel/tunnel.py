@@ -15,6 +15,9 @@ class Tunnel(commands.Cog):
 		await channel.send(f"{ctx.author} sent {message}")
 
 
-	@commands.Cog.listener(self, msg = await bot.wait_for("message", check=lambda msg: msg.channel.id in (779860372190396447, 830384640568066069)))
+	@commands.Cog.listener(self, msg: discord.Message)
 	async def on_message(self, msg):
+		#sendus
+		msg = await bot.wait_for("message", check=lambda msg: msg.channel.id in (779860372190396447, 830384640568066069))
+		#send the message.
 		await msg.channel.send(msg.content)
