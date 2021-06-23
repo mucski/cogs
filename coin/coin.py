@@ -1,7 +1,7 @@
 import discord
 import asyncio
 from redbot.core.utils.predicates import MessagePredicate, ReactionPredicate
-from redbot.core import commands, Config
+from redbot.core import commands, Config, checks
 import random
 from math import floor, ceil, isclose
 from datetime import datetime, timedelta
@@ -67,6 +67,14 @@ class Coin(commands.Cog):
         coin += 300
         await self.db.user(ctx.author).coin.set(coin)
         await ctx.send("Claimed 300 coins. Check back in 12 hours.")
+    
+    @coin.command()
+    @checks.is_owner()
+    async def resetdaily(self, ctx, member: discord.Member = None):
+        if not member:
+            member = ctz.author
+        await self.db.user(member).dailystamp.clear()
+        await ctx.send(f"Cleared daily for {member}")
 
     @coin.command()
     @commands.cooldown(1, 11, commands.BucketType.user)
@@ -130,7 +138,7 @@ class Coin(commands.Cog):
         # Build an EMBED!
         embed = discord.Embed(color=await self.bot.get_embed_color(ctx),
                               title="Roll the Dice.")
-        if you > 6 or dealer < you:
+        if you > 12 or dealer < you:
             embed.add_field(name="Dealer rolled:", value=f"🎲 {dealer}")
             embed.add_field(name="You rolled:", value=f"🎲 {you}")
             embed.description = "YOU WON!"
@@ -140,7 +148,7 @@ class Coin(commands.Cog):
             embed.add_field(name="Dealer rolled:", value=f"🎲 {dealer}")
             embed.add_field(name="You rolled:", value=f"🎲 {you}")
             embed.description = "It's a tie."
-        elif you < 6 or dealer > you:
+        elif you < 12 or dealer > you:
             embed.add_field(name="Dealer rolled:", value=f"🎲 {dealer}")
             embed.add_field(name="You rolled:", value=f"🎲 {you}")
             embed.description = "YOU LOST!"
