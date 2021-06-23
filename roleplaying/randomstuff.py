@@ -549,4 +549,6 @@ lovelist = [
 spanklist = [
 	"https://media1.tenor.com/images/ef5f040254c2fbf91232088b91fe2341/tenor.gif",
 	"https://media1.tenor.com/images/3c161bd7d6c6fba17bb3e5c5ecc8493e/tenor.gif",
+	"https://media.tenor.com/images/5f4a412ea54b902b74ae087e0b3d494e/tenor.gif",
+	"https://cdn.discordapp.com/attachments/855197640153104424/857275602577784842/AggressiveWellwornAsianpiedstarling-size_restricted.gif",
 ]
