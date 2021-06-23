@@ -308,7 +308,7 @@ class Roleplaying(commands.Cog):
 		embed = await self.img_grab(lovelist, "loves", author, member)
 		await ctx.send(embed=embed)
 
-	@commands.comand()
+	@commands.command()
 	async def spank(self, ctx, member: discord.Member = None):
 		author = ctx.author
 		embed = await self.img_grab(spanklist, "spanks", author, member)
