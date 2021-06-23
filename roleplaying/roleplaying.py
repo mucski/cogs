@@ -4,7 +4,7 @@ from .randomstuff import kisslist, slaplist, punchlist, cuddlelist, sadlist, pat
 from .randomstuff import twerklist, dancelist, crylist, meowlist, rawrlist, angrylist, shylist, blushlist, killlist, karatelist
 from .randomstuff import rektlist, hungrylist, thirstylist, happylist, greetlist, wavelist, hornylist, marrylist, praylist, curselist, smokelist
 from .randomstuff import lewdlist, sleepylist, lazylist, thinklist, richlist, poorlist, nomlist, pokelist, booplist, highfivelist
-from .randomstuff import ticklelist, bullylist, toxiclist, trashlist, popcornlist, lovelist
+from .randomstuff import ticklelist, bullylist, toxiclist, trashlist, popcornlist, lovelist, spanklist
 import random
 
 
@@ -306,4 +306,10 @@ class Roleplaying(commands.Cog):
 	async def love(self, ctx, member: discord.Member = None):
 		author = ctx.author
 		embed = await self.img_grab(lovelist, "loves", author, member)
+		await ctx.send(embed=embed)
+
+	@commands.comand()
+	async def spank(self, ctx, member: discord.Member = None):
+		author = ctx.author
+		embed = await self.img_grab(spanklist, "spanks", author, member)
 		await ctx.send(embed=embed)

@@ -545,3 +545,9 @@ lovelist = [
 	"https://media1.tenor.com/images/5ccc34d0e6f1dccba5b1c13f8539db77/tenor.gif",
 	"https://media1.tenor.com/images/bc86e2c5e1516dc78b7e77eb62aa9fde/tenor.gif",
 ]
+
+spanklist = [
+	"https://tenor.com/view/bad-beat-spank-punishment-gif-13569259",
+	"https://tenor.com/view/spank-tom-and-jerry-tom-puppy-gif-5196956",
+	"https://tenor.com/view/rosy-cheeks-bad-girl-spanking-spank-spank-you-gif-17001571",
+]
