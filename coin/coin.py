@@ -72,7 +72,7 @@ class Coin(commands.Cog):
     @checks.is_owner()
     async def resetdaily(self, ctx, member: discord.Member = None):
         if not member:
-            member = ctz.author
+            member = ctx.author
         await self.db.user(member).dailystamp.clear()
         await ctx.send(f"Cleared daily for {member}")
 
