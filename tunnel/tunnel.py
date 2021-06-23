@@ -17,9 +17,9 @@ class Tunnel(commands.Cog):
 
 	@commands.Cog.listener()
 	async def on_message(self, msg):
-	    channel1 = 779860372190396447
-	    channel2 = 830384640568066069
+		channel1 = 779860372190396447
+		channel2 = 830384640568066069
 
-	    msg = await bot.wait_for("message", check=lambda msg: msg.channel.id in (channel1, channel2))
+		msg = await bot.wait_for("message", check=lambda msg: msg.channel.id in (channel1, channel2))
 
 		await msg.channel.send(msg.content)
