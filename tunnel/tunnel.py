@@ -1,6 +1,5 @@
 import discord
 from redbot.core import commands
-from redbot.core.utils.predicates import MessagePredicate
 
 
 class Tunnel(commands.Cog):
@@ -13,5 +12,5 @@ class Tunnel(commands.Cog):
 		#	return
 		channel1 = 779860372190396447
 		#channel2 = 830384640568066069
-		channel = ctx.bot.get_channel(channel1)
+		channel = self.bot.get_channel(channel1)
 		await channel.send(msg.content)
