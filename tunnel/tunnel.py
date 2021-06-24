@@ -13,7 +13,7 @@ class Tunnel(commands.Cog):
 		#	return
 		if msg.channel.id == 779860372190396447:
 			channel = ctx.bot.get_channel(830384640568066069)
-			await channel.send(msg.content)
+			await channel.send("msg.content")
 		if msg.channel.id == 830384640568066069:
 			channel = ctx.bot.get_channel(779860372190396447)
-			await channel.send(msg.content)
+			await channel.send("Testing")
