@@ -7,8 +7,13 @@ class Tunnel(commands.Cog):
 	def __init__(self, bot):
 		self.bot = bot
 
-	@commands.command()
-	async def tunnel(self, ctx):
-		msg = await ctx.bot.wait_for("message", check=lambda msg: msg.channel.id in (779860372190396447, 830384640568066069))
-		await msg.channel.send(msg.content)
-		
+	@commands.Cog.listener()
+	async def on_message(self, *, msg):
+		if not (msg.channel.id in (779860372190396447, 830384640568066069)):
+			return
+		if msg.channel.id == 779860372190396447:
+			channel = 830384640568066069
+			await channel.send(msg)
+		if msg.channel.id == 830384640568066069:
+			channel = 779860372190396447
+			await channel.send(msg)
