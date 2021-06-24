@@ -11,9 +11,7 @@ class Tunnel(commands.Cog):
 	async def on_message(self, msg: discord.Message):
 		#if not (msg.channel.id in (779860372190396447, 830384640568066069)):
 		#	return
-		if msg.channel.id == 779860372190396447:
-			channel = ctx.bot.get_channel(830384640568066069)
-			await channel.send("msg.content")
-		if msg.channel.id == 830384640568066069:
-			channel = ctx.bot.get_channel(779860372190396447)
-			await channel.send("Testing")
+		channel1 = 779860372190396447
+		#channel2 = 830384640568066069
+		channel = ctx.bot.get_channel(channel1)
+		await channel.send(msg.content)
