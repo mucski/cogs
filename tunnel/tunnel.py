@@ -8,6 +8,7 @@ class Tunnel(commands.Cog):
 
 	@commands.Cog.listener()
 	async def on_message(self, msg: discord.Message):
+	    #gabys server channel
 		channel1 = 779860372190396447
 		# paladins with a pint channel
 		channel2 = 856512859919745034
