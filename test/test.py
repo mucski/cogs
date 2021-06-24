@@ -5,7 +5,7 @@ class Test(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
 
-    @commands.command()
+    @commands.group()
     async def test(self, ctx):
         pass
 
