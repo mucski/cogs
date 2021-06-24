@@ -11,8 +11,8 @@ class Test(commands.Cog):
         pass
 
     @test.command()
-    async def lockpick(self, ctx):
+    async def lockpick(self, ctx, number: int):
         chars = "◀▶"
-        lock_length = 10
-        lock = ''.join(random.choice(chars) for _ in range(lock_length))
+        #lock_length = 10
+        lock = ''.join(random.choice(chars) for _ in range(number))
         await ctx.send(lock)
