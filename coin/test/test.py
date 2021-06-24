@@ -2,6 +2,7 @@ from redbot.core import commands
 
 
 class Test(commands.Cog):
+    """ Mucski's test cog. """
     def __init__(self, bot):
         self.bot = bot
 
