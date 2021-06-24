@@ -1,4 +1,6 @@
+import discord
 from redbot.core import commands
+from redbot.core.utils.predicates import MessagePredicate
 
 
 class Tunnel(commands.Cog):
@@ -6,6 +8,7 @@ class Tunnel(commands.Cog):
 		self.bot = bot
 
 	@commands.command()
-	async def tunnel(self, ctx, *, msg):
-		channel = self.bot.get_channel(779860372190396447)
-		await channel.send(msg)
+	async def tunnel(self, ctx):
+		msg = await bot.wait_for("message", check=lambda msg: msg.channel.id in (779860372190396447, 830384640568066069))
+		await channel.send(msg.content)
+		
