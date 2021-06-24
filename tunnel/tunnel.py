@@ -9,6 +9,6 @@ class Tunnel(commands.Cog):
 
 	@commands.command()
 	async def tunnel(self, ctx):
-		msg = await bot.wait_for("message", check=lambda msg: msg.channel.id in (779860372190396447, 830384640568066069))
-		await channel.send(msg.content)
+		msg = await ctx.bot.wait_for("message", check=lambda msg: msg.channel.id in (779860372190396447, 830384640568066069))
+		await msg.channel.send(msg.content)
 		
