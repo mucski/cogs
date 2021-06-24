@@ -9,7 +9,7 @@ class Tunnel(commands.Cog):
 	@commands.Cog.listener()
 	async def on_message(self, msg: discord.Message):
 		channel1 = 779860372190396447
-		channel2 = 830384640568066069
+		channel2 = 856512859919745034
 		if msg.author == self.bot.user:
 			return
 		if not (msg.channel.id in (channel1, channel2)):
