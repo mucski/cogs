@@ -8,7 +8,7 @@ class Tunnel(commands.Cog):
 		self.bot = bot
 
 	@commands.Cog.listener()
-	async def on_message(self, msg):
+	async def on_message(self, msg: discord.Message):
 		#if not (msg.channel.id in (779860372190396447, 830384640568066069)):
 		#	return
 		if msg.channel.id == 779860372190396447:
