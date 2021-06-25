@@ -22,6 +22,7 @@ class Coin(commands.Cog):
         default_user = {
             "coin": 0,
             "dailystamp": 0,
+            "stealstamp": 0,
         }
         default_guild = {
             "channel": "",
@@ -199,6 +200,19 @@ class Coin(commands.Cog):
 
     @coin.command()
     async def steal(self, ctx, member: discord.Member):
+        now = datetime.utcnow()
+        stamp = await self.db.user(ctx.author).stealstamp()
+        if stamp != now:
+            stamp = datetime.fromtimestamp(stamp)
+        else:
+            stamp = now
+        future = now + timedelta(hours=2)
+        await self.db.user(ctx.author).stealstamp.set(future.timestamp())
+        if stamp > now:
+            await ctx.send(f"You need to slow down or rhe police will catch you.."
+                           f"Check back in"
+                           f"{humanize.naturaldelta(stamp - now)}")
+            return
         if member == ctx.author:
             await ctx.send("Really? You want to rob yourself?!")
             return
