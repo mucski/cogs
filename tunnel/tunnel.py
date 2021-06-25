@@ -16,7 +16,7 @@ class Tunnel(commands.Cog):
 			return
 		if msg.channel.id == channel1:
 			channel = self.bot.get_channel(channel2)
-			await channel.send(f"{msg.author}: {msg.content}")
+			await channel.send(f"**{msg.author}**: {msg.content}")
 		if msg.channel.id == channel2:
 			channel = self.bot.get_channel(channel1)
-			await channel.send(f"{msg.author}: {msg.content}")
+			await channel.send(f"**{msg.author}**: {msg.content}")
