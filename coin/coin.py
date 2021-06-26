@@ -75,7 +75,7 @@ class Coin(commands.Cog):
         if not member:
             member = ctx.author
         await self.db.user(member).dailystamp.clear()
-        await ctx.send(f"Cleared {member}'s daily cooldown timer.")
+        await ctx.send(f"Cleared {member.display_name}'s daily cooldown timer.")
         
     @coin.command()
     @checks.is_owner()
@@ -83,7 +83,7 @@ class Coin(commands.Cog):
         if not member:
             member = ctx.author
         await self.db.user(member).stealstamp.clear()
-        await ctx.send(f"Cleared {member}'s steal cooldown timer.")
+        await ctx.send(f"Cleared {member.display_name}'s steal cooldown timer.")
         
     @coin.command()
     @checks.is_owner()
@@ -93,7 +93,7 @@ class Coin(commands.Cog):
         coin = await self.db.user(member).coin()
         coin = amt
         await self.db.user(member).coin.set(coin)
-        await ctx.send(f"Set {member}'s coin to {amt}")
+        await ctx.send(f"Set {member.display_name}'s coin to {amt}")
 
     @coin.command()
     @commands.cooldown(1, 11, commands.BucketType.user)
