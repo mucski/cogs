@@ -210,7 +210,7 @@ class Coin(commands.Cog):
         await self.db.user(ctx.author).stealstamp.set(future.timestamp())
         if stamp > now:
             await ctx.send(f"You need to slow down or rhe police will catch you.."
-                           f"Check back in"
+                           f"Check back in "
                            f"{humanize.naturaldelta(stamp - now)}")
             return
         if member == ctx.author:
