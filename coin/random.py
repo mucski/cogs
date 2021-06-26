@@ -11,6 +11,7 @@ worklist = {
     "australia": "The down under. 9 letters",
     "tiktok": "Worlds cringiest social platform",
     "python": "This bot is written in?! Also a living creature",
+    "barsoom": "John Carter ended up a king here...: `B _ _ _ _ _ _`"
 }
 
 searchlist = {
