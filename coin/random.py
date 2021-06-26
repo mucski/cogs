@@ -1,6 +1,6 @@
 worklist = {
     "covid19": "It's quarantine, guess the word: `C _ _ _ _ _ _`",
-    "mucski": "The loser that created this game: `M _ _ _ _ _`"
+    "mucski": "The loser that created this game: `M _ _ _ _ _`",
     "walt disney": "Mickey Mouse was conceived by?",
     "thanos": "He is destiny. Dread it, run from it, he still arrives.",
     "subnautica": "What game was named 'Minecraft Underwater' by its fans? Hint: `S _ _ _ _ _ _ _ _ _`",
