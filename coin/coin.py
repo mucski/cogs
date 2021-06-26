@@ -208,6 +208,12 @@ class Coin(commands.Cog):
 
     @coin.command()
     async def steal(self, ctx, member: discord.Member):
+        if enemy_coin == 0:
+            await ctx.send(f"Poor {member} has nothing left to steal or he didnt even start playing yet.")
+            return
+        if member == ctx.author:
+            await ctx.send("Really? You want to rob yourself?!")
+            return
         now = datetime.utcnow()
         stamp = await self.db.user(ctx.author).stealstamp()
         if stamp != now:
@@ -221,14 +227,8 @@ class Coin(commands.Cog):
                            f"Check back in "
                            f"{humanize.naturaldelta(stamp - now)}")
             return
-        if member == ctx.author:
-            await ctx.send("Really? You want to rob yourself?!")
-            return
         self_coin = await self.db.user(ctx.author).coin()
         enemy_coin = await self.db.user(member).coin()
-        if enemy_coin == 0:
-            await ctx.send(f"Poor {member} has nothing left to steal or he didnt even start playing yet.")
-            return
         emojis = ["◀", "▶", "❌"]
         chars = "◀▶◀▶◀▶◀▶◀▶"
         var = 0
