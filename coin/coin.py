@@ -218,6 +218,9 @@ class Coin(commands.Cog):
             return
         self_coin = await self.db.user(ctx.author).coin()
         enemy_coin = await self.db.user(member).coin()
+        if enemy_coin == 0:
+            await ctx.send(f"Poor {member} has nothing left to steal or he didnt even start playing yet.")
+            return
         emojis = ["◀", "▶", "❌"]
         chars = "◀▶◀▶◀▶◀▶◀▶"
         var = 0
