@@ -211,7 +211,7 @@ class Coin(commands.Cog):
         self_coin = await self.db.user(ctx.author).coin()
         enemy_coin = await self.db.user(member).coin()
         if enemy_coin == 0:
-            await ctx.send(f"Poor {member} has nothing left to steal or he didnt even start playing yet.")
+            await ctx.send(f"Poor {member.display_name} has nothing left to steal or he didnt even start playing yet.")
             return
         if member == ctx.author:
             await ctx.send("Really? You want to rob yourself?!")
