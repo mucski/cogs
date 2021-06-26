@@ -75,7 +75,15 @@ class Coin(commands.Cog):
         if not member:
             member = ctx.author
         await self.db.user(member).dailystamp.clear()
-        await ctx.send(f"Cleared daily for {member}")
+        await ctx.send(f"Cleared {member}'s daily cooldown timer.")
+        
+    @coin.command()
+    @checks.is_owner()
+    async def resetsteal(self, ctx, member: discord.Member = None):
+        if not member:
+            member = ctx.author
+        await self.db.user(member).stealstamp.clear()
+        await ctx.send(f"Cleared {member}'s steal cooldown timer.")
         
     @coin.command()
     @checks.is_owner()
