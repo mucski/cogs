@@ -1,24 +1,16 @@
-import random
-
-def shuffle_word(word):
-    word = list(word)
-    random.shuffle(word)
-    return ''.join(word)
-
 worklist = {
     "covid19": "It's quarantine, guess the word: `C _ _ _ _ _ _`",
-    "mucski": f"The loser that created this game: `{shuffle_word('mucski')}`",
+    "mucski": "The loser that created this game: `M _ _ _ _ _`"
     "walt disney": "Mickey Mouse was conceived by?",
     "thanos": "He is destiny. Dread it, run from it, he still arrives.",
-    "captain marvel": f"A female, strong enough to defeat Thanos himself. `{shuffle_word('captain marvel')}`",
-    "subscribe": f"Every YOUTUBER says it sooner or later: `{shuffle_word('subscribe')}`",
-    "hit the bell icon": f"Another thing every YOUTUBER says: `{shuffle_word('hit the bell icon')}`",
-    "jacksepticeye": f"Green Irish Potato: `{shuffle_word('jacksepticeye')}`",
-    "subnautica": f"What game was named 'Minecraft Underwater' by its fans? Hint: `S _ _ _ _ _ _ _ _ _`",
-    "no man's sky": f"What game was named 'Minecraft in Space' by its fans? Hint: `N_ _ _ _ _ _ _ _`",
-    "lab": f"Dog breed that has a scientific name, 3 letters",
-    "paris": f"Tour Eifel is located here .....",
-    "black widow": f"Do you know the name of a marvel character that bears the name of a spider?",
+    "subnautica": "What game was named 'Minecraft Underwater' by its fans? Hint: `S _ _ _ _ _ _ _ _ _`",
+    "no man's sky": "What game was named 'Minecraft in Space' by its fans? Hint: `N _  _ _ _ _  _ _ _`",
+    "lab": "Dog breed that has a scientific name, 3 letters",
+    "paris": "Tour Eifel is located here .....",
+    "black widow": "Do you know the name of a marvel character that bears the name of a spider?",
+    "australia": "The down under. 9 letters",
+    "tiktok": "Worlds cringiest social platform",
+    "python": "This bot is written in?! Also a living creature",
 }
 
 searchlist = {
