@@ -87,6 +87,7 @@ bitelist = [
 	"https://cdn.discordapp.com/attachments/855197640153104424/856127309757022248/5.gif",
 	"https://cdn.discordapp.com/attachments/855197640153104424/856127340659736606/9.gif",
 	"https://cdn.discordapp.com/attachments/855197640153104424/856127398877986816/6.gif",
+	"https://media.discordapp.net/attachments/779860372190396447/859212294001131520/QuarrelsomeIdleCottonmouth-max-1mb.gif",
 
 ]
 
