@@ -96,9 +96,9 @@ class SFX(commands.Cog):
         await ctx.send(f"TTS speech speed has been set to {speed}")
 
     async def vc_speaker(self):
-    while True:
-        item = await self.vc_queue.get()
-        # process item to say it
+        while True:
+            item = await self.vc_queue.get()
+            # process item to say it
 
     #@commands.command()
     @commands.Cog.listener()
