@@ -32,7 +32,7 @@ class Roleplaying(commands.Cog):
 		if member:
 		    if member.id == 855197640153104424:
 		        member = None
-		        embed = await self.img_grab(kisslist, "kisses Mucski's ass", author, member)
+		        embed = await self.img_grab(kisslist, "kisses **Mucski**'s ass", author, member)
 		        await ctx.send(embed=embed)
 		        return
 		embed = await self.img_grab(kisslist, "kisses", author, member)
