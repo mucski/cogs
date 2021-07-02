@@ -29,6 +29,7 @@ class Roleplaying(commands.Cog):
 	@commands.command()
 	async def kiss(self, ctx, member: discord.Member = None):
 		author = ctx.author
+		#just a little prank for whoever tries to kiss kunnie ... except me
 		if member:
 		    if member.id == 855197640153104424 and author.id != 765905040077750292:
 		        member = None
