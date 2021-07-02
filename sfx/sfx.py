@@ -104,7 +104,6 @@ class SFX(commands.Cog):
     #@commands.command()
     @commands.Cog.listener()
     async def on_message(self, msg: discord.Message):
-        await self.vc_queue.put(item)
         channel = await self.db.guild(msg.guild).channel()
         if msg.channel.id != channel:
             return
@@ -131,7 +130,6 @@ class SFX(commands.Cog):
             text = re.sub(r'<a?:(\w+):\d+?>', r'\1', msg.clean_content)
             text = re.sub(r'https?://[\w-]+(.[\w-]+)+\S*', '', text)
             if with_nick == "on":
-
                 sentence = f"{msg.author.name} says {text}"
             elif with_nick == "off":
                 sentence = f"{text}"
