@@ -29,6 +29,11 @@ class Roleplaying(commands.Cog):
 	@commands.command()
 	async def kiss(self, ctx, member: discord.Member = None):
 		author = ctx.author
+		if member.id == 855197640153104424:
+		    member = None
+            embed = await self.img_grab(kisslist, "kisses Mucski's ass", author, member)
+            await ctx.send(embed=embed)
+            return
 		embed = await self.img_grab(kisslist, "kisses", author, member)
 		await ctx.send(embed=embed)
 
