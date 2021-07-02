@@ -4,6 +4,7 @@ from io import BytesIO
 import discord
 from gtts import gTTS
 import re
+import asyncio
 
 
 class SFX(commands.Cog):
