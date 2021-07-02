@@ -159,6 +159,8 @@ class helper:
         middle = await helper.middlepanel(match_data)
         img.paste(middle, (0, int(H / 2 - 200)))
         # player data
+        team_data = t1_data + t2_data
+        rank_data = r1 + r2
         for team_num, team in enumerate((team1, team2), start=1):
             if team_num == 1:
                 offset = 100
@@ -178,9 +180,9 @@ class helper:
                 border = (0, crop, 0, crop)
                 champimgcrop = ImageOps.crop(champimg, border)
                 # rank icon
-                rankicon = Image.open(f"root/mucski/stuff/icons/ranks/{r1[i]}.png")
+                rankicon = Image.open(f"root/mucski/stuff/icons/ranks/{rank_data[i]}.png")
                 # playerstats
-                playerpanel = await helper.statsimage(champimgcrop, rankicon, t1_data[i], i)
+                playerpanel = await helper.statsimage(champimgcrop, rankicon, team_data[i], i)
                 img.paste(playerpanel, (0, 232 * i + offset))
         #done, reisizing for speed
         historyimg = img.resize((int(W / 2), int(H / 2)), Image.ANTIALIAS)
