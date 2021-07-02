@@ -158,46 +158,30 @@ class helper:
         # middle panel
         middle = await helper.middlepanel(match_data)
         img.paste(middle, (0, int(H / 2 - 200)))
-        
         # player data
-        for i, (champ, champ2) in enumerate(zip_longest(team1, team2)):
-            # team 1
-            resp = await helper.champimg(champ)
-            try:
-                champimg = Image.open(BytesIO(resp))
-            except TypeError:
-                champimg = Image.open("root/mucski/stuff/icons/error.jpg")
-            if champimg.size < (512, 512):
-                (width, height) = (champimg.width * 2, champimg.height * 2)
-                champimg = champimg.resize((width, height))
-            # cropping champion image
-            border = (0, crop, 0, crop)
-            champimgcrop = ImageOps.crop(champimg, border)
-            # rank icon
-            rankicon = Image.open(f"root/mucski/stuff/icons/ranks/{r1[i]}.png")
-            # playerstats
-            playerpanel = await helper.statsimage(champimgcrop, rankicon, t1_data[i], i)
-            img.paste(playerpanel, (0, 232 * i + 100))
-            
-            
-            # team 2
-            resp = await helper.champimg(champ2)
-            try:
-                champimg = Image.open(BytesIO(resp))
-            except TypeError:
-                champimg = Image.open("root/mucski/stuff/icons/error.jpg")
-            if champimg.size < (512, 512):
-                (width, height) = (champimg.width * 2, champimg.height * 2)
-                champimg = champimg.resize((width, height))
-                
-            #cropping champion image
-            border = (0, crop, 0, crop)
-            champimgcrop = ImageOps.crop(champimg, border)
-            #rank icon
-            rankicon = Image.open(f"root/mucski/stuff/icons/ranks/{r2[i]}.png")
-            #playerstats
-            playerpanel = await helper.statsimage(champimgcrop, rankicon, t2_data[i], i)
-            img.paste(playerpanel, (0, 232 * i + 1772))
+        for team_num, team in enumerate((team1, team2), start=1):
+            if team_num == 1:
+                offset = 100
+            else:
+                offset = 1772
+            for i, champ in enumerate(team):
+                # team 1
+                resp = await helper.champimg(champ)
+                try:
+                    champimg = Image.open(BytesIO(resp))
+                except TypeError:
+                    champimg = Image.open("root/mucski/stuff/icons/error.jpg")
+                if champimg.size < (512, 512):
+                    (width, height) = (champimg.width * 2, champimg.height * 2)
+                    champimg = champimg.resize((width, height))
+                # cropping champion image
+                border = (0, crop, 0, crop)
+                champimgcrop = ImageOps.crop(champimg, border)
+                # rank icon
+                rankicon = Image.open(f"root/mucski/stuff/icons/ranks/{r1[i]}.png")
+                # playerstats
+                playerpanel = await helper.statsimage(champimgcrop, rankicon, t1_data[i], i)
+                img.paste(playerpanel, (0, 232 * i + offset))
         #done, reisizing for speed
         historyimg = img.resize((int(W / 2), int(H / 2)), Image.ANTIALIAS)
         #create the buffer
