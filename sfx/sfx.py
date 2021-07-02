@@ -19,6 +19,7 @@ class SFX(commands.Cog):
         }
         self.db.register_guild(**default_guild)
         self._locks = []
+        self.vc_task = asyncio.create_task(self.vc_speaker())
 
     @commands.command()
     async def connect(self, ctx, channel: discord.VoiceChannel=None):
@@ -93,10 +94,16 @@ class SFX(commands.Cog):
             return
         await self.db.guild(ctx.guild).speed.set(speed)
         await ctx.send(f"TTS speech speed has been set to {speed}")
-    
+
+    async def vc_speaker(self):
+    while True:
+        item = await self.vc_queue.get()
+        # process item to say it
+
     #@commands.command()
     @commands.Cog.listener()
     async def on_message(self, msg: discord.Message):
+        await self.vc_queue.put(item)
         channel = await self.db.guild(msg.guild).channel()
         if msg.channel.id != channel:
             return
@@ -123,6 +130,7 @@ class SFX(commands.Cog):
             text = re.sub(r'<a?:(\w+):\d+?>', r'\1', msg.clean_content)
             text = re.sub(r'https?://[\w-]+(.[\w-]+)+\S*', '', text)
             if with_nick == "on":
+
                 sentence = f"{msg.author.name} says {text}"
             elif with_nick == "off":
                 sentence = f"{text}"
@@ -153,4 +161,7 @@ class SFX(commands.Cog):
             return
         await vc.disconnect()
         await ctx.send("No one is talking, so bye 👋")
+
+    def cog_unload(self):
+        self.vc_task.cancel()
         
