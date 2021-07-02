@@ -31,7 +31,7 @@ class Roleplaying(commands.Cog):
 		author = ctx.author
 		#just a little prank for whoever tries to kiss kunnie ... except me
 		if member:
-		    if member.id == 855197640153104424 and author.id != 765905040077750292:
+		    if member.id == 480157789482778637 and author.id != 765905040077750292:
 		        member = None
 		        embed = await self.img_grab(kisslist, "kisses **Mucski**'s ass", author, member)
 		        await ctx.send(embed=embed)
