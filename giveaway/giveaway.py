@@ -1,167 +1,141 @@
-from redbot.core import commands, checks, Config
-from .custom import FFmpegPCMAudio
-from io import BytesIO
 import discord
-from gtts import gTTS
-import re
+from redbot.core import commands, Config
+import random
+import asyncio
+from datetime import datetime, timedelta
+from redbot.core.utils.chat_formatting import humanize_timedelta
+from .taskhelper import TaskHelper
 
 
-class SFX(commands.Cog):
+class Giveaway(TaskHelper, commands.Cog):
+    """Simple Giveaway Cog by Mucski"""
     def __init__(self, bot):
         self.bot = bot
-        self.db = Config.get_conf(self, 828282859272, force_registration=True)
-        default_guild = {
-            "channel": "",
-            "lang": "en",
-            "tld": "com",
-            "with_nick": "on",
-            "speed": 1
-        }
-        self.db.register_guild(**default_guild)
-        self._locks = []
-        self.vc_task = asyncio.create_task(self.vc_speaker())
+        self.conf = Config.get_conf(self, 975667633)
+        defaults = {"channel": 0, "msg": 0, "stamp": 0, "running": False}
+        self.conf.register_guild(**defaults)
+        self.load_check = self.bot.loop.create_task(self._worker())
+        TaskHelper.__init__(self)
 
-    @commands.command()
-    async def connect(self, ctx, channel: discord.VoiceChannel=None):
+    @commands.group(invoke_without_command=True)
+    async def gw(self, ctx):
+        await ctx.send("Create giveaways with ``.gw start``"
+                       ", stop giveaways with ``.gw stop``")
+
+    @gw.command()
+    async def start(self, ctx, time: int,
+                    channel: discord.TextChannel = None, *, text=None):
+        if await self.conf.guild(ctx.guild).running() is True:
+            await ctx.send("There is already a giveaway running.")
+            return
+        if channel is None:
+            channel = ctx.channel
+        if text is None:
+            text = "A giveaway. React bellow to enter!"
+        now = datetime.utcnow()
+        timer = timedelta(minutes=time)
+        future = timer + now
+        future = future.timestamp()
+        temp_stamp = datetime.fromtimestamp(future)
+        remaining_timedelta = temp_stamp - now
+        remaining = remaining_timedelta.total_seconds()
+        # Embed Builder
+        embed = discord.Embed(color=await self.bot.get_embed_color(ctx))
+        embed.set_author(name=f"{self.bot.user.name}'s giveaway.",
+                         icon_url=self.bot.user.avatar_url)
+        embed.description = text
+        embed.set_footer(
+            text=f"Lasts for:"
+            f"{humanize_timedelta(timedelta=remaining_timedelta)}"
+        )
+        msg = await channel.send(embed=embed)
+        await msg.add_reaction("💎")
+        channel = channel.id
+        msg = msg.id
+        await self.conf.guild(ctx.guild).channel.set(channel)
+        await self.conf.guild(ctx.guild).msg.set(msg)
+        await self.conf.guild(ctx.guild).stamp.set(future)
+        await self.conf.guild(ctx.guild).running.set(True)
+        self.schedule_task(self._timer(remaining))
+
+    @gw.command()
+    async def end(self, ctx):
+        msg = await self.conf.guild(ctx.guild).msg()
+        if not msg:
+            await ctx.send("Nothing to end")
+            return
+        channel = await self.conf.guild(ctx.guild).channel()
         if not channel:
-            try:
-                channel = ctx.author.voice.channel
-            except AttributeError:
-                await ctx.send('No voice channel to join. Please either specify a valid voice channel or join one.')
-                return
-        vc = ctx.voice_client
-        if vc:
-            if vc.channel.id == channel.id:
-                return
-            try:
-                await vc.move_to(channel)
-            except asyncio.TimeoutError:
-                await ctx.send(f'Moving to channel: <{channel}> timed out.')
-                return
+            await ctx.send("Nothing to end")
+            return
+        await self.conf.guild(ctx.guild).stamp.clear()
+        await self._worker()
+        self.end_task()
+        await self.conf.guild(ctx.guild).running.set(False)
+
+    @gw.command()
+    async def reroll(self, ctx):
+        channel = await self.conf.guild(ctx.guild).channel()
+        channel = self.bot.get_channel(channel)
+        msg = await self.conf.guild(ctx.guild).msg()
+        msg = await channel.fetch_message(msg)
+        users = []
+        async for user in msg.reactions[0].users():
+            if user == self.bot.user:
+                continue
+            users.append(user)
+        if users:
+            winner = random.choice(users)
+            await channel.send(f"The new winner is {winner.mention}")
         else:
-            try:
-                await channel.connect()
-            except asyncio.TimeoutError:
-                await ctx.send(f'Connecting to channel: <{channel}> timed out.')
-                return
-        await ctx.send(f'Connected to: **{channel}**', delete_after=20)
-        
-    @commands.command()
-    @checks.admin()
-    async def ttschannel(self, ctx, channel: discord.TextChannel):
-        await self.db.guild(ctx.guild).channel.set(channel.id)
-        await ctx.send(f"TTS channel has been set to {channel.name}")
-        
-    @commands.command()
-    @checks.admin()
-    async def ttslang(self, ctx, lang):
-        await self.db.guild(ctx.guild).lang.set(lang)
-        await ctx.send(f"TTS language set to {lang}")
-        
-    @commands.command()
-    @checks.admin()
-    async def ttstld(self, ctx, tld):
-        await self.db.guild(ctx.guild).tld.set(tld)
-        await ctx.send(f"TTS language tld set to {tld}")
-        
-    @commands.command()
-    @checks.admin()
-    async def ttsname(self, ctx, msg):
-        if msg != "on" and msg != "off":
-            await ctx.send("Please input a valid on or off sentence.")
-            return
-        await self.db.guild(ctx.guild).with_nick.set(msg)
-        await ctx.send(f"TTS name calling is set to {msg}")
-        
-    @commands.command()
-    @checks.admin()
-    async def ttscleardb(self, ctx):
-        await self.db.clear_all()
-        await ctx.send("The db has been wiped.")
-        
-    @commands.command()
-    @checks.admin()
-    async def ttsspeed(self, ctx, speed: float):
-        s = [speed]
-        if len(s) > 2:
-            await ctx.send("This command only supports a 2 number int or float.")
-            return
-        if speed < 0.5:
-            await ctx.send("Speed bellow 0.5 not supported.")
-            return
-        if speed > 2.0:
-            await ctx.send("Speed above 2.0 not supported.")
-            return
-        await self.db.guild(ctx.guild).speed.set(speed)
-        await ctx.send(f"TTS speech speed has been set to {speed}")
+            await channel.send("The winner is still no one.")
 
-    async def vc_speaker(self):
-    while True:
-        item = await self.vc_queue.get()
-        # process item to say it
+    async def _timer(self, remaining):
+        await asyncio.sleep(remaining)
+        await self._worker()
 
-    #@commands.command()
-    @commands.Cog.listener()
-    async def on_message(self, msg: discord.Message):
-        await self.vc_queue.put(item)
-        channel = await self.db.guild(msg.guild).channel()
-        if msg.channel.id != channel:
+    async def _teardown(self, channel, msg, guild):
+        if await self.conf.guild(guild).running() is False:
             return
-        if msg.author == self.bot.user:
-            return
-    
-        if msg.author in self._locks:
-            # their message being processed
-            return
-        try:
-            self._locks.append(msg.author)
-            #await msg.channel.send(msg.content)
-            vc = msg.guild.voice_client # We use it more then once, so make it an easy variable
-            if not vc:
-                # We are not currently in a voice channel
-                # Silently exit
-                # await msg.channel.send("I need to be in a voice channel to do this, please use the connect command.")
-                return
-            lang = await self.db.guild(msg.guild).lang()
-            tld = await self.db.guild(msg.guild).tld()
-            speed = await self.db.guild(msg.guild).speed()
-            # Lets prepare our text, and then save the audio file
-            with_nick = await self.db.guild(msg.guild).with_nick()
-            text = re.sub(r'<a?:(\w+):\d+?>', r'\1', msg.clean_content)
-            text = re.sub(r'https?://[\w-]+(.[\w-]+)+\S*', '', text)
-            if with_nick == "on":
+        channel = self.bot.get_channel(channel)
+        msg = await channel.fetch_message(msg)
+        users = []
+        async for user in msg.reactions[0].users():
+            if user == self.bot.user:
+                continue
+            users.append(user)
+        await self.conf.guild(guild).running.set(False)
+        # Embed Builder
+        embed = discord.Embed(color=await self.bot.get_embed_color(
+                              location=channel))
+        embed.set_author(name=f"{self.bot.user.name}'s giveaway.",
+                         icon_url=self.bot.user.avatar_url)
+        embed.description = "Giveaway finished. See bellow for winners:"
+        embed.set_footer(text="Giveaway finished.")
+        await msg.edit(embed=embed)
+        if users:
+            winner = random.choice(users)
+            await channel.send(f"The winner is {winner.mention}"
+                               ", congratulations! 🎉")
+        else:
+            await channel.send("No one even tried, how sad is that.")
 
-                sentence = f"{msg.author.name} says {text}"
-            elif with_nick == "off":
-                sentence = f"{text}"
-            fp = BytesIO()
-            tts = gTTS(text=sentence, lang=lang, tld=tld, slow=False)
-            tts.write_to_fp(fp)
-            fp.seek(0)
-            try:
-                # Lets play that mp3 file in the voice channel
-                vc.play(FFmpegPCMAudio(fp.read(), pipe = True, options=f'-filter:a "atempo={speed}" -t 00:00:20'))
-            
-                # Lets set the volume to 1
-                vc.source = discord.PCMVolumeTransformer(vc.source)
-                vc.source.volume = 1
-            #except:
-                #await msg.channel.send("Please wait for me to finish speaking.")
-            except Exception:
-                await msg.channel.send(traceback.format_exc())
-        finally:
-            self._locks.remove(msg.author)
-            
-            
-    @commands.command()
-    async def disconnect(self, ctx):
-        vc = ctx.guild.voice_client
-        if not vc:
-            await ctx.channel.send("I am not in a voice channel.")
-            return
-        await vc.disconnect()
-        await ctx.send("No one is talking, so bye 👋")
+    async def _worker(self):
+        await self.bot.wait_until_ready()
+        guilds = await self.conf.all_guilds()
+        for guild in guilds:
+            guild = self.bot.get_guild(guild)
+            now = datetime.utcnow()
+            stamp = await self.conf.guild(guild).stamp()
+            stamp = datetime.fromtimestamp(stamp)
+            remaining_timedelta = stamp - now
+            remaining = remaining_timedelta.total_seconds()
+            msg = await self.conf.guild(guild).msg()
+            channel = await self.conf.guild(guild).channel()
+            if stamp < now:
+                await self._teardown(channel, msg, guild)
+            else:
+                self.schedule_task(self._timer(remaining))
 
     def cog_unload(self):
-        self.vc_task.cancel()
-        
+        self.load_check.cancel()
