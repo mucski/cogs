@@ -32,6 +32,7 @@ class SFX(commands.Cog):
         self.db.register_guild(**default_guild)
         self.vc_queue: asyncio.Queue[TTSItem] = asyncio.Queue()
         self.vc_task = asyncio.create_task(self.vc_speaker())
+        self.vc_lock = asyncio.Lock()
 
     def cog_unload(self):
         self.vc_task.cancel()
@@ -113,6 +114,11 @@ class SFX(commands.Cog):
         await self.db.guild(ctx.guild).speed.set(speed)
         await ctx.send(f"TTS speech speed has been set to {speed}")
 
+    def vc_callback(self, error: Exception, channel: discord.TextChannel):
+        self.vc_lock.release()
+        tb_msg = ''.join(traceback.format_exception(None, error, error.__traceback__))
+        asyncio.create_task(channel.send(f"```\n{tb_msg}\n```"))
+
     async def vc_speaker(self):
         while True:
             item = await self.vc_queue.get()
@@ -131,17 +137,14 @@ class SFX(commands.Cog):
                 # Lets set the volume to 1
                 vc.source = discord.PCMVolumeTransformer(vc.source)
                 vc.source.volume = 1
-            try:
-                # Lets play that mp3 file in the voice channel
-                vc.play(
-                    FFmpegPCMAudio(
-                        fp.read(), pipe=True, options=f'-filter:a "atempo={speed}" -t 00:00:20'
-                    )
-                )
-            # except:
-            #    await msg.channel.send("Please wait for me to finish speaking.")
-            except Exception:
-                await item.msg.channel.send(f"```\n{traceback.format_exc()}\n```")
+            # Lets play that mp3 file in the voice channel
+            await self.vc_lock.acquire()
+            vc.play(
+                FFmpegPCMAudio(
+                    fp.read(), pipe=True, options=f'-filter:a "atempo={speed}" -t 00:00:20'
+                ),
+                after=lambda error: self.vc_callback(error, item.msg.channel),
+            )
 
     # @commands.command()
     @commands.Cog.listener()
