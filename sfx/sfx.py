@@ -1,10 +1,21 @@
-from redbot.core import commands, checks, Config
-from .custom import FFmpegPCMAudio
-from io import BytesIO
-import discord
-from gtts import gTTS
+from __future__ import annotations
+
 import re
 import asyncio
+import traceback
+from io import BytesIO
+from typing import NamedTuple
+
+import discord
+from gtts import gTTS
+from redbot.core import commands, checks, Config
+
+from .custom import FFmpegPCMAudio
+
+
+class TTSItem(NamedTuple):
+    sentence: str
+    msg: discord.Message
 
 
 class SFX(commands.Cog):
@@ -19,16 +30,22 @@ class SFX(commands.Cog):
             "speed": 1
         }
         self.db.register_guild(**default_guild)
-        self._locks = []
+        self.vc_queue: asyncio.Queue[TTSItem] = asyncio.Queue()
         self.vc_task = asyncio.create_task(self.vc_speaker())
 
+    def cog_unload(self):
+        self.vc_task.cancel()
+
     @commands.command()
-    async def connect(self, ctx, channel: discord.VoiceChannel=None):
+    async def connect(self, ctx, channel: discord.VoiceChannel = None):
         if not channel:
             try:
                 channel = ctx.author.voice.channel
             except AttributeError:
-                await ctx.send('No voice channel to join. Please either specify a valid voice channel or join one.')
+                await ctx.send(
+                    "No voice channel to join. "
+                    "Please either specify a valid voice channel or join one."
+                )
                 return
         vc = ctx.voice_client
         if vc:
@@ -46,25 +63,25 @@ class SFX(commands.Cog):
                 await ctx.send(f'Connecting to channel: <{channel}> timed out.')
                 return
         await ctx.send(f'Connected to: **{channel}**', delete_after=20)
-        
+
     @commands.command()
     @checks.admin()
     async def ttschannel(self, ctx, channel: discord.TextChannel):
         await self.db.guild(ctx.guild).channel.set(channel.id)
         await ctx.send(f"TTS channel has been set to {channel.name}")
-        
+
     @commands.command()
     @checks.admin()
     async def ttslang(self, ctx, lang):
         await self.db.guild(ctx.guild).lang.set(lang)
         await ctx.send(f"TTS language set to {lang}")
-        
+
     @commands.command()
     @checks.admin()
     async def ttstld(self, ctx, tld):
         await self.db.guild(ctx.guild).tld.set(tld)
         await ctx.send(f"TTS language tld set to {tld}")
-        
+
     @commands.command()
     @checks.admin()
     async def ttsname(self, ctx, msg):
@@ -73,13 +90,13 @@ class SFX(commands.Cog):
             return
         await self.db.guild(ctx.guild).with_nick.set(msg)
         await ctx.send(f"TTS name calling is set to {msg}")
-        
+
     @commands.command()
     @checks.admin()
     async def ttscleardb(self, ctx):
         await self.db.clear_all()
         await ctx.send("The db has been wiped.")
-        
+
     @commands.command()
     @checks.admin()
     async def ttsspeed(self, ctx, speed: float):
@@ -99,59 +116,60 @@ class SFX(commands.Cog):
     async def vc_speaker(self):
         while True:
             item = await self.vc_queue.get()
-            # process item to say it
+            guild = item.msg.guild
+            lang = await self.db.guild(guild).lang()
+            tld = await self.db.guild(guild).tld()
+            speed = await self.db.guild(guild).speed()
+            fp = BytesIO()
+            tts = gTTS(text=item.sentence, lang=lang, tld=tld, slow=False)
+            tts.write_to_fp(fp)
+            fp.seek(0)
+            vc = guild.voice_client
+            if not vc:
+                return
+            if vc.source is None:
+                # Lets set the volume to 1
+                vc.source = discord.PCMVolumeTransformer(vc.source)
+                vc.source.volume = 1
+            try:
+                # Lets play that mp3 file in the voice channel
+                vc.play(
+                    FFmpegPCMAudio(
+                        fp.read(), pipe=True, options=f'-filter:a "atempo={speed}" -t 00:00:20'
+                    )
+                )
+            # except:
+            #    await msg.channel.send("Please wait for me to finish speaking.")
+            except Exception:
+                await item.msg.channel.send(f"```\n{traceback.format_exc()}\n```")
 
-    #@commands.command()
+    # @commands.command()
     @commands.Cog.listener()
     async def on_message(self, msg: discord.Message):
         channel = await self.db.guild(msg.guild).channel()
         if msg.channel.id != channel:
             return
-        if msg.author == self.bot.user:
+        if msg.author.bot:
             return
-    
-        if msg.author in self._locks:
-            # their message being processed
+        # await msg.channel.send(msg.content)
+        vc = msg.guild.voice_client  # We use it more then once, so make it an easy variable
+        if not vc:
+            # We are not currently in a voice channel
+            # Silently exit
+            # await msg.channel.send(
+            #     "I need to be in a voice channel to do this, please use the connect command."
+            # )
             return
-        try:
-            self._locks.append(msg.author)
-            #await msg.channel.send(msg.content)
-            vc = msg.guild.voice_client # We use it more then once, so make it an easy variable
-            if not vc:
-                # We are not currently in a voice channel
-                # Silently exit
-                # await msg.channel.send("I need to be in a voice channel to do this, please use the connect command.")
-                return
-            lang = await self.db.guild(msg.guild).lang()
-            tld = await self.db.guild(msg.guild).tld()
-            speed = await self.db.guild(msg.guild).speed()
-            # Lets prepare our text, and then save the audio file
-            with_nick = await self.db.guild(msg.guild).with_nick()
-            text = re.sub(r'<a?:(\w+):\d+?>', r'\1', msg.clean_content)
-            text = re.sub(r'https?://[\w-]+(.[\w-]+)+\S*', '', text)
-            if with_nick == "on":
-                sentence = f"{msg.author.name} says {text}"
-            elif with_nick == "off":
-                sentence = f"{text}"
-            fp = BytesIO()
-            tts = gTTS(text=sentence, lang=lang, tld=tld, slow=False)
-            tts.write_to_fp(fp)
-            fp.seek(0)
-            try:
-                # Lets play that mp3 file in the voice channel
-                vc.play(FFmpegPCMAudio(fp.read(), pipe = True, options=f'-filter:a "atempo={speed}" -t 00:00:20'))
-            
-                # Lets set the volume to 1
-                vc.source = discord.PCMVolumeTransformer(vc.source)
-                vc.source.volume = 1
-            #except:
-                #await msg.channel.send("Please wait for me to finish speaking.")
-            except Exception:
-                await msg.channel.send(traceback.format_exc())
-        finally:
-            self._locks.remove(msg.author)
-            
-            
+        # Lets prepare our text, and then save the audio file
+        with_nick = await self.db.guild(msg.guild).with_nick()
+        text = re.sub(r'<a?:(\w+):\d+?>', r'\1', msg.clean_content)
+        text = re.sub(r'https?://[\w-]+(.[\w-]+)+\S*', '', text)
+        if with_nick == "on":
+            sentence = f"{msg.author.name} says: {text}"
+        elif with_nick == "off":
+            sentence = f"{text}"
+        await self.vc_queue.put(TTSItem(sentence, msg))
+
     @commands.command()
     async def disconnect(self, ctx):
         vc = ctx.guild.voice_client
@@ -160,7 +178,3 @@ class SFX(commands.Cog):
             return
         await vc.disconnect()
         await ctx.send("No one is talking, so bye 👋")
-
-    def cog_unload(self):
-        self.vc_task.cancel()
-        
