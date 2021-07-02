@@ -2,6 +2,7 @@ from PIL import ImageOps, ImageDraw, Image, ImageFont
 import aiohttp
 from io import BytesIO
 from redbot.core.utils.chat_formatting import humanize_number
+from itertools import zip_longest
 
 
 
@@ -159,7 +160,7 @@ class helper:
         img.paste(middle, (0, int(H / 2 - 200)))
         
         # player data
-        for i, (champ, champ2) in enumerate(zip(team1, team2)):
+        for i, (champ, champ2) in enumerate(zip_longest(team1, team2)):
             # team 1
             resp = await helper.champimg(champ)
             try:
