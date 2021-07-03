@@ -133,10 +133,6 @@ class SFX(commands.Cog):
             vc = guild.voice_client
             if not vc:
                 return
-            if vc.source is None:
-                # Lets set the volume to 1
-                vc.source = discord.PCMVolumeTransformer(vc.source)
-                vc.source.volume = 1
             # Lets play that mp3 file in the voice channel
             await self.vc_lock.acquire()
             vc.play(
@@ -145,6 +141,9 @@ class SFX(commands.Cog):
                 ),
                 after=lambda error: self.vc_callback(error, item.msg.channel),
             )
+            # Lets set the volume to 1
+            vc.source = discord.PCMVolumeTransformer(vc.source)
+            vc.source.volume = 1
 
     # @commands.command()
     @commands.Cog.listener()
