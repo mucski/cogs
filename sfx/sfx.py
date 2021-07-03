@@ -116,8 +116,9 @@ class SFX(commands.Cog):
 
     def vc_callback(self, error: Exception, channel: discord.TextChannel):
         self.vc_lock.release()
-        tb_msg = ''.join(traceback.format_exception(None, error, error.__traceback__))
-        asyncio.create_task(channel.send(f"```\n{tb_msg}\n```"))
+        if not isinstance(error, discord.ClientException):
+            tb_msg = ''.join(traceback.format_exception(None, error, error.__traceback__))
+            asyncio.create_task(channel.send(f"```\n{tb_msg}\n```"))
 
     async def vc_speaker(self):
         while True:
