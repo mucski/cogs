@@ -121,29 +121,37 @@ class SFX(commands.Cog):
 
     async def vc_speaker(self):
         while True:
-            item = await self.vc_queue.get()
-            guild = item.msg.guild
-            lang = await self.db.guild(guild).lang()
-            tld = await self.db.guild(guild).tld()
-            speed = await self.db.guild(guild).speed()
-            fp = BytesIO()
-            tts = gTTS(text=item.sentence, lang=lang, tld=tld, slow=False)
-            tts.write_to_fp(fp)
-            fp.seek(0)
-            vc = guild.voice_client
-            if not vc:
-                return
-            # Lets play that mp3 file in the voice channel
-            await self.vc_lock.acquire()
-            vc.play(
-                FFmpegPCMAudio(
-                    fp.read(), pipe=True, options=f'-filter:a "atempo={speed}" -t 00:00:20'
-                ),
-                after=lambda error: self.vc_callback(error, item.msg.channel),
-            )
-            # Lets set the volume to 1
-            vc.source = discord.PCMVolumeTransformer(vc.source)
-            vc.source.volume = 1
+            try:
+                item = await self.vc_queue.get()
+                guild = item.msg.guild
+                vc = guild.voice_client
+                if not vc:
+                    continue
+                lang = await self.db.guild(guild).lang()
+                tld = await self.db.guild(guild).tld()
+                speed = await self.db.guild(guild).speed()
+                fp = BytesIO()
+                tts = gTTS(text=item.sentence, lang=lang, tld=tld, slow=False)
+                tts.write_to_fp(fp)
+                fp.seek(0)
+                # Lets play that mp3 file in the voice channel
+                await self.vc_lock.acquire()
+                vc = guild.voice_client
+                if not vc:
+                    self.vc_lock.release()
+                    continue
+                vc.play(
+                    FFmpegPCMAudio(
+                        fp.read(), pipe=True, options=f'-filter:a "atempo={speed}" -t 00:00:20'
+                    ),
+                    after=lambda error: self.vc_callback(error, item.msg.channel),
+                )
+                # Lets set the volume to 1
+                vc.source = discord.PCMVolumeTransformer(vc.source)
+                vc.source.volume = 1
+            except Exception:
+                self.vc_lock.release()
+                await item.msg.channel.send(f"```\n{traceback.format_exc()}\n```")
 
     # @commands.command()
     @commands.Cog.listener()
