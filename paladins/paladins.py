@@ -381,6 +381,7 @@ class Paladins(commands.Cog):
                     t.append(f"?????({live_player.account_level})")
                     t.append(f"{live_player.champion.name}({live_player.mastery_level})")
                     t.append(f"???")
+                    t.append(f"{live_player.rank}")
                     team1.append(t)
                 else:
                     t = []
@@ -388,6 +389,7 @@ class Paladins(commands.Cog):
                     t.append(f"{live_player.player.name}({live_player.account_level})")
                     t.append(f"{live_player.champion.name}({live_player.mastery_level})")
                     t.append(f"({live_player.player.casual.winrate_text})")
+                    t.append(f"{live_player.rank}")
                     team1.append(t)
             for i, live_player in enumerate(live_match.team2, 1):
                 if live_player.player.private:
@@ -396,6 +398,7 @@ class Paladins(commands.Cog):
                     t.append(f"?????({live_player.account_level})")
                     t.append(f"{live_player.champion.name}({live_player.mastery_level})")
                     t.append(f"???")
+                    t.append(f"{live_player.rank}")
                     team2.append(t)
                 else:
                     t = []
@@ -403,6 +406,7 @@ class Paladins(commands.Cog):
                     t.append(f"{live_player.player.name}({live_player.account_level})")
                     t.append(f"{live_player.champion.name}({live_player.mastery_level})")
                     t.append(f"({live_player.player.casual.winrate_text})")
+                    t.append(f"{live_player.rank}")
                     team2.append(t)
             team1_done = tabulate(team1, tablefmt="plain")
             team2_done = tabulate(team2, tablefmt="plain")

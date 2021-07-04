@@ -5,7 +5,6 @@ from redbot.core.utils.chat_formatting import humanize_number
 from itertools import zip_longest
 
 
-
 class helper:
     
     @classmethod
