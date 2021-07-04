@@ -11,7 +11,10 @@ worklist = {
     "australia": "The down under. 9 letters",
     "tiktok": "Worlds cringiest social platform",
     "python": "This bot is written in?! Also a living creature",
-    "barsoom": "John Carter ended up a king here...: `B _ _ _ _ _ _`"
+    "barsoom": "John Carter ended up a king here...: `B _ _ _ _ _ _`",
+    "yesterday today tomorrow": "Can you name three consecutive days without using the words Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, or Sunday?",
+    "footsteps": "The more you take, the more you leave behind. What am I?",
+    "i": "I start with a letter E and end with a Letter E. Only contain one letter but am not the letter E. So what am I",
 }
 
 searchlist = {
