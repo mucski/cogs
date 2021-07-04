@@ -4,6 +4,7 @@ import io
 from discord.opus import Encoder
 import discord
 
+
 class FFmpegPCMAudio(discord.AudioSource):
     def __init__(self, source, *, executable='ffmpeg', pipe=False, stderr=None, before_options=None, options=None):
         stdin = None if not pipe else source
@@ -26,11 +27,13 @@ class FFmpegPCMAudio(discord.AudioSource):
             raise discord.ClientException(executable + ' was not found.') from None
         except subprocess.SubprocessError as exc:
             raise discord.ClientException('Popen failed: {0.__class__.__name__}: {0}'.format(exc)) from exc
+
     def read(self):
         ret = self._stdout.read(Encoder.FRAME_SIZE)
         if len(ret) != Encoder.FRAME_SIZE:
             return b''
         return ret
+        
     def cleanup(self):
         proc = self._process
         if proc is None:
