@@ -107,7 +107,7 @@ class helper:
 
     @classmethod
     async def playerkey(cls, x, y):
-        #the image object
+        # the image object
         key = Image.new("RGB", (x, y - 60), color=(8, 21, 25))
         draw = ImageDraw.Draw(key)
         fill = (255, 255, 255)
@@ -182,13 +182,13 @@ class helper:
                 # playerstats
                 playerpanel = await helper.statsimage(champimgcrop, rankicon, team_data[i], i)
                 img.paste(playerpanel, (0, 232 * i + offset))
-        #done, reisizing for speed
+        # done, reisizing for speed
         historyimg = img.resize((int(W / 2), int(H / 2)), Image.ANTIALIAS)
-        #create the buffer
+        # create the buffer
         final_buffer = BytesIO()
-        #store image in buffer
+        # store image in buffer
         historyimg.save(final_buffer, "PNG")
-        #seek back to start
+        # seek back to start
         final_buffer.seek(0)
         return final_buffer
         
@@ -196,23 +196,23 @@ class helper:
     async def middlepanel(cls, match_data):
         W, H = (4620, 512)
         padding = 46
-        #(horizontal, vertical)
+        # (horizontal, vertical)
         img = Image.new("RGB", (W, H))
         
-        #add in the map image 
+        # add in the map image 
         map_name = match_data[3]
         format_map = map_name.lower().replace(" ", "_").replace("'", "")
         try:
             match_map = Image.open(f"root/mucski/stuff/icons/maps/{format_map}.png")
         except FileNotFoundError:
             match_map = Image.open("root/mucski/stuff/icons/maps/test_maps.png")
-        #middle image width
+        # middle image width
         basewidth = 4620
-        #dynamic resize
+        # dynamic resize
         wpercent = (basewidth / float(match_map.size[0]))
         hsize = int((float(match_map.size[1]) * float(wpercent)))
         match_map = match_map.resize((basewidth, hsize), Image.ANTIALIAS)
-        #final product
+        # final product
         img.paste(match_map, (0, -512))
         
         draw = ImageDraw.Draw(img)
@@ -235,7 +235,7 @@ class helper:
         
         draw.text((int(W / 2 + 173), 300 + padding), f"Team 2 score: {match_data[5]}", font=fnt, stroke_width=stroke_size, stroke_fill=stroke, fill=fill)
         
-        #ranked bans
+        # ranked bans
         try:
             if match_data[6]:
                 try:
@@ -251,27 +251,27 @@ class helper:
                     
                 draw.text((int((W-w) / 2) + 1720, int((H-h) / 2) + 80), "Bans", font=fnt, stroke_width=stroke_size, stroke_fill=stroke, fill=fill)
                 # team 1 bans
-                #champ 1
+                # champ 1
                 resp = await helper.champimg(banned1)
                 champ_icon = Image.open(BytesIO(resp))
                 champ_icon = champ_icon.resize((200, 200))
-                img.paste(champ_icon, (int((W-w) / 2) + 2020, int((H-h)/ 2) - 70))
-                #champ 2
+                img.paste(champ_icon, (int((W-w) / 2) + 2020, int((H-h) / 2) - 70))
+                # champ 2
                 resp = await helper.champimg(banned2)
                 champ_icon = Image.open(BytesIO(resp))
                 champ_icon = champ_icon.resize((200, 200))
-                img.paste(champ_icon, (int((W-w) / 2) + 2240, int((H-h)/ 2) - 70))
+                img.paste(champ_icon, (int((W-w) / 2) + 2240, int((H-h) / 2) - 70))
                 # team 2 bans 
-                #champ 1
+                # champ 1
                 resp = await helper.champimg(banned3)
                 champ_icon = Image.open(BytesIO(resp))
                 champ_icon = champ_icon.resize((200, 200))
-                img.paste(champ_icon, (int((W-w) / 2) + 2020, int((H-h)/ 2) + 150))
-                #champ 2
+                img.paste(champ_icon, (int((W-w) / 2) + 2020, int((H-h) / 2) + 150))
+                # champ 2
                 resp = await helper.champimg(banned4)
                 champ_icon = Image.open(BytesIO(resp))
                 champ_icon = champ_icon.resize((200, 200))
-                img.paste(champ_icon, (int((W-w) / 2) + 2240, int((H-h)/ 2) + 150))
+                img.paste(champ_icon, (int((W-w) / 2) + 2240, int((H-h) / 2) + 150))
         
         except IndexError:
             pass
