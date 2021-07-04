@@ -65,11 +65,11 @@ class helper:
             color = fill
         
         # new image object
-        img = Image.new("RGBA", (W, H), color = img_color)
+        img = Image.new("RGBA", (W, H), color=img_color)
         # champion icon
         img.paste(champicon, (padding, padding))
         # rank icon
-        img.paste(rankicon, (1526, mid), mask = rankicon)
+        img.paste(rankicon, (1526, mid), mask=rankicon)
         # make the image drawable
         draw = ImageDraw.Draw(img)
         # normal font
@@ -108,44 +108,44 @@ class helper:
     @classmethod
     async def playerkey(cls, x, y):
         #the image object
-        key = Image.new("RGB", (x, y - 60), color = (8, 21, 25))
+        key = Image.new("RGB", (x, y - 60), color=(8, 21, 25))
         draw = ImageDraw.Draw(key)
         fill = (255, 255, 255)
         padding = 10
         fntbld = ImageFont.truetype("root/mucski/stuff/arialbd.ttf", 50)
         
         # champion and player
-        draw.text((20, 20), "CHAMPION", font = fntbld, fill = fill)
-        draw.text((512 + padding * 4, 20), "PLAYER", font = fntbld, fill = fill)
+        draw.text((20, 20), "CHAMPION", font=fntbld, fill=fill)
+        draw.text((512 + padding * 4, 20), "PLAYER", font=fntbld, fill=fill)
         
         # rank
-        draw.text((1576, 20), "R", font = fntbld, fill = fill)
+        draw.text((1576, 20), "R", font=fntbld, fill=fill)
         # credits
-        draw.text((1736, 20), "CREDITS", font = fntbld, fill = fill)
+        draw.text((1736, 20), "CREDITS", font=fntbld, fill=fill)
         # kda
-        draw.text((2036, 20), "K/D/A", font = fntbld, fill = fill)
+        draw.text((2036, 20), "K/D/A", font=fntbld, fill=fill)
         # damage done
-        draw.text((2436, 20), "DAMAGE", font = fntbld, fill = fill)
+        draw.text((2436, 20), "DAMAGE", font=fntbld, fill=fill)
         # damage taken
-        draw.text((2826, 20), "MITIGATED", font = fntbld, fill = fill)
+        draw.text((2826, 20), "MITIGATED", font=fntbld, fill=fill)
         # objective
-        draw.text((3226, 20), "OBJ", font = fntbld, fill = fill)
+        draw.text((3226, 20), "OBJ", font=fntbld, fill=fill)
         # shielding
-        draw.text((3456, 20), "SHIELDING", font = fntbld, fill = fill)
+        draw.text((3456, 20), "SHIELDING", font=fntbld, fill=fill)
         # healing
-        draw.text((3856, 20), "HEALING", font = fntbld, fill = fill)
+        draw.text((3856, 20), "HEALING", font=fntbld, fill=fill)
         # self healing
-        draw.text((4256, 20), "SELF HEAL", font = fntbld, fill = fill)
+        draw.text((4256, 20), "SELF HEAL", font=fntbld, fill=fill)
         # kda2
-        # draw.text((4636, 20), "KDA", font = fntbld, fill = fill)
+        # draw.text((4636, 20), "KDA", font=fntbld, fill=fill)
         return key
 
     @classmethod
     async def historyimg(cls, team1, team2, t1_data, t2_data, r1, r2, match_data):
         crop = 140
         W, H = (4620, 2932)
-        padding = 10
-        img = Image.new("RGB", (W, H), color = (8, 21, 25))
+        # padding=10
+        img = Image.new("RGB", (W, H), color=(8, 21, 25))
         
         # headers
         key = await helper.playerkey(W, H)
@@ -221,19 +221,19 @@ class helper:
         stroke = (8, 21, 25)
         stroke_size = 2
         
-        draw.text((padding, padding), f"ID: {match_data[0]}", font = fnt, stroke_width = stroke_size, stroke_fill = stroke, fill = fill)
-        draw.text((padding, 100 + padding), f"Duration: {match_data[1]} min", font = fnt, stroke_width = stroke_size, stroke_fill = stroke, fill = fill)
-        draw.text((padding, 200 + padding), f"Region: {match_data[2]}", font = fnt, stroke_width = stroke_size, stroke_fill = stroke, fill = fill)
-        draw.text((padding, 300 + padding), f"Map: {match_data[3]}", font = fnt, stroke_width = stroke_size, stroke_fill = stroke, fill = fill)
+        draw.text((padding, padding), f"ID: {match_data[0]}", font=fnt, stroke_width=stroke_size, stroke_fill=stroke, fill=fill)
+        draw.text((padding, 100 + padding), f"Duration: {match_data[1]} min", font=fnt, stroke_width=stroke_size, stroke_fill=stroke, fill=fill)
+        draw.text((padding, 200 + padding), f"Region: {match_data[2]}", font=fnt, stroke_width=stroke_size, stroke_fill=stroke, fill=fill)
+        draw.text((padding, 300 + padding), f"Map: {match_data[3]}", font=fnt, stroke_width=stroke_size, stroke_fill=stroke, fill=fill)
         
-        draw.text((int(W / 2 - 1032), padding), f"Team 1 score: {match_data[4]}", font = fnt, stroke_width = stroke_size, stroke_fill = stroke, fill = fill)
+        draw.text((int(W / 2 - 1032), padding), f"Team 1 score: {match_data[4]}", font=fnt, stroke_width=stroke_size, stroke_fill=stroke, fill=fill)
         
         vs = Image.open("root/mucski/stuff/icons/vs.png")
         w, h = vs.size
         vs = vs.resize((int(w * 2 / 3), int(h * 2 / 3)))
-        img.paste(vs, (int((W-w) / 2), int((H-h) / 2 + 48)), mask = vs)
+        img.paste(vs, (int((W-w) / 2), int((H-h) / 2 + 48)), mask=vs)
         
-        draw.text((int(W / 2 + 173), 300 + padding), f"Team 2 score: {match_data[5]}", font = fnt, stroke_width = stroke_size, stroke_fill = stroke, fill = fill)
+        draw.text((int(W / 2 + 173), 300 + padding), f"Team 2 score: {match_data[5]}", font=fnt, stroke_width=stroke_size, stroke_fill=stroke, fill=fill)
         
         #ranked bans
         try:
@@ -249,7 +249,7 @@ class helper:
                     banned3 = match_data[8]
                     banned4 = match_data[9]
                     
-                draw.text((int((W-w) / 2) + 1720, int((H-h) / 2) + 80), "Bans", font = fnt, stroke_width = stroke_size, stroke_fill = stroke, fill = fill)
+                draw.text((int((W-w) / 2) + 1720, int((H-h) / 2) + 80), "Bans", font=fnt, stroke_width=stroke_size, stroke_fill=stroke, fill=fill)
                 # team 1 bans
                 #champ 1
                 resp = await helper.champimg(banned1)

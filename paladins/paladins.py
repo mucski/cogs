@@ -89,8 +89,7 @@ class Paladins(commands.Cog):
                     team2_data.append(row)
                     team2_champs.append(match_player.champion.name)
                     team2_ranks.append(rank)
-            buffer = await helper.historyimg(team1_champs, team2_champs, team1_data, team2_data, team1_ranks,
-                                                team2_ranks, (match_info + temp))
+            buffer = await helper.historyimg(team1_champs, team2_champs, team1_data, team2_data, team1_ranks, team2_ranks, (match_info + temp))
             file = discord.File(filename=f"{matchid}.png", fp=buffer)
         await ctx.send(file=file)
         
@@ -126,13 +125,12 @@ class Paladins(commands.Cog):
                     team2_data.append(row)
                     team2_champs.append("Sha Lin")
                     team2_ranks.append(rank)
-            buffer = await helper.historyimg(team1_champs, team2_champs, team1_data, team2_data, team1_ranks,
-                                                team2_ranks, (match_info + temp))
-            file = discord.File(filename=f"prototype.png", fp=buffer)
+            buffer = await helper.historyimg(team1_champs, team2_champs, team1_data, team2_data, team1_ranks, team2_ranks, (match_info + temp))
+            file = discord.File(filename="prototype.png", fp=buffer)
         await ctx.send(file=file)
             
     @commands.command()
-    async def last(self, ctx, player = None, platform="PC"):
+    async def last(self, ctx, player=None, platform="PC"):
         """Returns the last played match by player
         player can be a string or a discord member (mention)
         Platform is optional
@@ -194,8 +192,7 @@ class Paladins(commands.Cog):
                     team2_data.append(row)
                     team2_champs.append(match_player.champion.name)
                     team2_ranks.append(rank)
-            buffer = await helper.historyimg(team1_champs, team2_champs, team1_data, team2_data, team1_ranks,
-                                                team2_ranks, (match_info + temp))
+            buffer = await helper.historyimg(team1_champs, team2_champs, team1_data, team2_data, team1_ranks, team2_ranks, (match_info + temp))
             file = discord.File(filename=f"{player}.png", fp=buffer)
         await ctx.send(file=file)
 
@@ -210,7 +207,7 @@ class Paladins(commands.Cog):
                 await ctx.send(f"```\n{exc.status}: {exc.message}\n```")
                 return
             elif isinstance(exc, aiohttp.ClientConnectionError):
-                await ctx.send(f"```\nFailed to connect to api.\n```")
+                await ctx.send("```\nFailed to connect to api.\n```")
                 return
             elif isinstance(exc, asyncio.TimeoutError):
                 await ctx.send("```\nTimed out.\n```")
@@ -226,7 +223,7 @@ class Paladins(commands.Cog):
             await ctx.send("```json\n" + response + "```")
             
     @commands.command()
-    async def history(self, ctx, player = None, platform = "PC"):
+    async def history(self, ctx, player=None, platform="PC"):
         """Returns the history of someone (or yourself)
         Usage: [p]history name platform (or leave both blank for yourself if you have discord linked to hirez)
         """
@@ -263,7 +260,7 @@ class Paladins(commands.Cog):
                 final_kda += match.kda2
                 kda_counter += 1
                 table.append(t)
-            table_done = tabulate(table, headers = ["#", "Match ID", "Map", "Champion", "KDA", "KDA2"], tablefmt = "presto")
+            table_done = tabulate(table, headers=["#", "Match ID", "Map", "Champion", "KDA", "KDA2"], tablefmt="presto")
             champs = Counter(m.champion for m in history)
             most_champ = champs.most_common(1)[0][0].name
             if all(isinstance(c, arez.Champion) for c in champs.keys()):
@@ -276,7 +273,7 @@ class Paladins(commands.Cog):
             await ctx.send("```\nMost played champion: {}\nMost played class: {}\nAverage KDA: {:.2f}\n```".format(most_champ, most_class, final_kda / kda_counter))
         
     @commands.command()
-    async def champstats(self, ctx, champion_name = "all", player = None, platform = "PC"):
+    async def champstats(self, ctx, champion_name="all", player=None, platform="PC"):
         """Returns champion stats, individual or multiple
         [p]champstats wr name platform to sort by winrate
         [p]champstats kda name platform to sort by kda
@@ -347,7 +344,7 @@ class Paladins(commands.Cog):
                 await ctx.send(embed=e)
                 
     @commands.command()
-    async def current(self, ctx, name = None, platform = "PC"):
+    async def current(self, ctx, name=None, platform="PC"):
         """Returns the current match for yourself or someone.
         [p]help current for more information
         [p]current player platform or leave blank for yourself if you have discoed linked to hirez
@@ -380,7 +377,7 @@ class Paladins(commands.Cog):
                     t.append(i)
                     t.append(f"?????({live_player.account_level})")
                     t.append(f"{live_player.champion.name}({live_player.mastery_level})")
-                    t.append(f"???")
+                    t.append("???")
                     t.append(f"{live_player.rank}")
                     team1.append(t)
                 else:
@@ -397,7 +394,7 @@ class Paladins(commands.Cog):
                     t.append(i)
                     t.append(f"?????({live_player.account_level})")
                     t.append(f"{live_player.champion.name}({live_player.mastery_level})")
-                    t.append(f"???")
+                    t.append("???")
                     t.append(f"{live_player.rank}")
                     team2.append(t)
                 else:
@@ -429,7 +426,7 @@ class Paladins(commands.Cog):
             await ctx.send(embed=e)
             
     @commands.command()
-    async def stats(self, ctx, name = None, platform="PC"):
+    async def stats(self, ctx, name=None, platform="PC"):
         """Returns a players stats.
         [p]stats none or [p]stats (player) (platform)
         """
@@ -516,7 +513,7 @@ class Paladins(commands.Cog):
         
     @commands.command()
     @checks.is_owner()
-    async def friends(self, ctx, name = None, platform="PC"):
+    async def friends(self, ctx, name=None, platform="PC"):
         """Returns a players friends
         [p]friends none or [p]friends (player) (platform)
         """
