@@ -2,7 +2,6 @@ from PIL import ImageOps, ImageDraw, Image, ImageFont
 import aiohttp
 from io import BytesIO
 from redbot.core.utils.chat_formatting import humanize_number
-from itertools import zip_longest
 
 
 class helper:
@@ -37,11 +36,9 @@ class helper:
 
     @classmethod
     async def statsimage(cls, champicon, rankicon, stats, index):
-        # crop size
-        shrink = 140
         # vertical
         W, H = (4620, 232)
-         #padding or margin size
+        # padding or margin size
         padding = 10
         # middle
         mid = int((H - 120) / 2)
