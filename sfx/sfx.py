@@ -125,8 +125,8 @@ class SFX(commands.Cog):
             try:
                 item = await self.vc_queue.get()
                 guild = item.msg.guild
-                vc = guild.voice_client
-                if not vc:
+                vc: discord.VoiceClient = guild.voice_client
+                if not (vc and vc.is_connected()):
                     continue
                 lang = await self.db.guild(guild).lang()
                 tld = await self.db.guild(guild).tld()
@@ -138,7 +138,7 @@ class SFX(commands.Cog):
                 # Lets play that mp3 file in the voice channel
                 await self.vc_lock.acquire()
                 vc = guild.voice_client
-                if not vc:
+                if not (vc and vc.is_connected()):
                     self.vc_lock.release()
                     continue
                 vc.play(
@@ -150,21 +150,23 @@ class SFX(commands.Cog):
                 # Lets set the volume to 1
                 vc.source = discord.PCMVolumeTransformer(vc.source)
                 vc.source.volume = 1
+            except discord.ClientException:
+                self.vc_lock.release()
             except Exception:
                 self.vc_lock.release()
                 await item.msg.channel.send(f"```\n{traceback.format_exc()}\n```")
 
     # @commands.command()
     @commands.Cog.listener()
-    async def on_message(self, msg: discord.Message):
+    async def on_message_without_command(self, msg: discord.Message):
         channel = await self.db.guild(msg.guild).channel()
         if msg.channel.id != channel:
             return
         if msg.author.bot:
             return
         # await msg.channel.send(msg.content)
-        vc = msg.guild.voice_client  # We use it more then once, so make it an easy variable
-        if not vc:
+        vc: discord.VoiceClient = msg.guild.voice_client
+        if not (vc and vc.is_connected()):
             # We are not currently in a voice channel
             # Silently exit
             # await msg.channel.send(
