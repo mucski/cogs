@@ -25,8 +25,5 @@ class Test(commands.Cog):
         msg1 = "Title"
         msg2 = "Content"
         msg = await self.conf.guild(ctx.guild).msgs()
-        if msg is None:
-            msg = await self.conf(ctx.guild).msgs.set_raw(value={msg1: msg2})
-        else:
-            msg += await self.conf.guild(ctx.guild).msgs.set_raw(value={msg1: msg2})
+        msg = await self.conf(ctx.guild).msgs.set_raw(value={msg1: msg2})
         await ctx.send("Done")
