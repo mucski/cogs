@@ -25,5 +25,5 @@ class Test(commands.Cog):
         msg1 = "Title"
         msg2 = "Content"
         msg = await self.conf.guild(ctx.guild).msgs()
-        msg += await self.conf.guild(ctx.guild).set_raw({"msgs": {msg1: msg2}})
+        msg += await self.conf.guild(ctx.guild).set_raw({"msgs": {f"{msg1}": f"{msg2}"}})
         await ctx.send("Done")
