@@ -17,7 +17,7 @@ class Test(commands.Cog):
 
     @commands.command()
     async def msglaunch(self, ctx):
-        msg = await self.conf.guild(ctx.guild).msgs()
+        msg = await self.conf.guild(ctx.guild).msgs.get_raw()
         await ctx.send(msg)
 
     @commands.command()
@@ -25,5 +25,5 @@ class Test(commands.Cog):
         msg1 = "Title"
         msg2 = "Content"
         msg = await self.conf.guild(ctx.guild).msgs()
-        msg += await self.conf.guild(ctx.guild).set_raw({"msgs": {msg1: msg2}})
+        msg += await self.conf.guild(ctx.guild).msgs.set_raw(value={msg1: msg2})
         await ctx.send("Done")
