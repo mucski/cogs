@@ -22,8 +22,6 @@ class Test(commands.Cog):
 
     @commands.command()
     async def msgdefine(self, ctx, *, msg1, msg2):
-        msg1 = "Title"
-        msg2 = "Content"
         msg = await self.conf.guild(ctx.guild).msgs()
         msg = await self.conf(ctx.guild).msgs.set_raw(value={msg1: msg2})
         await ctx.send("Done")
