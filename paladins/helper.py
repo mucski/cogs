@@ -127,7 +127,7 @@ class helper:
         # damage done
         draw.text((2436, 20), "DAMAGE", font=fntbld, fill=fill)
         # damage taken
-        draw.text((2826, 20), "MITIGATED", font=fntbld, fill=fill)
+        draw.text((2826, 20), "TAKEN", font=fntbld, fill=fill)
         # objective
         draw.text((3226, 20), "OBJ", font=fntbld, fill=fill)
         # shielding
