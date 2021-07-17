@@ -23,9 +23,22 @@ words = [
     "Slow",
     "Religious",
     "Stinky",
+    "Pink",
+    "Cute",
+    "Fluffy",
+    "Sexy",
+    "Lewd",
+    "Wet",
+    "Hottie",
 ]
 
 words2 = [
+    "King",
+    "E-Boy",
+    "E-Girl",
+    "Daddy",
+    "Slave",
+    "Senpai",
     "Table",
     "Elf",
     "Orc",
@@ -56,6 +69,10 @@ words2 = [
     "Dog",
     "Dragon",
     "Computer",
+    "Pussy",
+    "Jack Ass",
+    "Butthole",
+    "Boner",
 ]
 
 flags = {
