@@ -16,7 +16,12 @@ class SnapChatChan(TaskHelper, commands.Cog):
     @commands.command()
     async def snapchan(self, ctx, channel: discord.TextChannel):
         await self.conf.guild(ctx.guild).channel.set(channel.id)
-        await ctx.send(f"Set snaptchat channel to {channel.mention}, messages will be deleted in 15 seconds.")
+        await ctx.send(f"Set snaptchat channel to {channel.mention}")
+
+    @commands.command()
+    async def snapstart(self, ctx):
+        self.schedule_task(self._timer(15))
+        await ctx.send("Snap chat started, messages will be deleted in 15 seconds.")
 
     async def _looper(self):
         # the loop seconds
