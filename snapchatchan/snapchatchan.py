@@ -42,7 +42,7 @@ class SnapChatChan(TaskHelper, commands.Cog):
     @checks.admin()
     async def snapstart(self, ctx):
         loop_second = await self.conf.guild(ctx.guild).timer()
-        self.schedule_task(self._timer(loop_second))
+        self.schedule_task(self._looper)
         await ctx.send(f"Snap chat started, messages will be deleted in {loop_second} seconds.")
 
     async def _looper(self):
