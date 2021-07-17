@@ -24,7 +24,7 @@ class Test(commands.Cog):
         await self.conf.guild(ctx.guild).msgs.set_raw(value=+{msg1: msg2})
         await ctx.send("Done")
 
-    @tasks.loop(seconds=15)
+    @tasks.loop(seconds=15, reconnect=False)
     async def messager(self):
         channel = self.bot.get_channel(779860372190396447)
         await channel.purge(limit=1)
