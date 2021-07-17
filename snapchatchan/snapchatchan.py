@@ -1,5 +1,4 @@
 import discord
-from discord.ext.commands.core import check
 from redbot.core import commands, Config, checks
 from .taskhelper import TaskHelper
 import asyncio
@@ -32,11 +31,11 @@ class SnapChatChan(TaskHelper, commands.Cog):
         await self.conf.guild(ctx.guild).delete_limit.set(amt)
         await ctx.send(f"{amt} messages will be deleted at once")
 
-    @commands.command()
-    @checks.admin()
-    async def snapexclude(self, ctx, msg: int):
-        await self.conf.guild(ctx.guild).exclude.set(msg)
-        await ctx.send(f"The message with the id {msg} will now be excluded from deletion.")
+    # @commands.command()
+    # @checks.admin()
+    # async def snapexclude(self, ctx, msg: int):
+    #     await self.conf.guild(ctx.guild).exclude.set(msg)
+    #     await ctx.send(f"The message with the id {msg} will now be excluded from deletion.")
 
     @commands.command()
     @checks.admin()
