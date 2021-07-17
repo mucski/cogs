@@ -58,7 +58,7 @@ class SnapChatChan(TaskHelper, commands.Cog):
             channel = self.bot.get_channel(chan)
 
             def pred(msg):
-                if msg.id == exclude:
+                if msg.id != exclude:
                     return
 
             await channel.purge(limit=delete_limit, check=pred)
