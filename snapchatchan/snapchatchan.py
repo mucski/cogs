@@ -58,7 +58,7 @@ class SnapChatChan(TaskHelper, commands.Cog):
                 # delete_limit = await self.conf.guild(guild).delete_limit()
                 channel = self.bot.get_channel(chan)
                 now = datetime.utcnow()
-                ago_30m = now - timedelta(minutes=30)
+                ago_30m = now - timedelta(seconds=loop_second)
 
                 def not_pinned(msg):
                     return not msg.pinned
