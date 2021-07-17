@@ -30,16 +30,23 @@ class Test(commands.Cog):
         await channel.purge(limit=1)
 
     @commands.command()
-    async def task_start(self):
-        the_task = self.messager.start()
-        await ctx.send(f"Task started {the_task}")
+    async def task_start(self, ctx):
+        self.messager.start()
+        await ctx.send("Task started")
 
     @commands.command()
     async def task_stop(self, ctx):
-        the_task = self.messager.stop()
-        await ctx.send(f"Task stopped {the_task}")
+        self.messager.stop()
+        await ctx.send("Task stopped")
+
+    @commands.command()
+    async def task_cancel(self, ctx):
+        self.messager.cancel()
+        await ctx.send("Task cancelled")
 
     @commands.command()
     async def task_running(self, ctx):
         the_task = self.messager.get_task()
+        if the_task is None:
+            the_task = "No task to display"
         await ctx.send(the_task)
