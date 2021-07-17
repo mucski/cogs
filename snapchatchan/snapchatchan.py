@@ -30,7 +30,8 @@ class SnapChatChan(TaskHelper, commands.Cog):
         guilds = await self.conf.all_guilds()
         for guild in guilds:
             guild = self.bot.get_guild(guild)
-            channel = await self.conf.guild(guild).channel()
+            chan = await self.conf.guild(guild).channel()
+            channel = self.bot.get_channel(chan)
             await channel.purge(limit=1)
             self.schedule_task(self._timer(loop_second))
 
