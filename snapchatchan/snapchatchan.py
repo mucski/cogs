@@ -29,7 +29,7 @@ class SnapChatChan(TaskHelper, commands.Cog):
     @checks.admin()
     async def snaplimit(self, ctx, amt: int):
         await self.conf.guild(ctx.guild).delete_limit.set(amt)
-        await ctx.send(f"Set timer to {amt} seconds.")
+        await ctx.send(f"{amt} messages will be deleted at once")
 
     @commands.command()
     @checks.admin()
