@@ -55,6 +55,8 @@ class SnapChatChan(TaskHelper, commands.Cog):
             exclude = await self.conf.guild(guild).exclude()
             delete_limit = exclude = await self.conf.guild(guild).delete_limit()
             channel = self.bot.get_channel(chan)
+            def e(m):
+                return m.id == exclude
             await channel.purge(limit=delete_limit, check=exclude)
             self.schedule_task(self._timer(loop_second))
 
