@@ -49,8 +49,8 @@ class SnapChatChan(TaskHelper, commands.Cog):
         guilds = await self.conf.all_guilds()
         for guild in guilds:
             # the loop seconds
-            loop_second = await self.conf.guild(guild).timer()
             guild = self.bot.get_guild(guild)
+            loop_second = await self.conf.guild(guild).timer()
             chan = await self.conf.guild(guild).channel()
             exclude = await self.conf.guild(guild).exclude()
             delete_limit = exclude = await self.conf.guild(guild).delete_limit()
