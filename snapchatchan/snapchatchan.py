@@ -26,11 +26,11 @@ class SnapChatChan(TaskHelper, commands.Cog):
         await self.conf.guild(ctx.guild).timer.set(amt)
         await ctx.send(f"Set timer to {amt} seconds.")
     
-    @commands.command()
-    @checks.admin()
-    async def snaplimit(self, ctx, amt: int):
-        await self.conf.guild(ctx.guild).delete_limit.set(amt)
-        await ctx.send(f"{amt} messages will be deleted at once")
+    # @commands.command()
+    # @checks.admin()
+    # async def snaplimit(self, ctx, amt: int):
+    #     await self.conf.guild(ctx.guild).delete_limit.set(amt)
+    #     await ctx.send(f"{amt} messages will be deleted at once")
 
     # @commands.command()
     # @checks.admin()
@@ -55,13 +55,15 @@ class SnapChatChan(TaskHelper, commands.Cog):
                 loop_second = await self.conf.guild(guild).timer()
                 chan = await self.conf.guild(guild).channel()
                 # exclude = await self.conf.guild(guild).exclude()
-                delete_limit = await self.conf.guild(guild).delete_limit()
+                # delete_limit = await self.conf.guild(guild).delete_limit()
                 channel = self.bot.get_channel(chan)
+                now = datetime.utcnow()
+                ago_30m = now - timedelta(minutes=30)
 
                 def not_pinned(msg):
                     return not msg.pinned
 
-                await channel.purge(limit=delete_limit, check=not_pinned)
+                await channel.purge(before=ago_30m, check=not_pinned)
                 # self.schedule_task(self._timer(loop_second))
                 await asyncio.sleep(loop_second)
 

@@ -9,9 +9,7 @@ class TaskHelper:
         for task in list(self.tasks):
             task.cancel()
 
-    def end_tasks(self):
-        for task in list(self.tasks):
-            task.cancel()
+    end_tasks = cog_unload
 
     def schedule_task(self, coro):
         task = asyncio.create_task(coro)
