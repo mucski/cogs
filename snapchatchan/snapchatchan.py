@@ -60,6 +60,7 @@ class SnapChatChan(TaskHelper, commands.Cog):
             def pred(msg):
                 if msg.id != exclude:
                     return
+                return
 
             await channel.purge(limit=delete_limit, check=pred)
             self.schedule_task(self._timer(loop_second))
