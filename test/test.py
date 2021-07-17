@@ -25,9 +25,9 @@ class Test(commands.Cog):
         await ctx.send("Done")
 
     @tasks.loop(seconds=15)
-    async def messager(self, ctx):
+    async def messager(self):
         channel = self.bot.get_channel(779860372190396447)
-        await ctx.channel.purge(limit=1)
+        await channel.purge(limit=1)
 
     @commands.command()
     async def task_start(self):
