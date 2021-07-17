@@ -53,16 +53,13 @@ class SnapChatChan(TaskHelper, commands.Cog):
             guild = self.bot.get_guild(guild)
             loop_second = await self.conf.guild(guild).timer()
             chan = await self.conf.guild(guild).channel()
-            exclude = await self.conf.guild(guild).exclude()
-            delete_limit = exclude = await self.conf.guild(guild).delete_limit()
+            # exclude = await self.conf.guild(guild).exclude()
+            delete_limit = await self.conf.guild(guild).delete_limit()
             channel = self.bot.get_channel(chan)
 
-            def pred(msg):
-                if msg.id != exclude:
-                    return
-                return
-
-            await channel.purge(limit=delete_limit, check=pred)
+            def not_pinned(msg):
+                return not msg.pinned
+            await channel.purge(limit=delete_limit, check=not_pinned)
             self.schedule_task(self._timer(loop_second))
 
     async def _timer(self, loop_second):
