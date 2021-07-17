@@ -31,12 +31,15 @@ class Test(commands.Cog):
 
     @commands.command()
     async def task_start(self):
-        self.messager.start()
+        the_task = self.messager.start()
+        await ctx.send(f"Task started {the_task}")
 
     @commands.command()
-    async def task_stop(self):
-        self.messager.stop()
+    async def task_stop(self, ctx):
+        the_task = self.messager.stop()
+        await ctx.send(f"Task stopped {the_task}")
 
     @commands.command()
-    async def task_running(self):
-        self.messager.is_running()
+    async def task_running(self, ctx):
+        the_task = self.messager.get_task()
+        await ctx.send(the_task)
