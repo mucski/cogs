@@ -14,31 +14,31 @@ class SnapChatChan(TaskHelper, commands.Cog):
         self.conf.register_guild(**defaults)
 
     @commands.command()
-    @checks.is_admin()
+    @checks.admin()
     async def snapchan(self, ctx, channel: discord.TextChannel):
         await self.conf.guild(ctx.guild).channel.set(channel.id)
         await ctx.send(f"Set snaptchat channel to {channel.mention}")
 
     @commands.command()
-    @checks.is_admin()
+    @checks.admin()
     async def snaptime(self, ctx, amt: int):
         await self.conf.guild(ctx.guild).timer.set(amt)
         await ctx.send(f"Set timer to {amt} seconds.")
     
     @commands.command()
-    @checks.is_admin()
+    @checks.admin()
     async def snaplimit(self, ctx, amt: int):
         await self.conf.guild(ctx.guild).delete_limit.set(amt)
         await ctx.send(f"Set timer to {amt} seconds.")
 
     @commands.command()
-    @checks.is_admin()
+    @checks.admin()
     async def snapexclude(self, ctx, msg: int):
         await self.conf.guild(ctx.guild).exclude.set(msg)
         await ctx.send(f"The message with the id {msg} will now be excluded from deletion.")
 
     @commands.command()
-    @checks.is_admin()
+    @checks.admin()
     async def snapstart(self, ctx):
         loop_second = await self.conf.guild(ctx.guild).timer()
         self.schedule_task(self._timer(loop_second))
@@ -66,7 +66,7 @@ class SnapChatChan(TaskHelper, commands.Cog):
         await self._looper()
 
     @commands.command()
-    @checks.is_admin()
+    @checks.admin()
     async def snapstop(self, ctx):
         self.end_tasks()
         await ctx.send("Tasks should have been ended.")
