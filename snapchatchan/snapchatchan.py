@@ -2,6 +2,7 @@ import discord
 from redbot.core import commands, Config, checks
 from .taskhelper import TaskHelper
 import asyncio
+from datetime import datetime, timedelta
 
 
 class SnapChatChan(TaskHelper, commands.Cog):
@@ -45,25 +46,24 @@ class SnapChatChan(TaskHelper, commands.Cog):
         await ctx.send(f"Snap chat started, messages will be deleted in {loop_second} seconds.")
 
     async def _looper(self):
-        await self.bot.wait_until_ready()
-        guilds = await self.conf.all_guilds()
-        for guild in guilds:
-            # the loop seconds
-            guild = self.bot.get_guild(guild)
-            loop_second = await self.conf.guild(guild).timer()
-            chan = await self.conf.guild(guild).channel()
-            # exclude = await self.conf.guild(guild).exclude()
-            delete_limit = await self.conf.guild(guild).delete_limit()
-            channel = self.bot.get_channel(chan)
+        while True:
+            await self.bot.wait_until_ready()
+            guilds = await self.conf.all_guilds()
+            for guild in guilds:
+                # the loop seconds
+                guild = self.bot.get_guild(guild)
+                loop_second = await self.conf.guild(guild).timer()
+                chan = await self.conf.guild(guild).channel()
+                # exclude = await self.conf.guild(guild).exclude()
+                delete_limit = await self.conf.guild(guild).delete_limit()
+                channel = self.bot.get_channel(chan)
 
-            def not_pinned(msg):
-                return not msg.pinned
-            await channel.purge(limit=delete_limit, check=not_pinned)
-            self.schedule_task(self._timer(loop_second))
+                def not_pinned(msg):
+                    return not msg.pinned
 
-    async def _timer(self, loop_second):
-        await asyncio.sleep(loop_second)
-        await self._looper()
+                await channel.purge(limit=delete_limit, check=not_pinned)
+                # self.schedule_task(self._timer(loop_second))
+                await asyncio.sleep(loop_second)
 
     @commands.command()
     @checks.admin()
