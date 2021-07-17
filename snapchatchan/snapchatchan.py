@@ -1,5 +1,5 @@
 import discord
-from redbot.core import commands, Config
+from redbot.core import commands, Config, checks
 from .taskhelper import TaskHelper
 import asyncio
 
@@ -10,25 +10,34 @@ class SnapChatChan(TaskHelper, commands.Cog):
         self.load_check = self.bot.loop.create_task(self._looper())
         TaskHelper.__init__(self)
         self.conf = Config.get_conf(self, 3877191237449, force_registration=True)
-        defaults = {"channel": 0}
+        defaults = {"channel": 0, "timer": 0, }
         self.conf.register_guild(**defaults)
 
     @commands.command()
+    @checks.is_admin_or_superior()
     async def snapchan(self, ctx, channel: discord.TextChannel):
         await self.conf.guild(ctx.guild).channel.set(channel.id)
         await ctx.send(f"Set snaptchat channel to {channel.mention}")
 
     @commands.command()
+    @checks.is_admin_or_superior()
+    async def snaptime(self, ctx, amt: int):
+        await self.conf.guild(ctx.guild).timer.set(amt)
+        await ctx.send(f"Set timer to {amt} seconds.")
+
+    @commands.command()
+    @checks.is_admin_or_superior()
     async def snapstart(self, ctx):
-        self.schedule_task(self._timer(15))
-        await ctx.send("Snap chat started, messages will be deleted in 15 seconds.")
+        loop_second = await self.conf.guild(ctx.guild).timer()
+        self.schedule_task(self._timer(loop_second))
+        await ctx.send(f"Snap chat started, messages will be deleted in {loop_second} seconds.")
 
     async def _looper(self):
-        # the loop seconds
-        loop_second = 15
         await self.bot.wait_until_ready()
         guilds = await self.conf.all_guilds()
         for guild in guilds:
+            # the loop seconds
+            loop_second = await self.conf.guild(guild).timer()
             guild = self.bot.get_guild(guild)
             chan = await self.conf.guild(guild).channel()
             channel = self.bot.get_channel(chan)
@@ -40,6 +49,7 @@ class SnapChatChan(TaskHelper, commands.Cog):
         await self._looper()
 
     @commands.command()
+    @checks.is_admin_or_superior()
     async def snapstop(self, ctx):
         self.end_tasks()
         await ctx.send("Tasks should have been ended.")
