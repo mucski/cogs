@@ -270,7 +270,7 @@ class helper:
                 resp = await helper.champimg(banned5)
                 champ_icon = Image.open(BytesIO(resp))
                 champ_icon = champ_icon.resize((200, 200))
-                img.paste(champ_icon, (int((W-w) / 2) + 2240, int((H-h) / 2) + 150))
+                img.paste(champ_icon, (int((W-w) / 2) + 2240, int((H-h) / 2) - 70))
         
                 # team 2 bans 
                 # champ 1
