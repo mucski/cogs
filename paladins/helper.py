@@ -253,7 +253,7 @@ class helper:
                     banned5 = match_data[10]
                     banned6 = match_data[11]
                     
-                draw.text((int((W-w) / 2) + 1720, int((H-h) / 2) + 80), "Bans", font=fnt, stroke_width=stroke_size, stroke_fill=stroke, fill=fill)
+                draw.text((int((W-w) / 2) + 1720, int((H-h) / 2) + 1), "Bans", font=fnt, stroke_width=stroke_size, stroke_fill=stroke, fill=fill)
                 # team 1 bans
                 # champ 1
                 resp = await helper.champimg(banned1)
