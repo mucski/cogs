@@ -106,7 +106,7 @@ class Paladins(commands.Cog):
             cunt = 0
             match_info = ["198372984", "30", "Japan",
                           "Timber Mill", "1", "4"]
-            temp = ["Makoa", "Yagorath", "Furia", "Jenos", "Vora", "Terminus"]
+            temp = ["Makoa", "Yagorath", "Furia", "Jenos", "Bomb King", "Terminus"]
             while cunt < 10:
                 cunt += 1
                 row = [
