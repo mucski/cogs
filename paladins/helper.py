@@ -259,12 +259,12 @@ class helper:
                 resp = await helper.champimg(banned1)
                 champ_icon = Image.open(BytesIO(resp))
                 champ_icon = champ_icon.resize((200, 200))
-                img.paste(champ_icon, (int((W-w) / 2) + 1820, int((H-h) / 2) - 70))
+                img.paste(champ_icon, (int((W-w) / 2) + 1800, int((H-h) / 2) - 70))
                 # champ 2
                 resp = await helper.champimg(banned2)
                 champ_icon = Image.open(BytesIO(resp))
                 champ_icon = champ_icon.resize((200, 200))
-                img.paste(champ_icon, (int((W-w) / 2) + 2040, int((H-h) / 2) - 70))
+                img.paste(champ_icon, (int((W-w) / 2) + 2020, int((H-h) / 2) - 70))
                 # champ 3
                 resp = await helper.champimg(banned5)
                 champ_icon = Image.open(BytesIO(resp))
