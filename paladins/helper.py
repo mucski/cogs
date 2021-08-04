@@ -245,6 +245,7 @@ class helper:
                     banned4 = match_data[9].name
                     banned5 = match_data[10].name
                     banned6 = match_data[11].name
+
                 except AttributeError:
                     banned1 = match_data[6]
                     banned2 = match_data[7]
