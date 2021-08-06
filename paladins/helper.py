@@ -290,5 +290,5 @@ class helper:
                 img.paste(champ_icon, (int((W-w) / 2) + 2240, int((H-h) / 2) + 150))
         
         except IndexError:
-            await ctx.send("IndexError: Something went wrong.")
+            pass
         return img
