@@ -197,7 +197,7 @@ class SFX(commands.Cog):
                     time = 0
                 if time == 600:
                     await voice.disconnect()
-                    await ctx.send("No one is talking, so bye 👋")
+                    # await ctx.send("No one is talking, so bye 👋")
                 if not voice.is_connected():
                     break
 
