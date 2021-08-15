@@ -145,7 +145,7 @@ class SFX(commands.Cog):
                     FFmpegPCMAudio(
                         fp.read(), pipe=True, options=f'-filter:a "atempo={speed}" -t 00:00:20'
                     ),
-                    after=lambda error: self.vc_callback(error, item.msg.channel),
+                    # after=lambda error: self.vc_callback(error, item.msg.channel),
                 )
                 # Lets set the volume to 1
                 vc.source = discord.PCMVolumeTransformer(vc.source)
