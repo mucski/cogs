@@ -182,24 +182,6 @@ class SFX(commands.Cog):
         elif with_nick == "off":
             sentence = f"{text}"
         await self.vc_queue.put(TTSItem(sentence, msg))
-        
-    @commands.Cog.listener()
-    async def on_voice_state_update(self, member, before, after):
-        if not member.id == self.bot.user.id:
-            return
-        elif before.channel is None:
-            voice = after.channel.guild.voice_client
-            time = 0
-            while True:
-                await asyncio.sleep(1)
-                time = time + 1
-                if voice.is_playing() and not voice.is_paused():
-                    time = 0
-                if time == 600:
-                    await voice.disconnect()
-                    # await ctx.send("No one is talking, so bye 👋")
-                if not voice.is_connected():
-                    break
 
     @commands.command()
     async def disconnect(self, ctx):
