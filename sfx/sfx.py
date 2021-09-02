@@ -185,7 +185,7 @@ class SFX(commands.Cog):
         
     @commands.Cog.listener()
     async def on_voice_state_update(self, member, before, after):
-        channel = await self.db.(guild).channel()
+        channel = await self.db(guild).channel()
         channel = self.bot.get_channel(channel)
         if not member.id == self.bot.user.id:
             return
