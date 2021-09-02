@@ -185,6 +185,8 @@ class SFX(commands.Cog):
         
     @commands.Cog.listener()
     async def on_voice_state_update(self, member, before, after):
+        channel = await self.db.(guild).channel()
+        channel = self.bot.get_channel(channel)
         if not member.id == self.bot.user.id:
             return
         elif before.channel is None:
@@ -197,7 +199,7 @@ class SFX(commands.Cog):
                     time = 0
                 if time == 600:
                     await voice.disconnect()
-                    # await ctx.send("No one is talking, so bye 👋")
+                    await channel.send("No one talked for the past 10 min, so bye 👋: Auto-Disconnecting")
                 if not voice.is_connected():
                     break
 
