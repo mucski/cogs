@@ -200,7 +200,7 @@ class SFX(commands.Cog):
                     time = time + 1
                     if voice.is_playing() and not voice.is_paused():
                         time = 0
-                    if time == 600:
+                    if time == 10: #600
                         await voice.disconnect()
                         await channel.send("No one talked for the past 10 min, so bye 👋: Auto-Disconnecting")
                     if not voice.is_connected():
