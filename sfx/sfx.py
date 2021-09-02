@@ -185,23 +185,26 @@ class SFX(commands.Cog):
         
     @commands.Cog.listener()
     async def on_voice_state_update(self, member, before, after):
-        channel_id = await self.db.guild(guild).channel()
-        channel = self.bot.get_channel(channel_id)
-        if not member.id == self.bot.user.id:
-            return
-        elif before.channel is None:
-            voice = after.channel.guild.voice_client
-            time = 0
-            while True:
-                await asyncio.sleep(1)
-                time = time + 1
-                if voice.is_playing() and not voice.is_paused():
-                    time = 0
-                if time == 600:
-                    await voice.disconnect()
-                    await channel.send("No one talked for the past 10 min, so bye 👋: Auto-Disconnecting")
-                if not voice.is_connected():
-                    break
+        guilds = await self.conf.all_guilds()
+        for guild in guilds:
+            guild = self.bot.get_guild(guild)
+            channel_id = await self.db.guild(guild).channel()
+            channel = self.bot.get_channel(channel_id)
+            if not member.id == self.bot.user.id:
+                return
+            elif before.channel is None:
+                voice = after.channel.guild.voice_client
+                time = 0
+                while True:
+                    await asyncio.sleep(1)
+                    time = time + 1
+                    if voice.is_playing() and not voice.is_paused():
+                        time = 0
+                    if time == 600:
+                        await voice.disconnect()
+                        await channel.send("No one talked for the past 10 min, so bye 👋: Auto-Disconnecting")
+                    if not voice.is_connected():
+                        break
 
     @commands.command()
     async def disconnect(self, ctx):
