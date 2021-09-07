@@ -219,6 +219,7 @@ class helper:
         fnt = ImageFont.truetype("root/mucski/stuff/arial.ttf", 100)
         if map_name == "Brightmarsh":
             fill = (15, 40, 48)
+            fill = (255, 255, 255)
         else:
             #fill = (255, 69, 0) oring
             fill = (119, 119, 119)
