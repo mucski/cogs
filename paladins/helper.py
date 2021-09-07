@@ -220,7 +220,8 @@ class helper:
         if map_name == "Brightmarsh":
             fill = (15, 40, 48)
         else:
-            fill = (255, 69, 0)
+            #fill = (255, 69, 0) oring
+            fill = (119, 119, 119)
         #stroke = (8, 21, 25)
         stroke = (255, 255, 255)
         stroke_size = 0
