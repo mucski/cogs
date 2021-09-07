@@ -222,7 +222,7 @@ class helper:
         else:
             fill = (255, 255, 255)
         stroke = (8, 21, 25)
-        stroke_size = 2
+        stroke_size = 4
         
         draw.text((padding, padding), f"ID: {match_data[0]}", font=fnt, stroke_width=stroke_size, stroke_fill=stroke, fill=fill)
         draw.text((padding, 100 + padding), f"Duration: {match_data[1]} min", font=fnt, stroke_width=stroke_size, stroke_fill=stroke, fill=fill)
