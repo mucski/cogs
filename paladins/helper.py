@@ -1,4 +1,4 @@
-from PIL import ImageOps, ImageDraw, Image, ImageFont
+from PIL import ImageOps, ImageDraw, Image, ImageFont, ImageEnhance
 import aiohttp
 from io import BytesIO
 from redbot.core.utils.chat_formatting import humanize_number
@@ -212,18 +212,16 @@ class helper:
         wpercent = (basewidth / float(match_map.size[0]))
         hsize = int((float(match_map.size[1]) * float(wpercent)))
         match_map = match_map.resize((basewidth, hsize), Image.ANTIALIAS)
+        
+        enhancer = ImageEnhance.Brightness(match_map)
+        match_map = enhancer.enhance(0.5)
         # final product
         img.paste(match_map, (0, -512))
         
         draw = ImageDraw.Draw(img)
         fnt = ImageFont.truetype("root/mucski/stuff/arial.ttf", 100)
-        if map_name == "Brightmarsh":
-            #fill = (15, 40, 48) dark
-            fill = (255, 255, 255)
-        else:
-            #fill = (255, 69, 0) oring
-            fill = (119, 119, 119)
-        #stroke = (8, 21, 25)
+        #fill = (15, 40, 48) dark
+        fill = (255, 255, 255)
         stroke = (255, 255, 255)
         stroke_size = 0
         
