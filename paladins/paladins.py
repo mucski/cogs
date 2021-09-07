@@ -95,7 +95,7 @@ class Paladins(commands.Cog):
         
     @commands.command()
     @checks.is_owner()
-    async def proto(self, ctx):
+    async def proto(self, ctx, *, map_name):
         async with ctx.typing():
             team1_data = []
             team2_data = []
@@ -105,7 +105,7 @@ class Paladins(commands.Cog):
             team2_champs = []
             cunt = 0
             match_info = ["198372984", "30", "Japan",
-                          "Timber Mill", "1", "4"]
+                          map_name, "1", "4"]
             temp = ["Makoa", "Yagorath", "Furia", "Jenos", "Bomb King", "Terminus"]
             while cunt < 10:
                 cunt += 1
