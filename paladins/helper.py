@@ -217,7 +217,10 @@ class helper:
         
         draw = ImageDraw.Draw(img)
         fnt = ImageFont.truetype("root/mucski/stuff/arial.ttf", 100)
-        fill = (255, 255, 255)
+        if map_name == "Brightmarsh":
+            fill = (15, 40, 48)
+        else:
+            fill = (255, 255, 255)
         stroke = (8, 21, 25)
         stroke_size = 2
         
