@@ -220,10 +220,10 @@ class helper:
         if map_name == "Brightmarsh":
             fill = (15, 40, 48)
         else:
-            fill = (255, 255, 255)
+            fill = (255, 69, 0)
         #stroke = (8, 21, 25)
         stroke = (255, 255, 255)
-        stroke_size = 8
+        stroke_size = 0
         
         draw.text((padding, padding), f"ID: {match_data[0]}", font=fnt, stroke_width=stroke_size, stroke_fill=stroke, fill=fill)
         draw.text((padding, 100 + padding), f"Duration: {match_data[1]} min", font=fnt, stroke_width=stroke_size, stroke_fill=stroke, fill=fill)
