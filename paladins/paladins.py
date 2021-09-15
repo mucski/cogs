@@ -74,12 +74,18 @@ class Paladins(commands.Cog):
                         match_player.kda2
                 ]
                 if match_player.team_number == 1:
-                    rank = match_player.player.ranked_best.rank.value
+                    if match_player.player.private:
+                        rank = "99"
+                    else:
+                        rank = match_player.player.ranked_best.rank.value
                     team1_data.append(row)
                     team1_champs.append(match_player.champion.name)
                     team1_ranks.append(rank)
                 else:
-                    rank = match_player.player.ranked_best.rank.value
+                    if match_player.player.private:
+                        rank = "99"
+                    else:
+                        rank = match_player.player.ranked_best.rank.value
                     team2_data.append(row)
                     team2_champs.append(match_player.champion.name)
                     team2_ranks.append(rank)
