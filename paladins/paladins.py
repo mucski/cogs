@@ -260,7 +260,7 @@ class Paladins(commands.Cog):
                 final_kda += match.kda2
                 kda_counter += 1
                 table.append(t)
-            table_done = tabulate(table, headers=["#", "Match ID", "Map", "Champion", "KDA", "KDA2"])
+            table_done = tabulate(table, headers=["#", "Match ID", "Map", "Champion", "KDA", "KDA2"], tablefmt="presto")
             champs = Counter(m.champion for m in history)
             most_champ = champs.most_common(1)[0][0].name
             if all(isinstance(c, arez.Champion) for c in champs.keys()):
@@ -269,7 +269,7 @@ class Paladins(commands.Cog):
             else:
                 most_class = "Unknown"
             for page in pagify(table_done):
-                await ctx.send(f"```diff\n{page}\n```")
+                await ctx.send("```dif\n{}\n```".format(page))
             await ctx.send("```\nMost played champion: {}\nMost played class: {}\nAverage KDA: {:.2f}\n```".format(most_champ, most_class, final_kda / kda_counter))
         
     @commands.command()
