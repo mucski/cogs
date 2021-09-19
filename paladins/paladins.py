@@ -260,7 +260,7 @@ class Paladins(commands.Cog):
                 final_kda += match.kda2
                 kda_counter += 1
                 table.append(t)
-            table_done = tabulate(table, headers=["#", "Match ID", "Map", "Champion", "KDA", "KDA2"], tablefmt="presto")
+            table_done = tabulate(table, headers=["#", "Match ID", "Map", "Champion", "KDA", "KDA2"], tablefmt="rst")
             champs = Counter(m.champion for m in history)
             most_champ = champs.most_common(1)[0][0].name
             if all(isinstance(c, arez.Champion) for c in champs.keys()):
