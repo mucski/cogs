@@ -268,9 +268,9 @@ class Paladins(commands.Cog):
                 most_class = classes.most_common(1)[0][0]
             else:
                 most_class = "Unknown"
-            for page in pagify(table_done):
+            for page in pagify(table_done, delims="\n"):
                 await ctx.send("```diff\n{}\n```".format(page))
-            # await ctx.send("```\nMost played champion: {}\nMost played class: {}\nAverage KDA: {:.2f}\n```".format(most_champ, most_class, final_kda / kda_counter))
+            await ctx.send("```\nMost played champion: {}\nMost played class: {}\nAverage KDA: {:.2f}\n```".format(most_champ, most_class, final_kda / kda_counter))
         
     @commands.command()
     async def champstats(self, ctx, champion_name="all", player=None, platform="PC"):
