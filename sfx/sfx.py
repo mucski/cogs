@@ -38,7 +38,7 @@ class SFX(commands.Cog):
         self.vc_task.cancel()
 
     @commands.command()
-    async def tts(self, ctx, channel: discord.VoiceChannel = None):
+    async def ttscon(self, ctx, channel: discord.VoiceChannel = None):
         if not channel:
             try:
                 channel = ctx.author.voice.channel
