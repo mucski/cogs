@@ -38,7 +38,7 @@ class SFX(commands.Cog):
         self.vc_task.cancel()
 
     @commands.command()
-    async def ttscon(self, ctx, channel: discord.VoiceChannel = None):
+    async def connect(self, ctx, channel: discord.VoiceChannel = None):
         if not channel:
             try:
                 channel = ctx.author.voice.channel
@@ -204,7 +204,7 @@ class SFX(commands.Cog):
                     break
 
     @commands.command()
-    async def ttsdc(self, ctx):
+    async def disconnect(self, ctx):
         vc = ctx.guild.voice_client
         if not vc:
             await ctx.channel.send("I am not in a voice channel.")
