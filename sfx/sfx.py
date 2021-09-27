@@ -36,7 +36,7 @@ class SFX(commands.Cog):
 
     def cog_unload(self):
         self.vc_task.cancel()
-        self.vc.disconnect()
+        self.disconnect()
 
     @commands.command()
     async def connect(self, ctx, channel: discord.VoiceChannel = None):
