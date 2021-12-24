@@ -90,7 +90,7 @@ class Paladins(commands.Cog):
                 team2_champs.append(match_player.champion.name)
                 team2_ranks.append(rank)
         buffer = await helper.historyimg(team1_champs, team2_champs, team1_data, team2_data, team1_ranks, team2_ranks, (match_info + temp))
-        file = discord.File(filename=f"{matchid}.png", fp=buffer)
+        file = discord.File(filename=f"{matchid}.webp", fp=buffer)
     await ctx.send(file=file)
         
     @commands.command()
@@ -193,7 +193,7 @@ class Paladins(commands.Cog):
                 team2_champs.append(match_player.champion.name)
                 team2_ranks.append(rank)
         buffer = await helper.historyimg(team1_champs, team2_champs, team1_data, team2_data, team1_ranks, team2_ranks, (match_info + temp))
-        file = discord.File(filename=f"{player}.png", fp=buffer)
+        file = discord.File(filename=f"{player}.webp", fp=buffer)
         await ctx.send(file=file)
 
     @commands.command()
