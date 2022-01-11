@@ -11,7 +11,7 @@ import discord
 class Utilities(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
-        self.bot.remove_command("info")
+        # self.bot.remove_command("info")
 
     @commands.command()
     async def whoami(self, ctx):
@@ -70,7 +70,7 @@ class Utilities(commands.Cog):
             await ctx.send("Missing permissions.")
             return
         await ctx.send("Done")
-        
+
     @commands.command()
     @checks.is_owner()
     async def console(self, ctx, *, cmd):
@@ -98,7 +98,7 @@ class Utilities(commands.Cog):
         if member is None:
             member = ctx.author
         await ctx.send(member.avatar_url)
-        
+
     @commands.command()
     @checks.is_owner()
     async def say(self, ctx, *, stuff):
@@ -106,17 +106,17 @@ class Utilities(commands.Cog):
             if log.author == ctx.author:
                 await log.delete()
         await ctx.send(stuff)
-        
-    @commands.command()
-    async def info(self, ctx):
-        desc = (
-            "Multipurpose bot hosted by mucski, created by Twentysix\n"
-            "For support you can contact my owner with the contact command\n"
-            "Or join my support discord server:"
-        )
-        e = discord.Embed(title=f"{self.bot.user.display_name}'s info", color=await self.bot.get_embed_color(ctx), description=desc)
-        await ctx.send(embed=e)
-        await ctx.send("https://discord.gg/Juwfhp8nnc")
-        
-    def cog_unload(self):
-        self.bot.add_command("info")
+
+    # @commands.command()
+    # async def info(self, ctx):
+    #     desc = (
+    #         "Multipurpose bot hosted by mucski, created by Twentysix\n"
+    #         "For support you can contact my owner with the contact command\n"
+    #         "Or join my support discord server:"
+    #     )
+    #     e = discord.Embed(title=f"{self.bot.user.display_name}'s info", color=await self.bot.get_embed_color(ctx), description=desc)
+    #     await ctx.send(embed=e)
+    #     await ctx.send("https://discord.gg/Juwfhp8nnc")
+    #
+    # def cog_unload(self):
+    #     self.bot.add_command("info")
