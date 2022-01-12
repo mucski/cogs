@@ -25,13 +25,12 @@ class Paladins(commands.Cog):
         self.f = open("/root/mucski/stuff/key.txt", "r")
         self.auth = self.f.readline()
         self.devid = self.f.readline()
-        self.api = arez.PaladinsAPI(dev_id=self.devid.strip(),
-                                    auth_key=self.auth.strip())
+        self.api = arez.PaladinsAPI(dev_id=self.devid.strip(), auth_key=self.auth.strip())
 
     def cog_unload(self):
         asyncio.createTask(self.api.close())
         self.f.close()
-        
+
     async def cog_command_error(self, ctx, error):
         if isinstance(error, commands.CommandInvokeError):
             exc = error.original
@@ -51,8 +50,8 @@ class Paladins(commands.Cog):
     @commands.command()
     async def match(self, ctx, matchid: int):
         """Returns a match played from a given ID.
-        This command only supports integer. 
-        For player names use [p]last (player) (platform) 
+        This command only supports integer.
+        For player names use [p]last (player) (platform)
         See [p]help last for more info.
         """
         async with ctx.typing():
@@ -92,7 +91,7 @@ class Paladins(commands.Cog):
             buffer = await helper.historyimg(team1_champs, team2_champs, team1_data, team2_data, team1_ranks, team2_ranks, (match_info + temp))
             file = discord.File(filename=f"{matchid}.webp", fp=buffer)
             await ctx.send(file=file)
-        
+
     @commands.command()
     @checks.is_owner()
     async def proto(self, ctx, *, map_name):
@@ -128,7 +127,7 @@ class Paladins(commands.Cog):
             buffer = await helper.historyimg(team1_champs, team2_champs, team1_data, team2_data, team1_ranks, team2_ranks, (match_info + temp))
             file = discord.File(filename="prototype.webp", fp=buffer)
             await ctx.send(file=file)
-            
+
     @commands.command()
     async def last(self, ctx, player=None, platform="PC"):
         """Returns the last played match by player
@@ -221,7 +220,7 @@ class Paladins(commands.Cog):
             await ctx.send(file=file)
         else:
             await ctx.send("```json\n" + response + "```")
-            
+
     @commands.command()
     async def history(self, ctx, player=None, platform="PC"):
         """Returns the history of someone (or yourself)
@@ -271,7 +270,7 @@ class Paladins(commands.Cog):
         for page in pagify(table_done, page_length=1900):
             await ctx.send("```diff\n{}\n```".format(page))
         await ctx.send("```\nMost played champion: {}\nMost played class: {}\nAverage KDA: {:.2f}\n```".format(most_champ, most_class, final_kda / kda_counter))
-        
+
     @commands.command()
     async def champstats(self, ctx, champion_name="all", player=None, platform="PC"):
         """Returns champion stats, individual or multiple
@@ -309,7 +308,7 @@ class Paladins(commands.Cog):
                 t = []
                 t.append(f"{stats.champion.name}({stats.level})")
                 t.append("{:.2f}".format(stats.kda))
-                t.append(f"{stats.winrate_text}") 
+                t.append(f"{stats.winrate_text}")
                 t.append(f"{math.floor(stats.playtime.total_hours())} h")
                 hours_count += stats.playtime.total_hours()
                 table.append(t)
@@ -342,7 +341,7 @@ class Paladins(commands.Cog):
             e.description = desc
             e.set_footer(text=f"Individual champion stats for {ret.name}")
             await ctx.send(embed=e)
-                
+
     @commands.command()
     async def current(self, ctx, name=None, platform="PC"):
         """Returns the current match for yourself or someone.
@@ -424,7 +423,7 @@ class Paladins(commands.Cog):
         e.set_thumbnail(url=player.avatar_url)
         e.set_footer(text=f"Match ID: {live_match.id} / Missing players are bots.")
         await ctx.send(embed=e)
-            
+
     @commands.command()
     async def stats(self, ctx, name=None, platform="PC"):
         """Returns a players stats.
@@ -484,7 +483,7 @@ class Paladins(commands.Cog):
         e.set_thumbnail(url=player.avatar_url)
         e.set_footer(text=f"Player ID: {player.id}")
         await ctx.send(embed=e)
-        
+
     @commands.command()
     async def status(self, ctx):
         """Paladins server statuses
@@ -506,11 +505,11 @@ class Paladins(commands.Cog):
                 f"Version: {v.version}\n\n"
                 "```"
             )
-            stringus += desc 
+            stringus += desc
         e = discord.Embed(title="Paladins Server Status", color=await self.bot.get_embed_color(ctx), description=stringus)
         e.set_footer(text=f"Current time: {status.timestamp.strftime('%c')}")
         await ctx.send(embed=e)
-        
+
     @commands.command()
     @checks.is_owner()
     async def friends(self, ctx, name=None, platform="PC"):
