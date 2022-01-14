@@ -278,6 +278,8 @@ class Paladins(commands.Cog):
         [p]champstats kda name platform to sort by kda
         [p]champstats all name platform sorts by level by default
         [p]champstats champion for individual
+        
+        for champions with spaces do it like "sha lin"
         """
         # async with ctx.typing():
         if player is None:
