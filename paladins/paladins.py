@@ -45,6 +45,8 @@ class Paladins(commands.Cog):
                 return
             if isinstance(exc, aiohttp.ClientResponseError):
                 await ctx.send("```\nTimed out. Try again in a minute\n```")
+            if isinstance(exc, arez.exceptions.HTTPException):
+                await ctx.send("```\nSomething went wrong, try again with another user/id/name or try agian later\n```")
         await ctx.bot.on_command_error(ctx, error, unhandled_by_cog=True)
 
     @commands.command()
