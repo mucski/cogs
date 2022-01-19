@@ -126,7 +126,7 @@ class Paladins(commands.Cog):
                 team2_ranks.append(rank)
         buffer = await helper.historyimg(team1_champs, team2_champs, team1_data, team2_data, team1_ranks, team2_ranks, (match_info + temp))
         file = discord.File(filename="prototype.webp", fp=buffer)
-        await msg.edit(file=file)
+        await msg.edit(content=f"file={file}")
 
     @commands.command()
     async def last(self, ctx, player=None, platform="PC"):
