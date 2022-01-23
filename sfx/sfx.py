@@ -69,9 +69,19 @@ class SFX(commands.Cog):
 
     @commands.command()
     @checks.admin()
-    async def ttschannel(self, ctx, channel: discord.TextChannel):
-        await self.db.guild(ctx.guild).channel.set(channel.id)
-        await ctx.send(f"TTS channel has been set to {channel.name}")
+    async def addttschannel(self, ctx, channel: discord.TextChannel):
+        # await self.db.guild(ctx.guild).channel.set(channel.id)
+        async with self.db.guild(ctx.guild).channels() as channels:
+            channels.append(channel.id)
+            await ctx.send(f"{channel.name} has been added to tts channel list.")
+
+    @commands.command()
+    @checks.admin()
+    async def delttschannel(self, ctx, channel: discord.TextChannel):
+        # await self.db.guild(ctx.guild).channel.set(channel.id)
+        async with self.db.guild(ctx.guild).channels() as channels:
+            channels.remove(channel.id)
+            await ctx.send(f"{channel.name} has been removed from tts channels.")
 
     @commands.command()
     @checks.admin()
