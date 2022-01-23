@@ -172,7 +172,7 @@ class SFX(commands.Cog):
     @commands.Cog.listener()
     async def on_message_without_command(self, msg: discord.Message):
         # channel = await self.db.guild(msg.guild).channel()
-        channels = await self.db.guild(ms.guild).channels()
+        channels = await self.db.guild(msg.guild).channels()
         # if msg.channel.id != channel:
         if msg.channel.id not in channels:
             return
