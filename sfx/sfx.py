@@ -23,7 +23,8 @@ class SFX(commands.Cog):
         self.bot = bot
         self.db = Config.get_conf(self, 828282859272, force_registration=True)
         default_guild = {
-            "channel": "",
+            # "channel": "",
+            "channels": [],
             "lang": "en",
             "tld": "com",
             "with_nick": "on",
@@ -160,8 +161,10 @@ class SFX(commands.Cog):
     # @commands.command()
     @commands.Cog.listener()
     async def on_message_without_command(self, msg: discord.Message):
-        channel = await self.db.guild(msg.guild).channel()
-        if msg.channel.id != channel:
+        # channel = await self.db.guild(msg.guild).channel()
+        channels = await self.db.guild(ms.guild).channels()
+        # if msg.channel.id != channel:
+        if msg.channel.id not in channels:
             return
         if msg.author.bot:
             return
@@ -183,7 +186,7 @@ class SFX(commands.Cog):
         elif with_nick == "off":
             sentence = f"{text}"
         await self.vc_queue.put(TTSItem(sentence, msg))
-        
+
     @commands.Cog.listener()
     async def on_voice_state_update(self, member, before, after):
         if not member.id == self.bot.user.id:
@@ -191,8 +194,8 @@ class SFX(commands.Cog):
         elif before.channel is None:
             voice = after.channel.guild.voice_client
             time = 0
-            channel_id = await self.db.guild(voice.guild).channel()
-            channel = self.bot.get_channel(channel_id)
+            # channel_id = await self.db.guild(voice.guild).channel()
+            # channel = self.bot.get_channel(channel_id)
             while True:
                 await asyncio.sleep(1)
                 time = time + 1
@@ -200,7 +203,7 @@ class SFX(commands.Cog):
                     time = 0
                 if time == 1800:
                     await voice.disconnect()
-                    await channel.send("No one talked for the past 30 min, so bye 👋: Auto-Disconnecting")
+                    # await channel.send("No one talked for the past 30 min, so bye 👋: Auto-Disconnecting")
                 if not voice.is_connected():
                     break
 
