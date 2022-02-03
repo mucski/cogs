@@ -233,7 +233,7 @@ class SFX(commands.Cog):
             )
         ):
             return
-        if before_channel.id == vc.channel.id:
+        if before_channel is not None and before_channel.id == vc.channel.id:
             # disconnected from the channel we're in
             num_members = sum(1 for m in vc.channel.members if not m.bot)
             if num_members > 0:
@@ -242,7 +242,7 @@ class SFX(commands.Cog):
             guild = member.guild
             if guild.id not in self.leave_tasks:
                 self.leave_tasks[guild.id] = asyncio.create_task(self.leaver(guild))
-        elif after_channel.id == vc.channel.id:
+        elif after_channel is not None and after_channel.id == vc.channel.id:
             # connected to the channel we're in
             guild_id = member.guild.id
             if guild_id in self.leave_tasks:
