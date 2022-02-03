@@ -4,7 +4,7 @@ import re
 import asyncio
 import traceback
 from io import BytesIO
-from typing import Optional, NamedTuple
+from typing import Optional, List, Dict, NamedTuple
 
 import discord
 from gtts import gTTS
@@ -24,7 +24,7 @@ class SFX(commands.Cog):
         self.bot = bot
         self.db = Config.get_conf(self, 828282859272, force_registration=True)
         default_guild = {
-            "channel": 0,
+            "channels": [],
             "lang": "en",
             "tld": "com",
             "with_nick": 1,
@@ -34,6 +34,7 @@ class SFX(commands.Cog):
         self.vc_queue: asyncio.Queue[TTSItem] = asyncio.Queue()
         self.vc_task = asyncio.create_task(self.vc_speaker())
         self.vc_lock = asyncio.Lock()
+        self.leave_tasks: Dict[int, asyncio.Task[None]] = {}
 
     def cog_unload(self):
         self.vc_task.cancel()
@@ -72,9 +73,20 @@ class SFX(commands.Cog):
     @commands.command()
     @checks.admin()
     @commands.guild_only()
-    async def ttschannel(self, ctx: Context, channel: discord.TextChannel):
-        await self.db.guild(ctx.guild).channel.set(channel.id)
-        await ctx.send(f"TTS channel has been set to {channel.name}")
+    async def addttschannel(self, ctx: Context, channel: discord.TextChannel):
+        channels: List[int]
+        async with self.db.guild(ctx.guild).channels() as channels:
+            channels.append(channel.id)
+        await ctx.send(f"{channel.name} has been added to tts channel list.")
+
+    @commands.command()
+    @checks.admin()
+    @commands.guild_only()
+    async def delttschannel(self, ctx: Context, channel: discord.TextChannel):
+        channels: List[int]
+        async with self.db.guild(ctx.guild).channels() as channels:
+            channels.remove(channel.id)
+        await ctx.send(f"{channel.name} has been removed from tts channels.")
 
     @commands.command()
     @checks.admin()
@@ -165,11 +177,8 @@ class SFX(commands.Cog):
         if guild is None:
             # ignore messages in DMs
             return
-        channel_id = await self.db.guild(guild).channel()
-        if not channel_id:
-            # channel isn't set
-            return
-        if msg.channel.id != channel_id:
+        channels = await self.db.guild(msg.guild).channels()
+        if msg.channel.id not in channels:
             # message isn't in the set channel
             return
         # await msg.channel.send(msg.content)
@@ -190,6 +199,55 @@ class SFX(commands.Cog):
         else:
             sentence = f"{text}"
         await self.vc_queue.put(TTSItem(sentence, msg))
+
+    async def leaver(self, guild: discord.Guild):
+        await asyncio.sleep(900)  # 15 minutes
+        vc: Optional[discord.VoiceClient] = guild.voice_client
+        if vc is not None:
+            await vc.disconnect()
+        if guild.id in self.leave_tasks:
+            del self.leave_tasks[guild.id]
+
+    @commands.Cog.listener()
+    async def on_voice_state_update(
+        self, member: discord.Member, before: discord.VoiceState, after: discord.VoiceState
+    ):
+        # ignore events for ourselves
+        if member.id == self.bot.user.id:
+            return
+        # narrow down the exact type of event we're looking for here
+        vc: Optional[discord.VoiceClient] = member.guild.voice_client
+        if vc is None or not vc.is_connected():
+            # we're not connected to a channel in that guild
+            return
+        before_channel: Optional[discord.VoiceChannel] = before.channel
+        after_channel: Optional[discord.VoiceChannel] = after.channel
+        if (
+            # before and after channels are None
+            before_channel is None and after_channel is None
+            or (
+                # or both channels are set and they're the same channel
+                before_channel is not None
+                and after_channel is not None
+                and before_channel.id == after_channel.id
+            )
+        ):
+            return
+        if before_channel.id == vc.channel.id:
+            # disconnected from the channel we're in
+            num_members = sum(1 for m in vc.channel.members if not m.bot)
+            if num_members > 0:
+                # there's at least one non-bot person connected to the channel we're in
+                return
+            guild = member.guild
+            if guild.id not in self.leave_tasks:
+                self.leave_tasks[guild.id] = asyncio.create_task(self.leaver(guild))
+        elif after_channel.id == vc.channel.id:
+            # connected to the channel we're in
+            guild_id = member.guild.id
+            if guild_id in self.leave_tasks:
+                self.leave_tasks[guild_id].cancel()
+                del self.leave_tasks[guild_id]
 
     @commands.command()
     @commands.guild_only()

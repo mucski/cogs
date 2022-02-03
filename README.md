@@ -10,6 +10,12 @@ Coin - Coin farming tycoon with small trivia, steal from other players. leaderbo
 
 TTSCog is a simple tts system that will speak out loud whatever you type in a channel (that you can setup) in a voice channel using Google Text To Speech
 
+TTS Cog has dependencies - FFMPEG and OPUS:
+  sudo apt install ffmpeg
+  sudo apt-get install opus-tools
+
+  check ffmpeg with ffmpeg -version
+
 Utilities includes many useful small tools that us primarily intended for personal use
 
 Roleplaying is a bunch of anime gifs with actions such as kiss, hug, pat

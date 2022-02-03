@@ -1,11 +1,11 @@
-from PIL import ImageOps, ImageDraw, Image, ImageFont
+from PIL import ImageOps, ImageDraw, Image, ImageFont, ImageEnhance
 import aiohttp
 from io import BytesIO
 from redbot.core.utils.chat_formatting import humanize_number
 
 
 class helper:
-    
+
     @classmethod
     async def champimg(cls, name):
         name = name.lower()
@@ -46,13 +46,13 @@ class helper:
         img_color = (14, 34, 43) if index % 2 == 0 else (15, 40, 48)
         # text fill size )
         fill = (255, 255, 255)
-        
+
         orange = (252, 186, 3)
         green = (7, 252, 3)
         red = (252, 102, 3)
         purple = (240, 3, 252)
         fill = (255, 255, 255)
-        
+
         if stats[9] == 1:
             color = green
         elif stats[9] == 2:
@@ -63,7 +63,7 @@ class helper:
             color = red
         else:
             color = fill
-        
+
         # new image object
         img = Image.new("RGBA", (W, H), color=img_color)
         # champion icon
@@ -77,14 +77,14 @@ class helper:
         # bold font
         fntbld = ImageFont.truetype("root/mucski/stuff/arialbd.ttf", 80)
         smallfnt = ImageFont.truetype("root/mucski/stuff/arial.ttf", 60)
-        
+
         if stats[0] == "":
             stats[0] = "?????????"
-            
+
         # player name and level
         draw.text((512 + padding * 4, mid - 30), str(stats[0]), font=fntbld, fill=color)
         draw.text((512 + padding * 4, mid + 60), str(stats[1]), font=smallfnt, fill=fill)
-        
+
         # credits earned
         draw.text((1736, mid), humanize_number(stats[2]), font=fnt, fill=fill)
         # kda
@@ -113,11 +113,11 @@ class helper:
         fill = (255, 255, 255)
         padding = 10
         fntbld = ImageFont.truetype("root/mucski/stuff/arialbd.ttf", 50)
-        
+
         # champion and player
         draw.text((20, 20), "CHAMPION", font=fntbld, fill=fill)
         draw.text((512 + padding * 4, 20), "PLAYER", font=fntbld, fill=fill)
-        
+
         # rank
         draw.text((1576, 20), "R", font=fntbld, fill=fill)
         # credits
@@ -127,7 +127,7 @@ class helper:
         # damage done
         draw.text((2436, 20), "DAMAGE", font=fntbld, fill=fill)
         # damage taken
-        draw.text((2826, 20), "MITIGATED", font=fntbld, fill=fill)
+        draw.text((2826, 20), "TAKEN", font=fntbld, fill=fill)
         # objective
         draw.text((3226, 20), "OBJ", font=fntbld, fill=fill)
         # shielding
@@ -146,11 +146,11 @@ class helper:
         W, H = (4620, 2932)
         # padding=10
         img = Image.new("RGB", (W, H), color=(8, 21, 25))
-        
+
         # headers
         key = await helper.playerkey(W, H)
         img.paste(key, (0, 0))
-        
+
         # middle panel
         middle = await helper.middlepanel(match_data)
         img.paste(middle, (0, int(H / 2 - 200)))
@@ -183,23 +183,24 @@ class helper:
                 playerpanel = await helper.statsimage(champimgcrop, rankicon, team_data[i], i)
                 img.paste(playerpanel, (0, 232 * i + offset))
         # done, reisizing for speed
-        historyimg = img.resize((int(W / 2), int(H / 2)), Image.ANTIALIAS)
+        # historyimg = img.resize((int(W / 2), int(H / 2)), Image.ANTIALIAS)
+        historyimg = img.resize((int(W / 2), int(H / 2)))
         # create the buffer
         final_buffer = BytesIO()
         # store image in buffer
-        historyimg.save(final_buffer, "PNG")
+        historyimg.save(final_buffer, "WEBP")
         # seek back to start
         final_buffer.seek(0)
         return final_buffer
-        
+
     @classmethod
     async def middlepanel(cls, match_data):
         W, H = (4620, 512)
         padding = 46
         # (horizontal, vertical)
         img = Image.new("RGB", (W, H))
-        
-        # add in the map image 
+
+        # add in the map image
         map_name = match_data[3]
         format_map = map_name.lower().replace(" ", "_").replace("'", "")
         try:
@@ -212,29 +213,33 @@ class helper:
         wpercent = (basewidth / float(match_map.size[0]))
         hsize = int((float(match_map.size[1]) * float(wpercent)))
         match_map = match_map.resize((basewidth, hsize), Image.ANTIALIAS)
+
+        enhancer = ImageEnhance.Brightness(match_map)
+        match_map = enhancer.enhance(0.5)
         # final product
         img.paste(match_map, (0, -512))
-        
+
         draw = ImageDraw.Draw(img)
         fnt = ImageFont.truetype("root/mucski/stuff/arial.ttf", 100)
+        #fill = (15, 40, 48) dark
         fill = (255, 255, 255)
-        stroke = (8, 21, 25)
-        stroke_size = 2
-        
+        stroke = (255, 255, 255)
+        stroke_size = 0
+
         draw.text((padding, padding), f"ID: {match_data[0]}", font=fnt, stroke_width=stroke_size, stroke_fill=stroke, fill=fill)
         draw.text((padding, 100 + padding), f"Duration: {match_data[1]} min", font=fnt, stroke_width=stroke_size, stroke_fill=stroke, fill=fill)
         draw.text((padding, 200 + padding), f"Region: {match_data[2]}", font=fnt, stroke_width=stroke_size, stroke_fill=stroke, fill=fill)
         draw.text((padding, 300 + padding), f"Map: {match_data[3]}", font=fnt, stroke_width=stroke_size, stroke_fill=stroke, fill=fill)
-        
+
         draw.text((int(W / 2 - 1032), padding), f"Team 1 score: {match_data[4]}", font=fnt, stroke_width=stroke_size, stroke_fill=stroke, fill=fill)
-        
+
         vs = Image.open("root/mucski/stuff/icons/vs.png")
         w, h = vs.size
         vs = vs.resize((int(w * 2 / 3), int(h * 2 / 3)))
         img.paste(vs, (int((W-w) / 2), int((H-h) / 2 + 48)), mask=vs)
-        
+
         draw.text((int(W / 2 + 173), 300 + padding), f"Team 2 score: {match_data[5]}", font=fnt, stroke_width=stroke_size, stroke_fill=stroke, fill=fill)
-        
+
         # ranked bans
         try:
             if match_data[6]:
@@ -243,36 +248,52 @@ class helper:
                     banned2 = match_data[7].name
                     banned3 = match_data[8].name
                     banned4 = match_data[9].name
+                    banned5 = match_data[10].name
+                    banned6 = match_data[11].name
+
                 except AttributeError:
                     banned1 = match_data[6]
                     banned2 = match_data[7]
                     banned3 = match_data[8]
                     banned4 = match_data[9]
-                    
-                draw.text((int((W-w) / 2) + 1720, int((H-h) / 2) + 80), "Bans", font=fnt, stroke_width=stroke_size, stroke_fill=stroke, fill=fill)
+                    banned5 = match_data[10]
+                    banned6 = match_data[11]
+
+                draw.text((int((W-w) / 2) + 1520, int((H-h) / 2) + 80), "Bans", font=fnt, stroke_width=stroke_size, stroke_fill=stroke, fill=fill)
                 # team 1 bans
                 # champ 1
                 resp = await helper.champimg(banned1)
                 champ_icon = Image.open(BytesIO(resp))
                 champ_icon = champ_icon.resize((200, 200))
-                img.paste(champ_icon, (int((W-w) / 2) + 2020, int((H-h) / 2) - 70))
+                img.paste(champ_icon, (int((W-w) / 2) + 1800, int((H-h) / 2) - 70))
                 # champ 2
                 resp = await helper.champimg(banned2)
                 champ_icon = Image.open(BytesIO(resp))
                 champ_icon = champ_icon.resize((200, 200))
-                img.paste(champ_icon, (int((W-w) / 2) + 2240, int((H-h) / 2) - 70))
-                # team 2 bans 
-                # champ 1
+                img.paste(champ_icon, (int((W-w) / 2) + 2020, int((H-h) / 2) - 70))
+                # champ 3
                 resp = await helper.champimg(banned3)
                 champ_icon = Image.open(BytesIO(resp))
                 champ_icon = champ_icon.resize((200, 200))
-                img.paste(champ_icon, (int((W-w) / 2) + 2020, int((H-h) / 2) + 150))
-                # champ 2
+                img.paste(champ_icon, (int((W-w) / 2) + 2240, int((H-h) / 2) - 70))
+
+                # team 2 bans
+                # champ 1
                 resp = await helper.champimg(banned4)
                 champ_icon = Image.open(BytesIO(resp))
                 champ_icon = champ_icon.resize((200, 200))
+                img.paste(champ_icon, (int((W-w) / 2) + 1800, int((H-h) / 2) + 150))
+                # champ 2
+                resp = await helper.champimg(banned5)
+                champ_icon = Image.open(BytesIO(resp))
+                champ_icon = champ_icon.resize((200, 200))
+                img.paste(champ_icon, (int((W-w) / 2) + 2020, int((H-h) / 2) + 150))
+                # champ 3
+                resp = await helper.champimg(banned6)
+                champ_icon = Image.open(BytesIO(resp))
+                champ_icon = champ_icon.resize((200, 200))
                 img.paste(champ_icon, (int((W-w) / 2) + 2240, int((H-h) / 2) + 150))
-        
+
         except IndexError:
             pass
         return img

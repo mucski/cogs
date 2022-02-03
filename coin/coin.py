@@ -222,7 +222,7 @@ class Coin(commands.Cog):
             stamp = datetime.fromtimestamp(stamp)
         else:
             stamp = now
-        future = now + timedelta(hours=2)
+        future = now + timedelta(minutes=30)
         await self.db.user(ctx.author).stealstamp.set(future.timestamp())
         if stamp > now:
             await ctx.send(f"You need to slow down or rhe police will catch you.."

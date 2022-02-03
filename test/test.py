@@ -1,58 +1,52 @@
-from redbot.core import commands
+from redbot.core import commands, Config
 import random
 from redbot.core.utils.menus import start_adding_reactions
 from redbot.core.utils.predicates import ReactionPredicate
-import discord
-import asyncio
+from discord.ext import tasks
 
 
 class Test(commands.Cog):
     def __init__(self, bot):
+        self.conf = Config.get_conf(self, 9340293423)
+        defaults = {
+            "msgs": {}
+        }
+        self.conf.register_guild(**defaults)
         self.bot = bot
 
-    @commands.group()
-    async def test(self, ctx):
-        pass
+    @commands.command()
+    async def msglaunch(self, ctx):
+        msg = await self.conf.guild(ctx.guild).msgs.get_raw()
+        await ctx.send(msg)
 
-    @test.command()
-    async def lockpick(self, ctx, number: int):
-        emojis = ["◀", "▶", "❌"]
-        chars = "◀▶"
-        var = 0
-        key = 3
-        lock_length = 10
-        pick = []
-        line = "__________"
-        lock = ''.join(random.choice(chars) for _ in range(lock_length))
-        desc = (
-            "Steal someone's coins by pressing < or > like a retard\n"
-            "Lockpicks left: 3"
-            f"{line}"
-        )
-        embed = discord.Embed(title="Stealing from your mom", description=desc)
-        embed.set_footer(text="Pick the lock using the ◀ and ▶ and ❌ to cancel.")
-        msg = await ctx.send(embed=embed)
-        start_adding_reactions(msg, emojis)
+    @commands.command()
+    async def msgdefine(self, ctx, msg1, msg2):
+        await self.conf.guild(ctx.guild).msgs.set_raw(value=+{msg1: msg2})
+        await ctx.send("Done")
 
-        while True:
-            pred = ReactionPredicate.with_emojis(emojis, message=msg, user=ctx.author)
-            try:
-                await ctx.bot.wait_for("reactions_add", check=pred, timeout=60)
-            except asyncio.TimeoutError:
-                await msg.clear_reactions()
-                return
-            emoji = emojis[pred.result]
-            if emoji == '❌':
-                await msg.clear_reactions()
-                embed.description = "You have cancelled. GG"
-                msg.edit(embed=embed)
-                break
-            if emoji == chars[var]:
-                try:
-                    var+1
-                    line = "__________"
-                    pick.append(emoji)
-                    line = ''.join(pick) + line[var:]
-                    msg.edit(embed)
-                except IndexError:
-                    break
+    @tasks.loop(seconds=15, reconnect=False)
+    async def messager(self):
+        channel = self.bot.get_channel(779860372190396447)
+        await channel.purge(limit=1)
+
+    @commands.command()
+    async def task_start(self, ctx):
+        self.messager.start()
+        await ctx.send("Task started")
+
+    @commands.command()
+    async def task_stop(self, ctx):
+        self.messager.stop()
+        await ctx.send("Task stopped")
+
+    @commands.command()
+    async def task_cancel(self, ctx):
+        self.messager.cancel()
+        await ctx.send("Task cancelled")
+
+    @commands.command()
+    async def task_running(self, ctx):
+        the_task = self.messager.get_task()
+        if the_task is None:
+            the_task = "No task to display"
+        await ctx.send(the_task)
