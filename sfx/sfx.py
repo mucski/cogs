@@ -71,7 +71,7 @@ class SFX(commands.Cog):
             except asyncio.TimeoutError:
                 await ctx.send(f'Connecting to channel: <{channel}> timed out.')
                 return
-        await ctx.send(f'Connected to: **{channel}**', delete_after=20)
+        await ctx.tick()
 
     @commands.command()
     @commands.guild_only()
