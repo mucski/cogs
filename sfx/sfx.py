@@ -84,7 +84,7 @@ class SFX(commands.Cog):
             await ctx.channel.send("I am not in a voice channel.")
             return
         await vc.disconnect()
-        await ctx.check
+        await ctx.tick
 
     @commands.command()
     @checks.admin()
