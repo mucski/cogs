@@ -84,8 +84,7 @@ class SFX(commands.Cog):
             await ctx.channel.send("I am not in a voice channel.")
             return
         await vc.disconnect()
-        emoji = '\N{THUMBS UP SIGN}'
-        await msg.add_reaction(emoji)
+        await ctx.check
 
     @commands.command()
     @checks.admin()
