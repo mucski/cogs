@@ -42,6 +42,9 @@ class SFX(commands.Cog):
     @commands.command()
     @commands.guild_only()
     async def connect(self, ctx: Context, channel: discord.VoiceChannel = None):
+        """
+        Connect to the specified voice channel, or the channel you're currently in.
+        """
         if channel is None:
             voice_state: Optional[discord.VoiceState] = ctx.author.voice
             if voice_state is None:
@@ -71,9 +74,25 @@ class SFX(commands.Cog):
         await ctx.send(f'Connected to: **{channel}**', delete_after=20)
 
     @commands.command()
+    @commands.guild_only()
+    async def disconnect(self, ctx: Context):
+        """
+        Disconnect from the current voice channel.
+        """
+        vc: Optional[discord.VoiceClient] = ctx.guild.voice_client
+        if vc is None:
+            await ctx.channel.send("I am not in a voice channel.")
+            return
+        await vc.disconnect()
+        await ctx.send("No one is talking, so bye 👋")
+
+    @commands.command()
     @checks.admin()
     @commands.guild_only()
     async def addttschannel(self, ctx: Context, channel: discord.TextChannel):
+        """
+        Add a TTS channel to the list of tracked channels.
+        """
         channels: List[int]
         async with self.db.guild(ctx.guild).channels() as channels:
             channels.append(channel.id)
@@ -83,6 +102,9 @@ class SFX(commands.Cog):
     @checks.admin()
     @commands.guild_only()
     async def delttschannel(self, ctx: Context, channel: discord.TextChannel):
+        """
+        Remove a TTS channel from the list of tracked channels.
+        """
         channels: List[int]
         async with self.db.guild(ctx.guild).channels() as channels:
             channels.remove(channel.id)
@@ -92,6 +114,9 @@ class SFX(commands.Cog):
     @checks.admin()
     @commands.guild_only()
     async def ttslang(self, ctx: Context, lang: str):
+        """
+        Change the TTS language to the one specified.
+        """
         await self.db.guild(ctx.guild).lang.set(lang)
         await ctx.send(f"TTS language set to {lang}")
 
@@ -99,6 +124,13 @@ class SFX(commands.Cog):
     @checks.admin()
     @commands.guild_only()
     async def ttstld(self, ctx: Context, tld: str):
+        """
+        Change the TLD of the TTS language to the one specified.
+
+        TLD stands for Top Level Domain, and can be changed to whichever way you'd normally
+        access Google with. Default TLD is "com", thus pointing at "google.com". Changing it to
+        "de" would point at "google.de", for example. This can be used to vary the speech accent.
+        """
         await self.db.guild(ctx.guild).tld.set(tld)
         await ctx.send(f"TTS language tld set to {tld}")
 
@@ -106,6 +138,9 @@ class SFX(commands.Cog):
     @checks.admin()
     @commands.guild_only()
     async def ttsname(self, ctx: Context, state: bool):
+        """
+        Set if you want TTS to include the speaker's name.
+        """
         await self.db.guild(ctx.guild).with_nick.set(state)
         await ctx.send(f"TTS name calling is set to {'ON' if state else 'OFF'}")
 
@@ -113,6 +148,9 @@ class SFX(commands.Cog):
     @checks.admin()
     @commands.guild_only()
     async def ttscleardb(self, ctx: Context):
+        """
+        Clear all settings for the current guild.
+        """
         await self.db.guild(ctx.guild).clear()
         await ctx.send("The db has been wiped.")
 
@@ -120,6 +158,9 @@ class SFX(commands.Cog):
     @checks.admin()
     @commands.guild_only()
     async def ttsspeed(self, ctx: Context, speed: float):
+        """
+        Changes playback speed. Any speed between 0.5 and 2.0 is supported.
+        """
         if speed > 2:
             await ctx.send("This command only supports a 2 number int or float.")
             return
@@ -248,13 +289,3 @@ class SFX(commands.Cog):
             if guild_id in self.leave_tasks:
                 self.leave_tasks[guild_id].cancel()
                 del self.leave_tasks[guild_id]
-
-    @commands.command()
-    @commands.guild_only()
-    async def disconnect(self, ctx: Context):
-        vc: Optional[discord.VoiceClient] = ctx.guild.voice_client
-        if vc is None:
-            await ctx.channel.send("I am not in a voice channel.")
-            return
-        await vc.disconnect()
-        await ctx.send("No one is talking, so bye 👋")
