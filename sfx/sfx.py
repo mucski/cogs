@@ -85,7 +85,7 @@ class SFX(commands.Cog):
             return
         await vc.disconnect()
         emoji = '\N{THUMBS UP SIGN}'
-        await ctx.add_reaction(emoji)
+        await add_reaction(emoji)
 
     @commands.command()
     @checks.admin()
