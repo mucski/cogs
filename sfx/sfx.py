@@ -162,16 +162,16 @@ class SFX(commands.Cog):
         Changes playback speed. Any speed between 0.5 and 2.0 is supported.
         """
         if speed > 2:
-            await ctx.send("This command only supports a 2 number int or float.")
+            await ctx.send("Speed above 2.0 is not supported.")
             return
         elif speed < 0.5:
-            await ctx.send("Speed bellow 0.5 not supported.")
+            await ctx.send("Speed bellow 0.5 is not supported.")
             return
         await self.db.guild(ctx.guild).speed.set(speed)
         await ctx.send(f"TTS speech speed has been set to {speed}")
 
     def vc_callback(self, error: Optional[Exception], channel: discord.TextChannel):
-        if self.vc_lock.locked:
+        if self.vc_lock.locked():
             self.vc_lock.release()
         if error is not None and not isinstance(error, discord.ClientException):
             tb_msg = ''.join(traceback.format_exception(type(error), error, error.__traceback__))
@@ -203,10 +203,14 @@ class SFX(commands.Cog):
                 # Lets set the volume to 1
                 vc.source = discord.PCMVolumeTransformer(vc.source)
                 vc.source.volume = 1
+            except discord.ClientException:
+                # raised when the bot is already playing some other audio, possibly from
+                # another cog, which we cannot control - ignore this item
+                pass
             except Exception:
                 await item.msg.channel.send(f"```\n{traceback.format_exc()}\n```")
             finally:
-                if self.vc_lock.locked:
+                if self.vc_lock.locked():
                     self.vc_lock.release()
 
     # @commands.command()
