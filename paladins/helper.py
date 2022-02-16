@@ -188,7 +188,7 @@ class helper:
         # create the buffer
         final_buffer = BytesIO()
         # store image in buffer
-        historyimg.save(final_buffer, "WEBP")
+        historyimg.save(final_buffer, "WEBP", optimize=True, quality=80)
         # seek back to start
         final_buffer.seek(0)
         return final_buffer
