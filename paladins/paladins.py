@@ -99,39 +99,38 @@ class Paladins(commands.Cog):
     @commands.command()
     @checks.is_owner()
     async def proto(self, ctx, *, map_name):
-        msg = await ctx.send("Please wait while I draw the image.....")
-        team1_data = []
-        team2_data = []
-        team1_champs = []
-        team1_ranks = []
-        team2_ranks = []
-        team2_champs = []
-        cunt = 0
-        match_info = ["198372984", "30", "Japan",
-                        map_name, "1", "4"]
-        temp = ["Makoa", "Yagorath", "Furia", "Jenos", "Bomb King", "Terminus"]
-        while cunt < 10:
-            cunt += 1
-            row = [
-                    "TestSomeLongName", "999", "9999", "99/99/99",
-                    "999999", "999999", "999", "999999",
-                    "999999", "4", "Steam", "999999",
-                    99.99
-            ]
-            if cunt < 6:
-                rank = "22"
-                team1_data.append(row)
-                team1_champs.append("Octavia")
-                team1_ranks.append(rank)
-            else:
-                rank = "22"
-                team2_data.append(row)
-                team2_champs.append("Sha Lin")
-                team2_ranks.append(rank)
-        buffer = await helper.historyimg(team1_champs, team2_champs, team1_data, team2_data, team1_ranks, team2_ranks, (match_info + temp))
-        file = discord.File(filename="prototype.webp", fp=buffer)
-        await msg.delete()
-        await ctx.send(file=file)
+        async with ctx.typing():
+            team1_data = []
+            team2_data = []
+            team1_champs = []
+            team1_ranks = []
+            team2_ranks = []
+            team2_champs = []
+            cunt = 0
+            match_info = ["198372984", "30", "Japan",
+                            map_name, "1", "4"]
+            temp = ["Makoa", "Yagorath", "Furia", "Jenos", "Bomb King", "Terminus"]
+            while cunt < 10:
+                cunt += 1
+                row = [
+                        "TestSomeLongName", "999", "9999", "99/99/99",
+                        "999999", "999999", "999", "999999",
+                        "999999", "4", "Steam", "999999",
+                        99.99
+                ]
+                if cunt < 6:
+                    rank = "22"
+                    team1_data.append(row)
+                    team1_champs.append("Octavia")
+                    team1_ranks.append(rank)
+                else:
+                    rank = "22"
+                    team2_data.append(row)
+                    team2_champs.append("Sha Lin")
+                    team2_ranks.append(rank)
+            buffer = await helper.historyimg(team1_champs, team2_champs, team1_data, team2_data, team1_ranks, team2_ranks, (match_info + temp))
+            file = discord.File(filename="prototype.webp", fp=buffer)
+            await ctx.send(file=file)
 
     @commands.command()
     async def last(self, ctx, player=None, platform="PC"):
