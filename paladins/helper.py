@@ -184,7 +184,7 @@ class helper:
                 img.paste(playerpanel, (0, 232 * i + offset))
         # done, reisizing for speed
         # historyimg = img.resize((int(W / 2), int(H / 2)), Image.ANTIALIAS)
-        historyimg = img.resize((int(W / 2), int(H / 2)))
+        historyimg = img.resize((int(W / 2), int(H / 2)), Image.NEAREST)
         # create the buffer
         final_buffer = BytesIO()
         # store image in buffer
