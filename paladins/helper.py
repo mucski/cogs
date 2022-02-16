@@ -65,7 +65,7 @@ class helper:
             color = fill
 
         # new image object
-        img = Image.new("RGBA", (W, H), color=img_color)
+        img = Image.new("RGB", (W, H), color=img_color)
         # champion icon
         img.paste(champicon, (padding, padding))
         # rank icon
