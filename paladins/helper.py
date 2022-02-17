@@ -7,6 +7,34 @@ from redbot.core.utils.chat_formatting import humanize_number
 class helper:
 
     @classmethod
+    async def champimg(cls, name):
+        name = name.lower()
+        if "bomb" in name:
+            name = "bomb-king"
+        if "sha" in name:
+            name = "sha-lin"
+        if "mal" in name:
+            name = "maldamba"
+        url = f"https://webcdn.hirezstudios.com/paladins/champion-icons/{name}.jpg"
+        async with aiohttp.ClientSession() as session:
+            async with session.get(url) as resp:
+                if resp.status == 200:
+                    resp = await resp.read()
+        return resp
+
+    @classmethod
+    async def testchampimg(cls, name):
+        name = name.lower()
+        if "bomb" in name:
+            name = "bomb-king"
+        if "sha" in name:
+            name = "sha-lin"
+        if "mal" in name:
+            name = "maldamba"
+        url = f"https://webcdn.hirezstudios.com/paladins/champion-icons/{name}.jpg"
+        return url
+
+    @classmethod
     async def statsimage(cls, champicon, rankicon, stats, index):
         # vertical
         W, H = (4620, 232)
@@ -37,7 +65,7 @@ class helper:
             color = fill
 
         # new image object
-        img = Image.new("RGB", (W, H), color=img_color)
+        img = Image.new("RGBA", (W, H), color=img_color)
         # champion icon
         img.paste(champicon, (padding, padding))
         # rank icon
@@ -138,10 +166,10 @@ class helper:
                 team_data = t2_data
             for i, champ in enumerate(team):
                 # team 1
-                # resp = await helper.champimg(champ)
+                resp = await helper.champimg(champ)
                 try:
-                    champimg = Image.open(f"/root/mucski/stuff/icons/avatars/{champ}.jpg")
-                except FileNotFoundError:
+                    champimg = Image.open(BytesIO(resp))
+                except TypeError:
                     champimg = Image.open("root/mucski/stuff/icons/error.jpg")
                 if champimg.size < (512, 512):
                     (width, height) = (champimg.width * 2, champimg.height * 2)
@@ -156,11 +184,11 @@ class helper:
                 img.paste(playerpanel, (0, 232 * i + offset))
         # done, reisizing for speed
         # historyimg = img.resize((int(W / 2), int(H / 2)), Image.ANTIALIAS)
-        historyimg = img.resize((int(W / 2), int(H / 2)), Image.NEAREST)
+        historyimg = img.resize((int(W / 2), int(H / 2)))
         # create the buffer
         final_buffer = BytesIO()
         # store image in buffer
-        historyimg.save(final_buffer, "PNG")
+        historyimg.save(final_buffer, "WEBP")
         # seek back to start
         final_buffer.seek(0)
         return final_buffer
@@ -234,35 +262,35 @@ class helper:
                 draw.text((int((W-w) / 2) + 1520, int((H-h) / 2) + 80), "Bans", font=fnt, stroke_width=stroke_size, stroke_fill=stroke, fill=fill)
                 # team 1 bans
                 # champ 1
-                #resp = await helper.champimg(banned1)
-                champ_icon = Image.open(f"/root/mucski/stuff/icons/avatars/{banned1}.jpg")
+                resp = await helper.champimg(banned1)
+                champ_icon = Image.open(BytesIO(resp))
                 champ_icon = champ_icon.resize((200, 200))
                 img.paste(champ_icon, (int((W-w) / 2) + 1800, int((H-h) / 2) - 70))
                 # champ 2
-                #resp = await helper.champimg(banned2)
-                champ_icon = Image.open(f"/root/mucski/stuff/icons/avatars/{banned2}.jpg")
+                resp = await helper.champimg(banned2)
+                champ_icon = Image.open(BytesIO(resp))
                 champ_icon = champ_icon.resize((200, 200))
                 img.paste(champ_icon, (int((W-w) / 2) + 2020, int((H-h) / 2) - 70))
                 # champ 3
-                #resp = await helper.champimg(banned3)
-                champ_icon = Image.open(f"/root/mucski/stuff/icons/avatars/{banned3}.jpg")
+                resp = await helper.champimg(banned3)
+                champ_icon = Image.open(BytesIO(resp))
                 champ_icon = champ_icon.resize((200, 200))
                 img.paste(champ_icon, (int((W-w) / 2) + 2240, int((H-h) / 2) - 70))
 
                 # team 2 bans
                 # champ 1
-                #resp = await helper.champimg(banned4)
-                champ_icon = Image.open(f"/root/mucski/stuff/icons/avatars/{banned4}.jpg")
+                resp = await helper.champimg(banned4)
+                champ_icon = Image.open(BytesIO(resp))
                 champ_icon = champ_icon.resize((200, 200))
                 img.paste(champ_icon, (int((W-w) / 2) + 1800, int((H-h) / 2) + 150))
                 # champ 2
-                #resp = await helper.champimg(banned5)
-                champ_icon = Image.open(f"/root/mucski/stuff/icons/avatars/{banned5}.jpg")
+                resp = await helper.champimg(banned5)
+                champ_icon = Image.open(BytesIO(resp))
                 champ_icon = champ_icon.resize((200, 200))
                 img.paste(champ_icon, (int((W-w) / 2) + 2020, int((H-h) / 2) + 150))
                 # champ 3
-                #resp = await helper.champimg(banned6)
-                champ_icon = Image.open(f"/root/mucski/stuff/icons/avatars/{banned6}.jpg")
+                resp = await helper.champimg(banned6)
+                champ_icon = Image.open(BytesIO(resp))
                 champ_icon = champ_icon.resize((200, 200))
                 img.paste(champ_icon, (int((W-w) / 2) + 2240, int((H-h) / 2) + 150))
 

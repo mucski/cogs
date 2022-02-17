@@ -7,7 +7,6 @@ import discord
 from .helper import helper
 from redbot.core.utils.chat_formatting import pagify, text_to_file
 import aiohttp
-import aiofiles
 import json
 import math
 from tabulate import tabulate
@@ -69,7 +68,6 @@ class Paladins(commands.Cog):
         match_info = [match.id, match.duration.minutes, match.region.name,
                         match.map_name, match.score[0], match.score[1]]
         temp = match.bans
-        temp = [item.lower().replace(" ","-") for item in temp]
         for match_player in sorted(match.players, key=lambda match_player: match_player.df, reverse=True):
             row = [
                     match_player.player.name, match_player.account_level, match_player.credits, match_player.kda_text,
@@ -83,7 +81,7 @@ class Paladins(commands.Cog):
                 else:
                     rank = match_player.player.ranked_best.rank.value
                 team1_data.append(row)
-                team1_champs.append(match_player.champion.name.lower().replace(" ","-"))
+                team1_champs.append(match_player.champion.name)
                 team1_ranks.append(rank)
             else:
                 if match_player.player.private:
@@ -91,48 +89,49 @@ class Paladins(commands.Cog):
                 else:
                     rank = match_player.player.ranked_best.rank.value
                 team2_data.append(row)
-                team2_champs.append(match_player.champion.name.lower().replace(" ","-"))
+                team2_champs.append(match_player.champion.name)
                 team2_ranks.append(rank)
         buffer = await helper.historyimg(team1_champs, team2_champs, team1_data, team2_data, team1_ranks, team2_ranks, (match_info + temp))
-        file = discord.File(filename=f"{matchid}.png", fp=buffer)
+        file = discord.File(filename=f"{matchid}.webp", fp=buffer)
         await msg.delete()
         await ctx.send(file=file)
 
     @commands.command()
     @checks.is_owner()
     async def proto(self, ctx, *, map_name):
-        async with ctx.typing():
-            team1_data = []
-            team2_data = []
-            team1_champs = []
-            team1_ranks = []
-            team2_ranks = []
-            team2_champs = []
-            cunt = 0
-            match_info = ["198372984", "30", "Japan",
-                            map_name, "1", "4"]
-            temp = ["makoa", "yagorath", "furia", "jenos", "bomb-king", "terminus"]
-            while cunt < 10:
-                cunt += 1
-                row = [
-                        "TestSomeLongName", "999", "9999", "99/99/99",
-                        "999999", "999999", "999", "999999",
-                        "999999", "4", "Steam", "999999",
-                        99.99
-                ]
-                if cunt < 6:
-                    rank = "22"
-                    team1_data.append(row)
-                    team1_champs.append("Octavia".lower().replace(" ","-"))
-                    team1_ranks.append(rank)
-                else:
-                    rank = "22"
-                    team2_data.append(row)
-                    team2_champs.append("Sha Lin".lower().replace(" ","-"))
-                    team2_ranks.append(rank)
-            buffer = await helper.historyimg(team1_champs, team2_champs, team1_data, team2_data, team1_ranks, team2_ranks, (match_info + temp))
-            file = discord.File(filename="prototype.png", fp=buffer)
-            await ctx.send(file=file)
+        msg = await ctx.send("Please wait while I draw the image.....")
+        team1_data = []
+        team2_data = []
+        team1_champs = []
+        team1_ranks = []
+        team2_ranks = []
+        team2_champs = []
+        cunt = 0
+        match_info = ["198372984", "30", "Japan",
+                        map_name, "1", "4"]
+        temp = ["Makoa", "Yagorath", "Furia", "Jenos", "Bomb King", "Terminus"]
+        while cunt < 10:
+            cunt += 1
+            row = [
+                    "TestSomeLongName", "999", "9999", "99/99/99",
+                    "999999", "999999", "999", "999999",
+                    "999999", "4", "Steam", "999999",
+                    99.99
+            ]
+            if cunt < 6:
+                rank = "22"
+                team1_data.append(row)
+                team1_champs.append("Octavia")
+                team1_ranks.append(rank)
+            else:
+                rank = "22"
+                team2_data.append(row)
+                team2_champs.append("Sha Lin")
+                team2_ranks.append(rank)
+        buffer = await helper.historyimg(team1_champs, team2_champs, team1_data, team2_data, team1_ranks, team2_ranks, (match_info + temp))
+        file = discord.File(filename="prototype.webp", fp=buffer)
+        await msg.delete()
+        await ctx.send(file=file)
 
     @commands.command()
     async def last(self, ctx, player=None, platform="PC"):
@@ -142,65 +141,66 @@ class Paladins(commands.Cog):
         If you have Discord linked to HiRez, you can just type [p]last
         followed by nothing.
         """
-        async with ctx.typing():
-            if player is None:
-                # use the ID of the caller
-                discord_id = ctx.author.id
-                try:
-                    player = await self.api.get_from_platform(discord_id, arez.Platform.Discord)
-                except arez.NotFound:
-                    await ctx.send("```\nDiscord account not linked to HiRez. Please link it first\n```")
-                    return
-            else:
-                # player is a str here
-                try:
-                    player_list = await self.api.search_players(player, arez.Platform(platform))
-                except arez.NotFound:
-                    await ctx.send("```\nNo players found with that name\n```")
-                    return
-                player = player_list[0]
-            match_list = await player.get_match_history()
-            if not match_list:
-                await ctx.send("```\nNo recent matches found.\n```")
+        # async with ctx.typing():
+        msg = await ctx.send("Please wait while I draw the image ...")
+        if player is None:
+            # use the ID of the caller
+            discord_id = ctx.author.id
+            try:
+                player = await self.api.get_from_platform(discord_id, arez.Platform.Discord)
+            except arez.NotFound:
+                await ctx.send("```\nDiscord account not linked to HiRez. Please link it first\n```")
                 return
-            match = await match_list[0]
-            await match.expand_players()
-            team1_data = []
-            team2_data = []
-            team1_champs = []
-            team1_ranks = []
-            team2_ranks = []
-            team2_champs = []
-            match_info = [match.id, match.duration.minutes, match.region.name,
-                            match.map_name, match.score[0], match.score[1]]
-            temp = match.bans
-            temp = [item.lower().replace(" ","-") for item in temp]
-            for match_player in sorted(match.players, key=lambda match_player: match_player.df, reverse=True):
-                row = [
-                        match_player.player.name, match_player.account_level, match_player.credits, match_player.kda_text,
-                        match_player.damage_done, match_player.damage_taken, match_player.objective_time, match_player.damage_mitigated,
-                        match_player.healing_done, match_player.party_number, match_player.player.platform, match_player.healing_self,
-                        match_player.kda2
-                ]
-                if match_player.team_number == 1:
-                    if match_player.player.private:
-                        rank = "99"
-                    else:
-                        rank = match_player.player.ranked_best.rank.value
-                    team1_data.append(row)
-                    team1_champs.append(match_player.champion.name.lower().replace(" ","-"))
-                    team1_ranks.append(rank)
+        else:
+            # player is a str here
+            try:
+                player_list = await self.api.search_players(player, arez.Platform(platform))
+            except arez.NotFound:
+                await ctx.send("```\nNo players found with that name\n```")
+                return
+            player = player_list[0]
+        match_list = await player.get_match_history()
+        if not match_list:
+            await ctx.send("```\nNo recent matches found.\n```")
+            return
+        match = await match_list[0]
+        await match.expand_players()
+        team1_data = []
+        team2_data = []
+        team1_champs = []
+        team1_ranks = []
+        team2_ranks = []
+        team2_champs = []
+        match_info = [match.id, match.duration.minutes, match.region.name,
+                        match.map_name, match.score[0], match.score[1]]
+        temp = match.bans
+        for match_player in sorted(match.players, key=lambda match_player: match_player.df, reverse=True):
+            row = [
+                    match_player.player.name, match_player.account_level, match_player.credits, match_player.kda_text,
+                    match_player.damage_done, match_player.damage_taken, match_player.objective_time, match_player.damage_mitigated,
+                    match_player.healing_done, match_player.party_number, match_player.player.platform, match_player.healing_self,
+                    match_player.kda2
+            ]
+            if match_player.team_number == 1:
+                if match_player.player.private:
+                    rank = "99"
                 else:
-                    if match_player.player.private:
-                        rank = "99"
-                    else:
-                        rank = match_player.player.ranked_best.rank.value
-                    team2_data.append(row)
-                    team2_champs.append(match_player.champion.name.lower().replace(" ","-"))
-                    team2_ranks.append(rank)
-            buffer = await helper.historyimg(team1_champs, team2_champs, team1_data, team2_data, team1_ranks, team2_ranks, (match_info + temp))
-            file = discord.File(filename=f"{player.name}.png", fp=buffer)
-            await ctx.send(file=file)
+                    rank = match_player.player.ranked_best.rank.value
+                team1_data.append(row)
+                team1_champs.append(match_player.champion.name)
+                team1_ranks.append(rank)
+            else:
+                if match_player.player.private:
+                    rank = "99"
+                else:
+                    rank = match_player.player.ranked_best.rank.value
+                team2_data.append(row)
+                team2_champs.append(match_player.champion.name)
+                team2_ranks.append(rank)
+        buffer = await helper.historyimg(team1_champs, team2_champs, team1_data, team2_data, team1_ranks, team2_ranks, (match_info + temp))
+        file = discord.File(filename=f"{player}.webp", fp=buffer)
+        await msg.delete()
+        await ctx.send(file=file)
 
     @commands.command()
     @checks.is_owner()
@@ -233,50 +233,50 @@ class Paladins(commands.Cog):
         """Returns the history of someone (or yourself)
         Usage: [p]history name platform (or leave both blank for yourself if you have discord linked to hirez)
         """
-        async with ctx.typing():
-            if player is None:
-                discord_id = ctx.author.id
-                try:
-                    ret = await self.api.get_from_platform(discord_id, arez.Platform.Discord)
-                    ret = await ret
-                except arez.NotFound:
-                    await ctx.send("```\nDiscord account not linked to HiRez. Please link it first\n```")
-                    return
-            else:
-                ret = await self.api.search_players(player, arez.Platform(platform))
-                ret = await ret[0]
-            history = await ret.get_match_history()
-            if not history:
-                await ctx.send("Player did not play for over a month. Nothing to display.")
+        # async with ctx.typing():
+        if player is None:
+            discord_id = ctx.author.id
+            try:
+                ret = await self.api.get_from_platform(discord_id, arez.Platform.Discord)
+                ret = await ret
+            except arez.NotFound:
+                await ctx.send("```\nDiscord account not linked to HiRez. Please link it first\n```")
                 return
-            table = []
-            final_kda = 0
-            kda_counter = 0
-            for match in history:
-                t = []
-                if match.winner:
-                    t.append("+")
-                else:
-                    t.append("-")
-                t.append(match.id)
-                t.append(match.map_name)
-                t.append(match.champion.name)
-                t.append(match.kda_text)
-                t.append("{:.2f}".format(match.kda2))
-                final_kda += match.kda2
-                kda_counter += 1
-                table.append(t)
-            table_done = tabulate(table, tablefmt="plain", headers=["W/L", "ID", "MAP", "CHAMPION", "KDA", "KDA2"])
-            champs = Counter(m.champion for m in history)
-            most_champ = champs.most_common(1)[0][0].name
-            if all(isinstance(c, arez.Champion) for c in champs.keys()):
-                classes = Counter(m.champion.role for m in history)
-                most_class = classes.most_common(1)[0][0]
+        else:
+            ret = await self.api.search_players(player, arez.Platform(platform))
+            ret = await ret[0]
+        history = await ret.get_match_history()
+        if not history:
+            await ctx.send("Player did not play for over a month. Nothing to display.")
+            return
+        table = []
+        final_kda = 0
+        kda_counter = 0
+        for match in history:
+            t = []
+            if match.winner:
+                t.append("+")
             else:
-                most_class = "Unknown"
-            for page in pagify(table_done, page_length=1900):
-                await ctx.send("```diff\n{}\n```".format(page))
-            await ctx.send("```\nMost played champion: {}\nMost played class: {}\nAverage KDA: {:.2f}\n```".format(most_champ, most_class, final_kda / kda_counter))
+                t.append("-")
+            t.append(match.id)
+            t.append(match.map_name)
+            t.append(match.champion.name)
+            t.append(match.kda_text)
+            t.append("{:.2f}".format(match.kda2))
+            final_kda += match.kda2
+            kda_counter += 1
+            table.append(t)
+        table_done = tabulate(table, tablefmt="plain", headers=["W/L", "ID", "MAP", "CHAMPION", "KDA", "KDA2"])
+        champs = Counter(m.champion for m in history)
+        most_champ = champs.most_common(1)[0][0].name
+        if all(isinstance(c, arez.Champion) for c in champs.keys()):
+            classes = Counter(m.champion.role for m in history)
+            most_class = classes.most_common(1)[0][0]
+        else:
+            most_class = "Unknown"
+        for page in pagify(table_done, page_length=1900):
+            await ctx.send("```diff\n{}\n```".format(page))
+        await ctx.send("```\nMost played champion: {}\nMost played class: {}\nAverage KDA: {:.2f}\n```".format(most_champ, most_class, final_kda / kda_counter))
 
     @commands.command()
     async def champstats(self, ctx, champion_name="all", player=None, platform="PC"):
@@ -288,68 +288,68 @@ class Paladins(commands.Cog):
 
         for champions with spaces do it like "sha lin"
         """
-        async with ctx.typing():
-            if player is None:
-                # use the ID of the caller
-                discord_id = ctx.author.id
-                try:
-                    ret = await self.api.get_from_platform(discord_id, arez.Platform.Discord)
-                    ret = await ret
-                except arez.NotFound:
-                    await ctx.send("```\nDiscord account not linked to HiRez. Please link it first\n```")
-                    return
+        # async with ctx.typing():
+        if player is None:
+            # use the ID of the caller
+            discord_id = ctx.author.id
+            try:
+                ret = await self.api.get_from_platform(discord_id, arez.Platform.Discord)
+                ret = await ret
+            except arez.NotFound:
+                await ctx.send("```\nDiscord account not linked to HiRez. Please link it first\n```")
+                return
+        else:
+            # player is a str here
+            ret = await self.api.search_players(player, arez.Platform(platform))
+            ret = await ret[0]
+        champions_stats = await ret.get_champion_stats()
+        stats_dict = {s.champion: s for s in champions_stats}  # Dict[Champion, ChampionStats]
+        if champion_name == "all" or champion_name == "kda" or champion_name == "wr":
+            table = []
+            hours_count = 0
+            if champion_name == "kda":
+                key = lambda s: s.kda2
+            elif champion_name == "wr":
+                key = lambda s: s.winrate_text
             else:
-                # player is a str here
-                ret = await self.api.search_players(player, arez.Platform(platform))
-                ret = await ret[0]
-            champions_stats = await ret.get_champion_stats()
-            stats_dict = {s.champion: s for s in champions_stats}  # Dict[Champion, ChampionStats]
-            if champion_name == "all" or champion_name == "kda" or champion_name == "wr":
-                table = []
-                hours_count = 0
-                if champion_name == "kda":
-                    key = lambda s: s.kda2
-                elif champion_name == "wr":
-                    key = lambda s: s.winrate_text
-                else:
-                    key = lambda s: s.level
-                for stats in sorted(champions_stats, key=key, reverse=True):
-                    t = []
-                    t.append(f"{stats.champion.name}({stats.level})")
-                    t.append("{:.2f}".format(stats.kda))
-                    t.append(f"{stats.winrate_text}")
-                    t.append(f"{math.floor(stats.playtime.total_hours())} h")
-                    hours_count += stats.playtime.total_hours()
-                    table.append(t)
-                table_done = tabulate(table, headers=["Name(lvl)", "K/D/A", "Winrate", "Time"], tablefmt="presto")
-                for page in pagify(table_done):
-                    await ctx.send("```\n{}\n```".format(page))
-                await ctx.send("```\nTotal Hours: {}\n```".format(int(hours_count)))
-            else:
-                entry = await self.api.get_champion_info()
-                champ = entry.champions.get(champion_name)
-                if champ is None:
-                    await ctx.send("```\nYou dun fucked up the champ's name!\n```")
-                    return
-                stats = stats_dict.get(champ)
-                if stats is None:
-                    await ctx.send("```\nYou ain't played this champ yet!\n```")
-                    return
-                desc = (
-                    f"```\nChampion role: {champ.role}\n"
-                    f"Champion level: {stats.level}\n"
-                    "Champion KDA: {:.2f}".format(stats.kda) + "\n"
-                    f"Winrate: {stats.kda_text} ({stats.winrate_text})\n"
-                    f"Matches played: {stats.matches_played}\n"
-                    f"Playtime: {math.floor(stats.playtime.total_hours())} hours\n"
-                    f"Experience: {stats.experience}\n"
-                    f"Last played: {humanize.naturaltime(datetime.utcnow() - stats.last_played)}\n```"
-                )
-                e = discord.Embed(color=await self.bot.get_embed_color(ctx), title=f"{champ.name} ({champ.title})")
-                e.set_thumbnail(url=champ.icon_url)
-                e.description = desc
-                e.set_footer(text=f"Individual champion stats for {ret.name}")
-                await ctx.send(embed=e)
+                key = lambda s: s.level
+            for stats in sorted(champions_stats, key=key, reverse=True):
+                t = []
+                t.append(f"{stats.champion.name}({stats.level})")
+                t.append("{:.2f}".format(stats.kda))
+                t.append(f"{stats.winrate_text}")
+                t.append(f"{math.floor(stats.playtime.total_hours())} h")
+                hours_count += stats.playtime.total_hours()
+                table.append(t)
+            table_done = tabulate(table, headers=["Name(lvl)", "K/D/A", "Winrate", "Time"], tablefmt="presto")
+            for page in pagify(table_done):
+                await ctx.send("```\n{}\n```".format(page))
+            await ctx.send("```\nTotal Hours: {}\n```".format(int(hours_count)))
+        else:
+            entry = await self.api.get_champion_info()
+            champ = entry.champions.get(champion_name)
+            if champ is None:
+                await ctx.send("```\nYou dun fucked up the champ's name!\n```")
+                return
+            stats = stats_dict.get(champ)
+            if stats is None:
+                await ctx.send("```\nYou ain't played this champ yet!\n```")
+                return
+            desc = (
+                f"```\nChampion role: {champ.role}\n"
+                f"Champion level: {stats.level}\n"
+                "Champion KDA: {:.2f}".format(stats.kda) + "\n"
+                f"Winrate: {stats.kda_text} ({stats.winrate_text})\n"
+                f"Matches played: {stats.matches_played}\n"
+                f"Playtime: {math.floor(stats.playtime.total_hours())} hours\n"
+                f"Experience: {stats.experience}\n"
+                f"Last played: {humanize.naturaltime(datetime.utcnow() - stats.last_played)}\n```"
+            )
+            e = discord.Embed(color=await self.bot.get_embed_color(ctx), title=f"{champ.name} ({champ.title})")
+            e.set_thumbnail(url=champ.icon_url)
+            e.description = desc
+            e.set_footer(text=f"Individual champion stats for {ret.name}")
+            await ctx.send(embed=e)
 
     @commands.command()
     async def current(self, ctx, name=None, platform="PC"):
@@ -357,81 +357,81 @@ class Paladins(commands.Cog):
         [p]help current for more information
         [p]current player platform or leave blank for yourself if you have discoed linked to hirez
         """
-        async with ctx.typing():
-            if name is None:
-                # use the ID of the caller
-                discord_id = ctx.author.id
-                try:
-                    player = await self.api.get_from_platform(discord_id, arez.Platform.Discord)
-                    player = await player
-                except arez.NotFound:
-                    await ctx.send("```\nDiscord account not linked to HiRez. Please link it first\n```")
-                    return
-            else:
-                # player is a str here
-                player_list = await self.api.search_players(name, arez.Platform(platform))
-                player = await player_list[0]
-            status = await player.get_status()
-            live_match = await status.get_live_match()
-            if not live_match:
-                await ctx.send("```\n{} is currently not in a match or unsupported queue (customs)\n```".format(player))
+        # async with ctx.typing():
+        if name is None:
+            # use the ID of the caller
+            discord_id = ctx.author.id
+            try:
+                player = await self.api.get_from_platform(discord_id, arez.Platform.Discord)
+                player = await player
+            except arez.NotFound:
+                await ctx.send("```\nDiscord account not linked to HiRez. Please link it first\n```")
                 return
-            await live_match.expand_players()
-            team1 = []
-            team2 = []
-            for i, live_player in enumerate(live_match.team1, 1):
-                if live_player.player.private:
-                    t = []
-                    t.append(i)
-                    t.append(f"?????({live_player.account_level})")
-                    t.append(f"{live_player.champion.name}({live_player.mastery_level})")
-                    t.append("???")
-                    t.append(f"{live_player.rank}")
-                    team1.append(t)
-                else:
-                    t = []
-                    t.append(i)
-                    t.append(f"{live_player.player.name}({live_player.account_level})")
-                    t.append(f"{live_player.champion.name}({live_player.mastery_level})")
-                    t.append(f"({live_player.player.casual.winrate_text})")
-                    t.append(f"{live_player.rank}")
-                    team1.append(t)
-            for i, live_player in enumerate(live_match.team2, 1):
-                if live_player.player.private:
-                    t = []
-                    t.append(i)
-                    t.append(f"?????({live_player.account_level})")
-                    t.append(f"{live_player.champion.name}({live_player.mastery_level})")
-                    t.append("???")
-                    t.append(f"{live_player.rank}")
-                    team2.append(t)
-                else:
-                    t = []
-                    t.append(i)
-                    t.append(f"{live_player.player.name}({live_player.account_level})")
-                    t.append(f"{live_player.champion.name}({live_player.mastery_level})")
-                    t.append(f"({live_player.player.casual.winrate_text})")
-                    t.append(f"{live_player.rank}")
-                    team2.append(t)
-            team1_done = tabulate(team1, tablefmt="plain")
-            team2_done = tabulate(team2, tablefmt="plain")
-            desc = (
-                f"Map: {live_match.map_name}\n"
-                f"Region: {live_match.region}\n"
-                "```\n"
-                f"{''.join(team1_done)}\n"
-                "```"
-                "Versus\n"
-                "```\n"
-                f"{''.join(team2_done)}\n"
-                "```"
-            )
-            e = discord.Embed(color=await self.bot.get_embed_color(ctx),
-                                title=f"{player.name} is in a {live_match.queue}")
-            e.description = desc
-            e.set_thumbnail(url=player.avatar_url)
-            e.set_footer(text=f"Match ID: {live_match.id} / Missing players are bots.")
-            await ctx.send(embed=e)
+        else:
+            # player is a str here
+            player_list = await self.api.search_players(name, arez.Platform(platform))
+            player = await player_list[0]
+        status = await player.get_status()
+        live_match = await status.get_live_match()
+        if not live_match:
+            await ctx.send("```\n{} is currently not in a match or unsupported queue (customs)\n```".format(player))
+            return
+        await live_match.expand_players()
+        team1 = []
+        team2 = []
+        for i, live_player in enumerate(live_match.team1, 1):
+            if live_player.player.private:
+                t = []
+                t.append(i)
+                t.append(f"?????({live_player.account_level})")
+                t.append(f"{live_player.champion.name}({live_player.mastery_level})")
+                t.append("???")
+                t.append(f"{live_player.rank}")
+                team1.append(t)
+            else:
+                t = []
+                t.append(i)
+                t.append(f"{live_player.player.name}({live_player.account_level})")
+                t.append(f"{live_player.champion.name}({live_player.mastery_level})")
+                t.append(f"({live_player.player.casual.winrate_text})")
+                t.append(f"{live_player.rank}")
+                team1.append(t)
+        for i, live_player in enumerate(live_match.team2, 1):
+            if live_player.player.private:
+                t = []
+                t.append(i)
+                t.append(f"?????({live_player.account_level})")
+                t.append(f"{live_player.champion.name}({live_player.mastery_level})")
+                t.append("???")
+                t.append(f"{live_player.rank}")
+                team2.append(t)
+            else:
+                t = []
+                t.append(i)
+                t.append(f"{live_player.player.name}({live_player.account_level})")
+                t.append(f"{live_player.champion.name}({live_player.mastery_level})")
+                t.append(f"({live_player.player.casual.winrate_text})")
+                t.append(f"{live_player.rank}")
+                team2.append(t)
+        team1_done = tabulate(team1, tablefmt="plain")
+        team2_done = tabulate(team2, tablefmt="plain")
+        desc = (
+            f"Map: {live_match.map_name}\n"
+            f"Region: {live_match.region}\n"
+            "```\n"
+            f"{''.join(team1_done)}\n"
+            "```"
+            "Versus\n"
+            "```\n"
+            f"{''.join(team2_done)}\n"
+            "```"
+        )
+        e = discord.Embed(color=await self.bot.get_embed_color(ctx),
+                            title=f"{player.name} is in a {live_match.queue}")
+        e.description = desc
+        e.set_thumbnail(url=player.avatar_url)
+        e.set_footer(text=f"Match ID: {live_match.id} / Missing players are bots.")
+        await ctx.send(embed=e)
 
     @commands.command()
     async def stats(self, ctx, name=None, platform="PC"):
@@ -552,46 +552,3 @@ class Paladins(commands.Cog):
             await ctx.send(file=file)
         else:
             await ctx.send(desc)
-
-    @commands.command()
-    async def bountystore(self, ctx):
-        """
-        Returns the current and past bounty items
-        """
-        bounty = await self.api.get_bounty()
-        if len(bounty) > 2000:
-            file = text_to_file(bounty, "bounty-items.txt")
-            await ctx.send(file=file)
-        else:
-            await ctx.send(bounty)
-
-    @commands.command()
-    @checks.is_owner()
-    async def downloadchamps(self, ctx):
-        """
-        Downloads champion icons from hirez servers
-        """
-
-        champions = ["androxus", "atlas", "ash", "azaan", "barik", "bomb-king",
-                     "buck", "cassie", "corvus", "dredge", "drogoz", "evie",
-                     "fernando", "furia", "grohk", "grover", "imani", "inara",
-                     "io", "jenos", "khan", "kinessa", "koga", "lex", "lian", "maeve",
-                     "makoa", "mal\'\damba", "moji", "octavia", "pip", "raum", "rei",
-                     "ruckus", "saati", "seris", "sha-lin", "skye", "strix", "talus", "terminus",
-                     "tiberius", "torvald", "tyra", "seven", "vatu", "viktor", "vivian", "vora",
-                     "willo", "yagorath", "ying", "zhin"]
-        for champion in champions:
-            async with aiohttp.ClientSession() as session:
-                url = f"https://webcdn.hirezstudios.com/paladins/champion-icons/{champion}.jpg"
-                async with session.get(url) as resp:
-                    if resp.status == 200:
-                        f = await aiofiles.open(f'/root/mucski/stuff/icons/avatars/{champion}.jpg', mode='wb')
-                        await f.write(await resp.read())
-                        await f.close()
-        await ctx.tick()
-
-    @commands.command()
-    @checks.is_owner()
-    async def hitest(self, ctx, anything):
-        entry = await self.api.get_champion_info()
-        await ctx.send(entry.champions.name)
