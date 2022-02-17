@@ -521,6 +521,12 @@ class Paladins(commands.Cog):
 
     @commands.command()
     @checks.is_owner()
+    async def hitest(self, ctx, champion):
+        entry = self.api.get_champion_info()
+        entry.champions(champion)
+
+    @commands.command()
+    @checks.is_owner()
     async def friends(self, ctx, name=None, platform="PC"):
         """Returns a players friends
         [p]friends none or [p]friends (player) (platform)
