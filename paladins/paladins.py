@@ -524,7 +524,7 @@ class Paladins(commands.Cog):
     async def hitest(self, ctx, name):
         entry = await self.api.get_champion_info()
         champ = entry.champions.get(name)
-        await ctx.send(champ)
+        await ctx.send(champ.icon_url)
 
     @commands.command()
     @checks.is_owner()
