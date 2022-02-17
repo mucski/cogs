@@ -166,9 +166,9 @@ class helper:
                 team_data = t2_data
             for i, champ in enumerate(team):
                 # team 1
-                resp = await helper.champimg(champ)
+                # resp = await helper.champimg(champ)
                 try:
-                    champimg = Image.open(BytesIO(resp))
+                    champimg = Image.open(f"/root/mucski/stuff/icons/avatars/{champ}.jpg")
                 except TypeError:
                     champimg = Image.open("root/mucski/stuff/icons/error.jpg")
                 if champimg.size < (512, 512):
@@ -262,35 +262,35 @@ class helper:
                 draw.text((int((W-w) / 2) + 1520, int((H-h) / 2) + 80), "Bans", font=fnt, stroke_width=stroke_size, stroke_fill=stroke, fill=fill)
                 # team 1 bans
                 # champ 1
-                resp = await helper.champimg(banned1)
-                champ_icon = Image.open(BytesIO(resp))
+                #resp = await helper.champimg(banned1)
+                champ_icon = Image.open(f"/root/mucski/stuff/icons/avatars/{banned1}.jpg")
                 champ_icon = champ_icon.resize((200, 200))
                 img.paste(champ_icon, (int((W-w) / 2) + 1800, int((H-h) / 2) - 70))
                 # champ 2
-                resp = await helper.champimg(banned2)
-                champ_icon = Image.open(BytesIO(resp))
+                #resp = await helper.champimg(banned2)
+                champ_icon = Image.open(f"/root/mucski/stuff/icons/avatars/{banned2}.jpg")
                 champ_icon = champ_icon.resize((200, 200))
                 img.paste(champ_icon, (int((W-w) / 2) + 2020, int((H-h) / 2) - 70))
                 # champ 3
-                resp = await helper.champimg(banned3)
-                champ_icon = Image.open(BytesIO(resp))
+                #resp = await helper.champimg(banned3)
+                champ_icon = Image.open(f"/root/mucski/stuff/icons/avatars/{banned3}.jpg")
                 champ_icon = champ_icon.resize((200, 200))
                 img.paste(champ_icon, (int((W-w) / 2) + 2240, int((H-h) / 2) - 70))
 
                 # team 2 bans
                 # champ 1
-                resp = await helper.champimg(banned4)
-                champ_icon = Image.open(BytesIO(resp))
+                #resp = await helper.champimg(banned4)
+                champ_icon = Image.open(f"/root/mucski/stuff/icons/avatars/{banned4}.jpg")
                 champ_icon = champ_icon.resize((200, 200))
                 img.paste(champ_icon, (int((W-w) / 2) + 1800, int((H-h) / 2) + 150))
                 # champ 2
-                resp = await helper.champimg(banned5)
-                champ_icon = Image.open(BytesIO(resp))
+                #resp = await helper.champimg(banned5)
+                champ_icon = Image.open(f"/root/mucski/stuff/icons/avatars/{banned5}.jpg")
                 champ_icon = champ_icon.resize((200, 200))
                 img.paste(champ_icon, (int((W-w) / 2) + 2020, int((H-h) / 2) + 150))
                 # champ 3
-                resp = await helper.champimg(banned6)
-                champ_icon = Image.open(BytesIO(resp))
+                #resp = await helper.champimg(banned6)
+                champ_icon = Image.open(f"/root/mucski/stuff/icons/avatars/{banned6}.jpg")
                 champ_icon = champ_icon.resize((200, 200))
                 img.paste(champ_icon, (int((W-w) / 2) + 2240, int((H-h) / 2) + 150))
 
