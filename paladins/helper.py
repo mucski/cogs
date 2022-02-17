@@ -31,7 +31,7 @@ class helper:
             name = "sha-lin"
         if "mal" in name:
             name = "maldamba"
-        entry = await api.get_champion_info()
+        entry = await cog.api.get_champion_info()
         champ = entry.champions.get(name)
         return champ.icon_url
 
