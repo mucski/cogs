@@ -7,34 +7,6 @@ from redbot.core.utils.chat_formatting import humanize_number
 class helper:
 
     @classmethod
-    async def champimg(cls, name):
-        name = name.lower()
-        if "bomb" in name:
-            name = "bomb-king"
-        if "sha" in name:
-            name = "sha-lin"
-        if "mal" in name:
-            name = "maldamba"
-        url = f"https://webcdn.hirezstudios.com/paladins/champion-icons/{name}.jpg"
-        async with aiohttp.ClientSession() as session:
-            async with session.get(url) as resp:
-                if resp.status == 200:
-                    resp = await resp.read()
-        return resp
-
-    @classmethod
-    async def testchampimg(cls, name):
-        name = name.lower()
-        if "bomb" in name:
-            name = "bomb-king"
-        if "sha" in name:
-            name = "sha-lin"
-        if "mal" in name:
-            name = "maldamba"
-        url = f"https://webcdn.hirezstudios.com/paladins/champion-icons/{name}.jpg"
-        return url
-
-    @classmethod
     async def statsimage(cls, champicon, rankicon, stats, index):
         # vertical
         W, H = (4620, 232)
@@ -169,7 +141,7 @@ class helper:
                 # resp = await helper.champimg(champ)
                 try:
                     champimg = Image.open(f"/root/mucski/stuff/icons/avatars/{champ}.jpg")
-                except TypeError:
+                except FileNotFoundError:
                     champimg = Image.open("root/mucski/stuff/icons/error.jpg")
                 if champimg.size < (512, 512):
                     (width, height) = (champimg.width * 2, champimg.height * 2)

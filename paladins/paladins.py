@@ -83,7 +83,7 @@ class Paladins(commands.Cog):
                 else:
                     rank = match_player.player.ranked_best.rank.value
                 team1_data.append(row)
-                team1_champs.append(match_player.champion.name.lower().replace(" ","-").replace("'","-"))
+                team1_champs.append(match_player.champion.name.lower().replace(" ","-"))
                 team1_ranks.append(rank)
             else:
                 if match_player.player.private:
@@ -91,7 +91,7 @@ class Paladins(commands.Cog):
                 else:
                     rank = match_player.player.ranked_best.rank.value
                 team2_data.append(row)
-                team2_champs.append(match_player.champion.name.lower().replace(" ","-").replace("'","-"))
+                team2_champs.append(match_player.champion.name.lower().replace(" ","-"))
                 team2_ranks.append(rank)
         buffer = await helper.historyimg(team1_champs, team2_champs, team1_data, team2_data, team1_ranks, team2_ranks, (match_info + temp))
         file = discord.File(filename=f"{matchid}.png", fp=buffer)
@@ -188,7 +188,7 @@ class Paladins(commands.Cog):
                     else:
                         rank = match_player.player.ranked_best.rank.value
                     team1_data.append(row)
-                    team1_champs.append(match_player.champion.name.lower().replace(" ","-").replace("'","-"))
+                    team1_champs.append(match_player.champion.name.lower().replace(" ","-"))
                     team1_ranks.append(rank)
                 else:
                     if match_player.player.private:
@@ -196,7 +196,7 @@ class Paladins(commands.Cog):
                     else:
                         rank = match_player.player.ranked_best.rank.value
                     team2_data.append(row)
-                    team2_champs.append(match_player.champion.name.lower().replace(" ","-").replace("'","-"))
+                    team2_champs.append(match_player.champion.name.lower().replace(" ","-"))
                     team2_ranks.append(rank)
             buffer = await helper.historyimg(team1_champs, team2_champs, team1_data, team2_data, team1_ranks, team2_ranks, (match_info + temp))
             file = discord.File(filename=f"{player.name}.png", fp=buffer)
@@ -576,7 +576,7 @@ class Paladins(commands.Cog):
                      "buck", "cassie", "corvus", "dredge", "drogoz", "evie",
                      "fernando", "furia", "grohk", "grover", "imani", "inara",
                      "io", "jenos", "khan", "kinessa", "koga", "lex", "lian", "maeve",
-                     "makoa", "mal-damba", "moji", "octavia", "pip", "raum", "rei",
+                     "makoa", "mal'damba", "moji", "octavia", "pip", "raum", "rei",
                      "ruckus", "saati", "seris", "sha-lin", "skye", "strix", "talus", "terminus",
                      "tiberius", "torvald", "tyra", "seven", "vatu", "viktor", "vivian", "vora",
                      "willo", "yagorath", "ying", "zhin"]
