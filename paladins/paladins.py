@@ -592,6 +592,9 @@ class Paladins(commands.Cog):
 
     @commands.command()
     @checks.is_owner()
-    async def hitest(self, ctx):
+    async def hitest(self, ctx, anything):
         entry = await self.api.get_champion_info()
-        await ctx.send(entry.champions)
+        if not anything:
+            await ctx.send(entry.champions)
+        else:
+            await ctx.send(entry.champions + anything)
