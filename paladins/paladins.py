@@ -7,6 +7,7 @@ import discord
 from .helper import helper
 from redbot.core.utils.chat_formatting import pagify, text_to_file
 import aiohttp
+import aiofiles
 import json
 import math
 from tabulate import tabulate
@@ -561,3 +562,27 @@ class Paladins(commands.Cog):
             await ctx.send(file=file)
         else:
             await ctx.send(bounty)
+
+    @commands.command()
+    @checks.is_owner()
+    async def downloadchamps(self, ctx):
+        """
+        Downloads champion icons from hirez servers
+        """
+
+        champions = ["androxus", "atlas", "ash", "azaan", "barik", "bomb-king",
+                     "buck", "cassie", "corvus", "dredge", "drogoz", "evie",
+                     "fernando", "furia", "grohk", "grover", "imani", "inara",
+                     "io", "jenos", "khan", "kinessa", "koga", "lex", "lian", "maeve",
+                     "makoa", "mal-damba", "moji", "octavia", "pip", "raum", "rei",
+                     "ruckus", "saati", "seris", "sha-lin", "skye", "strix", "talus", "terminus",
+                     "tiberius", "torvald", "tyra", "seven", "vatu", "viktor", "vivian", "vora",
+                     "willo", "yagorath", "ying", "zhin"]
+        for champion in champions:
+            async with aiohttp.ClientSession() as session:
+                url = f"https://webcdn.hirezstudios.com/paladins/champion-icons/{champion}.jpg"
+                async with session.get(url) as resp:
+                    if resp.status == 200:
+                        f = await aiofiles.open(f'/root/mucski/stuff/icons/avatars/{champion}.img', mode='wb')
+                        await f.write(await resp.read())
+                        await f.close()
