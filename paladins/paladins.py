@@ -68,7 +68,7 @@ class Paladins(commands.Cog):
         team2_champs = []
         match_info = [match.id, match.duration.minutes, match.region.name,
                         match.map_name, match.score[0], match.score[1]]
-        temp = match.bans
+        temp = match.bans.lower().replace(" ","-")
         for match_player in sorted(match.players, key=lambda match_player: match_player.df, reverse=True):
             row = [
                     match_player.player.name, match_player.account_level, match_player.credits, match_player.kda_text,
@@ -92,7 +92,7 @@ class Paladins(commands.Cog):
                 team2_data.append(row)
                 team2_champs.append(match_player.champion.name.lower().replace(" ","-"))
                 team2_ranks.append(rank)
-        buffer = await helper.historyimg(team1_champs, team2_champs, team1_data, team2_data, team1_ranks, team2_ranks, (match_info + temp.lower().replace(" ","-")))
+        buffer = await helper.historyimg(team1_champs, team2_champs, team1_data, team2_data, team1_ranks, team2_ranks, (match_info + temp))
         file = discord.File(filename=f"{matchid}.png", fp=buffer)
         await msg.delete()
         await ctx.send(file=file)
@@ -110,7 +110,7 @@ class Paladins(commands.Cog):
             cunt = 0
             match_info = ["198372984", "30", "Japan",
                             map_name, "1", "4"]
-            temp = ["Makoa", "Yagorath", "Furia", "Jenos", "Bomb King", "Terminus"]
+            temp = ["makoa", "yagorath", "furia", "jenos", "bomb-king", "terminus"]
             while cunt < 10:
                 cunt += 1
                 row = [
@@ -129,7 +129,7 @@ class Paladins(commands.Cog):
                     team2_data.append(row)
                     team2_champs.append("Sha Lin".lower().replace(" ","-"))
                     team2_ranks.append(rank)
-            buffer = await helper.historyimg(team1_champs, team2_champs, team1_data, team2_data, team1_ranks, team2_ranks, (match_info + temp.lower().replace(" ","-")))
+            buffer = await helper.historyimg(team1_champs, team2_champs, team1_data, team2_data, team1_ranks, team2_ranks, (match_info + temp))
             file = discord.File(filename="prototype.png", fp=buffer)
             await ctx.send(file=file)
 
@@ -172,7 +172,7 @@ class Paladins(commands.Cog):
             team2_champs = []
             match_info = [match.id, match.duration.minutes, match.region.name,
                             match.map_name, match.score[0], match.score[1]]
-            temp = match.bans
+            temp = match.bans.lower().replace(" ","-")
             for match_player in sorted(match.players, key=lambda match_player: match_player.df, reverse=True):
                 row = [
                         match_player.player.name, match_player.account_level, match_player.credits, match_player.kda_text,
@@ -196,7 +196,7 @@ class Paladins(commands.Cog):
                     team2_data.append(row)
                     team2_champs.append(match_player.champion.name.lower().replace(" ","-"))
                     team2_ranks.append(rank)
-            buffer = await helper.historyimg(team1_champs, team2_champs, team1_data, team2_data, team1_ranks, team2_ranks, (match_info + temp.lower().replace(" ","-")))
+            buffer = await helper.historyimg(team1_champs, team2_champs, team1_data, team2_data, team1_ranks, team2_ranks, (match_info + temp))
             file = discord.File(filename=f"{player.name}.png", fp=buffer)
             await ctx.send(file=file)
 
