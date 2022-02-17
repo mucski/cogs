@@ -549,3 +549,11 @@ class Paladins(commands.Cog):
             await ctx.send(file=file)
         else:
             await ctx.send(desc)
+
+    @commands.command()
+    async def bountystore(self, ctx):
+        """
+        Returns the current and past bounty items
+        """
+        bounty = await self.api.get_bounty()
+        await ctx.send(bounty)
