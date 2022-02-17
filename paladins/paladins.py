@@ -586,4 +586,4 @@ class Paladins(commands.Cog):
                         f = await aiofiles.open(f'/root/mucski/stuff/icons/avatars/{champion}.jpg', mode='wb')
                         await f.write(await resp.read())
                         await f.close()
-        await ctx.send("Done, downloaded all champion avatars.")
+        await ctx.tick()
