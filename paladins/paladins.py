@@ -556,4 +556,8 @@ class Paladins(commands.Cog):
         Returns the current and past bounty items
         """
         bounty = await self.api.get_bounty()
-        await ctx.send(bounty)
+        if len(bounty) > 2000:
+            file = text_to_file(bounty, "bountystore.txt")
+            await ctx.send(file=file)
+        else:
+            await ctx.send(bounty)
