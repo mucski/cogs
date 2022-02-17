@@ -583,6 +583,6 @@ class Paladins(commands.Cog):
                 url = f"https://webcdn.hirezstudios.com/paladins/champion-icons/{champion}.jpg"
                 async with session.get(url) as resp:
                     if resp.status == 200:
-                        f = await aiofiles.open(f'/root/mucski/stuff/icons/avatars/{champion}.img', mode='wb')
+                        f = await aiofiles.open(f'/root/mucski/stuff/icons/avatars/{champion}.jpg', mode='wb')
                         await f.write(await resp.read())
                         await f.close()
