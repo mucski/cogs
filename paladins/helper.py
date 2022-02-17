@@ -244,20 +244,20 @@ class helper:
         try:
             if match_data[6]:
                 try:
-                    banned1 = match_data[6].name
-                    banned2 = match_data[7].name
-                    banned3 = match_data[8].name
-                    banned4 = match_data[9].name
-                    banned5 = match_data[10].name
-                    banned6 = match_data[11].name
+                    banned1 = match_data[6].name.lower()
+                    banned2 = match_data[7].name.lower()
+                    banned3 = match_data[8].name.lower()
+                    banned4 = match_data[9].name.lower()
+                    banned5 = match_data[10].name.lower()
+                    banned6 = match_data[11].name.lower()
 
                 except AttributeError:
-                    banned1 = match_data[6]
-                    banned2 = match_data[7]
-                    banned3 = match_data[8]
-                    banned4 = match_data[9]
-                    banned5 = match_data[10]
-                    banned6 = match_data[11]
+                    banned1 = match_data[6].lower()
+                    banned2 = match_data[7].lower()
+                    banned3 = match_data[8].lower()
+                    banned4 = match_data[9].lower()
+                    banned5 = match_data[10].lower()
+                    banned6 = match_data[11].lower()
 
                 draw.text((int((W-w) / 2) + 1520, int((H-h) / 2) + 80), "Bans", font=fnt, stroke_width=stroke_size, stroke_fill=stroke, fill=fill)
                 # team 1 bans
