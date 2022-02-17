@@ -557,7 +557,7 @@ class Paladins(commands.Cog):
         """
         bounty = await self.api.get_bounty()
         if len(bounty) > 2000:
-            file = text_to_file(bounty, "bountystore.txt")
+            file = text_to_file(bounty, "bounty-items.txt")
             await ctx.send(file=file)
         else:
             await ctx.send(bounty)
