@@ -576,7 +576,7 @@ class Paladins(commands.Cog):
                      "buck", "cassie", "corvus", "dredge", "drogoz", "evie",
                      "fernando", "furia", "grohk", "grover", "imani", "inara",
                      "io", "jenos", "khan", "kinessa", "koga", "lex", "lian", "maeve",
-                     "makoa", "mal'damba", "moji", "octavia", "pip", "raum", "rei",
+                     "makoa", "mal"+"'"+"damba", "moji", "octavia", "pip", "raum", "rei",
                      "ruckus", "saati", "seris", "sha-lin", "skye", "strix", "talus", "terminus",
                      "tiberius", "torvald", "tyra", "seven", "vatu", "viktor", "vivian", "vora",
                      "willo", "yagorath", "ying", "zhin"]
