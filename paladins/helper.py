@@ -6,22 +6,6 @@ from redbot.core.utils.chat_formatting import humanize_number
 
 class helper:
 
-    # @classmethod
-    # async def champimg(cls, name):
-    #     name = name.lower()
-    #     if "bomb" in name:
-    #         name = "bomb-king"
-    #     if "sha" in name:
-    #         name = "sha-lin"
-    #     if "mal" in name:
-    #         name = "maldamba"
-    #     url = f"https://webcdn.hirezstudios.com/paladins/champion-icons/{name}.jpg"
-    #     async with aiohttp.ClientSession() as session:
-    #         async with session.get(url) as resp:
-    #             if resp.status == 200:
-    #                 resp = await resp.read()
-    #     return resp
-
     @classmethod
     async def champimg(cls, name):
         name = name.lower()
@@ -31,9 +15,25 @@ class helper:
             name = "sha-lin"
         if "mal" in name:
             name = "maldamba"
-        entry = await cog.api.get_champion_info()
-        champ = entry.champions.get(name)
-        return champ.icon_url
+        url = f"https://webcdn.hirezstudios.com/paladins/champion-icons/{name}.jpg"
+        async with aiohttp.ClientSession() as session:
+            async with session.get(url) as resp:
+                if resp.status == 200:
+                    resp = await resp.read()
+        return resp
+
+    # @classmethod
+    # async def champimg(cls, name):
+    #     name = name.lower()
+    #     if "bomb" in name:
+    #         name = "bomb-king"
+    #     if "sha" in name:
+    #         name = "sha-lin"
+    #     if "mal" in name:
+    #         name = "maldamba"
+    #     entry = await api.get_champion_info()
+    #     champ = entry.champions.get(name)
+    #     return champ.icon_url
 
     @classmethod
     async def testchampimg(cls, name):
