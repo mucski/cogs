@@ -68,7 +68,8 @@ class Paladins(commands.Cog):
         team2_champs = []
         match_info = [match.id, match.duration.minutes, match.region.name,
                         match.map_name, match.score[0], match.score[1]]
-        temp = match.bans.lower().replace(" ","-")
+        temp = match.bans
+        temp = [item.lower().replace(" ","-") for item in temp]
         for match_player in sorted(match.players, key=lambda match_player: match_player.df, reverse=True):
             row = [
                     match_player.player.name, match_player.account_level, match_player.credits, match_player.kda_text,
@@ -172,7 +173,8 @@ class Paladins(commands.Cog):
             team2_champs = []
             match_info = [match.id, match.duration.minutes, match.region.name,
                             match.map_name, match.score[0], match.score[1]]
-            temp = match.bans.lower().replace(" ","-")
+            temp = match.bans
+            temp = [item.lower().replace(" ","-") for item in temp]
             for match_player in sorted(match.players, key=lambda match_player: match_player.df, reverse=True):
                 row = [
                         match_player.player.name, match_player.account_level, match_player.credits, match_player.kda_text,
