@@ -321,19 +321,21 @@ class HiRez(commands.Cog):
         return pic
 
     async def match_to_image(self, match: arez.Match) -> Image:
+        fnt = ImageFont.truetype("root/mucski/stuff/arial.ttf", 80)
         crop = 140
         W, H = (4620, 2932)
         # padding=10
         img = Image.new("RGB", (W, H), color=(8, 21, 25))
         offset = 100
+        draw = ImageDraw(img)
         for i in match.team1:
-            i.player.name
-            i.champion.name
+            draw.text((offset+10, 20), i.player.name, fnt=fnt, fill = (255, 255, 255))
+            draw.text((offset+10, 20), i.champion.name, fnt=fnt, fill = (255, 255, 255))
             if i.rank:
-                i.rank.tier
-            i.kills
-            i.deaths
-            i.damage_done
+                draw.text((offset+10, 20), i.rank.tier, fnt=fnt, fill = (255, 255, 255))
+            draw.text((offset+10, 20), i.kills, fnt=fnt, fill = (255, 255, 255))
+            draw.text((offset+10, 20), i.deaths, fnt=fnt, fill = (255, 255, 255))
+            draw.text((offset+10, 20), i.damage_done, fnt=fnt, fill = (255, 255, 255))
 
         final_image = img.resize((int(W / 2), int(H / 2)), Image.ANTIALIAS)
         final_buffer = BytesIO()
