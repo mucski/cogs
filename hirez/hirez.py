@@ -348,8 +348,8 @@ class HiRez(commands.Cog):
         """
         async with ctx.typing():
             match = await self.api.get_match(matchid, expand_players=True)
-            pic = self.match_to_image(match)
-            file = discord.File(filename=f"test.png", fp=pic)
+            pic = await self.match_to_image(match)
+            file = discord.File(filename="test.png", fp=pic)
             await ctx.send(file=file)
 
     @commands.command()
