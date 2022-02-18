@@ -307,3 +307,41 @@ class HiRez(commands.Cog):
             e.description = desc
             e.set_footer(text=f"Individual champion stats for {ret.name}")
             await ctx.send(embed=e)
+
+    @commands.command()
+    @checks.is_owner()
+    async def proto(self, ctx, *, map_name=None):
+        async with ctx.typing():
+            if not map_name:
+                map_name = "Brightmarsh"
+            team1_data = []
+            team2_data = []
+            team1_champs = []
+            team1_ranks = []
+            team2_ranks = []
+            team2_champs = []
+            cunt = 0
+            match_info = ["198372984", "30", "Japan",
+                            map_name, "1", "4"]
+            temp = ["Makoa", "Yagorath", "Furia", "Jenos", "Bomb King", "Terminus"]
+            while cunt < 10:
+                cunt += 1
+                row = [
+                        "TestSomeLongName", "999", "9999", "99/99/99",
+                        "999999", "999999", "999", "999999",
+                        "999999", "4", "Steam", "999999",
+                        99.99
+                ]
+                if cunt < 6:
+                    rank = "22"
+                    team1_data.append(row)
+                    team1_champs.append("Seris")
+                    team1_ranks.append(rank)
+                else:
+                    rank = "22"
+                    team2_data.append(row)
+                    team2_champs.append("Zhin")
+                    team2_ranks.append(rank)
+            buffer = await helper.historyimg(team1_champs, team2_champs, team1_data, team2_data, team1_ranks, team2_ranks, (match_info + temp_lower))
+            file = discord.File(filename="prototype.png", fp=buffer)
+            await ctx.send(file=file)
