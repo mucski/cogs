@@ -211,14 +211,14 @@ def middlepanel(mp):
     draw.text((padding, 200 + padding), f"Region: {mp.region}", font=fnt, stroke_width=stroke_size, stroke_fill=stroke, fill=fill)
     draw.text((padding, 300 + padding), f"Map: {mp.map_name}", font=fnt, stroke_width=stroke_size, stroke_fill=stroke, fill=fill)
 
-    draw.text((int(W / 2 - 1032), padding), f"Team 1 score: {mp.score[1]}", font=fnt, stroke_width=stroke_size, stroke_fill=stroke, fill=fill)
+    draw.text((int(W / 2 - 1032), padding), f"Team 1 score: {mp.score[0]}", font=fnt, stroke_width=stroke_size, stroke_fill=stroke, fill=fill)
 
     vs = Image.open("root/mucski/stuff/icons/vs.png")
     w, h = vs.size
     vs = vs.resize((int(w * 2 / 3), int(h * 2 / 3)))
     img.paste(vs, (int((W-w) / 2), int((H-h) / 2 + 48)), mask=vs)
 
-    draw.text((int(W / 2 + 173), 300 + padding), f"Team 2 score: {mp.score[2]}", font=fnt, stroke_width=stroke_size, stroke_fill=stroke, fill=fill)
+    draw.text((int(W / 2 + 173), 300 + padding), f"Team 2 score: {mp.score[1]}", font=fnt, stroke_width=stroke_size, stroke_fill=stroke, fill=fill)
 
     # ranked bans go here
 
