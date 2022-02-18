@@ -337,16 +337,16 @@ class HiRez(commands.Cog):
         purple = (240, 3, 252)
         fill = (255, 255, 255)
 
-        if stats[9] == 1:
-            color = green
-        elif stats[9] == 2:
-            color = orange
-        elif stats[9] == 3:
-            color = purple
-        elif stats[9] == 4:
-            color = red
-        else:
-            color = fill
+        # if stats[9] == 1:
+        #     color = green
+        # elif stats[9] == 2:
+        #     color = orange
+        # elif stats[9] == 3:
+        #     color = purple
+        # elif stats[9] == 4:
+        #     color = red
+        # else:
+        #     color = fill
 
         # new image object
         img = Image.new("RGBA", (W, H), color=img_color)
@@ -363,8 +363,8 @@ class HiRez(commands.Cog):
             fntbld = ImageFont.truetype("root/mucski/stuff/arialbd.ttf", 80)
             smallfnt = ImageFont.truetype("root/mucski/stuff/arial.ttf", 60)
 
-            if stats[0] == "":
-                stats[0] = "?????????"
+            if i.player.name == "":
+                i.player.name = "?????????"
 
             # player name and level
             draw.text((512 + padding * 4, mid - 30), i.player.name, font=fntbld, fill=color)
