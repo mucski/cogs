@@ -324,7 +324,7 @@ class HiRez(commands.Cog):
             cunt = 0
             match_info = ["198372984", "30", "Japan",
                             map_name, "1", "4"]
-            temp = ["Makoa", "Yagorath", "Furia", "Jenos", "Bomb King", "Terminus"]
+            bans = ["Makoa", "Yagorath", "Furia", "Jenos", "Bomb King", "Terminus"]
             while cunt < 10:
                 cunt += 1
                 row = [
@@ -343,6 +343,6 @@ class HiRez(commands.Cog):
                     team2_data.append(row)
                     team2_champs.append("Zhin")
                     team2_ranks.append(rank)
-            buffer = await helper.historyimg(team1_champs, team2_champs, team1_data, team2_data, team1_ranks, team2_ranks, (match_info + temp_lower))
+            buffer = await helper.historyimg(team1_champs, team2_champs, team1_data, team2_data, team1_ranks, team2_ranks, (match_info + bans))
             file = discord.File(filename="prototype.png", fp=buffer)
             await ctx.send(file=file)
