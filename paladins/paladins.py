@@ -99,8 +99,10 @@ class Paladins(commands.Cog):
 
     @commands.command()
     @checks.is_owner()
-    async def proto(self, ctx, *, map_name):
+    async def proto(self, ctx, *, map_name=None):
         async with ctx.typing():
+            if not map_name:
+                map_name = "Brightmarsh"
             team1_data = []
             team2_data = []
             team1_champs = []
