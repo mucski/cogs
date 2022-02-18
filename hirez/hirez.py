@@ -384,7 +384,7 @@ class HiRez(commands.Cog):
                 await ctx.send("```\nNo recent matches found.\n```")
                 return
             match = await match_list[0]
-            match = await match.expand_players()
+            await match.expand_players()
             pic = self.format_match(match)
-            file = discord.File(filename="test.png", fp=pic)
+            file = discord.File(filename=f"{match.player.name}.png", fp=pic)
             await ctx.send(file=file)
