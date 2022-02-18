@@ -328,6 +328,7 @@ class HiRez(commands.Cog):
         mid = int((H - 120) / 2)
         # image background color odd and even
         # img_color = (14, 34, 43) if index % 2 == 0 else (15, 40, 48)
+        img_color = (14, 34, 43)
         # text fill size )
         fill = (255, 255, 255)
 
