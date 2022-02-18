@@ -312,7 +312,7 @@ class HiRez(commands.Cog):
             await ctx.send(embed=e)
 
     def format_match(self, match: arez.Match) -> Image:
-        W, H = (4620, 2932)
+        W, H = (4620, 2942)
         # padding=10
         img = Image.new("RGB", (W, H), color=(8, 21, 25))
         # headers
@@ -320,12 +320,12 @@ class HiRez(commands.Cog):
         img.paste(key, (0, 0))
         # format in the players
         for team_num in range(1, 3):  # 1 then 2
-            yoffset = (team_num - 1) * 1772  # replace 1000 with whatever offset you'll need
+            yoffset = (team_num - 1) * 1782  # replace 1000 with whatever offset you'll need
             team = getattr(match, f"team{team_num}")
             for i, mp in enumerate(team):
                 y = i * 2 + yoffset  # replace 50 with whatever row height you use
                 row = helper.statsimage(mp, i)  # your current playerkey
-                img.paste(row, (100, 232 * i + y))
+                img.paste(row, (0, 232 * i + y))
                 # base.paste(row, 0, y)
         # add middlebar
         middle = helper.middlepanel(match)
