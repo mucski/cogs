@@ -312,7 +312,6 @@ class HiRez(commands.Cog):
             await ctx.send(embed=e)
 
     def format_match(self, match: arez.Match) -> Image:
-        crop = 140
         W, H = (4620, 2932)
         # padding=10
         img = Image.new("RGB", (W, H), color=(8, 21, 25))

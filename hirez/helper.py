@@ -14,6 +14,7 @@ def champ_into_pic(champ: arez.Champion) -> Image:
     return pic
 
 def statsimage(mp, index):
+    crop = 140
     # vertical
     W, H = (4620, 232)
     # padding or margin size
@@ -35,7 +36,7 @@ def statsimage(mp, index):
         color = green
     elif mp.party_number == 2:
         color = orange
-    elif mp.party_number == 3:
+    elif mp.party_numbera == 3:
         color = purple
     elif mp.party_number == 4:
         color = red
