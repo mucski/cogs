@@ -143,10 +143,10 @@ class helper:
                     champimg = Image.open(f"root/mucski/stuff/icons/avatars/{champ}.jpg")
                 except FileNotFoundError:
                     champimg = Image.open("root/mucski/stuff/icons/error.jpg")
-                # if champimg.size < (512, 512):
-                #     (width, height) = (champimg.width * 2, champimg.height * 2)
-                #     champimg = champimg.resize((width, height))
-                # cropping champion image
+                if champimg.size < (512, 512):
+                    (width, height) = (champimg.width * 2, champimg.height * 2)
+                    champimg = champimg.resize((width, height))
+                cropping champion image
                 border = (0, crop, 0, crop)
                 champimgcrop = ImageOps.crop(champimg, border)
                 # rank icon
