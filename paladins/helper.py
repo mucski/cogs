@@ -1,6 +1,7 @@
 from PIL import ImageOps, ImageDraw, Image, ImageFont, ImageEnhance
 import aiohttp
 from io import BytesIO
+from .paladins import Champion
 from redbot.core.utils.chat_formatting import humanize_number
 
 
@@ -9,7 +10,6 @@ class helper:
     def champ_into_pic(champ: Champion) -> PIL.Image:
         name = champ.name.lower().replace(" ","-").replace("'","")
         return Image.open(f"root/mucski/stuff/icons/avatars/{name}.jpg")
-
 
     @classmethod
     async def statsimage(cls, champicon, rankicon, stats, index):
@@ -217,5 +217,5 @@ class helper:
         draw.text((int(W / 2 + 173), 300 + padding), f"Team 2 score: {match_data[5]}", font=fnt, stroke_width=stroke_size, stroke_fill=stroke, fill=fill)
 
         # ranked bans go here
-        
+
         return img
