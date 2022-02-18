@@ -36,7 +36,7 @@ def statsimage(mp, index):
         color = green
     elif mp.party_number == 2:
         color = orange
-    elif mp.party_numbera == 3:
+    elif mp.party_number == 3:
         color = purple
     elif mp.party_number == 4:
         color = red
