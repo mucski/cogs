@@ -320,34 +320,12 @@ class HiRez(commands.Cog):
         return pic
 
     async def match_to_image(self, match: arez.Match) -> Image:
+        fill = (255, 255, 255)
+        W, H = (4620, 232)
+        fntbld = ImageFont.truetype("root/mucski/stuff/arialbd.ttf", 120)
         for i in match.players:
-            W, H = (4620, 232)
-            padding = 10
-            mid = H / 2
-            fill = (255, 255, 255)
-            orange = (252, 186, 3)
-            green = (7, 252, 3)
-            red = (252, 102, 3)
-            purple = (240, 3, 252)
-            fill = (255, 255, 255)
-            if i.party_number == 1:
-                color = green
-            elif i.party_number == 2:
-                color = orange
-            elif i.party_number == 3:
-                color = purple
-            elif i.party_number == 4:
-                color = red
-            else:
-                color = fill
-            img_color = (14, 34, 43)
-            champicon = self.champ_into_pic(i.champion)
-            #rankicon = Image.open(f"root/mucski/stuff/icons/ranks/{rank}.png")
-            # new image object
-            img = Image.new("RGBA", (W, H), color=img_color)
-            img.paste(champicon, (padding, padding))
-            # if i.rank:
-            # 	img.paste(rankicon, (1526, mid), mask=rankicon)
+            img = Image.new("RGB", (W, H), color=(8, 21, 25))
+            draw.text((512 + padding * 4, 20), "PLAYER", font=fntbld, fill=fill)
 
         final_image = img.resize((int(W / 2), int(H / 2)), Image.ANTIALIAS)
         final_buffer = BytesIO()
