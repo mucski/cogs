@@ -228,5 +228,12 @@ def middlepanel(mp):
     draw.text((int(W / 2 + 173), 300 + padding), f"Team 2 score: {mp.score[1]}", font=fnt, stroke_width=stroke_size, stroke_fill=stroke, fill=fill)
 
     # ranked bans go here
+    if mp.bans:
+        draw.text((int((W-w) / 2) + 1520, int((H-h) / 2) + 80), "Bans", font=fnt, stroke_width=stroke_size, stroke_fill=stroke, fill=fill)
+        # team 1 bans
+        # champ 1
+        champ_icon = champ_into_pic(mp.bans.name)
+        champ_icon = champ_icon.resize((200, 200))
+        img.paste(champ_icon, (4110, 186))
 
     return img
