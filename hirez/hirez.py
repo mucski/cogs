@@ -381,7 +381,7 @@ class HiRez(commands.Cog):
             # dmg taken
             draw.text((2826, mid), humanize_number(i.damage_taken), font=fnt, fill=fill)
             # objective
-            draw.text((3226, mid), humanize_number(i.objective), font=fnt, fill=fill)
+            draw.text((3226, mid), humanize_number(i.points_captured), font=fnt, fill=fill)
             # shielding
             draw.text((3456, mid), humanize_number(i.shielding), font=fnt, fill=fill)
             # healing
