@@ -328,7 +328,8 @@ class HiRez(commands.Cog):
         for i in match.team1:
             i.player.name
             i.champion.name
-            i.rank.tier
+            if i.rank:
+                i.rank.tier
             i.kills
             i.deaths
             i.damage_done
