@@ -54,7 +54,11 @@ def statsimage(mp, index):
     champimgcrop = ImageOps.crop(champicon, border)
     img.paste(champimgcrop, (padding, padding))
     # rank icon
-    # img.paste(rankicon, (1526, mid), mask=rankicon)
+    if mp.player.private:
+        rankicon = Image.open(f"root/mucski/stuff/icons/ranks/99.png")
+    else:
+        rankicon = Image.open(f"root/mucski/stuff/icons/ranks/{mp.rank}.png")
+    img.paste(rankicon, (1526, mid), mask=rankicon)
     # make the image drawable
     draw = ImageDraw.Draw(img)
     # normal font
