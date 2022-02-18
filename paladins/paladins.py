@@ -524,7 +524,8 @@ class Paladins(commands.Cog):
     @checks.is_owner()
     async def downloadchamps(self, ctx):
         entry = await self.api.get_champion_info()
-        for champ in entry.champions:
+        l = list(entry.champions)
+        for champ in l:
             async with aiohttp.ClientSession() as session:
                 url = champ.url_icon
                 name = champ.name
