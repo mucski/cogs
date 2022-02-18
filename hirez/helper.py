@@ -23,7 +23,7 @@ def statsimage(mp, index):
     # padding or margin size
     padding = 10
     # middle
-    mid = int((H - 110) / 2)
+    mid = 61
     # image background color odd and even
     img_color = (14, 34, 43) if index % 2 == 0 else (15, 40, 48)
     # text fill size )
@@ -210,7 +210,7 @@ def middlepanel(mp):
     stroke_size = 0
 
     draw.text((padding, padding), f"ID: {mp.id}", font=fnt, stroke_width=stroke_size, stroke_fill=stroke, fill=fill)
-    draw.text((padding, 100 + padding), f"Duration: {mp.duration} min", font=fnt, stroke_width=stroke_size, stroke_fill=stroke, fill=fill)
+    draw.text((padding, 100 + padding), f"Duration: {mp.duration}", font=fnt, stroke_width=stroke_size, stroke_fill=stroke, fill=fill)
     draw.text((padding, 200 + padding), f"Region: {mp.region}", font=fnt, stroke_width=stroke_size, stroke_fill=stroke, fill=fill)
     draw.text((padding, 300 + padding), f"Map: {mp.map_name}", font=fnt, stroke_width=stroke_size, stroke_fill=stroke, fill=fill)
 
