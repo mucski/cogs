@@ -527,8 +527,8 @@ class Paladins(commands.Cog):
         l = list(entry.champions)
         for champ in l:
             async with aiohttp.ClientSession() as session:
-                url = champ.url_icon
-                name = champ.name
+                url = champ.url_icon()
+                name = champ.name()
                 async with session.get(url) as resp:
                     if resp.status == 200:
                         f = await aiofiles.open('root/mucski/stuff/icons/avatars/{name}.jpg', mode='wb')
