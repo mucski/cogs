@@ -384,39 +384,7 @@ class HiRez(commands.Cog):
                 await ctx.send("```\nNo recent matches found.\n```")
                 return
             match = await match_list[0]
-            await match.expand_players()
-            team1_data = []
-            team2_data = []
-            team1_champs = []
-            team1_ranks = []
-            team2_ranks = []
-            team2_champs = []
-            match_info = [match.id, match.duration.minutes, match.region.name,
-                            match.map_name, match.score[0], match.score[1]]
-            bans = match.bans
-            for match_player in sorted(match.players, key=lambda match_player: match_player.df, reverse=True):
-                row = [
-                        match_player.player.name, match_player.account_level, match_player.credits, match_player.kda_text,
-                        match_player.damage_done, match_player.damage_taken, match_player.objective_time, match_player.damage_mitigated,
-                        match_player.healing_done, match_player.party_number, match_player.player.platform, match_player.healing_self,
-                        match_player.kda2
-                ]
-                if match_player.team_number == 1:
-                    if match_player.player.private:
-                        rank = "99"
-                    else:
-                        rank = match_player.player.ranked_best.rank.value
-                    team1_data.append(row)
-                    team1_champs.append(match_player.champion)
-                    team1_ranks.append(rank)
-                else:
-                    if match_player.player.private:
-                        rank = "99"
-                    else:
-                        rank = match_player.player.ranked_best.rank.value
-                    team2_data.append(row)
-                    team2_champs.append(match_player.champion.name)
-                    team2_ranks.append(rank)
-            buffer = await helper.historyimg(team1_champs, team2_champs, team1_data, team2_data, team1_ranks, team2_ranks, (match_info + bans))
-            file = discord.File(filename=f"{player}.png", fp=buffer)
+            match = await match.expand_players()
+            pic = self.format_match(match)
+            file = discord.File(filename="test.png", fp=pic)
             await ctx.send(file=file)
