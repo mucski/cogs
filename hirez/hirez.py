@@ -372,6 +372,6 @@ class HiRez(commands.Cog):
                     team2_data.append(row)
                     team2_champs.append(match_player.champion.name)
                     team2_ranks.append(rank)
-            buffer = await helper.historyimg(team1_champs, team2_champs, team1_data, team2_data, team1_ranks, team2_ranks, (match_info + temp_lower))
+            buffer = await helper.historyimg(team1_champs, team2_champs, team1_data, team2_data, team1_ranks, team2_ranks, (match_info + bans))
             file = discord.File(filename=f"{player}.png", fp=buffer)
             await ctx.send(file=file)
