@@ -311,7 +311,7 @@ class HiRez(commands.Cog):
             e.set_footer(text=f"Individual champion stats for {ret.name}")
             await ctx.send(embed=e)
 
-    def champ_into_pic(self, champ: Champion) -> Image:
+    def champ_into_pic(self, champ: arez.Champion) -> Image:
         name = champ.name.lower().replace(" ","-").replace("'","")
         try:
             pic = Image.open(f"root/mucski/stuff/icons/avatars/{name}.jpg")
