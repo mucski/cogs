@@ -320,19 +320,10 @@ class HiRez(commands.Cog):
         return pic
 
     async def match_to_image(self, match: arez.Match) -> Image:
-        fill = (255, 255, 255)
-        W, H = (4620, 232)
-        fntbld = ImageFont.truetype("root/mucski/stuff/arialbd.ttf", 120)
         for i in match.players:
-            img = Image.new("RGB", (W, H), color=(8, 21, 25))
-            draw = ImageDraw.Draw(img)
-            draw.text((512 + 10 * 4, 20), "PLAYER", font=fntbld, fill=fill)
-
-        final_image = img.resize((int(W / 2), int(H / 2)), Image.ANTIALIAS)
-        final_buffer = BytesIO()
-        final_image.save(final_buffer, "PNG")
-        final_buffer.seek(0)
-        return final_buffer
+            name = i.player.name
+        #return final_buffer
+        return name
 
     @commands.command()
     async def match(self, ctx, matchid: int):
@@ -344,8 +335,9 @@ class HiRez(commands.Cog):
         async with ctx.typing():
             match = await self.api.get_match(matchid, expand_players=True)
             pic = await self.match_to_image(match)
-            file = discord.File(filename="test.png", fp=pic)
-            await ctx.send(file=file)
+            #file = discord.File(filename="test.png", fp=pic)
+            #await ctx.send(file=file)
+            await ctx.send(pic)
 
     @commands.command()
     async def last(self, ctx, player=None, platform="PC"):
