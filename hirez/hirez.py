@@ -335,6 +335,7 @@ class HiRez(commands.Cog):
                 color = red
             else:
                 color = fill
+            img_color = (14, 34, 43)
             champicon = self.champ_into_pic(i.champion)
             #rankicon = Image.open(f"root/mucski/stuff/icons/ranks/{rank}.png")
             # new image object
