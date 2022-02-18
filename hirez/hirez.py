@@ -323,7 +323,7 @@ class HiRez(commands.Cog):
         for i in match.players:
             name = i.player.name
         #return final_buffer
-        return name
+            return name
 
     @commands.command()
     async def match(self, ctx, matchid: int):
