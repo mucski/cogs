@@ -51,7 +51,7 @@ def statsimage(mp, index):
     champimgcrop = ImageOps.crop(champicon, border)
     img.paste(champimgcrop, (padding, padding))
     # rank icon
-    img.paste(rankicon, (1526, mid), mask=rankicon)
+    # img.paste(rankicon, (1526, mid), mask=rankicon)
     # make the image drawable
     draw = ImageDraw.Draw(img)
     # normal font
