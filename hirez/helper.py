@@ -31,13 +31,13 @@ def statsimage(mp, index):
     purple = (240, 3, 252)
     fill = (255, 255, 255)
 
-    if stats[9] == 1:
+    if mp.party_number == 1:
         color = green
-    elif stats[9] == 2:
+    elif mp.party_number == 2:
         color = orange
-    elif stats[9] == 3:
+    elif mp.party_number] == 3:
         color = purple
-    elif stats[9] == 4:
+    elif mp.party_number == 4:
         color = red
     else:
         color = fill
