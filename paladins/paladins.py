@@ -111,7 +111,8 @@ class Paladins(commands.Cog):
         match_info = ["198372984", "30", "Japan",
                         map_name, "1", "4"]
         temp = ["Makoa", "Yagorath", "Furia", "Jenos", "Bomb King", "Terminus"]
-        lower_temp = (map(lambda x: x.lower().replace(" ","-").replace("'",""), temp))
+        sanitize = (map(lambda x: x.lower().replace(" ","-").replace("'",""), temp))
+        temp_lower = list(sanitize)
         while cunt < 10:
             cunt += 1
             row = [
@@ -130,7 +131,7 @@ class Paladins(commands.Cog):
                 team2_data.append(row)
                 team2_champs.append("Sha Lin")
                 team2_ranks.append(rank)
-        buffer = await helper.historyimg(team1_champs, team2_champs, team1_data, team2_data, team1_ranks, team2_ranks, (match_info + lower_temp))
+        buffer = await helper.historyimg(team1_champs, team2_champs, team1_data, team2_data, team1_ranks, team2_ranks, (match_info + temp_lower))
         file = discord.File(filename="prototype.webp", fp=buffer)
         await msg.delete()
         await ctx.send(file=file)
