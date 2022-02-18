@@ -1,3 +1,5 @@
+from __future__ import annotations
+
 from PIL import ImageOps, ImageDraw, Image, ImageFont, ImageEnhance
 import aiohttp
 from io import BytesIO
@@ -7,7 +9,7 @@ from arez import Champion
 class helper:
 
     @classmethod
-    def champ_into_pic(cls, champ: Champion) -> PIL.Image:
+    def champ_into_pic(cls, champ: Champion) -> Image:
         name = champ.name.lower().replace(" ","-").replace("'","")
         return Image.open(f"root/mucski/stuff/icons/avatars/{name}.jpg")
 
