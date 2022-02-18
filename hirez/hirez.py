@@ -323,10 +323,9 @@ class HiRez(commands.Cog):
             yoffset = (team_num - 1) * 1782  # replace 1000 with whatever offset you'll need
             team = getattr(match, f"team{team_num}")
             for i, mp in enumerate(team):
-                # y = i * 0 + yoffset  # replace 50 with whatever row height you use
-                y = i + yoffset
+                y = i * 232 + yoffset  # replace 50 with whatever row height you use
                 row = helper.statsimage(mp, i)  # your current playerkey
-                img.paste(row, (0, 232 * i + y))
+                img.paste(row, (0, y))
                 # base.paste(row, 0, y)
         # add middlebar
         middle = helper.middlepanel(match)
