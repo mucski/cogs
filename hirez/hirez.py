@@ -320,80 +320,28 @@ class HiRez(commands.Cog):
         return pic
 
     async def match_to_image(self, match: arez.Match) -> Image:
-        # vertical
-        W, H = (4620, 232)
-        # padding or margin size
-        padding = 10
-        # middle
-        mid = int((H - 120) / 2)
-        # image background color odd and even
-        # img_color = (14, 34, 43) if index % 2 == 0 else (15, 40, 48)
-        img_color = (14, 34, 43)
-        # text fill size )
-        fill = (255, 255, 255)
-
-        orange = (252, 186, 3)
-        green = (7, 252, 3)
-        red = (252, 102, 3)
-        purple = (240, 3, 252)
-        fill = (255, 255, 255)
-
-        # if stats[9] == 1:
-        #     color = green
-        # elif stats[9] == 2:
-        #     color = orange
-        # elif stats[9] == 3:
-        #     color = purple
-        # elif stats[9] == 4:
-        #     color = red
-        # else:
-        #     color = fill
-        color = fill
-
-        # new image object
-        img = Image.new("RGBA", (W, H), color=img_color)
-        for i in match.team1:
-            # champion icon
-            #img.paste(champicon, (padding, padding))
-            # rank icon
-            #img.paste(rankicon, (1526, mid), mask=rankicon)
-            # make the image drawable
-            draw = ImageDraw.Draw(img)
-            # normal font
-            fnt = ImageFont.truetype("root/mucski/stuff/arial.ttf", 80)
-            # bold font
-            fntbld = ImageFont.truetype("root/mucski/stuff/arialbd.ttf", 80)
-            smallfnt = ImageFont.truetype("root/mucski/stuff/arial.ttf", 60)
-
-            if i.player.name == "":
-                name = "?????????"
+        for i in match.players:
+            W, H = (4620, 232)
+            padding = 10
+            mid = H / 2
+            fill = (255, 255, 255)
+            if i.party_number == 1:
+                color = green
+            elif i.party_number == 2:
+                color = orange
+            elif i.party_number == 3:
+                color = purple
+            elif i.party_number] == 4:
+                color = red
             else:
-                name = i.player.name
-
-
-
-            # player name and level
-            draw.text((512 + padding * 4, mid - 30), name, font=fntbld, fill=color)
-            draw.text((512 + padding * 4, mid + 60), humanize_number(i.account_level), font=smallfnt, fill=fill)
-
-            # credits earned
-            draw.text((1736, mid), humanize_number(i.credits), font=fnt, fill=fill)
-            # kda
-            draw.text((2036, mid), i.kda_text, font=fnt, fill=(224, 197, 135))
-            # dmg done
-            draw.text((2436, mid), humanize_number(i.damage_done), font=fnt, fill=fill)
-            # dmg taken
-            draw.text((2826, mid), humanize_number(i.damage_taken), font=fnt, fill=fill)
-            # objective
-            draw.text((3226, mid), humanize_number(i.points_captured), font=fnt, fill=fill)
-            # shielding
-            draw.text((3456, mid), humanize_number(i.shielding), font=fnt, fill=fill)
-            # healing
-            draw.text((3856, mid), humanize_number(i.healing_done), font=fnt, fill=fill)
-            # self healing
-            draw.text((4256, mid), humanize_number(i.healing_self), font=fnt, fill=fill)
-            # kda2
-            # draw.text((4636, mid), "{:.2f}".format(stats[12]), font=fnt, fill=fill)
+                color = fill
+            champicon = await self.champ_into_pic(i.champion)
+            rankicon = Image.open(f"root/mucski/stuff/icons/ranks/{i.rank}.png")
+            # new image object
+            img = Image.new("RGBA", (W, H), color=img_color)
+            img.paste(champicon, (padding, padding))
+            if i.rank:
+            	img.paste(rankicon, (1526, mid), mask=rankicon)
 
         final_image = img.resize((int(W / 2), int(H / 2)), Image.ANTIALIAS)
         final_buffer = BytesIO()
