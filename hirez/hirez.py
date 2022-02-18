@@ -348,6 +348,7 @@ class HiRez(commands.Cog):
         #     color = red
         # else:
         #     color = fill
+        color = fill
 
         # new image object
         img = Image.new("RGBA", (W, H), color=img_color)
