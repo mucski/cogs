@@ -94,7 +94,7 @@ def statsimage(mp, index):
 
 def playerkey(x, y):
     # the image object
-    key = Image.new("RGB", (x, y - 60), color=(8, 21, 25))
+    key = Image.new("RGB", (x, y), color=(8, 21, 25))
     draw = ImageDraw.Draw(key)
     fill = (255, 255, 255)
     padding = 10

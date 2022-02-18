@@ -316,7 +316,7 @@ class HiRez(commands.Cog):
         # padding=10
         img = Image.new("RGB", (W, H), color=(8, 21, 25))
         # headers
-        key = helper.playerkey(4620, 50)
+        key = helper.playerkey(4620, 60)
         img.paste(key, (0, 0))
         # format in the players
         for team_num in range(1, 3):  # 1 then 2
