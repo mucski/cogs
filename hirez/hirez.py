@@ -366,10 +366,12 @@ class HiRez(commands.Cog):
             smallfnt = ImageFont.truetype("root/mucski/stuff/arial.ttf", 60)
 
             if i.player.name == "":
-                i.player.name = "?????????"
+                name = "?????????"
+            else:
+                name = i.player.name
 
             # player name and level
-            draw.text((512 + padding * 4, mid - 30), i.player.name, font=fntbld, fill=color)
+            draw.text((512 + padding * 4, mid - 30), name, font=fntbld, fill=color)
             draw.text((512 + padding * 4, mid + 60), humanize_number(i.player.level), font=smallfnt, fill=fill)
 
             # credits earned
