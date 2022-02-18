@@ -14,7 +14,7 @@ from tabulate import tabulate
 from collections import Counter
 
 
-class Paladins(commands.Cog):
+class HiRez(commands.Cog):
     """Paladins stats cog by Mucski
     For a better experience you should link yout discord account to hirez
     that way you can use most commands without typing anything else but the command itself
