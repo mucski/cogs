@@ -335,7 +335,7 @@ class HiRez(commands.Cog):
         middle = helper.middlepanel(match)
         img.paste(middle, (0, 1262))
         #base.paste(middlebar(match))
-        historyimg = img.resize((2310, 1471), Image.ANTIALIAS))
+        historyimg = img.resize((2310, 1471), Image.ANTIALIAS)
         final_buffer = BytesIO()
         historyimg.save(final_buffer, "PNG")
         final_buffer.seek(0)
