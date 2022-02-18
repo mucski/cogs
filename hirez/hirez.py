@@ -14,7 +14,7 @@ from collections import Counter
 from .helper import helper
 import types
 from PIL import ImageOps, ImageDraw, Image, ImageFont, ImageEnhance
-import BytesIO
+from io import BytesIO
 
 
 class HiRez(commands.Cog):
