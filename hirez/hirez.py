@@ -4,7 +4,7 @@ import asyncio
 import humanize
 from datetime import datetime
 import discord
-from redbot.core.utils.chat_formatting import pagify, text_to_file
+from redbot.core.utils.chat_formatting import pagify, text_to_file, humanize_number
 import aiohttp
 import aiofiles
 import json
@@ -15,7 +15,6 @@ from .helper import helper
 import types
 from PIL import ImageOps, ImageDraw, Image, ImageFont, ImageEnhance
 from io import BytesIO
-
 
 class HiRez(commands.Cog):
     """Paladins stats cog by Mucski
@@ -333,9 +332,9 @@ class HiRez(commands.Cog):
             draw.text((offset+10, 20), i.champion.name, fnt=fnt, fill = (255, 255, 255))
             if i.rank:
                 draw.text((offset+10, 20), i.rank.tier, fnt=fnt, fill = (255, 255, 255))
-            draw.text((offset+10, 20), i.kills, fnt=fnt, fill = (255, 255, 255))
-            draw.text((offset+10, 20), i.deaths, fnt=fnt, fill = (255, 255, 255))
-            draw.text((offset+10, 20), i.damage_done, fnt=fnt, fill = (255, 255, 255))
+            draw.text((offset+10, 20), humanize_number(i.kills), fnt=fnt, fill = (255, 255, 255))
+            draw.text((offset+10, 20), humanize_number(i.deaths), fnt=fnt, fill = (255, 255, 255))
+            draw.text((offset+10, 20), humanize_number(i.damage_done), fnt=fnt, fill = (255, 255, 255))
 
         final_image = img.resize((int(W / 2), int(H / 2)), Image.ANTIALIAS)
         final_buffer = BytesIO()
