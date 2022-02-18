@@ -362,7 +362,7 @@ class HiRez(commands.Cog):
                     else:
                         rank = match_player.player.ranked_best.rank.value
                     team1_data.append(row)
-                    team1_champs.append(match_player.champion.name)
+                    team1_champs.append(match_player.champion)
                     team1_ranks.append(rank)
                 else:
                     if match_player.player.private:
