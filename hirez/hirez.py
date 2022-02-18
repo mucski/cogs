@@ -12,6 +12,8 @@ import math
 from tabulate import tabulate
 from collections import Counter
 from .helper import helper
+import types
+from PIL import ImageOps, ImageDraw, Image, ImageFont, ImageEnhance
 
 
 class HiRez(commands.Cog):
@@ -308,6 +310,47 @@ class HiRez(commands.Cog):
             e.description = desc
             e.set_footer(text=f"Individual champion stats for {ret.name}")
             await ctx.send(embed=e)
+
+    def champ_into_pic(self, champ: Champion) -> Image:
+        name = champ.name.lower().replace(" ","-").replace("'","")
+        try:
+            pic = Image.open(f"root/mucski/stuff/icons/avatars/{name}.jpg")
+        except FileNotFoundError:
+            pic = Image.open("root/mucski/stuff/icons/error.jpg")
+        return pic
+
+    async def match_to_image(self, match: arez.Match) -> Image:
+        crop = 140
+        W, H = (4620, 2932)
+        # padding=10
+        img = Image.new("RGB", (W, H), color=(8, 21, 25))
+        offset = 100
+        for i in match.team1:
+            i.player.name
+            i.champion.name
+            i.rank.tier
+            i.kills
+            i.deaths
+            i.damage_done
+
+        final_image = img.resize((int(W / 2), int(H / 2)), Image.ANTIALIAS)
+        final_buffer = BytesIO()
+        final_image.save(final_buffer, "PNG")
+        final_buffer.seek(0)
+        return final_buffer
+
+    @commands.command()
+    async def match(self, ctx, matchid: int):
+        """Returns a match played from a given ID.
+        This command only supports integer.
+        For player names use [p]last (player) (platform)
+        See [p]help last for more info.
+        """
+        async with ctx.typing():
+            match = await self.api.get_match(matchid, expand_players=True)
+            pic = self.match_to_image(match)
+            file = discord.File(filename=f"test.png", fp=pic)
+            await ctx.send(file=file)
 
     @commands.command()
     async def last(self, ctx, player=None, platform="PC"):
