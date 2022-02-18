@@ -146,7 +146,7 @@ class helper:
                 if champimg.size < (512, 512):
                     (width, height) = (champimg.width * 2, champimg.height * 2)
                     champimg = champimg.resize((width, height))
-                cropping champion image
+                # cropping champion image
                 border = (0, crop, 0, crop)
                 champimgcrop = ImageOps.crop(champimg, border)
                 # rank icon
