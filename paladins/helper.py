@@ -5,7 +5,7 @@ from redbot.core.utils.chat_formatting import humanize_number
 
 
 class helper:
-    
+
     # @classmethod
     # async def champimg(cls, name):
     #     name = name.lower()
@@ -23,7 +23,7 @@ class helper:
     #     return resp
 
     @classmethod
-    async def champimg(cls, name):
+    async def champimg(cls, api, name):
         name = name.lower()
         if "bomb" in name:
             name = "bomb-king"
@@ -31,7 +31,7 @@ class helper:
             name = "sha-lin"
         if "mal" in name:
             name = "maldamba"
-        entry = await self.api.get_champion_info()
+        entry = await api.get_champion_info()
         champ = entry.champions.get(name)
         return champ.icon_url
 
