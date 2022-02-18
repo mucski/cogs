@@ -181,7 +181,7 @@ class helper:
                 # team 1
                 resp = await helper.champimg(api, champ)
                 try:
-                    champimg = Image.open(BytesIO(resp))
+                    champimg = Image.open(resp)
                 except TypeError:
                     champimg = Image.open("root/mucski/stuff/icons/error.jpg")
                 if champimg.size < (512, 512):
@@ -276,34 +276,34 @@ class helper:
                 # team 1 bans
                 # champ 1
                 resp = await helper.champimg(api, banned1)
-                champ_icon = Image.open(BytesIO(resp))
+                champ_icon = Image.open(resp)
                 champ_icon = champ_icon.resize((200, 200))
                 img.paste(champ_icon, (int((W-w) / 2) + 1800, int((H-h) / 2) - 70))
                 # champ 2
                 resp = await helper.champimg(api, banned2)
-                champ_icon = Image.open(BytesIO(resp))
+                champ_icon = Image.open(resp)
                 champ_icon = champ_icon.resize((200, 200))
                 img.paste(champ_icon, (int((W-w) / 2) + 2020, int((H-h) / 2) - 70))
                 # champ 3
                 resp = await helper.champimg(api, banned3)
-                champ_icon = Image.open(BytesIO(resp))
+                champ_icon = Image.open(resp)
                 champ_icon = champ_icon.resize((200, 200))
                 img.paste(champ_icon, (int((W-w) / 2) + 2240, int((H-h) / 2) - 70))
 
                 # team 2 bans
                 # champ 1
                 resp = await helper.champimg(api, banned4)
-                champ_icon = Image.open(BytesIO(resp))
+                champ_icon = Image.open(resp)
                 champ_icon = champ_icon.resize((200, 200))
                 img.paste(champ_icon, (int((W-w) / 2) + 1800, int((H-h) / 2) + 150))
                 # champ 2
                 resp = await helper.champimg(api, banned5)
-                champ_icon = Image.open(BytesIO(resp))
+                champ_icon = Image.open(resp)
                 champ_icon = champ_icon.resize((200, 200))
                 img.paste(champ_icon, (int((W-w) / 2) + 2020, int((H-h) / 2) + 150))
                 # champ 3
                 resp = await helper.champimg(api, banned6)
-                champ_icon = Image.open(BytesIO(resp))
+                champ_icon = Image.open(resp)
                 champ_icon = champ_icon.resize((200, 200))
                 img.paste(champ_icon, (int((W-w) / 2) + 2240, int((H-h) / 2) + 150))
 
