@@ -331,7 +331,7 @@ class HiRez(commands.Cog):
                 color = orange
             elif i.party_number == 3:
                 color = purple
-            elif i.party_number] == 4:
+            elif i.party_number == 4:
                 color = red
             else:
                 color = fill
