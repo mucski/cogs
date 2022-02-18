@@ -320,7 +320,7 @@ class HiRez(commands.Cog):
         return pic
 
     async def match_to_image(self, match: arez.Match) -> Image:
-        fnt = ImageFont.truetype("root/mucski/stuff/arial.ttf", 80)
+        fnt = ImageFont.truetype("root/mucski/stuff/arial.ttf", 160)
         crop = 140
         W, H = (4620, 2932)
         # padding=10
@@ -328,13 +328,13 @@ class HiRez(commands.Cog):
         offset = 100
         draw = ImageDraw.Draw(img)
         for i in match.team1:
-            draw.text((offset+10, 20), i.player.name, fnt=fnt, fill = (255, 255, 255))
-            draw.text((offset+20, 20), i.champion.name, fnt=fnt, fill = (255, 255, 255))
+            draw.text((offset+10, 20+offset), i.player.name, fnt=fnt, fill = (255, 255, 255))
+            draw.text((offset+10, 20+offset), i.champion.name, fnt=fnt, fill = (255, 255, 255))
             if i.rank:
-                draw.text((offset+10, 20), i.rank.tier, fnt=fnt, fill = (255, 255, 255))
-            draw.text((offset+30, 20), humanize_number(i.kills), fnt=fnt, fill = (255, 255, 255))
-            draw.text((offset+40, 20), humanize_number(i.deaths), fnt=fnt, fill = (255, 255, 255))
-            draw.text((offset+50, 20), humanize_number(i.damage_done), fnt=fnt, fill = (255, 255, 255))
+                draw.text((offset+10, 20+offset), i.rank.tier, fnt=fnt, fill = (255, 255, 255))
+            draw.text((offset+10, 20+offset), humanize_number(i.kills), fnt=fnt, fill = (255, 255, 255))
+            draw.text((offset+10, 20+offset), humanize_number(i.deaths), fnt=fnt, fill = (255, 255, 255))
+            draw.text((offset+10, 20+offset), humanize_number(i.damage_done), fnt=fnt, fill = (255, 255, 255))
 
         final_image = img.resize((int(W / 2), int(H / 2)), Image.ANTIALIAS)
         final_buffer = BytesIO()
