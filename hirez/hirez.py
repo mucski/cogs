@@ -321,9 +321,8 @@ class HiRez(commands.Cog):
 
     async def match_to_image(self, match: arez.Match) -> Image:
         for i in match.players:
-            name = i.player.name
+            return i.player.name
         #return final_buffer
-        return name
 
     @commands.command()
     async def match(self, ctx, matchid: int):
@@ -337,8 +336,7 @@ class HiRez(commands.Cog):
             pic = await self.match_to_image(match)
             #file = discord.File(filename="test.png", fp=pic)
             #await ctx.send(file=file)
-            for p in pic:
-                await ctx.send(pic)
+            await ctx.send(pic)
 
     @commands.command()
     async def last(self, ctx, player=None, platform="PC"):
