@@ -328,7 +328,7 @@ class HiRez(commands.Cog):
                 img.paste(row, (0, 232 * i + y))
                 # base.paste(row, 0, y)
         # add middlebar
-        middle = helper.middlebar(match)
+        middle = helper.middlepanel(match)
         img.paste(middle, (0, int(H / 2 - 200)))
         #base.paste(middlebar(match))
         historyimg = img.resize((int(W / 2), int(H / 2)), Image.ANTIALIAS)
