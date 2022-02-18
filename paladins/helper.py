@@ -1,10 +1,11 @@
 from PIL import ImageOps, ImageDraw, Image, ImageFont, ImageEnhance
 import aiohttp
 from io import BytesIO
-from .paladins import Champion
 from redbot.core.utils.chat_formatting import humanize_number
 
-
+if TPYE_CHECKING:
+    from paladins import Champion
+    
 class helper:
 
     def champ_into_pic(champ: Champion) -> PIL.Image:
