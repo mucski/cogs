@@ -325,6 +325,11 @@ class HiRez(commands.Cog):
             padding = 10
             mid = H / 2
             fill = (255, 255, 255)
+            orange = (252, 186, 3)
+            green = (7, 252, 3)
+            red = (252, 102, 3)
+            purple = (240, 3, 252)
+            fill = (255, 255, 255)
             if i.party_number == 1:
                 color = green
             elif i.party_number == 2:
