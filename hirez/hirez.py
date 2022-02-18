@@ -327,7 +327,7 @@ class HiRez(commands.Cog):
         # padding=10
         img = Image.new("RGB", (W, H), color=(8, 21, 25))
         offset = 100
-        draw = ImageDraw(img)
+        draw = ImageDraw.Draw(img)
         for i in match.team1:
             draw.text((offset+10, 20), i.player.name, fnt=fnt, fill = (255, 255, 255))
             draw.text((offset+10, 20), i.champion.name, fnt=fnt, fill = (255, 255, 255))
