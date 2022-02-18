@@ -530,7 +530,7 @@ class Paladins(commands.Cog):
                 name = champ.name
                 async with session.get(url) as resp:
                     if resp.status == 200:
-                        f = await aiofiles.open(f'root/mucski/stuff/icons/avatars/{name}.jpg', mode='wb')
+                        f = await aiofiles.open(f'root/mucski/stuff/icons/avatars/{name.lower().replace(" ","-").replace("'","")}.jpg', mode='wb')
                         await f.write(await resp.read())
                         await f.close()
         await ctx.tick()
