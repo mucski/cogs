@@ -149,7 +149,7 @@ class helper:
             for i, champ in enumerate(team):
                 # team 1
                 try:
-                    await helper.champ_into_pic(champ)
+                    helper.champ_into_pic(champ)
                 except FileNotFoundError:
                     champimg = Image.open("root/mucski/stuff/icons/error.jpg")
                 if champimg.size < (512, 512):
