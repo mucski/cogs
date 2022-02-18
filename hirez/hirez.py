@@ -316,12 +316,12 @@ class HiRez(commands.Cog):
         # padding=10
         img = Image.new("RGB", (W, H), color=(8, 21, 25))
         # headers
-        key = helper.playerkey(4620, 60)
+        key = helper.playerkey(4620, 98)
         img.paste(key, (0, 0))
         # format in the players
         for team_num in range(1, 3):  # 1 then 2
             if team_num == 1:
-                yoffset = 100
+                yoffset = 98
             else:
                 yoffset = 1782
             # yoffset = (team_num - 1) * 1782  # replace 1000 with whatever offset you'll need
