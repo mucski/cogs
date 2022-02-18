@@ -310,39 +310,68 @@ class HiRez(commands.Cog):
             await ctx.send(embed=e)
 
     @commands.command()
-    @checks.is_owner()
-    async def proto(self, ctx, *, map_name=None):
+    async def last(self, ctx, player=None, platform="PC"):
+        """Returns the last played match by player
+        player can be a string or a discord member (mention)
+        Platform is optional
+        If you have Discord linked to HiRez, you can just type [p]last
+        followed by nothing.
+        """
         async with ctx.typing():
-            if not map_name:
-                map_name = "Brightmarsh"
+            if player is None:
+                # use the ID of the caller
+                discord_id = ctx.author.id
+                try:
+                    player = await self.api.get_from_platform(discord_id, arez.Platform.Discord)
+                except arez.NotFound:
+                    await ctx.send("```\nDiscord account not linked to HiRez. Please link it first\n```")
+                    return
+            else:
+                # player is a str here
+                try:
+                    player_list = await self.api.search_players(player, arez.Platform(platform))
+                except arez.NotFound:
+                    await ctx.send("```\nNo players found with that name\n```")
+                    return
+                player = player_list[0]
+            match_list = await player.get_match_history()
+            if not match_list:
+                await ctx.send("```\nNo recent matches found.\n```")
+                return
+            match = await match_list[0]
+            await match.expand_players()
             team1_data = []
             team2_data = []
             team1_champs = []
             team1_ranks = []
             team2_ranks = []
             team2_champs = []
-            cunt = 0
-            match_info = ["198372984", "30", "Japan",
-                            map_name, "1", "4"]
-            bans = ["Makoa", "Yagorath", "Furia", "Jenos", "Bomb King", "Terminus"]
-            while cunt < 10:
-                cunt += 1
+            match_info = [match.id, match.duration.minutes, match.region.name,
+                            match.map_name, match.score[0], match.score[1]]
+            bans = match.bans
+            for match_player in sorted(match.players, key=lambda match_player: match_player.df, reverse=True):
                 row = [
-                        "TestSomeLongName", "999", "9999", "99/99/99",
-                        "999999", "999999", "999", "999999",
-                        "999999", "4", "Steam", "999999",
-                        99.99
+                        match_player.player.name, match_player.account_level, match_player.credits, match_player.kda_text,
+                        match_player.damage_done, match_player.damage_taken, match_player.objective_time, match_player.damage_mitigated,
+                        match_player.healing_done, match_player.party_number, match_player.player.platform, match_player.healing_self,
+                        match_player.kda2
                 ]
-                if cunt < 6:
-                    rank = "22"
+                if match_player.team_number == 1:
+                    if match_player.player.private:
+                        rank = "99"
+                    else:
+                        rank = match_player.player.ranked_best.rank.value
                     team1_data.append(row)
-                    team1_champs.append("Seris")
+                    team1_champs.append(match_player.champion.name)
                     team1_ranks.append(rank)
                 else:
-                    rank = "22"
+                    if match_player.player.private:
+                        rank = "99"
+                    else:
+                        rank = match_player.player.ranked_best.rank.value
                     team2_data.append(row)
-                    team2_champs.append("Zhin")
+                    team2_champs.append(match_player.champion.name)
                     team2_ranks.append(rank)
-            buffer = await helper.historyimg(team1_champs, team2_champs, team1_data, team2_data, team1_ranks, team2_ranks, (match_info + bans))
-            file = discord.File(filename="prototype.png", fp=buffer)
+            buffer = await helper.historyimg(team1_champs, team2_champs, team1_data, team2_data, team1_ranks, team2_ranks, (match_info + temp_lower))
+            file = discord.File(filename=f"{player}.png", fp=buffer)
             await ctx.send(file=file)

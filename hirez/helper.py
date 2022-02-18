@@ -10,10 +10,7 @@ class helper:
 
     @classmethod
     def champ_into_pic(cls, champ: Champion) -> Image:
-        try:
-            name = champ.name.lower().replace(" ","-").replace("'","")
-        except AttributeError:
-            name = champ.lower().replace(" ","-").replace("'","")
+        name = champ.name.lower().replace(" ","-").replace("'","")
         return Image.open(f"root/mucski/stuff/icons/avatars/{name}.jpg")
 
     @classmethod
