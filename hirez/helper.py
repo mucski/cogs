@@ -57,7 +57,7 @@ def statsimage(mp, index):
     if mp.player.private:
         rankicon = Image.open(f"root/mucski/stuff/icons/ranks/99.png")
     else:
-        rankicon = Image.open(f"root/mucski/stuff/icons/ranks/{mp.player.ranked_best.rank}.png")
+        rankicon = Image.open(f"root/mucski/stuff/icons/ranks/{mp.player.ranked_best.rank.value}.png")
     img.paste(rankicon, (1526, mid), mask=rankicon)
     # make the image drawable
     draw = ImageDraw.Draw(img)
