@@ -60,7 +60,7 @@ def statsimage(mp, index):
     fntbld = ImageFont.truetype("root/mucski/stuff/arialbd.ttf", 80)
     smallfnt = ImageFont.truetype("root/mucski/stuff/arial.ttf", 60)
 
-    name = mp.name
+    name = mp.player.name
 
     if name == "":
         name = "?????????"
