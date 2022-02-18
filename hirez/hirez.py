@@ -317,7 +317,7 @@ class HiRez(commands.Cog):
         # padding=10
         img = Image.new("RGB", (W, H), color=(8, 21, 25))
         # headers
-        key = playerkey(W, H)
+        key = helper.playerkey(W, H)
         img.paste(key, (0, 0))
         # format in the players
         for team_num in range(1, 3):  # 1 then 2
@@ -325,7 +325,7 @@ class HiRez(commands.Cog):
             team = getattr(match, f"team{team_num}")
             for i, mp in enumerate(team):
                 y = i * 50 + yoffset  # replace 50 with whatever row height you use
-                row = statsimage(mp)  # your current playerkey
+                row = helper.statsimage(mp)  # your current playerkey
                 img.paste(row, (0, 232 * i + offset))
                 # base.paste(row, 0, y)
         # add middlebar
