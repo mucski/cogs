@@ -7,6 +7,7 @@ import discord
 from .helper import helper
 from redbot.core.utils.chat_formatting import pagify, text_to_file
 import aiohttp
+import aiofiles
 import json
 import math
 from tabulate import tabulate
@@ -521,10 +522,19 @@ class Paladins(commands.Cog):
 
     @commands.command()
     @checks.is_owner()
-    async def hitest(self, ctx, name):
+    async def downloadchamps(self, ctx):
         entry = await self.api.get_champion_info()
+        for champ in entry.champions:
+
         champ = entry.champions.get(name)
-        await ctx.send(champ.icon_url)
+        url = champ.url_icon
+        async with aiohttp.ClientSession() as session:
+            url = "http://host/file.img"
+            async with session.get(url) as resp:
+                if resp.status == 200:
+                    f = await aiofiles.open('/some/file.img', mode='wb')
+                    await f.write(await resp.read())
+                    await f.close()
 
     @commands.command()
     @checks.is_owner()
