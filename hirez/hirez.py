@@ -373,21 +373,21 @@ class HiRez(commands.Cog):
             draw.text((512 + padding * 4, mid + 60), humanize_number(i.player.level), font=smallfnt, fill=fill)
 
             # credits earned
-            draw.text((1736, mid), humanize_number(i.player.credits), font=fnt, fill=fill)
+            draw.text((1736, mid), humanize_number(i.credits), font=fnt, fill=fill)
             # kda
-            draw.text((2036, mid), i.player.kda_text, font=fnt, fill=(224, 197, 135))
+            draw.text((2036, mid), i.kda_text, font=fnt, fill=(224, 197, 135))
             # dmg done
-            draw.text((2436, mid), humanize_number(i.player.damage_done), font=fnt, fill=fill)
+            draw.text((2436, mid), humanize_number(i.damage_done), font=fnt, fill=fill)
             # dmg taken
-            draw.text((2826, mid), humanize_number(i.player.damage_taken), font=fnt, fill=fill)
+            draw.text((2826, mid), humanize_number(i.damage_taken), font=fnt, fill=fill)
             # objective
-            draw.text((3226, mid), humanize_number(i.player.objective), font=fnt, fill=fill)
+            draw.text((3226, mid), humanize_number(i.objective), font=fnt, fill=fill)
             # shielding
-            draw.text((3456, mid), humanize_number(i.player.shielding), font=fnt, fill=fill)
+            draw.text((3456, mid), humanize_number(i.shielding), font=fnt, fill=fill)
             # healing
-            draw.text((3856, mid), humanize_number(i.player.healing_done), font=fnt, fill=fill)
+            draw.text((3856, mid), humanize_number(i.healing_done), font=fnt, fill=fill)
             # self healing
-            draw.text((4256, mid), humanize_number(i.player.healing_self), font=fnt, fill=fill)
+            draw.text((4256, mid), humanize_number(i.healing_self), font=fnt, fill=fill)
             # kda2
             # draw.text((4636, mid), "{:.2f}".format(stats[12]), font=fnt, fill=fill)
 
