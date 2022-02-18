@@ -206,7 +206,7 @@ def middlepanel(mp):
     stroke = (255, 255, 255)
     stroke_size = 0
 
-    draw.text((padding, padding), f"ID: {mp.id}}", font=fnt, stroke_width=stroke_size, stroke_fill=stroke, fill=fill)
+    draw.text((padding, padding), f"ID: {mp.id}", font=fnt, stroke_width=stroke_size, stroke_fill=stroke, fill=fill)
     draw.text((padding, 100 + padding), f"Duration: {mp.duration} min", font=fnt, stroke_width=stroke_size, stroke_fill=stroke, fill=fill)
     draw.text((padding, 200 + padding), f"Region: {mp.region}", font=fnt, stroke_width=stroke_size, stroke_fill=stroke, fill=fill)
     draw.text((padding, 300 + padding), f"Map: {mp.map_name}", font=fnt, stroke_width=stroke_size, stroke_fill=stroke, fill=fill)
