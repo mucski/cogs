@@ -13,6 +13,8 @@ from tabulate import tabulate
 from collections import Counter
 from . import helper
 import types
+from PIL import ImageOps, ImageDraw, Image, ImageFont, ImageEnhance
+from io import BytesIO
 
 class HiRez(commands.Cog):
     """Paladins stats cog by Mucski
