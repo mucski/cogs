@@ -69,6 +69,8 @@ class Paladins(commands.Cog):
         match_info = [match.id, match.duration.minutes, match.region.name,
                         match.map_name, match.score[0], match.score[1]]
         temp = match.bans
+        sanitize = (map(lambda x: x.lower().replace(" ","-").replace("'",""), temp))
+        temp_lower = list(sanitize)
         for match_player in sorted(match.players, key=lambda match_player: match_player.df, reverse=True):
             row = [
                     match_player.player.name, match_player.account_level, match_player.credits, match_player.kda_text,
@@ -92,7 +94,7 @@ class Paladins(commands.Cog):
                 team2_data.append(row)
                 team2_champs.append(match_player.champion.name)
                 team2_ranks.append(rank)
-        buffer = await helper.historyimg(team1_champs, team2_champs, team1_data, team2_data, team1_ranks, team2_ranks, (match_info + temp))
+        buffer = await helper.historyimg(team1_champs, team2_champs, team1_data, team2_data, team1_ranks, team2_ranks, (match_info + temp_lower))
         file = discord.File(filename=f"{matchid}.webp", fp=buffer)
         await msg.delete()
         await ctx.send(file=file)
@@ -177,6 +179,8 @@ class Paladins(commands.Cog):
         match_info = [match.id, match.duration.minutes, match.region.name,
                         match.map_name, match.score[0], match.score[1]]
         temp = match.bans
+        sanitize = (map(lambda x: x.lower().replace(" ","-").replace("'",""), temp))
+        temp_lower = list(sanitize)
         for match_player in sorted(match.players, key=lambda match_player: match_player.df, reverse=True):
             row = [
                     match_player.player.name, match_player.account_level, match_player.credits, match_player.kda_text,
@@ -200,7 +204,7 @@ class Paladins(commands.Cog):
                 team2_data.append(row)
                 team2_champs.append(match_player.champion.name)
                 team2_ranks.append(rank)
-        buffer = await helper.historyimg(team1_champs, team2_champs, team1_data, team2_data, team1_ranks, team2_ranks, (match_info + temp))
+        buffer = await helper.historyimg(team1_champs, team2_champs, team1_data, team2_data, team1_ranks, team2_ranks, (match_info + temp_lower))
         file = discord.File(filename=f"{player}.webp", fp=buffer)
         await msg.delete()
         await ctx.send(file=file)
