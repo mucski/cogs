@@ -326,7 +326,7 @@ class HiRez(commands.Cog):
         for i in match.players:
             img = Image.new("RGB", (W, H), color=(8, 21, 25))
             draw = ImageDraw.Draw(img)
-            draw.text((512 + padding * 4, 20), "PLAYER", font=fntbld, fill=fill)
+            draw.text((512 + 10 * 4, 20), "PLAYER", font=fntbld, fill=fill)
 
         final_image = img.resize((int(W / 2), int(H / 2)), Image.ANTIALIAS)
         final_buffer = BytesIO()
