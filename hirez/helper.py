@@ -9,6 +9,9 @@ def champ_into_pic(champ: arez.Champion) -> Image:
     name = champ.name.lower().replace(" ","-").replace("'","")
     try:
         pic = Image.open(f"root/mucski/stuff/icons/avatars/{name}.jpg")
+        if pic.size < (512, 512):
+            (width, height) = (pic.width * 2, pic.height * 2)
+            pic = pic.resize((width, height))
     except FileNotFoundError:
         pic = Image.open("root/mucski/stuff/icons/error.jpg")
     return pic
