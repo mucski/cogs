@@ -154,7 +154,7 @@ class helper:
         return key
 
     @classmethod
-    async def historyimg(cls, team1, team2, t1_data, t2_data, r1, r2, match_data):
+    async def historyimg(cls, api, team1, team2, t1_data, t2_data, r1, r2, match_data):
         crop = 140
         W, H = (4620, 2932)
         # padding=10
@@ -165,7 +165,7 @@ class helper:
         img.paste(key, (0, 0))
 
         # middle panel
-        middle = await helper.middlepanel(match_data)
+        middle = await helper.middlepanel(api, match_data)
         img.paste(middle, (0, int(H / 2 - 200)))
         # player data
         for team_num, team in enumerate((team1, team2), start=1):
@@ -179,7 +179,7 @@ class helper:
                 team_data = t2_data
             for i, champ in enumerate(team):
                 # team 1
-                resp = await helper.champimg(champ)
+                resp = await helper.champimg(api, champ)
                 try:
                     champimg = Image.open(BytesIO(resp))
                 except TypeError:
@@ -207,7 +207,7 @@ class helper:
         return final_buffer
 
     @classmethod
-    async def middlepanel(cls, match_data):
+    async def middlepanel(cls, api, match_data):
         W, H = (4620, 512)
         padding = 46
         # (horizontal, vertical)
@@ -275,34 +275,34 @@ class helper:
                 draw.text((int((W-w) / 2) + 1520, int((H-h) / 2) + 80), "Bans", font=fnt, stroke_width=stroke_size, stroke_fill=stroke, fill=fill)
                 # team 1 bans
                 # champ 1
-                resp = await helper.champimg(banned1)
+                resp = await helper.champimg(api, banned1)
                 champ_icon = Image.open(BytesIO(resp))
                 champ_icon = champ_icon.resize((200, 200))
                 img.paste(champ_icon, (int((W-w) / 2) + 1800, int((H-h) / 2) - 70))
                 # champ 2
-                resp = await helper.champimg(banned2)
+                resp = await helper.champimg(api, banned2)
                 champ_icon = Image.open(BytesIO(resp))
                 champ_icon = champ_icon.resize((200, 200))
                 img.paste(champ_icon, (int((W-w) / 2) + 2020, int((H-h) / 2) - 70))
                 # champ 3
-                resp = await helper.champimg(banned3)
+                resp = await helper.champimg(api, banned3)
                 champ_icon = Image.open(BytesIO(resp))
                 champ_icon = champ_icon.resize((200, 200))
                 img.paste(champ_icon, (int((W-w) / 2) + 2240, int((H-h) / 2) - 70))
 
                 # team 2 bans
                 # champ 1
-                resp = await helper.champimg(banned4)
+                resp = await helper.champimg(api, banned4)
                 champ_icon = Image.open(BytesIO(resp))
                 champ_icon = champ_icon.resize((200, 200))
                 img.paste(champ_icon, (int((W-w) / 2) + 1800, int((H-h) / 2) + 150))
                 # champ 2
-                resp = await helper.champimg(banned5)
+                resp = await helper.champimg(api, banned5)
                 champ_icon = Image.open(BytesIO(resp))
                 champ_icon = champ_icon.resize((200, 200))
                 img.paste(champ_icon, (int((W-w) / 2) + 2020, int((H-h) / 2) + 150))
                 # champ 3
-                resp = await helper.champimg(banned6)
+                resp = await helper.champimg(api, banned6)
                 champ_icon = Image.open(BytesIO(resp))
                 champ_icon = champ_icon.resize((200, 200))
                 img.paste(champ_icon, (int((W-w) / 2) + 2240, int((H-h) / 2) + 150))

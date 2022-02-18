@@ -128,7 +128,7 @@ class Paladins(commands.Cog):
                 team2_data.append(row)
                 team2_champs.append("Sha Lin")
                 team2_ranks.append(rank)
-        buffer = await helper.historyimg(team1_champs, team2_champs, team1_data, team2_data, team1_ranks, team2_ranks, (match_info + temp))
+        buffer = await helper.historyimg(api, team1_champs, team2_champs, team1_data, team2_data, team1_ranks, team2_ranks, (match_info + temp))
         file = discord.File(filename="prototype.webp", fp=buffer)
         await msg.delete()
         await ctx.send(file=file)
