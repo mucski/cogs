@@ -336,12 +336,12 @@ class HiRez(commands.Cog):
             else:
                 color = fill
             champicon = self.champ_into_pic(i.champion)
-            rankicon = Image.open(f"root/mucski/stuff/icons/ranks/{i.rank}.png")
+            #rankicon = Image.open(f"root/mucski/stuff/icons/ranks/{rank}.png")
             # new image object
             img = Image.new("RGBA", (W, H), color=img_color)
             img.paste(champicon, (padding, padding))
-            if i.rank:
-            	img.paste(rankicon, (1526, mid), mask=rankicon)
+            # if i.rank:
+            # 	img.paste(rankicon, (1526, mid), mask=rankicon)
 
         final_image = img.resize((int(W / 2), int(H / 2)), Image.ANTIALIAS)
         final_buffer = BytesIO()
