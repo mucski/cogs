@@ -155,12 +155,12 @@ class helper:
                 playerpanel = await helper.statsimage(champimgcrop, rankicon, team_data[i], i)
                 img.paste(playerpanel, (0, 232 * i + offset))
         # done, reisizing for speed
-        # historyimg = img.resize((int(W / 2), int(H / 2)), Image.ANTIALIAS)
-        historyimg = img.resize((int(W / 2), int(H / 2)))
+        historyimg = img.resize((int(W / 2), int(H / 2)), Image.ANTIALIAS)
+        # historyimg = img.resize((int(W / 2), int(H / 2)))
         # create the buffer
         final_buffer = BytesIO()
         # store image in buffer
-        historyimg.save(final_buffer, "WEBP")
+        historyimg.save(final_buffer, "PNG")
         # seek back to start
         final_buffer.seek(0)
         return final_buffer
