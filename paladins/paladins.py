@@ -68,8 +68,6 @@ class Paladins(commands.Cog):
             match_info = [match.id, match.duration.minutes, match.region.name,
                             match.map_name, match.score[0], match.score[1]]
             temp = match.bans
-            sanitize = (map(lambda x: x.lower().replace(" ","-").replace("'",""), temp))
-            temp_lower = list(sanitize)
             for match_player in sorted(match.players, key=lambda match_player: match_player.df, reverse=True):
                 row = [
                         match_player.player.name, match_player.account_level, match_player.credits, match_player.kda_text,
@@ -113,8 +111,6 @@ class Paladins(commands.Cog):
             match_info = ["198372984", "30", "Japan",
                             map_name, "1", "4"]
             temp = ["Makoa", "Yagorath", "Furia", "Jenos", "Bomb King", "Terminus"]
-            sanitize = (map(lambda x: x.lower().replace(" ","-").replace("'",""), temp))
-            temp_lower = list(sanitize)
             while cunt < 10:
                 cunt += 1
                 row = [
@@ -177,8 +173,6 @@ class Paladins(commands.Cog):
             match_info = [match.id, match.duration.minutes, match.region.name,
                             match.map_name, match.score[0], match.score[1]]
             temp = match.bans
-            sanitize = (map(lambda x: x.lower().replace(" ","-").replace("'",""), temp))
-            temp_lower = list(sanitize)
             for match_player in sorted(match.players, key=lambda match_player: match_player.df, reverse=True):
                 row = [
                         match_player.player.name, match_player.account_level, match_player.credits, match_player.kda_text,
