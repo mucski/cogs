@@ -11,6 +11,7 @@ import json
 import math
 from tabulate import tabulate
 from collections import Counter
+from helper import helper
 
 
 class HiRez(commands.Cog):
