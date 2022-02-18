@@ -525,16 +525,14 @@ class Paladins(commands.Cog):
     async def downloadchamps(self, ctx):
         entry = await self.api.get_champion_info()
         for champ in entry.champions:
-
-        champ = entry.champions.get(name)
-        url = champ.url_icon
-        async with aiohttp.ClientSession() as session:
-            url = "http://host/file.img"
-            async with session.get(url) as resp:
-                if resp.status == 200:
-                    f = await aiofiles.open('/some/file.img', mode='wb')
-                    await f.write(await resp.read())
-                    await f.close()
+            async with aiohttp.ClientSession() as session:
+                url = champ.url_icon
+                name = champ.name
+                async with session.get(url) as resp:
+                    if resp.status == 200:
+                        f = await aiofiles.open('root/mucski/stuff/icons/avatars/{name}.jpg', mode='wb')
+                        await f.write(await resp.read())
+                        await f.close()
 
     @commands.command()
     @checks.is_owner()
