@@ -174,14 +174,14 @@ def historyimg(team1, team2, t1_data, t2_data, r1, r2, match_data):
     final_buffer.seek(0)
     return final_buffer
 
-def middlepanel(match_data):
+def middlepanel(mp):
     W, H = (4620, 512)
     padding = 46
     # (horizontal, vertical)
     img = Image.new("RGB", (W, H))
 
     # add in the map image
-    map_name = match_data[3]
+    map_name = mp.map_name
     format_map = map_name.lower().replace(" ", "_").replace("'", "")
     try:
         match_map = Image.open(f"root/mucski/stuff/icons/maps/{format_map}.png")
@@ -206,19 +206,19 @@ def middlepanel(match_data):
     stroke = (255, 255, 255)
     stroke_size = 0
 
-    draw.text((padding, padding), f"ID: {match_data[0]}", font=fnt, stroke_width=stroke_size, stroke_fill=stroke, fill=fill)
-    draw.text((padding, 100 + padding), f"Duration: {match_data[1]} min", font=fnt, stroke_width=stroke_size, stroke_fill=stroke, fill=fill)
-    draw.text((padding, 200 + padding), f"Region: {match_data[2]}", font=fnt, stroke_width=stroke_size, stroke_fill=stroke, fill=fill)
-    draw.text((padding, 300 + padding), f"Map: {match_data[3]}", font=fnt, stroke_width=stroke_size, stroke_fill=stroke, fill=fill)
+    draw.text((padding, padding), f"ID: {mp.id}}", font=fnt, stroke_width=stroke_size, stroke_fill=stroke, fill=fill)
+    draw.text((padding, 100 + padding), f"Duration: {mp.duration} min", font=fnt, stroke_width=stroke_size, stroke_fill=stroke, fill=fill)
+    draw.text((padding, 200 + padding), f"Region: {mp.region}", font=fnt, stroke_width=stroke_size, stroke_fill=stroke, fill=fill)
+    draw.text((padding, 300 + padding), f"Map: {mp.map_name}", font=fnt, stroke_width=stroke_size, stroke_fill=stroke, fill=fill)
 
-    draw.text((int(W / 2 - 1032), padding), f"Team 1 score: {match_data[4]}", font=fnt, stroke_width=stroke_size, stroke_fill=stroke, fill=fill)
+    draw.text((int(W / 2 - 1032), padding), f"Team 1 score: {mp.score[1]}", font=fnt, stroke_width=stroke_size, stroke_fill=stroke, fill=fill)
 
     vs = Image.open("root/mucski/stuff/icons/vs.png")
     w, h = vs.size
     vs = vs.resize((int(w * 2 / 3), int(h * 2 / 3)))
     img.paste(vs, (int((W-w) / 2), int((H-h) / 2 + 48)), mask=vs)
 
-    draw.text((int(W / 2 + 173), 300 + padding), f"Team 2 score: {match_data[5]}", font=fnt, stroke_width=stroke_size, stroke_fill=stroke, fill=fill)
+    draw.text((int(W / 2 + 173), 300 + padding), f"Team 2 score: {mp.score[2]}", font=fnt, stroke_width=stroke_size, stroke_fill=stroke, fill=fill)
 
     # ranked bans go here
 
