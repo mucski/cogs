@@ -11,10 +11,8 @@ import json
 import math
 from tabulate import tabulate
 from collections import Counter
-from .helper import helper
+from . import helper
 import types
-from PIL import ImageOps, ImageDraw, Image, ImageFont, ImageEnhance
-from io import BytesIO
 
 class HiRez(commands.Cog):
     """Paladins stats cog by Mucski
@@ -311,18 +309,32 @@ class HiRez(commands.Cog):
             e.set_footer(text=f"Individual champion stats for {ret.name}")
             await ctx.send(embed=e)
 
-    def champ_into_pic(self, champ: arez.Champion) -> Image:
-        name = champ.name.lower().replace(" ","-").replace("'","")
-        try:
-            pic = Image.open(f"root/mucski/stuff/icons/avatars/{name}.jpg")
-        except FileNotFoundError:
-            pic = Image.open("root/mucski/stuff/icons/error.jpg")
-        return pic
-
-    async def match_to_image(self, match: arez.Match) -> Image:
-        for i in match.players:
-            return i.player.name
-        #return final_buffer
+    def format_match(self, match: arez.Match) -> Image:
+        crop = 140
+        W, H = (4620, 2932)
+        # padding=10
+        img = Image.new("RGB", (W, H), color=(8, 21, 25))
+        # headers
+        key = playerkey(W, H)
+        img.paste(key, (0, 0))
+        # format in the players
+        for team_num in range(1, 3):  # 1 then 2
+            yoffset = (team_num - 1) * 1772  # replace 1000 with whatever offset you'll need
+            team = getattr(match, f"team{team_num}")
+            for i, mp in enumerate(team):
+                y = i * 50 + yoffset  # replace 50 with whatever row height you use
+                row = statsimage(mp)  # your current playerkey
+                img.paste(row, (0, 232 * i + offset))
+                # base.paste(row, 0, y)
+        # add middlebar
+        middle = helper.middlebar(match)
+        img.paste(middle, (0, int(H / 2 - 200)))
+        #base.paste(middlebar(match))
+        historyimg = img.resize((int(W / 2), int(H / 2)), Image.ANTIALIAS)
+        final_buffer = BytesIO()
+        historyimg.save(final_buffer, "PNG")
+        final_buffer.seek(0)
+        return final_buffer
 
     @commands.command()
     async def match(self, ctx, matchid: int):
@@ -333,10 +345,9 @@ class HiRez(commands.Cog):
         """
         async with ctx.typing():
             match = await self.api.get_match(matchid, expand_players=True)
-            pic = await self.match_to_image(match)
-            #file = discord.File(filename="test.png", fp=pic)
-            #await ctx.send(file=file)
-            await ctx.send(pic)
+            pic = await self.format_match(match)
+            file = discord.File(filename="test.png", fp=pic)
+            await ctx.send(file=file)
 
     @commands.command()
     async def last(self, ctx, player=None, platform="PC"):
