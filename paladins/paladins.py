@@ -124,12 +124,12 @@ class Paladins(commands.Cog):
                 if cunt < 6:
                     rank = "22"
                     team1_data.append(row)
-                    team1_champs.append("Inara")
+                    team1_champs.append("Seris")
                     team1_ranks.append(rank)
                 else:
                     rank = "22"
                     team2_data.append(row)
-                    team2_champs.append("Grover")
+                    team2_champs.append("Zhin")
                     team2_ranks.append(rank)
             buffer = await helper.historyimg(team1_champs, team2_champs, team1_data, team2_data, team1_ranks, team2_ranks, (match_info + temp_lower))
             file = discord.File(filename="prototype.png", fp=buffer)
