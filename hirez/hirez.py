@@ -121,7 +121,7 @@ class HiRez(commands.Cog):
             player_status = "Currently: {}".format(status.status)
         desc = (
             "**__Player Stats__**\n"
-            f"```\nAccount level: {player.level}\n"
+            f"```\nAccount level: {player.calculated_level}\n"
             f"Playtime: {math.floor(player.playtime.total_hours())} hours\n"
             f"Region: {player.region}\n"
             f"Champions Owned: {player.champion_count}\n"
