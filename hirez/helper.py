@@ -242,7 +242,7 @@ def middlepanel(mp):
                 img.paste(champicon, (int((W-w) / 2) + 1800, int((H-h) / 2) - 70))
                 #### CHAMPION 2 ####
                 try:
-                    champicon = Image.open("root/mucski/stuff/icons/avatars/{}.jpg").format(ban[0].lower().replace(" ","-").replace("'",""))
+                    champicon = Image.open("root/mucski/stuff/icons/avatars/{}.jpg").format(ban[1].lower().replace(" ","-").replace("'",""))
                 except FileNotFoundError:
                     champicon = Image.open("root/mucski/stuff/icons/error.jpg")
                 champicon = champicon.resize((200, 200))
