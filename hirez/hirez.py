@@ -317,7 +317,7 @@ class HiRez(commands.Cog):
         """
         async with ctx.typing():
             match = await self.api.get_match(matchid, expand_players=True)
-            pic = self.format_match(match)
+            pic = helper.format_match(match)
             file = discord.File(filename="test.png", fp=pic)
             await ctx.send(file=file)
 
@@ -352,7 +352,7 @@ class HiRez(commands.Cog):
                 return
             match = await match_list[0]
             await match.expand_players()
-            pic = self.format_match(match)
+            pic = helper.format_match(match)
             file = discord.File(filename=f"{player}.png", fp=pic)
             await ctx.send(file=file)
             # await ctx.send(match.bans)
