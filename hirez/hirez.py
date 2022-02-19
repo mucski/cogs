@@ -388,3 +388,53 @@ class HiRez(commands.Cog):
             pic = self.format_match(match)
             file = discord.File(filename=f"{player}.png", fp=pic)
             await ctx.send(file=file)
+
+    @commands.command()
+    async def history(self, ctx, player=None, platform="PC"):
+        """Returns the history of someone (or yourself)
+        Usage: [p]history name platform (or leave both blank for yourself if you have discord linked to hirez)
+        """
+        # async with ctx.typing():
+        if player is None:
+            discord_id = ctx.author.id
+            try:
+                ret = await self.api.get_from_platform(discord_id, arez.Platform.Discord)
+                ret = await ret
+            except arez.NotFound:
+                await ctx.send("```\nDiscord account not linked to HiRez. Please link it first\n```")
+                return
+        else:
+            ret = await self.api.search_players(player, arez.Platform(platform))
+            ret = await ret[0]
+        history = await ret.get_match_history()
+        if not history:
+            await ctx.send("Player did not play for over a month. Nothing to display.")
+            return
+        table = []
+        final_kda = 0
+        kda_counter = 0
+        for match in history:
+            t = []
+            if match.winner:
+                t.append("+")
+            else:
+                t.append("-")
+            t.append(match.id)
+            t.append(match.map_name)
+            t.append(match.champion.name)
+            t.append(match.kda_text)
+            t.append("{:.2f}".format(match.kda2))
+            final_kda += match.kda2
+            kda_counter += 1
+            table.append(t)
+        table_done = tabulate(table, tablefmt="plain", headers=["W/L", "ID", "MAP", "CHAMPION", "KDA", "KDA2"])
+        champs = Counter(m.champion for m in history)
+        most_champ = champs.most_common(1)[0][0].name
+        if all(isinstance(c, arez.Champion) for c in champs.keys()):
+            classes = Counter(m.champion.role for m in history)
+            most_class = classes.most_common(1)[0][0]
+        else:
+            most_class = "Unknown"
+        for page in pagify(table_done, page_length=1900):
+            await ctx.send("```diff\n{}\n```".format(page))
+        await ctx.send("```\nMost played champion: {}\nMost played class: {}\nAverage KDA: {:.2f}\n```".format(most_champ, most_class, final_kda / kda_counter))
