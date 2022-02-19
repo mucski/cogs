@@ -215,5 +215,70 @@ class helper:
         draw.text((int(W / 2 + 173), 300 + padding), f"Team 2 score: {match_data[5]}", font=fnt, stroke_width=stroke_size, stroke_fill=stroke, fill=fill)
 
         # ranked bans go here
+# ranked bans
+try:
+    if match_data[6]:
+        try:
+            banned1 = match_data[6].name
+            banned2 = match_data[7].name
+            banned3 = match_data[8].name
+            banned4 = match_data[9].name
+            banned5 = match_data[10].name
+            banned6 = match_data[11].name
 
+        except AttributeError:
+            banned1 = match_data[6]
+            banned2 = match_data[7]
+            banned3 = match_data[8]
+            banned4 = match_data[9]
+            banned5 = match_data[10]
+            banned6 = match_data[11]
+
+        draw.text((int((W-w) / 2) + 1520, int((H-h) / 2) + 80), "Bans", font=fnt, stroke_width=stroke_size, stroke_fill=stroke, fill=fill)
+        # team 1 bans
+        # champ 1
+        try:
+            champ_icon = Image.open(f"root/mucski/stuff/icons/avatars/{banned1}.jpg")
+        except FileNotFoundError:
+            champimg = Image.open("root/mucski/stuff/icons/error.jpg")
+        champ_icon = champ_icon.resize((200, 200))
+        img.paste(champ_icon, (int((W-w) / 2) + 1800, int((H-h) / 2) - 70))
+        # champ 2
+        try:
+            champ_icon = Image.open(f"root/mucski/stuff/icons/avatars/{banned2}.jpg")
+        except FileNotFoundError:
+            champimg = Image.open("root/mucski/stuff/icons/error.jpg")
+        champ_icon = champ_icon.resize((200, 200))
+        img.paste(champ_icon, (int((W-w) / 2) + 2020, int((H-h) / 2) - 70))
+        # champ 3
+        try:
+            champ_icon = Image.open(f"root/mucski/stuff/icons/avatars/{banned3}.jpg")
+        except FileNotFoundError:
+            champimg = Image.open("root/mucski/stuff/icons/error.jpg")
+        champ_icon = champ_icon.resize((200, 200))
+        img.paste(champ_icon, (int((W-w) / 2) + 2240, int((H-h) / 2) - 70))
+
+        # team 2 bans
+        # champ 1
+        try:
+            champ_icon = Image.open(f"root/mucski/stuff/icons/avatars/{banned4}.jpg")
+        except FileNotFoundError:
+            champimg = Image.open("root/mucski/stuff/icons/error.jpg")
+        champ_icon = champ_icon.resize((200, 200))
+        img.paste(champ_icon, (int((W-w) / 2) + 1800, int((H-h) / 2) + 150))
+        # champ 2
+        try:
+            champ_icon = Image.open(f"root/mucski/stuff/icons/avatars/{banned5}.jpg")
+        except FileNotFoundError:
+            champimg = Image.open("root/mucski/stuff/icons/error.jpg")
+        champ_icon = champ_icon.resize((200, 200))
+        img.paste(champ_icon, (int((W-w) / 2) + 2020, int((H-h) / 2) + 150))
+        # champ 3
+        try:
+            champ_icon = Image.open(f"root/mucski/stuff/icons/avatars/{banned6}.jpg")
+        except FileNotFoundError:
+            champimg = Image.open("root/mucski/stuff/icons/error.jpg")
+        champ_icon = champ_icon.resize((200, 200))
+        img.paste(champ_icon, (int((W-w) / 2) + 2240, int((H-h) / 2) + 150))
+        
         return img
