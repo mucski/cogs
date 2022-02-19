@@ -232,7 +232,7 @@ def middlepanel(mp):
         draw.text((int((W-w) / 2) + 1520, int((H-h) / 2) + 80), "Bans", font=fnt, stroke_width=stroke_size, stroke_fill=stroke, fill=fill)
 
         try:
-            for ban in enum(mp.bans):
+            for ban in enumerate(mp.bans):
                 #### CHAMPION ! ####
                 try:
                     champicon = champ_into_pic(1)
