@@ -388,7 +388,7 @@ class HiRez(commands.Cog):
             pic = self.format_match(match)
             file = discord.File(filename=f"{player}.png", fp=pic)
             await ctx.send(file=file)
-            await ctx.send(match.bans)
+            # await ctx.send(match.bans)
 
     @commands.command()
     async def history(self, ctx, player=None, platform="PC"):
