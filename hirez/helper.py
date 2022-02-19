@@ -232,21 +232,14 @@ def middlepanel(mp):
         draw.text((int((W-w) / 2) + 1520, int((H-h) / 2) + 80), "Bans", font=fnt, stroke_width=stroke_size, stroke_fill=stroke, fill=fill)
 
         try:
-            for ban in mp.bans:
+            for ban in enum(mp.bans):
                 #### CHAMPION ! ####
                 try:
-                    champicon = Image.open("root/mucski/stuff/icons/avatars/{}.jpg").format(ban[0].lower().replace(" ","-").replace("'",""))
+                    champicon = champ_into_pic(ban)
                 except FileNotFoundError:
                     champicon = Image.open("root/mucski/stuff/icons/error.jpg")
                 champicon = champicon.resize((200, 200))
                 img.paste(champicon, (int((W-w) / 2) + 1800, int((H-h) / 2) - 70))
-                #### CHAMPION 2 ####
-                try:
-                    champicon = Image.open("root/mucski/stuff/icons/avatars/{}.jpg").format(ban[1].lower().replace(" ","-").replace("'",""))
-                except FileNotFoundError:
-                    champicon = Image.open("root/mucski/stuff/icons/error.jpg")
-                champicon = champicon.resize((200, 200))
-                img.paste(champicon, (int((W-w) / 2) + 2020, int((H-h) / 2) - 70))
         except IndexError:
             pass
     return img
