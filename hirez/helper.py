@@ -139,7 +139,7 @@ def format_match(match: arez.Match) -> Image:
     img.paste(key, (0, 0))
     # format in the players
     for team_num in range(1, 3):  # 1 then 2
-        yoffset = (team_num - 1) * 1782 + 98 # replace 1000 with whatever offset you'll need
+        yoffset = (team_num - 1) * 1684 + 98 # replace 1000 with whatever offset you'll need
         team = getattr(match, f"team{team_num}")
         for i, mp in enumerate(team):
             y = i * 232 + yoffset  # replace 50 with whatever row height you use
