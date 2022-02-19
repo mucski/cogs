@@ -228,18 +228,18 @@ def middlepanel(mp):
     draw.text((int(W / 2 + 173), 300 + padding), f"Team 2 score: {mp.score[1]}", font=fnt, stroke_width=stroke_size, stroke_fill=stroke, fill=fill)
 
     # ranked bans go here
-    if mp.bans:
-        draw.text((int((W-w) / 2) + 1520, int((H-h) / 2) + 80), "Bans", font=fnt, stroke_width=stroke_size, stroke_fill=stroke, fill=fill)
-
-        try:
-            for ban in enumerate(mp.bans):
-                #### CHAMPION ! ####
-                try:
-                    champicon = champ_into_pic(1)
-                except FileNotFoundError:
-                    champicon = Image.open("root/mucski/stuff/icons/error.jpg")
-                champicon = champicon.resize((200, 200))
-                img.paste(champicon, (int((W-w) / 2) + 1800, int((H-h) / 2) - 70))
-        except IndexError:
-            pass
+    # if mp.bans:
+    #     draw.text((int((W-w) / 2) + 1520, int((H-h) / 2) + 80), "Bans", font=fnt, stroke_width=stroke_size, stroke_fill=stroke, fill=fill)
+    #
+    #     try:
+    #         for ban in enumerate(mp.bans):
+    #             #### CHAMPION ! ####
+    #             try:
+    #                 champicon = champ_into_pic(1)
+    #             except FileNotFoundError:
+    #                 champicon = Image.open("root/mucski/stuff/icons/error.jpg")
+    #             champicon = champicon.resize((200, 200))
+    #             img.paste(champicon, (int((W-w) / 2) + 1800, int((H-h) / 2) - 70))
+    #     except IndexError:
+    #         pass
     return img
