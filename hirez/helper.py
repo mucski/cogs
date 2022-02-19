@@ -5,7 +5,7 @@ import aiohttp
 from io import BytesIO
 from redbot.core.utils.chat_formatting import humanize_number
 
-def champ_into_pic(champ: arez.Champion) -> Image:
+def champ_roundo_pic(champ: arez.Champion) -> Image:
     name = champ.name.lower().replace(" ","-").replace("'","")
     try:
         pic = Image.open(f"root/mucski/stuff/icons/avatars/{name}.jpg")
@@ -49,7 +49,7 @@ def statsimage(mp, index):
     # new image object
     img = Image.new("RGBA", (W, H), color=img_color)
     # champion icon
-    champicon = champ_into_pic(mp.champion)
+    champicon = champ_roundo_pic(mp.champion)
     border = (0, crop, 0, crop)
     champimgcrop = ImageOps.crop(champicon, border)
     img.paste(champimgcrop, (padding, padding))
@@ -173,7 +173,7 @@ def middlepanel(match):
     basewidth = 4620
     # dynamic resize
     wpercent = (basewidth / float(match_map.size[0]))
-    hsize = int((float(match_map.size[1]) * float(wpercent)))
+    hsize = round((float(match_map.size[1]) * float(wpercent)))
     match_map = match_map.resize((basewidth, hsize), Image.ANTIALIAS)
 
     enhancer = ImageEnhance.Brightness(match_map)
@@ -193,28 +193,28 @@ def middlepanel(match):
     draw.text((padding, 200 + padding), f"Region: {match.region}", font=fnt, stroke_width=stroke_size, stroke_fill=stroke, fill=fill)
     draw.text((padding, 300 + padding), f"Map: {match.map_name}", font=fnt, stroke_width=stroke_size, stroke_fill=stroke, fill=fill)
 
-    draw.text((int(W / 2 - 1032), padding), f"Team 1 score: {match.score[0]}", font=fnt, stroke_width=stroke_size, stroke_fill=stroke, fill=fill)
+    draw.text((round(W / 2 - 1032), padding), f"Team 1 score: {match.score[0]}", font=fnt, stroke_width=stroke_size, stroke_fill=stroke, fill=fill)
 
     vs = Image.open("root/mucski/stuff/icons/vs.png")
     w, h = vs.size
-    vs = vs.resize((int(w * 2 / 3), int(h * 2 / 3)))
-    img.paste(vs, (int((W-w) / 2), int((H-h) / 2 + 48)), mask=vs)
+    vs = vs.resize((round(w * 2 / 3), round(h * 2 / 3)))
+    img.paste(vs, (round((W-w) / 2), round((H-h) / 2 + 48)), mask=vs)
 
-    draw.text((int(W / 2 + 173), 300 + padding), f"Team 2 score: {match.score[1]}", font=fnt, stroke_width=stroke_size, stroke_fill=stroke, fill=fill)
+    draw.text((round(W / 2 + 173), 300 + padding), f"Team 2 score: {match.score[1]}", font=fnt, stroke_width=stroke_size, stroke_fill=stroke, fill=fill)
 
     # ranked bans go here
     # if mp.bans:
-    #     draw.text((int((W-w) / 2) + 1520, int((H-h) / 2) + 80), "Bans", font=fnt, stroke_width=stroke_size, stroke_fill=stroke, fill=fill)
+    #     draw.text((round((W-w) / 2) + 1520, round((H-h) / 2) + 80), "Bans", font=fnt, stroke_width=stroke_size, stroke_fill=stroke, fill=fill)
     #
     #     try:
     #         for ban in enumerate(match.bans):
     #             #### CHAMPION ! ####
     #             try:
-    #                 champicon = champ_into_pic(1)
+    #                 champicon = champ_roundo_pic(1)
     #             except FileNotFoundError:
     #                 champicon = Image.open("root/mucski/stuff/icons/error.jpg")
     #             champicon = champicon.resize((200, 200))
-    #             img.paste(champicon, (int((W-w) / 2) + 1800, int((H-h) / 2) - 70))
+    #             img.paste(champicon, (round((W-w) / 2) + 1800, round((H-h) / 2) - 70))
     #     except IndexError:
     #         pass
     return img
