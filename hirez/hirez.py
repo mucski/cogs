@@ -386,5 +386,5 @@ class HiRez(commands.Cog):
             match = await match_list[0]
             await match.expand_players()
             pic = self.format_match(match)
-            file = discord.File(filename=f"{match.player.name}.png", fp=pic)
+            file = discord.File(filename=f"{player}.png", fp=pic)
             await ctx.send(file=file)
