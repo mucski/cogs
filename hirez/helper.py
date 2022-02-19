@@ -130,65 +130,44 @@ def playerkey(x, y):
     # draw.text((4636, 20), "KDA", font=fntbld, fill=fill)
     return key
 
-def historyimg(team1, team2, t1_data, t2_data, r1, r2, match_data):
-    crop = 140
-    W, H = (4620, 2932)
+def format_match(match: arez.Match) -> Image:
+    W, H = (4620, 2942)
     # padding=10
     img = Image.new("RGB", (W, H), color=(8, 21, 25))
-
     # headers
-    key = playerkey(W, H)
+    key = playerkey(4620, 98)
     img.paste(key, (0, 0))
-
-    # middle panel
-    middle = middlepanel(match_data)
-    img.paste(middle, (0, int(H / 2 - 200)))
-    # player data
-    for team_num, team in enumerate((team1, team2), start=1):
+    # format in the players
+    for team_num in range(1, 3):  # 1 then 2
         if team_num == 1:
-            offset = 100
-            rank = r1
-            team_data = t1_data
+            yoffset = 98
         else:
-            offset = 1772
-            rank = r2
-            team_data = t2_data
-        for i, champ in enumerate(team):
-            # team 1
-            try:
-                champimg = champ_into_pic(champ)
-            except FileNotFoundError:
-                champimg = Image.open("root/mucski/stuff/icons/error.jpg")
-            if champimg.size < (512, 512):
-                (width, height) = (champimg.width * 2, champimg.height * 2)
-                champimg = champimg.resize((width, height))
-            # cropping champion image
-            border = (0, crop, 0, crop)
-            champimgcrop = ImageOps.crop(champimg, border)
-            # rank icon
-            rankicon = Image.open(f"root/mucski/stuff/icons/ranks/{rank[i]}.png")
-            # playerstats
-            playerpanel = statsimage(champimgcrop, rankicon, team_data[i], i)
-            img.paste(playerpanel, (0, 232 * i + offset))
-    # done, reisizing for speed
-    historyimg = img.resize((int(W / 2), int(H / 2)), Image.ANTIALIAS)
-    # historyimg = img.resize((int(W / 2), int(H / 2)))
-    # create the buffer
+            yoffset = 1782
+        # yoffset = (team_num - 1) * 1782  # replace 1000 with whatever offset you'll need
+        team = getattr(match, f"team{team_num}")
+        for i, mp in enumerate(team):
+            y = i * 232 + yoffset  # replace 50 with whatever row height you use
+            row = statsimage(mp, i)  # your current playerkey
+            img.paste(row, (0, y))
+            # base.paste(row, 0, y)
+    # add middlebar
+    middle = middlepanel(match)
+    img.paste(middle, (0, 1262))
+    #base.paste(middlebar(match))
+    historyimg = img.resize((2310, 1471), Image.ANTIALIAS)
     final_buffer = BytesIO()
-    # store image in buffer
     historyimg.save(final_buffer, "PNG")
-    # seek back to start
     final_buffer.seek(0)
     return final_buffer
 
-def middlepanel(mp):
+def middlepanel(match):
     W, H = (4620, 512)
     padding = 46
     # (horizontal, vertical)
     img = Image.new("RGB", (W, H))
 
     # add in the map image
-    map_name = mp.map_name
+    map_name = match.map_name
     format_map = map_name.lower().replace(" ", "_").replace("'", "")
     try:
         match_map = Image.open(f"root/mucski/stuff/icons/maps/{format_map}.png")
@@ -213,26 +192,26 @@ def middlepanel(mp):
     stroke = (255, 255, 255)
     stroke_size = 0
 
-    draw.text((padding, padding), f"ID: {mp.id}", font=fnt, stroke_width=stroke_size, stroke_fill=stroke, fill=fill)
-    draw.text((padding, 100 + padding), f"Duration: {mp.duration}", font=fnt, stroke_width=stroke_size, stroke_fill=stroke, fill=fill)
-    draw.text((padding, 200 + padding), f"Region: {mp.region}", font=fnt, stroke_width=stroke_size, stroke_fill=stroke, fill=fill)
-    draw.text((padding, 300 + padding), f"Map: {mp.map_name}", font=fnt, stroke_width=stroke_size, stroke_fill=stroke, fill=fill)
+    draw.text((padding, padding), f"ID: {match.id}", font=fnt, stroke_width=stroke_size, stroke_fill=stroke, fill=fill)
+    draw.text((padding, 100 + padding), f"Duration: {match.duration}", font=fnt, stroke_width=stroke_size, stroke_fill=stroke, fill=fill)
+    draw.text((padding, 200 + padding), f"Region: {match.region}", font=fnt, stroke_width=stroke_size, stroke_fill=stroke, fill=fill)
+    draw.text((padding, 300 + padding), f"Map: {match.map_name}", font=fnt, stroke_width=stroke_size, stroke_fill=stroke, fill=fill)
 
-    draw.text((int(W / 2 - 1032), padding), f"Team 1 score: {mp.score[0]}", font=fnt, stroke_width=stroke_size, stroke_fill=stroke, fill=fill)
+    draw.text((int(W / 2 - 1032), padding), f"Team 1 score: {match.score[0]}", font=fnt, stroke_width=stroke_size, stroke_fill=stroke, fill=fill)
 
     vs = Image.open("root/mucski/stuff/icons/vs.png")
     w, h = vs.size
     vs = vs.resize((int(w * 2 / 3), int(h * 2 / 3)))
     img.paste(vs, (int((W-w) / 2), int((H-h) / 2 + 48)), mask=vs)
 
-    draw.text((int(W / 2 + 173), 300 + padding), f"Team 2 score: {mp.score[1]}", font=fnt, stroke_width=stroke_size, stroke_fill=stroke, fill=fill)
+    draw.text((int(W / 2 + 173), 300 + padding), f"Team 2 score: {match.score[1]}", font=fnt, stroke_width=stroke_size, stroke_fill=stroke, fill=fill)
 
     # ranked bans go here
     # if mp.bans:
     #     draw.text((int((W-w) / 2) + 1520, int((H-h) / 2) + 80), "Bans", font=fnt, stroke_width=stroke_size, stroke_fill=stroke, fill=fill)
     #
     #     try:
-    #         for ban in enumerate(mp.bans):
+    #         for ban in enumerate(match.bans):
     #             #### CHAMPION ! ####
     #             try:
     #                 champicon = champ_into_pic(1)

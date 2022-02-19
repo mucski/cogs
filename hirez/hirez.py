@@ -12,9 +12,6 @@ import math
 from tabulate import tabulate
 from collections import Counter
 from . import helper
-import types
-from PIL import ImageOps, ImageDraw, Image, ImageFont, ImageEnhance
-from io import BytesIO
 
 class HiRez(commands.Cog):
     """Paladins stats cog by Mucski
@@ -310,36 +307,6 @@ class HiRez(commands.Cog):
             e.description = desc
             e.set_footer(text=f"Individual champion stats for {ret.name}")
             await ctx.send(embed=e)
-
-    def format_match(self, match: arez.Match) -> Image:
-        W, H = (4620, 2942)
-        # padding=10
-        img = Image.new("RGB", (W, H), color=(8, 21, 25))
-        # headers
-        key = helper.playerkey(4620, 98)
-        img.paste(key, (0, 0))
-        # format in the players
-        for team_num in range(1, 3):  # 1 then 2
-            if team_num == 1:
-                yoffset = 98
-            else:
-                yoffset = 1782
-            # yoffset = (team_num - 1) * 1782  # replace 1000 with whatever offset you'll need
-            team = getattr(match, f"team{team_num}")
-            for i, mp in enumerate(team):
-                y = i * 232 + yoffset  # replace 50 with whatever row height you use
-                row = helper.statsimage(mp, i)  # your current playerkey
-                img.paste(row, (0, y))
-                # base.paste(row, 0, y)
-        # add middlebar
-        middle = helper.middlepanel(match)
-        img.paste(middle, (0, 1262))
-        #base.paste(middlebar(match))
-        historyimg = img.resize((2310, 1471), Image.ANTIALIAS)
-        final_buffer = BytesIO()
-        historyimg.save(final_buffer, "PNG")
-        final_buffer.seek(0)
-        return final_buffer
 
     @commands.command()
     async def match(self, ctx, matchid: int):
