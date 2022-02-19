@@ -235,7 +235,7 @@ def middlepanel(mp):
             for ban in enum(mp.bans):
                 #### CHAMPION ! ####
                 try:
-                    champicon = champ_into_pic(ban)
+                    champicon = champ_into_pic(1)
                 except FileNotFoundError:
                     champicon = Image.open("root/mucski/stuff/icons/error.jpg")
                 champicon = champicon.resize((200, 200))
