@@ -5,7 +5,7 @@ import aiohttp
 from io import BytesIO
 from redbot.core.utils.chat_formatting import humanize_number
 
-def champ_roundo_pic(champ: arez.Champion) -> Image:
+def champ_into_pic(champ: arez.Champion) -> Image:
     name = champ.name.lower().replace(" ","-").replace("'","")
     try:
         pic = Image.open(f"root/mucski/stuff/icons/avatars/{name}.jpg")
@@ -49,7 +49,7 @@ def statsimage(mp, index):
     # new image object
     img = Image.new("RGBA", (W, H), color=img_color)
     # champion icon
-    champicon = champ_roundo_pic(mp.champion)
+    champicon = champ_into_pic(mp.champion)
     border = (0, crop, 0, crop)
     champimgcrop = ImageOps.crop(champicon, border)
     img.paste(champimgcrop, (padding, padding))
@@ -208,12 +208,29 @@ def middlepanel(match):
         try:
             for i, ban in enumerate(match.bans):
                 #### CHAMPION ! ####
-                try:
-                    champicon = champ_roundo_pic(ban)
-                except FileNotFoundError:
-                    champicon = Image.open("root/mucski/stuff/icons/error.jpg")
+                champicon = champ_into_pic(ban[i])
                 champicon = champicon.resize((200, 200))
                 img.paste(champicon, (round((W-w) / 2) + 1800, round((H-h) / 2) - 70))
+                #### Champion 2 ####
+                champicon2 = champ_into_pic(ban[i])
+                champicon2 = champicon2.resize((200, 200))
+                img.paste(champicon2, (int((W-w) / 2) + 2020, int((H-h) / 2) - 70))
+                #### Champion 3 ####
+                champicon3 = champ_into_pic(ban[i])
+                champicon3 = champicon3.resize((200, 200))
+                img.paste(champicon3, (int((W-w) / 2) + 2240, int((H-h) / 2) - 70))
+                #### CHAMPION 4 ####
+                champicon4 = champ_into_pic(ban[i])
+                champicon4 = champicon4.resize((200, 200))
+                img.paste(champicon4, (int((W-w) / 2) + 1800, int((H-h) / 2) + 150))
+                #### Champion 5 ####
+                champicon5 = champ_into_pic(ban[i])
+                champicon5 = champicon5.resize((200, 200))
+                img.paste(champicon5, (int((W-w) / 2) + 2020, int((H-h) / 2) + 150))
+                #### Champion 6 ####
+                champicon6 = champ_into_pic(ban[i])
+                champicon6 = champicon6.resize((200, 200))
+                img.paste(champicon6, (int((W-w) / 2) + 2240, int((H-h) / 2) + 150))
         except IndexError:
             pass
     return img
