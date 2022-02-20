@@ -387,7 +387,7 @@ class HiRez(commands.Cog):
                     win = "+"
                 else:
                     win = "-"
-                t.append(win + match.id)
+                t.append(win + str(match.id))
                 t.append(match.map_name)
                 t.append(match.champion.name)
                 t.append(match.kda_text)
