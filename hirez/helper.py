@@ -208,27 +208,27 @@ def middlepanel(match):
         try:
             for i, ban in enumerate(match.bans):
                 #### CHAMPION ! ####
-                champicon = champ_into_pic(ban[1])
+                champicon = champ_into_pic(i)
                 champicon = champicon.resize((200, 200))
                 img.paste(champicon, (round((W-w) / 2) + 1800, round((H-h) / 2) - 70))
                 #### Champion 2 ####
-                champicon2 = champ_into_pic(ban[2])
+                champicon2 = champ_into_pic(i)
                 champicon2 = champicon2.resize((200, 200))
                 img.paste(champicon2, (int((W-w) / 2) + 2020, int((H-h) / 2) - 70))
                 #### Champion 3 ####
-                champicon3 = champ_into_pic(ban[3])
+                champicon3 = champ_into_pic(i)
                 champicon3 = champicon3.resize((200, 200))
                 img.paste(champicon3, (int((W-w) / 2) + 2240, int((H-h) / 2) - 70))
                 #### CHAMPION 4 ####
-                champicon4 = champ_into_pic(ban[4])
+                champicon4 = champ_into_pic(i)
                 champicon4 = champicon4.resize((200, 200))
                 img.paste(champicon4, (int((W-w) / 2) + 1800, int((H-h) / 2) + 150))
                 #### Champion 5 ####
-                champicon5 = champ_into_pic(ban[5])
+                champicon5 = champ_into_pic(i)
                 champicon5 = champicon5.resize((200, 200))
                 img.paste(champicon5, (int((W-w) / 2) + 2020, int((H-h) / 2) + 150))
                 #### Champion 6 ####
-                champicon6 = champ_into_pic(ban[6])
+                champicon6 = champ_into_pic(i)
                 champicon6 = champicon6.resize((200, 200))
                 img.paste(champicon6, (int((W-w) / 2) + 2240, int((H-h) / 2) + 150))
         except IndexError:
