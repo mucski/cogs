@@ -388,13 +388,13 @@ class HiRez(commands.Cog):
                 else:
                     win = "-"
                 t.append(win + match.map_name)
-                t.append(match.id)
                 t.append(match.champion.name)
                 t.append(match.kda_text)
                 if match.queue.is_ranked():
                     t.append("Ranked")
                 elif match.queue.is_casual():
                     t.append("Casual")
+                t.append(match.id)
                 final_kda += match.kda2
                 kda_counter += 1
                 table.append(t)
