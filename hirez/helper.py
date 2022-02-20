@@ -212,7 +212,7 @@ def middlepanel(match):
                 champicon = champicon.resize((200, 200))
                 img.paste(champicon, (round((W-w) / 2) + 1800, round((H-h) / 2) - 70))
                 #### Champion 2 ####
-                champicon2 = champ_into_pic(ban)
+                champicon2 = champ_into_pic(ban2)
                 champicon2 = champicon2.resize((200, 200))
                 img.paste(champicon2, (int((W-w) / 2) + 2020, int((H-h) / 2) - 70))
                 # #### Champion 3 ####
