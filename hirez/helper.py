@@ -206,32 +206,32 @@ def middlepanel(match):
         draw.text((round((W-w) / 2) + 1520, round((H-h) / 2) + 80), "Bans", font=fnt, stroke_width=stroke_size, stroke_fill=stroke, fill=fill)
 
         for i, ban in enumerate(match.bans):
-            if i == 1:
+            if i == 0:
                 #### Champion 1 ####
                 champicon = champ_into_pic(ban)
                 champicon = champicon.resize((200, 200))
                 img.paste(champicon, (round((W-w) / 2) + 1800, round((H-h) / 2) - 70))
-            elif i == 2:
+            elif i == 1:
                 #### Champion 2 ####
                 champicon2 = champ_into_pic(ban)
                 champicon2 = champicon2.resize((200, 200))
                 img.paste(champicon2, (int((W-w) / 2) + 2020, int((H-h) / 2) - 70))
-            elif i == 3:
+            elif i == 2:
                 #### Champion 3 ####
                 champicon3 = champ_into_pic(ban)
                 champicon3 = champicon3.resize((200, 200))
                 img.paste(champicon3, (int((W-w) / 2) + 2240, int((H-h) / 2) - 70))
-            elif i == 4:
+            elif i == 3:
                 #### CHAMPION 4 ####
                 champicon4 = champ_into_pic(ban)
                 champicon4 = champicon4.resize((200, 200))
                 img.paste(champicon4, (int((W-w) / 2) + 1800, int((H-h) / 2) + 150))
-            elif i == 5:
+            elif i == 4:
                 #### Champion 5 ####
                 champicon5 = champ_into_pic(ban)
                 champicon5 = champicon5.resize((200, 200))
                 img.paste(champicon5, (int((W-w) / 2) + 2020, int((H-h) / 2) + 150))
-            elif i == 6:
+            elif i == 5:
                 #### Champion 6 ####
                 champicon6 = champ_into_pic(ban)
                 champicon6 = champicon6.resize((200, 200))
