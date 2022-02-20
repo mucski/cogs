@@ -207,7 +207,7 @@ def middlepanel(match):
 
         for i, ban in enumerate(match.bans):
             if i == 1:
-            #### CHAMPION ! ####
+                #### Champion 1 ####
                 champicon = champ_into_pic(ban)
                 champicon = champicon.resize((200, 200))
                 img.paste(champicon, (round((W-w) / 2) + 1800, round((H-h) / 2) - 70))

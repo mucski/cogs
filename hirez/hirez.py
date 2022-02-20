@@ -391,7 +391,10 @@ class HiRez(commands.Cog):
                 t.append(match.map_name)
                 t.append(match.champion.name)
                 t.append(match.kda_text)
-                t.append("{:.2f}".format(match.kda2))
+                if match.queue.is_ranked():
+                    t.append("Ranked")
+                elif match.queue.is_casual():
+                    t.append("Casual")
                 final_kda += match.kda2
                 kda_counter += 1
                 table.append(t)
