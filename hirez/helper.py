@@ -218,22 +218,22 @@ def middlepanel(match):
                 img.paste(champicon2, (int((W-w) / 2) + 2020, int((H-h) / 2) - 70))
             elif i == 3:
                 #### Champion 3 ####
-                champicon3 = champ_into_pic(i)
+                champicon3 = champ_into_pic(ban)
                 champicon3 = champicon3.resize((200, 200))
                 img.paste(champicon3, (int((W-w) / 2) + 2240, int((H-h) / 2) - 70))
             elif i == 4:
                 #### CHAMPION 4 ####
-                champicon4 = champ_into_pic(i)
+                champicon4 = champ_into_pic(ban)
                 champicon4 = champicon4.resize((200, 200))
                 img.paste(champicon4, (int((W-w) / 2) + 1800, int((H-h) / 2) + 150))
             elif i == 5:
                 #### Champion 5 ####
-                champicon5 = champ_into_pic(i)
+                champicon5 = champ_into_pic(ban)
                 champicon5 = champicon5.resize((200, 200))
                 img.paste(champicon5, (int((W-w) / 2) + 2020, int((H-h) / 2) + 150))
             elif i == 6:
                 #### Champion 6 ####
-                champicon6 = champ_into_pic(i)
+                champicon6 = champ_into_pic(ban)
                 champicon6 = champicon6.resize((200, 200))
                 img.paste(champicon6, (int((W-w) / 2) + 2240, int((H-h) / 2) + 150))
     return img
