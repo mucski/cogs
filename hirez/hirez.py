@@ -384,10 +384,10 @@ class HiRez(commands.Cog):
             for match in history:
                 t = []
                 if match.winner:
-                    t.append("+")
+                    win = "+"
                 else:
-                    t.append("-")
-                t.append(match.id)
+                    win = "-"
+                t.append(win + match.id)
                 t.append(match.map_name)
                 t.append(match.champion.name)
                 t.append(match.kda_text)
@@ -398,7 +398,7 @@ class HiRez(commands.Cog):
                 final_kda += match.kda2
                 kda_counter += 1
                 table.append(t)
-            table_done = tabulate(table, tablefmt="plain", headers=["W/L", "ID", "MAP", "CHAMPION", "KDA", "KDA2"])
+            table_done = tabulate(table, tablefmt="plain", headers=["ID", "MAP", "CHAMPION", "KDA", "TYPE"])
             champs = Counter(m.champion for m in history)
             most_champ = champs.most_common(1)[0][0].name
             if all(isinstance(c, arez.Champion) for c in champs.keys()):
