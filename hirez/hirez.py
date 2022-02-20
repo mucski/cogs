@@ -387,8 +387,8 @@ class HiRez(commands.Cog):
                     win = "+"
                 else:
                     win = "-"
-                t.append(win + str(match.id))
-                t.append(match.map_name)
+                t.append(win + match.map_name)
+                t.append(match.id)
                 t.append(match.champion.name)
                 t.append(match.kda_text)
                 if match.queue.is_ranked():
@@ -398,7 +398,7 @@ class HiRez(commands.Cog):
                 final_kda += match.kda2
                 kda_counter += 1
                 table.append(t)
-            table_done = tabulate(table, tablefmt="plain", headers=["ID", "MAP", "CHAMPION", "KDA", "TYPE"])
+            table_done = tabulate(table, tablefmt="plain", headers=["Map", "ID", "Champion", "KDA", "Type"])
             champs = Counter(m.champion for m in history)
             most_champ = champs.most_common(1)[0][0].name
             if all(isinstance(c, arez.Champion) for c in champs.keys()):
