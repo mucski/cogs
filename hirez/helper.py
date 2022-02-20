@@ -202,7 +202,7 @@ def middlepanel(match):
 
     draw.text((round(W / 2 + 173), 300 + padding), f"Team 2 score: {match.score[1]}", font=fnt, stroke_width=stroke_size, stroke_fill=stroke, fill=fill)
 
-    if mp.bans:
+    if match.bans:
         draw.text((round((W-w) / 2) + 1520, round((H-h) / 2) + 80), "Bans", font=fnt, stroke_width=stroke_size, stroke_fill=stroke, fill=fill)
 
         try:
