@@ -409,3 +409,22 @@ class HiRez(commands.Cog):
             for page in pagify(table_done, page_length=1900):
                 await ctx.send("```diff\n{}\n```".format(page))
             await ctx.send("```\nMost played champion: {}\nMost played class: {}\nAverage KDA: {:.2f}\n```".format(most_champ, most_class, final_kda / kda_counter))
+
+    @commands.command()
+    @checks.is_owner()
+    async def downloadchamps(self, ctx):
+        """
+        Downloads every champion image from hirez servers to the VPS
+        Only use it once every new patch.
+        """
+        entry = await self.api.get_champion_info()
+        for champ in entry.champions:
+            async with aiohttp.ClientSession() as session:
+                url = champ.icon_url
+                name = champ.name.lower().replace(" ","-").replace("'","")
+                async with session.get(url) as resp:
+                    if resp.status == 200:
+                        f = await aiofiles.open(f'root/mucski/stuff/icons/avatars/{name}.jpg', mode='wb')
+                        await f.write(await resp.read())
+                        await f.close()
+        await ctx.tick()
