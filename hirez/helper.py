@@ -70,7 +70,7 @@ def statsimage(mp, index):
     name = mp.player.name
 
     if name == "":
-        name = "?????????"
+        name = "???"
 
     # player name and level
     draw.text((512 + padding * 4, mid - 30), name, font=fntbld, fill=color)
