@@ -243,10 +243,11 @@ def middlepanel(match):
 
 def getavatar(player):
     size = (150, 150)
-    avatar_img = iio.imread(iio.core.urlopen(player.avatar_url).read())
-    output = BytesIO()
-    iio.imwrite(output, avatar_img, format="PNG")
-    avatar = Image.open(output)
+    with aiohttp.ClientSession() as session:
+        async with session.get(player.avatar_url) as resp:
+            if resp.status != 200:
+                avatar_img = BytesIO(await resp.read())
+    avatar = Image.open(avatar_img)
     avatar = avatar.resize((150, 150))
     mask = Image.new('L', size, 0)
     mask_draw = ImageDraw.Draw(mask)
