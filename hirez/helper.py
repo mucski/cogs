@@ -264,7 +264,7 @@ def generatecard(player):
     draw = ImageDraw.Draw(img)
     fnt = ImageFont.truetype("root/mucski/stuff/arial.ttf", 37)
     fnt_big = ImageFont.truetype("root/mucski/stuff/arial.ttf", 64)
-    fnt_small =  ImageFont.truetype("root/mucsi/stuff/arial.ttf", 35)
+    fnt_small = ImageFont.truetype("root/mucski/stuff/arial.ttf", 34)
     #fill = (15, 40, 48) dark
     fill = (255, 255, 255)
     stroke = (255, 255, 255)
