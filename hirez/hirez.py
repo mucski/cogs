@@ -411,7 +411,7 @@ class HiRez(commands.Cog):
             await ctx.send("```\nMost played champion: {}\nMost played class: {}\nAverage KDA: {:.2f}\n```".format(most_champ, most_class, final_kda / kda_counter))
 
     @commands.command()
-    async def playercard(ctx, name=None, platform="PC"):
+    async def playercard(self, ctx, name=None, platform="PC"):
         if name is None:
             # use the ID of the caller
             discord_id = ctx.author.id
