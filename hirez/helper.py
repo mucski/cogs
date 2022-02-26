@@ -248,7 +248,14 @@ def generatecard(player):
     fill = (255, 255, 255)
     stroke = (255, 255, 255)
     stroke_size = 0
+    # name
     draw.text((padding, padding), f"{player.name}", font=fnt, stroke_width=stroke_size, stroke_fill=stroke, fill=fill)
+    draw.text((padding, padding + 120), f"Region: {player.region}", font=fnt, stroke_width=stroke_size, stroke_fill=stroke, fill=fill)
+    draw.text((padding, padding + 240), f"Level: {player.calculated_level}", font=fnt, stroke_width=stroke_size, stroke_fill=stroke, fill=fill)
+    draw.text((padding, padding + 360), "Casual", font=fnt, stroke_width=stroke_size, stroke_fill=stroke, fill=fill)
+    draw.text((padding, padding + 480), f"WR: {player.casual.winrate_text}", font=fnt, stroke_width=stroke_size, stroke_fill=stroke, fill=fill)
+    draw.text((padding, padding + 600), f"Ranked Season {player.ranked_best.season}", font=fnt, stroke_width=stroke_size, stroke_fill=stroke, fill=fill)
+    draw.text((padding, padding + 720), f"Rank: {player.ranked_best.rank}", font=fnt, stroke_width=stroke_size, stroke_fill=stroke, fill=fill)
     final_buffer = BytesIO()
     img.save(final_buffer, "PNG")
     final_buffer.seek(0)
