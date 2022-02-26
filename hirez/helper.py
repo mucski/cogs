@@ -244,6 +244,10 @@ def getavatar(player):
     
 def generatecard(player):
     W, H = 1080, 1920
+    mask = Image.new('L', size, 0)
+    mask_draw = ImageDraw.Draw(mask) 
+    mask_draw.ellipse((0, 0) + size, fill=255)
+
     img = Image.new("RGB", (W, H))
     padding = 40
     avatar_img = iio.imread(iio.core.urlopen(player.avatar_url).read(), ".png")
@@ -251,7 +255,9 @@ def generatecard(player):
     iio.imwrite(output, avatar_img, format="PNG")
     avatar = Image.open(output)
     avatar = avatar.resize((256, 256))
-    img.paste(avatar, (0, 512))
+    circle_avatar = ImageOps.fit(avatar, mask.size, centering=(0.5, 0.5))
+    circle_avatar.putalpha(mask)
+    img.paste(circle_avatar, (0, 512))
     draw = ImageDraw.Draw(img)
     fnt = ImageFont.truetype("root/mucski/stuff/arial.ttf", 60)
     #fill = (15, 40, 48) dark
