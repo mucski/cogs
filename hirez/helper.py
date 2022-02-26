@@ -259,7 +259,9 @@ def generatecard(player):
     # img = Image.new("RGBA", (W, H))
     padding = 40
     avatar = getavatar(player)
+    rank = Image.open(f"root/mucski/stuff/ranks2/{player.ranked_best.rank.value}.png")
     img.paste(avatar, (482, 5), mask=avatar)
+    img.paste(rank, (350, 1019) mask=rank)
     draw = ImageDraw.Draw(img)
     fnt = ImageFont.truetype("root/mucski/stuff/arial.ttf", 40)
     fnt_big = ImageFont.truetype("root/mucski/stuff/arial.ttf", 60)
@@ -268,7 +270,7 @@ def generatecard(player):
     stroke = (255, 255, 255)
     stroke_size = 0
     # name
-    draw.text((padding, padding), f"{player.name}", font=fnt, stroke_width=stroke_size, stroke_fill=stroke, fill=fill)
+    draw.text((padding, padding), f"{player.name}", font=fnt_big, stroke_width=stroke_size, stroke_fill=stroke, fill=fill)
     draw.text((padding, padding + 120), f"Region: {player.region}", font=fnt, stroke_width=stroke_size, stroke_fill=stroke, fill=fill)
     draw.text((padding, padding + 240), f"Level: {player.calculated_level}", font=fnt, stroke_width=stroke_size, stroke_fill=stroke, fill=fill)
     draw.text((padding, padding + 360), "Casual", font=fnt, stroke_width=stroke_size, stroke_fill=stroke, fill=fill)
