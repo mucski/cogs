@@ -5,6 +5,8 @@ import aiohttp
 from io import BytesIO
 from redbot.core.utils.chat_formatting import humanize_number
 import imageio as iio
+import humanize
+from datetime import datetime
 
 def champ_into_pic(champ: arez.Champion) -> Image:
     name = champ.name.lower().replace(" ","-").replace("'","")
@@ -274,6 +276,9 @@ def generatecard(player):
     draw.text((33, 277), f"{player.title}", font=fnt_small, stroke_width=stroke_size, stroke_fill=stroke, fill=fill)
     draw.text((33, 360), f"Level: {player.calculated_level}", font=fnt, stroke_width=stroke_size, stroke_fill=stroke, fill=fill)
     draw.text((33, 417), f"Region: {player.region}", font=fnt, stroke_width=stroke_size, stroke_fill=stroke, fill=fill)
+    draw.text((33, 474), f"Champs Owned: {player.champion_count}", font=fnt, stroke_width=stroke_size, stroke_fill=stroke, fill=fill)
+    draw.text((33, 531), f"Acc Created: {humanize.naturaltime(datetime.utcnow() - player.created_at)}", font=fnt, stroke_width=stroke_size, stroke_fill=stroke, fill=fill)
+    draw.text((33, 588), f"Last Login: {humanize.naturaltime(datetime.utcnow() - player.last_login)}", font=fnt, stroke_width=stroke_size, stroke_fill=stroke, fill=fill)
     final_buffer = BytesIO()
     img.save(final_buffer, "PNG")
     final_buffer.seek(0)
