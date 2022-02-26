@@ -261,7 +261,7 @@ def generatecard(player):
     # img = Image.new("RGBA", (W, H))
     avatar = getavatar(player)
     rank = Image.open(f"root/mucski/stuff/icons/ranks2/{player.ranked_best.rank.value}.png")
-    img.paste(avatar, (482, 5), mask=avatar)
+    img.paste(avatar, (500, 26), mask=avatar)
     img.paste(rank, (350, 1188), mask=rank)
     draw = ImageDraw.Draw(img)
     fnt = ImageFont.truetype("root/mucski/stuff/arial.ttf", 37)
