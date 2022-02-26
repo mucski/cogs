@@ -411,20 +411,25 @@ class HiRez(commands.Cog):
             await ctx.send("```\nMost played champion: {}\nMost played class: {}\nAverage KDA: {:.2f}\n```".format(most_champ, most_class, final_kda / kda_counter))
 
     @commands.command()
-    @checks.is_owner()
-    async def downloadchamps(self, ctx):
-        """
-        Downloads every champion image from hirez servers to the VPS
-        Only use it once every new patch.
-        """
-        entry = await self.api.get_champion_info()
-        for champ in entry.champions:
-            async with aiohttp.ClientSession() as session:
-                url = champ.icon_url
-                name = champ.name.lower().replace(" ","-").replace("'","")
-                async with session.get(url) as resp:
-                    if resp.status == 200:
-                        f = await aiofiles.open(f'root/mucski/stuff/icons/avatars/{name}.jpg', mode='wb')
-                        await f.write(await resp.read())
-                        await f.close()
-        await ctx.tick()
+    async def playercard(ctx, player=None, platform="PC"):
+        if name is None:
+            # use the ID of the caller
+            discord_id = ctx.author.id
+            try:
+                player = await self.api.get_from_platform(discord_id, arez.Platform.Discord)
+                player = await player
+            except arez.NotFound:
+                await ctx.send("```\nDiscord account not linked to HiRez. Please link it first\n```")
+                return
+        else:
+            # player is a str here
+            player_list = await self.api.search_players(name, arez.Platform(platform))
+            player = await player_list[0]
+        status = await player.get_status()
+        if status.status == 5 or status.status == 0:
+            player_status = "Last login: {}".format(humanize.naturaltime(datetime.utcnow() - player.last_login))
+        else:
+            player_status = "Currently: {}".format(status.status)
+        playercard = helper.playercard(player)
+        file = discord.File(filename=f"{player.name}.png", fp=pic)
+        await ctx.send(file=file)
