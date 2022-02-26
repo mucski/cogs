@@ -241,7 +241,7 @@ def middlepanel(match):
                 img.paste(champicon6, (int((W-w) / 2) + 2240, int((H-h) / 2) + 150))
     return img
 
-def getavatar(player):
+async def getavatar(player):
     size = (150, 150)
     with aiohttp.ClientSession() as session:
         async with session.get(player.avatar_url) as resp:
