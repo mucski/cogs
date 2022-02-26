@@ -4,7 +4,6 @@ from PIL import ImageOps, ImageDraw, Image, ImageFont, ImageEnhance
 import aiohttp
 from io import BytesIO
 from redbot.core.utils.chat_formatting import humanize_number
-import imageio as iio
 import humanize
 from datetime import datetime
 
@@ -277,14 +276,14 @@ async def generatecard(player):
     draw.text((33, 277), f"{player.title}", font=fnt_small, stroke_width=stroke_size, stroke_fill=stroke, fill=(223, 142, 53))
     draw.text((33, 360), f"Level: {player.calculated_level}", font=fnt, stroke_width=stroke_size, stroke_fill=stroke, fill=fill)
     draw.text((33, 417), f"Region: {player.region}", font=fnt, stroke_width=stroke_size, stroke_fill=stroke, fill=fill)
-    draw.text((33, 474), f"Champs Owned: {player.champion_count}", font=fnt, stroke_width=stroke_size, stroke_fill=stroke, fill=fill)
-    draw.text((33, 531), f"Acc Created: {humanize.naturaltime(datetime.utcnow() - player.created_at)}", font=fnt, stroke_width=stroke_size, stroke_fill=stroke, fill=fill)
+    draw.text((33, 474), f"Champions Owned: {player.champion_count}", font=fnt, stroke_width=stroke_size, stroke_fill=stroke, fill=fill)
+    draw.text((33, 531), f"Account Created: {datetime.utcnow() - player.created_at}", font=fnt, stroke_width=stroke_size, stroke_fill=stroke, fill=fill)
     draw.text((33, 588), f"Last Login: {humanize.naturaltime(datetime.utcnow() - player.last_login)}", font=fnt, stroke_width=stroke_size, stroke_fill=stroke, fill=fill)
     # divider = Image.open("root/mucski/stuff/icons/divider.png").convert("RGBA")
     # img.paste(divider, (180, 665), mask=divider)
     # text divider
     draw.text((33, 645), "------------------------------------------------------------------", font=fnt, stroke_width=stroke_size, stroke_fill=stroke, fill=fill)
-    draw.text((33, 705), f"Casual Winrate: {player.casual.wins}/{player.casual.losses}({player.casual.winrate_text})", font=fnt, stroke_width=stroke_size, stroke_fill=stroke, fill=fill)
+    draw.text((33, 705), f"Casual Winrate: {player.casual.wins}/{player.casual.losses} ({player.casual.winrate_text})", font=fnt, stroke_width=stroke_size, stroke_fill=stroke, fill=fill)
     draw.text((33, 762), f"Casual Deserted: {player.casual.leaves}", font=fnt, stroke_width=stroke_size, stroke_fill=stroke, fill=fill)
     draw.text((33, 819), "------------------------------------------------------------------", font=fnt, stroke_width=stroke_size, stroke_fill=stroke, fill=fill)
     draw.text((33, 879), f"Ranked Winrate: {player.ranked_best.wins}/{player.ranked_best.losses} ({player.ranked_best.winrate_text})", font=fnt, stroke_width=stroke_size, stroke_fill=stroke, fill=fill)
