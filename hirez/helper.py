@@ -279,7 +279,7 @@ def generatecard(player):
     draw.text((33, 474), f"Champs Owned: {player.champion_count}", font=fnt, stroke_width=stroke_size, stroke_fill=stroke, fill=fill)
     draw.text((33, 531), f"Acc Created: {humanize.naturaltime(datetime.utcnow() - player.created_at)}", font=fnt, stroke_width=stroke_size, stroke_fill=stroke, fill=fill)
     draw.text((33, 588), f"Last Login: {humanize.naturaltime(datetime.utcnow() - player.last_login)}", font=fnt, stroke_width=stroke_size, stroke_fill=stroke, fill=fill)
-    divider = Image.open("root/mucski/stuff/icons/divider.png").convert("RGBA")
+    # divider = Image.open("root/mucski/stuff/icons/divider.png").convert("RGBA")
     # img.paste(divider, (180, 665), mask=divider)
     # text divider
     draw.text((33, 645), "------------------------------------------------------------------", font=fnt, stroke_width=stroke_size, stroke_fill=stroke, fill=fill)
