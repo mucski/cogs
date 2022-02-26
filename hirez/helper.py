@@ -272,7 +272,7 @@ def generatecard(player):
     stroke = (255, 255, 255)
     stroke_size = 0
     # name
-    draw.text(((W / 2), 211), f"{player.name}", font=fnt_big, stroke_width=stroke_size, stroke_fill=stroke, fill=fill)
+    draw.text((33, 211), f"{player.name}", font=fnt_big, stroke_width=stroke_size, stroke_fill=stroke, fill=fill)
     draw.text((33, 277), f"{player.title}", font=fnt_small, stroke_width=stroke_size, stroke_fill=stroke, fill=fill)
     draw.text((33, 360), f"Level: {player.calculated_level}", font=fnt, stroke_width=stroke_size, stroke_fill=stroke, fill=fill)
     draw.text((33, 417), f"Region: {player.region}", font=fnt, stroke_width=stroke_size, stroke_fill=stroke, fill=fill)
