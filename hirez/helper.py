@@ -257,7 +257,6 @@ def generatecard(player):
     W, H = 860, 1349
     img = Image.open("root/mucski/stuff/card_bg.png").convert("RGBA")
     # img = Image.new("RGBA", (W, H))
-    padding = 40
     avatar = getavatar(player)
     rank = Image.open(f"root/mucski/stuff/icons/ranks2/{player.ranked_best.rank.value}.png")
     img.paste(avatar, (482, 5), mask=avatar)
@@ -270,13 +269,13 @@ def generatecard(player):
     stroke = (255, 255, 255)
     stroke_size = 0
     # name
-    draw.text((padding, padding), f"{player.name}", font=fnt_big, stroke_width=stroke_size, stroke_fill=stroke, fill=fill)
-    draw.text((padding, padding + 120), f"Region: {player.region}", font=fnt, stroke_width=stroke_size, stroke_fill=stroke, fill=fill)
-    draw.text((padding, padding + 240), f"Level: {player.calculated_level}", font=fnt, stroke_width=stroke_size, stroke_fill=stroke, fill=fill)
-    draw.text((padding, padding + 360), "Casual", font=fnt, stroke_width=stroke_size, stroke_fill=stroke, fill=fill)
-    draw.text((padding, padding + 480), f"WR: {player.casual.winrate_text}", font=fnt, stroke_width=stroke_size, stroke_fill=stroke, fill=fill)
-    draw.text((padding, padding + 600), f"Ranked Season {player.ranked_best.season}", font=fnt, stroke_width=stroke_size, stroke_fill=stroke, fill=fill)
-    draw.text((padding, padding + 720), f"Rank: {player.ranked_best.rank}", font=fnt, stroke_width=stroke_size, stroke_fill=stroke, fill=fill)
+    draw.text((33, 211), f"{player.name}", font=fnt_big, stroke_width=stroke_size, stroke_fill=stroke, fill=fill)
+    draw.text((33, 211 + 120), f"Region: {player.region}", font=fnt, stroke_width=stroke_size, stroke_fill=stroke, fill=fill)
+    draw.text((33, 211 + 240), f"Level: {player.calculated_level}", font=fnt, stroke_width=stroke_size, stroke_fill=stroke, fill=fill)
+    draw.text((33, 211 + 360), "Casual", font=fnt, stroke_width=stroke_size, stroke_fill=stroke, fill=fill)
+    draw.text((33, 211 + 480), f"WR: {player.casual.winrate_text}", font=fnt, stroke_width=stroke_size, stroke_fill=stroke, fill=fill)
+    draw.text((33, 211 + 600), f"Ranked Season {player.ranked_best.season}", font=fnt, stroke_width=stroke_size, stroke_fill=stroke, fill=fill)
+    draw.text((33, 211 + 720), f"Rank: {player.ranked_best.rank}", font=fnt, stroke_width=stroke_size, stroke_fill=stroke, fill=fill)
     final_buffer = BytesIO()
     img.save(final_buffer, "PNG")
     final_buffer.seek(0)
