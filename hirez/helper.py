@@ -240,7 +240,7 @@ def middlepanel(match):
     return img
 
 def getavatar(player):
-    size = 256, 256
+    size = (256, 256)
     avatar_img = iio.imread(iio.core.urlopen(player.avatar_url).read(), ".png")
     output = BytesIO()
     iio.imwrite(output, avatar_img, format="PNG")
