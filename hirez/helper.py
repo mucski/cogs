@@ -250,7 +250,7 @@ def generatecard(player):
     output = BytesIO()
     iio.imwrite(output, avatar_img, format="PNG")
     avatar = Image.open(output)
-    avatar.resize(256, 256)
+    avatar.resize((256, 256))
     img.paste(avatar, (0, 512))
     draw = ImageDraw.Draw(img)
     fnt = ImageFont.truetype("root/mucski/stuff/arial.ttf", 60)
