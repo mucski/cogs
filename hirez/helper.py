@@ -262,14 +262,16 @@ def generatecard(player):
     img.paste(avatar, (482, 5), mask=avatar)
     img.paste(rank, (350, 1188), mask=rank)
     draw = ImageDraw.Draw(img)
-    fnt = ImageFont.truetype("root/mucski/stuff/arial.ttf", 40)
-    fnt_big = ImageFont.truetype("root/mucski/stuff/arial.ttf", 60)
+    fnt = ImageFont.truetype("root/mucski/stuff/arial.ttf", 37)
+    fnt_big = ImageFont.truetype("root/mucski/stuff/arial.ttf", 64)
+    fnt_small =  ImageFont.truetype("root/mucsi/stuff/arial.ttf", 35)
     #fill = (15, 40, 48) dark
     fill = (255, 255, 255)
     stroke = (255, 255, 255)
     stroke_size = 0
     # name
     draw.text((33, 211), f"{player.name}", font=fnt_big, stroke_width=stroke_size, stroke_fill=stroke, fill=fill)
+    draw.text((33, 277), f"{player.title}", font=fnt_small, stroke_width=stroke_size, stroke_fill=stroke, fill=fill)
     draw.text((33, 211 + 120), f"Region: {player.region}", font=fnt, stroke_width=stroke_size, stroke_fill=stroke, fill=fill)
     draw.text((33, 211 + 240), f"Level: {player.calculated_level}", font=fnt, stroke_width=stroke_size, stroke_fill=stroke, fill=fill)
     draw.text((33, 211 + 360), "Casual", font=fnt, stroke_width=stroke_size, stroke_fill=stroke, fill=fill)
