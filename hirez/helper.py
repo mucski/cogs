@@ -247,7 +247,7 @@ async def getavatar(player):
         async with session.get(player.avatar_url) as resp:
             if resp.status == 200:
                 resp = await resp.read()
-    avatar = Image.open(resp)
+    avatar = Image.open(BytesIO(resp))
     avatar = avatar.resize((150, 150))
     mask = Image.new('L', size, 0)
     mask_draw = ImageDraw.Draw(mask)
