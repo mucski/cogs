@@ -94,7 +94,7 @@ class HiRez(commands.Cog):
         await ctx.tick()
 
     @commands.command()
-    async def stats(self, ctx, name=None, platform="PC"):
+    async def oldstats(self, ctx, name=None, platform="PC"):
         """Returns a players stats.
         [p]stats none or [p]stats (player) (platform)
         """
@@ -411,7 +411,7 @@ class HiRez(commands.Cog):
             await ctx.send("```\nMost played champion: {}\nMost played class: {}\nAverage KDA: {:.2f}\n```".format(most_champ, most_class, final_kda / kda_counter))
 
     @commands.command()
-    async def playercard(self, ctx, name=None, platform="PC"):
+    async def stats(self, ctx, name=None, platform="PC"):
         if name is None:
             # use the ID of the caller
             discord_id = ctx.author.id
