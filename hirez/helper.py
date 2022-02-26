@@ -247,7 +247,7 @@ def generatecard(player):
     img = Image.new("RGB", (W, H))
     padding = 40
     avatar_img = iio.imread(iio.core.urlopen(player.avatar_url).read(), ".png")
-    output = io.BytesIO()
+    output = BytesIO()
     iio.imwrite(output, avatar_img, plugin="pillow", format="PNG")
     avatar = Image.open(output)
     img.paste(avatar, (0, 512))
