@@ -270,7 +270,7 @@ def generatecard(player):
     #fill = (15, 40, 48) dark
     fill = (83, 105, 136)
     stroke = (21, 31, 45)
-    stroke_size = 0
+    stroke_size = 1
     # name
     draw.text((33, 211), f"{player.name}", font=fnt_big, stroke_width=stroke_size, stroke_fill=stroke, fill=fill)
     draw.text((33, 277), f"{player.title}", font=fnt_small, stroke_width=stroke_size, stroke_fill=stroke, fill=fill)
