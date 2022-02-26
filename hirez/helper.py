@@ -244,6 +244,7 @@ def getavatar(player):
     
 def generatecard(player):
     W, H = 1080, 1920
+    size = 256
     mask = Image.new('L', size, 0)
     mask_draw = ImageDraw.Draw(mask) 
     mask_draw.ellipse((0, 0) + size, fill=255)
