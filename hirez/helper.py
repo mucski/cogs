@@ -242,12 +242,12 @@ def middlepanel(match):
     return img
 
 def getavatar(player):
-    size = (280, 280)
+    size = (150, 150)
     avatar_img = iio.imread(iio.core.urlopen(player.avatar_url).read())
     output = BytesIO()
     iio.imwrite(output, avatar_img, format="PNG")
     avatar = Image.open(output)
-    avatar = avatar.resize((280, 280))
+    avatar = avatar.resize((150, 150))
     mask = Image.new('L', size, 0)
     mask_draw = ImageDraw.Draw(mask)
     mask_draw.ellipse((0, 0) + size, fill=255)
@@ -261,8 +261,8 @@ def generatecard(player):
     # img = Image.new("RGBA", (W, H))
     avatar = getavatar(player)
     rank = Image.open(f"root/mucski/stuff/icons/ranks2/{player.ranked_best.rank.value}.png")
-    img.paste(avatar, (500, 26), mask=avatar)
-    img.paste(rank, (350, 1188), mask=rank)
+    img.paste(avatar, (355, 18), mask=avatar)
+    img.paste(rank, (350, 1141), mask=rank)
     draw = ImageDraw.Draw(img)
     fnt = ImageFont.truetype("root/mucski/stuff/arial.ttf", 37)
     fnt_big = ImageFont.truetype("root/mucski/stuff/arial.ttf", 64)
