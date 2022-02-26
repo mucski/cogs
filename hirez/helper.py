@@ -247,15 +247,16 @@ def getavatar(player):
     avatar = Image.open(output)
     avatar = avatar.resize((256, 256))
     mask = Image.new('L', size, 0)
-    mask_draw = ImageDraw.Draw(mask) 
+    mask_draw = ImageDraw.Draw(mask)
     mask_draw.ellipse((0, 0) + size, fill=255)
     output = ImageOps.fit(avatar, mask.size, centering=(0.5, 0.5))
     output.putalpha(mask)
     return output
-    
+
 def generatecard(player):
-    W, H = 1080, 1920
-    img = Image.new("RGBA", (W, H))
+    W, H = 860, 1349
+    img = Image.open("RGBA", "root/mucski/stuff/card_bg.png")
+    # img = Image.new("RGBA", (W, H))
     padding = 40
     avatar = getavatar(player)
     img.paste(avatar, (0, 0))
