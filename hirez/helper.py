@@ -257,7 +257,7 @@ def generatecard(player):
     avatar = Image.open(output)
     avatar = avatar.resize((256, 256))
     circle_avatar = ImageOps.fit(avatar, mask.size, centering=(0.5, 0.5))
-    circle_avatar.putalpha(mask)
+    circle_avatar = circle_avatar.putalpha(mask)
     img.paste(circle_avatar, (0, 512))
     draw = ImageDraw.Draw(img)
     fnt = ImageFont.truetype("root/mucski/stuff/arial.ttf", 60)
