@@ -250,6 +250,6 @@ def generatecard(player):
     stroke_size = 0
     draw.text((padding, padding), f"{player.name}", font=fnt, stroke_width=stroke_size, stroke_fill=stroke, fill=fill)
     final_buffer = BytesIO()
-    historyimg.save(final_buffer, "PNG")
+    img.save(final_buffer, "PNG")
     final_buffer.seek(0)
     return final_buffer
