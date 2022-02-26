@@ -250,10 +250,8 @@ def getavatar(player):
     mask_draw = ImageDraw.Draw(mask) 
     mask_draw.ellipse((0, 0) + size, fill=255)
     output = ImageOps.fit(avatar, mask.size, centering=(0.5, 0.5))
-    newimg = output.putalpha(mask)
-    return newimg
-
-
+    output.putalpha(mask)
+    return output
     
 def generatecard(player):
     W, H = 1080, 1920
