@@ -431,6 +431,6 @@ class HiRez(commands.Cog):
                 player_status = "Last login: {}".format(humanize.naturaltime(datetime.utcnow() - player.last_login))
             else:
                 player_status = "Currently: {}".format(status.status)
-            playercard = helper.generatecard(player)
+            playercard = await helper.generatecard(player)
             file = discord.File(filename=f"{player.name}.png", fp=playercard)
             await ctx.send(file=file)
