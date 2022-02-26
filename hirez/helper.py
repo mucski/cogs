@@ -242,12 +242,12 @@ def middlepanel(match):
     return img
 
 def getavatar(player):
-    size = (316, 316)
+    size = (280, 280)
     avatar_img = iio.imread(iio.core.urlopen(player.avatar_url).read())
     output = BytesIO()
     iio.imwrite(output, avatar_img, format="PNG")
     avatar = Image.open(output)
-    avatar = avatar.resize((316, 316))
+    avatar = avatar.resize((280, 280))
     mask = Image.new('L', size, 0)
     mask_draw = ImageDraw.Draw(mask)
     mask_draw.ellipse((0, 0) + size, fill=255)
