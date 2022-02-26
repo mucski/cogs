@@ -237,3 +237,19 @@ def middlepanel(match):
                 champicon6 = champicon6.resize((200, 200))
                 img.paste(champicon6, (int((W-w) / 2) + 2240, int((H-h) / 2) + 150))
     return img
+
+def generatecard(player):
+    W, H = 1080, 1920
+    img = Image.new("RGB", (W, H))
+    padding = 40
+    draw = ImageDraw.Draw(img)
+    fnt = ImageFont.truetype("root/mucski/stuff/arial.ttf", 100)
+    #fill = (15, 40, 48) dark
+    fill = (255, 255, 255)
+    stroke = (255, 255, 255)
+    stroke_size = 0
+    draw.text((padding, padding), f"{player.name}", font=fnt, stroke_width=stroke_size, stroke_fill=stroke, fill=fill)
+    final_buffer = BytesIO()
+    historyimg.save(final_buffer, "PNG")
+    final_buffer.seek(0)
+    return final_buffer
