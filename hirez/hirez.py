@@ -411,7 +411,7 @@ class HiRez(commands.Cog):
             await ctx.send("```\nMost played champion: {}\nMost played class: {}\nAverage KDA: {:.2f}\n```".format(most_champ, most_class, final_kda / kda_counter))
 
     @commands.command()
-    async def playercard(ctx, player=None, platform="PC"):
+    async def playercard(ctx, name=None, platform="PC"):
         if name is None:
             # use the ID of the caller
             discord_id = ctx.author.id
@@ -430,6 +430,6 @@ class HiRez(commands.Cog):
             player_status = "Last login: {}".format(humanize.naturaltime(datetime.utcnow() - player.last_login))
         else:
             player_status = "Currently: {}".format(status.status)
-        playercard = helper.playercard(player)
+        playercard = helper.generatecard(player)
         file = discord.File(filename=f"{player.name}.png", fp=pic)
         await ctx.send(file=file)
