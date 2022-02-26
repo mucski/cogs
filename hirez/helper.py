@@ -256,7 +256,7 @@ async def getavatar(player):
     output.putalpha(mask)
     return output
 
-def generatecard(player):
+async def generatecard(player):
     W, H = 860, 1349
     img = Image.open("root/mucski/stuff/card_bg.png").convert("RGBA")
     # img = Image.new("RGBA", (W, H))
