@@ -261,7 +261,7 @@ def generatecard(player):
     avatar = getavatar(player)
     rank = Image.open(f"root/mucski/stuff/icons/ranks2/{player.ranked_best.rank.value}.png")
     img.paste(avatar, (482, 5), mask=avatar)
-    img.paste(rank, (350, 1019), mask=rank)
+    img.paste(rank, (350, 1188), mask=rank)
     draw = ImageDraw.Draw(img)
     fnt = ImageFont.truetype("root/mucski/stuff/arial.ttf", 40)
     fnt_big = ImageFont.truetype("root/mucski/stuff/arial.ttf", 60)
