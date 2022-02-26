@@ -283,7 +283,7 @@ def generatecard(player):
     img.paste(divider, (180, 665), mask=divider)
     draw.text((33, 705), f"Casual Winrate: {player.casual.wins}/{player.casual.losses}({player.casual.winrate_text})", font=fnt, stroke_width=stroke_size, stroke_fill=stroke, fill=fill)
     draw.text((33, 762), f"Casual Deserted: {player.casual.leaves}", font=fnt, stroke_width=stroke_size, stroke_fill=stroke, fill=fill)
-    img.paste(divider, (180, 802), mask=divider)
+    img.paste(divider, (180, 822), mask=divider)
     final_buffer = BytesIO()
     img.save(final_buffer, "PNG")
     final_buffer.seek(0)
