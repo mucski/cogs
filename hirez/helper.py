@@ -282,7 +282,7 @@ def generatecard(player):
     divider = Image.open("root/mucski/stuff/icons/divider.png").convert("RGBA")
     # img.paste(divider, (180, 665), mask=divider)
     # text divider
-    draw.text((33, 665), "------------------------------------------------------", font=fnt, stroke_width=stroke_size, stroke_fill=stroke, fill=fill)
+    draw.text((33, 665), "---------------------------------------------------------------------", font=fnt, stroke_width=stroke_size, stroke_fill=stroke, fill=fill)
     draw.text((33, 705), f"Casual Winrate: {player.casual.wins}/{player.casual.losses}({player.casual.winrate_text})", font=fnt, stroke_width=stroke_size, stroke_fill=stroke, fill=fill)
     draw.text((33, 762), f"Casual Deserted: {player.casual.leaves}", font=fnt, stroke_width=stroke_size, stroke_fill=stroke, fill=fill)
     img.paste(divider, (180, 822), mask=divider)
