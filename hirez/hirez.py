@@ -412,24 +412,25 @@ class HiRez(commands.Cog):
 
     @commands.command()
     async def stats(self, ctx, name=None, platform="PC"):
-        if name is None:
-            # use the ID of the caller
-            discord_id = ctx.author.id
-            try:
-                player = await self.api.get_from_platform(discord_id, arez.Platform.Discord)
-                player = await player
-            except arez.NotFound:
-                await ctx.send("```\nDiscord account not linked to HiRez. Please link it first\n```")
-                return
-        else:
-            # player is a str here
-            player_list = await self.api.search_players(name, arez.Platform(platform))
-            player = await player_list[0]
-        status = await player.get_status()
-        if status.status == 5 or status.status == 0:
-            player_status = "Last login: {}".format(humanize.naturaltime(datetime.utcnow() - player.last_login))
-        else:
-            player_status = "Currently: {}".format(status.status)
-        playercard = helper.generatecard(player)
-        file = discord.File(filename=f"{player.name}.png", fp=playercard)
-        await ctx.send(file=file)
+        async with ctx.typing():
+            if name is None:
+                # use the ID of the caller
+                discord_id = ctx.author.id
+                try:
+                    player = await self.api.get_from_platform(discord_id, arez.Platform.Discord)
+                    player = await player
+                except arez.NotFound:
+                    await ctx.send("```\nDiscord account not linked to HiRez. Please link it first\n```")
+                    return
+            else:
+                # player is a str here
+                player_list = await self.api.search_players(name, arez.Platform(platform))
+                player = await player_list[0]
+            status = await player.get_status()
+            if status.status == 5 or status.status == 0:
+                player_status = "Last login: {}".format(humanize.naturaltime(datetime.utcnow() - player.last_login))
+            else:
+                player_status = "Currently: {}".format(status.status)
+            playercard = helper.generatecard(player)
+            file = discord.File(filename=f"{player.name}.png", fp=playercard)
+            await ctx.send(file=file)
