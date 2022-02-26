@@ -4,6 +4,7 @@ from PIL import ImageOps, ImageDraw, Image, ImageFont, ImageEnhance
 import aiohttp
 from io import BytesIO
 from redbot.core.utils.chat_formatting import humanize_number
+from imageio import imread
 
 def champ_into_pic(champ: arez.Champion) -> Image:
     name = champ.name.lower().replace(" ","-").replace("'","")
@@ -238,10 +239,16 @@ def middlepanel(match):
                 img.paste(champicon6, (int((W-w) / 2) + 2240, int((H-h) / 2) + 150))
     return img
 
+def getavatar(player):
+    avatar = imread(player.avatar_url)
+    
 def generatecard(player):
     W, H = 1080, 1920
     img = Image.new("RGB", (W, H))
     padding = 40
+    avatar_img = imread(player.avatar_url)
+    avatar = Image.open(avatar_img)
+    img.paste(avatar, (0, 512))
     draw = ImageDraw.Draw(img)
     fnt = ImageFont.truetype("root/mucski/stuff/arial.ttf", 60)
     #fill = (15, 40, 48) dark
