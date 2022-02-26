@@ -268,8 +268,8 @@ def generatecard(player):
     fnt_big = ImageFont.truetype("root/mucski/stuff/arial.ttf", 64)
     fnt_small = ImageFont.truetype("root/mucski/stuff/arial.ttf", 34)
     #fill = (15, 40, 48) dark
-    fill = (255, 255, 255)
-    stroke = (255, 255, 255)
+    fill = (83, 105, 136)
+    stroke = (21, 31, 45)
     stroke_size = 0
     # name
     draw.text((33, 211), f"{player.name}", font=fnt_big, stroke_width=stroke_size, stroke_fill=stroke, fill=fill)
