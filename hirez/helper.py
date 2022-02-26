@@ -259,9 +259,10 @@ def generatecard(player):
     # img = Image.new("RGBA", (W, H))
     padding = 40
     avatar = getavatar(player)
-    img.paste(avatar, (480, 10), mask=avatar)
+    img.paste(avatar, (482, 5), mask=avatar)
     draw = ImageDraw.Draw(img)
-    fnt = ImageFont.truetype("root/mucski/stuff/arial.ttf", 60)
+    fnt = ImageFont.truetype("root/mucski/stuff/arial.ttf", 40)
+    fnt_big = ImageFont.truetype("root/mucski/stuff/arial.ttf", 60)
     #fill = (15, 40, 48) dark
     fill = (255, 255, 255)
     stroke = (255, 255, 255)
