@@ -245,7 +245,7 @@ def getavatar(player):
     size = (150, 150)
     avatar_img = iio.imread(iio.core.urlopen(player.avatar_url).read())
     output = BytesIO()
-    iio.imwrite(output, avatar_img, format="PNG")
+    iio.imwrite(output, avatar_img, format="GIF")
     avatar = Image.open(output)
     avatar = avatar.resize((150, 150))
     mask = Image.new('L', size, 0)
