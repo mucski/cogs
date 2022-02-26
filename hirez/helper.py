@@ -240,25 +240,27 @@ def middlepanel(match):
     return img
 
 def getavatar(player):
-    avatar = imread(player.avatar_url)
-    
-def generatecard(player):
-    W, H = 1080, 1920
     size = 256, 256
-    mask = Image.new('L', size, 0)
-    mask_draw = ImageDraw.Draw(mask) 
-    mask_draw.ellipse((0, 0) + size, fill=255)
-
-    img = Image.new("RGB", (W, H))
-    padding = 40
     avatar_img = iio.imread(iio.core.urlopen(player.avatar_url).read(), ".png")
     output = BytesIO()
     iio.imwrite(output, avatar_img, format="PNG")
     avatar = Image.open(output)
     avatar = avatar.resize((256, 256))
-    circle_avatar = ImageOps.fit(avatar, mask.size, centering=(0.5, 0.5))
-    circle_avatar = circle_avatar.putalpha(mask)
-    img.paste(circle_avatar, (0, 512))
+    mask = Image.new('L', size, 0)
+    mask_draw = ImageDraw.Draw(mask) 
+    mask_draw.ellipse((0, 0) + size, fill=255)
+    output = ImageOps.fit(avatar, mask.size, centering=(0.5, 0.5))
+    newimg = output.putalpha(mask)
+    return newimg
+
+
+    
+def generatecard(player):
+    W, H = 1080, 1920
+    img = Image.new("RGBA", (W, H))
+    padding = 40
+    avatar = getavatar(player)
+    img.paste(avatar, (0, 512))
     draw = ImageDraw.Draw(img)
     fnt = ImageFont.truetype("root/mucski/stuff/arial.ttf", 60)
     #fill = (15, 40, 48) dark
