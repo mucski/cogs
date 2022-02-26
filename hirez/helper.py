@@ -246,7 +246,7 @@ def generatecard(player):
     W, H = 1080, 1920
     img = Image.new("RGB", (W, H))
     padding = 40
-    avatar_img = iio.imread(player.avatar_url)
+    avatar_img = iio.imread(imageio.core.urlopen(player.avatar_url).read(), ".png")
     avatar = Image.open(avatar_img)
     img.paste(avatar, (0, 512))
     draw = ImageDraw.Draw(img)
