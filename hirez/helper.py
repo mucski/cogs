@@ -255,7 +255,7 @@ def getavatar(player):
 
 def generatecard(player):
     W, H = 860, 1349
-    img = Image.open("RGBA", "root/mucski/stuff/card_bg.png")
+    img = Image.open("root/mucski/stuff/card_bg.png").convert("RGBA")
     # img = Image.new("RGBA", (W, H))
     padding = 40
     avatar = getavatar(player)
