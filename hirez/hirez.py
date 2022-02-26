@@ -431,5 +431,5 @@ class HiRez(commands.Cog):
         else:
             player_status = "Currently: {}".format(status.status)
         playercard = helper.generatecard(player)
-        file = discord.File(filename=f"{player.name}.png", fp=pic)
+        file = discord.File(filename=f"{player.name}.png", fp=playercard)
         await ctx.send(file=file)
