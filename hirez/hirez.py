@@ -155,9 +155,9 @@ class HiRez(commands.Cog):
 
     @commands.command()
     async def current(self, ctx, name=None, platform="PC"):
-        """Returns the current match for yourself or someone.
-        [p]help current for more information
-        [p]current player platform or leave blank for yourself if you have discoed linked to hirez
+        """
+        Returns the current status of a player
+        If he/she is in a match it will display their current match including players and ranks.
         """
         # async with ctx.typing():
         if name is None:
