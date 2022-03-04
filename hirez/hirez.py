@@ -176,7 +176,7 @@ class HiRez(commands.Cog):
         status = await player.get_status()
         live_match = await status.get_live_match()
         if not live_match:
-            await ctx.send("```\n{} is currently not in a match or unsupported queue (customs)\n```".format(player))
+            await ctx.send("```\n{} is currently {}\n```".format(player, status.status))
             return
         await live_match.expand_players()
         team1 = []
