@@ -306,6 +306,6 @@ async def get_kda_guru(player): # this input must be the player ID
                 raw = await resp.text()
                 soup = BeautifulSoup(raw, 'html.parser')
                 stats = []
-                for i in soup.find_all(class="tsw__grid__stat"):
-                    stats.append(i.get())
+                for i in soup.find_all("div", class="tsw__grid__stat"):
+                    stats.append(i)
                 return data
