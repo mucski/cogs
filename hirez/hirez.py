@@ -438,4 +438,12 @@ class HiRez(commands.Cog):
     @commands.command()
     async def hitest(self, ctx, playerid: int):
         resp = await helper.get_kda_guru(playerid)
-        await ctx.send(resp)
+        if len(resp) > 2000:
+            try:
+                file = text_to_file(resp, "test_web.txt")
+                await ctx.send(file=file)
+            except discord.errors.HTTPException:
+                await ctx.send("File too large.")
+                return
+        else:
+            await ctx.send(resp)
