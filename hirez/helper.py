@@ -302,5 +302,5 @@ async def get_kda_guru(player): # this input must be the player ID
     async with aiohttp.ClientSession() as session:
         async with session.get(url) as resp:
             if resp.status == 200:
-                data = resp.text()
+                data = await resp.text()
                 return data
