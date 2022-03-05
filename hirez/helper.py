@@ -304,5 +304,6 @@ async def get_kda_guru(player): # this input must be the player ID
             if resp.status == 200:
                 raw = await resp.text()
                 raw = raw.split(" ")
-                data = list(raw)
+                data = dict(raw)
+                kda = data["KDA"]
                 return data
