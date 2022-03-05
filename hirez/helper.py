@@ -7,6 +7,7 @@ from io import BytesIO
 from redbot.core.utils.chat_formatting import humanize_number
 import humanize
 from datetime import datetime
+from bs4 import BeautifulSoup
 
 
 def champ_into_pic(champ: arez.Champion) -> Image:
@@ -303,7 +304,6 @@ async def get_kda_guru(player): # this input must be the player ID
         async with session.get(url) as resp:
             if resp.status == 200:
                 raw = await resp.text()
-                raw = raw.split(" ")
-                data = dict(raw)
-                kda = data["KDA"]
-                return data
+                soup = BeautifulSoup(raw, 'html.parser')
+                kda = soup.find("KDA")
+                return kda
