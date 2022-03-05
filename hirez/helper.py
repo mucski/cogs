@@ -288,7 +288,7 @@ async def generatecard(player):
     draw.text((33, 819), "------------------------------------------------------------------", font=fnt, stroke_width=stroke_size, stroke_fill=stroke, fill=fill)
     draw.text((33, 879), f"Ranked Winrate: {player.ranked_best.wins}/{player.ranked_best.losses} ({player.ranked_best.winrate_text})", font=fnt, stroke_width=stroke_size, stroke_fill=stroke, fill=fill)
     draw.text((33, 936), f"Ranked Deserted: {player.ranked_best.leaves}", font=fnt, stroke_width=stroke_size, stroke_fill=stroke, fill=fill)
-    draw.text((33, 993), f"Current Rank: {player.ranked_best.rank} ({player.ranked_best.points} TP)", font=fnt, stroke_width=stroke_size, stroke_fill=stroke, fill=(112, 202, 216))
+    draw.text((33, 993), f"Current Rank: {player.ranked_best.rank} ({player.ranked_best.points} TP)", font=fnt, stroke_width=stroke_size, stroke_fill=stroke, fill=(149, 229, 242))
     draw.text((33, 1050), f"Ranked Type: {player.ranked_best.type}", font=fnt, stroke_width=stroke_size, stroke_fill=stroke, fill=fill)
     final_buffer = BytesIO()
     img.save(final_buffer, "PNG")
