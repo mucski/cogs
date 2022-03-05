@@ -159,81 +159,81 @@ class HiRez(commands.Cog):
         Returns the current status of a player
         If he/she is in a match it will display their current match including players and ranks.
         """
-        # async with ctx.typing():
-        if name is None:
-            # use the ID of the caller
-            discord_id = ctx.author.id
-            try:
-                player = await self.api.get_from_platform(discord_id, arez.Platform.Discord)
-                player = await player
-            except arez.NotFound:
-                await ctx.send("```\nDiscord account not linked to HiRez. Please link it first\n```")
+        async with ctx.typing():
+            if name is None:
+                # use the ID of the caller
+                discord_id = ctx.author.id
+                try:
+                    player = await self.api.get_from_platform(discord_id, arez.Platform.Discord)
+                    player = await player
+                except arez.NotFound:
+                    await ctx.send("```\nDiscord account not linked to HiRez. Please link it first\n```")
+                    return
+            else:
+                # player is a str here
+                player_list = await self.api.search_players(name, arez.Platform(platform))
+                player = await player_list[0]
+            status = await player.get_status()
+            live_match = await status.get_live_match()
+            if not live_match:
+                await ctx.send("```\n{} is currently {}\n```".format(player, status.status))
                 return
-        else:
-            # player is a str here
-            player_list = await self.api.search_players(name, arez.Platform(platform))
-            player = await player_list[0]
-        status = await player.get_status()
-        live_match = await status.get_live_match()
-        if not live_match:
-            await ctx.send("```\n{} is currently {}\n```".format(player, status.status))
-            return
-        await live_match.expand_players()
-        team1 = []
-        team2 = []
-        for i, live_player in enumerate(live_match.team1, 1):
-            if live_player.player.private:
-                t = []
-                t.append(i)
-                t.append(f"?????({live_player.account_level})")
-                t.append(f"{live_player.champion.name}({live_player.mastery_level})")
-                t.append("???")
-                t.append(f"{live_player.rank}")
-                team1.append(t)
-            else:
-                t = []
-                t.append(i)
-                t.append(f"{live_player.player.name}({live_player.account_level})")
-                t.append(f"{live_player.champion.name}({live_player.mastery_level})")
-                t.append(f"({live_player.player.casual.winrate_text})")
-                t.append(f"{live_player.rank}")
-                team1.append(t)
-        for i, live_player in enumerate(live_match.team2, 1):
-            if live_player.player.private:
-                t = []
-                t.append(i)
-                t.append(f"?????({live_player.account_level})")
-                t.append(f"{live_player.champion.name}({live_player.mastery_level})")
-                t.append("???")
-                t.append(f"{live_player.rank}")
-                team2.append(t)
-            else:
-                t = []
-                t.append(i)
-                t.append(f"{live_player.player.name}({live_player.account_level})")
-                t.append(f"{live_player.champion.name}({live_player.mastery_level})")
-                t.append(f"({live_player.player.casual.winrate_text})")
-                t.append(f"{live_player.rank}")
-                team2.append(t)
-        team1_done = tabulate(team1, tablefmt="plain")
-        team2_done = tabulate(team2, tablefmt="plain")
-        desc = (
-            f"Map: {live_match.map_name}\n"
-            f"Region: {live_match.region}\n"
-            "```\n"
-            f"{''.join(team1_done)}\n"
-            "```"
-            "Versus\n"
-            "```\n"
-            f"{''.join(team2_done)}\n"
-            "```"
-        )
-        e = discord.Embed(color=await self.bot.get_embed_color(ctx),
-                            title=f"{player.name} is in a {live_match.queue}")
-        e.description = desc
-        e.set_thumbnail(url=player.avatar_url)
-        e.set_footer(text=f"Match ID: {live_match.id} / Missing players are bots.")
-        await ctx.send(embed=e)
+            await live_match.expand_players()
+            team1 = []
+            team2 = []
+            for i, live_player in enumerate(live_match.team1, 1):
+                if live_player.player.private:
+                    t = []
+                    t.append(i)
+                    t.append(f"?????({live_player.account_level})")
+                    t.append(f"{live_player.champion.name}({live_player.mastery_level})")
+                    t.append("???")
+                    t.append(f"{live_player.rank}")
+                    team1.append(t)
+                else:
+                    t = []
+                    t.append(i)
+                    t.append(f"{live_player.player.name}({live_player.account_level})")
+                    t.append(f"{live_player.champion.name}({live_player.mastery_level})")
+                    t.append(f"({live_player.player.casual.winrate_text})")
+                    t.append(f"{live_player.rank}")
+                    team1.append(t)
+            for i, live_player in enumerate(live_match.team2, 1):
+                if live_player.player.private:
+                    t = []
+                    t.append(i)
+                    t.append(f"?????({live_player.account_level})")
+                    t.append(f"{live_player.champion.name}({live_player.mastery_level})")
+                    t.append("???")
+                    t.append(f"{live_player.rank}")
+                    team2.append(t)
+                else:
+                    t = []
+                    t.append(i)
+                    t.append(f"{live_player.player.name}({live_player.account_level})")
+                    t.append(f"{live_player.champion.name}({live_player.mastery_level})")
+                    t.append(f"({live_player.player.casual.winrate_text})")
+                    t.append(f"{live_player.rank}")
+                    team2.append(t)
+            team1_done = tabulate(team1, tablefmt="plain")
+            team2_done = tabulate(team2, tablefmt="plain")
+            desc = (
+                f"Map: {live_match.map_name}\n"
+                f"Region: {live_match.region}\n"
+                "```\n"
+                f"{''.join(team1_done)}\n"
+                "```"
+                "Versus\n"
+                "```\n"
+                f"{''.join(team2_done)}\n"
+                "```"
+            )
+            e = discord.Embed(color=await self.bot.get_embed_color(ctx),
+                                title=f"{player.name} is in a {live_match.queue}")
+            e.description = desc
+            e.set_thumbnail(url=player.avatar_url)
+            e.set_footer(text=f"Match ID: {live_match.id} / Missing players are bots.")
+            await ctx.send(embed=e)
 
     @commands.command()
     async def champstats(self, ctx, champion_name="all", player=None, platform="PC"):
