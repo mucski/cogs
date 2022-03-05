@@ -46,7 +46,7 @@ class HiRez(commands.Cog):
             if isinstance(exc, aiohttp.ClientResponseError):
                 await ctx.send("```\nTimed out. Please try again in a minute.\n```")
             if isinstance(exc, arez.exceptions.HTTPException):
-                await ctx.send("```\nSomething went wrong, please try again with another user/id/name or try agian later\n```")
+                await ctx.send("```\nSomething went wrong with the API. If the problem persists please contact Mucski.\n```")
         await ctx.bot.on_command_error(ctx, error, unhandled_by_cog=True)
 
     @commands.command()
