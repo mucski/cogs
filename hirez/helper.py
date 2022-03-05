@@ -276,8 +276,8 @@ async def generatecard(player):
     stroke_size = 1
     # name
     kda = await get_kda_guru(player.id)
-    draw.text((33, 211), f"{player.name} - (Global KDA: {kda[4]})", font=fnt_big, stroke_width=stroke_size, stroke_fill=stroke, fill=(180, 160, 138))
-    draw.text((33, 277), f"{player.title}", font=fnt_small, stroke_width=stroke_size, stroke_fill=stroke, fill=(223, 142, 53))
+    draw.text((33, 211), f"{player.name}", font=fnt_big, stroke_width=stroke_size, stroke_fill=stroke, fill=(180, 160, 138))
+    draw.text((33, 277), f"{player.title}  - (Global KDA: {kda[3]})", font=fnt_small, stroke_width=stroke_size, stroke_fill=stroke, fill=(223, 142, 53))
     draw.text((33, 360), f"Level: {player.calculated_level}", font=fnt, stroke_width=stroke_size, stroke_fill=stroke, fill=fill)
     draw.text((33, 417), f"Region: {player.region}", font=fnt, stroke_width=stroke_size, stroke_fill=stroke, fill=fill)
     draw.text((33, 474), f"Champions Owned: {player.champion_count}", font=fnt, stroke_width=stroke_size, stroke_fill=stroke, fill=fill)
