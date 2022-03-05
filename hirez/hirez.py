@@ -436,6 +436,6 @@ class HiRez(commands.Cog):
             await ctx.send(file=file)
 
     @commands.command()
-    async def hitest(self, playerid: int):
+    async def hitest(self, ctx, playerid: int):
         resp = await helper.get_kda_guru(playerid)
         await ctx.send(resp)
