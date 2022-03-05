@@ -308,4 +308,4 @@ async def get_kda_guru(player): # this input must be the player ID
                 stats = []
                 for i in soup.find_all("div", class="tsw__grid__stat"):
                     stats.append(i)
-                return data
+                return stats
