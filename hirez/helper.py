@@ -303,4 +303,4 @@ async def get_kda_guru(player): # this input must be the player ID
         async with session.get(url) as resp:
             if resp.status == 200:
                 data = resp.text()
-    return data
+                return data
