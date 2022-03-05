@@ -438,12 +438,7 @@ class HiRez(commands.Cog):
     @commands.command()
     async def hitest(self, ctx, playerid: int):
         resp = await helper.get_kda_guru(playerid)
-        if len(resp) > 2000:
-            try:
-                file = text_to_file(resp, "test_web.txt")
-                await ctx.send(file=file)
-            except discord.errors.HTTPException:
-                await ctx.send("File too large.")
-                return
+        if resp:
+            await ctx.send("Your global KDA according to Paladins.guru is {}".format(stats[3]))
         else:
-            await ctx.send(resp)
+            await ctx.send("No response returned.")
