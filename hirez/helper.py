@@ -305,4 +305,5 @@ async def get_kda_guru(player): # this input must be the player ID
             if resp.status == 200:
                 raw = await resp.text()
                 soup = BeautifulSoup(raw, 'html.parser')
-                return soup.prettify()
+                data = soup.div["tsw__grid__stat"]
+                return data
