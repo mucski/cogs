@@ -2,10 +2,12 @@ from __future__ import annotations
 
 from PIL import ImageOps, ImageDraw, Image, ImageFont, ImageEnhance
 import aiohttp
+import asyncio
 from io import BytesIO
 from redbot.core.utils.chat_formatting import humanize_number
 import humanize
 from datetime import datetime
+
 
 def champ_into_pic(champ: arez.Champion) -> Image:
     name = champ.name.lower().replace(" ","-").replace("'","")
@@ -294,3 +296,11 @@ async def generatecard(player):
     img.save(final_buffer, "PNG")
     final_buffer.seek(0)
     return final_buffer
+
+async def get_kda_guru(player): # this input must be the player ID
+    url = 'https://paladins.guru/profile/{}'.format(player)
+    async with aiohttp.ClientSession() as session:
+        async with session.get(url) as resp:
+            if resp.status == 200:
+                data = resp.text()
+    return data

@@ -434,3 +434,8 @@ class HiRez(commands.Cog):
             playercard = await helper.generatecard(player)
             file = discord.File(filename=f"{player.name}.png", fp=playercard)
             await ctx.send(file=file)
+
+    @commands.command()
+    async def hitest(self, int: playerid):
+        resp = await helper.get_kda_guru(playerid)
+        await ctx.send(resp)
