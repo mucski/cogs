@@ -439,6 +439,6 @@ class HiRez(commands.Cog):
     async def hitest(self, ctx, playerid: int):
         resp = await helper.get_kda_guru(playerid)
         if resp:
-            await ctx.send("Your global KDA according to Paladins.guru is {}".format(stats[3]))
+            await ctx.send("Your global KDA according to Paladins.guru is {}".format(resp[3]))
         else:
             await ctx.send("No response returned.")
