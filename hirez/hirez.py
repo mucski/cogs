@@ -38,15 +38,15 @@ class HiRez(commands.Cog):
                 await ctx.send("```\nHiRez API is unavailable.\n```")
                 return
             if isinstance(exc, arez.Private):
-                await ctx.send("```\nRequested profile is set to private\n```")
+                await ctx.send("```\nRequested profile is set to private.\n```")
                 return
             if isinstance(exc, arez.NotFound):
                 await ctx.send("```\nNot found!\n```")
                 return
             if isinstance(exc, aiohttp.ClientResponseError):
-                await ctx.send("```\nTimed out. Try again in a minute\n```")
+                await ctx.send("```\nTimed out. Please try again in a minute.\n```")
             if isinstance(exc, arez.exceptions.HTTPException):
-                await ctx.send("```\nSomething went wrong, try again with another user/id/name or try agian later\n```")
+                await ctx.send("```\nSomething went wrong, please try again with another user/id/name or try agian later\n```")
         await ctx.bot.on_command_error(ctx, error, unhandled_by_cog=True)
 
     @commands.command()
@@ -286,11 +286,11 @@ class HiRez(commands.Cog):
             entry = await self.api.get_champion_info()
             champ = entry.champions.get(champion_name)
             if champ is None:
-                await ctx.send("```\nYou dun fucked up the champ's name!\n```")
+                await ctx.send("```\nInvalid champion name. Usage [p]chammpstats CHAMPION PLAYER PLATFORM(optional)!\n```")
                 return
             stats = stats_dict.get(champ)
             if stats is None:
-                await ctx.send("```\nYou ain't played this champ yet!\n```")
+                await ctx.send("```\n{} does not own this champion or did not play it yet.\n```".format(player.name))
                 return
             desc = (
                 f"```\nChampion role: {champ.role}\n"
@@ -343,12 +343,12 @@ class HiRez(commands.Cog):
                 try:
                     player_list = await self.api.search_players(player, arez.Platform(platform))
                 except arez.NotFound:
-                    await ctx.send("```\nNo players found with that name\n```")
+                    await ctx.send("```\nDid not find anyone called {}\n```".format(player))
                     return
                 player = player_list[0]
             match_list = await player.get_match_history()
             if not match_list:
-                await ctx.send("```\nNo recent matches found.\n```")
+                await ctx.send("```\nNo recent matches found. (History is only kept for 30 days)\n```")
                 return
             match = await match_list[0]
             await match.expand_players()
