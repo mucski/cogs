@@ -277,9 +277,9 @@ async def generatecard(player):
     # name
     kda = await get_kda_guru(player.id)
     if kda:
-        gkda = kda[3]
+        kda = kda[3]
     else:
-        "?"
+        kda = "?"
     draw.text((33, 211), f"{player.name}", font=fnt_big, stroke_width=stroke_size, stroke_fill=stroke, fill=(180, 160, 138))
     draw.text((33, 277), f"{player.title}  - (Global KDA: {gkda})", font=fnt_small, stroke_width=stroke_size, stroke_fill=stroke, fill=(223, 142, 53))
     draw.text((33, 360), f"Level: {player.calculated_level}", font=fnt, stroke_width=stroke_size, stroke_fill=stroke, fill=fill)
