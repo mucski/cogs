@@ -6,7 +6,7 @@ import discord
 
 
 class FFmpegPCMAudio(discord.AudioSource):
-    async def __init__(self, source, *, executable='ffmpeg', pipe=False, stderr=None, before_options=None, options=None):
+    def __init__(self, source, *, executable='ffmpeg', pipe=False, stderr=None, before_options=None, options=None):
         stdin = None if not pipe else source
         args = [executable]
         if isinstance(before_options, str):
@@ -19,8 +19,8 @@ class FFmpegPCMAudio(discord.AudioSource):
         args.append('pipe:1')
         self._process = None
         try:
-            self._process = subprocess.Popen(args, stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=stderr)
-            self._stdout = io.BytesIO(
+            await self._process = subprocess.Popen(args, stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=stderr)
+            await self._stdout = io.BytesIO(
                 self._process.communicate(input=stdin)[0]
             )
         except FileNotFoundError:
