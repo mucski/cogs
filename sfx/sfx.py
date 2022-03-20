@@ -201,7 +201,7 @@ class SFX(commands.Cog):
                 fp.seek(0)
                 # Lets play that mp3 file in the voice channel
                 vc.play(
-                    await FFmpegPCMAudio(
+                    FFmpegPCMAudio(
                         fp.read(), pipe=True, options=f'-filter:a "atempo={speed}" -t 00:00:20'
                     ),
                     after=lambda error: self.vc_callback(error, item.msg.channel),
