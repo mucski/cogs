@@ -1,4 +1,4 @@
-from . import HiRez
+from .hirez import HiRez
 
 
 def setup(bot):
