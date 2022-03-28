@@ -8,16 +8,16 @@ from typing import Optional, List, Dict, NamedTuple
 import discord
 from redbot.core.commands import Context
 from redbot.core import commands, checks, Config
+from .custom import FFmpegPCMAudio
 
 # Gevent patch before gTTS
-#try:
-    #import gevent
-    #gevent.monkey.patch_all()
-#except ModuleNotFoundError:
-    #pass
-
+try:
+    import gevent
+    gevent.monkey.patch_all()
+except ModuleNotFoundError:
+    pass
 from gtts import gTTS
-from .custom import FFmpegPCMAudio
+
 
 
 class TTSItem(NamedTuple):
