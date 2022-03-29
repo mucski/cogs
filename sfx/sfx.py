@@ -211,6 +211,7 @@ class SFX(commands.Cog):
             except discord.ClientException:
                 # raised when the bot is already playing some other audio, possibly from
                 # another cog, which we cannot control - ignore this item
+                await ctx.send("Burp")
                 pass
             except Exception:
                 await item.msg.channel.send(f"```\n{traceback.format_exc()}\n```")
