@@ -19,7 +19,6 @@ except ModuleNotFoundError:
 from gtts import gTTS
 
 
-
 class TTSItem(NamedTuple):
     sentence: str
     msg: discord.Message
