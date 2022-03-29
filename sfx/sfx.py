@@ -16,7 +16,7 @@ from .custom import FFmpegPCMAudio
 #    gevent.monkey.patch_all()
 #except ModuleNotFoundError:
 #    pass
-#from gtts import gTTS
+from gtts import gTTS
 
 
 class TTSItem(NamedTuple):
