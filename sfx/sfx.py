@@ -214,7 +214,6 @@ class SFX(commands.Cog):
                 pass
             except Exception:
                 await item.msg.channel.send(f"```\n{traceback.format_exc()}\n```")
-            finally:
                 if self.vc_lock.locked():
                     self.vc_lock.release()
 
