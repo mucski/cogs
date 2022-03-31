@@ -257,7 +257,7 @@ class SFX(commands.Cog):
         if with_nick and not april:
             sentence = f"{msg.author.name} says: {text}"
         elif april:
-            sentence = f"{msg.author.name} says: {random.choice(self.random_insult)}"
+            sentence = f"{msg.author.name} says: {random.choice(random_insult)}"
         else:
             sentence = f"{text}"
         await self.vc_queue.put(TTSItem(sentence, msg))
