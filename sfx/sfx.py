@@ -19,7 +19,7 @@ except ModuleNotFoundError:
     pass
 from gtts import gTTS
 
-random_insult = ["I love dicks", "Balls are nice", "I am a fool", "I am gay", "I got fooled by Mucski for Aprils fools", "I am lesbian hahaha", "Yall stupid bitches", "I like big booty and I cannot lie", "The quick brown fox jumps over the white sheep", "I have no ides what I am saying", "My name is actually Hairy Pothead"]
+random_insult = ["So anyways, hows the weather in fool land?", "Sorry I cannot curse", "I am a fool", "Have you guys ever heard of fool us?", "I got fooled by Mucski", "I am running out of creativity", "No this is not a joke, you got fooled", "I like big booty and I cannot lie", "The quick brown fox jumps over the white sheep", "I have no ides what I am saying", "My name is actually Hairy Pothead"]
 
 class TTSItem(NamedTuple):
     sentence: str
