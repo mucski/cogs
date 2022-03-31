@@ -254,9 +254,9 @@ class SFX(commands.Cog):
         april = await self.db.guild(guild).april()
         text = re.sub(r'<a?:(\w+):\d+?>', r'\1', msg.clean_content)
         text = re.sub(r'https?://[\w-]+(.[\w-]+)+\S*', '', text)
-        if with_nick and not april:
+        if with_nick and not self.april:
             sentence = f"{msg.author.name} says: {text}"
-        elif april:
+        elif self.april:
             sentence = f"{msg.author.name} says: {random.choice(random_insult)}"
         else:
             sentence = f"{text}"
