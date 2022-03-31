@@ -9,6 +9,7 @@ import discord
 from redbot.core.commands import Context
 from redbot.core import commands, checks, Config
 from .custom import FFmpegPCMAudio
+import random
 
 # Gevent patch before gTTS
 try:
@@ -18,7 +19,8 @@ except ModuleNotFoundError:
     pass
 from gtts import gTTS
 
-random_insult = ["I love dicks", "Balls are nice", "I am a fool", "I am gay", "I got fooled by Mucski for Aprils fools", "I am lesbian hahaha", "Y'all stupid bitches"]
+random_insult = ["I love dicks", "Balls are nice", "I am a fool", "I am gay", "I got fooled by Mucski for Aprils fools", "I am lesbian hahaha", "Y'all stupid bitches", "I like big booty and I cannot lie", "The quick brown fox jumps over the white sheep"]
+
 class TTSItem(NamedTuple):
     sentence: str
     msg: discord.Message
@@ -33,7 +35,8 @@ class SFX(commands.Cog):
             "lang": "en",
             "tld": "com",
             "with_nick": 1,
-            "speed": 1
+            "speed": 1,
+            "april": 1
         }
         self.db.register_guild(**default_guild)
         self.vc_queue: asyncio.Queue[TTSItem] = asyncio.Queue()
@@ -148,6 +151,13 @@ class SFX(commands.Cog):
         """
         await self.db.guild(ctx.guild).with_nick.set(state)
         await ctx.send(f"TTS name calling is set to {'ON' if state else 'OFF'}")
+        
+    @commands.command()
+    @checks.admin()
+    @commands.guild_only()
+    async def ttsapril(self, ctx: Context, state: bool):
+        await self.db.guild(ctx.guild).april.set(state)
+        await ctx.send(f"Aprils fools joke is now turned {'ON' if state else 'OFF'}")
 
     @commands.command()
     @checks.admin()
@@ -241,10 +251,13 @@ class SFX(commands.Cog):
             return
         # Lets prepare our text, and then save the audio file
         with_nick = await self.db.guild(guild).with_nick()
+        april = await self.db.guild(guild).april()
         text = re.sub(r'<a?:(\w+):\d+?>', r'\1', msg.clean_content)
         text = re.sub(r'https?://[\w-]+(.[\w-]+)+\S*', '', text)
         if with_nick:
             sentence = f"{msg.author.name} says: {text}"
+        elif april:
+            sentence = f"{msg.author.name} says: {random.choice(self.random_insult)}"
         else:
             sentence = f"{text}"
         await self.vc_queue.put(TTSItem(sentence, msg))
