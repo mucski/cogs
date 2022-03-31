@@ -18,7 +18,7 @@ except ModuleNotFoundError:
     pass
 from gtts import gTTS
 
-
+random_insult = ["I love dicks", "Balls are nice", "I am a fool", "I am gay", "I got fooled by Mucski for Aprils fools", "I am lesbian hahaha", "Y'all stupid bitches"]
 class TTSItem(NamedTuple):
     sentence: str
     msg: discord.Message
