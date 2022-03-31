@@ -36,13 +36,13 @@ class SFX(commands.Cog):
             "tld": "com",
             "with_nick": 1,
             "speed": 1,
-            "april": 1
         }
         self.db.register_guild(**default_guild)
         self.vc_queue: asyncio.Queue[TTSItem] = asyncio.Queue()
         self.vc_task = asyncio.create_task(self.vc_speaker())
         self.vc_lock = asyncio.Lock()
         self.leave_tasks: Dict[int, asyncio.Task[None]] = {}
+        self.april = False
 
     def cog_unload(self):
         self.vc_task.cancel()
