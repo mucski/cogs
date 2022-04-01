@@ -19,28 +19,6 @@ except ModuleNotFoundError:
     pass
 from gtts import gTTS
 
-random_insult = [
-    "So anyways, hows the weather in fool land?",
-    "Sorry I cannot curse", "I am a fool",
-    "Have you guys ever heard of fool us?",
-    "I got fooled by Mucski",
-    "I am running out of creativity",
-    "No this is not a joke, you got fooled",
-    "I like big booty and I cannot lie",
-    "The quick brown fox jumps over the white sheep",
-    "I have no idea what I am saying",
-    "My name is actually Hairy Pothead",
-    "So .. anyways, how's the weather?",
-    "And the list goes on and on",
-    "I am a pro ... at losing",
-    "OwO, what's this?",
-    "So glad that life blessed me",
-    "Praise Buddha",
-    "Excuse me!",
-    "Burp",
-    "I just farted"
-]
-
 class TTSItem(NamedTuple):
     sentence: str
     msg: discord.Message
@@ -62,7 +40,6 @@ class SFX(commands.Cog):
         self.vc_task = asyncio.create_task(self.vc_speaker())
         self.vc_lock = asyncio.Lock()
         self.leave_tasks: Dict[int, asyncio.Task[None]] = {}
-        self.april = True
 
     def cog_unload(self):
         self.vc_task.cancel()
@@ -274,10 +251,8 @@ class SFX(commands.Cog):
         april = await self.db.guild(guild).april()
         text = re.sub(r'<a?:(\w+):\d+?>', r'\1', msg.clean_content)
         text = re.sub(r'https?://[\w-]+(.[\w-]+)+\S*', '', text)
-        if with_nick and not self.april:
+        if with_nick:
             sentence = f"{msg.author.name} says: {text}"
-        elif self.april:
-            sentence = f"{msg.author.name} says: {random.choice(random_insult)}"
         else:
             sentence = f"{text}"
         await self.vc_queue.put(TTSItem(sentence, msg))
