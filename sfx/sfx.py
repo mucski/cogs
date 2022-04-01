@@ -40,6 +40,10 @@ class SFX(commands.Cog):
         self.vc_task = asyncio.create_task(self.vc_speaker())
         self.vc_lock = asyncio.Lock()
         self.leave_tasks: Dict[int, asyncio.Task[None]] = {}
+<<<<<<< HEAD
+=======
+        self.april = False
+>>>>>>> d09912a145b70b8eb8a9bfcd40bfeb6c6c00ab13
 
     def cog_unload(self):
         self.vc_task.cancel()
