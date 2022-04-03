@@ -34,7 +34,7 @@ class Birthday(commands.Cog):
         bmonth = await self.bot.wait_for("message", check=MessagePredicate.same_context(ctx))
         if len(bmonth.content) < 2 or len(bmonth.content) > 2:
             await ctx.send("Birth month must be a two digit number (01 ... and so on), run the command again to start over")
-        elif type(bday.month) not int:
+        elif type(bmonth.content) not int:
             await ctx.send("You must enter a 2 digit number")
             return
         await ctx.send("Enter your birth YEAR")
