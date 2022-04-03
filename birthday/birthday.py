@@ -27,7 +27,7 @@ class Birthday(commands.Cog):
     async def set(self, ctx):
         await ctx.send("Enter your birth DAY")
         bday = await self.bot.wait_for("message", check=MessagePredicate.same_context(ctx))
-        bday = bday.content
+        bday = int(bday.content)
         if type(bday) is int:
             await ctx.send("HAHAHAHHAHAHAHAHAHA")
             return
