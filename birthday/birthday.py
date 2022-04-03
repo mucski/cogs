@@ -27,26 +27,7 @@ class Birthday(commands.Cog):
     async def set(self, ctx):
         await ctx.send("Enter your birth DAY")
         bday = await self.bot.wait_for("message", check=MessagePredicate.same_context(ctx))
-        if len(bday.content) < 2 or len(bday.content) > 2:
-            await ctx.send("Birth day must be a two digit number (01 ... and so on), run the command again to start over")
-            return
-        elif not isinstance(bday.content, int):
-            await ctx.send("You must enter a 2 digit number, run the command again to start over")
-            return
-        await ctx.send("Enter your birth MONTH")
-        bmonth = await self.bot.wait_for("message", check=MessagePredicate.same_context(ctx))
-        if len(bmonth.content) < 2 or len(bmonth.content) > 2:
-            await ctx.send("Birth month must be a two digit number (01 ... and so on), run the command again to start over")
-            return
-        elif not isinstance(bmonth.content, int):
-            await ctx.send("You must enter a 2 digit number, run the command again to start over")
-            return
-        await ctx.send("Enter your birth YEAR")
-        byear = await self.bot.wait_for("message", check=MessagePredicate.same_context(ctx))
-        if len(byear.content) < 4 or len(byear.content) > 4:
-            await ctx.send("Birth year must be a four digit number (01 ... and so on), run the command again to start over")
-            return
-        elif not isinstance(byear.content, int):
-            await ctx.send("You must enter a 4 digit number, run the command again to start over")
-            return
-        await ctx.send("You set your birthday to {}/{}/{}".format(bday.content,bmonth.content,byear.content))
+        bday = bday.content
+        if type(bday) is int:
+            await ctx.send("HAHAHAHHAHAHAHAHAHA")
+        await ctx.send("You set your birthday to {}".format(bday))
