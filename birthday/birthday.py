@@ -26,9 +26,9 @@ class Birthday(commands.Cog):
     @birthday.command()
     async def set(self, ctx):
         await ctx.send("Enter your birth DAY")
-        bday = await bot.wait_for("message", check=MessagePredicate.same_context(ctx))
+        bday = await self.bot.wait_for("message", check=MessagePredicate.same_context(ctx))
         await ctx.send("Enter your birth MONTH")
-        bmonth = await bot.wait_for("message", check=MessagePredicate.same_context(ctx))
+        bmonth = await self.bot.wait_for("message", check=MessagePredicate.same_context(ctx))
         await ctx.send("Enter your birth YEAR")
-        byear = await bot.wait_for("message", check=MessagePredicate.same_context(ctx))
+        byear = await self.bot.wait_for("message", check=MessagePredicate.same_context(ctx))
         await ctx.send("You set your birthday to {} {} {}".format(bday,bmonth,byear))
