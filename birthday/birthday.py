@@ -1,5 +1,6 @@
 import discord
 from redbot.core import commands, Config, checks
+from redbot.core.utils.predicates import MessagePredicate
 
 
 class Birthday(commands.Cog):
