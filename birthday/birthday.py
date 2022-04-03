@@ -8,7 +8,6 @@ class Birthday(commands.Cog):
         self.bot = bot
 
 
-    @commands.group()
+    @commands.group(aliases=['b'])
     async def birthday(self, ctx):
         """Under cumstruction"""
-        await ctx.send("Under construction")
