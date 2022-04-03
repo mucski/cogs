@@ -9,5 +9,5 @@ class Birthday(commands.Cog):
 
     @commands.group()
     async def birthday(self, ctx):
-        """Under cumstruction""""
+        """Under cumstruction"""
         await ctx.send("Under construction")
