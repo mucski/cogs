@@ -31,4 +31,4 @@ class Birthday(commands.Cog):
         bmonth = await self.bot.wait_for("message", check=MessagePredicate.same_context(ctx))
         await ctx.send("Enter your birth YEAR")
         byear = await self.bot.wait_for("message", check=MessagePredicate.same_context(ctx))
-        await ctx.send("You set your birthday to {} {} {}".format(bday,bmonth,byear))
+        await ctx.send("You set your birthday to {} {} {}".format(bday.content,bmonth.content,byear.content))
