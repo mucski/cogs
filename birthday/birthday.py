@@ -27,7 +27,7 @@ class Birthday(commands.Cog):
     async def set(self, ctx):
         await ctx.send("Enter your birth DAY")
         bday = await self.bot.wait_for("message", check=MessagePredicate.same_context(ctx))
-        if len(bday.content) < 2 or > 3:
+        if len(bday.content) < 2 or len(bday.content) > 3:
             await ctx.send("Birth day must be a two digit number (01 ... and so on)")
         await ctx.send("Enter your birth MONTH")
         bmonth = await self.bot.wait_for("message", check=MessagePredicate.same_context(ctx))
