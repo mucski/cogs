@@ -30,4 +30,6 @@ class Birthday(commands.Cog):
         bday = bday.content
         if type(bday) is int:
             await ctx.send("HAHAHAHHAHAHAHAHAHA")
-        await ctx.send("You set your birthday to {}".format(bday))
+            return
+        else:
+            await ctx.send("You set your birthday to {}".format(bday))
