@@ -29,8 +29,9 @@ class Birthday(commands.Cog):
         bday = await self.bot.wait_for("message", check=MessagePredicate.same_context(ctx))
         if len(bday.content) < 2 or len(bday.content) > 3:
             await ctx.send("Birth day must be a two digit number (01 ... and so on)")
+            return
         await ctx.send("Enter your birth MONTH")
         bmonth = await self.bot.wait_for("message", check=MessagePredicate.same_context(ctx))
         await ctx.send("Enter your birth YEAR")
         byear = await self.bot.wait_for("message", check=MessagePredicate.same_context(ctx))
-        await ctx.send("You set your birthday to {}, {}, {}".format(bday.content,bmonth.content,byear.content))
+        await ctx.send("You set your birthday to {}/{}/{}".format(bday.content,bmonth.content,byear.content))
