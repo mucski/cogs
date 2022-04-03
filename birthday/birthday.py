@@ -36,7 +36,7 @@ class Birthday(commands.Cog):
             await ctx.send("Birth month must be a two digit number (01 ... and so on), run the command again to start over")
             return
         elif not isinstance(bmonth.content, int):
-            await ctx.send("You must enter a 2 digit number")
+            await ctx.send("You must enter a 2 digit number, run the command again to start over")
             return
         await ctx.send("Enter your birth YEAR")
         byear = await self.bot.wait_for("message", check=MessagePredicate.same_context(ctx))
