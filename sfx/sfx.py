@@ -151,13 +151,6 @@ class SFX(commands.Cog):
     @commands.command()
     @checks.admin()
     @commands.guild_only()
-    async def ttsapril(self, ctx: Context, state: bool):
-        await self.db.guild(ctx.guild).april.set(state)
-        await ctx.send(f"Aprils fools joke is now turned {'ON' if state else 'OFF'}")
-
-    @commands.command()
-    @checks.admin()
-    @commands.guild_only()
     async def ttscleardb(self, ctx: Context):
         """
         Clear all settings for the current guild.
@@ -247,7 +240,6 @@ class SFX(commands.Cog):
             return
         # Lets prepare our text, and then save the audio file
         with_nick = await self.db.guild(guild).with_nick()
-        april = await self.db.guild(guild).april()
         text = re.sub(r'<a?:(\w+):\d+?>', r'\1', msg.clean_content)
         text = re.sub(r'https?://[\w-]+(.[\w-]+)+\S*', '', text)
         if with_nick:
