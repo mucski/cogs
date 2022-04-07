@@ -9,7 +9,6 @@ import discord
 from redbot.core.commands import Context
 from redbot.core import commands, checks, Config
 from .custom import FFmpegPCMAudio
-import random
 
 # Gevent patch before gTTS
 try:
