@@ -25,9 +25,10 @@ class Birthday(commands.Cog):
 
     @birthday.command()
     async def set(self, ctx):
-        await ctx.send("Enter your birth DAY")
+        await ctx.send("Enter your birth DAY such as 03")
         bday = await self.bot.wait_for("message", check=MessagePredicate.same_context(ctx))
         try:
             bday = int(bday.content)
         except ValueError:
-            await ctx.send("Must be a digit!")
+            await ctx.send("Must be an integer! Start over.")
+            return

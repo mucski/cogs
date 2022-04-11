@@ -290,7 +290,7 @@ class HiRez(commands.Cog):
                 return
             stats = stats_dict.get(champ)
             if stats is None:
-                await ctx.send("```\n{} does not own this champion or did not play it yet.\n```".format(player.name))
+                await ctx.send("```\n{} does not own this champion or did not play it yet.\n```".format(player))
                 return
             desc = (
                 f"```\nChampion role: {champ.role}\n"
