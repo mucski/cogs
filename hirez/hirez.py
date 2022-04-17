@@ -22,7 +22,7 @@ class HiRez(commands.Cog):
     """
     def __init__(self, bot):
         self.bot = bot
-        self.f = open("~/root/mucski/stuff/key.txt", "r")
+        self.f = open("/root/mucski/stuff/key.txt", "r")
         self.auth = self.f.readline()
         self.devid = self.f.readline()
         self.api = arez.PaladinsAPI(dev_id=self.devid.strip(), auth_key=self.auth.strip())
