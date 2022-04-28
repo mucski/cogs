@@ -441,7 +441,10 @@ class HiRez(commands.Cog):
                 most_class = "Unknown"
             for page in pagify(table_done, page_length=1900):
                 await ctx.send("```diff\n{}\n```".format(page))
-            await ctx.send("```\nMost played champion: {}\nMost played class: {}\nAverage KDA: {:.2f}\n```".format(most_champ, most_class, final_kda / kda_counter))
+            try:
+                await ctx.send("```\nMost played champion: {}\nMost played class: {}\nAverage KDA: {:.2f}\n```".format(most_champ, most_class, final_kda / kda_counter))
+            except ZeroDivisionError:
+                await ctx.send("```\nMost played champion: {}\nMost played class: {}\nAverage KDA: {:.2f}\n```".format(most_champ, most_class, final_kda))
 
     @commands.command()
     async def stats(self, ctx, name=None, platform="PC"):
