@@ -382,8 +382,8 @@ class HiRez(commands.Cog):
             final_kda = 0
             kda_counter = 0
             if sorting == "ranked":
-                if match.queue.is_ranked():
-                    for match in history:
+                for match in history:
+                    if match.queue.is_ranked():
                         t = []
                         if match.winner:
                             win = "+"
@@ -398,8 +398,8 @@ class HiRez(commands.Cog):
                         kda_counter += 1
                         table.append(t)
             elif sorting == "casual":
-                if match.queue.is_casual():
-                    for match in history:
+                for match in history:
+                    if match.queue.is_casual():
                         t = []
                         if match.winner:
                             win = "+"
