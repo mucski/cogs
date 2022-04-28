@@ -444,7 +444,7 @@ class HiRez(commands.Cog):
             try:
                 await ctx.send("```\nMost played champion: {}\nMost played class: {}\nAverage KDA: {:.2f}\n```".format(most_champ, most_class, final_kda / kda_counter))
             except ZeroDivisionError:
-                await ctx.send("```\nMost played champion: {}\nMost played class: {}\nAverage KDA: {:.2f}\n```".format(most_champ, most_class, final_kda))
+                pass
 
     @commands.command()
     async def stats(self, ctx, name=None, platform="PC"):
