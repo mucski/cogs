@@ -358,7 +358,7 @@ class HiRez(commands.Cog):
             # await ctx.send(match.bans)
 
     @commands.command()
-    async def history(self, ctx, player=None, platform="PC"):
+    async def history(self, ctx, player=None, sorting="none", platform="PC"):
         """Returns the history of someone (or yourself)
         Usage: [p]history name platform (or leave both blank for yourself if you have discord linked to hirez)
         """
@@ -381,23 +381,56 @@ class HiRez(commands.Cog):
             table = []
             final_kda = 0
             kda_counter = 0
-            for match in history:
-                t = []
-                if match.winner:
-                    win = "+"
-                else:
-                    win = "-"
-                t.append(win + match.map_name)
-                t.append(match.champion.name)
-                t.append(match.kda_text)
-                t.append(match.id)
+            if sorting == "ranked":
                 if match.queue.is_ranked():
-                    t.append("Ranked")
-                elif match.queue.is_casual():
-                    t.append("Casual")
-                final_kda += match.kda2
-                kda_counter += 1
-                table.append(t)
+                    for match in history:
+                        t = []
+                        if match.winner:
+                            win = "+"
+                        else:
+                            win = "-"
+                        t.append(win + match.map_name)
+                        t.append(match.champion.name)
+                        t.append(match.kda_text)
+                        t.append(match.id)
+                        t.append("Ranked")
+                        final_kda += match.kda2
+                        kda_counter += 1
+                        table.append(t)
+            elif sorting == "casual":
+                if match.queue.is_casual():
+                    for match in history:
+                        t = []
+                        if match.winner:
+                            win = "+"
+                        else:
+                            win = "-"
+                        t.append(win + match.map_name)
+                        t.append(match.champion.name)
+                        t.append(match.kda_text)
+                        t.append(match.id)
+                        t.append("Casual")
+                        final_kda += match.kda2
+                        kda_counter += 1
+                        table.append(t)
+            elif sorting == "none":
+                for match in history:
+                    t = []
+                    if match.winner:
+                        win = "+"
+                    else:
+                        win = "-"
+                    t.append(win + match.map_name)
+                    t.append(match.champion.name)
+                    t.append(match.kda_text)
+                    t.append(match.id)
+                    if match.queue.is_ranked():
+                        t.append("Ranked")
+                    elif match.queue.is_casual():
+                        t.append("Casual")
+                    final_kda += match.kda2
+                    kda_counter += 1
+                    table.append(t)
             table_done = tabulate(table, tablefmt="plain", headers=["Map", "Champion", "KDA", "ID", "Type"])
             champs = Counter(m.champion for m in history)
             most_champ = champs.most_common(1)[0][0].name
