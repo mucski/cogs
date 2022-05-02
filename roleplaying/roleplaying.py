@@ -40,12 +40,6 @@ class Roleplaying(commands.Cog):
 
     @commands.command()
     async def kiss(self, ctx, member: discord.Member = None):
-        # just a little prank for whoever tries to kiss Kunnie ... except me
-        # if member and member.id == 480157789482778637 and ctx.author.id != 765905040077750292:
-        #    await ctx.send(
-        #        embed=self.img_grab(kisslist, "kisses **Mucski**'s ass", "", ctx.author, None)
-        #    )
-        #    return
         await ctx.send(embed=self.img_grab(kisslist, "sends kisses", "kisses", ctx.author, member))
 
     @commands.command()
