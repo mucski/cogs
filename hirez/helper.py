@@ -13,12 +13,12 @@ from bs4 import BeautifulSoup
 def champ_into_pic(champ: arez.Champion) -> Image:
     name = champ.name.lower().replace(" ","-").replace("'","")
     try:
-        pic = Image.open(f"root/mucski/stuff/icons/avatars/{name}.jpg")
+        pic = Image.open(f"/home/poopski/mucski/stuff/icons/avatars/{name}.jpg")
         if pic.size < (512, 512):
             (width, height) = (pic.width * 2, pic.height * 2)
             pic = pic.resize((width, height))
     except FileNotFoundError:
-        pic = Image.open("root/mucski/stuff/icons/error.jpg")
+        pic = Image.open("/home/poopski/mucski/stuff/icons/error.jpg")
     return pic
 
 def statsimage(mp, index):
@@ -60,17 +60,17 @@ def statsimage(mp, index):
     img.paste(champimgcrop, (padding, padding))
     # rank icon
     if mp.player.private:
-        rankicon = Image.open(f"root/mucski/stuff/icons/ranks/99.png")
+        rankicon = Image.open(f"/home/poopski/mucski/stuff/icons/ranks/99.png")
     else:
         rankicon = Image.open(f"root/mucski/stuff/icons/ranks/{mp.player.ranked_best.rank.value}.png")
     img.paste(rankicon, (1526, mid), mask=rankicon)
     # make the image drawable
     draw = ImageDraw.Draw(img)
     # normal font
-    fnt = ImageFont.truetype("root/mucski/stuff/arial.ttf", 80)
+    fnt = ImageFont.truetype("/home/poopski/mucski/stuff/arial.ttf", 80)
     # bold font
-    fntbld = ImageFont.truetype("root/mucski/stuff/arialbd.ttf", 80)
-    smallfnt = ImageFont.truetype("root/mucski/stuff/arial.ttf", 60)
+    fntbld = ImageFont.truetype("/home/poopski/mucski/stuff/arialbd.ttf", 80)
+    smallfnt = ImageFont.truetype("/home/poopski/mucski/stuff/arial.ttf", 60)
 
     name = mp.player.name
 
@@ -107,7 +107,7 @@ def playerkey(x, y):
     draw = ImageDraw.Draw(key)
     fill = (255, 255, 255)
     padding = 10
-    fntbld = ImageFont.truetype("root/mucski/stuff/arialbd.ttf", 50)
+    fntbld = ImageFont.truetype("/home/poopski/mucski/stuff/arialbd.ttf", 50)
 
     # champion and player
     draw.text((20, 20), "CHAMPION", font=fntbld, fill=fill)
@@ -171,9 +171,9 @@ def middlepanel(match):
     map_name = match.map_name
     format_map = map_name.lower().replace(" ", "_").replace("'", "")
     try:
-        match_map = Image.open(f"root/mucski/stuff/icons/maps/{format_map}.png")
+        match_map = Image.open(f"/home/poopski/mucski/stuff/icons/maps/{format_map}.png")
     except FileNotFoundError:
-        match_map = Image.open("root/mucski/stuff/icons/maps/test_maps.png")
+        match_map = Image.open("/home/poopski/mucski/stuff/icons/maps/test_maps.png")
     # middle image width
     basewidth = 4620
     # dynamic resize
@@ -187,7 +187,7 @@ def middlepanel(match):
     img.paste(match_map, (0, -512))
 
     draw = ImageDraw.Draw(img)
-    fnt = ImageFont.truetype("root/mucski/stuff/arial.ttf", 100)
+    fnt = ImageFont.truetype("/home/poopski/mucski/stuff/arial.ttf", 100)
     #fill = (15, 40, 48) dark
     fill = (255, 255, 255)
     stroke = (255, 255, 255)
@@ -200,7 +200,7 @@ def middlepanel(match):
 
     draw.text((round(W / 2 - 1032), padding), f"Team 1 score: {match.score[0]}", font=fnt, stroke_width=stroke_size, stroke_fill=stroke, fill=fill)
 
-    vs = Image.open("root/mucski/stuff/icons/vs.png")
+    vs = Image.open("/home/poopski/mucski/stuff/icons/vs.png")
     w, h = vs.size
     vs = vs.resize((round(w * 2 / 3), round(h * 2 / 3)))
     img.paste(vs, (round((W-w) / 2), round((H-h) / 2 + 48)), mask=vs)
@@ -260,16 +260,16 @@ async def getavatar(player):
 
 async def generatecard(player):
     W, H = 860, 1349
-    img = Image.open("root/mucski/stuff/card_bg.png").convert("RGBA")
+    img = Image.open("/home/poopski/mucski/stuff/card_bg.png").convert("RGBA")
     # img = Image.new("RGBA", (W, H))
     avatar = await getavatar(player)
-    rank = Image.open(f"root/mucski/stuff/icons/ranks2/{player.ranked_best.rank.value}.png")
+    rank = Image.open(f"/home/poopski/mucski/stuff/icons/ranks2/{player.ranked_best.rank.value}.png")
     img.paste(avatar, (355, 18), mask=avatar)
     img.paste(rank, (350, 1141), mask=rank)
     draw = ImageDraw.Draw(img)
-    fnt = ImageFont.truetype("root/mucski/stuff/arial.ttf", 37)
-    fnt_big = ImageFont.truetype("root/mucski/stuff/arial.ttf", 64)
-    fnt_small = ImageFont.truetype("root/mucski/stuff/arial.ttf", 34)
+    fnt = ImageFont.truetype("/home/poopski/mucski/stuff/arial.ttf", 37)
+    fnt_big = ImageFont.truetype("/home/poopski/mucski/stuff/arial.ttf", 64)
+    fnt_small = ImageFont.truetype("/home/poopski/mucski/stuff/arial.ttf", 34)
     #fill = (15, 40, 48) dark
     fill = (126, 163, 215)
     stroke = (23, 34, 50)

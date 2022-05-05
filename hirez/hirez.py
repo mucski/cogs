@@ -22,7 +22,7 @@ class HiRez(commands.Cog):
     """
     def __init__(self, bot):
         self.bot = bot
-        self.f = open("/root/mucski/stuff/key.txt", "r")
+        self.f = open("/home/poopski/mucski/stuff/key.txt", "r")
         self.auth = self.f.readline()
         self.devid = self.f.readline()
         self.api = arez.PaladinsAPI(dev_id=self.devid.strip(), auth_key=self.auth.strip())
@@ -88,7 +88,7 @@ class HiRez(commands.Cog):
                 name = champ.name.lower().replace(" ","-").replace("'","")
                 async with session.get(url) as resp:
                     if resp.status == 200:
-                        f = await aiofiles.open(f'root/mucski/stuff/icons/avatars/{name}.jpg', mode='wb')
+                        f = await aiofiles.open(f'/home/poopski/mucski/stuff/icons/avatars/{name}.jpg', mode='wb')
                         await f.write(await resp.read())
                         await f.close()
         await ctx.tick()
