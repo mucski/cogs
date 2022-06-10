@@ -93,10 +93,16 @@ class SFX(commands.Cog):
     @commands.command()
     @checks.admin()
     @commands.guild_only()
-    async def addttschannel(self, ctx: Context, channel: [discord.TextChannel, discord.StageChannel]):
+    async def addttschannel(self, ctx: Context, channel = None):
         """
         Add a TTS channel to the list of tracked channels.
         """
+        if not channel:
+            channel = ctx.channel
+        elif not channel == discord.TextChannel:
+            channel = discord.StageChannel
+        else:
+            channel = discord.TextChannel
         channels: List[int]
         async with self.db.guild(ctx.guild).channels() as channels:
             channels.append(channel.id)
