@@ -93,7 +93,7 @@ class SFX(commands.Cog):
     @commands.command()
     @checks.admin()
     @commands.guild_only()
-    async def addttschannel(self, ctx: Context, channel: discord.TextChannel):
+    async def addttschannel(self, ctx: Context, channel: [discord.TextChannel, discord.StageChannel]):
         """
         Add a TTS channel to the list of tracked channels.
         """
