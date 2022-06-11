@@ -236,11 +236,14 @@ def middlepanel(match):
                 champicon5 = champ_into_pic(ban)
                 champicon5 = champicon5.resize((200, 200))
                 img.paste(champicon5, (int((W-w) / 2) + 2020, int((H-h) / 2) + 150))
-            elif i == 5 and not None:
+            elif i == 5:
+                if champicon6:
                 #### Champion 6 ####
-                champicon6 = champ_into_pic(ban)
-                champicon6 = champicon6.resize((200, 200))
-                img.paste(champicon6, (int((W-w) / 2) + 2240, int((H-h) / 2) + 150))
+                    champicon6 = champ_into_pic(ban)
+                    champicon6 = champicon6.resize((200, 200))
+                    img.paste(champicon6, (int((W-w) / 2) + 2240, int((H-h) / 2) + 150))
+                else:
+                    pass
             else: 
                 pass
     return img
