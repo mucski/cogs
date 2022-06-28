@@ -248,6 +248,7 @@ class SFX(commands.Cog):
         # await msg.channel.send(msg.content)
         vc: Optional[discord.VoiceClient] = guild.voice_client
         if vc is None or not vc.is_connected():
+            channel = discord.VoiceChannel
             if channel is None:
                 voice_state: Optional[discord.VoiceState] = ctx.author.voice
                 if voice_state is None:
