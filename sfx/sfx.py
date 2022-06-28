@@ -248,7 +248,32 @@ class SFX(commands.Cog):
         # await msg.channel.send(msg.content)
         vc: Optional[discord.VoiceClient] = guild.voice_client
         if vc is None or not vc.is_connected():
-            self.connect
+            if channel is None:
+                voice_state: Optional[discord.VoiceState] = ctx.author.voice
+                if voice_state is None:
+                    await ctx.send(
+                        "No voice channel to join. "
+                        "Please either specify a valid voice channel or join one."
+                    )
+                    return
+                channel = voice_state.channel
+            vc: Optional[discord.VoiceClient] = ctx.voice_client
+            if vc is not None:
+                # move to the channel
+                if vc.channel.id == channel.id:
+                    return
+                try:
+                    await vc.move_to(channel)
+                except asyncio.TimeoutError:
+                    await ctx.send(f'Moving to channel: <{channel}> timed out.')
+                    return
+            else:
+                # join the channel
+                try:
+                    await channel.connect()
+                except asyncio.TimeoutError:
+                    await ctx.send(f'Connecting to channel: <{channel}> timed out.')
+                return
             # We are not currently in a voice channel
             # Silently exit
             # await msg.channel.send(
