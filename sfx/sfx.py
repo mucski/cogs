@@ -234,7 +234,7 @@ class SFX(commands.Cog):
 
     # @commands.command()
     @commands.Cog.listener()
-    async def on_message_without_command(self, ctx, msg: discord.Message):
+    async def on_message_without_command(self, msg: discord.Message):
         if msg.author.bot:
             return
         guild: Optional[discord.Guild] = msg.guild
@@ -250,15 +250,15 @@ class SFX(commands.Cog):
         if vc is None or not vc.is_connected():
             channel = discord.VoiceChannel
             if channel is None:
-                voice_state: Optional[discord.VoiceState] = ctx.author.voice
+                voice_state: Optional[discord.VoiceState] = msg.author.voice
                 if voice_state is None:
-                    await ctx.send(
+                    await msg.channel.send(
                         "No voice channel to join. "
                         "Please either specify a valid voice channel or join one."
                     )
                     return
                 channel = voice_state.channel
-            vc: Optional[discord.VoiceClient] = ctx.voice_client
+            vc: Optional[discord.VoiceClient] = guild.voice_client
             if vc is not None:
                 # move to the channel
                 if vc.channel.id == channel.id:
@@ -266,14 +266,14 @@ class SFX(commands.Cog):
                 try:
                     await vc.move_to(channel)
                 except asyncio.TimeoutError:
-                    await ctx.send(f'Moving to channel: <{channel}> timed out.')
+                    await msg.channel.send(f'Moving to channel: <{channel}> timed out.')
                     return
             else:
                 # join the channel
                 try:
                     await channel.connect()
                 except asyncio.TimeoutError:
-                    await ctx.send(f'Connecting to channel: <{channel}> timed out.')
+                    await msg.channel.send(f'Connecting to channel: <{channel}> timed out.')
                 return
             # We are not currently in a voice channel
             # Silently exit
