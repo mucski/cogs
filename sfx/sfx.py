@@ -234,7 +234,7 @@ class SFX(commands.Cog):
 
     # @commands.command()
     @commands.Cog.listener()
-    async def on_message_without_command(self, msg: discord.Message):
+    async def on_message_without_command(self, ctx: Context, msg: discord.Message):
         if msg.author.bot:
             return
         guild: Optional[discord.Guild] = msg.guild
