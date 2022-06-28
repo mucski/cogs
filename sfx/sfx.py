@@ -172,6 +172,7 @@ class SFX(commands.Cog):
 
     @commands.command()
     @checks.admin()
+    @checks.is_mod()
     @commands.guild_only()
     async def ttsspeed(self, ctx: Context, speed: float):
         """
@@ -244,6 +245,7 @@ class SFX(commands.Cog):
         # await msg.channel.send(msg.content)
         vc: Optional[discord.VoiceClient] = guild.voice_client
         if vc is None or not vc.is_connected():
+            self.connect
             # We are not currently in a voice channel
             # Silently exit
             # await msg.channel.send(
