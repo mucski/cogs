@@ -271,7 +271,7 @@ class SFX(commands.Cog):
             else:
                 # join the channel
                 try:
-                    await channel.connect()
+                    await channel.connect(self)
                 except asyncio.TimeoutError:
                     await msg.channel.send(f'Connecting to channel: <{channel}> timed out.')
                 return
