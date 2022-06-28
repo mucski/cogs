@@ -128,6 +128,7 @@ class SFX(commands.Cog):
 
     @commands.command()
     @checks.admin()
+    @checks.mod()
     @commands.guild_only()
     async def ttslang(self, ctx: Context, lang: str):
         """
@@ -138,6 +139,7 @@ class SFX(commands.Cog):
 
     @commands.command()
     @checks.admin()
+    @checks.mod()
     @commands.guild_only()
     async def ttstld(self, ctx: Context, tld: str):
         """
@@ -152,6 +154,7 @@ class SFX(commands.Cog):
 
     @commands.command()
     @checks.admin()
+    @checks.mod()
     @commands.guild_only()
     async def ttsname(self, ctx: Context, state: bool):
         """
@@ -172,7 +175,7 @@ class SFX(commands.Cog):
 
     @commands.command()
     @checks.admin()
-    @checks.is_moderator()
+    @checks.mod()
     @commands.guild_only()
     async def ttsspeed(self, ctx: Context, speed: float):
         """
