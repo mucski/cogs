@@ -172,7 +172,7 @@ class SFX(commands.Cog):
 
     @commands.command()
     @checks.admin()
-    @checks.is_mod()
+    @checks.is_moderator()
     @commands.guild_only()
     async def ttsspeed(self, ctx: Context, speed: float):
         """
