@@ -260,7 +260,6 @@ class SFX(commands.Cog):
                 channel = voice_state.channel
             vc: Optional[discord.VoiceClient] = guild.voice_client
             if vc is not None:
-                channel = voice_state.channel
                 # move to the channel
                 if vc.channel.id == channel.id:
                     return
@@ -272,7 +271,7 @@ class SFX(commands.Cog):
             else:
                 # join the channel
                 try:
-                    await channel.connect()
+                    await self.channel.connect()
                 except asyncio.TimeoutError:
                     await msg.channel.send(f'Connecting to channel: <{channel}> timed out.')
                 return
