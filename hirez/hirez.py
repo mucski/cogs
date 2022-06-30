@@ -351,7 +351,7 @@ class HiRez(commands.Cog):
                 await ctx.send("```\nNo recent matches found. (History is only kept for 30 days)\n```")
                 return
             match = await match_list[0]
-            match = await expand_players()
+            match2 = await match.expand_players()
             pic = helper.format_match(match)
             file = discord.File(filename=f"{player}.png", fp=pic)
             await ctx.send(file=file)
