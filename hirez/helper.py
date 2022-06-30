@@ -79,7 +79,7 @@ def statsimage(mp, index):
     # player name and level
     draw.text((512 + padding * 4, mid - 30), name, font=fntbld, fill=color)
     try:
-        draw.text((512 + padding * 4, mid + 60), humanize_number(mp.calculated_level), font=smallfnt, fill=fill)
+        draw.text((512 + padding * 4, mid + 60), humanize_number(mp.player.calculated_level), font=smallfnt, fill=fill)
     except AttributeError:
         draw.text((512 + padding * 4, mid + 60), humanize_number(mp.account_level), font=smallfnt, fill=fill)
     # credits earned
