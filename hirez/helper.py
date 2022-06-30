@@ -21,7 +21,7 @@ def champ_into_pic(champ: arez.Champion) -> Image:
         pic = Image.open("/home/poopski/mucski/stuff/icons/error.jpg")
     return pic
 
-def statsimage(mp, pl, index):
+def statsimage(mp, index):
     crop = 140
     # vertical
     W, H = (4620, 232)
@@ -78,7 +78,7 @@ def statsimage(mp, pl, index):
         name = "???"
     # player name and level
     draw.text((512 + padding * 4, mid - 30), name, font=fntbld, fill=color)
-    draw.text((512 + padding * 4, mid + 60), humanize_number(pl.calculated_level), font=smallfnt, fill=fill)
+    draw.text((512 + padding * 4, mid + 60), humanize_number(mp.calculated_level), font=smallfnt, fill=fill)
 
     # credits earned
     draw.text((1736, mid), humanize_number(mp.credits), font=fnt, fill=fill)
@@ -134,7 +134,7 @@ def playerkey(x, y):
     # draw.text((4636, 20), "KDA", font=fntbld, fill=fill)
     return key
 
-def format_match(match: arez.Match, player: arez.Player) -> Image:
+def format_match(match: arez.Match) -> Image:
     W, H = (4620, 2942)
     # padding=10
     img = Image.new("RGB", (W, H), color=(8, 21, 25))
@@ -147,7 +147,7 @@ def format_match(match: arez.Match, player: arez.Player) -> Image:
         team = getattr(match, f"team{team_num}")
         for i, mp in enumerate(team):
             y = i * 232 + yoffset  # replace 50 with whatever row height you use
-            row = statsimage(mp, pl, i)  # your current playerkey
+            row = statsimage(mp, i)  # your current playerkey
             img.paste(row, (0, y))
             # base.paste(row, 0, y)
     # add middlebar
