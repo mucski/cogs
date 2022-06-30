@@ -352,7 +352,7 @@ class HiRez(commands.Cog):
                 return
             match = await match_list[0]
             match2 = await match.expand_players()
-            pic = helper.format_match(match)
+            pic = helper.format_match(match2)
             file = discord.File(filename=f"{player}.png", fp=pic)
             await ctx.send(file=file)
             # await ctx.send(match.bans)
