@@ -79,7 +79,7 @@ def statsimage(mp, index):
 
     # player name and level
     draw.text((512 + padding * 4, mid - 30), name, font=fntbld, fill=color)
-    draw.text((512 + padding * 4, mid + 60), humanize_number(mp.account_level), font=smallfnt, fill=fill)
+    draw.text((512 + padding * 4, mid + 60), humanize_number(mp.calculated_level), font=smallfnt, fill=fill)
 
     # credits earned
     draw.text((1736, mid), humanize_number(mp.credits), font=fnt, fill=fill)
