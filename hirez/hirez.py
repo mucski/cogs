@@ -285,7 +285,7 @@ class HiRez(commands.Cog):
         else:
             if champion_name.lower() == "betty" or champion_name.lower() == "bomba:
                 champion_name = "Betty La Bomba"
-            elif champion_name.lower() == "bk" or champion_name.lower() == "bombking":
+            elif champion_name.lower() == "bk" or champion_name.lower() == "bombking" or champion_name.lower() == "bomb":
                 champion_name = "Bomb King"
             elif champion_name.lower() == "sha" or champion_name.lower() == "shalin":
                 champion_name = "Sha Lin"
