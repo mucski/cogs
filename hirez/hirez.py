@@ -283,7 +283,7 @@ class HiRez(commands.Cog):
                 await ctx.send("```\n{}\n```".format(page))
             await ctx.send("```\nTotal Hours: {}\n```".format(int(hours_count)))
         else:
-            if champion_name.lower() == "betty" or champion_name.lower() == "bomba:
+            if champion_name.lower() == "betty" or champion_name.lower() == "bomba":
                 champion_name = "Betty La Bomba"
             elif champion_name.lower() == "bk" or champion_name.lower() == "bombking" or champion_name.lower() == "bomb":
                 champion_name = "Bomb King"
