@@ -283,11 +283,11 @@ class HiRez(commands.Cog):
                 await ctx.send("```\n{}\n```".format(page))
             await ctx.send("```\nTotal Hours: {}\n```".format(int(hours_count)))
         else:
-            if champion_name == "betty":
+            if champion_name.lower() == "betty":
                 champion_name = "Betty La Bomba"
-            elif champion_name == "bk":
+            elif champion_name.lower() == "bk":
                 champion_name = "Bomb King"
-            elif champion_name == "sha" or champion_name == "shalin":
+            elif champion_name.lower() == "sha" or champion_name.lower() == "shalin":
                 champion_name = "Sha Lin"
             entry = await self.api.get_champion_info()
             champ = entry.champions.get(champion_name)
