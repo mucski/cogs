@@ -287,7 +287,7 @@ class HiRez(commands.Cog):
                 champion_name = "Betty La Bomba"
             elif champion_name == "bk":
                 champion_name = "Bomb King"
-            elif champion_name == "sha" or champion_name = "shalin":
+            elif champion_name == "sha" or champion_name == "shalin":
                 champion_name = "Sha Lin"
             entry = await self.api.get_champion_info()
             champ = entry.champions.get(champion_name)
