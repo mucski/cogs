@@ -451,7 +451,7 @@ class HiRez(commands.Cog):
             await ctx.send(file=file)
 
     @commands.command()
-    async def hitest(self, ctx, playerid: int):
+    async def globalkda(self, ctx, playerid: int):
         resp = await helper.get_kda_guru(playerid)
         if resp:
             await ctx.send("Your global KDA according to Paladins.guru is {}".format(resp[3]))
