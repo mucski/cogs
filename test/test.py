@@ -1,7 +1,6 @@
 import discord
 from discord import app_commands
 from redbot.core import commands, checks, Config
-from redbot.core import commands as red_commands
 
 class Test(commands.Cog):
     def __init__(self, bot):
@@ -13,6 +12,6 @@ class Test(commands.Cog):
     )
 
     @slash_commands.command(name="test", description="List all playlists you have access to on the invoked context")
-    @app_commands.guild_only()
+    # @app_commands.guild_only()
     async def slash_commands_test(self, interaction: InteractionT):
         await ctx.send("hello world")
