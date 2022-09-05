@@ -18,4 +18,4 @@ class Test(commands.Cog):
         user_token = await self.get_user_auth(ctx, user)
         if not user_token:
             return
-        await ctx.send("You Successfully Sucked Mucski's Cock")
+        await interaction.response.send_message('Very cool message!', ephemeral=True)
