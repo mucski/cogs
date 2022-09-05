@@ -5,7 +5,7 @@ class Test(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
         self.fuck = discord.app_commands.ContextMenu(
-            name="Play on Spotify", callback=self.play_from_message
+            name="Play on Spotify", callback=self.suck_dicks
         )
 
     async def suck_dicks(self, interaction: discord.Interaction, message: discord.Message):
