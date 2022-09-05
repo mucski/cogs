@@ -14,4 +14,4 @@ class Test(commands.Cog):
         
     @commands.command()
     async def sync_commands(self, ctx):
-        await bot.tree.sync()
+        await self.bot.tree.sync()
