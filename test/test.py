@@ -7,12 +7,6 @@ class Test(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
 
-    slash_commands = app_commands.Group(
-        name="test",
-        description="Some Testing Slash Commands",
-    )
-
-    @slash_commands.command(name="test", description="List all playlists you have access to on the invoked context")
     @app_commands.context_menu()
-    async def slash_commands_test(self, interaction: discord.Interaction, user: discord.Member):
+    async def react(interaction: discord.Interaction, message: discord.Message, user: discord.Member):
         await interaction.response.send_message(f'Hello {user}, Ya fucking cunt!...', ephemeral=True)
