@@ -22,10 +22,16 @@ class Test(commands.Cog):
     async def sync_commands(self, ctx):
         self.bot.tree.add_command(self.react)
         self.bot.tree.add_command(self.user)
-        self.bot.tree.add_command(self.test_command)
+        self.bot.tree.add_command(self.test)
         await self.bot.tree.sync()
         await ctx.tick()
 
-    @commands.hybrid_command()
-    async def test_command(self, ctx):
-        await ctx.send("Testing the SLASHSKY")
+    @commands.hybrid_group(name="test", aliases=["tt"])
+    async def test_com(self, ctx: commands.Context):
+        """
+        Test Commands
+        """
+
+    @test_com.command()
+    async def suck_ballz(self, ctx: commands.Context):
+        await ctx.send("Huh?!")
