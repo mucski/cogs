@@ -6,6 +6,7 @@ from redbot.core import commands
 class Test(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
+        self.tree = app_commands.CommandTree(self)
 
     @bot.tree.command()
     async def hello(interaction: discord.Interaction):
