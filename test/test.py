@@ -10,5 +10,5 @@ class Test(commands.Cog):
             name="Play on Spotify", callback=self.react
         )
 
-    async def react(interaction: discord.Interaction, message: discord.Message):
+    async def react(self, interaction: discord.Interaction, message: discord.Message):
         await interaction.response.send_message('Very cool message!', ephemeral=True)
