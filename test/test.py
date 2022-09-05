@@ -8,7 +8,7 @@ class Test(commands.Cog):
         self.bot = bot
         self.tree = app_commands.CommandTree(self)
 
-    @bot.tree.command()
+    @tree.command()
     async def hello(interaction: discord.Interaction):
         """Says hello!"""
         await interaction.response.send_message(f'Hi, {interaction.user.mention}')
