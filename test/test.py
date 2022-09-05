@@ -15,3 +15,4 @@ class Test(commands.Cog):
     @commands.command()
     async def sync_commands(self, ctx):
         await self.bot.tree.sync()
+        await ctx.tick()
