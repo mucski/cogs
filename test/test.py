@@ -1,4 +1,5 @@
 from redbot.core import commands, checks, Config
+import discord
 from discord import app_commands
 
 class Test(commands.Cog):
