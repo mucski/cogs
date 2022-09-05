@@ -11,5 +11,7 @@ class Test(commands.Cog):
 
     async def react(self, interaction: discord.Interaction, message: discord.Message):
         await interaction.response.send_message('Very cool message!', ephemeral=True)
-
-    await bot.tree.sync()
+        
+    @commands.command()
+    async def sync_commands(self, ctx):
+        await bot.tree.sync()
