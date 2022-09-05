@@ -4,6 +4,7 @@ class Test(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
 
-    @bot.tree.context_menu(name='say')
-    async def say(interaction: discord.Interaction, member: discord.Member):
-        await interaction.response.send_message('I said something!')
+    @slash_commands.command(name="test", description=_("List all playlists you have access to on the invoked context"))
+    @app_commands.guild_only()
+    async def slash_commands_test(self, interaction: InteractionT):
+        await ctx.send("hello world")
