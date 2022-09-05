@@ -22,5 +22,10 @@ class Test(commands.Cog):
     async def sync_commands(self, ctx):
         self.bot.tree.add_command(self.react)
         self.bot.tree.add_command(self.user)
+        self.bot.tree.add_command(self.test_command)
         await self.bot.tree.sync()
         await ctx.tick()
+
+    @commands.hybrid_command()
+    async def test_command(self, ctx):
+        await ctx.send("Testing the SLASHSKY")
