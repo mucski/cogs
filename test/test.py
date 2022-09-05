@@ -1,5 +1,14 @@
 import discord
+from discord import ui
 from redbot.core import commands
+
+
+class Questionnaire(ui.Modal, title='Questionnaire Response'):
+    name = ui.TextInput(label='Name')
+    answer = ui.TextInput(label='Answer', style=discord.TextStyle.paragraph)
+
+    async def on_submit(self, interaction: discord.Interaction):
+        await interaction.response.send_message(f'Thanks for your response, {self.name}!', ephemeral=True)
 
 
 class Test(commands.Cog):
@@ -17,7 +26,7 @@ class Test(commands.Cog):
 
     async def user_callback(self, interaction: discord.Interaction, user: discord.User):
         await interaction.response.send_message('Very cool message on a user!', ephemeral=True)
-        
+
     @commands.command()
     async def sync_commands(self, ctx):
         self.bot.tree.add_command(self.react)
