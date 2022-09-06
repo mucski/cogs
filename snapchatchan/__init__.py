@@ -1,5 +1,5 @@
 from .snapchatchan import SnapChatChan
 
 
-def setup(bot):
-    bot.add_cog(SnapChatChan(bot))
+async def setup(bot):
+    await bot.add_cog(SnapChatChan(bot))

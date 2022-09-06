@@ -2,4 +2,4 @@
 from .tunnel import Tunnel
 
 async def setup(bot):
-    bot.add_cog(Tunnel(bot))
+    await bot.add_cog(Tunnel(bot))
