@@ -99,10 +99,10 @@ class SFX(commands.Cog):
         """
         if not channel:
             channel = ctx.channel
-        elif not channel == discord.TextChannel:
-            channel = discord.StageChannel
+        elif not channel == discord.Messageable.TextChannel:
+            channel = discord.Messageable.VoiceChannel
         else:
-            channel = discord.TextChannel
+            channel = discord.Messageable.TextChannel
         channels: List[int]
         async with self.db.guild(ctx.guild).channels() as channels:
             channels.append(channel.id)
