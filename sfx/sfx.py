@@ -99,8 +99,6 @@ class SFX(commands.Cog):
         """
         if not channel:
             channel = ctx.channel
-        elif not channel == discord.TextChannel:
-            channel = discord.StageChannel
         else:
             channel = discord.TextChannel
         channels: List[int]
