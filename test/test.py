@@ -33,3 +33,10 @@ class Test(commands.Cog):
         self.bot.tree.add_command(self.user)
         await self.bot.tree.sync()
         await ctx.tick()
+
+    @commands.command()
+    async def unsync_commands(self, ctx):
+        self.bot.tree.remove_command(self.react)
+        self.bot.tree.remove_command(self.user)
+        await self.bot.tree.sync()
+        await ctx.tick()
