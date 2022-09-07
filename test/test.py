@@ -1,7 +1,6 @@
 import discord
 from discord import ui
-from discord.ext import commands
-from redbot.core import checks
+from redbot.core import checks, commands
 from abc import ABC
 
 
@@ -13,16 +12,7 @@ class Questionnaire(ui.Modal, title='Questionnaire Response'):
         await interaction.response.send_message(f'Thanks for your response, {self.name}!', ephemeral=True)
 
 
-class CompositeMetaClass(type(commands.Cog), type(ABC)):
-    """
-    This allows the metaclass used for proper type detection to
-    coexist with discord.py's metaclass
-    """
-
-    pass
-
-
-class Test(commands.Cog, metaclass=CompositeMetaClass):
+class Test(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
         # Context menu on message
@@ -38,12 +28,6 @@ class Test(commands.Cog, metaclass=CompositeMetaClass):
     async def cog_unload(self):
         self.bot.tree.remove_command(self.react)
         self.bot.tree.remove_command(self.user)
-        self.bot.tree.remove_command(self.slash_test)      
-
-    # Slash command
-    @commands.bot.hybrid_command(name="slash_test")
-    async def slash_test(self, ctx: command.Context):
-        await ctx.popupp(Questionnaire())
 
     # Context menu on the message 
     async def react_callback(self, interaction: discord.Interaction, message: discord.Message):
