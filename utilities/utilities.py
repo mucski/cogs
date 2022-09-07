@@ -97,7 +97,11 @@ class Utilities(commands.Cog):
     async def avatar(self, ctx, member: discord.Member = None):
         if member is None:
             member = ctx.author
-        await ctx.send(member.guild_avatar)
+        if member.default_avatar:
+            avatar = member.default_avatar
+        elif member.guild_avatar:
+            avatar = member.guild_avatar
+        await ctx.send(avatar)
 
     @commands.command()
     @checks.is_owner()
