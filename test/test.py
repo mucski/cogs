@@ -11,7 +11,6 @@ class Questionnaire(ui.Modal, title='Questionnaire Response'):
     async def on_submit(self, interaction: discord.Interaction):
         await interaction.response.send_message(f'Thanks for your response, {self.name}!', ephemeral=True)
 
-
 class Test(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
@@ -21,10 +20,12 @@ class Test(commands.Cog):
         self.user = discord.app_commands.ContextMenu(
             name="User", callback=self.user_callback
         )
-        self.slash_test = discord.app_commands.AppCommand(
+        self.slash_test = discord.app_commands.CommandTree(
             name="Testing slashes", callback=self.slash_test
         )
+        self.bot.tree.add_command(self, guild=guild)
 
+    @commands.command(name="Slash Test")
     async def slash_test(self, interaction: discord.Interaction, message: discord.Message):
         await interaction.response.send_message("This is a slash command that is working perfectly fine.")
 
@@ -36,18 +37,18 @@ class Test(commands.Cog):
 
     @commands.command()
     @checks.admin()
-    async def sync_commands(self, ctx):
+    async def sync_commands(self, ctx: commands.Context):
         self.bot.tree.add_command(self.react)
         self.bot.tree.add_command(self.user)
-        self.bot.tree.add_command(self.slash_test)
+        self.bot.tree.add_command(self, guild=guild)
         await self.bot.tree.sync()
         await ctx.tick()
 
     @commands.command()
     @checks.admin()
-    async def unsync_commands(self, ctx):
+    async def unsync_commands(self, ctx: commands.Context):
         self.bot.tree.remove_command(self.react)
         self.bot.tree.remove_command(self.user)
-        self.bot.tree.remove_command(self.slash_test)
+        self.bot.tree.remove_command(self, guild=guild)
         await self.bot.tree.sync()
         await ctx.tick()
