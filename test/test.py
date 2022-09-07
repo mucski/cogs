@@ -22,7 +22,6 @@ class Test(commands.Cog):
             name="User", callback=self.user_callback
         )
 
-    @commands.command(name="Slash Test")
     async def slash_test(self, interaction: discord.Interaction, message: discord.Message):
         await interaction.response.send_message("This is a slash command that is working perfectly fine.")
 
