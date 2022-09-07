@@ -23,7 +23,6 @@ class Test(commands.Cog):
         self.slash_test = discord.app_commands.CommandTree(
             name="Testing slashes", callback=self.slash_test
         )
-        self.bot.tree.add_command(self, guild=guild)
 
     @commands.command(name="Slash Test")
     async def slash_test(self, interaction: discord.Interaction, message: discord.Message):
