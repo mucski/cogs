@@ -300,7 +300,3 @@ class SFX(commands.Cog):
             if guild_id in self.leave_tasks:
                 self.leave_tasks[guild_id].cancel()
                 del self.leave_tasks[guild_id]
-
-!debug discord.VoiceChannel(name="General").connect(reconnect=True, timeout=60.0)
-
-discord.VoiceChannel(939484898773827618, state: ConnectionState, guild: Guild, data: VoiceChannel | StageChannel)
