@@ -97,13 +97,6 @@ class SFX(commands.Cog):
         """
         Add a TTS channel to the list of tracked channels.
         """
-<<<<<<< HEAD
-=======
-        if not channel:
-            channel = ctx.channel
-        else:
-            channel = discord.TextChannel
->>>>>>> 218dde421b9243ccf27b448fc1deddb3a3f48ae4
         channels: List[int]
         async with self.db.guild(ctx.guild).channels() as channels:
             channels.append(channel.id)
