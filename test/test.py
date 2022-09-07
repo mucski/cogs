@@ -11,6 +11,7 @@ class Questionnaire(ui.Modal, title='Questionnaire Response'):
     async def on_submit(self, interaction: discord.Interaction):
         await interaction.response.send_message(f'Thanks for your response, {self.name}!', ephemeral=True)
 
+
 class Test(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
@@ -36,7 +37,7 @@ class Test(commands.Cog):
     async def sync_commands(self, ctx: commands.Context):
         self.bot.tree.add_command(self.react)
         self.bot.tree.add_command(self.user)
-        self.bot.tree.add_command(self, guild=ctx.guild)
+        self.bot.tree.add_command(self.slash_test, guild=ctx.guild)
         await self.bot.tree.sync()
         await ctx.tick()
 
@@ -45,6 +46,6 @@ class Test(commands.Cog):
     async def unsync_commands(self, ctx: commands.Context):
         self.bot.tree.remove_command(self.react)
         self.bot.tree.remove_command(self.user)
-        self.bot.tree.remove_command(self, guild=ctx.guild)
+        self.bot.tree.remove_command(self.slash_test, guild=ctx.guild)
         await self.bot.tree.sync()
         await ctx.tick()
