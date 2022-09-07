@@ -41,7 +41,7 @@ class Test(commands.Cog, metaclass=CompositeMetaClass):
         self.bot.tree.remove_command(self.slash_test)      
 
     # Slash command
-    @bot.hybrid_command(name="slash_test")
+    @commands.bot.hybrid_command(name="slash_test")
     async def slash_test(self, ctx: command.Context):
         await ctx.popupp(Questionnaire())
 
