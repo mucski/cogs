@@ -1,5 +1,5 @@
 from .sfx import SFX
 
 
-async def setup(bot):
+def setup(bot):
     bot.add_cog(SFX(bot))

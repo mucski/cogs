@@ -1,5 +1,5 @@
 from .test import Test
 
 
-async def setup(bot):
-    await bot.add_cog(Test(bot))
+def setup(bot):
+    bot.add_cog(Test(bot))
