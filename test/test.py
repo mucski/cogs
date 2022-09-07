@@ -20,9 +20,6 @@ class Test(commands.Cog):
         self.user = discord.app_commands.ContextMenu(
             name="User", callback=self.user_callback
         )
-        self.slash_test = discord.app_commands.CommandTree(
-            name="Testing slashes", callback=self.slash_test
-        )
 
     @commands.command(name="Slash Test")
     async def slash_test(self, interaction: discord.Interaction, message: discord.Message):
