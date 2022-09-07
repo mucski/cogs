@@ -93,16 +93,10 @@ class SFX(commands.Cog):
     @commands.command()
     @checks.admin()
     @commands.guild_only()
-    async def addttschannel(self, ctx: Context, channel = None):
+    async def addttschannel(self, ctx: Context, channel: discord.TextChannel):
         """
         Add a TTS channel to the list of tracked channels.
         """
-        if not channel:
-            channel = ctx.channel
-        elif not channel == discord.Messageable.TextChannel:
-            channel = discord.Messageable.VoiceChannel
-        else:
-            channel = discord.Messageable.TextChannel
         channels: List[int]
         async with self.db.guild(ctx.guild).channels() as channels:
             channels.append(channel.id)
@@ -111,16 +105,10 @@ class SFX(commands.Cog):
     @commands.command()
     @checks.admin()
     @commands.guild_only()
-    async def delttschannel(self, ctx: Context, channel = None):
+    async def delttschannel(self, ctx: Context, channel: discord.TextChannel):
         """
         Remove a TTS channel from the list of tracked channels.
         """
-        if not channel:
-            channel = ctx.channel
-        elif not channel == discord.TextChannel:
-            channel = discord.StageChannel
-        else:
-            channel = discord.TextChannel
         channels: List[int]
         async with self.db.guild(ctx.guild).channels() as channels:
             channels.remove(channel.id)
@@ -312,3 +300,7 @@ class SFX(commands.Cog):
             if guild_id in self.leave_tasks:
                 self.leave_tasks[guild_id].cancel()
                 del self.leave_tasks[guild_id]
+
+!debug discord.VoiceChannel(name="General").connect(reconnect=True, timeout=60.0)
+
+discord.VoiceChannel(939484898773827618, state: ConnectionState, guild: Guild, data: VoiceChannel | StageChannel)
