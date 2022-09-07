@@ -22,8 +22,9 @@ class Test(commands.Cog):
             name="User", callback=self.user_callback
         )
 
+    @commands.command()
     async def slash_test(self, interaction: discord.Interaction, message: discord.Message):
-        await interaction.response.send_message("This is a slash command that is working perfectly fine.")
+        await interaction.response.send_modal(Questionnaire())
 
     async def react_callback(self, interaction: discord.Interaction, message: discord.Message):
         await interaction.response.send_message('Very cool message!', ephemeral=True)
@@ -36,7 +37,7 @@ class Test(commands.Cog):
     async def sync_commands(self, ctx: commands.Context):
         self.bot.tree.add_command(self.react)
         self.bot.tree.add_command(self.user)
-        self.bot.tree.add_command(self.slash_test, guild=ctx.guild)
+        self.bot.tree.add_command(self.slash_test)
         await self.bot.tree.sync()
         await ctx.tick()
 
@@ -45,6 +46,6 @@ class Test(commands.Cog):
     async def unsync_commands(self, ctx: commands.Context):
         self.bot.tree.remove_command(self.react)
         self.bot.tree.remove_command(self.user)
-        self.bot.tree.remove_command(self.slash_test, guild=ctx.guild)
+        self.bot.tree.remove_command(self.slash_test)
         await self.bot.tree.sync()
         await ctx.tick()
