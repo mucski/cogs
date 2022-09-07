@@ -3,6 +3,7 @@ from discord import ui
 from discord import app_commands
 from redbot.core import commands, checks
 from datetime import datetime
+from abc import ABC
 
 
 class Questionnaire(ui.Modal, title='Questionnaire Response'):
