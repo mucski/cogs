@@ -36,7 +36,7 @@ class Test(commands.Cog):
     async def sync_commands(self, ctx: commands.Context):
         self.bot.tree.add_command(self.react)
         self.bot.tree.add_command(self.user)
-        self.bot.tree.add_command(self, guild=guild)
+        self.bot.tree.add_command(self, guild=ctx.guild)
         await self.bot.tree.sync()
         await ctx.tick()
 
@@ -45,6 +45,6 @@ class Test(commands.Cog):
     async def unsync_commands(self, ctx: commands.Context):
         self.bot.tree.remove_command(self.react)
         self.bot.tree.remove_command(self.user)
-        self.bot.tree.remove_command(self, guild=guild)
+        self.bot.tree.remove_command(self, guild=ctx.guild)
         await self.bot.tree.sync()
         await ctx.tick()
