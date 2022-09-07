@@ -33,8 +33,8 @@ class Test(commands.Cog):
 
     # Slash command
     @commands.hybrid_command(name="slash_test")
-    async def slash_test(self):
-        await interaction.response.send_modal(Questionnaire())
+    async def slash_test(self, ctx: command.Context):
+        await ctx.popupp(Questionnaire())
 
     # Context menu on the message 
     async def react_callback(self, interaction: discord.Interaction, message: discord.Message):
