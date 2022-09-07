@@ -1,5 +1,6 @@
 import discord
-from discord import ui, commands
+from discord import ui
+from discord.ext import commands
 from redbot.core import checks
 from abc import ABC
 
