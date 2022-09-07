@@ -13,7 +13,16 @@ class Questionnaire(ui.Modal, title='Questionnaire Response'):
         await interaction.response.send_message(f'Thanks for your response, {self.name}!', ephemeral=True)
 
 
-class Test(commands.Cog):
+class CompositeMetaClass(type(commands.Cog), type(ABC)):
+    """
+    This allows the metaclass used for proper type detection to
+    coexist with discord.py's metaclass
+    """
+
+    pass
+
+
+class Test(commands.Cog, metaclass=CompositeMetaClass):
     def __init__(self, bot):
         self.bot = bot
         # Context menu on message
