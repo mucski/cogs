@@ -25,7 +25,7 @@ class Test(commands.Cog):
             name="Testing slashes", callback=self.slash_test
         )
 
-    async def slash_test(self, interaction: discord.Interactio, message: discord.Message):
+    async def slash_test(self, interaction: discord.Interaction, message: discord.Message):
         await interaction.response.send_message("This is a slash command that is working perfectly fine.")
 
     async def react_callback(self, interaction: discord.Interaction, message: discord.Message):
