@@ -293,10 +293,10 @@ async def generatecard(player):
     # divider = Image.open("root/mucski/stuff/icons/divider.png").convert("RGBA")
     # img.paste(divider, (180, 665), mask=divider)
     # text divider
-    draw.text((33, 645), "------------------------------------------------------------------", font=fnt, stroke_width=stroke_size, stroke_fill=stroke, fill=fill)
+    draw.text((33, 645), "----------------------------------------------------------------", font=fnt, stroke_width=stroke_size, stroke_fill=stroke, fill=fill)
     draw.text((33, 705), f"Casual Winrate: {player.casual.wins}/{player.casual.losses} ({player.casual.winrate_text})", font=fnt, stroke_width=stroke_size, stroke_fill=stroke, fill=fill)
     draw.text((33, 762), f"Casual Deserted: {player.casual.leaves}", font=fnt, stroke_width=stroke_size, stroke_fill=stroke, fill=fill)
-    draw.text((33, 819), "------------------------------------------------------------------", font=fnt, stroke_width=stroke_size, stroke_fill=stroke, fill=fill)
+    draw.text((33, 819), "----------------------------------------------------------------", font=fnt, stroke_width=stroke_size, stroke_fill=stroke, fill=fill)
     draw.text((33, 879), f"Ranked Winrate: {player.ranked_best.wins}/{player.ranked_best.losses} ({player.ranked_best.winrate_text})", font=fnt, stroke_width=stroke_size, stroke_fill=stroke, fill=fill)
     draw.text((33, 936), f"Ranked Deserted: {player.ranked_best.leaves}", font=fnt, stroke_width=stroke_size, stroke_fill=stroke, fill=fill)
     draw.text((33, 993), f"Current Rank: {player.ranked_best.rank} ({player.ranked_best.points} TP)", font=fnt, stroke_width=stroke_size, stroke_fill=stroke, fill=(149, 229, 242))
