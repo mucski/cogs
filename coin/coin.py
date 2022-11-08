@@ -79,6 +79,12 @@ class Coin(commands.Cog):
         
     @coin.command()
     @checks.is_owner()
+    async def resetall(self, ctx):
+        await self.db.clear()
+        await ctx.tick()
+        
+    @coin.command()
+    @checks.is_owner()
     async def resetsteal(self, ctx, member: discord.Member = None):
         if not member:
             member = ctx.author
