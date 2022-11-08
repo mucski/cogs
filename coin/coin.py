@@ -80,7 +80,7 @@ class Coin(commands.Cog):
     @coin.command()
     @checks.is_owner()
     async def resetall(self, ctx):
-        await self.db.clear()
+        await self.db.clear_all()
         await ctx.tick()
         
     @coin.command()
