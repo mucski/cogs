@@ -45,6 +45,8 @@ searchlist = {
 
 bad_loc = ['dog', 'trash', 'fridge', 'bank', 'toilet', 'school']
 
+remove_loc = ['patreon']
+
 petlist = {
     "rock": {
         "description": "Your very own pet rock.",
