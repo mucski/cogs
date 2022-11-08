@@ -6,7 +6,7 @@ import random
 from math import floor, ceil, isclose
 from datetime import datetime, timedelta
 import humanize
-from .random import worklist, searchlist, bad_loc
+from .random import worklist, searchlist, bad_loc, remove_loc
 from textwrap import dedent
 from redbot.core.utils.chat_formatting import pagify, box
 from redbot.core.utils.menus import menu, DEFAULT_CONTROLS
