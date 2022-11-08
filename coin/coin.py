@@ -192,7 +192,8 @@ class Coin(commands.Cog):
                       f"{account['coin']:>15}")
         text = "\n".join(li)
         page_list = []
-        for page_num, page in enumerate(pagify(text, delims=['\n'], page_length=1000)):
+        for page_num, page in enumerate(pagify(text, delims=['\n'],
+                                        page_length=1000), start=1):
             embed = discord.Embed(
                 color=await ctx.bot.get_embed_color(location=ctx.channel),
                 description=box("Leaderboards",
@@ -290,8 +291,8 @@ class Coin(commands.Cog):
                     await msg.edit(embed=e)
                 except IndexError:
                     break
-            if var == 90 or key == 0:
-                percent = var
+            if var == 10 or key == 0:
+                percent = var * 10
                 stolen = floor(enemy_coin * percent / 100)
                 e.set_field_at(0, name="\u200b",
                                value=f"You successfully stolen"
