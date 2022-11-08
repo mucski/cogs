@@ -15,6 +15,7 @@ worklist = {
     "yesterday today tomorrow": "Can you name three consecutive days without using the words Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, or Sunday?",
     "footsteps": "The more you take, the more you leave behind. What am I?",
     "i": "I start with a letter E and end with a Letter E. Only contain one letter but am not the letter E. So what am I",
+    "mystic valley": "What game does Mucski develop?",
 }
 
 searchlist = {
@@ -39,6 +40,7 @@ searchlist = {
     'club': 'You barged into a club, found `{}` coins laying around on the dance floor',
     'bank': 'They though you gonna rob them. You got arrested',
     'beach': 'You went to the beach, found `{}` coins in a sand castle.',
+    'patreon': 'You subscribed to Mucskis patreon, you lost `{}` coins.',
 }
 
 bad_loc = ['dog', 'trash', 'fridge', 'bank', 'toilet', 'school']
