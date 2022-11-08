@@ -188,7 +188,7 @@ class Coin(commands.Cog):
             user_obj = ctx.guild.get_member(user_id)
             if user_obj is None:
                 continue
-            li.append(f"#{i:2} {user_obj.display_name:<15}"
+            li.append(f"#{i:1} {user_obj.display_name:<15}"
                       f"{account['coin']:>15}")
         text = "\n".join(li)
         page_list = []
@@ -222,10 +222,10 @@ class Coin(commands.Cog):
             stamp = datetime.fromtimestamp(stamp)
         else:
             stamp = now
-        future = now + timedelta(minutes=30)
+        future = now + timedelta(hours=6)
         await self.db.user(ctx.author).stealstamp.set(future.timestamp())
         if stamp > now:
-            await ctx.send(f"You need to slow down or rhe police will catch you.."
+            await ctx.send(f"You need to slow down or the police will catch you.."
                            f"Check back in "
                            f"{humanize.naturaldelta(stamp - now)}")
             return
@@ -291,7 +291,7 @@ class Coin(commands.Cog):
                     await msg.edit(embed=e)
                 except IndexError:
                     break
-            if var == 10 or key == 0:
+            if var == 90 or key == 0:
                 percent = var
                 stolen = floor(enemy_coin * percent / 100)
                 e.set_field_at(0, name="\u200b",
