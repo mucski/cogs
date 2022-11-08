@@ -192,8 +192,7 @@ class Coin(commands.Cog):
                       f"{account['coin']:>15}")
         text = "\n".join(li)
         page_list = []
-        for page_num, page in enumerate(pagify(text, delims=['\n'],
-                                        page_length=1000), start=1):
+        for page_num, page in enumerate(pagify(text, delims=['\n'], page_length=1000)):
             embed = discord.Embed(
                 color=await ctx.bot.get_embed_color(location=ctx.channel),
                 description=box("Leaderboards",
