@@ -184,7 +184,7 @@ class Coin(commands.Cog):
         sorted_acc = sorted(userinfo.items(), key=lambda x: x[1]['coin'],
                             reverse=True)[:50]
         li = []
-        for i, (user_id, account) in enumerate(sorted_acc, start=1):
+        for i, (user_id, account) in enumerate(sorted_acc, start=0):
             user_obj = ctx.guild.get_member(user_id)
             if user_obj is None:
                 continue
@@ -222,7 +222,7 @@ class Coin(commands.Cog):
             stamp = datetime.fromtimestamp(stamp)
         else:
             stamp = now
-        future = now + timedelta(hours=6)
+        future = now + timedelta(hours=12)
         await self.db.user(ctx.author).stealstamp.set(future.timestamp())
         if stamp > now:
             await ctx.send(f"You need to slow down or the police will catch you.."
