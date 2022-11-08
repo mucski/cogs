@@ -141,6 +141,7 @@ class Coin(commands.Cog):
             await ctx.send(searchlist[msg.content.lower()].format(earned))
 
     @coin.command()
+    @commands.cooldown(1, 60, commands.BucketType.user)
     async def gamble(self, ctx, amt: int):
         you = random.randint(1, 12)
         dealer = random.randint(1, 12)
