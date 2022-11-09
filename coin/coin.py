@@ -52,6 +52,7 @@ class Coin(commands.Cog):
 
     @coin.command()
     async def daily(self, ctx):
+        claimed_first = await self.db.user(ctx.author).claimed_first()
         if not claimed_first:
             await ctx.send("Welcome to Coin Tycoon, enjoy your stay!")
             await self.db.user(ctx.author).claimed_first.set(True)
@@ -109,6 +110,7 @@ class Coin(commands.Cog):
     @commands.cooldown(1, 11, commands.BucketType.user)
     async def work(self, ctx):
         coin = await self.db.user(ctx.author).coin()
+        claimed_first = await self.db.user(ctx.author).claimed_first()
         if not claimed_first:
             await ctx.send("Start playing first by claiming daily.")
             return
@@ -129,6 +131,7 @@ class Coin(commands.Cog):
     @commands.cooldown(1, 11, commands.BucketType.user)
     async def search(self, ctx):
         coin = await self.db.user(ctx.author).coin()
+        claimed_first = await self.db.user(ctx.author).claimed_first()
         if not claimed_first:
             await ctx.send("Start playing first by claiming daily.")
             return
@@ -163,6 +166,7 @@ class Coin(commands.Cog):
         if amt < 0:
             await ctx.send("Can't gamble nothing")
             return
+        claimed_first = await self.db.user(ctx.author).claimed_first()
         if not claimed_first:
             await ctx.send("Start playing first by claiming daily.")
             return
@@ -330,6 +334,7 @@ class Coin(commands.Cog):
     @commands.cooldown(1, 20, commands.BucketType.user)
     async def dig(self, ctx):
         coin = await self.db.user(ctx.author).coin()
+        claimed_first = await self.db.user(ctx.author).claimed_first()
         if not claimed_first:
             await ctx.send("Start playing first by claiming daily.")
             return
