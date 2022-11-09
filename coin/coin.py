@@ -227,6 +227,10 @@ class Coin(commands.Cog):
 
     @coin.command()
     async def steal(self, ctx, member: discord.Member):
+        claimed_first = await self.db.user(ctx.author).claimed_first()
+        if not claimed_first:
+            await ctx.send("Start playing first by claiming daily.")
+            return
         self_coin = await self.db.user(ctx.author).coin()
         enemy_coin = await self.db.user(member).coin()
         if enemy_coin == 0:
