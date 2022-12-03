@@ -112,6 +112,7 @@ class HiRez(commands.Cog):
             player_list = await self.api.search_players(name, arez.Platform(platform))
             player = await player_list[0]
         status = await player.get_status()
+        guru = await helper.get_kda_guru(player.name)
         if status.status == 5 or status.status == 0:
             player_status = "Last login: {}".format(humanize.naturaltime(datetime.utcnow() - player.last_login))
         else:
@@ -120,6 +121,7 @@ class HiRez(commands.Cog):
             "**__Player Stats__**\n"
             f"```\nAccount level: {player.calculated_level}\n"
             f"Playtime: {math.floor(player.playtime.total_hours())} hours\n"
+            f"Global KDA: {guru}\n"
             f"Region: {player.region}\n"
             f"Champions Owned: {player.champion_count}\n"
             f"Achievements Unlocked: {player.total_achievements}\n"
