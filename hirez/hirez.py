@@ -113,6 +113,10 @@ class HiRez(commands.Cog):
             player = await player_list[0]
         status = await player.get_status()
         guru = await helper.get_kda_guru(player.id)
+        if guru:
+            guru = guru[3]
+        else:
+            guru = "?"
         if status.status == 5 or status.status == 0:
             player_status = "Last login: {}".format(humanize.naturaltime(datetime.utcnow() - player.last_login))
         else:
