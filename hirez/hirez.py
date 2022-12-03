@@ -112,7 +112,7 @@ class HiRez(commands.Cog):
             player_list = await self.api.search_players(name, arez.Platform(platform))
             player = await player_list[0]
         status = await player.get_status()
-        guru = await helper.get_kda_guru(player.name)
+        guru = await helper.get_kda_guru(player.id)
         if status.status == 5 or status.status == 0:
             player_status = "Last login: {}".format(humanize.naturaltime(datetime.utcnow() - player.last_login))
         else:
