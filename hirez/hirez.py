@@ -94,7 +94,7 @@ class HiRez(commands.Cog):
         await ctx.tick()
 
     @commands.command()
-    async def stats(self, ctx, name=None, platform="PC"):
+    async def oldstats(self, ctx, name=None, platform="PC"):
         """Returns a players stats.
         [p]stats none or [p]stats (player) (platform)
         """
@@ -432,7 +432,7 @@ class HiRez(commands.Cog):
                 pass
 
     @commands.command()
-    async def playercard(self, ctx, name=None, platform="PC"):
+    async def stats(self, ctx, name=None, platform="PC"):
         async with ctx.typing():
             if name is None:
                 # use the ID of the caller
