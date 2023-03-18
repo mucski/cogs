@@ -106,7 +106,7 @@ class Utilities(commands.Cog):
         await ctx.send(avatar)
 
     @commands.command()
-    @checks.is_owner()
+    @checks.admin()
     async def say(self, ctx, *, stuff):
         async for log in ctx.channel.history(limit=1):
             if log.author == ctx.author:
