@@ -240,7 +240,8 @@ class Coin(commands.Cog):
 
         e = discord.Embed(title=f"{ctx.author.name}"
                                 f" is stealing from {member.display_name}")
-        e.set_thumbnail(url=member.avatar.url)
+        if member.avatar.url:
+            e.set_thumbnail(url=member.avatar.url)
         e.add_field(name="\u200b",
                     value="If you run out of picks, you lost."
                           "\nLockpicks left: **3**", inline=False)
