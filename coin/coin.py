@@ -293,7 +293,7 @@ class Coin(commands.Cog):
                 except IndexError:
                     break
             if var == 10 or key == 0:
-                percent = var
+                percent = var * 10
                 stolen = floor(enemy_coin * percent / 100)
                 e.set_field_at(0, name="\u200b",
                                value=f"You successfully stolen"
