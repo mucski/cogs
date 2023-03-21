@@ -248,11 +248,14 @@ def middlepanel(match):
 
 async def getavatar(player):
     size = (150, 150)
-    async with aiohttp.ClientSession() as session:
-        async with session.get(player.avatar_url) as resp:
-            if resp.status == 200:
-                resp = await resp.read()
-    avatar = Image.open(BytesIO(resp)).convert("RGBA")
+    try:
+        async with aiohttp.ClientSession() as session:
+            async with session.get(player.avatar_url) as resp:
+                if resp.status == 200:
+                    resp = await resp.read()
+        avatar = Image.open(BytesIO(resp)).convert("RGBA")
+    except ConnectionError:
+        avatar = Image.open("/home/poopski/mucski/stuff/icons/0.png")
     avatar = avatar.resize((150, 150))
     mask = Image.new('L', size, 0)
     mask_draw = ImageDraw.Draw(mask)
@@ -265,15 +268,9 @@ async def generatecard(player):
     W, H = 860, 1349
     img = Image.open("/home/poopski/mucski/stuff/card_bg.png").convert("RGBA")
     # img = Image.new("RGBA", (W, H))
-    try:
-        avatar = await getavatar(player)
-    except TypeError:
-        avatar = Image.open("/home/poopski/mucski/stuff/icons/0.png")
+    avatar = await getavatar(player)
     rank = Image.open(f"/home/poopski/mucski/stuff/icons/ranks2/{player.ranked_best.rank.value}.png")
-    try:
-        img.paste(avatar, (355, 18), mask=avatar)
-    except ValueError:
-        img.paste(avatar, (355,18))
+    img.paste(avatar, (355, 18), mask=avatar)
     img.paste(rank, (350, 1141), mask=rank)
     draw = ImageDraw.Draw(img)
     fnt = ImageFont.truetype("/home/poopski/mucski/stuff/arial.ttf", 37)
