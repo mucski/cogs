@@ -270,7 +270,10 @@ async def generatecard(player):
     except TypeError:
         avatar = Image.open("/home/poopski/mucski/stuff/icons/0.png")
     rank = Image.open(f"/home/poopski/mucski/stuff/icons/ranks2/{player.ranked_best.rank.value}.png")
-    img.paste(avatar, (355, 18), mask=avatar)
+    try:
+        img.paste(avatar, (355, 18), mask=avatar)
+    except ValueError:
+        img.paste(avatar, (355,18))
     img.paste(rank, (350, 1141), mask=rank)
     draw = ImageDraw.Draw(img)
     fnt = ImageFont.truetype("/home/poopski/mucski/stuff/arial.ttf", 37)
