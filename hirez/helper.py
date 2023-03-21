@@ -265,7 +265,10 @@ async def generatecard(player):
     W, H = 860, 1349
     img = Image.open("/home/poopski/mucski/stuff/card_bg.png").convert("RGBA")
     # img = Image.new("RGBA", (W, H))
-    avatar = await getavatar(player)
+    try:
+        avatar = await getavatar(player)
+    except TypeError:
+        avatar = ""
     rank = Image.open(f"/home/poopski/mucski/stuff/icons/ranks2/{player.ranked_best.rank.value}.png")
     img.paste(avatar, (355, 18), mask=avatar)
     img.paste(rank, (350, 1141), mask=rank)
