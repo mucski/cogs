@@ -248,13 +248,13 @@ def middlepanel(match):
 
 async def getavatar(player):
     size = (150, 150)
+    async with aiohttp.ClientSession() as session:
+        async with session.get(player.avatar_url) as resp:
+            if resp.status == 200:
+                resp = await resp.read()
     try:
-        async with aiohttp.ClientSession() as session:
-            async with session.get(player.avatar_url) as resp:
-                if resp.status == 200:
-                    resp = await resp.read()
         avatar = Image.open(BytesIO(resp)).convert("RGBA")
-    except ConnectionError:
+    except TypeError:
         avatar = Image.open("/home/poopski/mucski/stuff/icons/0.png")
     avatar = avatar.resize((150, 150))
     mask = Image.new('L', size, 0)
