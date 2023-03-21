@@ -268,7 +268,7 @@ async def generatecard(player):
     try:
         avatar = await getavatar(player)
     except TypeError:
-        avatar = "https://github.com/luissilva1044894/hirez-api-docs/blob/master/.assets/paladins/avatar/0.png"
+        avatar = "/home/poopski/mucski/stuff/icons/0.png"
     rank = Image.open(f"/home/poopski/mucski/stuff/icons/ranks2/{player.ranked_best.rank.value}.png")
     img.paste(avatar, (355, 18), mask=avatar)
     img.paste(rank, (350, 1141), mask=rank)
