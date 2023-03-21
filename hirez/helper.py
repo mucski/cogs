@@ -252,7 +252,7 @@ async def getavatar(player):
         async with session.get(player.avatar_url) as resp:
             if resp.status == 200:
                 resp = await resp.read()
-    try:
+    try: # in case heroku goes to shit like always
         avatar = Image.open(BytesIO(resp)).convert("RGBA")
     except TypeError:
         avatar = Image.open("/home/poopski/mucski/stuff/icons/0.png")
