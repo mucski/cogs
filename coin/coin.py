@@ -29,6 +29,7 @@ class Coin(commands.Cog):
         }
         self.db.register_user(**default_user)
         self.db.register_guild(**default_guild)
+        self.playing = False
 
     @commands.group(aliases=['c'])
     async def coin(self, ctx):
@@ -52,6 +53,8 @@ class Coin(commands.Cog):
     @coin.command()
     async def daily(self, ctx):
         now = datetime.utcnow()
+        if not self.playing:
+            self.playing = True
         stamp = await self.db.user(ctx.author).dailystamp()
         if stamp != now:
             stamp = datetime.fromtimestamp(stamp)
@@ -99,7 +102,7 @@ class Coin(commands.Cog):
     @commands.cooldown(1, 11, commands.BucketType.user)
     async def work(self, ctx):
         coin = await self.db.user(ctx.author).coin()
-        if coin == 0:
+        if coin == 0 and not self.playing:
             await ctx.send("Start playing first by claiming daily.")
             return
         r = random.choice(list(worklist.keys()))
@@ -119,7 +122,7 @@ class Coin(commands.Cog):
     @commands.cooldown(1, 11, commands.BucketType.user)
     async def search(self, ctx):
         coin = await self.db.user(ctx.author).coin()
-        if coin == 0:
+        if coin == 0 and not self.playing:
             await ctx.send("Start playing first by claiming daily.")
             return
         r = random.sample(list(searchlist.keys()), 3)
@@ -148,7 +151,7 @@ class Coin(commands.Cog):
         if amt < 0:
             await ctx.send("Can't gamble nothing")
             return
-        if coin == 0:
+        if coin == 0 and not self.playing:
             await ctx.send("Start playing first by claiming daily.")
             return
         if amt > coin:
@@ -318,7 +321,7 @@ class Coin(commands.Cog):
     @commands.cooldown(1, 20, commands.BucketType.user)
     async def dig(self, ctx):
         coin = await self.db.user(ctx.author).coin()
-        if coin == 0:
+        if coin == 0 and not self.playing:
             await ctx.send("Start playing first by claiming daily.")
             return
 
