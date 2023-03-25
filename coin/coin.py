@@ -226,7 +226,7 @@ class Coin(commands.Cog):
         else:
             stamp = now
         future = now + timedelta(hours=12)
-        await self.db.user(ctx.author).stealstamp.set(future.timestamp())
+        
         if stamp > now:
             await ctx.send(f"You need to slow down or rhe police will catch you.."
                            f"Check back in "
@@ -257,7 +257,6 @@ class Coin(commands.Cog):
         e.set_footer(text="Pick the lock using the ◀ and ▶ and ❌ to cancel.")
         msg = await ctx.send(embed=e)
         start_adding_reactions(msg, emojis)
-
         while True:
             pred = ReactionPredicate.with_emojis(emojis, message=msg,
                                                  user=ctx.author)
@@ -316,6 +315,7 @@ class Coin(commands.Cog):
                 await msg.remove_reaction(emoji, ctx.author)
             except discord.HTTPException:
                 pass
+        await self.db.user(ctx.author).stealstamp.set(future.timestamp())
 
     @coin.command()
     @commands.cooldown(1, 20, commands.BucketType.user)
