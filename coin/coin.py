@@ -61,7 +61,6 @@ class Coin(commands.Cog):
         else:
             stamp = now
         future = now + timedelta(hours=12)
-        await self.db.user(ctx.author).dailystamp.set(future.timestamp())
         if stamp > now:
             await ctx.send(f"You already claimed your daily coins."
                            f"Check back in"
@@ -71,6 +70,8 @@ class Coin(commands.Cog):
         coin += 300
         await self.db.user(ctx.author).coin.set(coin)
         await ctx.send("Claimed 300 coins. Check back in 12 hours.")
+        if stamp <= now:
+            await self.db.user(ctx.author).stealstamp.set(future.timestamp())
     
     @coin.command()
     @checks.is_owner()
@@ -144,6 +145,7 @@ class Coin(commands.Cog):
             await ctx.send(searchlist[msg.content.lower()].format(earned))
 
     @coin.command()
+    @commands.cooldown(1, 11, commands.BucketType.user)
     async def gamble(self, ctx, amt: int):
         you = random.randint(1, 12)
         dealer = random.randint(1, 12)
@@ -214,10 +216,10 @@ class Coin(commands.Cog):
         self_coin = await self.db.user(ctx.author).coin()
         enemy_coin = await self.db.user(member).coin()
         if enemy_coin == 0:
-            await ctx.send(f"Poor {member.display_name} has nothing left to steal or he didnt even start playing yet.")
+            await ctx.send(f"Poor {member.display_name} has nothing left to steal or haven't started playing yet.")
             return
         if member == ctx.author:
-            await ctx.send("Really? You want to rob yourself?!")
+            await ctx.send("Do you really want to rob yourself?")
             return
         now = datetime.utcnow()
         stamp = await self.db.user(ctx.author).stealstamp()
@@ -228,7 +230,7 @@ class Coin(commands.Cog):
         future = now + timedelta(hours=12)
         
         if stamp > now:
-            await ctx.send(f"You need to slow down or rhe police will catch you.."
+            await ctx.send(f"You need to slow down or the Police will catch you ..."
                            f"Check back in "
                            f"{humanize.naturaldelta(stamp - now)}")
             return
