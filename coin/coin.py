@@ -315,7 +315,8 @@ class Coin(commands.Cog):
                 await msg.remove_reaction(emoji, ctx.author)
             except discord.HTTPException:
                 pass
-        await self.db.user(ctx.author).stealstamp.set(future.timestamp())
+        if stamp <= now:
+            await self.db.user(ctx.author).stealstamp.set(future.timestamp())
 
     @coin.command()
     @commands.cooldown(1, 20, commands.BucketType.user)
