@@ -156,7 +156,7 @@ def format_match(match: arez.Match) -> Image:
     middle = middlepanel(match)
     img.paste(middle, (0, 1262))
     #base.paste(middlebar(match))
-    historyimg = img.resize((2310, 1471), Image.ANTIALIAS)
+    historyimg = img.resize((2310, 1471), Image.Resampling.LANCZOS)
     final_buffer = BytesIO()
     historyimg.save(final_buffer, "PNG")
     final_buffer.seek(0)
@@ -180,7 +180,7 @@ def middlepanel(match):
     # dynamic resize
     wpercent = (basewidth / float(match_map.size[0]))
     hsize = round((float(match_map.size[1]) * float(wpercent)))
-    match_map = match_map.resize((basewidth, hsize), Image.ANTIALIAS)
+    match_map = match_map.resize((basewidth, hsize), Image.Resampling.LANCZOS)
 
     enhancer = ImageEnhance.Brightness(match_map)
     match_map = enhancer.enhance(0.5)
