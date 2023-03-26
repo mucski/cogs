@@ -292,6 +292,7 @@ class SFX(commands.Cog):
                 # there's at least one non-bot person connected to the channel we're in
                 return
             else:
+                vc: Optional[discord.VoiceClient] = guild.voice_client
                 if vc is not None:
                     await vc.disconnect()
                 else:
