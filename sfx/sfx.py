@@ -252,13 +252,13 @@ class SFX(commands.Cog):
             sentence = f"{text}"
         await self.vc_queue.put(TTSItem(sentence, msg))
 
-    async def leaver(self, guild: discord.Guild):
-        await asyncio.sleep(900)  # 15 minutes
-        vc: Optional[discord.VoiceClient] = guild.voice_client
-        if vc is not None:
-            await vc.disconnect()
-        if guild.id in self.leave_tasks:
-            del self.leave_tasks[guild.id]
+    # async def leaver(self, guild: discord.Guild):
+    #     await asyncio.sleep(900)  # 15 minutes
+    #     vc: Optional[discord.VoiceClient] = guild.voice_client
+    #     if vc is not None:
+    #         await vc.disconnect()
+    #     if guild.id in self.leave_tasks:
+    #         del self.leave_tasks[guild.id]
 
     @commands.Cog.listener()
     async def on_voice_state_update(
@@ -291,12 +291,14 @@ class SFX(commands.Cog):
             if num_members > 0:
                 # there's at least one non-bot person connected to the channel we're in
                 return
-            guild = member.guild
-            if guild.id not in self.leave_tasks:
-                self.leave_tasks[guild.id] = asyncio.create_task(self.leaver(guild))
-        elif after_channel is not None and after_channel.id == vc.channel.id:
-            # connected to the channel we're in
-            guild_id = member.guild.id
-            if guild_id in self.leave_tasks:
-                self.leave_tasks[guild_id].cancel()
-                del self.leave_tasks[guild_id]
+            else:
+                if vc is not None:
+                    await vc.disconnect()
+                else:
+                    pass
+        # elif after_channel is not None and after_channel.id == vc.channel.id:
+        #     # connected to the channel we're in
+        #     guild_id = member.guild.id
+        #     if guild_id in self.leave_tasks:
+        #         self.leave_tasks[guild_id].cancel()
+        #         del self.leave_tasks[guild_id]
