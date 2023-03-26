@@ -253,7 +253,7 @@ class SFX(commands.Cog):
         await self.vc_queue.put(TTSItem(sentence, msg))
 
     @commands.Cog.listener()
-    async def on_voice_state_update(self, member: discord.Member, before, after):
+    async def on_voice_state_update(self, member, before, after):
         voice_state = member.guild.voice_client
         # Checking if the bot is connected to a channel and if there is only 1 member connected to it (the bot itself)
         if voice_state is not None and len(voice_state.channel.members) == 1:
