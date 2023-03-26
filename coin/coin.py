@@ -441,5 +441,5 @@ class Coin(commands.Cog):
                 await msg.edit(embed=embed2)
             except discord.errors.Forbidden:
                 await ctx.send(embed=embed2)
-            await ctx.send("Not even close, you found nothing.")
+            await ctx.send("You found nothing!")
             return
