@@ -385,7 +385,7 @@ class Coin(commands.Cog):
             title="Find the pirate booty chest!"
         )
 
-        desc2 = desc.replace(str(chest), "❌")
+        desc2 = desc.replace(str(chest).strip("0"), "❌")
         embed2 = discord.Embed(
             color=await self.bot.get_embed_color(ctx),
             description=f"The chest was here:"
