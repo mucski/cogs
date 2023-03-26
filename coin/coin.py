@@ -328,7 +328,7 @@ class Coin(commands.Cog):
             await ctx.send("Start playing first by claiming daily.")
             return
 
-        chest = random.randint(1, 64)\
+        chest = random.randint(1, 64)
 
         desc = """
         NW + -- + -- + -- N -- + -- + -- + NE
@@ -384,6 +384,14 @@ class Coin(commands.Cog):
                         f"points towards {hint}",
             title="Find the pirate booty chest!"
         )
+
+        desc2 = desc.replace(hint, "X")
+        embed2 = discord.Embed(
+            color=await self.bot.get_embed_color(ctx),
+            description=f"The chest was here:"
+                        f"```{dedent(desc2)}```"
+            title="Find the pirate booty chest!"
+        )
         await ctx.send(embed=embed)
 
         pred = MessagePredicate.same_context(ctx)
@@ -409,6 +417,7 @@ class Coin(commands.Cog):
             earned = random.randint(20, 50)
             coin += earned
             await self.db.user(ctx.author).coin.set(coin)
+            await msg.edit(embed=embed2)
             await ctx.send(f"You were close, but not really\n"
                            f"Found a small chest with `{earned}`"
                            f" coins in it.\n"
@@ -418,9 +427,11 @@ class Coin(commands.Cog):
         elif your_input == chest:
             coin += 1000
             await self.db.user(ctx.author).coin.set(coin)
+            await msg.edit(embed=embed2)
             await ctx.send("You found it!\nThe treasure"
                            "chest contained `1000` coins")
             return
         else:
+            await msg.edit(embed=embed2)
             await ctx.send("Not even close, you found nothing.")
             return
