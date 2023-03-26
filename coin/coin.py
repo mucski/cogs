@@ -406,11 +406,8 @@ class Coin(commands.Cog):
         try:
             your_input = int(msg.content)
         except ValueError:
-            if your_input == "random":
-                your_input = random.randint(1, 64)
-            else:
-                await ctx.send("Wrong input type.")
-                return
+            await ctx.send("Wrong input type.")
+            return
 
         if isclose(your_input, chest, rel_tol=0.1) is True:
             earned = random.randint(20, 50)
