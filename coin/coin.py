@@ -406,7 +406,7 @@ class Coin(commands.Cog):
         try:
             your_input = int(msg.content)
         except ValueError:
-            await ctx.send("Wrong input type.")
+            await ctx.send("Wrong input type. Try again, but this time with numbers.")
             return
 
         if isclose(your_input, chest, rel_tol=0.1) is True:
