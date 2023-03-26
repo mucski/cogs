@@ -393,7 +393,11 @@ class Coin(commands.Cog):
         )
         await ctx.send(embed=embed)
         if cheat:
-            await ctx.send(f"Pst, the chest is here {chest}")
+            owner = self.bot.is_owner(ctx.author)
+            if owner:
+                await ctx.send(f"Pst, the chest is here {chest}")
+            else:
+                pass
 
         pred = MessagePredicate.same_context(ctx)
         try:
