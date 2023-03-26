@@ -322,7 +322,7 @@ class Coin(commands.Cog):
 
     @coin.command()
     @commands.cooldown(1, 20, commands.BucketType.user)
-    async def dig(self, ctx):
+    async def dig(self, ctx, cheat=False):
         coin = await self.db.user(ctx.author).coin()
         if coin == 0 and not self.playing:
             await ctx.send("Start playing first by claiming daily.")
@@ -392,6 +392,8 @@ class Coin(commands.Cog):
             title="The chest was here!"
         )
         await ctx.send(embed=embed)
+        if cheat:
+            await ctx.send(f"Pst, the chest is here {chest}")
 
         pred = MessagePredicate.same_context(ctx)
         try:
