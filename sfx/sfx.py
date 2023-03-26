@@ -87,7 +87,7 @@ class SFX(commands.Cog):
         if vc is None:
             await ctx.channel.send("I am not in a voice channel.")
             return
-        await vc.voice_disconnect()
+        await vc.disconnect()
         await ctx.tick()
 
     @commands.command()
@@ -260,7 +260,7 @@ class SFX(commands.Cog):
             # You should also check if the song is still playing
             for vc in self.bot.voice_clients:
                 if vc.guild == member.guild:
-                    await vc.voice_disconnect()
+                    await vc.disconnect()
             # await self.bot.voice_clients.voice_disconnect()
 
     # @commands.Cog.listener()
