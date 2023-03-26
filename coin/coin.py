@@ -417,7 +417,10 @@ class Coin(commands.Cog):
             earned = random.randint(20, 50)
             coin += earned
             await self.db.user(ctx.author).coin.set(coin)
-            await msg.edit(embed=embed2)
+            try:
+                await msg.edit(embed=embed2)
+            except discord.errors.Forbidden:
+                await ctx.send(embed=embed2)
             await ctx.send(f"You were close, but not really\n"
                            f"Found a small chest with `{earned}`"
                            f" coins in it.\n"
@@ -427,11 +430,17 @@ class Coin(commands.Cog):
         elif your_input == chest:
             coin += 1000
             await self.db.user(ctx.author).coin.set(coin)
-            await msg.edit(embed=embed2)
+            try:
+                await msg.edit(embed=embed2)
+            except discord.errors.Forbidden:
+                await ctx.send(embed=embed2)
             await ctx.send("You found it!\nThe treasure"
                            "chest contained `1000` coins")
             return
         else:
-            await msg.edit(embed=embed2)
+            try:
+                await msg.edit(embed=embed2)
+            except discord.errors.Forbidden:
+                await ctx.send(embed=embed2)
             await ctx.send("Not even close, you found nothing.")
             return
