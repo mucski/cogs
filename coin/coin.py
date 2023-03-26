@@ -408,8 +408,18 @@ class Coin(commands.Cog):
         except ValueError:
             await ctx.send("Wrong input type. Try again, but this time with numbers.")
             return
-
-        if isclose(your_input, chest, rel_tol=0.1) is True:
+        
+        if your_input == chest:
+            coin += 1000
+            await self.db.user(ctx.author).coin.set(coin)
+            try:
+                await msg.edit(embed=embed2)
+            except discord.errors.Forbidden:
+                await ctx.send(embed=embed2)
+            await ctx.send("You found it!\nThe treasure"
+                           "chest contained `1000` coins")
+            return
+        elif isclose(your_input, chest, rel_tol=0.1) is True:
             earned = random.randint(20, 50)
             coin += earned
             await self.db.user(ctx.author).coin.set(coin)
@@ -422,16 +432,6 @@ class Coin(commands.Cog):
                            f" coins in it.\n"
                            f"You can't help but wonder what kind of treasures "
                            f"the big one could contain...")
-            return
-        elif your_input == chest:
-            coin += 1000
-            await self.db.user(ctx.author).coin.set(coin)
-            try:
-                await msg.edit(embed=embed2)
-            except discord.errors.Forbidden:
-                await ctx.send(embed=embed2)
-            await ctx.send("You found it!\nThe treasure"
-                           "chest contained `1000` coins")
             return
         else:
             try:
