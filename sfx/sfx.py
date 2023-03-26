@@ -71,7 +71,7 @@ class SFX(commands.Cog):
         else:
             # join the channel
             try:
-                await channel.voice_connect()
+                await channel.connect()
             except asyncio.TimeoutError:
                 await ctx.send(f'Connecting to channel: <{channel}> timed out.')
                 return
