@@ -252,14 +252,6 @@ class SFX(commands.Cog):
             sentence = f"{text}"
         await self.vc_queue.put(TTSItem(sentence, msg))
 
-    async def leaver(self, guild: discord.Guild):
-        await asyncio.sleep(900)  # 15 minutes
-        vc: Optional[discord.VoiceClient] = guild.voice_client
-        if vc is not None:
-            await vc.disconnect()
-        if guild.id in self.leave_tasks:
-            del self.leave_tasks[guild.id]
-
     @commands.Cog.listener()
     async def on_voice_state_update(self, member: discord.Member, before, after):
         voice_state = member.guild.voice_client
