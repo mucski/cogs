@@ -260,43 +260,43 @@ class SFX(commands.Cog):
     #     if guild.id in self.leave_tasks:
     #         del self.leave_tasks[guild.id]
 
-    # @commands.Cog.listener()
-    # async def on_voice_state_update(
-    #     self, member: discord.Member, before: discord.VoiceState, after: discord.VoiceState
-    # ):
-    #     # narrow down the exact type of event we're looking for here
-    #     vc: Optional[discord.VoiceClient] = member.guild.voice_client
-    #     if vc is None or not vc.is_connected():
-    #         # we're not connected to a channel in that guild
-    #         return
-    #     before_channel: Optional[discord.VoiceChannel] = before.channel
-    #     after_channel: Optional[discord.VoiceChannel] = after.channel
-    #     if (
-    #         # before and after channels are None
-    #         before_channel is None and after_channel is None
-    #         or (
-    #             # or both channels are set and they're the same channel
-    #             before_channel is not None
-    #             and after_channel is not None
-    #             and before_channel.id == after_channel.id
-    #         )
-    #     ):
-    #         return
-    #     if before_channel is not None and before_channel.id == vc.channel.id:
-    #         # disconnected from the channel we're in
-    #         num_members = sum(1 for m in vc.channel.members if not m.bot)
-    #         if num_members > 0:
-    #             # there's at least one non-bot person connected to the channel we're in
-    #             return
-    #         else:
-    #             vc: Optional[discord.VoiceClient] = member.guild.voice_client
-    #             if vc is not None:
-    #                 await vc.disconnect()
-    #             else:
-    #                 pass
-    #     # elif after_channel is not None and after_channel.id == vc.channel.id:
-    #     #     # connected to the channel we're in
-    #     #     guild_id = member.guild.id
-    #     #     if guild_id in self.leave_tasks:
-    #     #         self.leave_tasks[guild_id].cancel()
-    #     #         del self.leave_tasks[guild_id]
+    @commands.Cog.listener()
+    async def on_voice_state_update(
+        self, member: discord.Member, before: discord.VoiceState, after: discord.VoiceState
+    ):
+        # narrow down the exact type of event we're looking for here
+        vc: Optional[discord.VoiceClient] = member.guild.voice_client
+        if vc is None or not vc.is_connected():
+            # we're not connected to a channel in that guild
+            return
+        before_channel: Optional[discord.VoiceChannel] = before.channel
+        after_channel: Optional[discord.VoiceChannel] = after.channel
+        if (
+            # before and after channels are None
+            before_channel is None and after_channel is None
+            or (
+                # or both channels are set and they're the same channel
+                before_channel is not None
+                and after_channel is not None
+                and before_channel.id == after_channel.id
+            )
+        ):
+            return
+        if before_channel is not None and before_channel.id == vc.channel.id:
+            # disconnected from the channel we're in
+            num_members = sum(1 for m in vc.channel.members if not m.bot)
+            if num_members > 0:
+                # there's at least one non-bot person connected to the channel we're in
+                return
+            else:
+                vc: Optional[discord.VoiceClient] = member.guild.voice_client
+                if vc is not None:
+                    await vc.disconnect()
+                else:
+                    pass
+        # elif after_channel is not None and after_channel.id == vc.channel.id:
+        #     # connected to the channel we're in
+        #     guild_id = member.guild.id
+        #     if guild_id in self.leave_tasks:
+        #         self.leave_tasks[guild_id].cancel()
+        #         del self.leave_tasks[guild_id]
