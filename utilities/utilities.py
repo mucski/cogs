@@ -107,13 +107,13 @@ class Utilities(commands.Cog):
             avatar = member.default_avatar
         await ctx.send(avatar)
 
-    # @commands.command()
-    # @checks.admin()
-    # async def say(self, ctx, *, stuff):
-    #     async for log in ctx.channel.history(limit=1):
-    #         if log.author == ctx.author:
-    #             await log.delete()
-    #     await ctx.send(stuff)
+    @commands.hybrid_command()
+    @checks.admin()
+    async def talk(self, ctx, *, stuff):
+        async for log in ctx.channel.history(limit=1):
+            if log.author == ctx.author:
+                await log.delete()
+        await ctx.send(stuff)
 
     @app_commands.command()
     @checks.admin()
