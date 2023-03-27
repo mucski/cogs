@@ -1,4 +1,4 @@
-from redbot.core import commands, checks
+from redbot.core import commands, checks, tree
 from redbot.core.utils.chat_formatting import text_to_file
 import random
 from .words import words, words2, flags
@@ -105,13 +105,21 @@ class Utilities(commands.Cog):
             avatar = member.default_avatar
         await ctx.send(avatar)
 
-    @commands.command()
+    # @commands.command()
+    # @checks.admin()
+    # async def say(self, ctx, *, stuff):
+    #     async for log in ctx.channel.history(limit=1):
+    #         if log.author == ctx.author:
+    #             await log.delete()
+    #     await ctx.send(stuff)
+
+    @tree.command(name="say", description="Say something with the bot")
     @checks.admin()
-    async def say(self, ctx, *, stuff):
+    async def say(interaction, ctx, *, stuff):
         async for log in ctx.channel.history(limit=1):
             if log.author == ctx.author:
                 await log.delete()
-        await ctx.send(stuff)
+        await interaction.response.send_message(stuff)
 
     # @commands.command()
     # async def info(self, ctx):
