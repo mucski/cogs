@@ -264,9 +264,6 @@ class SFX(commands.Cog):
     async def on_voice_state_update(
         self, member: discord.Member, before: discord.VoiceState, after: discord.VoiceState
     ):
-        # ignore events for ourselves
-        if member.id == self.bot.user.id:
-            return
         # narrow down the exact type of event we're looking for here
         vc: Optional[discord.VoiceClient] = member.guild.voice_client
         if vc is None or not vc.is_connected():
@@ -292,7 +289,7 @@ class SFX(commands.Cog):
                 # there's at least one non-bot person connected to the channel we're in
                 return
             else:
-                vc: Optional[discord.VoiceClient] = guild.voice_client
+                vc: Optional[discord.VoiceClient] = member.guild.voice_client
                 if vc is not None:
                     await vc.disconnect()
                 else:
