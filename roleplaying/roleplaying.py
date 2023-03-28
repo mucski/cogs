@@ -2,7 +2,7 @@ import random
 from typing import Optional, List
 
 import discord
-from redbot.core import commands
+from redbot.core import commands, checks
 
 from .randomstuff import (
     kisslist, slaplist, punchlist, cuddlelist, sadlist, patlist, huglist, licklist, bitelist,
@@ -272,6 +272,5 @@ class Roleplaying(commands.Cog):
         await ctx.send(embed=self.img_grab(lovelist, "loves", "loves", ctx.author, member))
 
     @rp.command()
-    @commands.is_nsfw()
     async def spank(self, ctx, member: discord.Member = None):
         await ctx.send(embed=self.img_grab(spanklist, "spanks", "spanks", ctx.author, member))
