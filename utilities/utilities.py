@@ -123,24 +123,6 @@ class Utilities(commands.Cog):
     async def say(self, interaction, stuff: str):
         await interaction.response.send_message(stuff)
 
-    @commands.command()
-    async def debugstate(self, ctx):
-        tree = self.bot.tree
-        enabled_slash = await self.bot._config.enabled_slash_commands()
-        enabled_user = await self.bot._config.enabled_user_commands()
-        enabled_message = await self.bot._config.enabled_message_commands()
-        
-        msg = (
-            f"{tree._global_commands=}\n"
-            f"{tree._context_menus=}\n"
-            f"{tree._disabled_global_commands=}\n"
-            f"{tree._disabled_context_menus=}\n"
-            f"{enabled_slash=}\n"
-            f"{enabled_user=}\n"
-            f"{enabled_message=}\n"
-        )
-        await ctx.send(f"```py\n{msg}```")
-
     # @commands.command()
     # async def info(self, ctx):
     #     desc = (
