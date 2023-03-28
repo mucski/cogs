@@ -18,7 +18,7 @@ class Utilities(commands.Cog):
         self.bot = bot
         # self.bot.remove_command("info")
 
-    @commands.hybrid_group()
+    @commands.hybrid_group(name="utility")
     async def utility(self):
         """"Group commands for utilities"""
         pass
