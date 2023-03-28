@@ -227,7 +227,7 @@ class Coin(commands.Cog):
             stamp = datetime.fromtimestamp(stamp)
         else:
             stamp = now
-        future = now + timedelta(hours=12)
+        future = now + timedelta(hours=6)
         
         if stamp > now:
             await ctx.send(f"You need to slow down or the Police will catch you ..."
