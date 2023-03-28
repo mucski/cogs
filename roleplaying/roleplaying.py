@@ -168,7 +168,6 @@ class Roleplaying(commands.Cog):
         await ctx.send(embed=self.img_grab(wavelist, "waves", "waves at", ctx.author, member))
 
     @rp.command()
-    @rp.is_nsfw()
     async def horny(self, ctx, member: discord.Member = None):
         await ctx.send(
             embed=self.img_grab(hornylist, "is horny", "is horny for", ctx.author, member)
@@ -193,7 +192,6 @@ class Roleplaying(commands.Cog):
         await ctx.send(embed=self.img_grab(smokelist, "smokes", "smokes with", ctx.author, member))
 
     @rp.command()
-    @rp.is_nsfw()
     async def lewd(self, ctx, member: discord.Member = None):
         await ctx.send(
             embed=self.img_grab(lewdlist, "feels lewd", "feels lewd towards", ctx.author, member)
