@@ -43,7 +43,7 @@ class SFX(commands.Cog):
     def cog_unload(self):
         self.vc_task.cancel()
 
-    @commands.command()
+    @commands.hybrid_command()
     @commands.guild_only()
     async def connect(self, ctx: Context, channel: discord.VoiceChannel = None):
         """
@@ -77,7 +77,12 @@ class SFX(commands.Cog):
                 return
         await ctx.tick()
 
-    @commands.command()
+    @commands.hybrid_group()
+    async def sfx(self, ctx):
+        """Settings and other stuff related to Mucski's TTS cog"""
+        pass
+
+    @sfx.command()
     @commands.guild_only()
     async def disconnect(self, ctx: Context):
         """
@@ -90,10 +95,10 @@ class SFX(commands.Cog):
         await vc.disconnect()
         await ctx.tick()
 
-    @commands.command()
+    @sfx.command()
     @checks.admin()
     @commands.guild_only()
-    async def addttschannel(self, ctx: Context, channel: discord.TextChannel):
+    async def addchan(self, ctx: Context, channel: discord.TextChannel):
         """
         Add a TTS channel to the list of tracked channels.
         """
@@ -102,10 +107,10 @@ class SFX(commands.Cog):
             channels.append(channel.id)
         await ctx.send(f"{channel.name} has been added to tts channel list.")
 
-    @commands.command()
+    @sfx.command()
     @checks.admin()
     @commands.guild_only()
-    async def delttschannel(self, ctx: Context, channel: discord.TextChannel):
+    async def dellchan(self, ctx: Context, channel: discord.TextChannel):
         """
         Remove a TTS channel from the list of tracked channels.
         """
@@ -114,22 +119,22 @@ class SFX(commands.Cog):
             channels.remove(channel.id)
         await ctx.send(f"{channel.name} has been removed from tts channels.")
 
-    @commands.command()
+    @sfx.command()
     @checks.admin()
     @checks.mod()
     @commands.guild_only()
-    async def ttslang(self, ctx: Context, lang: str):
+    async def lang(self, ctx: Context, lang: str):
         """
         Change the TTS language to the one specified.
         """
         await self.db.guild(ctx.guild).lang.set(lang)
         await ctx.send(f"TTS language set to {lang}")
 
-    @commands.command()
+    @sfx.command()
     @checks.admin()
     @checks.mod()
     @commands.guild_only()
-    async def ttstld(self, ctx: Context, tld: str):
+    async def tld(self, ctx: Context, tld: str):
         """
         Change the TLD of the TTS language to the one specified.
 
@@ -140,32 +145,32 @@ class SFX(commands.Cog):
         await self.db.guild(ctx.guild).tld.set(tld)
         await ctx.send(f"TTS language tld set to {tld}")
 
-    @commands.command()
+    @sfx.command()
     @checks.admin()
     @checks.mod()
     @commands.guild_only()
-    async def ttsname(self, ctx: Context, state: bool):
+    async def speak_name(self, ctx: Context, state: bool):
         """
         Set if you want TTS to include the speaker's name.
         """
         await self.db.guild(ctx.guild).with_nick.set(state)
         await ctx.send(f"TTS name calling is set to {'ON' if state else 'OFF'}")
 
-    @commands.command()
+    @sfx.command()
     @checks.admin()
     @commands.guild_only()
-    async def ttscleardb(self, ctx: Context):
+    async def cleardb(self, ctx: Context):
         """
         Clear all settings for the current guild.
         """
         await self.db.guild(ctx.guild).clear()
         await ctx.send("The db has been wiped.")
 
-    @commands.command()
+    @sfx.command()
     @checks.admin()
     @checks.mod()
     @commands.guild_only()
-    async def ttsspeed(self, ctx: Context, speed: float):
+    async def speed(self, ctx: Context, speed: float):
         """
         Changes playback speed. Any speed between 0.5 and 2.0 is supported.
         """
