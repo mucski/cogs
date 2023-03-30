@@ -49,12 +49,7 @@ class HiRez(commands.Cog):
                 await ctx.send("```\nSomething went wrong with the API. If the problem persists please contact Mucski.\n```")
         await ctx.bot.on_command_error(ctx, error, unhandled_by_cog=True)
 
-    @commands.hybrid_group()
-    async def pal(self, ctx):
-        """Paladins commands"""
-        pass
-
-    @pal.command()
+    @commands.command()
     async def status(self, ctx):
         """Paladins server statuses
         Green means online, red means offline, yellow means limited access
@@ -80,7 +75,7 @@ class HiRez(commands.Cog):
         e.set_footer(text=f"Current time: {status.timestamp.strftime('%c')}")
         await ctx.send(embed=e)
 
-    @pal.command()
+    @commands.command()
     @checks.is_owner()
     async def downloadchamps(self, ctx):
         """
@@ -98,7 +93,7 @@ class HiRez(commands.Cog):
                         await f.close()
         await ctx.tick()
 
-    @pal.command()
+    @commands.command()
     async def oldstats(self, ctx, name=None, platform="PC"):
         """Returns a players stats.
         [p]stats none or [p]stats (player) (platform)
@@ -158,7 +153,7 @@ class HiRez(commands.Cog):
         e.set_footer(text=f"Player ID: {player.id}")
         await ctx.send(embed=e)
 
-    @pal.command()
+    @commands.hybrid_command()
     async def current(self, ctx, name=None, platform="PC"):
         """
         Returns the current status of a player
@@ -240,7 +235,7 @@ class HiRez(commands.Cog):
             e.set_footer(text=f"Match ID: {live_match.id} / Missing players are bots.")
             await ctx.send(embed=e)
 
-    @pal.command()
+    @commands.hybrid_command()
     async def champstats(self, ctx, champion_name="all", player=None, platform="PC"):
         """Returns champion stats, individual or multiple
         [p]champstats wr name platform to sort by winrate
@@ -319,7 +314,7 @@ class HiRez(commands.Cog):
             e.set_footer(text=f"Individual champion stats for {ret.name}")
             await ctx.send(embed=e)
 
-    @pal.command()
+    @commands.hybrid_command()
     async def match(self, ctx, matchid: int):
         """Returns a match played from a given ID.
         This command only supports integer.
@@ -332,7 +327,7 @@ class HiRez(commands.Cog):
             file = discord.File(filename="test.png", fp=pic)
             await ctx.send(file=file)
 
-    @pal.command()
+    @commands.hybrid_command()
     async def last(self, ctx, player=None, platform="PC"):
         """Returns the last played match by player
         player can be a string or a discord member (mention)
@@ -368,7 +363,7 @@ class HiRez(commands.Cog):
             await ctx.send(file=file)
             # await ctx.send(match.bans)
 
-    @pal.command()
+    @commands.hybrid_command()
     async def history(self, ctx, player=None, sorting=None, platform="PC"):
         """Returns the history of someone (or yourself)
         Usage: [p]history name platform (or leave both blank for yourself if you have discord linked to hirez)
@@ -430,7 +425,7 @@ class HiRez(commands.Cog):
             else:
                 pass
 
-    @pal.command()
+    @commands.hybrid_command()
     async def stats(self, ctx, name=None, platform="PC"):
         async with ctx.typing():
             if name is None:
@@ -455,7 +450,7 @@ class HiRez(commands.Cog):
             file = discord.File(filename=f"{player.name}.png", fp=playercard)
             await ctx.send(file=file)
 
-    @pal.command()
+    @commands.command()
     async def globalkda(self, ctx, playerid: int):
         resp = await helper.get_kda_guru(playerid)
         if resp:
