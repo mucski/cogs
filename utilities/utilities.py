@@ -18,18 +18,13 @@ class Utilities(commands.Cog):
         self.bot = bot
         # self.bot.remove_command("info")
 
-    @commands.hybrid_group()
-    async def utility(self, ctx):
-        """"Group commands for utilities"""
-        pass
-
-    @utility.command()
+    @commands.command()
     async def whoami(self, ctx):
         word = random.choice(words)
         word2 = random.choice(words2)
         await ctx.send(f"{word} {word2}")
 
-    @utility.command()
+    @commands.command()
     async def flag(self, ctx, *, flag):
         orig = ctx.guild.get_member(ctx.author.id).nick
         if orig is None:
@@ -59,7 +54,7 @@ class Utilities(commands.Cog):
             return
         await ctx.send(f"Added {comp} to {orig.strip()}'s nickname. To remove it use delflag command.")
 
-    @utility.command()
+    @commands.command()
     async def delflag(self, ctx):
         orig = ctx.guild.get_member(ctx.author.id).nick
         if orig is None:
@@ -81,7 +76,7 @@ class Utilities(commands.Cog):
             return
         await ctx.send("Done")
 
-    @utility.command()
+    @commands.hybrid_command()
     @checks.is_owner()
     async def console(self, ctx, *, cmd):
     # The recommended way in Python 3.5 and above is to use subprocess.
@@ -99,11 +94,11 @@ class Utilities(commands.Cog):
         else:
             await ctx.send("```\n" + response + "\n```")
 
-    @utility.command(aliases=["emoji"])
+    @commands.hybrid_command(aliases=["emoji"])
     async def emote(self, ctx, emoji: discord.PartialEmoji):
         await ctx.send(emoji.url)
 
-    @utility.command()
+    @commands.hybrid_command()
     async def avatar(self, ctx, member: discord.Member = None):
         if member is None:
             member = ctx.author
@@ -115,7 +110,7 @@ class Utilities(commands.Cog):
             avatar = member.default_avatar
         await ctx.send(avatar)
 
-    @utility.command()
+    @commands.command()
     @checks.admin()
     async def talk(self, ctx, *, stuff):
         async for log in ctx.channel.history(limit=1):
