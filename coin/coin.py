@@ -229,7 +229,7 @@ class Coin(commands.Cog):
             stamp = now
         future = now + timedelta(hours=6)
         
-        if stamp > now:
+        if stamp >= now:
             await ctx.send(f"You need to slow down or the Police will catch you ..."
                            f"Check back in "
                            f"{humanize.naturaldelta(stamp - now)}")
