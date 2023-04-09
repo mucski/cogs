@@ -11,4 +11,7 @@ class Greetings(commands.Cog):
     async def on_member_join(self, member):
         if member.guild.id == 939484898773827614:
             channel = self.bot.get_channel(971361677348044862)  # the channel ID
-            await channel.send(f"Welcome to Mystic Valley {member.mention}, enjoy your stay. Please do read the rules in {self.bot.get_channel(971361336594403368).mention}")
+            await channel.send(
+                f"Welcome to Mystic Valley {member.mention}, enjoy your stay. Please do read the rules in {self.bot.get_channel(971361336594403368).mention}"
+                f"Have an idea? Visit {self.bot.get_channel(1094646729313374239).mention}, found a bug? Visit {self.bot.get_channel(971450285769760849).mention}"
+            )
