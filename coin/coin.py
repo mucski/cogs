@@ -71,7 +71,7 @@ class Coin(commands.Cog):
         coin += 300
         await self.db.user(ctx.author).coin.set(coin)
         await ctx.send("Claimed 300 coins. Check back in 12 hours.")
-        if isinstance(error, commands.CommandOnCooldown):
+        if isinstance(self, commands.CommandOnCooldown):
                 await ctx.send("You already claimed your Daily coins for today.")
                 await ctx.send(f"You need to wait {round(error.retry_after, 2)} seconds before you can use this command again.")
         # if stamp <= now:
@@ -322,7 +322,7 @@ class Coin(commands.Cog):
                 await msg.remove_reaction(emoji, ctx.author)
             except discord.HTTPException:
                 pass
-        if isinstance(error, commands.CommandOnCooldown):
+        if isinstance(self, commands.CommandOnCooldown):
             await ctx.send(f"You need to wait {round(error.retry_after, 2)} or the police will catch you.")
         # if stamp <= now:
         #     await self.db.user(ctx.author).stealstamp.set(future.timestamp())
