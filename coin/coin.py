@@ -51,27 +51,31 @@ class Coin(commands.Cog):
         await ctx.send(f"{member.mention} has {coin} coins.")
 
     @coin.command()
+    @commands.cooldown(1, 43200, commands.BucketType.user)
     async def daily(self, ctx):
-        now = datetime.utcnow()
+        # now = datetime.utcnow()
         if not self.playing:
             self.playing = True
-        stamp = await self.db.user(ctx.author).dailystamp()
-        if stamp != now:
-            stamp = datetime.fromtimestamp(stamp)
-        else:
-            stamp = now
-        future = now + timedelta(hours=12)
-        if stamp > now:
-            await ctx.send(f"You already claimed your daily coins."
-                           f"Check back in"
-                           f"{humanize.naturaldelta(stamp - now)}")
-            return
+        # stamp = await self.db.user(ctx.author).dailystamp()
+        # if stamp != now:
+        #     stamp = datetime.fromtimestamp(stamp)
+        # else:
+        #     stamp = now
+        # future = now + timedelta(hours=12)
+        # if stamp > now:
+        #     await ctx.send(f"You already claimed your daily coins."
+        #                    f"Check back in"
+        #                    f"{humanize.naturaldelta(stamp - now)}")
+        #     return
         coin = await self.db.user(ctx.author).coin()
         coin += 300
         await self.db.user(ctx.author).coin.set(coin)
         await ctx.send("Claimed 300 coins. Check back in 12 hours.")
-        if stamp <= now:
-            await self.db.user(ctx.author).stealstamp.set(future.timestamp())
+        if isinstance(error, commands.CommandOnCooldown):
+                await ctx.send("You already claimed your Daily coins for today.")
+                await ctx.send(f"You need to wait {round(error.retry_after, 2)} seconds before you can use this command again.")
+        # if stamp <= now:
+        #     await self.db.user(ctx.author).stealstamp.set(future.timestamp())
     
     @coin.command()
     @checks.is_owner()
@@ -212,6 +216,7 @@ class Coin(commands.Cog):
         # await ctx.send(sorted_acc)
 
     @coin.command()
+    @commands.cooldown(1, 21600, commands.BucketType.user)
     async def steal(self, ctx, member: discord.Member):
         self_coin = await self.db.user(ctx.author).coin()
         enemy_coin = await self.db.user(member).coin()
@@ -221,19 +226,19 @@ class Coin(commands.Cog):
         if member == ctx.author:
             await ctx.send("Do you really want to rob yourself?")
             return
-        now = datetime.utcnow()
-        stamp = await self.db.user(ctx.author).stealstamp()
-        if stamp != now:
-            stamp = datetime.fromtimestamp(stamp)
-        else:
-            stamp = now
-        future = now + timedelta(hours=6)
+        # now = datetime.utcnow()
+        # stamp = await self.db.user(ctx.author).stealstamp()
+        # if stamp != now:
+        #     stamp = datetime.fromtimestamp(stamp)
+        # else:
+        #     stamp = now
+        # future = now + timedelta(hours=6)
         
-        if stamp >= now:
-            await ctx.send(f"You need to slow down or the Police will catch you ..."
-                           f"Check back in "
-                           f"{humanize.naturaldelta(stamp - now)}")
-            return
+        # if stamp >= now:
+        #     await ctx.send(f"You need to slow down or the Police will catch you ..."
+        #                    f"Check back in "
+        #                    f"{humanize.naturaldelta(stamp - now)}")
+        #     return
         emojis = ["◀", "▶", "❌"]
         chars = "◀▶◀▶◀▶◀▶◀▶"
         var = 0
@@ -317,8 +322,10 @@ class Coin(commands.Cog):
                 await msg.remove_reaction(emoji, ctx.author)
             except discord.HTTPException:
                 pass
-        if stamp <= now:
-            await self.db.user(ctx.author).stealstamp.set(future.timestamp())
+        if isinstance(error, commands.CommandOnCooldown):
+            await ctx.send(f"You need to wait {round(error.retry_after, 2)} or the police will catch you.")
+        # if stamp <= now:
+        #     await self.db.user(ctx.author).stealstamp.set(future.timestamp())
 
     @coin.command()
     @commands.cooldown(1, 20, commands.BucketType.user)
