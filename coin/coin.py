@@ -1,17 +1,17 @@
 import discord
 import asyncio
 from redbot.core.utils.predicates import MessagePredicate, ReactionPredicate
-from redbot.core import commands, Config, checks
+from redbot.core import commands, Config, checks, app_commands
 import random
 from math import floor, ceil, isclose
-from datetime import datetime, timedelta
-import humanize
 from .random import worklist, searchlist, bad_loc
 from textwrap import dedent
 from redbot.core.utils.chat_formatting import pagify, box
 from redbot.core.utils.menus import menu, DEFAULT_CONTROLS
 from redbot.core.utils.menus import start_adding_reactions
 
+class Search(Enum):
+    r = random.sample(list(searchlist.keys()), 3)
 
 class Coin(commands.Cog):
     """Coin Tycoon game by mucski"""
@@ -53,29 +53,12 @@ class Coin(commands.Cog):
     @coin.command()
     @commands.cooldown(1, 43200, commands.BucketType.user)
     async def daily(self, ctx):
-        # now = datetime.utcnow()
         if not self.playing:
             self.playing = True
-        # stamp = await self.db.user(ctx.author).dailystamp()
-        # if stamp != now:
-        #     stamp = datetime.fromtimestamp(stamp)
-        # else:
-        #     stamp = now
-        # future = now + timedelta(hours=12)
-        # if stamp > now:
-        #     await ctx.send(f"You already claimed your daily coins."
-        #                    f"Check back in"
-        #                    f"{humanize.naturaldelta(stamp - now)}")
-        #     return
         coin = await self.db.user(ctx.author).coin()
         coin += 300
         await self.db.user(ctx.author).coin.set(coin)
         await ctx.send("Claimed 300 coins. Check back in 12 hours.")
-        if isinstance(self, commands.CommandOnCooldown):
-                await ctx.send("You already claimed your Daily coins for today.")
-                await ctx.send(f"You need to wait {round(error.retry_after, 2)} seconds before you can use this command again.")
-        # if stamp <= now:
-        #     await self.db.user(ctx.author).stealstamp.set(future.timestamp())
     
     @coin.command()
     @checks.is_owner()
@@ -125,28 +108,36 @@ class Coin(commands.Cog):
 
     @coin.command()
     @commands.cooldown(1, 11, commands.BucketType.user)
-    async def search(self, ctx):
-        coin = await self.db.user(ctx.author).coin()
+    @app_commands.describe(search="Search a random location")
+    # async def search(self, ctx):
+    #     coin = await self.db.user(ctx.author).coin()
+    #     if coin == 0 and not self.playing:
+    #         await ctx.send("Start playing first by claiming daily.")
+    #         return
+    #     r = random.sample(list(searchlist.keys()), 3)
+    #     await ctx.send("Chose a random location to search from bellow\n"
+    #                    "`{}` , `{}` , `{}`".format(r[0], r[1], r[2]))
+    #     check = MessagePredicate.lower_contained_in(r, ctx)
+    #     try:
+    #         msg = await ctx.bot.wait_for("message", timeout=10, check=check)
+    #     except asyncio.TimeoutError:
+    #         await ctx.send("Epic fail!")
+    #         return
+    #     if msg.content.lower() in bad_loc:
+    #         await ctx.send(searchlist[msg.content.lower()])
+    #         return
+    #     else:
+    #         earned = random.randint(5, 30)
+    #         coin += earned
+    #         await self.db.user(ctx.author).coin.set(coin)
+    #         await ctx.send(searchlist[msg.content.lower()].format(earned))
+    async def search(self, interaction: discord.Interaction, search: Search):
+        coin = await self.db.user(interaction.author)
         if coin == 0 and not self.playing:
-            await ctx.send("Start playing first by claiming daily.")
+            await interaction.response("Start playing first by claiming your first daily.")
             return
-        r = random.sample(list(searchlist.keys()), 3)
-        await ctx.send("Chose a random location to search from bellow\n"
-                       "`{}` , `{}` , `{}`".format(r[0], r[1], r[2]))
-        check = MessagePredicate.lower_contained_in(r, ctx)
-        try:
-            msg = await ctx.bot.wait_for("message", timeout=10, check=check)
-        except asyncio.TimeoutError:
-            await ctx.send("Epic fail!")
-            return
-        if msg.content.lower() in bad_loc:
-            await ctx.send(searchlist[msg.content.lower()])
-            return
-        else:
-            earned = random.randint(5, 30)
-            coin += earned
-            await self.db.user(ctx.author).coin.set(coin)
-            await ctx.send(searchlist[msg.content.lower()].format(earned))
+        earned = random.randint(5, 30)
+        await interaction.response.send_message(searchlist[search.value].format(earned), ephemeral=False)
 
     @coin.command()
     @commands.cooldown(1, 11, commands.BucketType.user)
@@ -213,7 +204,6 @@ class Coin(commands.Cog):
             )
         page_list.append(embed)
         return await menu(ctx, page_list, DEFAULT_CONTROLS)
-        # await ctx.send(sorted_acc)
 
     @coin.command()
     @commands.cooldown(1, 21600, commands.BucketType.user)
@@ -226,19 +216,6 @@ class Coin(commands.Cog):
         if member == ctx.author:
             await ctx.send("Do you really want to rob yourself?")
             return
-        # now = datetime.utcnow()
-        # stamp = await self.db.user(ctx.author).stealstamp()
-        # if stamp != now:
-        #     stamp = datetime.fromtimestamp(stamp)
-        # else:
-        #     stamp = now
-        # future = now + timedelta(hours=6)
-        
-        # if stamp >= now:
-        #     await ctx.send(f"You need to slow down or the Police will catch you ..."
-        #                    f"Check back in "
-        #                    f"{humanize.naturaldelta(stamp - now)}")
-        #     return
         emojis = ["◀", "▶", "❌"]
         chars = "◀▶◀▶◀▶◀▶◀▶"
         var = 0
@@ -322,10 +299,6 @@ class Coin(commands.Cog):
                 await msg.remove_reaction(emoji, ctx.author)
             except discord.HTTPException:
                 pass
-        if isinstance(self, commands.CommandOnCooldown):
-            await ctx.send(f"You need to wait {round(error.retry_after, 2)} or the police will catch you.")
-        # if stamp <= now:
-        #     await self.db.user(ctx.author).stealstamp.set(future.timestamp())
 
     @coin.command()
     @commands.cooldown(1, 20, commands.BucketType.user)
