@@ -132,10 +132,17 @@ class Coin(commands.Cog):
     async def search(self, interaction: discord.Interaction, search: int):
         coin = await self.db.user(interaction.user)
         if coin == 0 and not self.playing:
-            await interaction.response("Start playing first by claiming your first daily.")
+            await interaction.response.send_message("Start playing first by claiming your first daily.")
             return
-        earned = random.randint(5, 30)
-        await interaction.response.send_message(searchlist[search.value].format(earned), ephemeral=False)
+        
+        if search.value.lower() in bad_loc:
+            await interaction.response.send_message(searchlist[search.value.lower()])
+            return
+        else:
+            earned = random.randint(5, 30)
+            coin += earned
+            await self.db.user(interaction.user).coin.set(coin)
+            await interaction.response.send_message(searchlist[search.value].format(earned), ephemeral=False)
 
     @coin.command()
     @commands.cooldown(1, 11, commands.BucketType.user)
