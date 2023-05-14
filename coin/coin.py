@@ -106,7 +106,7 @@ class Coin(commands.Cog):
 
     @app_commands.command()
     @app_commands.describe(search="Search a random location")
-    @app_commands.choices(search=[app_commands.Choice(name=key, value=key) for key in random.sample((searchlist), 3)])
+    @app_commands.choices(search=[app_commands.Choice(name=key, value=key) for key in random.sorted((searchlist), 3)])
     # async def search(self, ctx):
     #     coin = await self.db.user(ctx.author).coin()
     #     if coin == 0 and not self.playing:
