@@ -113,14 +113,14 @@ class Coin(commands.Cog):
             await interaction.response.send_message("Start playing first by claiming your first daily.")
             return
         
-        if search.value.lower() in bad_loc:
-            await interaction.response.send_message(searchlist[search.value.lower()])
+        if search in bad_loc:
+            await interaction.response.send_message(searchlist[search])
             return
         else:
             earned = random.randint(5, 30)
             coin += earned
             await self.db.user(interaction.user).coin.set(coin)
-            await interaction.response.send_message(searchlist[search.value].format(earned), ephemeral=False)
+            await interaction.response.send_message(searchlist[search].format(earned), ephemeral=False)
 
     @coin.command()
     @commands.cooldown(1, 11, commands.BucketType.user)
