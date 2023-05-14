@@ -9,6 +9,7 @@ from textwrap import dedent
 from redbot.core.utils.chat_formatting import pagify, box
 from redbot.core.utils.menus import menu, DEFAULT_CONTROLS
 from redbot.core.utils.menus import start_adding_reactions
+from enum import Enum
 
 class Search(Enum):
     r = random.sample(list(searchlist.keys()), 3)
