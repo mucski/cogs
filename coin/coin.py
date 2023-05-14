@@ -109,7 +109,7 @@ class Coin(commands.Cog):
     @app_commands.choices(search=[app_commands.Choice(name=key, value=key) for key in random.sample(list(searchlist.keys()), 3)])
     async def search(self, interaction: discord.Interaction, search: str):
         author = interaction.author
-        coin = await self.db.user(author)
+        coin = self.db.user(author)
         if coin == 0 and not self.playing:
             await interaction.response.send_message("Start playing first by claiming your first daily.")
             return
@@ -119,7 +119,7 @@ class Coin(commands.Cog):
         else:
             earned = random.randint(5, 30)
             coin += earned
-            await self.db.user(author).coin.set(coin)
+            self.db.user(author).coin.set(coin)
             await interaction.response.send_message(searchlist[search].format(earned), ephemeral=False)
 
     @coin.command()
