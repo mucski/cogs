@@ -105,7 +105,6 @@ class Coin(commands.Cog):
         await ctx.send(f"Well done, you earned `{earned}` for your hard work.")
 
     @app_commands.command()
-    @app_commands.cooldown(1, 11, commands.BucketType.user)
     @app_commands.describe(search="Search a random location")
     @app_commands.choices(search=[redbot.app_commands.Choice(name=key, value=key) for key in random.sample(list(searchlist.keys()), 3)])
     # async def search(self, ctx):
