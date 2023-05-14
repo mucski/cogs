@@ -9,13 +9,7 @@ from textwrap import dedent
 from redbot.core.utils.chat_formatting import pagify, box
 from redbot.core.utils.menus import menu, DEFAULT_CONTROLS
 from redbot.core.utils.menus import start_adding_reactions
-from enum import Enum
 
-class Search(Enum):
-    r = random.sample(list(searchlist.keys()), 3)
-    r[0] = r[0]
-    r[1] = r[1]
-    r[2] = r[2]
 
 class Coin(commands.Cog):
     """Coin Tycoon game by mucski"""
@@ -110,9 +104,10 @@ class Coin(commands.Cog):
         await self.db.user(ctx.author).coin.set(coin)
         await ctx.send(f"Well done, you earned `{earned}` for your hard work.")
 
-    @coin.command()
-    @commands.cooldown(1, 11, commands.BucketType.user)
+    @app_commands.command()
+    @app_commands.cooldown(1, 11, commands.BucketType.user)
     @app_commands.describe(search="Search a random location")
+    @app_commands.choices(search=[redbot.app_commands.Choice(name=key, value=key) for key in random.sample(list(searchlist.keys()), 3)])
     # async def search(self, ctx):
     #     coin = await self.db.user(ctx.author).coin()
     #     if coin == 0 and not self.playing:
@@ -135,7 +130,7 @@ class Coin(commands.Cog):
     #         coin += earned
     #         await self.db.user(ctx.author).coin.set(coin)
     #         await ctx.send(searchlist[msg.content.lower()].format(earned))
-    async def search(self, interaction: discord.Interaction, search: Search):
+    async def search(self, interaction: discord.Interaction, search: int):
         coin = await self.db.user(interaction.user)
         if coin == 0 and not self.playing:
             await interaction.response("Start playing first by claiming your first daily.")
