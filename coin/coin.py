@@ -13,6 +13,9 @@ from enum import Enum
 
 class Search(Enum):
     r = random.sample(list(searchlist.keys()), 3)
+    r[0] = r[0]
+    r[1] = r[1]
+    r[2] = r[2]
 
 class Coin(commands.Cog):
     """Coin Tycoon game by mucski"""
@@ -133,7 +136,7 @@ class Coin(commands.Cog):
     #         await self.db.user(ctx.author).coin.set(coin)
     #         await ctx.send(searchlist[msg.content.lower()].format(earned))
     async def search(self, interaction: discord.Interaction, search: Search):
-        coin = await self.db.user(interaction.author)
+        coin = await self.db.user(interaction.user)
         if coin == 0 and not self.playing:
             await interaction.response("Start playing first by claiming your first daily.")
             return
