@@ -29,8 +29,8 @@ class Coin(commands.Cog):
         self.db.register_guild(**default_guild)
         self.playing = False
 
-    @commands.hybrid_group(with_app_commands=True)
-    async def coin(self, ctx):
+    @commands.hybrid_group()
+    async def coin(self):
         """ Coin Tycoon created by Mucski \n
             The point of the game is to have as much coins as you can.
             You can earn coins by working, searching, claiming daily
