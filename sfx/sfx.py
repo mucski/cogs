@@ -9,6 +9,7 @@ import discord
 from redbot.core.commands import Context
 from redbot.core import commands, checks, Config, app_commands
 from .custom import FFmpegPCMAudio
+from enum import Enum
 
 # Gevent patch before gTTS
 try:
@@ -22,6 +23,18 @@ class TTSItem(NamedTuple):
     sentence: str
     msg: discord.Message
 
+class Speed(Enum):
+    0.5 = 0.5,
+    0.6 = 0.6,
+    0.7 = 0.7,
+    0.8 = 0.8,
+    0.9 = 0.9,
+    1.0 = 1.0,
+    1.1 = 1.1,
+    1.2 = 1.2,
+    1.3 = 1.3,
+    1.4 = 1.4,
+    1.5 = 1.5,   
 
 class SFX(commands.Cog):
     def __init__(self, bot):
@@ -170,20 +183,7 @@ class SFX(commands.Cog):
     @checks.admin()
     @checks.mod()
     @commands.guild_only()
-    @app_commands.choices(speed=[
-         app_commands.Choice(name="0.5", value=0.5),
-         app_commands.Choice(name="0.6", value=0.6),
-         app_commands.Choice(name="0.7", value=0.7),
-         app_commands.Choice(name="0.8", value=0.8),
-         app_commands.Choice(name="0.9", value=0.9),
-         app_commands.Choice(name="1.0", value=1.0),
-         app_commands.Choice(name="1.1", value=1.1),
-         app_commands.Choice(name="1.2", value=1.2),
-         app_commands.Choice(name="1.3", value=1.3),
-         app_commands.Choice(name="1.4", value=1.4),
-         app_commands.Choice(name="1.5", value=1.5),
-    ])
-    async def speed(self, ctx: Context, speed: app_commands.Choice[float]=None):
+    async def speed(self, ctx: Context, speed: Speed):
         """
         Changes playback speed. Any speed between 0.5 and 2.0 is supported.
         """
