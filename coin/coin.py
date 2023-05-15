@@ -108,8 +108,7 @@ class Coin(commands.Cog):
     @commands.cooldown(1, 11, commands.BucketType.user)
     async def search(self, ctx):
         coin = await self.db.user(ctx.author).coin()
-        claimed_first = await self.db.user(ctx.author).claimed_first()
-        if not claimed_first:
+        if coin == 0 and not self.playing:
             await ctx.send("Start playing first by claiming daily.")
             return
         r = random.sample(list(searchlist.keys()), 3)
