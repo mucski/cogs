@@ -104,21 +104,31 @@ class Coin(commands.Cog):
         await self.db.user(ctx.author).coin.set(coin)
         await ctx.send(f"Well done, you earned `{earned}` for your hard work.")
 
+    async def search_autocomplete(self,
+        interaction: discord.Interaction,
+        current: str,
+    ) -> List[app_commands.Choice[str]]:
+        choices = (name=)
+        return [
+            app_commands.Choice(name=choice, value=choice)
+            for choice in choices if current.lower() in choice.lower()
+        ]
+
     @coin.command()
     @app_commands.describe(search="Search a random location")
-    @app_commands.choices(search=[app_commands.Choice(name=key, value=key) for key in random.sample(list(searchlist.keys()), 3)])
-    async def search(self, interaction: discord.Interaction):
+    @app_commands.choices(choices=[app_commands.Choice(name=key, value=key) for key in random.sample(list(searchlist.keys()), 3)])
+    async def search(self, interaction: discord.Interaction, choices: app_commands.Choice[str]):
         coin = 500
         if coin == 0 and not self.playing:
             await interaction.response.send_message("Start playing first by claiming your first daily.")
             return
-        if search in bad_loc:
-            await interaction.response.send_message(searchlist[search.value])
+        if choices.value in bad_loc:
+            await interaction.response.send_message(searchlist[choices.value])
             return
         else:
             earned = random.randint(5, 30)
             coin += earned
-            await interaction.response.send_message(searchlist[search.value].format(earned), ephemeral=False)
+            await interaction.response.send_message(searchlist[choices.value].format(earned), ephemeral=False)
 
     @coin.command()
     @commands.cooldown(1, 11, commands.BucketType.user)
