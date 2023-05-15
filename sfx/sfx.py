@@ -7,7 +7,7 @@ from io import BytesIO
 from typing import Optional, List, Dict, NamedTuple
 import discord
 from redbot.core.commands import Context
-from redbot.core import commands, checks, Config
+from redbot.core import commands, checks, Config, app_commands
 from .custom import FFmpegPCMAudio
 
 # Gevent patch before gTTS
@@ -170,7 +170,20 @@ class SFX(commands.Cog):
     @checks.admin()
     @checks.mod()
     @commands.guild_only()
-    async def speed(self, ctx: Context, speed: float):
+    @app_commands.choices(speed=[
+         app_commands.Choice(name="0.5", value=0.5),
+         app_commands.Choice(name="0.6", value=0.6),
+         app_commands.Choice(name="0.7", value=0.7),
+         app_commands.Choice(name="0.8", value=0.8),
+         app_commands.Choice(name="0.9", value=0.9),
+         app_commands.Choice(name="1.0", value=1.0),
+         app_commands.Choice(name="1.1", value=1.1),
+         app_commands.Choice(name="1.2", value=1.2),
+         app_commands.Choice(name="1.3", value=1.3),
+         app_commands.Choice(name="1.4", value=1.4),
+         app_commands.Choice(name="1.5", value=1.5),
+    ])
+    async def speed(self, ctx: Context, speed: app_commands.Choice[float]):
         """
         Changes playback speed. Any speed between 0.5 and 2.0 is supported.
         """
@@ -181,7 +194,7 @@ class SFX(commands.Cog):
             await ctx.send("Speed bellow 0.5 is not supported.")
             return
         await self.db.guild(ctx.guild).speed.set(speed)
-        await ctx.send(f"TTS speech speed has been set to {speed}")
+        await ctx.send(f"TTS speech speed has been set to {speed}", ephemeral=False)
 
     def vc_callback(self, error: Optional[Exception], channel: discord.TextChannel):
         if self.vc_lock.locked():
