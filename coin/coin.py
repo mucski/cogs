@@ -108,6 +108,7 @@ class Coin(commands.Cog):
     @app_commands.describe(choices="Search a random location")
     @app_commands.choices(choices=[app_commands.Choice(name=key, value=key) for key in random.sample(list(searchlist.keys()), 3)])
     async def search(self, interaction: discord.Interaction, choices: str):
+        author = interaction.author
         coin = await self.db.user(author).coin()
         if coin == 0 and not self.playing:
             await interaction.response.send_message("Start playing first by claiming your first daily.")
