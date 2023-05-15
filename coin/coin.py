@@ -1,7 +1,7 @@
 import discord
 import asyncio
 from redbot.core.utils.predicates import MessagePredicate, ReactionPredicate
-from redbot.core import commands, Config, checks, app_commands
+from redbot.core import commands, Config, checks
 import random
 from math import floor, ceil, isclose
 from .random import worklist, searchlist, bad_loc
@@ -123,10 +123,6 @@ class Coin(commands.Cog):
         if msg.content.lower() in bad_loc:
             await ctx.send(searchlist[msg.content.lower()])
             return
-        elif msg.content.lower() in remove_loc:
-            lost = random.randint(5, 30)
-            coin -= lost
-            await ctx.send(searchlist[msg.content.lower()].format(lost))
         else:
             earned = random.randint(5, 30)
             coin += earned
