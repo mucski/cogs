@@ -105,10 +105,10 @@ class Coin(commands.Cog):
         await ctx.send(f"Well done, you earned `{earned}` for your hard work.")
 
     @coin.command()
-    @app_commands.describe(search="Search a random location")
+    @app_commands.describe(name="Search a random location")
     @app_commands.choices(choices=[app_commands.Choice(name=key, value=key) for key in random.sample(list(searchlist.keys()), 3)])
     async def search(self, interaction: discord.Interaction, choices: app_commands.Choice[str]):
-        coin = 500
+        coin = await self.db.user(author).coin()
         if coin == 0 and not self.playing:
             await interaction.response.send_message("Start playing first by claiming your first daily.")
             return
@@ -118,6 +118,7 @@ class Coin(commands.Cog):
         else:
             earned = random.randint(5, 30)
             coin += earned
+            await self.db.user(author).set.coin(earned)
             await interaction.response.send_message(searchlist[choices.value].format(earned), ephemeral=False)
 
     @coin.command()
