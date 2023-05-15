@@ -104,16 +104,6 @@ class Coin(commands.Cog):
         await self.db.user(ctx.author).coin.set(coin)
         await ctx.send(f"Well done, you earned `{earned}` for your hard work.")
 
-    async def search_autocomplete(self,
-        interaction: discord.Interaction,
-        current: str,
-    ) -> List[app_commands.Choice[str]]:
-        choices = (name=)
-        return [
-            app_commands.Choice(name=choice, value=choice)
-            for choice in choices if current.lower() in choice.lower()
-        ]
-
     @coin.command()
     @app_commands.describe(search="Search a random location")
     @app_commands.choices(choices=[app_commands.Choice(name=key, value=key) for key in random.sample(list(searchlist.keys()), 3)])
