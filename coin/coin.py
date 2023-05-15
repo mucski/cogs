@@ -29,7 +29,7 @@ class Coin(commands.Cog):
         self.db.register_guild(**default_guild)
         self.playing = False
 
-    @commands.hybrid_group(with_app_command=True)
+    @commands.hybrid_group(with_app_commands=True)
     async def coin(self, ctx):
         """ Coin Tycoon created by Mucski \n
             The point of the game is to have as much coins as you can.
@@ -104,7 +104,7 @@ class Coin(commands.Cog):
         await self.db.user(ctx.author).coin.set(coin)
         await ctx.send(f"Well done, you earned `{earned}` for your hard work.")
 
-    @app_commands.command()
+    @coin.command()
     @app_commands.describe(choices="Search a random location")
     @app_commands.choices(choices=[app_commands.Choice(name=key, value=key) for key in random.sample(list(searchlist.keys()), 3)])
     async def search(self, interaction: discord.Interaction, choices: str):
