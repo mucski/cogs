@@ -111,16 +111,16 @@ class Coin(commands.Cog):
         author = interaction.author
         coin = await self.db.user(author).coin()
         if coin == 0 and not self.playing:
-            await interaction.response.send_message("Start playing first by claiming your first daily.")
+            await interaction.send_message("Start playing first by claiming your first daily.")
             return
         if choices.value in bad_loc:
-            await interaction.response.send_message(searchlist[choices.value])
+            await interaction.send_message(searchlist[choices.value])
             return
         else:
             earned = random.randint(5, 30)
             coin += earned
             await self.db.user(author).set.coin(earned)
-            await interaction.response.send_message(searchlist[choices.value].format(earned), ephemeral=False)
+            await interaction.send_message(searchlist[choices.value].format(earned), ephemeral=False)
 
     @coin.command()
     @commands.cooldown(1, 11, commands.BucketType.user)
