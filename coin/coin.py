@@ -105,22 +105,34 @@ class Coin(commands.Cog):
         await ctx.send(f"Well done, you earned `{earned}` for your hard work.")
 
     @coin.command()
-    @app_commands.describe(choices="Search a random location")
-    @app_commands.choices(choices=[app_commands.Choice(name=key, value=key) for key in random.sample(list(searchlist.keys()), 3)])
-    async def search(self, interaction: discord.Interaction, choices: str):
-        author = interaction.author
-        coin = await self.db.user(author).coin()
-        if coin == 0 and not self.playing:
-            await interaction.response.send_message("Start playing first by claiming your first daily.")
+    @commands.cooldown(1, 11, commands.BucketType.user)
+    async def search(self, ctx):
+        coin = await self.db.user(ctx.author).coin()
+        claimed_first = await self.db.user(ctx.author).claimed_first()
+        if not claimed_first:
+            await ctx.send("Start playing first by claiming daily.")
             return
-        if choices.value in bad_loc:
-            await interaction.response.send_message(searchlist[choices.value])
+        r = random.sample(list(searchlist.keys()), 3)
+        await ctx.send("Chose a random location to search from bellow\n"
+                       "`{}` , `{}` , `{}`".format(r[0], r[1], r[2]))
+        check = MessagePredicate.lower_contained_in(r, ctx)
+        try:
+            msg = await ctx.bot.wait_for("message", timeout=10, check=check)
+        except asyncio.TimeoutError:
+            await ctx.send("Epic fail!")
             return
+        if msg.content.lower() in bad_loc:
+            await ctx.send(searchlist[msg.content.lower()])
+            return
+        elif msg.content.lower() in remove_loc:
+            lost = random.randint(5, 30)
+            coin -= lost
+            await ctx.send(searchlist[msg.content.lower()].format(lost))
         else:
             earned = random.randint(5, 30)
             coin += earned
-            await self.db.user(author).set.coin(earned)
-            await interaction.response.send_message(searchlist[choices.value].format(earned), ephemeral=False)
+            await self.db.user(ctx.author).coin.set(coin)
+            await ctx.send(searchlist[msg.content.lower()].format(earned))
 
     @coin.command()
     @commands.cooldown(1, 11, commands.BucketType.user)
