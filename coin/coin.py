@@ -105,7 +105,7 @@ class Coin(commands.Cog):
         await ctx.send(f"Well done, you earned `{earned}` for your hard work.")
 
     @coin.command()
-    @app_commands.describe(name="Search a random location")
+    @app_commands.describe(choices="Search a random location")
     @app_commands.choices(choices=[app_commands.Choice(name=key, value=key) for key in random.sample(list(searchlist.keys()), 3)])
     async def search(self, interaction: discord.Interaction, choices: app_commands.Choice[str]):
         coin = await self.db.user(author).coin()
