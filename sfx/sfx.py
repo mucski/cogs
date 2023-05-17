@@ -44,6 +44,22 @@ class SFX(commands.Cog):
     def cog_unload(self):
         self.vc_task.cancel()
 
+    class SelectSpeed(discord.ui.View):
+        @discord.ui.select(
+            placeholder="Select how fast the bot should talk",
+            options=[
+                discord.SelectOption(label="0.1", value=0.1),
+                discord.SelectOption(label="0.2", value=0.2),
+                discord.SelectOption(label="0.3", value=0.3),
+            ]
+        )
+        async def _speed_callback(self, select, interaction):
+            """
+            Changes playback speed. Any speed between 0.5 and 2.0 is supported.
+            """
+            await self.db.guild(interaction.guild).speed.set(select.value)
+            await interaction.response.send_message("TTS speed has been set to {select.value}")
+
     @app_commands.command()
     @app_commands.guild_only()
     async def connect(self, interaction: discord.Interaction, channel: discord.VoiceChannel = None):
@@ -168,20 +184,8 @@ class SFX(commands.Cog):
     @checks.admin()
     @checks.mod()
     @app_commands.guild_only()
-    @discord.ui.Select(
-        placeholder="Select how fast the bot should talk",
-        options=[
-            discord.SelectOption(label="0.1", value=0.1),
-            discord.SelectOption(label="0.2", value=0.2),
-            discord.SelectOption(label="0.3", value=0.3),
-        ]
-    )
     async def speed(self, interaction: discord.Interaction, speed: discord.ui.Select):
-        """
-        Changes playback speed. Any speed between 0.5 and 2.0 is supported.
-        """
-        await self.db.guild(interaction.guild).speed.set(speed.value)
-        await interaction.response.send_message(f"TTS speech speed has been set to {speed.label}", ephemeral=False)
+        await interaction.response.send_message(f"How fast do you wish the bot to speak?", view=SelectSpeed())
 
     def vc_callback(self, error: Optional[Exception], channel: discord.TextChannel):
         if self.vc_lock.locked():
