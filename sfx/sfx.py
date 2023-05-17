@@ -69,20 +69,20 @@ class SFX(commands.Cog):
 
     @commands.command()
     @commands.guild_only()
-    async def connect(self, interaction: discord.Interaction, channel: discord.VoiceChannel) -> None:
+    async def connect(self, ctx: Context, channel: discord.VoiceChannel = None):
         """
         Connect to the specified voice channel, or the channel you're currently in.
         """
         if channel is None:
-            voice_state: Optional[discord.VoiceState] = interaction.user.voice
+            voice_state: Optional[discord.VoiceState] = ctx.author.voice
             if voice_state is None:
-                await interaction.response.send_message(
+                await ctx.send(
                     "No voice channel to join. "
                     "Please either specify a valid voice channel or join one."
                 )
                 return
             channel = voice_state.channel
-        vc: Optional[discord.VoiceClient] = interaction.guild.voice_client
+        vc: Optional[discord.VoiceClient] = ctx.guild.voice_client
         if vc is not None:
             # move to the channel
             if vc.channel.id == channel.id:
@@ -90,16 +90,16 @@ class SFX(commands.Cog):
             try:
                 await vc.move_to(channel)
             except asyncio.TimeoutError:
-                await interaction.response.send_message(f'Moving to channel: <{channel}> timed out.')
+                await ctx.send(f'Moving to channel: <{channel}> timed out.')
                 return
         else:
             # join the channel
             try:
                 await channel.connect()
             except asyncio.TimeoutError:
-                await interaction.response.send_message(f'Connecting to channel: <{channel}> timed out.')
+                await ctx.send(f'Connecting to channel: <{channel}> timed out.')
                 return
-        await interaction.response.send_message(f"Successfully connected to {channel}. Enjoy.")
+        await ctx.send(f"Successfully connected to {channel}. Enjoy.")
 
     # sfx = app_commands.Group(name="sfx", description="Commands related to TTS and it's settings")
 
