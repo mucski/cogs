@@ -78,64 +78,61 @@ class SFX(commands.Cog):
                 return
         await interaction.response.send_message(f"Successfully connected to {channel}. Enjoy.")
 
-    @commands.hybrid_group()
-    async def sfx(self, ctx):
-        """Settings and other stuff related to Mucski's TTS cog"""
-        pass
+    sfx = app_commands.Group(name="TTS", description="Commands related to TTS and it's settings")
 
     @sfx.command()
-    @commands.guild_only()
-    async def disconnect(self, ctx: Context):
+    @app_commands.guild_only()
+    async def disconnect(self, interaction: discord.Interaction):
         """
         Disconnect from the current voice channel.
         """
-        vc: Optional[discord.VoiceClient] = ctx.guild.voice_client
+        vc: Optional[discord.VoiceClient] = interaction.guild.voice_client
         if vc is None:
-            await ctx.channel.send("I am not in a voice channel.")
+            await interaction.response.send_message("I am not in a voice channel.")
             return
         await vc.disconnect()
-        await ctx.tick()
+        await interaction.resposne.send_message("Successfully disconnected.")
 
     @sfx.command()
     @checks.admin()
-    @commands.guild_only()
-    async def addchan(self, ctx: Context, channel: discord.TextChannel):
+    @app_commands.guild_only()
+    async def addchan(self, interaction: discord.Interaction, channel: discord.TextChannel):
         """
         Add a TTS channel to the list of tracked channels.
         """
         channels: List[int]
-        async with self.db.guild(ctx.guild).channels() as channels:
+        async with self.db.guild(interaction.guild).channels() as channels:
             channels.append(channel.id)
-        await ctx.send(f"{channel.name} has been added to tts channel list.")
+        await interaction.response.send_message(f"{channel.name} has been added to tts channel list.")
 
     @sfx.command()
     @checks.admin()
-    @commands.guild_only()
-    async def dellchan(self, ctx: Context, channel: discord.TextChannel):
+    @app_commands.guild_only()
+    async def dellchan(self, interaction: discord.Interaction, channel: discord.TextChannel):
         """
         Remove a TTS channel from the list of tracked channels.
         """
         channels: List[int]
-        async with self.db.guild(ctx.guild).channels() as channels:
+        async with self.db.guild(interaction.guild).channels() as channels:
             channels.remove(channel.id)
-        await ctx.send(f"{channel.name} has been removed from tts channels.")
+        await interaction.response.send_message(f"{channel.name} has been removed from tts channels.")
 
     @sfx.command()
     @checks.admin()
     @checks.mod()
-    @commands.guild_only()
-    async def lang(self, ctx: Context, lang: str):
+    @app_commands.guild_only()
+    async def lang(self, interaction: discord.Interaction, lang: str):
         """
         Change the TTS language to the one specified.
         """
-        await self.db.guild(ctx.guild).lang.set(lang)
-        await ctx.send(f"TTS language set to {lang}")
+        await self.db.guild(interaction.guild).lang.set(lang)
+        await interaction.response.send_message(f"TTS language set to {lang}")
 
     @sfx.command()
     @checks.admin()
     @checks.mod()
-    @commands.guild_only()
-    async def tld(self, ctx: Context, tld: str):
+    @app_commands.guild_only()
+    async def tld(self, interaction: discord.Interaction, tld: str):
         """
         Change the TLD of the TTS language to the one specified.
 
@@ -143,40 +140,40 @@ class SFX(commands.Cog):
         access Google with. Default TLD is "com", thus pointing at "google.com". Changing it to
         "de" would point at "google.de", for example. This can be used to vary the speech accent.
         """
-        await self.db.guild(ctx.guild).tld.set(tld)
-        await ctx.send(f"TTS language tld set to {tld}")
+        await self.db.guild(interaction.guild).tld.set(tld)
+        await interaction.response.send_message(f"TTS language tld set to {tld}")
 
     @sfx.command()
     @checks.admin()
     @checks.mod()
-    @commands.guild_only()
-    async def speak_name(self, ctx: Context, state: bool):
+    @app_commands.guild_only()
+    async def speak_name(self, interaction: discord.Interaction, state: bool):
         """
         Set if you want TTS to include the speaker's name.
         """
-        await self.db.guild(ctx.guild).with_nick.set(state)
-        await ctx.send(f"TTS name calling is set to {'ON' if state else 'OFF'}")
+        await self.db.guild(interaction.guild).with_nick.set(state)
+        await interaction.response.send_message(f"TTS name calling is set to {'ON' if state else 'OFF'}")
 
     @sfx.command()
     @checks.admin()
-    @commands.guild_only()
-    async def cleardb(self, ctx: Context):
+    @app_commands.guild_only()
+    async def cleardb(self, interaction: discord.Interaction):
         """
         Clear all settings for the current guild.
         """
-        await self.db.guild(ctx.guild).clear()
-        await ctx.send("The db has been wiped.")
+        await self.db.guild(interaction.guild).clear()
+        await interaction.response.send_message("The db has been wiped.")
 
     @sfx.command()
     @checks.admin()
     @checks.mod()
-    @commands.guild_only()
-    async def speed(self, ctx: Context, speed: Speed):
+    @app_commands.guild_only()
+    async def speed(self, interaction: discord.Interaction, speed: Speed):
         """
         Changes playback speed. Any speed between 0.5 and 2.0 is supported.
         """
-        await self.db.guild(ctx.guild).speed.set(speed.value)
-        await ctx.send(f"TTS speech speed has been set to {speed.value}", ephemeral=False)
+        await self.db.guild(interaction.guild).speed.set(speed.value)
+        await interaction.response.send_message(f"TTS speech speed has been set to {speed.value}", ephemeral=False)
 
     def vc_callback(self, error: Optional[Exception], channel: discord.TextChannel):
         if self.vc_lock.locked():
