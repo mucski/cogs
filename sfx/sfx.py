@@ -39,12 +39,12 @@ class SelectSpeed(discord.ui.View):
             discord.SelectOption(label="0.3", value="0.3"),
         ]
     )
-    async def _speed_callback(self, interaction, select):
+    async def _speed_callback(self, ctx, select):
         """
         Changes playback speed. Any speed between 0.5 and 2.0 is supported.
         """
-        await self.cog.db.guild(interaction.guild).speed.set(float(select.values[0]))
-        await interaction.response.send_message(f"TTS speed has been set to {select.values[0]}")
+        await self.cog.db.guild(ctx.guild).speed.set(float(select.values[0]))
+        await ctx.send(f"TTS speed has been set to {select.values[0]}")
 
 
 class SFX(commands.Cog):
@@ -112,57 +112,61 @@ class SFX(commands.Cog):
 
     @sfx.command()
     @commands.guild_only()
-    async def disconnect(self, interaction: discord.Interaction) -> None:
+    async def disconnect(self, ctx: Context):
         """
         Disconnect from the current voice channel.
         """
-        vc: Optional[discord.VoiceClient] = interaction.guild.voice_client
+        vc: Optional[discord.VoiceClient] = ctx.guild.voice_client
         if vc is None:
-            await interaction.response.send_message("I am not in a voice channel.")
+            await ctx.send("I am not in a voice channel.")
             return
         await vc.disconnect()
-        await interaction.response.send_message("Successfully disconnected.")
+        await ctx.send("Successfully disconnected.")
 
     @sfx.command()
     @checks.admin()
     @commands.guild_only()
-    async def addchan(self, interaction: discord.Interaction, channel: discord.TextChannel) -> None:
+    async def addchan(self, ctx: Context, channel: discord.TextChannel = None):
         """
         Add a TTS channel to the list of tracked channels.
         """
+        if not channel:
+            channel = ctx.author.channel.id
         channels: List[int]
-        async with self.db.guild(interaction.guild).channels() as channels:
+        async with self.db.guild(ctx.guild).channels() as channels:
             channels.append(channel.id)
-        await interaction.response.send_message(f"{channel.name} has been added to tts channel list.")
+        await ctx.send(f"{channel.name} has been added to tts channel list.")
 
     @sfx.command()
     @checks.admin()
     @commands.guild_only()
-    async def dellchan(self, interaction: discord.Interaction, channel: discord.TextChannel) -> None:
+    async def dellchan(self, ctx: Context, channel: discord.TextChannel = None):
         """
         Remove a TTS channel from the list of tracked channels.
         """
+        if not channel:
+            channel = ctx.author.channel.id
         channels: List[int]
-        async with self.db.guild(interaction.guild).channels() as channels:
+        async with self.db.guild(ctx.guild).channels() as channels:
             channels.remove(channel.id)
-        await interaction.response.send_message(f"{channel.name} has been removed from tts channels.")
+        await ctx.send(f"{channel.name} has been removed from tts channels.")
 
     @sfx.command()
     @checks.admin()
     @checks.mod()
     @commands.guild_only()
-    async def lang(self, interaction: discord.Interaction, lang: str) -> None:
+    async def lang(self, ctx: Context, lang: str):
         """
         Change the TTS language to the one specified.
         """
-        await self.db.guild(interaction.guild).lang.set(lang)
-        await interaction.response.send_message(f"TTS language set to {lang}")
+        await self.db.guild(ctx.guild).lang.set(lang)
+        await ctx.send(f"TTS language set to {lang}")
 
     @sfx.command()
     @checks.admin()
     @checks.mod()
     @commands.guild_only()
-    async def tld(self, interaction: discord.Interaction, tld: str) -> None:
+    async def tld(self, ctx: Context, tld: str) -> None:
         """
         Change the TLD of the TTS language to the one specified.
 
@@ -170,36 +174,36 @@ class SFX(commands.Cog):
         access Google with. Default TLD is "com", thus pointing at "google.com". Changing it to
         "de" would point at "google.de", for example. This can be used to vary the speech accent.
         """
-        await self.db.guild(interaction.guild).tld.set(tld)
-        await interaction.response.send_message(f"TTS language tld set to {tld}")
+        await self.db.guild(ctx.guild).tld.set(tld)
+        await ctx.send(f"TTS language tld set to {tld}")
 
     @sfx.command()
     @checks.admin()
     @checks.mod()
     @commands.guild_only()
-    async def speak_name(self, interaction: discord.Interaction, state: bool):
+    async def speak_name(self, ctx: Context, state: bool):
         """
         Set if you want TTS to include the speaker's name.
         """
-        await self.db.guild(interaction.guild).with_nick.set(state)
-        await interaction.response.send_message(f"TTS name calling is set to {'ON' if state else 'OFF'}")
+        await self.db.guild(ctx.guild).with_nick.set(state)
+        await ctx.send(f"TTS name calling is set to {'ON' if state else 'OFF'}")
 
     @sfx.command()
     @checks.admin()
     @commands.guild_only()
-    async def cleardb(self, interaction: discord.Interaction):
+    async def cleardb(self, ctx: Context):
         """
         Clear all settings for the current guild.
         """
-        await self.db.guild(interaction.guild).clear()
-        await interaction.response.send_message("The db has been wiped.")
+        await self.db.guild(ctx.guild).clear()
+        await ctx.send("The db has been wiped.")
 
     @sfx.command()
     @checks.admin()
     @checks.mod()
     @commands.guild_only()
-    async def speed(self, interaction: discord.Interaction):
-        await interaction.response.send_message(f"How fast do you wish the bot to speak?", view=SelectSpeed(self))
+    async def speed(self, ctx: Context):
+        await ctx.send(f"How fast do you wish the bot to speak?", view=SelectSpeed(self), ephemeral=True)
 
     def vc_callback(self, error: Optional[Exception], channel: discord.TextChannel):
         if self.vc_lock.locked():
