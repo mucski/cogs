@@ -176,7 +176,7 @@ class SFX(commands.Cog):
             discord.SelectOption(label="0.3", value=0.3),
         ]
     )
-    async def speed(self, interaction: discord.Interaction, speed: discord.ui.select):
+    async def speed(self, interaction: discord.Interaction, speed: discord.ui.Select):
         """
         Changes playback speed. Any speed between 0.5 and 2.0 is supported.
         """
