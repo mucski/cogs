@@ -192,7 +192,7 @@ class SFX(commands.Cog):
     @commands.guild_only()
     async def get_langs(self, ctx: Context):
         """Returns the languages from Google Text to Speech"""
-        await ctx.send(gTTS.lang())
+        await ctx.send(gTTS.lang.tts_langs())
 
     @sfx.command()
     @checks.admin()
