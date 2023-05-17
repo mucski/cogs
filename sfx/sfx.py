@@ -59,7 +59,7 @@ class SFX(commands.Cog):
                 )
                 return
             channel = voice_state.channel
-        vc: Optional[discord.VoiceClient] = interaction.client.voice_client
+        vc: Optional[discord.VoiceClient] = interaction.user.voice_client
         if vc is not None:
             # move to the channel
             if vc.channel.id == channel.id:
