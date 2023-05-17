@@ -59,7 +59,7 @@ class SFX(commands.Cog):
                 )
                 return
             channel = voice_state.channel
-        vc: Optional[discord.VoiceClient] = interaction.voice_client
+        vc: Optional[discord.VoiceClient] = interaction.client.voice_client
         if vc is not None:
             # move to the channel
             if vc.channel.id == channel.id:
@@ -78,7 +78,7 @@ class SFX(commands.Cog):
                 return
         await interaction.response.send_message(f"Successfully connected to {channel}. Enjoy.")
 
-    sfx = app_commands.Group(name="tts", description="Commands related to TTS and it's settings")
+    sfx = app_commands.Group(name="sfx", description="Commands related to TTS and it's settings")
 
     @sfx.command()
     @app_commands.guild_only()
