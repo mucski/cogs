@@ -34,9 +34,10 @@ class SelectSpeed(discord.ui.View):
         min_values=1,
         max_values=1,
         options=[
-            discord.SelectOption(label="0.1", value="0.1"),
-            discord.SelectOption(label="0.2", value="0.2"),
-            discord.SelectOption(label="0.3", value="0.3"),
+            discord.SelectOption(label="Slow", value="0.5"),
+            discord.SelectOption(label="Default", value="1.0"),
+            discord.SelectOption(label="Fast", value="1.5"),
+            discord.SelectOption(label="Faster", value="2.0"),
         ]
     )
     async def _speed_callback(self, interaction, select):
