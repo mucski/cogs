@@ -168,7 +168,7 @@ class SFX(commands.Cog):
     @checks.admin()
     @checks.mod()
     @app_commands.guild_only()
-    @discord.ui.select(
+    @discord.ui.Select(
         placeholder="Select how fast the bot should talk",
         options=[
             discord.SelectOption(label="0.1", value=0.1),
