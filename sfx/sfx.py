@@ -238,7 +238,7 @@ class SFX(commands.Cog):
     @checks.admin()
     @checks.mod()
     @commands.guild_only()
-    async def lang(self, ctx: Context, lang: str):
+    async def lang(self, ctx: Context):
         """
         Change the TTS language to the one specified.
         """
