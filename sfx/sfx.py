@@ -168,7 +168,7 @@ class SFX(commands.Cog):
     @checks.admin()
     @checks.mod()
     @app_commands.guild_only()
-    async def speed(self, interaction: discord.Interaction, speed: Speed):
+    async def speed(self, interaction: discord.Interaction, speed: str):
         """
         Changes playback speed. Any speed between 0.5 and 2.0 is supported.
         """
