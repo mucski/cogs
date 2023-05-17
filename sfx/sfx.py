@@ -25,8 +25,9 @@ class TTSItem(NamedTuple):
 
 
 class SelectSpeed(discord.ui.View):
-    def __init__(self):
-        super.__init__(SFX)
+    def __init__(self, cog):
+        super().__init__()
+        self.cog = cog
 
     @discord.ui.select(
         placeholder="Select how fast the bot should talk",
