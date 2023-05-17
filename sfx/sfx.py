@@ -25,6 +25,9 @@ class TTSItem(NamedTuple):
 
 
 class SelectSpeed(discord.ui.View):
+    def __init__(self):
+        super(SFX, self).__init__()
+
     @discord.ui.select(
         placeholder="Select how fast the bot should talk",
         min_values=1,
@@ -39,7 +42,7 @@ class SelectSpeed(discord.ui.View):
         """
         Changes playback speed. Any speed between 0.5 and 2.0 is supported.
         """
-        await interaction.db.guild(interaction.guild).speed.set(int(select.value))
+        await self.db.guild(interaction.guild).speed.set(float(select.value))
         await interaction.response.send_message("TTS speed has been set to {select.value}")
 
 
@@ -65,7 +68,7 @@ class SFX(commands.Cog):
 
     @app_commands.command()
     @app_commands.guild_only()
-    async def connect(self, interaction: discord.Interaction, channel: discord.VoiceChannel = None):
+    async def connect(self, interaction: discord.Interaction, channel: discord.VoiceChannel) -> None:
         """
         Connect to the specified voice channel, or the channel you're currently in.
         """
@@ -101,7 +104,7 @@ class SFX(commands.Cog):
 
     @sfx.command()
     @app_commands.guild_only()
-    async def disconnect(self, interaction: discord.Interaction):
+    async def disconnect(self, interaction: discord.Interaction) -> None:
         """
         Disconnect from the current voice channel.
         """
@@ -115,7 +118,7 @@ class SFX(commands.Cog):
     @sfx.command()
     @checks.admin()
     @app_commands.guild_only()
-    async def addchan(self, interaction: discord.Interaction, channel: discord.TextChannel):
+    async def addchan(self, interaction: discord.Interaction, channel: discord.TextChannel) -> None:
         """
         Add a TTS channel to the list of tracked channels.
         """
@@ -127,7 +130,7 @@ class SFX(commands.Cog):
     @sfx.command()
     @checks.admin()
     @app_commands.guild_only()
-    async def dellchan(self, interaction: discord.Interaction, channel: discord.TextChannel):
+    async def dellchan(self, interaction: discord.Interaction, channel: discord.TextChannel) -> None:
         """
         Remove a TTS channel from the list of tracked channels.
         """
@@ -140,7 +143,7 @@ class SFX(commands.Cog):
     @checks.admin()
     @checks.mod()
     @app_commands.guild_only()
-    async def lang(self, interaction: discord.Interaction, lang: str):
+    async def lang(self, interaction: discord.Interaction, lang: str) -> None:
         """
         Change the TTS language to the one specified.
         """
@@ -151,7 +154,7 @@ class SFX(commands.Cog):
     @checks.admin()
     @checks.mod()
     @app_commands.guild_only()
-    async def tld(self, interaction: discord.Interaction, tld: str):
+    async def tld(self, interaction: discord.Interaction, tld: str) -> None:
         """
         Change the TLD of the TTS language to the one specified.
 
