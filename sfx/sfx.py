@@ -44,7 +44,7 @@ class SelectSpeed(discord.ui.View):
         Changes playback speed. Any speed between 0.5 and 2.0 is supported.
         """
         await self.cog.db.guild(interaction.guild).speed.set(float(select.values[0]))
-        await interaction.response.followup(f"TTS speed has been set to {select.values[0]}")
+        await interaction.followup(f"TTS speed has been set to {select.values[0]}")
 
 
 class SFX(commands.Cog):
