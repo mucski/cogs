@@ -25,14 +25,16 @@ class TTSItem(NamedTuple):
 
 
 class SelectSpeed(discord.ui.View):
-    def __init__(self):
-        super(SelectSpeed, self).__init__(timeout=None)
-        self.author_id = None
-        self.select_options = [
+    @discord.ui.select(
+        placeholder="Select how fast the bot should talk",
+        min_values=1,
+        max_values=1,
+        options=[
             discord.SelectOption(label="0.1", value="0.1"),
             discord.SelectOption(label="0.2", value="0.2"),
             discord.SelectOption(label="0.3", value="0.3"),
         ]
+    )
 
     async def _speed_callback(self, interaction: discord.Interaction, select):
         """
