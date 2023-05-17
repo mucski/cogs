@@ -78,7 +78,7 @@ class SFX(commands.Cog):
                 return
         await interaction.response.send_message(f"Successfully connected to {channel}. Enjoy.")
 
-    sfx = app_commands.Group(name="TTS", description="Commands related to TTS and it's settings")
+    sfx = app_commands.Group(name="tts", description="Commands related to TTS and it's settings")
 
     @sfx.command()
     @app_commands.guild_only()
