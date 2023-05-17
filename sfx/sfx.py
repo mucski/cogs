@@ -91,7 +91,7 @@ class SFX(commands.Cog):
             await interaction.response.send_message("I am not in a voice channel.")
             return
         await vc.disconnect()
-        await interaction.resposne.send_message("Successfully disconnected.")
+        await interaction.response.send_message("Successfully disconnected.")
 
     @sfx.command()
     @checks.admin()
@@ -168,12 +168,17 @@ class SFX(commands.Cog):
     @checks.admin()
     @checks.mod()
     @app_commands.guild_only()
-    async def speed(self, interaction: discord.Interaction, speed: str):
+    @app_commands.describe(speed="Pick a speed from bellow:")
+    @app_commands.choices(speed=[
+         app_commands.Choice(name="0.1", value=0.1),
+         app_commands.Choice(name="0.2", value=0.2),
+    ])
+    async def speed(self, interaction: discord.Interaction, speed: float = None):
         """
         Changes playback speed. Any speed between 0.5 and 2.0 is supported.
         """
         await self.db.guild(interaction.guild).speed.set(speed.value)
-        await interaction.response.send_message(f"TTS speech speed has been set to {speed.value}", ephemeral=False)
+        await interaction.response.send_message(f"TTS speech speed has been set to {speed.name}", ephemeral=False)
 
     def vc_callback(self, error: Optional[Exception], channel: discord.TextChannel):
         if self.vc_lock.locked():
