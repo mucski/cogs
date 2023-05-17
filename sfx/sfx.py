@@ -51,7 +51,7 @@ class SFX(commands.Cog):
         Connect to the specified voice channel, or the channel you're currently in.
         """
         if channel is None:
-            voice_state: Optional[discord.VoiceState] = interaction.author.voice
+            voice_state: Optional[discord.VoiceState] = interaction.user.voice
             if voice_state is None:
                 await interaction.response.send_message(
                     "No voice channel to join. "
