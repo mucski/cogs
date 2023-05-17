@@ -36,7 +36,7 @@ class SelectSpeed(discord.ui.View):
         ]
     )
 
-    async def _speed_callback(self, interaction: discord.Interaction, select):
+    async def _speed_callback(self, interaction: discord.Interaction, select: discord.ui.Select):
         """
         Changes playback speed. Any speed between 0.5 and 2.0 is supported.
         """
