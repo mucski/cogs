@@ -189,7 +189,7 @@ class SFX(commands.Cog):
     @commands.hybrid_group(name="sfx")
     async def sfx(self, ctx: Context):
         """
-        TTS cog by Mucski, there's a lot of cool stuff here, from language selector to speed, and, of course, instant speech.
+        TTS cog by Mucski, there's a lot of cool stuff here.
         """
         pass
 
