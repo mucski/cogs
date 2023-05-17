@@ -48,6 +48,30 @@ class SelectSpeed(discord.ui.View):
         await interaction.response.send_message(f"TTS speed has been set to {select.values[0]}")
 
 
+class SelectLang(discord.ui.View):
+    def __init__(self, cog):
+        super().__init__()
+        self.cog = cog
+
+    @discord.ui.select(
+        placeholder="Select how fast the bot should talk",
+        min_values=1,
+        max_values=1,
+        options=[
+            discord.SelectOption(label="Brittish", value="0.5"),
+            discord.SelectOption(label="Hindi", value="1.0"),
+            discord.SelectOption(label="German", value="1.5"),
+            discord.SelectOption(label="H", value="2.0"),
+        ]
+    )
+    async def _speed_callback(self, interaction, select):
+        """
+        Changes playback speed. Any speed between 0.5 and 2.0 is supported.
+        """
+        await self.cog.db.guild(interaction.guild).speed.set(float(select.values[0]))
+        await interaction.response.send_message(f"TTS speed has been set to {select.values[0]}")
+
+
 class SFX(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
@@ -162,6 +186,13 @@ class SFX(commands.Cog):
         """
         await self.db.guild(ctx.guild).lang.set(lang)
         await ctx.send(f"TTS language set to {lang}")
+
+    @sfx.command()
+    @checks.is_owner()
+    @commands.guild_only()
+    async def get_langs(self, ctx: Context):
+        """Returns the languages from Google Text to Speech"""
+        await ctx.send(gTTS.lang())
 
     @sfx.command()
     @checks.admin()
