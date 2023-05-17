@@ -192,7 +192,7 @@ class SFX(commands.Cog):
     @checks.mod()
     @app_commands.guild_only()
     async def speed(self, interaction: discord.Interaction):
-        await interaction.response.send_message(f"How fast do you wish the bot to speak?", view=SelectSpeed())
+        await interaction.response.send_message(f"How fast do you wish the bot to speak?", view=SelectSpeed(self))
 
     def vc_callback(self, error: Optional[Exception], channel: discord.TextChannel):
         if self.vc_lock.locked():
