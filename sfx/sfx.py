@@ -67,8 +67,8 @@ class SFX(commands.Cog):
     def cog_unload(self):
         self.vc_task.cancel()
 
-    @app_commands.command()
-    @app_commands.guild_only()
+    @commands.command()
+    @commands.guild_only()
     async def connect(self, interaction: discord.Interaction, channel: discord.VoiceChannel) -> None:
         """
         Connect to the specified voice channel, or the channel you're currently in.
@@ -101,10 +101,17 @@ class SFX(commands.Cog):
                 return
         await interaction.response.send_message(f"Successfully connected to {channel}. Enjoy.")
 
-    sfx = app_commands.Group(name="sfx", description="Commands related to TTS and it's settings")
+    # sfx = app_commands.Group(name="sfx", description="Commands related to TTS and it's settings")
+
+    @commands.hybrid_group(name="sfx")
+    async def sfx(self):
+        """
+        TTS cog by Mucski, there's a lot of cool stuff here, from language selector to speed, and, of course, instant speech.
+        """
+        pass
 
     @sfx.command()
-    @app_commands.guild_only()
+    @commands.guild_only()
     async def disconnect(self, interaction: discord.Interaction) -> None:
         """
         Disconnect from the current voice channel.
@@ -118,7 +125,7 @@ class SFX(commands.Cog):
 
     @sfx.command()
     @checks.admin()
-    @app_commands.guild_only()
+    @commands.guild_only()
     async def addchan(self, interaction: discord.Interaction, channel: discord.TextChannel) -> None:
         """
         Add a TTS channel to the list of tracked channels.
@@ -130,7 +137,7 @@ class SFX(commands.Cog):
 
     @sfx.command()
     @checks.admin()
-    @app_commands.guild_only()
+    @commands.guild_only()
     async def dellchan(self, interaction: discord.Interaction, channel: discord.TextChannel) -> None:
         """
         Remove a TTS channel from the list of tracked channels.
@@ -143,7 +150,7 @@ class SFX(commands.Cog):
     @sfx.command()
     @checks.admin()
     @checks.mod()
-    @app_commands.guild_only()
+    @commands.guild_only()
     async def lang(self, interaction: discord.Interaction, lang: str) -> None:
         """
         Change the TTS language to the one specified.
@@ -154,7 +161,7 @@ class SFX(commands.Cog):
     @sfx.command()
     @checks.admin()
     @checks.mod()
-    @app_commands.guild_only()
+    @commands.guild_only()
     async def tld(self, interaction: discord.Interaction, tld: str) -> None:
         """
         Change the TLD of the TTS language to the one specified.
@@ -169,7 +176,7 @@ class SFX(commands.Cog):
     @sfx.command()
     @checks.admin()
     @checks.mod()
-    @app_commands.guild_only()
+    @commands.guild_only()
     async def speak_name(self, interaction: discord.Interaction, state: bool):
         """
         Set if you want TTS to include the speaker's name.
@@ -179,7 +186,7 @@ class SFX(commands.Cog):
 
     @sfx.command()
     @checks.admin()
-    @app_commands.guild_only()
+    @commands.guild_only()
     async def cleardb(self, interaction: discord.Interaction):
         """
         Clear all settings for the current guild.
@@ -190,7 +197,7 @@ class SFX(commands.Cog):
     @sfx.command()
     @checks.admin()
     @checks.mod()
-    @app_commands.guild_only()
+    @commands.guild_only()
     async def speed(self, interaction: discord.Interaction):
         await interaction.response.send_message(f"How fast do you wish the bot to speak?", view=SelectSpeed(self))
 
