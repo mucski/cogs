@@ -24,6 +24,23 @@ class TTSItem(NamedTuple):
     msg: discord.Message
 
 
+class SelectSpeed(discord.ui.View):
+    @discord.ui.select(
+        placeholder="Select how fast the bot should talk",
+        options=[
+            discord.SelectOption(label="0.1", value=0.1),
+            discord.SelectOption(label="0.2", value=0.2),
+            discord.SelectOption(label="0.3", value=0.3),
+        ]
+    )
+    async def _speed_callback(self, select, interaction):
+        """
+        Changes playback speed. Any speed between 0.5 and 2.0 is supported.
+        """
+        await self.db.guild(interaction.guild).speed.set(select.value)
+        await interaction.response.send_message("TTS speed has been set to {select.value}")
+
+
 class SFX(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
@@ -43,22 +60,6 @@ class SFX(commands.Cog):
 
     def cog_unload(self):
         self.vc_task.cancel()
-
-    class SelectSpeed(discord.ui.View):
-        @discord.ui.select(
-            placeholder="Select how fast the bot should talk",
-            options=[
-                discord.SelectOption(label="0.1", value=0.1),
-                discord.SelectOption(label="0.2", value=0.2),
-                discord.SelectOption(label="0.3", value=0.3),
-            ]
-        )
-        async def _speed_callback(self, select, interaction):
-            """
-            Changes playback speed. Any speed between 0.5 and 2.0 is supported.
-            """
-            await self.db.guild(interaction.guild).speed.set(select.value)
-            await interaction.response.send_message("TTS speed has been set to {select.value}")
 
     @app_commands.command()
     @app_commands.guild_only()
