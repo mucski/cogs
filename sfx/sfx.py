@@ -9,7 +9,6 @@ import discord
 from redbot.core.commands import Context
 from redbot.core import commands, checks, Config, app_commands
 from .custom import FFmpegPCMAudio
-from enum import Enum
 
 # Gevent patch before gTTS
 try:
@@ -23,20 +22,6 @@ from gtts import gTTS
 class TTSItem(NamedTuple):
     sentence: str
     msg: discord.Message
-
-
-class Speed(Enum):
-    0.5 == 0.5
-    0.6 == 0.6
-    0.7 == 0.7
-    0.8 == 0.8
-    0.9 == 0.9
-    1.0 == 1.0
-    1.1 == 1.1
-    1.2 == 1.2
-    1.3 == 1.3
-    1.4 == 1.4
-    1.5 == 1.5
 
 
 class SFX(commands.Cog):
@@ -59,22 +44,22 @@ class SFX(commands.Cog):
     def cog_unload(self):
         self.vc_task.cancel()
 
-    @commands.hybrid_command()
-    @commands.guild_only()
-    async def connect(self, ctx: Context, channel: discord.VoiceChannel = None):
+    @app_commands.command()
+    @app_commands.guild_only()
+    async def connect(self, interaction: discord.Interaction, channel: discord.VoiceChannel = None):
         """
         Connect to the specified voice channel, or the channel you're currently in.
         """
         if channel is None:
-            voice_state: Optional[discord.VoiceState] = ctx.author.voice
+            voice_state: Optional[discord.VoiceState] = interaction.author.voice
             if voice_state is None:
-                await ctx.send(
+                await interaction.response.send_message(
                     "No voice channel to join. "
                     "Please either specify a valid voice channel or join one."
                 )
                 return
             channel = voice_state.channel
-        vc: Optional[discord.VoiceClient] = ctx.voice_client
+        vc: Optional[discord.VoiceClient] = interaction.voice_client
         if vc is not None:
             # move to the channel
             if vc.channel.id == channel.id:
@@ -82,16 +67,16 @@ class SFX(commands.Cog):
             try:
                 await vc.move_to(channel)
             except asyncio.TimeoutError:
-                await ctx.send(f'Moving to channel: <{channel}> timed out.')
+                await interaction.response.send_message(f'Moving to channel: <{channel}> timed out.')
                 return
         else:
             # join the channel
             try:
                 await channel.connect()
             except asyncio.TimeoutError:
-                await ctx.send(f'Connecting to channel: <{channel}> timed out.')
+                await interaction.response.send_message(f'Connecting to channel: <{channel}> timed out.')
                 return
-        await ctx.tick()
+        await interaction.response.send_message(f"Successfully connected to {channel}. Enjoy.")
 
     @commands.hybrid_group()
     async def sfx(self, ctx):
