@@ -84,11 +84,11 @@ class SelectLang(discord.ui.View):
             discord.SelectOption(label="Icelandic", value="is"),
             discord.SelectOption(label="Italian", value="it"),
             ####
-            discord.SelectOption(label="Hebrew", value="iw"),
-            discord.SelectOption(label="Japanese", value="ja"),
-            discord.SelectOption(label="Javanese", value="jw"),
-            discord.SelectOption(label="Khmer", value="km"),
-            discord.SelectOption(label="Kannada", value="kn"),
+            # discord.SelectOption(label="Hebrew", value="iw"),
+            # discord.SelectOption(label="Japanese", value="ja"),
+            # discord.SelectOption(label="Javanese", value="jw"),
+            # discord.SelectOption(label="Khmer", value="km"),
+            # discord.SelectOption(label="Kannada", value="kn"),
         ]
     )
     async def _lang_callback(self, interaction, select):
