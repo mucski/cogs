@@ -56,7 +56,7 @@ class SelectLang(discord.ui.View):
     @discord.ui.select(
         placeholder="Select a language bellow",
         min_values=1,
-        max_values=1,
+        max_values=50,
         options=[
             discord.SelectOption(label="Afrikaans", value="af"),
             discord.SelectOption(label="Arabic", value="ar"),
@@ -83,6 +83,12 @@ class SelectLang(discord.ui.View):
             discord.SelectOption(label="Indonesian", value="id"),
             discord.SelectOption(label="Icelandic", value="is"),
             discord.SelectOption(label="Italian", value="it"),
+            ####
+            discord.SelectOption(label="Hebrew", value="iw"),
+            discord.SelectOption(label="Japanese", value="ja"),
+            discord.SelectOption(label="Javanese", value="jw"),
+            discord.SelectOption(label="Khmer", value="km"),
+            discord.SelectOption(label="Kannada", value="kn"),
         ]
     )
     async def _lang_callback(self, interaction, select):
