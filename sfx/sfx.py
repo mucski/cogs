@@ -56,7 +56,7 @@ class SelectLang(discord.ui.View):
     @discord.ui.select(
         placeholder="Select a language bellow",
         min_values=1,
-        max_values=50,
+        max_values=1,
         options=[
             discord.SelectOption(label="Afrikaans", value="af"),
             discord.SelectOption(label="Arabic", value="ar"),
