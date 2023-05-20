@@ -131,7 +131,7 @@ def playerkey(x, y):
     # healing
     draw.text((3856, 20), "HEALING", font=fntbld, fill=fill)
     # self healing
-    draw.text((4256, 20), "SELF HEAL", font=fntbld, fill=fill)
+    draw.text((4256, 20), "PLATFORM", font=fntbld, fill=fill)
     # kda2
     # draw.text((4636, 20), "KDA", font=fntbld, fill=fill)
     return key
