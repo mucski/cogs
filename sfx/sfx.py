@@ -89,15 +89,6 @@ class SelectLang(discord.ui.View):
             # discord.SelectOption(label="Javanese", value="jw"),
             # discord.SelectOption(label="Khmer", value="km"),
             # discord.SelectOption(label="Kannada", value="kn"),
-        ]
-    )
-    async def _lang_callback(self, interaction, select):
-        """
-        Language change.
-        """
-        await self.cog.db.guild(interaction.guild).lang.set(select.values[0])
-        await interaction.response.send_message(f"Language has been set to {select.values[0]}")
-
             # discord.SelectOption(label="Hebrew", value="iw"),
             # discord.SelectOption(label="Japanese", value="ja"),
             # discord.SelectOption(label="Javanese", value="jw"),
@@ -135,6 +126,15 @@ class SelectLang(discord.ui.View):
             # discord.SelectOption(label="Chinese", value="zh-CN"),
             # discord.SelectOption(label="Chinese (Mandarin/Taiwan)", value="zh-TW"),
             # discord.SelectOption(label="Chinese (Mandarin)", value="zh"),
+        ]
+    )
+    async def _lang_callback(self, interaction, select):
+        """
+        Language change.
+        """
+        await self.cog.db.guild(interaction.guild).lang.set(select.values[0])
+        await interaction.response.send_message(f"Language has been set to {select.values[0]}")
+
 
 class SFX(commands.Cog):
     def __init__(self, bot):
