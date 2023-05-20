@@ -97,8 +97,8 @@ def statsimage(mp, index):
     # healing
     draw.text((3856, mid), humanize_number(mp.healing_done), font=fnt, fill=fill)
     # self healing
-    if mp.player.platform.name == "Epic Games":
-        draw.text((4256, mid), "E Games", font=fnt, fill=fill)
+    if mp.player.platform.name == "Epic Games" or mp.player.platform.name == "Steam" or mp.player.platform.name == "Facebook" or mp.player.platform.name == "Google" or mp.player.platform.name == "Mixer" or mp.player.platform.name == "Discord":
+        draw.text((4256, mid), "PC", font=fnt, fill=fill)
     else:
         draw.text((4256, mid), mp.player.platform.name, font=fnt, fill=fill)
     # kda2
