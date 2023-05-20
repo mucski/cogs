@@ -97,7 +97,10 @@ def statsimage(mp, index):
     # healing
     draw.text((3856, mid), humanize_number(mp.healing_done), font=fnt, fill=fill)
     # self healing
-    draw.text((4256, mid), mp.player.platform.name, font=fnt, fill=fill)
+    if mp.player.platform.name == "Epic Games":
+        draw.text((4256, mid), "E Games", font=fnt, fill=fill)
+    else:
+        draw.text((4256, mid), mp.player.platform.name, font=fnt, fill=fill)
     # kda2
     # draw.text((4636, mid), "{:.2f}".format(stats[12]), font=fnt, fill=fill)
     return img
