@@ -30,7 +30,7 @@ class SelectSpeed(discord.ui.View):
         self.cog = cog
 
     @discord.ui.select(
-        placeholder="Select how fast the bot should talk",
+        placeholder="Select speech speed",
         min_values=1,
         max_values=1,
         options=[
@@ -54,7 +54,7 @@ class SelectLang(discord.ui.View):
         self.cog = cog
 
     @discord.ui.select(
-        placeholder="Select a language bellow",
+        placeholder="Select a language",
         min_values=1,
         max_values=1,
         options=[
@@ -248,7 +248,7 @@ class SFX(commands.Cog):
         """
         Change the TTS language to the one specified.
         """
-        await ctx.send(f"Select a language bellow", view=SelectLang(self))
+        await ctx.send(view=SelectLang(self))
 
     @sfx.command()
     @checks.admin()
@@ -291,7 +291,7 @@ class SFX(commands.Cog):
     @checks.mod()
     @commands.guild_only()
     async def speed(self, ctx: Context):
-        await ctx.send(f"How fast do you wish the bot to speak?", view=SelectSpeed(self))
+        await ctx.send(view=SelectSpeed(self))
 
     def vc_callback(self, error: Optional[Exception], channel: discord.TextChannel):
         if self.vc_lock.locked():
