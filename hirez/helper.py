@@ -257,7 +257,7 @@ async def getavatar(player):
                 resp = await resp.read()
     try: # in case heroku goes to shit like always
         avatar = Image.open(BytesIO(resp)).convert("RGBA")
-    except TypeError:
+    except:
         avatar = Image.open("/home/poopski/mucski/stuff/icons/0.png")
     avatar = avatar.resize((150, 150))
     mask = Image.new('L', size, 0)
