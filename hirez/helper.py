@@ -1,5 +1,7 @@
 from __future__ import annotations
 
+
+import PIL
 from PIL import ImageOps, ImageDraw, Image, ImageFont, ImageEnhance
 import aiohttp
 import asyncio
