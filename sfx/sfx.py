@@ -362,7 +362,7 @@ class SFX(commands.Cog):
         text = re.sub(r'<a?:(\w+):\d+?>', r'\1', msg.clean_content)
         text = re.sub(r'https?://[\w-]+(.[\w-]+)+\S*', '', text)
         if with_nick:
-            sentence = f"{msg.author.nick} says: {text}"
+            sentence = f"{msg.author.display_name} says: {text}"
         else:
             sentence = f"{text}"
         await self.vc_queue.put(TTSItem(sentence, msg))
