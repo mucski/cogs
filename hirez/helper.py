@@ -219,44 +219,44 @@ def middlepanel(match):
         for i, ban in enumerate(match.bans):
             if i == 0 and ban != None:
                 #### Champion 1 ####
-                champicon1 = champ_into_pic(ban)
-                champicon1 = champicon1.resize((200, 200))
-                img.paste(champicon1, (int((W-w) / 2) + 1580, round((H-h) / 2) - 70))
+                champicon0 = champ_into_pic(ban)
+                champicon0 = champicon0.resize((200, 200))
+                img.paste(champicon0, (int((W-w) / 2) + 1580, round((H-h) / 2) - 70))
             elif i == 1 and ban != None:
                 #### Champion 2 ####
-                champicon2 = champ_into_pic(ban)
-                champicon2 = champicon2.resize((200, 200))
-                img.paste(champicon2, (int((W-w) / 2) + 1800, int((H-h) / 2) - 70))
+                champicon1 = champ_into_pic(ban)
+                champicon1 = champicon1.resize((200, 200))
+                img.paste(champicon1, (int((W-w) / 2) + 1800, int((H-h) / 2) - 70))
             elif i == 2 and not None:
                 #### Champion 3 ####
-                champicon3 = champ_into_pic(ban)
-                champicon3 = champicon3.resize((200, 200))
-                img.paste(champicon3, (int((W-w) / 2) + 2020, int((H-h) / 2) - 70))
+                champicon2 = champ_into_pic(ban)
+                champicon2 = champicon2.resize((200, 200))
+                img.paste(champicon2, (int((W-w) / 2) + 2020, int((H-h) / 2) - 70))
             elif i == 3 and ban != None:
                 #### CHAMPION 4 ####
-                champicon4 = champ_into_pic(ban)
-                champicon4 = champicon4.resize((200, 200))
-                img.paste(champicon4, (int((W-w) / 2) + 1580, int((H-h) / 2) + 150))
+                champicon3 = champ_into_pic(ban)
+                champicon3 = champicon3.resize((200, 200))
+                img.paste(champicon3, (int((W-w) / 2) + 1580, int((H-h) / 2) + 150))
             elif i == 4 and ban != None:
                 #### Champion 5 ####
-                champicon5 = champ_into_pic(ban)
-                champicon5 = champicon5.resize((200, 200))
-                img.paste(champicon5, (int((W-w) / 2) + 1800, int((H-h) / 2) + 150))
+                champicon4 = champ_into_pic(ban)
+                champicon4 = champicon4.resize((200, 200))
+                img.paste(champicon4, (int((W-w) / 2) + 1800, int((H-h) / 2) + 150))
             elif i == 5 and ban != None:
                 #### Champion 6 ####
-                champicon6 = champ_into_pic(ban)
-                champicon6 = champicon6.resize((200, 200))
-                img.paste(champicon6, (int((W-w) / 2) + 2020, int((H-h) / 2) + 150))
+                champicon5 = champ_into_pic(ban)
+                champicon5 = champicon5.resize((200, 200))
+                img.paste(champicon5, (int((W-w) / 2) + 2020, int((H-h) / 2) + 150))
             elif i == 6 and ban != None:
                 #### Champion 7 ####
+                champicon6 = champ_into_pic(ban)
+                champicon6 = champicon6.resize((200, 200))
+                img.paste(champicon6, (int((W-w) / 2) + 2240, int((H-h) / 2) - 70))
+            elif i == 7 and ban != None:
+                #### Champion 8 ####
                 champicon7 = champ_into_pic(ban)
                 champicon7 = champicon7.resize((200, 200))
                 img.paste(champicon7, (int((W-w) / 2) + 2240, int((H-h) / 2) + 150))
-            elif i == 7 and ban != None:
-                #### Champion 8 ####
-                champicon8 = champ_into_pic(ban)
-                champicon8 = champicon8.resize((200, 200))
-                img.paste(champicon8, (int((W-w) / 2) + 2240, int((H-h) / 2) + 150))
             else: 
                 pass
     return img
