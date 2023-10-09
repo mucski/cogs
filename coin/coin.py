@@ -352,7 +352,7 @@ class Coin(commands.Cog):
             
             await ctx.send("I have a " + str(dealer_hand[0]))
             await ctx.send("You have a " + str(player_hand[0]) + " and a " + str(player_hand[1]) + " for a total of " + str(total(player_hand)))
-            await ctx.send("Do you want to [H]it, [S]tand or [Q]uit")
+            message = await ctx.send("Do you want to [H]it, [S]tand or [Q]uit")
             
             msg = await self.bot.wait_for(message, check=MessagePredicate.same_context(ctx))
             
