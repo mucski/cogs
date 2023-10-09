@@ -26,6 +26,7 @@ class Coin(commands.Cog):
         default_guild = {
             "channel": "",
         }
+        
         self.db.register_user(**default_user)
         self.db.register_guild(**default_guild)
         self.playing = False
