@@ -295,16 +295,16 @@ class Coin(commands.Cog):
 
     @coin.command()
     async def bj(self, ctx):
-        cards = []
-        bot_cards = []
-        player_cards = []
-        
-        for suite in self.suites:
-            for card in self.card_types:
-                cards.append(card + " of " + suite)
-                
-        if "King" in player_cards or "Queen" in player_cards or "Jack" in player_cards:
-            player_total += 10
+        player_hand = []
+        for i in range(2):
+            random.shuffle(self.cards)
+            card = self.cards.pop()
+            if card == 11: card = "J"
+            if card == 12: card = "Q"
+            if card == 13: card = "K"
+            if card == 14: card = "A"
+            player_hand.append(card)
+        await ctx.send(player_hand)
         
     @coin.command()
     @commands.cooldown(1, 20, commands.BucketType.user)
