@@ -359,9 +359,9 @@ class Coin(commands.Cog):
             if msg.content.lower() == "h":
                 hit(player_hand)
                 await ctx.send("Player hand: " + str(player_hand))
-                await ctx.send("Hand total" + str(total(player_hand)))
+                await ctx.send("Hand total " + str(total(player_hand)))
                 if total(player_hand) > 21:
-                    "You're bust, you lost!"
+                    await ctx.send("You're bust, you lost!")
                     quit = True
                 return
             elif msg.content.lower() == "s":
