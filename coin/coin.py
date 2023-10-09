@@ -352,24 +352,24 @@ class Coin(commands.Cog):
             
             await ctx.send("I have a " + str(dealer_hand[0]))
             await ctx.send("You have a " + str(player_hand[0]) + " and a " + str(player_hand[1]) + " for a total of " + str(total(player_hand)))
-            message = await ctx.send("Do you want to [H]it, [S]tand or [Q]uit")
+            await ctx.send("Do you want to [H]it, [S]tand or [Q]uit")
             
-            msg = await self.bot.wait_for(message, check=MessagePredicate.same_context(ctx))
+            msg = await self.bot.wait_for("message", check=MessagePredicate.same_context(ctx))
             
-            if msg == "h":
+            if msg.content.lower() == "h":
                 hit(player_hand)
                 await ctx.send(player_hand)
                 await ctx.send("Hand total" + str(total(player_hand)))
                 if total(player_hand) > 21:
                     "You're bust, you lost!"
-            elif msg == "s":
+            elif msg.content.lower() == "s":
                 while total(dealer_hand) < 17:
                     hit(dealer_hand)
                     await ctx.send(dealer_hand)
                     if total(dealer_hand) > 21:
                         await ctx.send("Oops, looks like you won")
                 score(player_hand, dealer_hand)
-            elif msg == "q":
+            elif msg.content.lower() == "q":
                 quit = True
                 await ctx.send("Bye")
                     
