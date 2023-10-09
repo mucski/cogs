@@ -297,7 +297,7 @@ class Coin(commands.Cog):
         cards = []
         for suite in self.suites:
             for card in self.card_types:
-                cards.append(card + "of" + suite)
+                cards.append(card + " of " + suite)
         await ctx.send(cards)
         
     @coin.command()
