@@ -295,28 +295,82 @@ class Coin(commands.Cog):
 
     @coin.command()
     async def bj(self, ctx):
-        player_hand = []
-        for i in range(2):
-            random.shuffle(self.cards)
+        def deal(cards):
+            hand = []
+            for i in range(2):
+                random.shuffle(cards)
+                card = self.cards.pop()
+                if card == 11: card = "J"
+                if card == 12: card = "Q"
+                if card == 13: card = "K"
+                if card == 14: card = "A"
+                hand.append(card)
+            return hand
+            
+        def total(hand):
+            total = 0
+            for card in hand:
+                if card == "J" or card == "Q" or card == "K":
+                    total += 10
+                elif card == "A":
+                    if total >= 11: total += 1
+                    else: total += 11
+                else:
+                    total += card
+            return total
+            
+        def hit(hand):
             card = self.cards.pop()
             if card == 11: card = "J"
             if card == 12: card = "Q"
             if card == 13: card = "K"
             if card == 14: card = "A"
-            player_hand.append(card)
-            
-        total = 0
-        for card in player_hand:
-            if card == "J" or card == "Q" or card == "K":
-                total += 10
-            elif card == "A":
-                if total >= 11: total += 1
-                else: total += 11
-            else:
-                total += card
-                
-        await ctx.send(total)
+            hand.append(card)
+            return hand
         
+        def score(dealer_hand, player_hand):
+            if total(player_hand) == 21:
+                await ctx.send("Congratulations you won, you have a Black Jack")
+            elif total(dealer_hand) == 21:
+                await ctx.send("Sorry, you lose, I got a Black Jack")
+            elif total(player_hand) > 21:
+                await ctx.send("Ha! You bust! I win!")
+            elif total(dealer_hand) > 21:
+                await ctx.send("Oops, looks like I'm bust, you win!")
+            elif total(player_hand) < total(dealer_hand):
+                await ctx.send("Ha! I have more, so I win")
+            elif total(player_hand) > total(dealer_hand):
+                await ctx.send("Looks like you have more than me, you won!")
+                
+        await ctx.send("Welcome to BlackJack, I don't have time to explain the rules")
+        
+        while not quit:
+            player_hand = deal(self.cards)
+            dealer_hand = deal(self.cards)
+            
+            await ctx.send("I have a " + str(dealer_hand[0]))
+            await ctx.send("You have a " + str(player_hand(0) + " and a " + str(player_hand[1]) + " for a total of " + str(total(player_hand))))
+            await ctx.send("Do you want to [H]it, [S]tand or [Q]uit")
+            
+            msg = await bot.wait_for(message, check=MessagePredicate.same_context(ctx))
+            
+            if msg == "h":
+                hit(player_hand)
+                await ctx.send(player_hand)
+                await ctx.send("Hand total" + str(total(player_hand)))
+                if total(player_hand) > 21:
+                    "You're bust, you lost!"
+            elif msg == "s":
+                while total(dealer_hand) < 17:
+                    hit(dealer_hand)
+                    await ctx.send(dealer_hand)
+                    if total(dealer_hand) > 21:
+                        await ctx.send("Oops, looks like you won")
+                score(player_hand, dealer_hand)
+            elif msg == "q":
+                quit = True
+                await ctx.send("Bye")
+                    
     @coin.command()
     @commands.cooldown(1, 20, commands.BucketType.user)
     async def dig(self, ctx, cheat=False):
