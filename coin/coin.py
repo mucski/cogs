@@ -30,9 +30,8 @@ class Coin(commands.Cog):
         self.db.register_user(**default_user)
         self.db.register_guild(**default_guild)
         self.playing = False
-        self.suites = ["Spades", "Hearts", "Clubs", "Diamonds"]
-        self.card_types = ["Ace", "Queen", "King", "Jack", "10", "9", "8", "7", "6", "5", "4", "3", "2"]
-
+        self.cards = [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14]*4
+        
     @commands.hybrid_group()
     async def coin(self, interaction: discord.Interaction):
         """ Coin Tycoon created by Mucski \n
