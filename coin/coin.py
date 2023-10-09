@@ -272,7 +272,7 @@ class Coin(commands.Cog):
                     break
             if var == 10 or key == 0:
                 percent = var * 5
-                stolen = floor(enemy_coin * percent / 100)
+                stolen = enemy_coin * percent // 100
                 e.set_field_at(0, name="\u200b",
                                value=f"You successfully stolen"
                                f" `{percent}%` of "
