@@ -358,16 +358,18 @@ class Coin(commands.Cog):
             
             if msg.content.lower() == "h":
                 hit(player_hand)
-                await ctx.send(player_hand)
+                await ctx.send("Player hand: " + str(player_hand))
                 await ctx.send("Hand total" + str(total(player_hand)))
                 if total(player_hand) > 21:
                     "You're bust, you lost!"
+                    quit = True
             elif msg.content.lower() == "s":
                 while total(dealer_hand) < 17:
                     hit(dealer_hand)
-                    await ctx.send(dealer_hand)
+                    await ctx.send("Dealer hand: " str(dealer_hand))
                     if total(dealer_hand) > 21:
                         await ctx.send("Oops, looks like you won")
+                        quit = True
                 score(player_hand, dealer_hand)
             elif msg.content.lower() == "q":
                 quit = True
