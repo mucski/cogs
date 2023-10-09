@@ -344,6 +344,8 @@ class Coin(commands.Cog):
                 
         await ctx.send("Welcome to BlackJack, I don't have time to explain the rules")
         
+        quit = False
+        
         while not quit:
             player_hand = deal(self.cards)
             dealer_hand = deal(self.cards)
