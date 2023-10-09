@@ -354,8 +354,13 @@ class Coin(commands.Cog):
                         f"points towards {hint}",
             title="Find the pirate booty chest!"
         )
-
-        desc2 = desc.replace(str(chest), "❌", 1)
+        
+        if chest <= 9 and len(str(chest)) < 2:
+            chest_str = "0" + str(chest)
+        else:
+            chest_str = str(chest)
+        
+        desc2 = desc.replace(chest_str, "❌", 1)
         embed2 = discord.Embed(
             color=await self.bot.get_embed_color(ctx),
             description=f"```{dedent(desc2)}```",
