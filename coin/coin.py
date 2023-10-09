@@ -330,17 +330,17 @@ class Coin(commands.Cog):
         
         def score(dealer_hand, player_hand):
             if total(player_hand) == 21:
-                await ctx.send("Congratulations you won, you have a Black Jack")
+                msg = "Congratulations you won, you have a Black Jack"
             elif total(dealer_hand) == 21:
-                await ctx.send("Sorry, you lose, I got a Black Jack")
+                msg = "Sorry, you lose, I got a Black Jack"
             elif total(player_hand) > 21:
-                await ctx.send("Ha! You bust! I win!")
+                msg = "Ha! You bust! I win!"
             elif total(dealer_hand) > 21:
-                await ctx.send("Oops, looks like I'm bust, you win!")
+                msg = "Oops, looks like I'm bust, you win!"
             elif total(player_hand) < total(dealer_hand):
-                await ctx.send("Ha! I have more, so I win")
+                msg = "Ha! I have more, so I win"
             elif total(player_hand) > total(dealer_hand):
-                await ctx.send("Looks like you have more than me, you won!")
+                msg = "Looks like you have more than me, you won!"
                 
         await ctx.send("Welcome to BlackJack, I don't have time to explain the rules")
         
