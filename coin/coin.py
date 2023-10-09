@@ -28,6 +28,8 @@ class Coin(commands.Cog):
         self.db.register_user(**default_user)
         self.db.register_guild(**default_guild)
         self.playing = False
+        self.suites = ["Spades", "Hearts", "Clubs", "Diamonds"]
+        self.card_types = ["Ace", "Queen", "King", "Jack", "10", "9", "8", "7", "6", "5", "4", "3", "2"]
 
     @commands.hybrid_group()
     async def coin(self, interaction: discord.Interaction):
@@ -290,6 +292,14 @@ class Coin(commands.Cog):
             except discord.HTTPException:
                 pass
 
+    @coin.command()
+    async def bj(self, ctx):
+        cards = []
+        for suite in self.suites:
+            for card in self.card_types:
+                cards.append(card + "of" + suite)
+        await ctx.send(cards)
+        
     @coin.command()
     @commands.cooldown(1, 20, commands.BucketType.user)
     async def dig(self, ctx, cheat=False):
