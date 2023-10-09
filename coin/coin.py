@@ -304,7 +304,18 @@ class Coin(commands.Cog):
             if card == 13: card = "K"
             if card == 14: card = "A"
             player_hand.append(card)
-        await ctx.send(player_hand)
+            
+        total = 0
+        for card in player_hand:
+            if card == "J" or card == "Q" or card == "K":
+                total += 10
+            elif card == "A":
+                if total >= 11: total += 1
+                else: total += 11
+            else:
+                total += card
+                
+        await ctx.send(total)
         
     @coin.command()
     @commands.cooldown(1, 20, commands.BucketType.user)
