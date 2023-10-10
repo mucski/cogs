@@ -365,22 +365,25 @@ class Coin(commands.Cog):
                     await ctx.send("You're bust, you lost!")
                     quit = True
             elif msg.content.lower() == "s":
-                while True:
+                while not dealer_quit:
                     hit(dealer_hand)
                     await ctx.send("Dealer hand: " + str(dealer_hand))
                     if total(dealer_hand) > 21:
                         await ctx.send("Oops, looks like you won")
+                        dealer_quit = True
                         quit = True
                     elif total(dealer_hand) == 21:
                         await ctx.send("Ha! I have BlackJack, I win!")
+                        dealer_quit = True
                         quit = True
                     elif total(dealer_hand) < total(player_hand):
                         await ctx.send("Looks like you won, congrats")
+                        dealer_quit = True
                         quit = True
                     elif total(dealer_hand) > total(player_hand):
                         await ctx.send("Looks like you lost, sorry")
+                        dealer_quit = True
                         quit = True
-                        
             elif msg.content.lower() == "q":
                 quit = True
                 await ctx.send("Bye")
