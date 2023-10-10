@@ -301,7 +301,8 @@ class Coin(commands.Cog):
             hand = []
             for i in range(2):
                 random.shuffle(cards)
-                card = self.cards.pop()
+                if self.cards:
+                    card = self.cards.pop()
                 if card == 11: card = "J"
                 if card == 12: card = "Q"
                 if card == 13: card = "K"
@@ -322,7 +323,8 @@ class Coin(commands.Cog):
             return total
             
         def hit(hand):
-            card = self.cards.pop()
+            if self.cards:
+                card = self.cards.pop()
             if card == 11: card = "J"
             if card == 12: card = "Q"
             if card == 13: card = "K"
