@@ -361,6 +361,7 @@ class Coin(commands.Cog):
                 hit(player_hand)
                 await ctx.send("Player hand: " + str(player_hand))
                 await ctx.send("Hand total " + str(total(player_hand)))
+                await ctx.send("Do you want to [H]it, [S]tand or [Q]uit")
                 if total(player_hand) > 21:
                     await ctx.send("You're bust, you lost!")
                     quit = True
