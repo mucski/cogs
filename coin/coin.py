@@ -342,7 +342,13 @@ class Coin(commands.Cog):
             await ctx.send("Welcome to BlackJack, you have been deducted 50 coins, enjoy your stay!")
         await ctx.send("I have a " + str(dealer_hand[0]))
         await ctx.send("You have a " + str(player_hand[0]) + " and a " + str(player_hand[1]) + " for a total of " + str(total(player_hand)))
-        await ctx.send("Do you want to [H]it, [S]tand or [Q]uit")
+        if total(player_hand) == 21:
+            await ctx.send("You have a BlackJack, congratulations, you win 500 coins!")
+            coins += 500
+            await self.db.user(ctx.author).coin.set(coins)
+            return
+        else:
+            await ctx.send("Do you want to [H]it, [S]tand or [Q]uit")
             
         while True:
             msg = await self.bot.wait_for("message", check=MessagePredicate.same_context(ctx))
