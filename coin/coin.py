@@ -294,7 +294,9 @@ class Coin(commands.Cog):
                 pass
 
     @coin.command()
+    @commands.cooldown(1, 11, commands.BucketType.user)
     async def bj(self, ctx):
+        coins = await self.db.user(ctx.author).coin()
         def deal(cards):
             hand = []
             for i in range(2):
@@ -328,12 +330,16 @@ class Coin(commands.Cog):
             hand.append(card)
             return hand
         
-        quit = False
-        dealer_quit = False
         player_hand = deal(self.cards)
         dealer_hand = deal(self.cards)
         
-        await ctx.send("Welcome to BlackJack, I don't have time to explain the rules")
+        if coins < 50:
+            await ctx.send("Sorry but you need at least 50 coins to play this game")
+            return
+        else:
+            coins -= 50
+            await self.db.user(ctx.author).coin.set(coins)
+            await ctx.send("Welcome to BlackJack, you have been deducted 50 coins, enjoy your stay!")
         await ctx.send("I have a " + str(dealer_hand[0]))
         await ctx.send("You have a " + str(player_hand[0]) + " and a " + str(player_hand[1]) + " for a total of " + str(total(player_hand)))
         await ctx.send("Do you want to [H]it, [S]tand or [Q]uit")
@@ -349,7 +355,9 @@ class Coin(commands.Cog):
                     await ctx.send("You're bust, you lost!")
                     break
                 elif total(player_hand) == 21:
-                    await ctx.send("Congratulation, you have a Black Jack! You win!")
+                    await ctx.send("Congratulation, you have a Black Jack! You win 500 coins!")
+                    coins += 500
+                    await self.db.user(ctx.author).coin.set(coins)
                     break
                 await ctx.send("Do you want to [H]it, [S]tand or [Q]uit")
             elif msg.content.lower() == "s":
@@ -358,20 +366,24 @@ class Coin(commands.Cog):
                     await ctx.send("Dealer hand: " + str(dealer_hand))
                     await ctx.send("Dealer total: " + str(total(dealer_hand)))
                     if total(dealer_hand) > 21:
-                        await ctx.send("Oops, looks like you won")
+                        await ctx.send("Oops, looks like you won, 100 coins")
+                        coins += 100
+                        await self.db.user(ctx.author).coin.set(coins)
                         break
                     elif total(dealer_hand) == 21:
                         await ctx.send("Ha! I have BlackJack, I win!")
                         break
                     elif total(dealer_hand) < total(player_hand):
-                        await ctx.send("Looks like you won, congrats")
+                        await ctx.send("Looks like you won, congrats, 100 coins")
+                        coins += 100
+                        await self.db.user(ctx.author).coin.set(coins)
                         break
                     elif total(dealer_hand) > total(player_hand):
                         await ctx.send("Looks like you lost, sorry")
                         break
             elif msg.content.lower() == "q":
                 break
-                await ctx.send("Bye")
+                await ctx.send("Forfait counts as a loss, bye")
                     
     @coin.command()
     @commands.cooldown(1, 20, commands.BucketType.user)
