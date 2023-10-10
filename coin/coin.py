@@ -297,14 +297,13 @@ class Coin(commands.Cog):
     @commands.cooldown(1, 11, commands.BucketType.user)
     async def bj(self, ctx):
         coins = await self.db.user(ctx.author).coin()
+        cards = self.cards
+        
         def deal(cards):
             hand = []
             for i in range(2):
                 random.shuffle(cards)
-                if self.cards:
-                    card = self.cards.pop()
-                else:
-                    card = self.cards
+                card = cards.pop()
                 if card == 11: card = "J"
                 if card == 12: card = "Q"
                 if card == 13: card = "K"
@@ -325,10 +324,7 @@ class Coin(commands.Cog):
             return total
             
         def hit(hand):
-            if self.cards:
-                card = self.cards.pop()
-            else:
-                card = self.cards
+            card = hand.pop()
             if card == 11: card = "J"
             if card == 12: card = "Q"
             if card == 13: card = "K"
