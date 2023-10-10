@@ -387,7 +387,9 @@ class Coin(commands.Cog):
                     await ctx.send("Looks like you lost, sorry")
                     break
                 elif total(dealer_hand) == total(player_hand):
-                    await ctx.send("It's a tie!")
+                    await ctx.send("It's a tie! You have been refunded")
+                    coins += 50
+                    await self.db.user(ctx.author).coin.set(coins)
                     break
             elif msg.content.lower() == "q":
                 break
