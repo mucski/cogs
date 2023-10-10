@@ -349,8 +349,7 @@ class Coin(commands.Cog):
             
             if msg.content.lower() == "h":
                 hit(player_hand)
-                # await ctx.send("Player hand: " + str(player_hand))
-                # await ctx.send("Hand total " + str(total(player_hand)))
+                await ctx.send("Player hand: " + str(player_hand) + "\nTotal in hand: " + str(total(player_hand)))
                 if total(player_hand) == 21:
                     await ctx.send("Congratulation, you have a Black Jack! You win 500 coins!")
                     coins += 500
@@ -363,8 +362,7 @@ class Coin(commands.Cog):
             elif msg.content.lower () == "s":
                 while total(dealer_hand) < 17:
                     hit(dealer_hand)
-                await ctx.send("Dealer hand: " + str(dealer_hand))
-                await ctx.send("Dealer total: " + str(total(dealer_hand)))
+                await ctx.send("Dealer hand: " + str(dealer_hand) + "\nTotal in hand: " + str(total(dealer_hand)))
                 if total(dealer_hand) == 21:
                     await ctx.send("Ha! I have BlackJack, I win!")
                     break
@@ -380,6 +378,9 @@ class Coin(commands.Cog):
                     break
                 elif total(dealer_hand) > total(player_hand):
                     await ctx.send("Looks like you lost, sorry")
+                    break
+                elif total(dealer_hand) == total(player_hand):
+                    await ctx.send("It's a tie!")
                     break
             elif msg.content.lower() == "q":
                 break
