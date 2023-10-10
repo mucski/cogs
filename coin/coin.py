@@ -332,8 +332,8 @@ class Coin(commands.Cog):
             hand.append(card)
             return hand
         
-        player_hand = deal(self.cards)
-        dealer_hand = deal(self.cards)
+        player_hand = deal(cards)
+        dealer_hand = deal(cards)
         
         if coins < 50:
             await ctx.send("Sorry but you need at least 50 coins to play this game")
