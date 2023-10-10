@@ -354,7 +354,7 @@ class Coin(commands.Cog):
                 if total(player_hand) > 21:
                     await ctx.send("You're bust, you lost!")
                     break
-                elif total(player_hand) == 21:
+                if total(player_hand) == 21:
                     await ctx.send("Congratulation, you have a Black Jack! You win 500 coins!")
                     coins += 500
                     await self.db.user(ctx.author).coin.set(coins)
@@ -370,15 +370,15 @@ class Coin(commands.Cog):
                         coins += 100
                         await self.db.user(ctx.author).coin.set(coins)
                         break
-                    elif total(dealer_hand) == 21:
+                    if total(dealer_hand) == 21:
                         await ctx.send("Ha! I have BlackJack, I win!")
                         break
-                    elif total(dealer_hand) < total(player_hand):
+                    if total(dealer_hand) < total(player_hand):
                         await ctx.send("Looks like you won, congrats, 100 coins")
                         coins += 100
                         await self.db.user(ctx.author).coin.set(coins)
                         break
-                    elif total(dealer_hand) > total(player_hand):
+                    if total(dealer_hand) > total(player_hand):
                         await ctx.send("Looks like you lost, sorry")
                         break
             elif msg.content.lower() == "q":
