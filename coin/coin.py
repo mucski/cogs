@@ -324,7 +324,7 @@ class Coin(commands.Cog):
             return total
             
         def hit(hand):
-            card = hand.pop()
+            card = cards.pop()
             if card == 11: card = "J"
             if card == 12: card = "Q"
             if card == 13: card = "K"
