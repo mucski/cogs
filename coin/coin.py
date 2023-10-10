@@ -30,7 +30,6 @@ class Coin(commands.Cog):
         self.db.register_user(**default_user)
         self.db.register_guild(**default_guild)
         self.playing = False
-        self.cards = [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14]*4
         
     @commands.hybrid_group()
     async def coin(self, interaction: discord.Interaction):
@@ -297,8 +296,8 @@ class Coin(commands.Cog):
     @commands.cooldown(1, 11, commands.BucketType.user)
     async def bj(self, ctx):
         coins = await self.db.user(ctx.author).coin()
-        cards = self.cards
-        
+        cards = [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14]*4
+    
         def deal(cards):
             hand = []
             for i in range(2):
