@@ -328,33 +328,17 @@ class Coin(commands.Cog):
             hand.append(card)
             return hand
         
-        def score(dealer_hand, player_hand):
-            if total(player_hand) == 21:
-                msg = "Congratulations you won, you have a Black Jack"
-            elif total(dealer_hand) == 21:
-                msg = "Sorry, you lose, I got a Black Jack"
-            elif total(player_hand) > 21:
-                msg = "Ha! You bust! I win!"
-            elif total(dealer_hand) > 21:
-                msg = "Oops, looks like I'm bust, you win!"
-            elif total(player_hand) < total(dealer_hand):
-                msg = "Ha! I have more, so I win"
-            elif total(player_hand) > total(dealer_hand):
-                msg = "Looks like you have more than me, you won!"
-                
-        await ctx.send("Welcome to BlackJack, I don't have time to explain the rules")
-        
         quit = False
         dealer_quit = False
-        
         player_hand = deal(self.cards)
         dealer_hand = deal(self.cards)
-            
+        
+        await ctx.send("Welcome to BlackJack, I don't have time to explain the rules")
         await ctx.send("I have a " + str(dealer_hand[0]))
         await ctx.send("You have a " + str(player_hand[0]) + " and a " + str(player_hand[1]) + " for a total of " + str(total(player_hand)))
         await ctx.send("Do you want to [H]it, [S]tand or [Q]uit")
             
-        while not quit:
+        while True:
             msg = await self.bot.wait_for("message", check=MessagePredicate.same_context(ctx))
             
             if msg.content.lower() == "h":
@@ -363,34 +347,30 @@ class Coin(commands.Cog):
                 await ctx.send("Hand total " + str(total(player_hand)))
                 if total(player_hand) > 21:
                     await ctx.send("You're bust, you lost!")
-                    quit = True
+                    break
                 elif total(player_hand) == 21:
                     await ctx.send("Congratulation, you have a Black Jack! You win!")
-                    quit = True
+                    break
                 await ctx.send("Do you want to [H]it, [S]tand or [Q]uit")
             elif msg.content.lower() == "s":
-                while not dealer_quit:
+                while True:
                     hit(dealer_hand)
                     await ctx.send("Dealer hand: " + str(dealer_hand))
                     await ctx.send("Dealer total: " + str(total(dealer_hand)))
                     if total(dealer_hand) > 21:
                         await ctx.send("Oops, looks like you won")
-                        dealer_quit = True
-                        quit = True
+                        break
                     elif total(dealer_hand) == 21:
                         await ctx.send("Ha! I have BlackJack, I win!")
-                        dealer_quit = True
-                        quit = True
+                        break
                     elif total(dealer_hand) < total(player_hand):
                         await ctx.send("Looks like you won, congrats")
-                        dealer_quit = True
-                        quit = True
+                        break
                     elif total(dealer_hand) > total(player_hand):
                         await ctx.send("Looks like you lost, sorry")
-                        dealer_quit = True
-                        quit = True
+                        break
             elif msg.content.lower() == "q":
-                quit = True
+                break
                 await ctx.send("Bye")
                     
     @coin.command()
