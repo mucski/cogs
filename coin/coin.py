@@ -303,6 +303,8 @@ class Coin(commands.Cog):
                 random.shuffle(cards)
                 if self.cards:
                     card = self.cards.pop()
+                else:
+                    card = self.cards
                 if card == 11: card = "J"
                 if card == 12: card = "Q"
                 if card == 13: card = "K"
@@ -325,6 +327,8 @@ class Coin(commands.Cog):
         def hit(hand):
             if self.cards:
                 card = self.cards.pop()
+            else:
+                card = self.cards
             if card == 11: card = "J"
             if card == 12: card = "Q"
             if card == 13: card = "K"
