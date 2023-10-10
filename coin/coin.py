@@ -365,7 +365,7 @@ class Coin(commands.Cog):
                     await ctx.send("You're bust, you lost!")
                     quit = True
             elif msg.content.lower() == "s":
-                while not dealer_quit and total(dealer_hand) < 17:
+                while not dealer_quit:
                     hit(dealer_hand)
                     await ctx.send("Dealer hand: " + str(dealer_hand))
                     await ctx.send("Dealer total: " + str(total(dealer_hand)))
