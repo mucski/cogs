@@ -294,7 +294,7 @@ class Coin(commands.Cog):
 
     @coin.command()
     @commands.cooldown(1, 11, commands.BucketType.user)
-    async def bj(self, ctx):
+    async def blackjack(self, ctx):
         coins = await self.db.user(ctx.author).coin()
         cards = [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14]*4
     
