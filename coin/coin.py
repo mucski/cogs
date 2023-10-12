@@ -292,7 +292,7 @@ class Coin(commands.Cog):
             except discord.HTTPException:
                 pass
 
-    @coin.command()
+    @coin.command(aliases = ["bj"])
     @commands.cooldown(1, 11, commands.BucketType.user)
     async def blackjack(self, ctx):
         coins = await self.db.user(ctx.author).coin()
