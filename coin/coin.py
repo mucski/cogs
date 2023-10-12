@@ -31,7 +31,7 @@ class Coin(commands.Cog):
         self.db.register_guild(**default_guild)
         self.playing = False
         
-    @commands.hybrid_group()
+    @commands.hybrid_group(aliases = ["c"])
     async def coin(self, interaction: discord.Interaction):
         """ Coin Tycoon created by Mucski \n
             The point of the game is to have as much coins as you can.
