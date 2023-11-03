@@ -10,6 +10,7 @@ from redbot.core.utils.chat_formatting import humanize_number
 import humanize
 from datetime import datetime
 from bs4 import BeautifulSoup
+import lxml
 
 
 def champ_into_pic(champ: arez.Champion) -> Image:
@@ -304,8 +305,7 @@ async def generatecard(player):
     else:
         kda = "?"
     draw.text((33, 211), f"{player.name}", font=fnt_big, stroke_width=stroke_size, stroke_fill=stroke, fill=(180, 160, 138))
-    player_title = player.title
-    clean_title = BeautifulSoup(player.title, "lxml").player_title
+    clean_title = lxml.html.fromstring(player.title).text_content()
     draw.text((33, 277), f"{clean_title}  - (Global KDA: {kda})", font=fnt_small, stroke_width=stroke_size, stroke_fill=stroke, fill=(223, 142, 53))
     draw.text((33, 360), f"Level: {player.calculated_level}", font=fnt, stroke_width=stroke_size, stroke_fill=stroke, fill=fill)
     draw.text((33, 417), f"Region: {player.region}", font=fnt, stroke_width=stroke_size, stroke_fill=stroke, fill=fill)
