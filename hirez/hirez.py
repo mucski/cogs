@@ -356,16 +356,16 @@ class HiRez(commands.Cog):
                     await ctx.send("```\nDid not find anyone called {}\n```".format(player))
                     return
                 player = player_list[0]
-            try:
-                match_list = await player.get_match_history()
-            except TypeError():
-                await ctx.send("Could not retrieve match data, malformed match!")
-                return
+            match_list = await player.get_match_history()
             if not match_list:
                 await ctx.send("```\nNo recent matches found. (History is only kept for 30 days)\n```")
                 return
             match = await match_list[0]
-            await match.expand_players()
+            try:
+                await match.expand_players()
+            except TypeError():
+                await ctx.send("Could not retrieve match data, malformed match!")
+                return
             pic = helper.format_match(match)
             file = discord.File(filename=f"{player}.png", fp=pic)
             await ctx.send(file=file)
