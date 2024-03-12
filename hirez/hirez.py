@@ -322,7 +322,11 @@ class HiRez(commands.Cog):
         See [p]help last for more info.
         """
         async with ctx.typing():
-            match = await self.api.get_match(matchid, expand_players=True)
+            try:
+                match = await self.api.get_match(matchid, expand_players=True)
+            except TypeError():
+                await ctx.send("Could not retrieve match data, malformed match!")
+                return
             pic = helper.format_match(match)
             file = discord.File(filename="test.png", fp=pic)
             await ctx.send(file=file)
@@ -352,7 +356,11 @@ class HiRez(commands.Cog):
                     await ctx.send("```\nDid not find anyone called {}\n```".format(player))
                     return
                 player = player_list[0]
-            match_list = await player.get_match_history()
+            try:
+                match_list = await player.get_match_history()
+            except TypeError():
+                await ctx.send("Could not retrieve match data, malformed match!")
+                return
             if not match_list:
                 await ctx.send("```\nNo recent matches found. (History is only kept for 30 days)\n```")
                 return
