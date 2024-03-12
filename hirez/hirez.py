@@ -360,12 +360,12 @@ class HiRez(commands.Cog):
             if not match_list:
                 await ctx.send("```\nNo recent matches found. (History is only kept for 30 days)\n```")
                 return
-            match = await match_list[0]
             try:
-                await match.expand_players()
-            except TypeError():
+                match = await match_list[0]
+            except TypeError:
                 await ctx.send("Could not retrieve match data, malformed match!")
                 return
+            await match.expand_players()
             pic = helper.format_match(match)
             file = discord.File(filename=f"{player}.png", fp=pic)
             await ctx.send(file=file)
