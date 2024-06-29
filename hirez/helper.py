@@ -308,7 +308,7 @@ async def generatecard(player):
     try:
         clean_title = html.fromstring(player.title).text_content()
     except:
-        pass
+        clean_title = ""
     draw.text((33, 277), f"{clean_title}  - (Global KDA: {kda})", font=fnt_small, stroke_width=stroke_size, stroke_fill=stroke, fill=(223, 142, 53))
     draw.text((33, 360), f"Level: {player.calculated_level}", font=fnt, stroke_width=stroke_size, stroke_fill=stroke, fill=fill)
     draw.text((33, 417), f"Region: {player.region}", font=fnt, stroke_width=stroke_size, stroke_fill=stroke, fill=fill)
