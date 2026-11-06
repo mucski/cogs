@@ -9,12 +9,6 @@ import discord
 from redbot.core.commands import Context
 from redbot.core import commands, checks, Config, app_commands
 
-# Gevent patch before gTTS
-try:
-    import gevent
-    gevent.monkey.patch_all()
-except ModuleNotFoundError:
-    pass
 from gtts import gTTS
 
 
@@ -320,44 +314,57 @@ class SFX(commands.Cog):
             tb_msg = ''.join(traceback.format_exception(type(error), error, error.__traceback__))
             asyncio.create_task(channel.send(f"```\n{tb_msg}\n```"))
 
+    @staticmethod
+    def _make_tts(sentence: str, lang: str, tld: str) -> BytesIO:
+        # blocking network call: runs in a worker thread, never on the event loop
+        fp = BytesIO()
+        gTTS(text=sentence, lang=lang, tld=tld, slow=False, timeout=10).write_to_fp(fp)
+        fp.seek(0)
+        return fp
+
     async def vc_speaker(self):
         while True:
+            item = await self.vc_queue.get()
+            await self.vc_lock.acquire()
+            started = False
             try:
-                item = await self.vc_queue.get()
-                await self.vc_lock.acquire()
                 guild: discord.Guild = item.msg.guild  # has to be there
                 vc: Optional[discord.VoiceClient] = guild.voice_client
                 if vc is None or not vc.is_connected():
-                    self.vc_lock.release()
                     continue
                 lang = await self.db.guild(guild).lang()
                 tld = await self.db.guild(guild).tld()
                 speed = await self.db.guild(guild).speed()
-                fp = BytesIO()
-                tts = gTTS(text=item.sentence, lang=lang, tld=tld, slow=False)
-                tts.write_to_fp(fp)
-                fp.seek(0)
-                # Lets play that mp3 file in the voice channel
-                vc.play(
+                fp = await asyncio.wait_for(
+                    asyncio.to_thread(self._make_tts, item.sentence, lang, tld), timeout=15
+                )
+                source = discord.PCMVolumeTransformer(
                     discord.FFmpegPCMAudio(
                         fp, pipe=True, options=f'-filter:a "atempo={speed}" -t 00:00:20'
                     ),
+                    volume=1,
+                )
+                vc.play(
+                    source,
                     # `after` runs in discord.py's audio thread; hop back to the event loop
                     after=lambda error, ch=item.msg.channel: self.bot.loop.call_soon_threadsafe(
                         self.vc_callback, error, ch
                     ),
                 )
-                # Lets set the volume to 1
-                vc.source = discord.PCMVolumeTransformer(vc.source)
-                vc.source.volume = 1
+                started = True  # vc_callback releases the lock when playback ends
+            except asyncio.CancelledError:
+                raise
+            except asyncio.TimeoutError:
+                await item.msg.channel.send(
+                    "TTS request to Google timed out. Check `sfx tld` / `sfx lang` settings."
+                )
             except discord.ClientException as e:
                 # e.g. already playing audio, not connected, or "ffmpeg was not found."
-                if self.vc_lock.locked():
-                    self.vc_lock.release()
                 await item.msg.channel.send(f"TTS playback failed: `{e}`")
             except Exception:
-                await item.msg.channel.send(f"```\n{traceback.format_exc()}\n```")
-                if self.vc_lock.locked():
+                await item.msg.channel.send(f"```\n{traceback.format_exc()[-1900:]}\n```")
+            finally:
+                if not started and self.vc_lock.locked():
                     self.vc_lock.release()
 
     # @commands.command()
