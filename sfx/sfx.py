@@ -288,6 +288,27 @@ class SFX(commands.Cog):
 
     @sfx.command()
     @checks.admin()
+    @commands.guild_only()
+    async def status(self, ctx: Context):
+        """
+        Show TTS debug info for this server.
+        """
+        vc: Optional[discord.VoiceClient] = ctx.guild.voice_client
+        channels = await self.db.guild(ctx.guild).channels()
+        await ctx.send(
+            "```\n"
+            f"this channel: {ctx.channel.id} tracked: {ctx.channel.id in channels}\n"
+            f"tracked channels: {channels}\n"
+            f"voice client: {vc!r}\n"
+            f"connected: {vc.is_connected() if vc else None} "
+            f"playing: {vc.is_playing() if vc else None}\n"
+            f"speaker task: {self.vc_task!r}\n"
+            f"lock held: {self.vc_lock.locked()} queue size: {self.vc_queue.qsize()}\n"
+            "```"
+        )
+
+    @sfx.command()
+    @checks.admin()
     @checks.mod()
     @commands.guild_only()
     async def speed(self, ctx: Context):
