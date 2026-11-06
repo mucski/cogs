@@ -220,7 +220,7 @@ class SFX(commands.Cog):
         Add a TTS channel to the list of tracked channels.
         """
         if not channel:
-            channel = ctx.author.channel.id
+            channel = ctx.channel
         channels: List[int]
         async with self.db.guild(ctx.guild).channels() as channels:
             channels.append(channel.id)
@@ -234,7 +234,7 @@ class SFX(commands.Cog):
         Remove a TTS channel from the list of tracked channels.
         """
         if not channel:
-            channel = ctx.author.channel.id
+            channel = ctx.channel
         channels: List[int]
         async with self.db.guild(ctx.guild).channels() as channels:
             channels.remove(channel.id)
@@ -308,6 +308,7 @@ class SFX(commands.Cog):
                 guild: discord.Guild = item.msg.guild  # has to be there
                 vc: Optional[discord.VoiceClient] = guild.voice_client
                 if vc is None or not vc.is_connected():
+                    self.vc_lock.release()
                     continue
                 lang = await self.db.guild(guild).lang()
                 tld = await self.db.guild(guild).tld()
