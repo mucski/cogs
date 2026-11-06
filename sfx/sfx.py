@@ -10,6 +10,7 @@ from redbot.core.commands import Context
 from redbot.core import commands, checks, Config, app_commands
 
 from gtts import gTTS
+from gtts.lang import tts_langs
 
 
 class TTSItem(NamedTuple):
@@ -41,92 +42,34 @@ class SelectSpeed(discord.ui.View):
         await interaction.response.send_message(f"TTS speed has been set to {select.values[0]}")
 
 
-class SelectLang(discord.ui.View):
-    def __init__(self, cog):
-        super().__init__()
+class LangSelect(discord.ui.Select):
+    def __init__(self, cog, langs):
+        super().__init__(
+            placeholder=f"Languages {langs[0][1]} – {langs[-1][1]}"[:150],
+            min_values=1,
+            max_values=1,
+            options=[discord.SelectOption(label=name[:100], value=code) for code, name in langs],
+        )
         self.cog = cog
 
-    @discord.ui.select(
-        placeholder="Select a language",
-        min_values=1,
-        max_values=1,
-        options=[
-            discord.SelectOption(label="Afrikaans", value="af"),
-            discord.SelectOption(label="Arabic", value="ar"),
-            discord.SelectOption(label="Bulgarian", value="bg"),
-            discord.SelectOption(label="Bengali", value="bn"),
-            discord.SelectOption(label="Bosnian", value="bs"),
-            discord.SelectOption(label="Catalan", value="ca"),
-            discord.SelectOption(label="Czech", value="cs"),
-            discord.SelectOption(label="Welsh", value="cy"),
-            discord.SelectOption(label="Danish", value="da"),
-            discord.SelectOption(label="German", value="de"),
-            discord.SelectOption(label="Greek", value="el"),
-            discord.SelectOption(label="English", value="en"),
-            discord.SelectOption(label="Spanish", value="es"),
-            discord.SelectOption(label="Estonian", value="et"),
-            discord.SelectOption(label="Esperanto", value="eo"),
-            discord.SelectOption(label="Finnish", value="fi"),
-            discord.SelectOption(label="French", value="fr"),
-            discord.SelectOption(label="Gujarati", value="gu"),
-            discord.SelectOption(label="Hindi", value="hi"),
-            discord.SelectOption(label="Croatian", value="hr"),
-            discord.SelectOption(label="Hungarian", value="hu"),
-            discord.SelectOption(label="Armenian", value="hy"),
-            discord.SelectOption(label="Indonesian", value="id"),
-            discord.SelectOption(label="Icelandic", value="is"),
-            discord.SelectOption(label="Italian", value="it"),
-            ####
-            # discord.SelectOption(label="Hebrew", value="iw"),
-            # discord.SelectOption(label="Japanese", value="ja"),
-            # discord.SelectOption(label="Javanese", value="jw"),
-            # discord.SelectOption(label="Khmer", value="km"),
-            # discord.SelectOption(label="Kannada", value="kn"),
-            # discord.SelectOption(label="Hebrew", value="iw"),
-            # discord.SelectOption(label="Japanese", value="ja"),
-            # discord.SelectOption(label="Javanese", value="jw"),
-            # discord.SelectOption(label="Khmer", value="km"),
-            # discord.SelectOption(label="Kannada", value="kn"),
-            # discord.SelectOption(label="Korean", value="ko"),
-            # discord.SelectOption(label="Latin", value="la"),
-            # discord.SelectOption(label="Latvian", value="lv"),
-            # discord.SelectOption(label="Macedonian", value="mk"),
-            # discord.SelectOption(label="Malay", value="ms"),
-            # discord.SelectOption(label="Malayalam", value="ml"),
-            # discord.SelectOption(label="Myanmar (Burmese)", value="my"),
-            # discord.SelectOption(label="Nepali", value="ne"),
-            # discord.SelectOption(label="Dutch", value="nl"),
-            # discord.SelectOption(label="Norwegian", value="np"),
-            # discord.SelectOption(label="Polish", value="pl"),
-            # discord.SelectOption(label="Portuguese", value="pt"),
-            # discord.SelectOption(label="Romanian", value="ro"),
-            # discord.SelectOption(label="Russian", value="ru"),
-            # discord.SelectOption(label="Sinhala", value="si"),
-            # discord.SelectOption(label="Slovak", value="sk"),
-            # discord.SelectOption(label="Albanian", value="sq"),
-            # discord.SelectOption(label="Serbian", value="sr"),
-            # discord.SelectOption(label="Sundanese", value="su"),
-            # discord.SelectOption(label="Swedish", value="sv"),
-            # discord.SelectOption(label="Swahili", value="sw"),
-            # discord.SelectOption(label="Tamil", value="ta"),
-            # discord.SelectOption(label="Telugu", value="te"),
-            # discord.SelectOption(label="Thai", value="th"),
-            # discord.SelectOption(label="Filipino", value="tl"),
-            # discord.SelectOption(label="Turkish", value="tr"),
-            # discord.SelectOption(label="Ukrainian", value="uk"),
-            # discord.SelectOption(label="Urdu", value="ur"),
-            # discord.SelectOption(label="Vietnamese", value="vi"),
-            # discord.SelectOption(label="Chinese", value="zh-CN"),
-            # discord.SelectOption(label="Chinese (Mandarin/Taiwan)", value="zh-TW"),
-            # discord.SelectOption(label="Chinese (Mandarin)", value="zh"),
-        ]
-    )
-    async def _lang_callback(self, interaction, select):
-        """
-        Language change.
-        """
-        await self.cog.db.guild(interaction.guild).lang.set(select.values[0])
-        await interaction.response.send_message(f"Language has been set to {select.values[0]}")
+    async def callback(self, interaction: discord.Interaction):
+        code = self.values[0]
+        await self.cog.db.guild(interaction.guild).lang.set(code)
+        name = tts_langs().get(code, code)
+        await interaction.response.send_message(f"Language has been set to {name} (`{code}`)")
+
+
+class SelectLang(discord.ui.View):
+    """
+    All gTTS languages, split across several menus (Discord allows max 25 options per menu
+    and max 5 menus per message).
+    """
+
+    def __init__(self, cog):
+        super().__init__()
+        langs = sorted(tts_langs().items(), key=lambda kv: kv[1])
+        for i in range(0, min(len(langs), 125), 25):
+            self.add_item(LangSelect(cog, langs[i:i + 25]))
 
 
 class SFX(commands.Cog):
