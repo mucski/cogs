@@ -8,7 +8,6 @@ from typing import Optional, List, Dict, NamedTuple
 import discord
 from redbot.core.commands import Context
 from redbot.core import commands, checks, Config, app_commands
-from .custom import FFmpegPCMAudio
 
 # Gevent patch before gTTS
 try:
@@ -340,18 +339,22 @@ class SFX(commands.Cog):
                 fp.seek(0)
                 # Lets play that mp3 file in the voice channel
                 vc.play(
-                    FFmpegPCMAudio(
-                        fp.read(), pipe=True, options=f'-filter:a "atempo={speed}" -t 00:00:20'
+                    discord.FFmpegPCMAudio(
+                        fp, pipe=True, options=f'-filter:a "atempo={speed}" -t 00:00:20'
                     ),
-                    after=lambda error: self.vc_callback(error, item.msg.channel),
+                    # `after` runs in discord.py's audio thread; hop back to the event loop
+                    after=lambda error, ch=item.msg.channel: self.bot.loop.call_soon_threadsafe(
+                        self.vc_callback, error, ch
+                    ),
                 )
                 # Lets set the volume to 1
                 vc.source = discord.PCMVolumeTransformer(vc.source)
                 vc.source.volume = 1
-            except discord.ClientException:
-                # raised when the bot is already playing some other audio, possibly from
-                # another cog, which we cannot control - ignore this item
-                pass
+            except discord.ClientException as e:
+                # e.g. already playing audio, not connected, or "ffmpeg was not found."
+                if self.vc_lock.locked():
+                    self.vc_lock.release()
+                await item.msg.channel.send(f"TTS playback failed: `{e}`")
             except Exception:
                 await item.msg.channel.send(f"```\n{traceback.format_exc()}\n```")
                 if self.vc_lock.locked():
